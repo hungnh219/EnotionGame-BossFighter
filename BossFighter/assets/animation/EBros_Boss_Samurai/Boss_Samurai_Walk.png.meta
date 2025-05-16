@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "2ffec65c-e888-41f7-a9bc-270137a3b92d",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 6144,
+  "height": 2048,
+  "platformSettings": {},
+  "subMetas": {
+    "Boss_Samurai_Walk": {
+      "ver": "1.0.6",
+      "uuid": "9eea3840-7b1d-4a4d-8c57-400b92918c9c",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "2ffec65c-e888-41f7-a9bc-270137a3b92d",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": -8,
+      "trimX": 1,
+      "trimY": 76,
+      "width": 6143,
+      "height": 1912,
+      "rawWidth": 6144,
+      "rawHeight": 2048,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

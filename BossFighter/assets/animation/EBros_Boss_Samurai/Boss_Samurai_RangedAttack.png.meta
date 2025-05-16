@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "69fa87ab-8801-40e6-bddb-a9934f72722d",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 6144,
+  "height": 2048,
+  "platformSettings": {},
+  "subMetas": {
+    "Boss_Samurai_RangedAttack": {
+      "ver": "1.0.6",
+      "uuid": "876204b4-7a86-448c-96ce-a72d51298b65",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "69fa87ab-8801-40e6-bddb-a9934f72722d",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": -11.5,
+      "trimX": 1,
+      "trimY": 34,
+      "width": 6143,
+      "height": 2003,
+      "rawWidth": 6144,
+      "rawHeight": 2048,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

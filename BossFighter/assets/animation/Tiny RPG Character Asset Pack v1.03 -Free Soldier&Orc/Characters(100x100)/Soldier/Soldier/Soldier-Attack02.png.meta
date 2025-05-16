@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "d3bd999b-66b9-43ee-ac60-e6b0eb0e6859",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 600,
+  "height": 100,
+  "platformSettings": {},
+  "subMetas": {
+    "Soldier-Attack02": {
+      "ver": "1.0.6",
+      "uuid": "02c47647-f8b9-4f57-b348-6f6e4fd94fd4",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "d3bd999b-66b9-43ee-ac60-e6b0eb0e6859",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 5.5,
+      "offsetY": 5,
+      "trimX": 41,
+      "trimY": 31,
+      "width": 529,
+      "height": 28,
+      "rawWidth": 600,
+      "rawHeight": 100,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "a8864f23-fbdf-418a-a094-0d9a6b9732e3",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 400,
+  "height": 100,
+  "platformSettings": {},
+  "subMetas": {
+    "Soldier-Hurt": {
+      "ver": "1.0.6",
+      "uuid": "4f58cb3c-e92e-4b41-bb49-9d0cc0e121fb",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "a8864f23-fbdf-418a-a094-0d9a6b9732e3",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -1,
+      "offsetY": 0.5,
+      "trimX": 40,
+      "trimY": 39,
+      "width": 318,
+      "height": 21,
+      "rawWidth": 400,
+      "rawHeight": 100,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

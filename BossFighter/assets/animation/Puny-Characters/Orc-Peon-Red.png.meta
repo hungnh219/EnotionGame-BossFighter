@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "c81f61fa-4baf-410b-a48f-de45db8bf7e6",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 768,
+  "height": 256,
+  "platformSettings": {},
+  "subMetas": {
+    "Orc-Peon-Red": {
+      "ver": "1.0.6",
+      "uuid": "3ab158ff-4f97-41a8-8366-26d87cb41ada",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "c81f61fa-4baf-410b-a48f-de45db8bf7e6",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": 0,
+      "trimX": 9,
+      "trimY": 8,
+      "width": 751,
+      "height": 240,
+      "rawWidth": 768,
+      "rawHeight": 256,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

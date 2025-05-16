@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "f3dcf6e8-ca5f-4aca-97fc-848b9edccb74",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 768,
+  "height": 512,
+  "platformSettings": {},
+  "subMetas": {
+    "Knight_Crouch_dir6": {
+      "ver": "1.0.6",
+      "uuid": "bc6c2121-d462-48d6-8dc2-2a4f90b37fcc",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "f3dcf6e8-ca5f-4aca-97fc-848b9edccb74",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -0.5,
+      "offsetY": 26.5,
+      "trimX": 101,
+      "trimY": 65,
+      "width": 565,
+      "height": 329,
+      "rawWidth": 768,
+      "rawHeight": 512,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

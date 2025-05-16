@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "b1044e7d-1912-4b08-a091-2585ad3a79f2",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 400,
+  "height": 100,
+  "platformSettings": {},
+  "subMetas": {
+    "Soldier-Shadow_death": {
+      "ver": "1.0.6",
+      "uuid": "4f59fd4f-87c7-44fd-ae2a-a0518e330f70",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "b1044e7d-1912-4b08-a091-2585ad3a79f2",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 5.5,
+      "offsetY": -7.5,
+      "trimX": 43,
+      "trimY": 55,
+      "width": 325,
+      "height": 5,
+      "rawWidth": 400,
+      "rawHeight": 100,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

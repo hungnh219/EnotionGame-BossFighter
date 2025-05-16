@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "f0f75eaa-a75e-40bc-bbc0-7d65a530c033",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 1408,
+  "height": 1536,
+  "platformSettings": {},
+  "subMetas": {
+    "StandIn_Swordsman_v01": {
+      "ver": "1.0.6",
+      "uuid": "5c497adc-3214-4949-9c78-b99dc52e5424",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "f0f75eaa-a75e-40bc-bbc0-7d65a530c033",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": 1.5,
+      "trimX": 36,
+      "trimY": 23,
+      "width": 1337,
+      "height": 1487,
+      "rawWidth": 1408,
+      "rawHeight": 1536,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

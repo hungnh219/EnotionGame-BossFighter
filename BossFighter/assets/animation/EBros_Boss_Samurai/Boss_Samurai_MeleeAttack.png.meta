@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "a7a37a58-63e0-4950-9bc9-50ec8e57f4ac",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 6144,
+  "height": 2048,
+  "platformSettings": {},
+  "subMetas": {
+    "Boss_Samurai_MeleeAttack": {
+      "ver": "1.0.6",
+      "uuid": "4556dba4-2621-4731-86d2-d040b61b691e",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "a7a37a58-63e0-4950-9bc9-50ec8e57f4ac",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": -16,
+      "trimX": 1,
+      "trimY": 56,
+      "width": 6143,
+      "height": 1968,
+      "rawWidth": 6144,
+      "rawHeight": 2048,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
