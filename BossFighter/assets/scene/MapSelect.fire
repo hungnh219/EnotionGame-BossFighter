@@ -293,17 +293,17 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "3871CJ6elHy7I12xow21x9"
+    "_id": "496SQXKpRPwJcx9doOrd8c"
   },
   {
-    "__type__": "6da27Pbw1hH/6itXJnZo1I8",
+    "__type__": "5d17ehGS0JGjJMKeHjGTeR5",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 5
     },
     "_enabled": true,
-    "_id": "4bGBHF9yZMbat++4Rigk5V"
+    "_id": "ddC/+4HmRMFIcDp6xQgoaB"
   },
   {
     "__type__": "cc.Canvas",
@@ -802,7 +802,7 @@
       "__id__": 5
     },
     "component": "",
-    "_componentId": "6da27Pbw1hH/6itXJnZo1I8",
+    "_componentId": "5d17ehGS0JGjJMKeHjGTeR5",
     "handler": "map1Picked",
     "customEventData": ""
   },
@@ -1187,7 +1187,7 @@
       "__id__": 5
     },
     "component": "",
-    "_componentId": "6da27Pbw1hH/6itXJnZo1I8",
+    "_componentId": "5d17ehGS0JGjJMKeHjGTeR5",
     "handler": "map2Picked",
     "customEventData": ""
   },

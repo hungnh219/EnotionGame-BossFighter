@@ -1434,7 +1434,7 @@
       "__id__": 28
     },
     "component": "",
-    "_componentId": "abae1O9CrdOYa1BuoPwkHBQ",
+    "_componentId": "f3df9Cx9EVN6J6zT2hCO3vv",
     "handler": "playGame",
     "customEventData": ""
   },
@@ -1498,10 +1498,10 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "eduD+PuE9D/6L2DAhoPAZR"
+    "_id": "83MwwMzhtPMaP8oay9yLkT"
   },
   {
-    "__type__": "abae1O9CrdOYa1BuoPwkHBQ",
+    "__type__": "f3df9Cx9EVN6J6zT2hCO3vv",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1511,7 +1511,7 @@
     "mapPicked": {
       "__id__": 30
     },
-    "_id": "94Qx+prHpEZaiEd5nKbTFL"
+    "_id": "4d0kXIs01PEIF9cDxuPMEC"
   },
   {
     "__type__": "cc.Label",
