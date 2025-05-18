@@ -15,9 +15,12 @@
     "_children": [
       {
         "__id__": 2
+      },
+      {
+        "__id__": 11
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [],
     "_prefab": null,
     "_opacity": 255,
@@ -75,16 +78,16 @@
         "__id__": 5
       },
       {
-        "__id__": 8
+        "__id__": 7
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 11
+        "__id__": 9
       },
       {
-        "__id__": 12
+        "__id__": 10
       }
     ],
     "_prefab": null,
@@ -235,19 +238,16 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "New Sprite",
+    "_name": "PlayerSpawn",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 6
-      },
-      {
-        "__id__": 7
       }
     ],
     "_prefab": null,
@@ -274,7 +274,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        0,
+        -200,
         0,
         0,
         0,
@@ -296,7 +296,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "f3+fQ8TRZJ67jxldm5mvAV"
+    "_id": "92wRaiEv5M7o9+yPjg6eRu"
   },
   {
     "__type__": "cc.Sprite",
@@ -328,38 +328,20 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": null,
-    "_id": "fdYsZSxydATbOamD0piTUL"
-  },
-  {
-    "__type__": "cc.Animation",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 5
-    },
-    "_enabled": true,
-    "_defaultClip": null,
-    "_clips": [
-      null
-    ],
-    "playOnLoad": false,
-    "_id": "64nAOpZQpPO7CTNK2pOlJ0"
+    "_id": "cdaeKeqi1LnK8fcw1J0yIt"
   },
   {
     "__type__": "cc.Node",
-    "_name": "New Sprite",
+    "_name": "EnemySpawn",
     "_objFlags": 0,
     "_parent": {
       "__id__": 2
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
-        "__id__": 9
-      },
-      {
-        "__id__": 10
+        "__id__": 8
       }
     ],
     "_prefab": null,
@@ -386,7 +368,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        0,
+        200,
         0,
         0,
         0,
@@ -408,14 +390,14 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "88L5UUvGpOFpZTuJrXDpLm"
+    "_id": "deourXK/tOe5u5NkSQFucQ"
   },
   {
     "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 8
+      "__id__": 7
     },
     "_enabled": true,
     "_materials": [
@@ -425,7 +407,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": null,
+    "_spriteFrame": {
+      "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
+    },
     "_type": 0,
     "_sizeMode": 1,
     "_fillType": 0,
@@ -438,22 +422,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": null,
-    "_id": "33AOUgujBOl4s/nJg8MvJH"
-  },
-  {
-    "__type__": "cc.Animation",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 8
-    },
-    "_enabled": true,
-    "_defaultClip": null,
-    "_clips": [
-      null
-    ],
-    "playOnLoad": false,
-    "_id": "caBixxzqlL+rCvZR2tVvB0"
+    "_id": "c0ChS+m5lKZ6I24xTImqqW"
   },
   {
     "__type__": "cc.Canvas",
@@ -498,5 +467,89 @@
     "_originalWidth": 0,
     "_originalHeight": 0,
     "_id": "29zXboiXFBKoIV4PQ2liTe"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "GameController",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 12
+      }
+    ],
+    "_prefab": null,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_trs": {
+      "__type__": "TypedArray",
+      "ctor": "Float64Array",
+      "array": [
+        480,
+        320,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "_eulerAngles": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_is3DNode": false,
+    "_groupIndex": 0,
+    "groupIndex": 0,
+    "_id": "a5qoyIx4FNPIzNvfoxauSt"
+  },
+  {
+    "__type__": "8574aX+iSNAjYZLDL+jNcL/",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 11
+    },
+    "_enabled": true,
+    "playerPrefab": {
+      "__uuid__": "9d6466eb-ed17-4210-9cfd-6ff697751d33"
+    },
+    "enemyPrefab": {
+      "__uuid__": "20c589dd-b738-401b-8d19-7c357486fe6c"
+    },
+    "playerSpawn": {
+      "__id__": 5
+    },
+    "enemySpawn": {
+      "__id__": 7
+    },
+    "_id": "57OZ3CZz5Ni7zH1dAU7TeG"
   }
 ]
