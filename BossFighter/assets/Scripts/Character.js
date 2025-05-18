@@ -57,11 +57,47 @@ cc.Class({
         if (this.keyboardInput[cc.macro.KEY.a]) dir.x -= 1;
         if (this.keyboardInput[cc.macro.KEY.d]) dir.x += 1;
 
-        if (dir.mag() > 0) {
-            dir = dir.normalizeSelf();
-            this.move(dir, dt);
+        const sprite = this.node.getChildByName('Sprite')
+        const animation = sprite.getComponent(cc.Animation);
+
+        if (dir.mag() == 0) {
+            if (this.currentAnimation !== 'Intro') {
+                animation.play('Intro');
+                this.currentAnimation = 'Intro'
+            }
+            return;
         }
 
+        dir = dir.normalizeSelf();
+
+        let animName = '';
+
+        const angle = Math.atan2(dir.y, dir.x) * 180 / Math.PI; // độ
+
+        if (angle >= -22.5 && angle < 22.5) {
+            animName = 'right-walk';
+        } else if (angle >= 22.5 && angle < 67.5) {
+            animName = 'top-right-walk';
+        } else if (angle >= 67.5 && angle < 112.5) {
+            animName = 'top-walk';
+        } else if (angle >= 112.5 && angle < 157.5) {
+            animName = 'top-left-walk';
+        } else if (angle >= 157.5 || angle < -157.5) {
+            animName = 'left-walk';
+        } else if (angle >= -157.5 && angle < -112.5) {
+            animName = 'bottom-left';
+        } else if (angle >= -112.5 && angle < -67.5) {
+            animName = 'bottom-walk';
+        } else if (angle >= -67.5 && angle < -22.5) {
+            animName = 'bottom-right';
+        }
+
+        if (this.currentAnimation !== animName) {
+            animation.play(animName);
+            this.currentAnimation = animName;
+        }
+
+        this.move(dir, dt);
         this.updateBars();
     },
 
@@ -84,8 +120,8 @@ cc.Class({
         const canvas = cc.find("Canvas");
         const size = canvas.getContentSize();
 
-        const halfWidth = size.width / 2;   
-        const halfHeight = size.height / 2; 
+        const halfWidth = size.width / 2;
+        const halfHeight = size.height / 2;
 
         const minX = -halfWidth;
         const maxX = halfWidth;
