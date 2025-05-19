@@ -131,15 +131,8 @@ cc.Class({
         const size = 2;
         const posX = 2;
         const posY = 5;
-        
 
-        // this.addObjectIntoMap(posX, posY, size, this.bossAttackAnimation);
         this.addObjectIntoMap(posX, posY, size, this.bossNode);
-
-        
-        if (this.gridMap[posX][posY].object !== null) {
-            // this.gridMap[posX][posY].object.play('boss');
-        }
     },
 
     convertGridToPosition(gridX, gridY) {
@@ -183,15 +176,11 @@ cc.Class({
 
             if (size == 1) {
                 this.gridMap[gridX][gridY].walkable = false;
-                // this.gameController.updateWalkable(gridX, gridY, false);
-                console.log(this.gameController.updateWalkable(gridX, gridY, false));
+                this.gameController.updateWalkable(gridX, gridY, false);
             } {
                 for (let i = 0; i < size; i++) {
                     for (let j = 0; j < size; j++) {
-                        if (this.gridMap[gridX + i][gridY + j]) {
-                            this.gridMap[gridX + i][gridY + j].walkable = false;
-                            this.gameController.updateWalkable(gridX + i, gridY + j, false);
-                        }
+                        this.gameController.updateWalkable(gridX + i, gridY + j, false);
                     }
                 }
             }
