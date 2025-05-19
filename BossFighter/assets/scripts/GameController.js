@@ -93,6 +93,7 @@ const GameController = cc.Class({
         this.mapTileWidth = tileWidth;
         this.mapTileHeight = tileHeight;
     },
+    
     listenKeyDown(listenNode) {
         console.log(this.mapTileWidth, this.mapTileHeight, '2131231')
         if (this.mapTileWidth == undefined) {
