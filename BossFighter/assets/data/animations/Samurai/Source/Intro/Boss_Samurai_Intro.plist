@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>Boss_Samurai_Intro0.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{53,125}</string>
+				<key>spriteSize</key>
+				<string>{53,125}</string>
+				<key>textureRect</key>
+				<string>{{0,0},{53,125}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.49056603773584906,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro1.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{60,126}</string>
+				<key>spriteSize</key>
+				<string>{60,126}</string>
+				<key>textureRect</key>
+				<string>{{54,0},{60,126}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro2.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{81,127}</string>
+				<key>spriteSize</key>
+				<string>{81,127}</string>
+				<key>textureRect</key>
+				<string>{{115,0},{81,127}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.49382716049382713,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro3.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{112,127}</string>
+				<key>spriteSize</key>
+				<string>{112,127}</string>
+				<key>textureRect</key>
+				<string>{{197,0},{112,127}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro4.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{143,127}</string>
+				<key>spriteSize</key>
+				<string>{143,127}</string>
+				<key>textureRect</key>
+				<string>{{310,0},{143,127}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5034965034965035,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro5.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{160,129}</string>
+				<key>spriteSize</key>
+				<string>{160,129}</string>
+				<key>textureRect</key>
+				<string>{{454,0},{160,129}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro6.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{165,131}</string>
+				<key>spriteSize</key>
+				<string>{165,131}</string>
+				<key>textureRect</key>
+				<string>{{615,0},{165,131}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.49696969696969695,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro7.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{163,132}</string>
+				<key>spriteSize</key>
+				<string>{163,132}</string>
+				<key>textureRect</key>
+				<string>{{0,132},{163,132}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5030674846625767,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro8.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{162,132}</string>
+				<key>spriteSize</key>
+				<string>{162,132}</string>
+				<key>textureRect</key>
+				<string>{{164,132},{162,132}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5061728395061729,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro9.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{162,132}</string>
+				<key>spriteSize</key>
+				<string>{162,132}</string>
+				<key>textureRect</key>
+				<string>{{327,132},{162,132}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5061728395061729,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro10.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{162,132}</string>
+				<key>spriteSize</key>
+				<string>{162,132}</string>
+				<key>textureRect</key>
+				<string>{{490,132},{162,132}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5061728395061729,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro11.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{162,132}</string>
+				<key>spriteSize</key>
+				<string>{162,132}</string>
+				<key>textureRect</key>
+				<string>{{653,132},{162,132}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5061728395061729,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro12.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{162,132}</string>
+				<key>spriteSize</key>
+				<string>{162,132}</string>
+				<key>textureRect</key>
+				<string>{{0,265},{162,132}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5061728395061729,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro13.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{162,131}</string>
+				<key>spriteSize</key>
+				<string>{162,131}</string>
+				<key>textureRect</key>
+				<string>{{163,265},{162,131}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5061728395061729,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro14.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{162,130}</string>
+				<key>spriteSize</key>
+				<string>{162,130}</string>
+				<key>textureRect</key>
+				<string>{{326,265},{162,130}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5061728395061729,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro15.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{163,129}</string>
+				<key>spriteSize</key>
+				<string>{163,129}</string>
+				<key>textureRect</key>
+				<string>{{489,265},{163,129}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5030674846625767,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro16.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{160,128}</string>
+				<key>spriteSize</key>
+				<string>{160,128}</string>
+				<key>textureRect</key>
+				<string>{{653,265},{160,128}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro17.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{153,127}</string>
+				<key>spriteSize</key>
+				<string>{153,127}</string>
+				<key>textureRect</key>
+				<string>{{0,398},{153,127}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.49673202614379086,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro18.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{138,146}</string>
+				<key>spriteSize</key>
+				<string>{138,146}</string>
+				<key>textureRect</key>
+				<string>{{154,398},{138,146}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5072463768115942,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro19.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{107,175}</string>
+				<key>spriteSize</key>
+				<string>{107,175}</string>
+				<key>textureRect</key>
+				<string>{{293,398},{107,175}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5046728971962616,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro20.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{71,190}</string>
+				<key>spriteSize</key>
+				<string>{71,190}</string>
+				<key>textureRect</key>
+				<string>{{401,398},{71,190}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5070422535211268,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro21.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{52,195}</string>
+				<key>spriteSize</key>
+				<string>{52,195}</string>
+				<key>textureRect</key>
+				<string>{{473,398},{52,195}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro22.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{51,197}</string>
+				<key>spriteSize</key>
+				<string>{51,197}</string>
+				<key>textureRect</key>
+				<string>{{526,398},{51,197}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5098039215686274,0}</string>
+			</dict>
+			<key>Boss_Samurai_Intro23.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{51,197}</string>
+				<key>spriteSize</key>
+				<string>{51,197}</string>
+				<key>textureRect</key>
+				<string>{{578,398},{51,197}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5098039215686274,0}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>3</integer>
+			<key>realTextureFileName</key>
+			<string>Boss_Samurai_Intro.png</string>
+			<key>textureFileName</key>
+			<string>Boss_Samurai_Intro.png</string>
+			<key>size</key>
+			<string>{816,596}</string>
+		</dict>
+	</dict>
+</plist>
