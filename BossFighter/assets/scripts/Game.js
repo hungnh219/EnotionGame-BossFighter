@@ -39,11 +39,13 @@ cc.Class({
                     walkable: true,
                     object: null,
                 })
-            }
 
+                this.gameController.updateWalkable(j, i, true);
+            }
             this.gridMap.push(row);
         }
 
+        
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
 
         // test add boss into map
@@ -57,7 +59,7 @@ cc.Class({
         console.log("start", this.gridMap);
         this.heros = this.gameController.getHeroPrefabs();
         console.log('previous prefab: ', this.heros);
-
+        
         this.initMapView();
         if (this.heros) this.spawnHero(this.heros);
     },
@@ -109,8 +111,21 @@ cc.Class({
                 tileNode.y = j * this.mapTileHeight;
                 // tileNode.parent = this.mapLayout.node;
                 tileNode.parent = this.mapLayout.node;
+
             }
         }
+        // add first cell position
+        const firstCellPos = {
+            x: this.mapLayout.node.x,
+            y: this.mapLayout.node.y,
+        };
+
+        const lastCellPos = {
+            x: this.mapLayout.node.x + this.mapWidth * this.mapTileWidth,
+            y: this.mapLayout.node.y + this.mapHeight * this.mapTileHeight,
+        };
+
+        this.gameController.setCellPosition(firstCellPos, lastCellPos);
 
             // create boss attack animation (test)
         const size = 2;
@@ -138,10 +153,6 @@ cc.Class({
         let objectNode = object;
 
         if (object.node) objectNode = object.node;
-        // if (typeof ob)
-        // let objectNode = object;
-        // let objectSprite = objectNode.getComponent(cc.Sprite);
-        // objectSprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
 
         // resize the object
         if (objectNode.width > objectNode.height) {
@@ -165,9 +176,25 @@ cc.Class({
         objectNode.x = mapPos.x + gridX * this.mapTileWidth + (this.mapTileWidth * size)/ 2;
         objectNode.y = mapPos.y + gridY * this.mapTileHeight + (this.mapTileHeight * size)/ 2;
 
+        // set the z index of the object
+        console.log("addObjectIntoMap", "objectNode", objectNode.x, objectNode.y);
         if (this.gridMap[gridX][gridY].object === null) {
             this.gridMap[gridX][gridY].object = object;
-            console.log("addObjectIntoMap", this.gridMap[gridX][gridY].object);
+
+            if (size == 1) {
+                this.gridMap[gridX][gridY].walkable = false;
+                // this.gameController.updateWalkable(gridX, gridY, false);
+                console.log(this.gameController.updateWalkable(gridX, gridY, false));
+            } {
+                for (let i = 0; i < size; i++) {
+                    for (let j = 0; j < size; j++) {
+                        if (this.gridMap[gridX + i][gridY + j]) {
+                            this.gridMap[gridX + i][gridY + j].walkable = false;
+                            this.gameController.updateWalkable(gridX + i, gridY + j, false);
+                        }
+                    }
+                }
+            }
         } else {
             console.log("addObjectIntoMap", "object already exists");
         }
