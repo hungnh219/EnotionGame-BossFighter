@@ -246,6 +246,59 @@ const GameController = cc.Class({
         this.firstCellPos = firstCellPos;
         this.lastCellPos = lastCellPos;
         console.log(this.firstCellPos, this.lastCellPos, 'setCellPosition');
+    },
+
+    getBoss() {
+        return this.boss;
+    },
+
+    // boss attack nearest hero
+    bossAttack() {
+        // calculate the distance between the boss and the heroes, take the nearest hero
+        if (this.heros.length == 0) {
+            console.log('no hero');
+            return;
+        }
+
+        const boss = this.boss;
+        const heroes = this.heros;
+        let nearestHero = null;
+        let minDistance = Infinity;
+
+        for (let i = 0; i < heroes.length; i++) {
+            const hero = heroes[i];
+            const distance = cc.v2(boss.x - hero.x, boss.y - hero.y).mag();
+
+            if (distance < minDistance) {
+                minDistance = distance;
+                nearestHero = hero;
+            }
+        }
+
+        if (nearestHero) {
+            // attack the nearest hero
+            boss.mainScript = boss.getComponents(cc.Component).find(c => typeof c.attack === 'function');
+            if (boss.mainScript) {
+                boss.mainScript.attack();
+
+                nearestHero.mainScript = nearestHero.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
+                if (nearestHero.mainScript) {
+                    nearestHero.mainScript.takeDamage(20);
+
+                    if (nearestHero.mainScript.getCurrentHp() <= 0) {
+                        console.log('nearest hero is dead');
+                        // remove hero from the list
+                        this.heros.splice(this.heros.indexOf(nearestHero), 1);
+                        console.log('heros', this.heros);
+                    }
+                } else {
+                    console.log('no takeDamage function');
+                }
+            } else {
+                console.log('no attack function');
+            }
+        }
+    
     }
 
 });

@@ -27,7 +27,7 @@ cc.Class({
     getAllPrefab() {
         return [
             this.characterPrefab,
-            this.enemyPrefab,
+            // this.enemyPrefab,
             this.tankerPrefab
         ]
     }

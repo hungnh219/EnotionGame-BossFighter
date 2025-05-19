@@ -58,6 +58,17 @@ cc.Class({
     attack() {
 
     },
+
+    takeDamage(damage) {
+        this.hp -= damage;
+        this.hp = Math.max(this.hp, 0);
+        if (this.hpBar) this.hpBar.progress = this.hp / this.maxHp;
+
+        if (this.hp <= 0) {
+            this.die();
+        }
+    },
+    
     getCharacterInfo() {
         return {
             name: this.node.name,

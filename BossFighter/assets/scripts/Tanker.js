@@ -37,6 +37,7 @@ cc.Class({
         //         animation.play('bottom-attack'); 
         //     }, 1000); 
         // }
+        this.hp = this.maxHp;
     },
 
     start () {
@@ -49,6 +50,28 @@ cc.Class({
         const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
         animation.play('bottom-attack'); 
+    },
+
+    takeDamage(damage) {
+        console.log('takeDamage', damage);
+        this.hp -= damage;
+        this.hp = Math.max(this.hp, 0);
+        if (this.hpBar) this.hpBar.progress = this.hp / this.maxHp;
+
+        if (this.hp <= 0) {
+            // this.die();
+        }
+    },
+    getCurrentHp() {
+        return this.hp;
+    },
+
+    die() {
+        this.onDestroy.destroy();
+        // console.log('die');
+        // const sprite = this.node.getChildByName('Image')
+        // const animation = sprite.getComponent(cc.Animation);
+        // animation.play('bottom-die'); 
     },
 
     // update (dt) {},

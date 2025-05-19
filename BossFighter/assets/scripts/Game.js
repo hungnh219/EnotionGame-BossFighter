@@ -62,6 +62,8 @@ cc.Class({
         
         this.initMapView();
         if (this.heros) this.spawnHero(this.heros);
+
+        this.turnOnAutoBossAttack();
     },
 
     // update (dt) {},
@@ -208,6 +210,25 @@ cc.Class({
             console.log(this.gameController.getFocusedHero());
             this.gameController.heroAttack();
         }
+    },
+
+    turnOnAutoBossAttack() {
+        console.log("turnOnAutoBossAttack");
+
+        this.bossAutoAttack();
+
+    },
+
+    bossAutoAttack() {
+        if (this.gameController.boss == undefined) {
+            console.log("no boss node");
+            return;
+        }
+
+        setTimeout(() => {
+            this.gameController.bossAttack();
+            this.bossAutoAttack();
+        }, 2000);   
     }
 
 });
