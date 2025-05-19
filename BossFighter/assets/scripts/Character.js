@@ -25,7 +25,6 @@ cc.Class({
         ultimateCooldown: 12,
 
         hpBar: cc.ProgressBar,
-        manaBar: cc.ProgressBar,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -203,6 +202,10 @@ cc.Class({
                 target.getComponent('Enemy')?.takeDamage(60);
                 break;
         }
+    },
+
+    attack() {
+
     },
 
     getCharacterInfo() {

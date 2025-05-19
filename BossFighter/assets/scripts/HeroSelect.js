@@ -9,12 +9,17 @@ cc.Class({
 
         heroScrollViewContent: cc.Node,
 
-        heroImageSprite: cc. Sprite,
+        heroImageSprite: cc.Sprite,
         heroName: cc.Label,
         heroRole: cc.Label,
         heroHealth: cc.Label,
         heroMana: cc.Label,
         heroAttackRange: cc.Label,
+
+        heroRoleIcon: cc.Sprite,
+        heroHealthIcon: cc.Sprite,
+        heroManaIcon: cc.Sprite,
+        heroAttackRangeIcon: cc.Sprite,
 
 
         heroLockedList: cc.Layout,
@@ -23,9 +28,9 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
         this.gameController = GameController.getInstance();
-        
+        this.hideInformation();
         this.heroPicked = {
             index: 0,
             prefab: null
@@ -40,14 +45,16 @@ cc.Class({
         this.heroPrefabs.forEach((heroPrefab, index) => {
             const hero = cc.instantiate(heroPrefab);
 
-            const heroScript = hero.getComponent('Character') || hero.getComponent('Enemy');
-
-            const heroInfo = heroScript.getCharacterInfo();
+            // const heroScript = hero.getComponent('Character') || hero.getComponent('Enemy');
+            hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
+            
+            // const heroInfo = heroScript.getCharacterInfo();
+            const heroInfo = hero.mainScript.getCharacterInfo();
             this.heros[index] = heroInfo;
             const heroImageNode = new cc.Node('HeroImageNode');
             const sprite = heroImageNode.addComponent(cc.Sprite);
             sprite.spriteFrame = heroInfo.imageSprite.getComponent(cc.Sprite).spriteFrame;
-            
+
             heroImageNode.customIndex = index;
 
             // heroImageNode.on(cc.Node.EventType.TOUCH_END, function () {
@@ -68,7 +75,7 @@ cc.Class({
         // handle onclick
     },
 
-    start () {
+    start() {
 
     },
 
@@ -79,10 +86,37 @@ cc.Class({
     },
 
     initPrefabData(data) {
-        
+
+    },
+
+    hideInformation() {
+        this.heroImageSprite.node.active = false
+        this.heroName.node.active = false
+        this.heroRole.node.active = false
+        this.heroHealth.node.active = false
+        this.heroMana.node.active = false
+        this.heroAttackRange.node.active = false
+        this.heroRoleIcon.node.active = false
+        this.heroHealthIcon.node.active = false
+        this.heroManaIcon.node.active = false
+        this.heroAttackRangeIcon.node.active = false
+    },
+
+    showInformation() {
+        this.heroImageSprite.node.active = true
+        this.heroName.node.active = true
+        this.heroRole.node.active = true
+        this.heroHealth.node.active = true
+        this.heroMana.node.active = true
+        this.heroAttackRange.node.active = true
+        this.heroRoleIcon.node.active = true
+        this.heroHealthIcon.node.active = true
+        this.heroManaIcon.node.active = true
+        this.heroAttackRangeIcon.node.active = true
     },
 
     heroClick(clickIndex, heroPrefab) {
+        this.showInformation();
         // console.log(this.customIndex)
         // console.log(this.heros[this.customIndex])
         this.heroPicked.index = clickIndex;

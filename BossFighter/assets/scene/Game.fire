@@ -568,17 +568,8 @@
     "mapLayout": {
       "__id__": 7
     },
-    "playerPrefab": {
-      "__uuid__": "9d6466eb-ed17-4210-9cfd-6ff697751d33"
-    },
-    "playerSpawn": {
-      "__id__": 13
-    },
-    "enemyPrefab": {
-      "__uuid__": "20c589dd-b738-401b-8d19-7c357486fe6c"
-    },
-    "enemySpawn": {
-      "__id__": 14
+    "boss1": {
+      "__uuid__": "915a487c-2953-48dd-a83e-99825bf67c2a"
     },
     "_id": "cb8D8Be11Kb7BhNhrpGKRe"
   },

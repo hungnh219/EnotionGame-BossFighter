@@ -14,11 +14,7 @@ cc.Class({
         bossAttackAnimation: cc.Animation,
         mapLayout: cc.Layout,
 
-        playerPrefab: cc.Prefab,
-        playerSpawn: cc.Node,
-
-        enemyPrefab: cc.Prefab,
-        enemySpawn: cc.Node,
+        boss1: cc.Prefab
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -30,7 +26,10 @@ cc.Class({
         this.pressedKeys = new Set();
         this.gameController = GameController.getInstance();
         this.gameController.setTileSize(this.mapTileWidth, this.mapTileHeight)
+        this.focusedHeroIndex = -1;
+        this.heros = [];
 
+        this.rootNode = this.node.parent;
         for (let j = 0; j < this.mapHeight; j++) {
             let row = [];
             for (let i = 0; i < this.mapWidth; i++) {
@@ -40,30 +39,51 @@ cc.Class({
                     walkable: true,
                     object: null,
                 })
-            }
 
+                this.gameController.updateWalkable(j, i, true);
+            }
             this.gridMap.push(row);
         }
 
-        this.testPrefab = cc.instantiate(this.playerPrefab)
-        // this.node.addChild(this.testPrefab)
-        this.node.parent.addChild(this.testPrefab)
-        this.gameController.listenKeyDown(this.testPrefab);
+        
+        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
 
-        // cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
-        // cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+        // test add boss into map
+        this.bossNode = cc.instantiate(this.boss1);
+        this.gameController.addBoss(this.bossNode);
+        this.rootNode.addChild(this.bossNode);
+        
     },
 
     start () {
         console.log("start", this.gridMap);
-        const test = this.gameController.getHeroPrefabs();
-        console.log('previous prefab: ', test)
+        this.heros = this.gameController.getHeroPrefabs();
+        console.log('previous prefab: ', this.heros);
+        
         this.initMapView();
+        if (this.heros) this.spawnHero(this.heros);
     },
 
     // update (dt) {},
     // onDestroy() {
     // },
+
+    spawnHero(heroPrefabs) {
+        console.log('check spawn');
+        heroPrefabs.forEach((heroPrefab, index) => {
+            console.log(heroPrefab)
+            let prefabNode = cc.instantiate(heroPrefab)
+
+            this.rootNode.addChild(prefabNode);
+            // this.gameController
+            this.gameController.addHero(prefabNode);
+            this.addObjectIntoMap(index, 0, 1, prefabNode);
+        });
+
+        this.focusedHeroIndex = 0;
+        this.gameController.setFocusedHero(this.focusedHeroIndex);
+        this.gameController.listenKeyDown(this.gameController.getFocusedHero());
+    },
 
     initMapView() {
         this.mapLayout.node.removeAllChildren();
@@ -91,22 +111,28 @@ cc.Class({
                 tileNode.y = j * this.mapTileHeight;
                 // tileNode.parent = this.mapLayout.node;
                 tileNode.parent = this.mapLayout.node;
+
             }
         }
+        // add first cell position
+        const firstCellPos = {
+            x: this.mapLayout.node.x,
+            y: this.mapLayout.node.y,
+        };
+
+        const lastCellPos = {
+            x: this.mapLayout.node.x + this.mapWidth * this.mapTileWidth,
+            y: this.mapLayout.node.y + this.mapHeight * this.mapTileHeight,
+        };
+
+        this.gameController.setCellPosition(firstCellPos, lastCellPos);
 
             // create boss attack animation (test)
-        const size = 1;
-        const posX = 1;
-        const posY = 2;
-        
+        const size = 2;
+        const posX = 2;
+        const posY = 5;
 
-        this.addObjectIntoMap(posX, posY, size, this.testPrefab);
-        // this.addObjectIntoMap(posX, posY, size, this.testPrefab);
-
-        
-        if (this.gridMap[posX][posY].object !== null) {
-            // this.gridMap[posX][posY].object.play('boss');
-        }
+        this.addObjectIntoMap(posX, posY, size, this.bossNode);
     },
 
     convertGridToPosition(gridX, gridY) {
@@ -117,10 +143,9 @@ cc.Class({
     },
 
     addObjectIntoMap(gridX, gridY, size, object) {
-        // let objectNode = object.node;
         let objectNode = object;
-        // let objectSprite = objectNode.getComponent(cc.Sprite);
-        // objectSprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
+
+        if (object.node) objectNode = object.node;
 
         // resize the object
         if (objectNode.width > objectNode.height) {
@@ -144,12 +169,45 @@ cc.Class({
         objectNode.x = mapPos.x + gridX * this.mapTileWidth + (this.mapTileWidth * size)/ 2;
         objectNode.y = mapPos.y + gridY * this.mapTileHeight + (this.mapTileHeight * size)/ 2;
 
+        // set the z index of the object
+        console.log("addObjectIntoMap", "objectNode", objectNode.x, objectNode.y);
         if (this.gridMap[gridX][gridY].object === null) {
             this.gridMap[gridX][gridY].object = object;
-            console.log("addObjectIntoMap", this.gridMap[gridX][gridY].object);
+
+            if (size == 1) {
+                this.gridMap[gridX][gridY].walkable = false;
+                this.gameController.updateWalkable(gridX, gridY, false);
+            } {
+                for (let i = 0; i < size; i++) {
+                    for (let j = 0; j < size; j++) {
+                        this.gameController.updateWalkable(gridX + i, gridY + j, false);
+                    }
+                }
+            }
         } else {
             console.log("addObjectIntoMap", "object already exists");
         }
 
+    },
+
+    onKeyDown(event) {
+        if (event.keyCode == cc.macro.KEY.tab) {
+            // this.focusedHeroIndex = this.focusedHeroIndex++ % this.heros.length;
+            this.focusedHeroIndex++;
+
+            if (this.focusedHeroIndex == this.heros.length) {
+                this.focusedHeroIndex = 0;
+            }
+
+            this.gameController.setFocusedHero(this.focusedHeroIndex);
+            this.gameController.listenKeyDown(this.gameController.getFocusedHero());
+        }
+
+        if (event.keyCode == cc.macro.KEY.q) {
+            // this.gameController.getFocusedHero().attack();
+            console.log(this.gameController.getFocusedHero());
+            this.gameController.heroAttack();
+        }
     }
+
 });

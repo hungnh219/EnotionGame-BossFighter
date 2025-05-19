@@ -35,6 +35,10 @@ const GameController = cc.Class({
         this.heroPick = [];
         this.selectedHeroPrefabs = [];
         this.listenMoveNode = null;
+
+        this.focusedHero = null;
+        this.heros = []; // hero in game
+        this.gridMap = [];
     },
 
     start () {
@@ -93,6 +97,7 @@ const GameController = cc.Class({
         this.mapTileWidth = tileWidth;
         this.mapTileHeight = tileHeight;
     },
+    
     listenKeyDown(listenNode) {
         console.log(this.mapTileWidth, this.mapTileHeight, '2131231')
         if (this.mapTileWidth == undefined) {
@@ -145,11 +150,21 @@ const GameController = cc.Class({
         const newX = this.listenMoveNode.x + dx * this.mapTileWidth;
         const newY = this.listenMoveNode.y + dy * this.mapTileHeight;
 
-        console.log(newX, newY, '1232131')
+        // check if the new position is walkable use newX, newY, firstCellPos and lastCellPos
+        if (newX < this.firstCellPos.x || newX > this.lastCellPos.x || newY < this.firstCellPos.y || newY > this.lastCellPos.y) {
+            console.log('out of map');
+            return;
+        }
 
         // check if the new position is walkable
-        // if (newX < 0 || newX >= this.mapWidth * this.mapTileWidth) return;
+        const gridX = Math.floor((newX - this.firstCellPos.x) / this.mapTileWidth);
+        const gridY = Math.floor((newY - this.firstCellPos.y) / this.mapTileHeight);
+        if (this.gridMap[gridX][gridY] == false) {
+            console.log('not walkable');
+            return;
+        }
 
+        // move the character
         this.isMoving = true;
         const moveAction = cc.moveTo(0.5, newX, newY);
         // const moveAction = cc.moveTo(0.5, newX, newY).easing(cc.easeCubicActionOut());
@@ -160,7 +175,79 @@ const GameController = cc.Class({
         const sequence = cc.sequence(moveAction, finishCallback);
         this.listenMoveNode.runAction(sequence);
 
+        // set old position to walkable and new position to not walkable
+        const oldGridX = Math.floor((this.listenMoveNode.x - this.firstCellPos.x) / this.mapTileWidth);
+        const oldGridY = Math.floor((this.listenMoveNode.y - this.firstCellPos.y) / this.mapTileHeight);
+        if (this.gridMap[oldGridX][oldGridY] !== undefined) {
+            this.gridMap[oldGridX][oldGridY] = true;
+            this.gridMap[gridX][gridY] = false;
+        }
     },
+
+
+    /* game scene */
+    setFocusedHero(heroIndex) {
+        this.focusedHero = this.heros[heroIndex];
+
+        // set the other heroes scale to 1
+        for (let i = 0; i < this.heros.length; i++) {
+            if (i == heroIndex) {
+                this.heros[i].scale = 1.5;
+            } else {
+                this.heros[i].scale = 1;
+            }
+        }
+
+    },
+    getFocusedHero() {
+        return this.focusedHero;
+    },
+
+    addHero(hero) {
+        if (this.heros == undefined) this.heros = [];
+        this.heros.push(hero);
+    },
+    addBoss(boss) {
+        this.boss = boss;
+    },
+    heroAttack() {
+        if (this.focusedHero) {
+            const hero = this.getFocusedHero();
+            hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.attack === 'function');
+            if (hero.mainScript) {
+                hero.mainScript.attack();
+
+                this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
+                if (this.boss.mainScript) {
+                    this.boss.mainScript.takeDamage(10);
+                } else {
+                    console.log('no takeDamage function');
+                }
+
+            } else {
+                console.log('no attack function');
+            }
+        }
+    },
+
+    updateWalkable(x, y, walkable) {
+        if (!this.gridMap) this.gridMap = [];
+        if (this.gridMap[x] == undefined) {
+            this.gridMap[x] = [];
+        }
+
+        console.log(this.gridMap[x][y], 'before updateWalkable', x, y);
+        this.gridMap[x][y] = walkable;
+        console.log(this.gridMap[x][y], 'after updateWalkable', x, y);
+
+    },
+
+    setCellPosition(firstCellPos, lastCellPos) {
+        this.firstCellPos = firstCellPos;
+        this.lastCellPos = lastCellPos;
+        console.log(this.firstCellPos, this.lastCellPos, 'setCellPosition');
+    }
+
 });
 
 export default GameController;

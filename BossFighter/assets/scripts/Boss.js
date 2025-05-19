@@ -17,27 +17,14 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad() {
+    onLoad () {
         this.hp = this.maxHp;
-        this.registerEnemy();
+        this.imageSprite.node.scaleX = 1.5;
+        this.imageSprite.node.scaleY = 1.5;
     },
 
-    registerEnemy() {
-        if (!window.enemyList) window.enemyList = [];
-        window.enemyList.push(this);
-    },
-
-    onDestroy() {
-        if (window.enemyList) {
-            const index = window.enemyList.indexOf(this);
-            if(index !== -1){
-                window.enemyList.splice(index, 1);
-            }
-        }
-    },
-
-    takeDamage(amount){
-        this.hp -= amount;
+    takeDamage(damage){
+        this.hp -= damage;
         this.hp = Math.max(this.hp, 0);
         if(this.hpBar) this.hpBar.progress = this.hp / this.maxHp;
 
@@ -47,22 +34,15 @@ cc.Class({
     },
 
     die(){
-        this.onDestroy.destroy();
+        // this.onDestroy.destroy();
+    },
+    attack() {
+
     },
 
-    start() {
+    start () {
 
     },
 
     // update (dt) {},
-    attack() {
-
-    },
-    getCharacterInfo() {
-        return {
-            name: this.node.name,
-            description: 'hihi hehe',
-            imageSprite: this.imageSprite,
-        }
-    }
 });
