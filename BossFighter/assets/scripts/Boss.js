@@ -12,12 +12,18 @@ cc.Class({
         maxHp: 100,
         hpBar: cc.ProgressBar,
 
-        // imageSprite: cc.Sprite,
+        imageSprite: cc.Sprite,
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {},
+    onLoad () {
+        console.log(this.node, 'check boss node');
+        console.log(this.node.parent, 'check boss node parent');
+
+        this.imageSprite.node.scaleX = 1.5;
+        this.imageSprite.node.scaleY = 1.5;
+    },
 
     takeDamage(damage){
         this.hp -= damage;
@@ -30,7 +36,7 @@ cc.Class({
     },
 
     die(){
-        this.onDestroy.destroy();
+        // this.onDestroy.destroy();
     },
 
     start () {

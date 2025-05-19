@@ -1962,6 +1962,9 @@
     "enemyPrefab": {
       "__uuid__": "20c589dd-b738-401b-8d19-7c357486fe6c"
     },
+    "tankerPrefab": {
+      "__uuid__": "596d3ff0-625e-4465-997b-0a3c229b8630"
+    },
     "_id": "14pN+7y7BHFqLJ6c0Zy5vB"
   },
   {

@@ -9,13 +9,15 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        role: 'Tanker',
+
         maxHp: 100,
         maxMana: 100,
         moveSpeed: 200,
         attackRange: 150,
         normalAttackPower: 10,
         manaPerAttack: 10,
-        // imageSprite: cc.Sprite,
+        imageSprite: cc.Sprite,
 
         skillCost: 30,
         ultimateCost: 80,
@@ -49,4 +51,15 @@ cc.Class({
     },
 
     // update (dt) {},
+    getCharacterInfo() {
+        return {
+            name: this.node.name,
+            description: 'hihi hehe',
+            imageSprite: this.imageSprite,
+            health: this.maxHp,
+            mana: this.maxMana,
+            attackRange: this.attackRange,
+            role: this.role,
+        }
+    }
 });

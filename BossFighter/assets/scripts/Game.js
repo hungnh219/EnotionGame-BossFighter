@@ -14,11 +14,7 @@ cc.Class({
         bossAttackAnimation: cc.Animation,
         mapLayout: cc.Layout,
 
-        playerPrefab: cc.Prefab,
-        playerSpawn: cc.Node,
-
-        enemyPrefab: cc.Prefab,
-        enemySpawn: cc.Node,
+        boss1: cc.Prefab
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -62,6 +58,11 @@ cc.Class({
                 this.gameController.listenKeyDown(this.gameController.getFocusedHero());
             }
         }, this);
+
+        // test add boss into map
+        this.bossNode = cc.instantiate(this.boss1);
+        this.rootNode.addChild(this.bossNode);
+        
     },
 
     start () {
@@ -129,11 +130,12 @@ cc.Class({
         const posY = 5;
         
 
-        this.addObjectIntoMap(posX, posY, size, this.bossAttackAnimation);
+        // this.addObjectIntoMap(posX, posY, size, this.bossAttackAnimation);
+        this.addObjectIntoMap(posX, posY, size, this.bossNode);
 
         
         if (this.gridMap[posX][posY].object !== null) {
-            this.gridMap[posX][posY].object.play('boss');
+            // this.gridMap[posX][posY].object.play('boss');
         }
     },
 
