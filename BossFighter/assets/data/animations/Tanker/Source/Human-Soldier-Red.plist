@@ -1,0 +1,3284 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>Human-Soldier-Red0.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,19}</string>
+				<key>spriteSize</key>
+				<string>{14,19}</string>
+				<key>textureRect</key>
+				<string>{{0,0},{14,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red1.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{15,0},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red2.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{30,0},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red3.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{43,0},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red4.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{58,0},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red5.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{71,0},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red6.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{86,0},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red7.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{101,0},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red8.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,19}</string>
+				<key>spriteSize</key>
+				<string>{13,19}</string>
+				<key>textureRect</key>
+				<string>{{116,0},{13,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red9.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,21}</string>
+				<key>spriteSize</key>
+				<string>{12,21}</string>
+				<key>textureRect</key>
+				<string>{{130,0},{12,21}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red10.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,20}</string>
+				<key>spriteSize</key>
+				<string>{13,20}</string>
+				<key>textureRect</key>
+				<string>{{143,0},{13,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red11.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,20}</string>
+				<key>spriteSize</key>
+				<string>{13,20}</string>
+				<key>textureRect</key>
+				<string>{{157,0},{13,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red12.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{171,0},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red13.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{184,0},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red14.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{199,0},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red15.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,23}</string>
+				<key>spriteSize</key>
+				<string>{13,23}</string>
+				<key>textureRect</key>
+				<string>{{214,0},{13,23}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red16.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,20}</string>
+				<key>spriteSize</key>
+				<string>{13,20}</string>
+				<key>textureRect</key>
+				<string>{{228,0},{13,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red17.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,20}</string>
+				<key>spriteSize</key>
+				<string>{13,20}</string>
+				<key>textureRect</key>
+				<string>{{242,0},{13,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red18.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,19}</string>
+				<key>spriteSize</key>
+				<string>{13,19}</string>
+				<key>textureRect</key>
+				<string>{{256,0},{13,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red19.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{270,0},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red20.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,20}</string>
+				<key>spriteSize</key>
+				<string>{16,20}</string>
+				<key>textureRect</key>
+				<string>{{285,0},{16,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red21.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,21}</string>
+				<key>spriteSize</key>
+				<string>{16,21}</string>
+				<key>textureRect</key>
+				<string>{{302,0},{16,21}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red22.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{319,0},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red23.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,17}</string>
+				<key>spriteSize</key>
+				<string>{14,17}</string>
+				<key>textureRect</key>
+				<string>{{334,0},{14,17}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red24.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,19}</string>
+				<key>spriteSize</key>
+				<string>{12,19}</string>
+				<key>textureRect</key>
+				<string>{{349,0},{12,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red25.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{362,0},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red26.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,20}</string>
+				<key>spriteSize</key>
+				<string>{13,20}</string>
+				<key>textureRect</key>
+				<string>{{375,0},{13,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red27.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{389,0},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red28.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{402,0},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red29.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{15,20}</string>
+				<key>spriteSize</key>
+				<string>{15,20}</string>
+				<key>textureRect</key>
+				<string>{{415,0},{15,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>Human-Soldier-Red30.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{15,20}</string>
+				<key>spriteSize</key>
+				<string>{15,20}</string>
+				<key>textureRect</key>
+				<string>{{431,0},{15,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>Human-Soldier-Red31.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,19}</string>
+				<key>spriteSize</key>
+				<string>{14,19}</string>
+				<key>textureRect</key>
+				<string>{{447,0},{14,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red32.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,19}</string>
+				<key>spriteSize</key>
+				<string>{13,19}</string>
+				<key>textureRect</key>
+				<string>{{462,0},{13,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red33.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,20}</string>
+				<key>spriteSize</key>
+				<string>{13,20}</string>
+				<key>textureRect</key>
+				<string>{{476,0},{13,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red34.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{15,20}</string>
+				<key>spriteSize</key>
+				<string>{15,20}</string>
+				<key>textureRect</key>
+				<string>{{490,0},{15,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>Human-Soldier-Red35.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{15,20}</string>
+				<key>spriteSize</key>
+				<string>{15,20}</string>
+				<key>textureRect</key>
+				<string>{{506,0},{15,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>Human-Soldier-Red36.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,20}</string>
+				<key>spriteSize</key>
+				<string>{13,20}</string>
+				<key>textureRect</key>
+				<string>{{522,0},{13,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red37.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{15,20}</string>
+				<key>spriteSize</key>
+				<string>{15,20}</string>
+				<key>textureRect</key>
+				<string>{{0,24},{15,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>Human-Soldier-Red38.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{15,20}</string>
+				<key>spriteSize</key>
+				<string>{15,20}</string>
+				<key>textureRect</key>
+				<string>{{16,24},{15,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>Human-Soldier-Red39.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{15,19}</string>
+				<key>spriteSize</key>
+				<string>{15,19}</string>
+				<key>textureRect</key>
+				<string>{{32,24},{15,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>Human-Soldier-Red40.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{48,24},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red41.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{63,24},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red42.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,19}</string>
+				<key>spriteSize</key>
+				<string>{12,19}</string>
+				<key>textureRect</key>
+				<string>{{78,24},{12,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red43.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,20}</string>
+				<key>spriteSize</key>
+				<string>{13,20}</string>
+				<key>textureRect</key>
+				<string>{{91,24},{13,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red44.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,20}</string>
+				<key>spriteSize</key>
+				<string>{13,20}</string>
+				<key>textureRect</key>
+				<string>{{105,24},{13,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red45.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,21}</string>
+				<key>spriteSize</key>
+				<string>{13,21}</string>
+				<key>textureRect</key>
+				<string>{{119,24},{13,21}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red46.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{133,24},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red47.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,17}</string>
+				<key>spriteSize</key>
+				<string>{14,17}</string>
+				<key>textureRect</key>
+				<string>{{146,24},{14,17}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red48.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,19}</string>
+				<key>spriteSize</key>
+				<string>{12,19}</string>
+				<key>textureRect</key>
+				<string>{{161,24},{12,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red49.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{174,24},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red50.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{187,24},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red51.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{200,24},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red52.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{213,24},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red53.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{226,24},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red54.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{239,24},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red55.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,19}</string>
+				<key>spriteSize</key>
+				<string>{14,19}</string>
+				<key>textureRect</key>
+				<string>{{252,24},{14,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red56.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,19}</string>
+				<key>spriteSize</key>
+				<string>{14,19}</string>
+				<key>textureRect</key>
+				<string>{{267,24},{14,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red57.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{15,20}</string>
+				<key>spriteSize</key>
+				<string>{15,20}</string>
+				<key>textureRect</key>
+				<string>{{282,24},{15,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>Human-Soldier-Red58.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,19}</string>
+				<key>spriteSize</key>
+				<string>{14,19}</string>
+				<key>textureRect</key>
+				<string>{{298,24},{14,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red59.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,19}</string>
+				<key>spriteSize</key>
+				<string>{13,19}</string>
+				<key>textureRect</key>
+				<string>{{313,24},{13,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red60.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{327,24},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red61.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{342,24},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red62.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{355,24},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red63.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,19}</string>
+				<key>spriteSize</key>
+				<string>{16,19}</string>
+				<key>textureRect</key>
+				<string>{{368,24},{16,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red64.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{385,24},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red65.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{398,24},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red66.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,19}</string>
+				<key>spriteSize</key>
+				<string>{12,19}</string>
+				<key>textureRect</key>
+				<string>{{411,24},{12,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red67.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{424,24},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red68.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,21}</string>
+				<key>spriteSize</key>
+				<string>{12,21}</string>
+				<key>textureRect</key>
+				<string>{{437,24},{12,21}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red69.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,21}</string>
+				<key>spriteSize</key>
+				<string>{12,21}</string>
+				<key>textureRect</key>
+				<string>{{450,24},{12,21}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red70.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{463,24},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red71.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{22,12}</string>
+				<key>spriteSize</key>
+				<string>{22,12}</string>
+				<key>textureRect</key>
+				<string>{{476,24},{22,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5454545454545454,0}</string>
+			</dict>
+			<key>Human-Soldier-Red72.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,19}</string>
+				<key>spriteSize</key>
+				<string>{12,19}</string>
+				<key>textureRect</key>
+				<string>{{499,24},{12,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red73.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{512,24},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red74.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,20}</string>
+				<key>spriteSize</key>
+				<string>{13,20}</string>
+				<key>textureRect</key>
+				<string>{{525,24},{13,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red75.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{0,46},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red76.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{13,46},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red77.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{26,46},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red78.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{39,46},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red79.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,19}</string>
+				<key>spriteSize</key>
+				<string>{14,19}</string>
+				<key>textureRect</key>
+				<string>{{52,46},{14,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red80.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,19}</string>
+				<key>spriteSize</key>
+				<string>{13,19}</string>
+				<key>textureRect</key>
+				<string>{{67,46},{13,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red81.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{81,46},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red82.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,19}</string>
+				<key>spriteSize</key>
+				<string>{14,19}</string>
+				<key>textureRect</key>
+				<string>{{96,46},{14,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red83.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,19}</string>
+				<key>spriteSize</key>
+				<string>{14,19}</string>
+				<key>textureRect</key>
+				<string>{{111,46},{14,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red84.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{126,46},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red85.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{141,46},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red86.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{154,46},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red87.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,19}</string>
+				<key>spriteSize</key>
+				<string>{16,19}</string>
+				<key>textureRect</key>
+				<string>{{167,46},{16,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red88.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{184,46},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red89.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{197,46},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red90.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,19}</string>
+				<key>spriteSize</key>
+				<string>{12,19}</string>
+				<key>textureRect</key>
+				<string>{{210,46},{12,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red91.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{223,46},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red92.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{236,46},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red93.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,21}</string>
+				<key>spriteSize</key>
+				<string>{12,21}</string>
+				<key>textureRect</key>
+				<string>{{249,46},{12,21}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red94.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{262,46},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red95.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,17}</string>
+				<key>spriteSize</key>
+				<string>{14,17}</string>
+				<key>textureRect</key>
+				<string>{{275,46},{14,17}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red96.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,19}</string>
+				<key>spriteSize</key>
+				<string>{14,19}</string>
+				<key>textureRect</key>
+				<string>{{290,46},{14,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red97.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{305,46},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red98.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{320,46},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red99.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{333,46},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red100.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{348,46},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red101.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{361,46},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red102.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{376,46},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red103.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,19}</string>
+				<key>spriteSize</key>
+				<string>{13,19}</string>
+				<key>textureRect</key>
+				<string>{{391,46},{13,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red104.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,19}</string>
+				<key>spriteSize</key>
+				<string>{12,19}</string>
+				<key>textureRect</key>
+				<string>{{405,46},{12,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red105.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{418,46},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red106.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,19}</string>
+				<key>spriteSize</key>
+				<string>{13,19}</string>
+				<key>textureRect</key>
+				<string>{{431,46},{13,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red107.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,19}</string>
+				<key>spriteSize</key>
+				<string>{13,19}</string>
+				<key>textureRect</key>
+				<string>{{445,46},{13,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red108.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{459,46},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red109.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{472,46},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red110.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{487,46},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red111.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,19}</string>
+				<key>spriteSize</key>
+				<string>{12,19}</string>
+				<key>textureRect</key>
+				<string>{{502,46},{12,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red112.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,20}</string>
+				<key>spriteSize</key>
+				<string>{13,20}</string>
+				<key>textureRect</key>
+				<string>{{515,46},{13,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red113.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,20}</string>
+				<key>spriteSize</key>
+				<string>{13,20}</string>
+				<key>textureRect</key>
+				<string>{{529,46},{13,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red114.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,19}</string>
+				<key>spriteSize</key>
+				<string>{12,19}</string>
+				<key>textureRect</key>
+				<string>{{0,68},{12,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red115.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{13,68},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red116.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,20}</string>
+				<key>spriteSize</key>
+				<string>{16,20}</string>
+				<key>textureRect</key>
+				<string>{{28,68},{16,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red117.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,21}</string>
+				<key>spriteSize</key>
+				<string>{16,21}</string>
+				<key>textureRect</key>
+				<string>{{45,68},{16,21}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red118.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{62,68},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red119.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,16}</string>
+				<key>spriteSize</key>
+				<string>{14,16}</string>
+				<key>textureRect</key>
+				<string>{{77,68},{14,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red120.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,19}</string>
+				<key>spriteSize</key>
+				<string>{12,19}</string>
+				<key>textureRect</key>
+				<string>{{92,68},{12,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red121.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{105,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red122.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,20}</string>
+				<key>spriteSize</key>
+				<string>{13,20}</string>
+				<key>textureRect</key>
+				<string>{{118,68},{13,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red123.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{132,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red124.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{145,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red125.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{158,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red126.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{171,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red127.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,19}</string>
+				<key>spriteSize</key>
+				<string>{14,19}</string>
+				<key>textureRect</key>
+				<string>{{184,68},{14,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red128.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,19}</string>
+				<key>spriteSize</key>
+				<string>{13,19}</string>
+				<key>textureRect</key>
+				<string>{{199,68},{13,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red129.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{213,68},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red130.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{15,19}</string>
+				<key>spriteSize</key>
+				<string>{15,19}</string>
+				<key>textureRect</key>
+				<string>{{228,68},{15,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>Human-Soldier-Red131.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{15,19}</string>
+				<key>spriteSize</key>
+				<string>{15,19}</string>
+				<key>textureRect</key>
+				<string>{{244,68},{15,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>Human-Soldier-Red132.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{260,68},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red133.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{275,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red134.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{288,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red135.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,19}</string>
+				<key>spriteSize</key>
+				<string>{16,19}</string>
+				<key>textureRect</key>
+				<string>{{301,68},{16,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red136.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{318,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red137.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{331,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red138.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,19}</string>
+				<key>spriteSize</key>
+				<string>{12,19}</string>
+				<key>textureRect</key>
+				<string>{{344,68},{12,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red139.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{357,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red140.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{370,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red141.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,21}</string>
+				<key>spriteSize</key>
+				<string>{12,21}</string>
+				<key>textureRect</key>
+				<string>{{383,68},{12,21}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red142.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{396,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red143.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,17}</string>
+				<key>spriteSize</key>
+				<string>{14,17}</string>
+				<key>textureRect</key>
+				<string>{{409,68},{14,17}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red144.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,19}</string>
+				<key>spriteSize</key>
+				<string>{12,19}</string>
+				<key>textureRect</key>
+				<string>{{424,68},{12,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red145.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{437,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red146.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{450,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red147.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{463,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red148.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{476,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red149.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{489,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red150.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{502,68},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red151.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,19}</string>
+				<key>spriteSize</key>
+				<string>{14,19}</string>
+				<key>textureRect</key>
+				<string>{{515,68},{14,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red152.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,19}</string>
+				<key>spriteSize</key>
+				<string>{14,19}</string>
+				<key>textureRect</key>
+				<string>{{530,68},{14,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red153.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{15,20}</string>
+				<key>spriteSize</key>
+				<string>{15,20}</string>
+				<key>textureRect</key>
+				<string>{{0,90},{15,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>Human-Soldier-Red154.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,19}</string>
+				<key>spriteSize</key>
+				<string>{13,19}</string>
+				<key>textureRect</key>
+				<string>{{16,90},{13,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red155.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,19}</string>
+				<key>spriteSize</key>
+				<string>{14,19}</string>
+				<key>textureRect</key>
+				<string>{{30,90},{14,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red156.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{45,90},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red157.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{60,90},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red158.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{73,90},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red159.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,19}</string>
+				<key>spriteSize</key>
+				<string>{16,19}</string>
+				<key>textureRect</key>
+				<string>{{86,90},{16,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red160.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{103,90},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red161.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{116,90},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red162.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,19}</string>
+				<key>spriteSize</key>
+				<string>{12,19}</string>
+				<key>textureRect</key>
+				<string>{{129,90},{12,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red163.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{142,90},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red164.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,21}</string>
+				<key>spriteSize</key>
+				<string>{12,21}</string>
+				<key>textureRect</key>
+				<string>{{155,90},{12,21}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red165.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,21}</string>
+				<key>spriteSize</key>
+				<string>{12,21}</string>
+				<key>textureRect</key>
+				<string>{{168,90},{12,21}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red166.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{181,90},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red167.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{22,12}</string>
+				<key>spriteSize</key>
+				<string>{22,12}</string>
+				<key>textureRect</key>
+				<string>{{194,90},{22,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5454545454545454,0}</string>
+			</dict>
+			<key>Human-Soldier-Red168.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,19}</string>
+				<key>spriteSize</key>
+				<string>{12,19}</string>
+				<key>textureRect</key>
+				<string>{{217,90},{12,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red169.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{230,90},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red170.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,20}</string>
+				<key>spriteSize</key>
+				<string>{13,20}</string>
+				<key>textureRect</key>
+				<string>{{243,90},{13,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red171.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{257,90},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red172.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{270,90},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red173.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{283,90},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red174.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{296,90},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red175.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,19}</string>
+				<key>spriteSize</key>
+				<string>{14,19}</string>
+				<key>textureRect</key>
+				<string>{{309,90},{14,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red176.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,19}</string>
+				<key>spriteSize</key>
+				<string>{13,19}</string>
+				<key>textureRect</key>
+				<string>{{324,90},{13,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red177.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,20}</string>
+				<key>spriteSize</key>
+				<string>{13,20}</string>
+				<key>textureRect</key>
+				<string>{{338,90},{13,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red178.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{352,90},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red179.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,20}</string>
+				<key>spriteSize</key>
+				<string>{14,20}</string>
+				<key>textureRect</key>
+				<string>{{367,90},{14,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red180.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,21}</string>
+				<key>spriteSize</key>
+				<string>{14,21}</string>
+				<key>textureRect</key>
+				<string>{{382,90},{14,21}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Human-Soldier-Red181.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{397,90},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red182.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{410,90},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red183.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{15,20}</string>
+				<key>spriteSize</key>
+				<string>{15,20}</string>
+				<key>textureRect</key>
+				<string>{{423,90},{15,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>Human-Soldier-Red184.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{439,90},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red185.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{452,90},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red186.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,19}</string>
+				<key>spriteSize</key>
+				<string>{12,19}</string>
+				<key>textureRect</key>
+				<string>{{465,90},{12,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red187.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,20}</string>
+				<key>spriteSize</key>
+				<string>{13,20}</string>
+				<key>textureRect</key>
+				<string>{{478,90},{13,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red188.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,20}</string>
+				<key>spriteSize</key>
+				<string>{13,20}</string>
+				<key>textureRect</key>
+				<string>{{492,90},{13,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red189.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,21}</string>
+				<key>spriteSize</key>
+				<string>{13,21}</string>
+				<key>textureRect</key>
+				<string>{{506,90},{13,21}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Human-Soldier-Red190.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,20}</string>
+				<key>spriteSize</key>
+				<string>{12,20}</string>
+				<key>textureRect</key>
+				<string>{{520,90},{12,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Human-Soldier-Red191.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,17}</string>
+				<key>spriteSize</key>
+				<string>{14,17}</string>
+				<key>textureRect</key>
+				<string>{{533,90},{14,17}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>3</integer>
+			<key>realTextureFileName</key>
+			<string>Human-Soldier-Red.png</string>
+			<key>textureFileName</key>
+			<string>Human-Soldier-Red.png</string>
+			<key>size</key>
+			<string>{548,112}</string>
+		</dict>
+	</dict>
+</plist>
