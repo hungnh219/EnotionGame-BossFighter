@@ -35,8 +35,8 @@ cc.Class({
         this.skillReady = true;
         this.ultimateReady = true;
 
-        this.keyboardInput = {};
-        this.initInput();
+        // this.keyboardInput = {};
+        // this.initInput();
     },
 
     initInput() {
@@ -50,55 +50,55 @@ cc.Class({
     },
 
     update(dt) {
-        let dir = cc.v2(0, 0);
-        console.log('this.keyboardInput', this.keyboardInput);
-        if (this.keyboardInput[cc.macro.KEY.w]) dir.y += 1;
-        if (this.keyboardInput[cc.macro.KEY.s]) dir.y -= 1;
-        if (this.keyboardInput[cc.macro.KEY.a]) dir.x -= 1;
-        if (this.keyboardInput[cc.macro.KEY.d]) dir.x += 1;
+        // let dir = cc.v2(0, 0);
+        // console.log('this.keyboardInput', this.keyboardInput);
+        // if (this.keyboardInput[cc.macro.KEY.w]) dir.y += 1;
+        // if (this.keyboardInput[cc.macro.KEY.s]) dir.y -= 1;
+        // if (this.keyboardInput[cc.macro.KEY.a]) dir.x -= 1;
+        // if (this.keyboardInput[cc.macro.KEY.d]) dir.x += 1;
 
-        const sprite = this.node.getChildByName('Sprite')
-        const animation = sprite.getComponent(cc.Animation);
+        // const sprite = this.node.getChildByName('Sprite')
+        // const animation = sprite.getComponent(cc.Animation);
 
-        if (dir.mag() == 0) {
-            if (this.currentAnimation !== 'Intro') {
-                animation.play('Intro');
-                this.currentAnimation = 'Intro'
-            }
-            return;
-        }
+        // if (dir.mag() == 0) {
+        //     if (this.currentAnimation !== 'Intro') {
+        //         animation.play('Intro');
+        //         this.currentAnimation = 'Intro'
+        //     }
+        //     return;
+        // }
 
-        dir = dir.normalizeSelf();
+        // dir = dir.normalizeSelf();
 
-        let animName = '';
+        // let animName = '';
 
-        const angle = Math.atan2(dir.y, dir.x) * 180 / Math.PI; // độ
+        // const angle = Math.atan2(dir.y, dir.x) * 180 / Math.PI; // độ
 
-        if (angle >= -22.5 && angle < 22.5) {
-            animName = 'right-walk';
-        } else if (angle >= 22.5 && angle < 67.5) {
-            animName = 'top-right-walk';
-        } else if (angle >= 67.5 && angle < 112.5) {
-            animName = 'top-walk';
-        } else if (angle >= 112.5 && angle < 157.5) {
-            animName = 'top-left-walk';
-        } else if (angle >= 157.5 || angle < -157.5) {
-            animName = 'left-walk';
-        } else if (angle >= -157.5 && angle < -112.5) {
-            animName = 'bottom-left';
-        } else if (angle >= -112.5 && angle < -67.5) {
-            animName = 'bottom-walk';
-        } else if (angle >= -67.5 && angle < -22.5) {
-            animName = 'bottom-right';
-        }
+        // if (angle >= -22.5 && angle < 22.5) {
+        //     animName = 'right-walk';
+        // } else if (angle >= 22.5 && angle < 67.5) {
+        //     animName = 'top-right-walk';
+        // } else if (angle >= 67.5 && angle < 112.5) {
+        //     animName = 'top-walk';
+        // } else if (angle >= 112.5 && angle < 157.5) {
+        //     animName = 'top-left-walk';
+        // } else if (angle >= 157.5 || angle < -157.5) {
+        //     animName = 'left-walk';
+        // } else if (angle >= -157.5 && angle < -112.5) {
+        //     animName = 'bottom-left';
+        // } else if (angle >= -112.5 && angle < -67.5) {
+        //     animName = 'bottom-walk';
+        // } else if (angle >= -67.5 && angle < -22.5) {
+        //     animName = 'bottom-right';
+        // }
 
-        if (this.currentAnimation !== animName) {
-            animation.play(animName);
-            this.currentAnimation = animName;
-        }
+        // if (this.currentAnimation !== animName) {
+        //     animation.play(animName);
+        //     this.currentAnimation = animName;
+        // }
 
-        this.move(dir, dt);
-        this.updateBars();
+        // this.move(dir, dt);
+        // this.updateBars();
     },
 
     updateBars() {

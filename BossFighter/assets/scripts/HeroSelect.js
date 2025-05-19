@@ -14,6 +14,7 @@ cc.Class({
         this.gameController = GameController.getInstance();
 
         this.mapPicked.string = this.gameController.getMapPicked();
+        console.log('this.mapPicked.string',this.mapPicked.string)
     },
 
     start () {

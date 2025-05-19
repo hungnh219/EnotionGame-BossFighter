@@ -16,9 +16,9 @@ cc.Class({
 
         playerPrefab: cc.Prefab,
         playerSpawn: cc.Node,
-
-        enemyPrefab: cc.Prefab,
-        enemySpawn: cc.Node,
+        
+        // enemyPrefab: cc.Prefab,
+        // enemySpawn: cc.Node,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -44,9 +44,16 @@ cc.Class({
 
             this.gridMap.push(row);
         }
-
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+        this.testPrefab = cc.instantiate(this.playerPrefab)
+        // this.testPrefab.setPosition(this.playerSpawn.position);
+        this.node.addChild(this.testPrefab)
+        // cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+        // cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+        this.gameController = GameController.getInstance();
+        this.gameController.onLoad();
+        this.gameController.setMapTileWidth(this.mapTileWidth);
+        this.gameController.setMapTileHeight(this.mapTileHeight);
+        this.gameController.setObject(this.testPrefab);
     },
 
     start () {
@@ -54,64 +61,65 @@ cc.Class({
         this.initMapView();
     },
 
-    // update (dt) {},
-    onDestroy() {
-        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.keyboardInput, this);
-        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.keyboardInput, this);
-    },
+    // // update (dt) {},
+    // onDestroy() {
+    //     cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.keyboardInput, this);
+    //     cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.keyboardInput, this);
+    // },
 
-    onKeyDown(event) {
-        this.pressedKeys.add(event.keyCode);
+    // onKeyDown(event) {
+    //     this.pressedKeys.add(event.keyCode);
 
-        // delay to wait set of keys down
-        this.scheduleOnce(() => {
-            this.checkMove();
-        }, 0.1);
-    },
-    onKeyUp(event) {
-        this.pressedKeys.delete(event.keyCode);
-    },
-    checkMove() {
-        if (this.isMoving) return;
+    //     // delay to wait set of keys down
+    //     this.scheduleOnce(() => {
+    //         this.checkMove();
+    //     }, 0.1);
+    // },
+    // onKeyUp(event) {
+    //     this.pressedKeys.delete(event.keyCode);
+    // },
+    // checkMove() {
+    //     if (this.isMoving) return;
 
-        let dx = 0;
-        let dy = 0;
+    //     let dx = 0;
+    //     let dy = 0;
 
-        if (this.pressedKeys.has(cc.macro.KEY.w) || this.pressedKeys.has(cc.macro.KEY.up)) {
-            dy += 1;
-        }
-        if (this.pressedKeys.has(cc.macro.KEY.s) || this.pressedKeys.has(cc.macro.KEY.down)) {
-            dy -= 1;
-        }
-        if (this.pressedKeys.has(cc.macro.KEY.a) || this.pressedKeys.has(cc.macro.KEY.left)) {
-            dx -= 1;
-        }
-        if (this.pressedKeys.has(cc.macro.KEY.d) || this.pressedKeys.has(cc.macro.KEY.right)) {
-            dx += 1;
-        }
+    //     if (this.pressedKeys.has(cc.macro.KEY.w) || this.pressedKeys.has(cc.macro.KEY.up)) {
+    //         dy += 1;
+    //     }
+    //     if (this.pressedKeys.has(cc.macro.KEY.s) || this.pressedKeys.has(cc.macro.KEY.down)) {
+    //         dy -= 1;
+    //     }
+    //     if (this.pressedKeys.has(cc.macro.KEY.a) || this.pressedKeys.has(cc.macro.KEY.left)) {
+    //         dx -= 1;
+    //     }
+    //     if (this.pressedKeys.has(cc.macro.KEY.d) || this.pressedKeys.has(cc.macro.KEY.right)) {
+    //         dx += 1;
+    //     }
 
-        if (dx !== 0 || dy !== 0) {
-            this.moveCharacter(dx, dy);
-        }
-    },
-    moveCharacter (dx, dy) {
-        const newX = this.bossAttackAnimation.node.x + dx * this.mapTileWidth;
-        const newY = this.bossAttackAnimation.node.y + dy * this.mapTileHeight;
+    //     if (dx !== 0 || dy !== 0) {
+    //         this.moveCharacter(dx, dy);
+    //     }
+    // },
+    // moveCharacter (dx, dy) {
+    //     const newX = this.testPrefab.x + dx * this.mapTileWidth;
+    //     const newY = this.testPrefab.y + dy * this.mapTileHeight;
 
-        // check if the new position is walkable
-        // if (newX < 0 || newX >= this.mapWidth * this.mapTileWidth) return;
+    //     // check if the new position is walkable
+    //     // if (newX < 0 || newX >= this.mapWidth * this.mapTileWidth) return;
 
-        this.isMoving = true;
-        const moveAction = cc.moveTo(0.5, newX, newY);
-        // const moveAction = cc.moveTo(0.5, newX, newY).easing(cc.easeCubicActionOut());
-        const finishCallback = cc.callFunc(() => {
-            this.isMoving = false;
-            this.checkMove();
-        });
-        const sequence = cc.sequence(moveAction, finishCallback);
-        this.bossAttackAnimation.node.runAction(sequence);
+    //     this.isMoving = true;
+    //     const moveAction = cc.moveTo(0.5, newX, newY);
+    //     // const moveAction = cc.moveTo(0.5, newX, newY).easing(cc.easeCubicActionOut());
+    //     const finishCallback = cc.callFunc(() => {
+    //         this.isMoving = false;
+    //         this.checkMove();
+    //     });
+    //     const sequence = cc.sequence(moveAction, finishCallback);
+    //     this.testPrefab.runAction(sequence);
 
-    },
+    // },
+    
     testChangeScene () {
         console.log("testChangeScene");
         this.initMapView();
@@ -153,7 +161,7 @@ cc.Class({
         const posX = 1;
         const posY = 5;
 
-        this.addObjectIntoMap(posX, posY, size, this.bossAttackAnimation);
+        this.addObjectIntoMap(posX, posY, size, this.testPrefab);
         if (this.gridMap[posX][posY].object !== null) {
             this.gridMap[posX][posY].object.play('boss');
         }
@@ -168,6 +176,7 @@ cc.Class({
 
     addObjectIntoMap(gridX, gridY, size, object) {
         let objectNode = object.node;
+        console.log('objectNode',objectNode)
         let objectSprite = objectNode.getComponent(cc.Sprite);
         objectSprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
 
