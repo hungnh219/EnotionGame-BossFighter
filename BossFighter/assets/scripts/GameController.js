@@ -177,6 +177,28 @@ const GameController = cc.Class({
     addHero(hero) {
         if (this.heros == undefined) this.heros = [];
         this.heros.push(hero);
+    },
+    addBoss(boss) {
+        this.boss = boss;
+    },
+    heroAttack() {
+        if (this.focusedHero) {
+            const hero = this.getFocusedHero();
+            hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.attack === 'function');
+            if (hero.mainScript) {
+                hero.mainScript.attack();
+
+                this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
+                if (this.boss.mainScript) {
+                    this.boss.mainScript.takeDamage(10);
+                } else {
+                    console.log('no takeDamage function');
+                }
+
+            } else {
+                console.log('no attack function');
+            }
+        }
     }
 
 });

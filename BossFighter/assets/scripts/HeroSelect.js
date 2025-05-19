@@ -40,9 +40,11 @@ cc.Class({
         this.heroPrefabs.forEach((heroPrefab, index) => {
             const hero = cc.instantiate(heroPrefab);
 
-            const heroScript = hero.getComponent('Character') || hero.getComponent('Enemy');
-
-            const heroInfo = heroScript.getCharacterInfo();
+            // const heroScript = hero.getComponent('Character') || hero.getComponent('Enemy');
+            hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
+            
+            // const heroInfo = heroScript.getCharacterInfo();
+            const heroInfo = hero.mainScript.getCharacterInfo();
             this.heros[index] = heroInfo;
             const heroImageNode = new cc.Node('HeroImageNode');
             const sprite = heroImageNode.addComponent(cc.Sprite);

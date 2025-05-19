@@ -55,7 +55,9 @@ cc.Class({
     },
 
     // update (dt) {},
+    attack() {
 
+    },
     getCharacterInfo() {
         return {
             name: this.node.name,

@@ -25,29 +25,30 @@ cc.Class({
         ultimateCooldown: 12,
 
         hpBar: cc.ProgressBar,
-        manaBar: cc.ProgressBar,
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        const sprite = this.node.getChildByName('Image')
-        const animation = sprite.getComponent(cc.Animation);
-        this.setInte
-        if (animation) {
-            const intervalId = setInterval(() => {
-                animation.play('bottom-attack'); 
-            }, 1000); 
-        }
+        // const sprite = this.node.getChildByName('Image')
+        // const animation = sprite.getComponent(cc.Animation);
+        // if (animation) {
+        //     const intervalId = setInterval(() => {
+        //         animation.play('bottom-attack'); 
+        //     }, 1000); 
+        // }
     },
 
     start () {
 
     },
 
-    normalAttach() {
-        const sprite = this.node.getChildByName('Sprite')
+    attack() {
+        // const sprite = this.node.getChildByName('Sprite')
+        // const animation = sprite.getComponent(cc.Animation);
+        const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
+        animation.play('bottom-attack'); 
     },
 
     // update (dt) {},

@@ -20,7 +20,7 @@ cc.Class({
     onLoad () {
         console.log(this.node, 'check boss node');
         console.log(this.node.parent, 'check boss node parent');
-
+        this.hp = this.maxHp;
         this.imageSprite.node.scaleX = 1.5;
         this.imageSprite.node.scaleY = 1.5;
     },
@@ -37,6 +37,9 @@ cc.Class({
 
     die(){
         // this.onDestroy.destroy();
+    },
+    attack() {
+
     },
 
     start () {

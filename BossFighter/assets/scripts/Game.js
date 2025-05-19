@@ -44,23 +44,11 @@ cc.Class({
             this.gridMap.push(row);
         }
 
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, (event) => {
-            // console.log(event.keyCode)
-            if (event.keyCode == cc.macro.KEY.tab) {
-                // this.focusedHeroIndex = this.focusedHeroIndex++ % this.heros.length;
-                this.focusedHeroIndex++;
-
-                if (this.focusedHeroIndex == this.heros.length) {
-                    this.focusedHeroIndex = 0;
-                }
-
-                this.gameController.setFocusedHero(this.focusedHeroIndex);
-                this.gameController.listenKeyDown(this.gameController.getFocusedHero());
-            }
-        }, this);
+        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
 
         // test add boss into map
         this.bossNode = cc.instantiate(this.boss1);
+        this.gameController.addBoss(this.bossNode);
         this.rootNode.addChild(this.bossNode);
         
     },
@@ -184,5 +172,26 @@ cc.Class({
             console.log("addObjectIntoMap", "object already exists");
         }
 
+    },
+
+    onKeyDown(event) {
+        if (event.keyCode == cc.macro.KEY.tab) {
+            // this.focusedHeroIndex = this.focusedHeroIndex++ % this.heros.length;
+            this.focusedHeroIndex++;
+
+            if (this.focusedHeroIndex == this.heros.length) {
+                this.focusedHeroIndex = 0;
+            }
+
+            this.gameController.setFocusedHero(this.focusedHeroIndex);
+            this.gameController.listenKeyDown(this.gameController.getFocusedHero());
+        }
+
+        if (event.keyCode == cc.macro.KEY.q) {
+            // this.gameController.getFocusedHero().attack();
+            console.log(this.gameController.getFocusedHero());
+            this.gameController.heroAttack();
+        }
     }
+
 });
