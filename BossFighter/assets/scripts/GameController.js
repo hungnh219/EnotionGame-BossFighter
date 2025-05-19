@@ -35,6 +35,9 @@ const GameController = cc.Class({
         this.heroPick = [];
         this.selectedHeroPrefabs = [];
         this.listenMoveNode = null;
+
+        this.focusedHero = null;
+        this.heros = []; // hero in game
     },
 
     start () {
@@ -159,8 +162,22 @@ const GameController = cc.Class({
         });
         const sequence = cc.sequence(moveAction, finishCallback);
         this.listenMoveNode.runAction(sequence);
-
     },
+
+
+    /* game scene */
+    setFocusedHero(heroIndex) {
+        this.focusedHero = this.heros[heroIndex];
+    },
+    getFocusedHero() {
+        return this.focusedHero;
+    },
+
+    addHero(hero) {
+        if (this.heros == undefined) this.heros = [];
+        this.heros.push(hero);
+    }
+
 });
 
 export default GameController;

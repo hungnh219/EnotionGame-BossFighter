@@ -30,7 +30,10 @@ cc.Class({
         this.pressedKeys = new Set();
         this.gameController = GameController.getInstance();
         this.gameController.setTileSize(this.mapTileWidth, this.mapTileHeight)
+        this.focusedHeroIndex = -1;
+        this.heros = [];
 
+        this.rootNode = this.node.parent;
         for (let j = 0; j < this.mapHeight; j++) {
             let row = [];
             for (let i = 0; i < this.mapWidth; i++) {
@@ -45,25 +48,51 @@ cc.Class({
             this.gridMap.push(row);
         }
 
-        this.testPrefab = cc.instantiate(this.playerPrefab)
-        // this.node.addChild(this.testPrefab)
-        this.node.parent.addChild(this.testPrefab)
-        this.gameController.listenKeyDown(this.testPrefab);
+        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, (event) => {
+            // console.log(event.keyCode)
+            if (event.keyCode == cc.macro.KEY.tab) {
+                // this.focusedHeroIndex = this.focusedHeroIndex++ % this.heros.length;
+                this.focusedHeroIndex++;
 
-        // cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
-        // cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+                if (this.focusedHeroIndex == this.heros.length) {
+                    this.focusedHeroIndex = 0;
+                }
+
+                this.gameController.setFocusedHero(this.focusedHeroIndex);
+                this.gameController.listenKeyDown(this.gameController.getFocusedHero());
+            }
+        }, this);
     },
 
     start () {
         console.log("start", this.gridMap);
-        const test = this.gameController.getHeroPrefabs();
-        console.log('previous prefab: ', test)
+        this.heros = this.gameController.getHeroPrefabs();
+        console.log('previous prefab: ', this.heros);
+
         this.initMapView();
+        if (this.heros) this.spawnHero(this.heros);
     },
 
     // update (dt) {},
     // onDestroy() {
     // },
+
+    spawnHero(heroPrefabs) {
+        console.log('check spawn');
+        heroPrefabs.forEach((heroPrefab, index) => {
+            console.log(heroPrefab)
+            let prefabNode = cc.instantiate(heroPrefab)
+
+            this.rootNode.addChild(prefabNode);
+            // this.gameController
+            this.gameController.addHero(prefabNode);
+            this.addObjectIntoMap(index, 0, 1, prefabNode);
+        });
+
+        this.focusedHeroIndex = 0;
+        this.gameController.setFocusedHero(this.focusedHeroIndex);
+        this.gameController.listenKeyDown(this.gameController.getFocusedHero());
+    },
 
     initMapView() {
         this.mapLayout.node.removeAllChildren();
@@ -95,17 +124,16 @@ cc.Class({
         }
 
             // create boss attack animation (test)
-        const size = 1;
-        const posX = 1;
-        const posY = 2;
+        const size = 2;
+        const posX = 2;
+        const posY = 5;
         
 
-        this.addObjectIntoMap(posX, posY, size, this.testPrefab);
-        // this.addObjectIntoMap(posX, posY, size, this.testPrefab);
+        this.addObjectIntoMap(posX, posY, size, this.bossAttackAnimation);
 
         
         if (this.gridMap[posX][posY].object !== null) {
-            // this.gridMap[posX][posY].object.play('boss');
+            this.gridMap[posX][posY].object.play('boss');
         }
     },
 
@@ -117,8 +145,11 @@ cc.Class({
     },
 
     addObjectIntoMap(gridX, gridY, size, object) {
-        // let objectNode = object.node;
         let objectNode = object;
+
+        if (object.node) objectNode = object.node;
+        // if (typeof ob)
+        // let objectNode = object;
         // let objectSprite = objectNode.getComponent(cc.Sprite);
         // objectSprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
 
