@@ -522,6 +522,7 @@
     "hpBar": {
       "__id__": 11
     },
+    "imageSprite": null,
     "_id": ""
   },
   {
@@ -546,6 +547,9 @@
     "maxHp": 100,
     "hpBar": {
       "__id__": 11
+    },
+    "imageSprite": {
+      "__id__": 3
     },
     "_id": ""
   },

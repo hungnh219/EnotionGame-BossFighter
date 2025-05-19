@@ -5,15 +5,67 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        mapPicked: cc.Label
+        mapPicked: cc.Label,
+
+        heroScrollViewContent: cc.Node,
+
+        heroImageSprite: cc. Sprite,
+        heroName: cc.Label,
+        heroRole: cc.Label,
+        heroHealth: cc.Label,
+        heroMana: cc.Label,
+        heroAttackRange: cc.Label,
+
+
+        heroLockedList: cc.Layout,
+        selectedHero: cc.Sprite,
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
         this.gameController = GameController.getInstance();
+        
+        this.heroPicked = {
+            index: 0,
+            prefab: null
+        };
+        this.heros = [];
+        this.heroLockList = [];
 
-        this.mapPicked.string = this.gameController.getMapPicked();
+        // get all prefab
+        const heroPrefabScript = this.node.getComponent("PrefabFactory");
+        this.heroPrefabs = heroPrefabScript.getAllPrefab();
+        console.log(this.heroPrefabs);
+        this.heroPrefabs.forEach((heroPrefab, index) => {
+            const hero = cc.instantiate(heroPrefab);
+
+            const heroScript = hero.getComponent('Character') || hero.getComponent('Enemy');
+
+            const heroInfo = heroScript.getCharacterInfo();
+            this.heros[index] = heroInfo;
+            const heroImageNode = new cc.Node('HeroImageNode');
+            const sprite = heroImageNode.addComponent(cc.Sprite);
+            sprite.spriteFrame = heroInfo.imageSprite.getComponent(cc.Sprite).spriteFrame;
+            
+            heroImageNode.customIndex = index;
+
+            // heroImageNode.on(cc.Node.EventType.TOUCH_END, function () {
+            //     console.log('Hero clicked at index:', this.customIndex);
+            // }, heroImageNode);
+
+            heroImageNode.on(cc.Node.EventType.TOUCH_END, () => {
+                console.log('check', index);
+
+                this.heroClick(index, heroPrefab);
+            }, heroImageNode);
+
+            this.heroScrollViewContent.addChild(heroImageNode);
+        });
+
+        // add to scrollview
+
+        // handle onclick
     },
 
     start () {
@@ -24,5 +76,52 @@ cc.Class({
     playGame() {
         console.log("playGame");
         cc.director.loadScene(GameScene.GAME);
+    },
+
+    initPrefabData(data) {
+        
+    },
+
+    heroClick(clickIndex, heroPrefab) {
+        // console.log(this.customIndex)
+        // console.log(this.heros[this.customIndex])
+        this.heroPicked.index = clickIndex;
+        this.heroPicked.prefab = heroPrefab;
+
+
+        // view information panel
+        console.log(this.heros[clickIndex])
+        this.heroName.string = this.heros[clickIndex].name;
+        this.heroRole.string = this.heros[clickIndex].role;
+        this.heroHealth.string = this.heros[clickIndex].health;
+        this.heroMana.string = this.heros[clickIndex].mana;
+        this.heroAttackRange.string = this.heros[clickIndex].attackRange;
+        this.heroImageSprite.spriteFrame = this.heros[clickIndex].imageSprite.getComponent(cc.Sprite).spriteFrame;
+
+        // add hero lock list
+        const heroImageNode = new cc.Node('HeroImageNode');
+        const sprite = heroImageNode.addComponent(cc.Sprite);
+        sprite.spriteFrame = this.heros[clickIndex].imageSprite.getComponent(cc.Sprite).spriteFrame;
+        this.selectedHero.spriteFrame = this.heros[clickIndex].imageSprite.getComponent(cc.Sprite).spriteFrame;
+        // this.heroLockedList.node.addChild(
+        //     heroImageNode
+        // )
+    },
+
+    clockHero() {
+        if (this.heroPicked != null) {
+            const heroImageNode = new cc.Node('HeroImageNode');
+            const sprite = heroImageNode.addComponent(cc.Sprite);
+            sprite.spriteFrame = this.heros[this.heroPicked.index].imageSprite.getComponent(cc.Sprite).spriteFrame;
+
+            this.heroLockedList.node.insertChild(heroImageNode, this.heroLockedList.node.childrenCount - 1);
+
+            this.gameController.addSelectedHeroPrefab(this.heroPicked.prefab);
+        }
+    },
+
+    playGame() {
+        // this.gameController.set
+        cc.director.loadScene(GameScene.GAME)
     }
 });

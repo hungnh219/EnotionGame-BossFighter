@@ -166,7 +166,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
+      "__uuid__": "a278b5b0-5c52-4234-9180-df3c893d8af4"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -707,6 +707,9 @@
     "attackRange": 150,
     "normalAttackPower": 10,
     "manaPerAttack": 10,
+    "imageSprite": {
+      "__id__": 3
+    },
     "skillCost": 30,
     "ultimateCost": 80,
     "skillCooldown": 5,

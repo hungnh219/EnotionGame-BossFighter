@@ -11,6 +11,8 @@ cc.Class({
     properties: {
         maxHp: 100,
         hpBar: cc.ProgressBar,
+
+        imageSprite: cc.Sprite,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -53,4 +55,12 @@ cc.Class({
     },
 
     // update (dt) {},
+
+    getCharacterInfo() {
+        return {
+            name: this.node.name,
+            description: 'hihi hehe',
+            imageSprite: this.imageSprite,
+        }
+    }
 });
