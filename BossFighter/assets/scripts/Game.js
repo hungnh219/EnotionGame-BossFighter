@@ -210,6 +210,16 @@ cc.Class({
             console.log(this.gameController.getFocusedHero());
             this.gameController.heroAttack();
         }
+
+        if (event.keyCode == cc.macro.KEY.j) {
+            console.log("w");
+            this.gameController.heroSkill();
+        }
+
+        if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
+            console.log("event", event);
+            this.gameController.heroMove(event);
+        }
     },
 
     turnOnAutoBossAttack() {

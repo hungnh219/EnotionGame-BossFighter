@@ -190,7 +190,7 @@
     },
     "_enabled": true,
     "_defaultClip": {
-      "__uuid__": "ab8a177d-7d48-4500-b3a2-6678394854f4"
+      "__uuid__": "7f9bb9e0-e119-4ce4-bb96-b31f4403de8d"
     },
     "_clips": [
       {
@@ -198,9 +198,18 @@
       },
       {
         "__uuid__": "ab8a177d-7d48-4500-b3a2-6678394854f4"
+      },
+      {
+        "__uuid__": "7f9bb9e0-e119-4ce4-bb96-b31f4403de8d"
+      },
+      {
+        "__uuid__": "028170b1-3b40-4763-8ca5-53a768ad59b3"
+      },
+      {
+        "__uuid__": "c87c06a4-3161-496b-81a8-d64dd9ac717d"
       }
     ],
-    "playOnLoad": false,
+    "playOnLoad": true,
     "_id": ""
   },
   {

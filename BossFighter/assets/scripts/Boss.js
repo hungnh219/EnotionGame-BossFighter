@@ -33,6 +33,7 @@ cc.Class({
         }
     },
 
+
     die(){
         // this.onDestroy.destroy();
     },

@@ -3,8 +3,8 @@
   "_name": "bottom-attack",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 0.1,
-  "sample": 30,
+  "_duration": 0.15,
+  "sample": 20,
   "speed": 1,
   "wrapMode": 1,
   "curveData": {
@@ -18,13 +18,13 @@
             }
           },
           {
-            "frame": 0.03333333333333333,
+            "frame": 0.05,
             "value": {
               "__uuid__": "148cc52e-51c0-429a-8263-10726b97fb9b"
             }
           },
           {
-            "frame": 0.06666666666666667,
+            "frame": 0.1,
             "value": {
               "__uuid__": "63b83e4b-275d-49d9-a223-1c955ecb8e15"
             }

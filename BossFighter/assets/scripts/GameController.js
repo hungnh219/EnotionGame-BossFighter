@@ -213,9 +213,9 @@ const GameController = cc.Class({
     heroAttack() {
         if (this.focusedHero) {
             const hero = this.getFocusedHero();
-            hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.attack === 'function');
+            hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
             if (hero.mainScript) {
-                hero.mainScript.attack();
+                hero.mainScript.attackAnimation();
 
                 this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
                 if (this.boss.mainScript) {
@@ -226,6 +226,41 @@ const GameController = cc.Class({
 
             } else {
                 console.log('no attack function');
+            }
+        }
+    },
+
+    heroMove(event){
+        if (this.focusedHero){
+            const hero = this.getFocusedHero();
+            hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.skillAnimation === 'function');
+            if(hero.mainScript){
+                // if(event.keyCode == cc.macro.KEY.w){
+                //     hero.mainScript.moveAnimation(event.keyCode);
+                // }
+                hero.mainScript.moveAnimation(event.keyCode);
+            }
+            
+        }
+    },
+
+    heroSkill() {
+        if (this.focusedHero){
+            const hero = this.getFocusedHero();
+            hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.skillAnimation === 'function');
+            if (hero.mainScript) {
+                hero.mainScript.skillAnimation();
+                this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
+                if (this.boss.mainScript) {
+                    const damage = hero.mainScript.affectDamage();
+                    console.log('Boss take damage', damage);
+                    this.boss.mainScript.takeDamage(damage);
+                } else {
+                    console.log('no takeDamage function');
+                }
+
+            } else {
+                console.log('no skill function');
             }
         }
     },
