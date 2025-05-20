@@ -40,7 +40,9 @@ cc.Class({
     attack() {
 
     },
-
+    getHp() {
+        return this.hp;
+    },
     start () {
 
     },

@@ -14,7 +14,7 @@ cc.Class({
         maxHp: 100,
         maxMana: 100,
         moveSpeed: 200,
-        attackRange: 150,
+        attackRange: 100,
         normalAttackPower: 10,
         manaPerAttack: 10,
         imageSprite: cc.Sprite,
@@ -43,7 +43,9 @@ cc.Class({
     start() {
 
     },
-
+    attack() {
+        this.attackAnimation();
+    },
     attackAnimation() {
         const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
@@ -105,6 +107,10 @@ cc.Class({
         // const sprite = this.node.getChildByName('Image')
         // const animation = sprite.getComponent(cc.Animation);
         // animation.play('bottom-die'); 
+    },
+
+    getAttackRange() {
+        return this.attackRange;
     },
 
     // update (dt) {},

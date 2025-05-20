@@ -1,3 +1,5 @@
+import GameScene from "./GameScene";
+
 const GameController = cc.Class({
     extends: cc.Component,
     
@@ -39,6 +41,7 @@ const GameController = cc.Class({
         this.focusedHero = null;
         this.heros = []; // hero in game
         this.gridMap = [];
+        this.winner = null; // 'boss', 'player'
     },
 
     start () {
@@ -211,7 +214,8 @@ const GameController = cc.Class({
         this.boss = boss;
     },
     heroAttack() {
-        if (this.focusedHero) {
+        console.log(this.checkAttackRangeHero(this.focusedHero))
+        if (this.checkAttackRangeHero(this.focusedHero) && this.focusedHero) {
             const hero = this.getFocusedHero();
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
             if (hero.mainScript) {
@@ -220,6 +224,12 @@ const GameController = cc.Class({
                 this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
                 if (this.boss.mainScript) {
                     this.boss.mainScript.takeDamage(10);
+
+                    // boss die
+                    if (this.boss.mainScript.getHp() == 0) {
+                        // player win
+                        this.winner = 'player';
+                    }
                 } else {
                     console.log('no takeDamage function');
                 }
@@ -228,6 +238,18 @@ const GameController = cc.Class({
                 console.log('no attack function');
             }
         }
+    },
+    checkAttackRangeHero(hero) {
+        let boss = this.boss;
+
+        const distance = cc.v2(boss.x - hero.x, boss.y - hero.y).mag();
+        hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.attack === 'function');
+
+        if (distance <= hero.mainScript.getAttackRange()) {
+            return true;
+        }
+
+        return false;
     },
 
     heroMove(event){
@@ -290,11 +312,6 @@ const GameController = cc.Class({
     // boss attack nearest hero
     bossAttack() {
         // calculate the distance between the boss and the heroes, take the nearest hero
-        if (this.heros.length == 0) {
-            console.log('no hero');
-            return;
-        }
-
         const boss = this.boss;
         const heroes = this.heros;
         let nearestHero = null;
@@ -324,7 +341,19 @@ const GameController = cc.Class({
                         console.log('nearest hero is dead');
                         // remove hero from the list
                         this.heros.splice(this.heros.indexOf(nearestHero), 1);
+                        this.focusedHero.scale = 1;
+
                         console.log('heros', this.heros);
+                        // this.focusedHero = this.heros[0]
+                        // console.log('focus hero', this.focusedHero);
+                        this.setFocusedHero(0);
+
+                        if (this.heros.length == 0) {
+                            this.winner = 'boss';
+
+                            return;
+                        }
+
                     }
                 } else {
                     console.log('no takeDamage function');
@@ -334,8 +363,26 @@ const GameController = cc.Class({
             }
         }
     
-    }
+    },
 
+    getWinner() {
+        if (this.winner != undefined) {
+            return this.winner;
+        }
+    },
+
+    getNumberOfHero() {
+        return this.heros.length;
+    },
+
+
+    /* game system */
+    newGame() {
+        // reset varialbe
+        this.heros = [];
+        // this.focusedHero = null;
+        // this.selectedHeroPrefabs = [];
+    }
 });
 
 export default GameController;

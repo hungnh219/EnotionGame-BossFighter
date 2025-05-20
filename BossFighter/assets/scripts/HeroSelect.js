@@ -48,30 +48,32 @@ cc.Class({
             // const heroScript = hero.getComponent('Character') || hero.getComponent('Enemy');
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
             
-            // const heroInfo = heroScript.getCharacterInfo();
-            const heroInfo = hero.mainScript.getCharacterInfo();
-            this.heros[index] = heroInfo;
-            const heroImageNode = new cc.Node('HeroImageNode');
-            const sprite = heroImageNode.addComponent(cc.Sprite);
-            sprite.spriteFrame = heroInfo.imageSprite.getComponent(cc.Sprite).spriteFrame;
+            if (hero.mainScript != undefined) {
+                const heroInfo = hero.mainScript.getCharacterInfo();
+                this.heros[index] = heroInfo;
+                const heroImageNode = new cc.Node('HeroImageNode');
+                const sprite = heroImageNode.addComponent(cc.Sprite);
+                sprite.spriteFrame = heroInfo.imageSprite.getComponent(cc.Sprite).spriteFrame;
 
-            sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
-            heroImageNode.width = 60;
-            heroImageNode.height = 60;
+                sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
+                heroImageNode.width = 60;
+                heroImageNode.height = 60;
 
-            heroImageNode.customIndex = index;
+                heroImageNode.customIndex = index;
 
-            // heroImageNode.on(cc.Node.EventType.TOUCH_END, function () {
-            //     console.log('Hero clicked at index:', this.customIndex);
-            // }, heroImageNode);
+                // heroImageNode.on(cc.Node.EventType.TOUCH_END, function () {
+                //     console.log('Hero clicked at index:', this.customIndex);
+                // }, heroImageNode);
 
-            heroImageNode.on(cc.Node.EventType.TOUCH_END, () => {
-                console.log('check', index);
+                heroImageNode.on(cc.Node.EventType.TOUCH_END, () => {
+                    console.log('check', index);
 
-                this.heroClick(index, heroPrefab);
-            }, heroImageNode);
+                    this.heroClick(index, heroPrefab);
+                }, heroImageNode);
 
-            this.heroScrollViewContent.addChild(heroImageNode);
+                this.heroScrollViewContent.addChild(heroImageNode);
+            }
+
         });
 
         // add to scrollview
