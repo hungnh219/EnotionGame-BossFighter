@@ -641,7 +641,7 @@
       "__id__": 8
     },
     "boss1": {
-      "__uuid__": "b9dcfd7e-bc4a-4723-8fb4-2e631704ca59"
+      "__uuid__": "915a487c-2953-48dd-a83e-99825bf67c2a"
     },
     "_id": "cb8D8Be11Kb7BhNhrpGKRe"
   },
@@ -1197,7 +1197,7 @@
     },
     "component": "",
     "_componentId": "64416qwka9JyLGBQ0ciOcvS",
-    "handler": "replayGame",
+    "handler": "resetGame",
     "customEventData": ""
   },
   {

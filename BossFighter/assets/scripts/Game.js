@@ -249,6 +249,7 @@ cc.Class({
 
         if (event.keyCode == cc.macro.KEY.q) {
             // this.gameController.getFocusedHero().attack();
+
             // if (this.gameController.getWinner()) return;
             console.log(this.gameController.getFocusedHero());
             this.gameController.heroAttack();
@@ -261,6 +262,16 @@ cc.Class({
                 console.log(this.winnerNotificationLabel.node, 'label parent node')
                 cc.director.pause();
             }
+        }
+
+        if (event.keyCode == cc.macro.KEY.j) {
+            console.log("w");
+            this.gameController.heroSkill();
+        }
+
+        if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
+            console.log("event", event);
+            this.gameController.heroMove(event);
         }
     },
 
@@ -319,6 +330,9 @@ cc.Class({
         cc.director.loadScene(GameScene.MAP_SELECT)
     },
 
+    resetGame() {
+        this.onLoad();
+    }
     // onDestroy() {
     //     console.log('destroy game')
     //     cc.director.loadScene(GameScene.GAME)

@@ -43,17 +43,42 @@ cc.Class({
     start () {
 
     },
-
     attack() {
-        // const sprite = this.node.getChildByName('Sprite')
-        // const animation = sprite.getComponent(cc.Animation);
+        this.attackAnimation();
+    },
+    attackAnimation() {
         const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
         animation.play('bottom-attack'); 
     },
 
+    moveAnimation(event) {
+        const sprite = this.node.getChildByName('Image')
+        const animation = sprite.getComponent(cc.Animation);
+        console.log('moveAnimation', event);
+        if (event === cc.macro.KEY.w) {
+            animation.play('top-walk');
+        } else if (event === cc.macro.KEY.s) {
+            animation.play('bottom-walk');
+        } else if (event === cc.macro.KEY.a) {
+            animation.play('left-walk');
+        } else if (event === cc.macro.KEY.d) {
+            animation.play('right-walk');
+        }
+    },
+
+    skillAnimation(){
+        const sprite = this.node.getChildByName('Image')
+        const animation = sprite.getComponent(cc.Animation);
+        animation.play('bottom-skill');
+    },
+
+    affectDamage() {
+        return this.normalAttackPower * 2;
+    },
+
     takeDamage(damage) {
-        console.log('takeDamage', damage);
+        console.log('tanker takeDamage', damage);
         this.hp -= damage;
         this.hp = Math.max(this.hp, 0);
         if (this.hpBar) this.hpBar.progress = this.hp / this.maxHp;
