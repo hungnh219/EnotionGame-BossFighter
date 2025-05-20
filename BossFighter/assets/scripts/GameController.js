@@ -88,7 +88,6 @@ const GameController = cc.Class({
     addSelectedHeroPrefab(prefab) {
         if (!this.selectedHeroPrefabs) this.selectedHeroPrefabs = []; 
         console.log(this.selectedHeroPrefabs)
-        console.log('hero prefab', prefab)
         this.selectedHeroPrefabs.push(prefab);
     },
 
@@ -102,7 +101,6 @@ const GameController = cc.Class({
     },
     
     listenKeyDown(listenNode) {
-        console.log(this.mapTileWidth, this.mapTileHeight, '2131231')
         if (this.mapTileWidth == undefined) {
             this.mapTileWidth = 64;
         }
@@ -156,7 +154,6 @@ const GameController = cc.Class({
 
         // check if the new position is walkable use newX, newY, firstCellPos and lastCellPos
         if (newX < this.firstCellPos.x || newX > this.lastCellPos.x || newY < this.firstCellPos.y || newY > this.lastCellPos.y) {
-            console.log('out of map');
             return;
         }
 
@@ -164,7 +161,6 @@ const GameController = cc.Class({
         const gridX = Math.floor((newX - this.firstCellPos.x) / this.mapTileWidth);
         const gridY = Math.floor((newY - this.firstCellPos.y) / this.mapTileHeight);
         if (this.gridMap[gridX][gridY] == false) {
-            console.log('not walkable');
             return;
         }
 
@@ -214,7 +210,6 @@ const GameController = cc.Class({
         this.boss = boss;
     },
     heroAttack() {
-        console.log(this.checkAttackRangeHero(this.focusedHero))
         if (this.checkAttackRangeHero(this.focusedHero) && this.focusedHero) {
             const hero = this.getFocusedHero();
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
@@ -276,7 +271,6 @@ const GameController = cc.Class({
                 this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
                 if (this.boss.mainScript) {
                     const damage = hero.mainScript.affectDamage();
-                    console.log('Boss take damage', damage);
                     this.boss.mainScript.takeDamage(damage);
                 } else {
                     console.log('no takeDamage function');
@@ -294,16 +288,13 @@ const GameController = cc.Class({
             this.gridMap[x] = [];
         }
 
-        console.log(this.gridMap[x][y], 'before updateWalkable', x, y);
         this.gridMap[x][y] = walkable;
-        console.log(this.gridMap[x][y], 'after updateWalkable', x, y);
 
     },
 
     setCellPosition(firstCellPos, lastCellPos) {
         this.firstCellPos = firstCellPos;
         this.lastCellPos = lastCellPos;
-        console.log(this.firstCellPos, this.lastCellPos, 'setCellPosition');
     },
 
     getBoss() {
@@ -339,12 +330,10 @@ const GameController = cc.Class({
                     nearestHero.mainScript.takeDamage(20);
 
                     if (nearestHero.mainScript.getCurrentHp() <= 0) {
-                        console.log('nearest hero is dead');
                         // remove hero from the list
                         this.heros.splice(this.heros.indexOf(nearestHero), 1);
                         this.focusedHero.scale = 1;
 
-                        console.log('heros', this.heros);
                         // this.focusedHero = this.heros[0]
                         // console.log('focus hero', this.focusedHero);
                         this.setFocusedHero(0);
@@ -370,12 +359,10 @@ const GameController = cc.Class({
         for (let i = 0; i < this.heros.length; i++) {
             const hero = this.heros[i];
             if (hero.mainScript.getCurrentHp() <= 0) {
-                console.log('hero is dead');
                 // remove hero from the list
                 this.heros.splice(i, 1);
                 this.focusedHero.scale = 1;
 
-                console.log('heros', this.heros);
                 // this.focusedHero = this.heros[0]
                 // console.log('focus hero', this.focusedHero);
                 this.setFocusedHero(0);
