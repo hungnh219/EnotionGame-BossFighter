@@ -1,3 +1,5 @@
+import GameScene from "./GameScene";
+
 const GameController = cc.Class({
     extends: cc.Component,
     
@@ -336,8 +338,16 @@ const GameController = cc.Class({
 
     getNumberOfHero() {
         return this.heros.length;
-    }
+    },
 
+
+    /* game system */
+    newGame() {
+        // reset varialbe
+        this.heros = [];
+        // this.focusedHero = null;
+        // this.selectedHeroPrefabs = [];
+    }
 });
 
 export default GameController;

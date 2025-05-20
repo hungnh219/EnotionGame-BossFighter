@@ -29,11 +29,7 @@ cc.Class({
             this.characterPrefab,
             // this.enemyPrefab,
             this.tankerPrefab,
-            this.tankerPrefab,
-            this.tankerPrefab,
-            this.tankerPrefab,
-            this.tankerPrefab,
-            this.tankerPrefab,
+            this.characterPrefab,
             this.tankerPrefab,
         ]
     }
