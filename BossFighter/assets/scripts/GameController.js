@@ -2,7 +2,7 @@ import GameScene from "./GameScene";
 
 const GameController = cc.Class({
     extends: cc.Component,
-    
+
     statics: {
         instance: null,
         getInstance: function () {
@@ -24,7 +24,7 @@ const GameController = cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
         if (GameController.instance === null) {
             GameController.instance = this;
             cc.game.addPersistRootNode(this.node);
@@ -44,49 +44,48 @@ const GameController = cc.Class({
         this.winner = null; // 'boss', 'player'
     },
 
-    start () {
-
+    start() {
     },
 
     // update (dt) {},
-    testChangeScene () {
+    testChangeScene() {
         console.log("testChangeScene");
         cc.director.loadScene("map");
     },
 
-    testPrintScene (word) {
+    testPrintScene(word) {
         console.log("testPrintScene", word);
         cc.director.getScene().name;
     },
 
-    getEditBoxValue (string) {
+    getEditBoxValue(string) {
         console.log("getEditBoxValue", string);
         this.editBoxString = string;
     },
 
-    printEditBoxValue () {
+    printEditBoxValue() {
         console.log("printEditBoxValue", this.editBoxString);
     },
 
-    setMapPicked (mapPick) {
+    setMapPicked(mapPick) {
         this.mapPick = mapPick;
     },
 
-    getMapPicked () {
+    getMapPicked() {
         return this.mapPick;
     },
 
-    setHeroPick (heroPick) {
+    setHeroPick(heroPick) {
         this.heroPick = heroPick;
     },
 
-    getHeroPick () {
+    getHeroPick() {
         return this.heroPick;
     },
 
     /* select hero */
     addSelectedHeroPrefab(prefab) {
-        if (!this.selectedHeroPrefabs) this.selectedHeroPrefabs = []; 
+        if (!this.selectedHeroPrefabs) this.selectedHeroPrefabs = [];
         console.log(this.selectedHeroPrefabs)
         this.selectedHeroPrefabs.push(prefab);
     },
@@ -99,7 +98,7 @@ const GameController = cc.Class({
         this.mapTileWidth = tileWidth;
         this.mapTileHeight = tileHeight;
     },
-    
+
     listenKeyDown(listenNode) {
         if (this.mapTileWidth == undefined) {
             this.mapTileWidth = 64;
@@ -148,7 +147,7 @@ const GameController = cc.Class({
             this.moveCharacter(dx, dy);
         }
     },
-    moveCharacter (dx, dy) {
+    moveCharacter(dx, dy) {
         const newX = this.listenMoveNode.x + dx * this.mapTileWidth;
         const newY = this.listenMoveNode.y + dy * this.mapTileHeight;
 
@@ -246,24 +245,24 @@ const GameController = cc.Class({
 
         return false;
     },
-    
 
-    heroMoveAnimation(event){
-        if (this.focusedHero){
+
+    heroMoveAnimation(event) {
+        if (this.focusedHero) {
             const hero = this.getFocusedHero();
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.skillAnimation === 'function');
-            if(hero.mainScript){
+            if (hero.mainScript) {
                 // if(event.keyCode == cc.macro.KEY.w){
                 //     hero.mainScript.moveAnimation(event.keyCode);
                 // }
                 hero.mainScript.moveAnimation(event.keyCode);
             }
-            
+
         }
     },
 
     heroSkill() {
-        if (this.focusedHero){
+        if (this.focusedHero) {
             const hero = this.getFocusedHero();
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.skillAnimation === 'function');
             if (hero.mainScript) {
@@ -352,27 +351,41 @@ const GameController = cc.Class({
                 console.log('no attack function');
             }
         }
-    
+
     },
 
-    checkDeadHero() {
-        for (let i = 0; i < this.heros.length; i++) {
-            const hero = this.heros[i];
-            if (hero.mainScript.getCurrentHp() <= 0) {
-                // remove hero from the list
-                this.heros.splice(i, 1);
-                this.focusedHero.scale = 1;
+    moveBossToNearestHero() {
+        if (!this.boss || this.heros.length === 0) return;
 
-                // this.focusedHero = this.heros[0]
-                // console.log('focus hero', this.focusedHero);
-                this.setFocusedHero(0);
+        let bossPos = cc.v2(this.boss.x, this.boss.y);
+        let nearestHero = null;
+        let minDistance = Infinity;
 
-                if (this.heros.length == 0) {
-                    this.winner = 'boss';
-                    return;
-                }
+        // find the nearest hero
+        for (let hero of this.heros) {
+            let heroPos = cc.v2(hero.x, hero.y);
+            let distance = bossPos.sub(heroPos).mag();
+            if (distance < minDistance) {
+                minDistance = distance;
+                nearestHero = hero;
             }
         }
+
+        if (!nearestHero) return;
+
+        let heroPos = cc.v2(nearestHero.x, nearestHero.y);
+        let direction = heroPos.sub(bossPos).normalize();
+
+        // calculate the step size based on the direction
+        let stepX = direction.x * this.mapTileWidth;
+        let stepY = direction.y * this.mapTileHeight;
+
+        // move the boss to the new position
+        let newX = bossPos.x + stepX;
+        let newY = bossPos.y + stepY;
+
+        let moveAction = cc.moveTo(0.5, newX, newY);
+        this.boss.runAction(moveAction);
     },
 
     getWinner() {

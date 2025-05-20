@@ -21,7 +21,7 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
         // variables
         this.gridMap = [];
         this.isMoving = false;
@@ -41,13 +41,12 @@ cc.Class({
                     walkable: true,
                     object: null,
                 })
-
                 this.gameController.updateWalkable(j, i, true);
             }
             this.gridMap.push(row);
         }
 
-        
+
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
 
         // test add boss into map
@@ -56,11 +55,11 @@ cc.Class({
         // this.bossNode.playA
         const sprite = this.bossNode.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
-        animation.play('boss2-fly'); 
+        animation.play('boss2-fly');
         this.rootNode.addChild(this.bossNode);
         this.winnerNotificationLabel.node.zIndex = 999;
         this.rootNode.sortAllChildren();
-        
+
     },
 
     // onEnable() {
@@ -88,7 +87,7 @@ cc.Class({
     //         this.gridMap.push(row);
     //     }
 
-        
+
     //     cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
 
     //     // test add boss into map
@@ -99,16 +98,24 @@ cc.Class({
     //     this.rootNode.sortAllChildren();
     // },
 
-    start () {
+    start() {
         this.heros = this.gameController.getHeroPrefabs();
-        
+
         this.initMapView();
         if (this.heros) this.spawnHero(this.heros);
 
         this.turnOnAutoBossAttack();
+
+        this.schedule(() => {
+            console.log("boss auto move");
+            this.gameController.moveBossToNearestHero();
+        }, 1.0); // boss hành động mỗi 1 giây
+
     },
 
-    // update (dt) {},
+    // update(dt) {
+
+    // },
     // onDestroy() {
     // },
 
@@ -132,7 +139,7 @@ cc.Class({
         this.mapLayout.node.removeAllChildren();
         console.log('check reset')
         /* ------------- create grid map ------------- */
-            // center the map
+        // center the map
         this.mapLayout.node.x = -this.mapWidth * this.mapTileWidth / 2;
         this.mapLayout.node.y = -this.mapHeight * this.mapTileHeight / 2;
 
@@ -170,7 +177,7 @@ cc.Class({
 
         this.gameController.setCellPosition(firstCellPos, lastCellPos);
 
-            // create boss attack animation (test)
+        // create boss attack animation (test)
         const size = 2;
         const posX = 2;
         const posY = 5;
@@ -209,8 +216,8 @@ cc.Class({
 
         // set the position of the object
         const mapPos = this.mapLayout.node.getPosition();
-        objectNode.x = mapPos.x + gridX * this.mapTileWidth + (this.mapTileWidth * size)/ 2;
-        objectNode.y = mapPos.y + gridY * this.mapTileHeight + (this.mapTileHeight * size)/ 2;
+        objectNode.x = mapPos.x + gridX * this.mapTileWidth + (this.mapTileWidth * size) / 2;
+        objectNode.y = mapPos.y + gridY * this.mapTileHeight + (this.mapTileHeight * size) / 2;
 
         // set the z index of the object
         console.log("addObjectIntoMap", "objectNode", objectNode.x, objectNode.y);
@@ -270,12 +277,12 @@ cc.Class({
         }
 
         if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
-         
-            if (this.gameController.heros.length != 0){
-       
+
+            if (this.gameController.heros.length != 0) {
+
                 this.gameController.heroMoveAnimation(event);
             };
-            
+
         }
     },
 
@@ -308,9 +315,9 @@ cc.Class({
             }
 
             if (this.gameController.getWinner()) {
-                
+
             }
-        }, 2000);   
+        }, 2000);
     },
 
     replayGame() {
