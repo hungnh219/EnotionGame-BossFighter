@@ -5,4 +5,13 @@ const GameScene = {
     HERO_SELECT: 'HeroSelect',
 }
 
-export default GameScene;
+const GameMapIndex = {
+    MAP_1: 0,
+    MAP_2: 1,
+    MAP_3: 2,
+}
+
+export default {
+    GameMapIndex,
+    GameScene
+};

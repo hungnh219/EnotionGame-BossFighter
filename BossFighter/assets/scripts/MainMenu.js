@@ -1,4 +1,4 @@
-import GameScene from "./GameScene";
+import GameScene from "./GameData";
 
 cc.Class({
     extends: cc.Component,

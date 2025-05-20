@@ -1,22 +1,15 @@
 import GameController from "./GameController";
-import GameScene from "./GameScene";
+import GAME_DATA from "./GameData";
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
-
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        // if (GameController.instance === null) {
-        //     GameController.instance = this;
-        //     cc.game.addPersistRootNode(this.node);
-        // } else {
-        //     this.node.destroy();
-        // }
         const gameController = GameController.getInstance();
         if (gameController) {
             this.gameController = gameController;
@@ -36,13 +29,19 @@ cc.Class({
     // update (dt) {},
     map1Picked () {
         console.log("map1Picked");
-        this.gameController.setMapPicked("map1");
-        cc.director.loadScene(GameScene.HERO_SELECT);
+        this.gameController.setMapPicked(GAME_DATA.GameMapIndex.MAP_1);
+        cc.director.loadScene(GAME_DATA.GameScene.HERO_SELECT);
     },
 
     map2Picked () {
         console.log("map2Picked");
-        this.gameController.setMapPicked("map2");
-        cc.director.loadScene(GameScene.HERO_SELECT);
+        this.gameController.setMapPicked(GAME_DATA.GameMapIndex.MAP_2);
+        cc.director.loadScene(GAME_DATA.GameScene.HERO_SELECT);
+    },
+
+    map3Picked () {
+        console.log("map3Picked");
+        this.gameController.setMapPicked(GAME_DATA.GameMapIndex.MAP_3);
+        cc.director.loadScene(GAME_DATA.GameScene.HERO_SELECT);
     }
 });

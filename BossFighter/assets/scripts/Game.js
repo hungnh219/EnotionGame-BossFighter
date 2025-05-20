@@ -1,5 +1,5 @@
 import GameController from "./GameController";
-import GameScene from "./GameScene";
+import GameScene from "./GameData";
 
 cc.Class({
     extends: cc.Component,
@@ -7,16 +7,24 @@ cc.Class({
     properties: {
         mapHeight: cc.Integer,
         mapWidth: cc.Integer,
-        mapTile: cc.SpriteFrame,
+        // mapTile: cc.SpriteFrame,
         mapTileWidth: cc.Integer,
         mapTileHeight: cc.Integer,
         // mapTileSize: cc.Integer,
+
+        backgroundSprite: cc.Sprite,
+        backgroundSpriteFrames: [cc.SpriteFrame],
+        tileSpriteFrames: [cc.SpriteFrame],
+        bossPrefabs: [cc.Prefab],
+
         winnerNotificationLabel: cc.Label,
 
         bossAttackAnimation: cc.Animation,
         mapLayout: cc.Layout,
 
-        boss1: cc.Prefab
+        boss1: cc.Prefab,
+
+        mapIndex: 0,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -30,8 +38,10 @@ cc.Class({
         this.gameController.setTileSize(this.mapTileWidth, this.mapTileHeight)
         this.focusedHeroIndex = -1;
         this.heros = [];
-
         this.rootNode = this.node.parent;
+        this.bossNode = null;
+        
+
         for (let j = 0; j < this.mapHeight; j++) {
             let row = [];
             for (let i = 0; i < this.mapWidth; i++) {
@@ -51,60 +61,22 @@ cc.Class({
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
 
         // test add boss into map
-        this.bossNode = cc.instantiate(this.boss1);
-        this.gameController.addBoss(this.bossNode);
-        // this.bossNode.playA
-        const sprite = this.bossNode.getChildByName('Image')
-        const animation = sprite.getComponent(cc.Animation);
-        animation.play('boss2-fly'); 
-        this.rootNode.addChild(this.bossNode);
         this.winnerNotificationLabel.node.zIndex = 999;
         this.rootNode.sortAllChildren();
         
     },
 
-    // onEnable() {
-    //     this.gridMap = [];
-    //     this.isMoving = false;
-    //     this.pressedKeys = new Set();
-    //     this.gameController = GameController.getInstance();
-    //     this.gameController.setTileSize(this.mapTileWidth, this.mapTileHeight)
-    //     this.focusedHeroIndex = -1;
-    //     this.heros = [];
-
-    //     this.rootNode = this.node.parent;
-    //     for (let j = 0; j < this.mapHeight; j++) {
-    //         let row = [];
-    //         for (let i = 0; i < this.mapWidth; i++) {
-    //             row.push({
-    //                 x: j,
-    //                 y: i,
-    //                 walkable: true,
-    //                 object: null,
-    //             })
-
-    //             this.gameController.updateWalkable(j, i, true);
-    //         }
-    //         this.gridMap.push(row);
-    //     }
-
-        
-    //     cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
-
-    //     // test add boss into map
-    //     this.bossNode = cc.instantiate(this.boss1);
-    //     this.gameController.addBoss(this.bossNode);
-    //     this.rootNode.addChild(this.bossNode);
-    //     this.winnerNotificationLabel.node.zIndex = 999;
-    //     this.rootNode.sortAllChildren();
-    // },
-
     start () {
         this.heros = this.gameController.getHeroPrefabs();
-        
+
+        this.mapIndex = this.gameController.getMapPicked() ?? 0;
+        console.log(this.mapIndex);
+        this.tileSpriteFrame = this.tileSpriteFrames[this.mapIndex];
+        this.backgroundSprite.spriteFrame = this.backgroundSpriteFrames[this.mapIndex];
+
         this.initMapView();
         if (this.heros) this.spawnHero(this.heros);
-
+        this.spawnBoss();
         this.turnOnAutoBossAttack();
     },
 
@@ -128,6 +100,23 @@ cc.Class({
         this.gameController.listenKeyDown(this.gameController.getFocusedHero());
     },
 
+    spawnBoss() {
+        console.log(this.mapIndex, 'map index')
+        console.log(this.bossPrefabs[this.mapIndex], 'boss map')
+        this.bossNode = cc.instantiate(this.bossPrefabs[this.mapIndex]);
+        this.gameController.addBoss(this.bossNode);
+        // this.bossNode.playA
+        // const sprite = this.bossNode.getChildByName('Image')
+        // const animation = sprite.getComponent(cc.Animation);
+        // animation.play('boss2-fly'); 
+        this.rootNode.addChild(this.bossNode);
+
+        const size = 2;
+        const posX = 2;
+        const posY = 5;
+        this.addObjectIntoMap(posX, posY, size, this.bossNode);
+    },
+
     initMapView() {
         this.mapLayout.node.removeAllChildren();
         console.log('check reset')
@@ -143,7 +132,7 @@ cc.Class({
             for (let i = 0; i < this.mapWidth; i++) {
                 let tileNode = new cc.Node();
                 let sprite = tileNode.addComponent(cc.Sprite);
-                sprite.spriteFrame = this.mapTile;
+                sprite.spriteFrame = this.tileSpriteFrame;
 
                 sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
 
@@ -171,11 +160,7 @@ cc.Class({
         this.gameController.setCellPosition(firstCellPos, lastCellPos);
 
             // create boss attack animation (test)
-        const size = 2;
-        const posX = 2;
-        const posY = 5;
-
-        this.addObjectIntoMap(posX, posY, size, this.bossNode);
+       
     },
 
     convertGridToPosition(gridX, gridY) {
@@ -331,11 +316,8 @@ cc.Class({
     },
 
     resetGame() {
-        this.onLoad();
-    }
-    // onDestroy() {
-    //     console.log('destroy game')
-    //     cc.director.loadScene(GameScene.GAME)
-    // }
+        // reset
+    },
+
 
 });

@@ -1,4 +1,4 @@
-import GameScene from "./GameScene";
+import GameScene from "./GameData";
 
 const GameController = cc.Class({
     extends: cc.Component,
@@ -292,11 +292,7 @@ const GameController = cc.Class({
         if (this.gridMap[x] == undefined) {
             this.gridMap[x] = [];
         }
-
-        console.log(this.gridMap[x][y], 'before updateWalkable', x, y);
         this.gridMap[x][y] = walkable;
-        console.log(this.gridMap[x][y], 'after updateWalkable', x, y);
-
     },
 
     setCellPosition(firstCellPos, lastCellPos) {

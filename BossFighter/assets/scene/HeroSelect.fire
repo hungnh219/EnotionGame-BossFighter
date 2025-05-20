@@ -331,6 +331,11 @@
     "selectedHero": {
       "__id__": 47
     },
+    "numberOfHeros": [
+      3,
+      4,
+      5
+    ],
     "_id": "4d0kXIs01PEIF9cDxuPMEC"
   },
   {
