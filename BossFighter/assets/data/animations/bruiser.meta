@@ -1,10 +1,6 @@
 {
   "ver": "1.1.3",
-<<<<<<<< HEAD:BossFighter/assets/data/animations/Tanker/Clips.meta
-  "uuid": "4f89ca57-54d3-477f-a7f1-87336934da65",
-========
-  "uuid": "40ed7efd-a744-4e6f-8c31-3dd6179645ed",
->>>>>>>> feature/spawn-selected-hero:BossFighter/assets/data/animations/bruiser.meta
+  "uuid": "42e4efc2-e620-4cf2-a30d-839d4a2ee116",
   "importer": "folder",
   "isBundle": false,
   "bundleName": "",
