@@ -10,6 +10,7 @@ cc.Class({
         mapTileWidth: cc.Integer,
         mapTileHeight: cc.Integer,
         // mapTileSize: cc.Integer,
+        winnerNotificationLabel: cc.Label,
 
         bossAttackAnimation: cc.Animation,
         mapLayout: cc.Layout,
@@ -52,6 +53,8 @@ cc.Class({
         this.bossNode = cc.instantiate(this.boss1);
         this.gameController.addBoss(this.bossNode);
         this.rootNode.addChild(this.bossNode);
+        this.winnerNotificationLabel.node.zIndex = 999;
+        this.rootNode.sortAllChildren();
         
     },
 
@@ -195,6 +198,7 @@ cc.Class({
     onKeyDown(event) {
         if (event.keyCode == cc.macro.KEY.tab) {
             // this.focusedHeroIndex = this.focusedHeroIndex++ % this.heros.length;
+            if (this.gameController.getNumberOfHero() == 1) return; // only 1 hero remain
             this.focusedHeroIndex++;
 
             if (this.focusedHeroIndex == this.heros.length) {
@@ -207,8 +211,13 @@ cc.Class({
 
         if (event.keyCode == cc.macro.KEY.q) {
             // this.gameController.getFocusedHero().attack();
+            // if (this.gameController.getWinner()) return;
             console.log(this.gameController.getFocusedHero());
             this.gameController.heroAttack();
+            if (this.gameController.getWinner()) {
+                this.winnerNotificationLabel.string = this.gameController.getWinner();
+                cc.director.pause();
+            }
         }
     },
 
@@ -225,9 +234,22 @@ cc.Class({
             return;
         }
 
+        if (this.gameController.getWinner()) {
+            return;
+        }
+
         setTimeout(() => {
-            this.gameController.bossAttack();
-            this.bossAutoAttack();
+            if (this.gameController.getWinner() == undefined) {
+                this.gameController.bossAttack();
+                this.bossAutoAttack();
+            } else {
+                this.winnerNotificationLabel.string = this.gameController.getWinner();
+                cc.director.pause();
+            }
+
+            if (this.gameController.getWinner()) {
+                
+            }
         }, 2000);   
     }
 

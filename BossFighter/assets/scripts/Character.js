@@ -14,7 +14,7 @@ cc.Class({
         maxHp: 100,
         maxMana: 100,
         moveSpeed: 200,
-        attackRange: 150,
+        attackRange: 100,
         normalAttackPower: 10,
         manaPerAttack: 10,
         imageSprite: cc.Sprite,
@@ -224,6 +224,9 @@ cc.Class({
 
     getCurrentHp() {
         return this.hp;
+    },
+    getAttackRange() {
+        return this.attackRange;
     },
     getCharacterInfo() {
         return {
