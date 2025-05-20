@@ -191,7 +191,7 @@ const GameController = cc.Class({
     /* game scene */
     setFocusedHero(heroIndex) {
         this.focusedHero = this.heros[heroIndex];
-
+        this.listenKeyDown(this.focusedHero)
         // set the other heroes scale to 1
         for (let i = 0; i < this.heros.length; i++) {
             if (i == heroIndex) {
@@ -200,6 +200,8 @@ const GameController = cc.Class({
                 this.heros[i].scale = 1;
             }
         }
+
+        // auto mode
 
     },
     getFocusedHero() {
@@ -345,6 +347,7 @@ const GameController = cc.Class({
                         this.setFocusedHero(0);
 
                         if (this.heros.length == 0) {
+                            console.log('hehf')
                             this.winner = 'boss';
 
                             return;

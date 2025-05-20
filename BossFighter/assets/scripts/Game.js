@@ -249,15 +249,15 @@ cc.Class({
             }
         }
 
-        if (event.keyCode == cc.macro.KEY.j) {
-            console.log("w");
-            this.gameController.heroSkill();
-        }
+        // if (event.keyCode == cc.macro.KEY.j) {
+        //     console.log("w");
+        //     this.gameController.heroSkill();
+        // }
 
-        if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
-            console.log("event", event);
-            this.gameController.heroMove(event);
-        }
+        // if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
+        //     console.log("event", event);
+        //     this.gameController.heroMove(event);
+        // }
     },
 
 
@@ -276,14 +276,24 @@ cc.Class({
         }
 
         if (this.gameController.getWinner()) {
+            this.winnerNotificationLabel.string = this.gameController.getWinner();
+            this.winnerNotificationLabel.node.active = true;
+            this.winnerNotificationLabel.node.parent.active = true;
+
+            console.log(this.winnerNotificationLabel.node, 'label node')
+            console.log(this.winnerNotificationLabel.node, 'label parent node')
+            cc.director.pause()
             return;
         }
 
         setTimeout(() => {
+            console.log('hehe231')
+            console.log(this.gameController.getWinner());
             if (this.gameController.getWinner() == undefined) {
                 this.gameController.bossAttack();
                 this.bossAutoAttack();
             } else {
+                console.log('check end game')
                 this.winnerNotificationLabel.string = this.gameController.getWinner();
                 cc.director.pause();
             }
