@@ -55,6 +55,10 @@ cc.Class({
             const sprite = heroImageNode.addComponent(cc.Sprite);
             sprite.spriteFrame = heroInfo.imageSprite.getComponent(cc.Sprite).spriteFrame;
 
+            sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
+            heroImageNode.width = 60;
+            heroImageNode.height = 60;
+
             heroImageNode.customIndex = index;
 
             // heroImageNode.on(cc.Node.EventType.TOUCH_END, function () {
@@ -147,6 +151,10 @@ cc.Class({
             const heroImageNode = new cc.Node('HeroImageNode');
             const sprite = heroImageNode.addComponent(cc.Sprite);
             sprite.spriteFrame = this.heros[this.heroPicked.index].imageSprite.getComponent(cc.Sprite).spriteFrame;
+            sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
+            heroImageNode.width = 50;
+            heroImageNode.height = 50;
+
 
             this.heroLockedList.node.insertChild(heroImageNode, this.heroLockedList.node.childrenCount - 1);
 
