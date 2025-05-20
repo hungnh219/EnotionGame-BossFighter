@@ -9,13 +9,15 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        role: 'Tanker',
+
         maxHp: 100,
         maxMana: 100,
         moveSpeed: 200,
         attackRange: 150,
         normalAttackPower: 10,
         manaPerAttack: 10,
-        // imageSprite: cc.Sprite,
+        imageSprite: cc.Sprite,
 
         skillCost: 30,
         ultimateCost: 80,
@@ -23,30 +25,65 @@ cc.Class({
         ultimateCooldown: 12,
 
         hpBar: cc.ProgressBar,
-        manaBar: cc.ProgressBar,
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        const sprite = this.node.getChildByName('Image')
-        const animation = sprite.getComponent(cc.Animation);
-        this.setInte
-        if (animation) {
-            const intervalId = setInterval(() => {
-                animation.play('bottom-attack'); 
-            }, 1000); 
-        }
+        // const sprite = this.node.getChildByName('Image')
+        // const animation = sprite.getComponent(cc.Animation);
+        // if (animation) {
+        //     const intervalId = setInterval(() => {
+        //         animation.play('bottom-attack'); 
+        //     }, 1000); 
+        // }
+        this.hp = this.maxHp;
     },
 
     start () {
 
     },
 
-    normalAttach() {
-        const sprite = this.node.getChildByName('Sprite')
+    attack() {
+        // const sprite = this.node.getChildByName('Sprite')
+        // const animation = sprite.getComponent(cc.Animation);
+        const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
+        animation.play('bottom-attack'); 
+    },
+
+    takeDamage(damage) {
+        console.log('takeDamage', damage);
+        this.hp -= damage;
+        this.hp = Math.max(this.hp, 0);
+        if (this.hpBar) this.hpBar.progress = this.hp / this.maxHp;
+
+        if (this.hp <= 0) {
+            // this.die();
+        }
+    },
+    getCurrentHp() {
+        return this.hp;
+    },
+
+    die() {
+        this.onDestroy.destroy();
+        // console.log('die');
+        // const sprite = this.node.getChildByName('Image')
+        // const animation = sprite.getComponent(cc.Animation);
+        // animation.play('bottom-die'); 
     },
 
     // update (dt) {},
+    getCharacterInfo() {
+        return {
+            name: this.node.name,
+            description: 'hihi hehe',
+            imageSprite: this.imageSprite,
+            health: this.maxHp,
+            mana: this.maxMana,
+            attackRange: this.attackRange,
+            role: this.role,
+        }
+    }
 });

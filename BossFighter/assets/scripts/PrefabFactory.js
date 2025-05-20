@@ -11,6 +11,7 @@ cc.Class({
     properties: {
         characterPrefab: cc.Prefab,
         enemyPrefab: cc.Prefab,
+        tankerPrefab: cc.Prefab,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -26,7 +27,8 @@ cc.Class({
     getAllPrefab() {
         return [
             this.characterPrefab,
-            this.enemyPrefab,
+            // this.enemyPrefab,
+            this.tankerPrefab
         ]
     }
 });

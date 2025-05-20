@@ -25,7 +25,6 @@ cc.Class({
         ultimateCooldown: 12,
 
         hpBar: cc.ProgressBar,
-        manaBar: cc.ProgressBar,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -205,6 +204,27 @@ cc.Class({
         }
     },
 
+    attack() {
+
+    },
+
+    takeDamage(damage) {
+        console.log('takeDamage', damage);
+        this.hp -= damage;
+        this.hp = Math.max(this.hp, 0);
+        if (this.hpBar) this.hpBar.progress = this.hp / this.maxHp;
+
+        if (this.hp <= 0) {
+            // this.die();
+        }
+    },
+    die() {
+        // this.onDestroy.destroy();
+    },
+
+    getCurrentHp() {
+        return this.hp;
+    },
     getCharacterInfo() {
         return {
             name: this.node.name,
