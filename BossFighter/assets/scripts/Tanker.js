@@ -64,13 +64,13 @@ cc.Class({
             animation.play('left-walk');
         } else if (event === cc.macro.KEY.d) {
             animation.play('right-walk');
-        }else if(event === cc.macro.KEY.w && event === cc.macro.KEY.a){
+        } else if (event === cc.macro.KEY.w && event === cc.macro.KEY.a) {
             animation.play('top-left-walk');
-        }else if(event === cc.macro.KEY.w && event === cc.macro.KEY.d){
+        } else if (event === cc.macro.KEY.w && event === cc.macro.KEY.d) {
             animation.play('top-right-walk');
-        } else if(event === cc.macro.KEY.s && event === cc.macro.KEY.a){
+        } else if (event === cc.macro.KEY.s && event === cc.macro.KEY.a) {
             animation.play('bottom-left-walk');
-        } else if(event === cc.macro.KEY.s && event === cc.macro.KEY.a){
+        } else if (event === cc.macro.KEY.s && event === cc.macro.KEY.d) {
             animation.play('bottom-right-walk');
         } else {
             animation.stop();
@@ -94,7 +94,7 @@ cc.Class({
         if (this.hpBar) this.hpBar.progress = this.hp / this.maxHp;
 
         if (this.hp <= 0) {
-            // this.die();
+            console.log('tanker die');
         }
     },
     getCurrentHp() {

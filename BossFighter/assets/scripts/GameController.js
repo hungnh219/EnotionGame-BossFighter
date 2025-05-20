@@ -128,6 +128,7 @@ const GameController = cc.Class({
     },
     checkMove() {
         if (this.isMoving) return;
+        if (this.heros.length == 0) return;
 
         let dx = 0;
         let dy = 0;
@@ -191,7 +192,7 @@ const GameController = cc.Class({
     /* game scene */
     setFocusedHero(heroIndex) {
         this.focusedHero = this.heros[heroIndex];
-
+        this.listenKeyDown(this.focusedHero);
         // set the other heroes scale to 1
         for (let i = 0; i < this.heros.length; i++) {
             if (i == heroIndex) {
@@ -200,7 +201,6 @@ const GameController = cc.Class({
                 this.heros[i].scale = 1;
             }
         }
-
     },
     getFocusedHero() {
         return this.focusedHero;
@@ -251,8 +251,9 @@ const GameController = cc.Class({
 
         return false;
     },
+    
 
-    heroMove(event){
+    heroMoveAnimation(event){
         if (this.focusedHero){
             const hero = this.getFocusedHero();
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.skillAnimation === 'function');
@@ -363,6 +364,28 @@ const GameController = cc.Class({
             }
         }
     
+    },
+
+    checkDeadHero() {
+        for (let i = 0; i < this.heros.length; i++) {
+            const hero = this.heros[i];
+            if (hero.mainScript.getCurrentHp() <= 0) {
+                console.log('hero is dead');
+                // remove hero from the list
+                this.heros.splice(i, 1);
+                this.focusedHero.scale = 1;
+
+                console.log('heros', this.heros);
+                // this.focusedHero = this.heros[0]
+                // console.log('focus hero', this.focusedHero);
+                this.setFocusedHero(0);
+
+                if (this.heros.length == 0) {
+                    this.winner = 'boss';
+                    return;
+                }
+            }
+        }
     },
 
     getWinner() {

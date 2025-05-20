@@ -112,6 +112,23 @@ cc.Class({
     // onDestroy() {
     // },
 
+    removeHero(heroNode) {
+        const heroIndex = this.heros.indexOf(heroNode);
+        if (heroIndex !== -1) {
+            this.heros.splice(heroIndex, 1); // Xóa hero khỏi mảng
+            console.log(`Hero at index ${heroIndex} removed from heros array.`);
+        }
+    
+        // Nếu hero bị focus, chuyển focus sang hero khác
+        if (this.focusedHeroIndex === heroIndex) {
+            this.focusedHeroIndex = -1; // Reset focus
+            if (this.heros.length > 0) {
+                this.focusedHeroIndex = 0; // Focus vào hero đầu tiên còn lại
+                this.gameController.setFocusedHero(this.focusedHeroIndex);
+            }
+        }
+    },
+
     spawnHero(heroPrefabs) {
         heroPrefabs.forEach((heroPrefab, index) => {
             console.log(heroPrefab)
@@ -270,8 +287,12 @@ cc.Class({
         }
 
         if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
-            console.log("event", event);
-            this.gameController.heroMove(event);
+         
+            if (this.gameController.heros.length != 0){
+       
+                this.gameController.heroMoveAnimation(event);
+            };
+            
         }
     },
 
