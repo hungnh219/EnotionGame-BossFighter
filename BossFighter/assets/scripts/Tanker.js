@@ -29,7 +29,7 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
         // const sprite = this.node.getChildByName('Image')
         // const animation = sprite.getComponent(cc.Animation);
         // if (animation) {
@@ -40,14 +40,14 @@ cc.Class({
         this.hp = this.maxHp;
     },
 
-    start () {
+    start() {
 
     },
 
     attackAnimation() {
         const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
-        animation.play('bottom-attack'); 
+        animation.play('bottom-attack');
     },
 
     moveAnimation(event) {
@@ -62,10 +62,20 @@ cc.Class({
             animation.play('left-walk');
         } else if (event === cc.macro.KEY.d) {
             animation.play('right-walk');
+        }else if(event === cc.macro.KEY.w && event === cc.macro.KEY.a){
+            animation.play('top-left-walk');
+        }else if(event === cc.macro.KEY.w && event === cc.macro.KEY.d){
+            animation.play('top-right-walk');
+        } else if(event === cc.macro.KEY.s && event === cc.macro.KEY.a){
+            animation.play('bottom-left-walk');
+        } else if(event === cc.macro.KEY.s && event === cc.macro.KEY.a){
+            animation.play('bottom-right-walk');
+        } else {
+            animation.stop();
         }
     },
 
-    skillAnimation(){
+    skillAnimation() {
         const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
         animation.play('bottom-skill');
