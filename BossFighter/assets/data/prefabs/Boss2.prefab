@@ -309,9 +309,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 236,
+      "g": 16,
+      "b": 16,
       "a": 255
     },
     "_contentSize": {
@@ -474,6 +474,7 @@
     "imageSprite": {
       "__id__": 3
     },
+    "skillPrefab": null,
     "skillCost": 30,
     "ultimateCost": 80,
     "skillCooldown": 5,
