@@ -22,11 +22,17 @@ cc.Class({
         mapIndex: 0,
 
         testSkills: [cc.Prefab],
+
+        pauseButton: cc.Button,
+        resumeButton: cc.Button,
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
+
+        cc.director.getCollisionManager().enabled = true;
+        cc.director.getPhysicsManager().enabled = true;
         // variables
         this.gridMap = [];
         this.isMoving = false;
@@ -38,19 +44,17 @@ cc.Class({
         this.rootNode = this.node.parent;
         this.bossNode = null;
         this.heroPrefabs = [];
-        
 
-        
+
+
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
 
         // test add boss into map
-        this.winnerNotificationLabel.node.zIndex = 999;
+        this.winnerNotificationLabel.node.parent.zIndex = 999;
         this.rootNode.sortAllChildren();
-
-        
     },
 
-    start () {
+    start() {
         this.initData();
     },
 
@@ -74,7 +78,6 @@ cc.Class({
         this.turnOnAutoMode();
         // this.spawnTestSkill();
 
-        
     },
 
     resetData() {
@@ -165,20 +168,20 @@ cc.Class({
         let size = Math.floor(Math.random() * 2) + 1;
         this.rootNode.addChild(testSkill);
         this.addObjectIntoMap(randomX, randomY, size, testSkill);
-        
+
         // detroy test skill after 5 seconds
         setTimeout(() => {
             testSkill.destroy();
             // this.gridMap[randomX][randomY].object = null;
             // this.gameController.updateWalkable(randomX, randomY, true);
         }
-        , 500);
+            , 500);
     },
 
     initMapView() {
         this.mapLayout.node.removeAllChildren();
         /* ------------- create grid map ------------- */
-            // center the map
+        // center the map
         this.mapLayout.node.x = -this.mapWidth * this.mapTileWidth / 2;
         this.mapLayout.node.y = -this.mapHeight * this.mapTileHeight / 2;
 
@@ -216,8 +219,8 @@ cc.Class({
 
         this.gameController.setCellPosition(firstCellPos, lastCellPos);
 
-            // create boss attack animation (test)
-       
+        // create boss attack animation (test)
+
     },
 
     convertGridToPosition(gridX, gridY) {
@@ -247,8 +250,8 @@ cc.Class({
 
         // set the position of the object
         const mapPos = this.mapLayout.node.getPosition();
-        objectNode.x = mapPos.x + gridX * this.mapTileWidth + (this.mapTileWidth * size)/ 2;
-        objectNode.y = mapPos.y + gridY * this.mapTileHeight + (this.mapTileHeight * size)/ 2;
+        objectNode.x = mapPos.x + gridX * this.mapTileWidth + (this.mapTileWidth * size) / 2;
+        objectNode.y = mapPos.y + gridY * this.mapTileHeight + (this.mapTileHeight * size) / 2;
     },
 
     updateWalkable(x, y, size) {
@@ -286,11 +289,16 @@ cc.Class({
             this.gameController.heroAttack();
             if (this.gameController.getWinner()) {
                 this.winnerNotificationLabel.string = this.gameController.getWinner();
-                this.winnerNotificationLabel.node.active = true;
+                // this.winnerNotificationLabel.node.active = true;
                 this.winnerNotificationLabel.node.parent.active = true;
                 this.gameController.setWonMap();
                 cc.director.pause();
             }
+        }
+
+        if (event.keyCode == cc.macro.KEY.j) {
+            console.log("w");
+            this.gameController.heroSkill();
         }
 
         if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
@@ -325,7 +333,7 @@ cc.Class({
                 this.gameController.bossAttack();
                 this.bossAutoAttack();
             }
-        }, 2000);   
+        }, 2000);
     },
 
     bossAutoSkill() {
@@ -348,7 +356,7 @@ cc.Class({
             } else {
                 this.endGameNotification();
             }
-        }, 3000 + delay);   
+        }, 3000 + delay);
     },
 
     turnOnAutoMode() {    
@@ -408,6 +416,18 @@ cc.Class({
         // this.scheduleOnce(() => {
         //     cc.director.pause()
         // }, 0.5)
-    }
+    },
+
+    pauseGame() {
+        cc.director.pause();
+        this.pauseButton.node.active = false;
+        this.resumeButton.node.active = true;
+    },
+
+    resumeGame() {
+        cc.director.resume();
+        this.pauseButton.node.active = true;
+        this.resumeButton.node.active = false;
+    },
 
 });

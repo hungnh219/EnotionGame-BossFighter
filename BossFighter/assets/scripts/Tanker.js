@@ -4,7 +4,7 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
-
+import GameController from "./GameController";
 cc.Class({
     extends: cc.Component,
 
@@ -18,6 +18,7 @@ cc.Class({
         normalAttackPower: 10,
         manaPerAttack: 10,
         imageSprite: cc.Sprite,
+        skillPrefab: cc.Prefab,
 
         skillCost: 30,
         ultimateCost: 80,
@@ -49,28 +50,28 @@ cc.Class({
     attackAnimation() {
         const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
-        animation.play('bottom-attack');
+        animation.play('tanker-bottom-attack');
     },
 
     moveAnimation(event) {
         const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
         if (event === cc.macro.KEY.w) {
-            animation.play('top-walk');
+            animation.play('tanker-top-walk');
         } else if (event === cc.macro.KEY.s) {
-            animation.play('bottom-walk');
+            animation.play('tanker-bottom-walk');
         } else if (event === cc.macro.KEY.a) {
-            animation.play('left-walk');
+            animation.play('tanker-left-walk');
         } else if (event === cc.macro.KEY.d) {
-            animation.play('right-walk');
+            animation.play('tanker-right-walk');
         } else if (event === cc.macro.KEY.w && event === cc.macro.KEY.a) {
-            animation.play('top-left-walk');
+            animation.play('tanker-top-left-walk');
         } else if (event === cc.macro.KEY.w && event === cc.macro.KEY.d) {
-            animation.play('top-right-walk');
+            animation.play('tanker-top-right-walk');
         } else if (event === cc.macro.KEY.s && event === cc.macro.KEY.a) {
-            animation.play('bottom-left-walk');
+            animation.play('tanker-bottom-left-walk');
         } else if (event === cc.macro.KEY.s && event === cc.macro.KEY.d) {
-            animation.play('bottom-right-walk');
+            animation.play('tanker-bottom-right-walk');
         } else {
             animation.stop();
         }
@@ -82,7 +83,24 @@ cc.Class({
         animation.play('bottom-skill');
     },
 
+    castSkill() {
+        const skill = cc.instantiate(this.skillPrefab);
+        skill.parent = this.node.parent;
+        skill.x = this.node.x;
+        skill.y = this.node.y;
+
+        this.gameController = GameController.getInstance();
+        const bossNode = this.gameController.getBoss();
+        if (bossNode) {
+            const bossPos = bossNode.getPosition();
+            skill.getComponent('Skill').initDirection(bossPos);
+        } else {
+            console.log('No boss found');
+        }
+
+    },
     affectDamage() {
+        this.castSkill();
         return this.normalAttackPower * 2;
     },
 

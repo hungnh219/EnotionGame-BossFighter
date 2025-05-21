@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "mage-bottom-walk",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.2,
+  "sample": 20,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "63a4a821-fb45-4799-8fe8-e5f4acd76cc2"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "6c0b8882-8653-4f54-acc8-c5177b24a091"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "a2389232-1a03-4b7d-a913-5ecc961fdc9c"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "3af579da-772a-455b-a59d-5e818bdf1d8e"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

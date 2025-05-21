@@ -54,6 +54,7 @@ cc.Class({
             
             if (hero.mainScript != undefined) {
                 const heroInfo = hero.mainScript.getCharacterInfo();
+                console.log('heroInfo', heroInfo);
                 this.heros[index] = heroInfo;
                 const heroImageNode = new cc.Node('HeroImageNode');
                 const sprite = heroImageNode.addComponent(cc.Sprite);
@@ -186,5 +187,10 @@ cc.Class({
         }
 
         cc.director.loadScene(GAME_DATA.GameScene.GAME)
+    },
+
+    backToMapSelect() {
+        this.gameController.backToMapSelect();
+        cc.director.loadScene(GAME_DATA.GameScene.MAP_SELECT);
     }
 });

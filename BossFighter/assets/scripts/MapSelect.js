@@ -48,5 +48,10 @@ cc.Class({
         console.log("map3Picked");
         this.gameController.setMapPicked(GAME_DATA.GameMapIndex.MAP_3);
         cc.director.loadScene(GAME_DATA.GameScene.HERO_SELECT);
+    },
+
+    backToMainMenu() {
+        console.log("backToMainMenu");
+        cc.director.loadScene(GAME_DATA.GameScene.MAIN_MENU);
     }
 });

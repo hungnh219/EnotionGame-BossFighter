@@ -9,9 +9,10 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        characterPrefab: cc.Prefab,
-        enemyPrefab: cc.Prefab,
         tankerPrefab: cc.Prefab,
+        adcPrefab: cc.Prefab,
+        bruiserPrefab: cc.Prefab,
+        magePrefab: cc.Prefab,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -26,11 +27,10 @@ cc.Class({
 
     getAllPrefab() {
         return [
-            this.characterPrefab,
-            // this.enemyPrefab,
             this.tankerPrefab,
-            this.characterPrefab,
-            this.tankerPrefab,
+            this.adcPrefab,
+            this.bruiserPrefab,
+            this.magePrefab
         ]
     }
 });

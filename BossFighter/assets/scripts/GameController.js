@@ -115,9 +115,9 @@ const GameController = cc.Class({
         this.pressedKeys.add(event.keyCode);
 
         // delay to wait set of keys down
-            this.scheduleOnce(() => {
-                this.checkMove();
-            }, 0.1);
+        this.scheduleOnce(() => {
+            this.checkMove();
+        }, 0.1);
     },
     onKeyUp(event) {
         this.pressedKeys.delete(event.keyCode);
@@ -443,7 +443,6 @@ const GameController = cc.Class({
 
                     let bossScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
 
-                    console.log(bossScript, 'check boss script')
                     if (bossScript) {
                         console.log('boss tack dame')
                         bossScript.takeDamage(2);
@@ -482,6 +481,7 @@ const GameController = cc.Class({
         this.heros = []; // hero in game
         this.gridMap = [];
         this.winner = null; // 'boss', 'player'
+        this.isMoving = false;
     },
 
     // new game
@@ -497,6 +497,7 @@ const GameController = cc.Class({
         this.winner = null; // 'boss', 'player'
 
         this.setFocusedHero(0)
+        this.isMoving = false;
     },
 
     checkWin() {
@@ -514,6 +515,18 @@ const GameController = cc.Class({
             }
         }
     },
+
+    // handle back button
+    // backToMainMenu() {
+    //     this.mapPick = null;
+    // }
+
+    backToMapSelect() {
+        this.mapPick = null;
+        this.heroPick = [];
+        this.selectedHeroPrefabs = [];
+    },
+
 
     characterTakeDame(hero, dame) {
         if (hero.mainScript == undefined) hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
@@ -534,6 +547,14 @@ const GameController = cc.Class({
         this.heros.splice(this.heros.indexOf(hero), 1);
         if (hero == this.focusedHero) this.setFocusedHero(0);
         
+        // set the hero to not walkable
+        const gridX = Math.floor((hero.x - this.firstCellPos.x) / this.mapTileWidth);
+        const gridY = Math.floor((hero.y - this.firstCellPos.y) / this.mapTileHeight);
+        if (this.gridMap[gridX] == undefined) {
+            this.gridMap[gridX] = [];
+        }
+        this.gridMap[gridX][gridY] = true;
+
         this.checkWin();
     },
 
@@ -544,9 +565,9 @@ const GameController = cc.Class({
 
     setWonMap() {
         console.log('e321312');
+        if (this.mapPick > this.gameWonIndex) return;
         this.gameWonIndex = this.gameWonIndex + 1;
-    }
-
+    },
 });
 
 export default GameController;

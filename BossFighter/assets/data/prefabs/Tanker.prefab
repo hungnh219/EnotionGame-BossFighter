@@ -324,9 +324,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 21,
+      "g": 236,
+      "b": 107,
       "a": 255
     },
     "_contentSize": {
@@ -488,6 +488,9 @@
     "manaPerAttack": 10,
     "imageSprite": {
       "__id__": 3
+    },
+    "skillPrefab": {
+      "__uuid__": "b69a4133-0e8a-41d2-9acd-5d0e63d4abd2"
     },
     "skillCost": 30,
     "ultimateCost": 80,
