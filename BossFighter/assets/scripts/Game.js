@@ -1,6 +1,9 @@
 import GameController from "./GameController";
 import GAME_DATA from "./GameData"
-
+var manager = cc.director.getCollisionManager();
+manager.enabled = true;
+manager.enabledDebugDraw = true;
+manager.enabledDrawBoundingBox = true;
 cc.Class({
     extends: cc.Component,
 
