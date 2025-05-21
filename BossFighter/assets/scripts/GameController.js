@@ -87,8 +87,6 @@ const GameController = cc.Class({
     /* select hero */
     addSelectedHeroPrefab(prefab) {
         if (!this.selectedHeroPrefabs) this.selectedHeroPrefabs = []; 
-        console.log(this.selectedHeroPrefabs)
-        console.log('hero prefab', prefab)
         this.selectedHeroPrefabs.push(prefab);
     },
 
@@ -102,7 +100,6 @@ const GameController = cc.Class({
     },
     
     listenKeyDown(listenNode) {
-        console.log(this.mapTileWidth, this.mapTileHeight, '2131231')
         if (this.mapTileWidth == undefined) {
             this.mapTileWidth = 64;
         }
@@ -196,9 +193,9 @@ const GameController = cc.Class({
         // set the other heroes scale to 1
         for (let i = 0; i < this.heros.length; i++) {
             if (i == heroIndex) {
-                this.heros[i].scale = 1.5;
+                this.heros[i].focusEffect.active = true;
             } else {
-                this.heros[i].scale = 1;
+                this.heros[i].focusEffect.active = false;
             }
         }
     },
@@ -214,7 +211,6 @@ const GameController = cc.Class({
         this.boss = boss;
     },
     heroAttack() {
-        console.log(this.checkAttackRangeHero(this.focusedHero))
         if (this.checkAttackRangeHero(this.focusedHero) && this.focusedHero) {
             const hero = this.getFocusedHero();
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
@@ -227,6 +223,7 @@ const GameController = cc.Class({
 
                     // boss die
                     if (this.boss.mainScript.getHp() == 0) {
+                        console.log('player win')
                         // player win
                         this.winner = 'player';
                     }
@@ -254,17 +251,23 @@ const GameController = cc.Class({
     
 
     heroMoveAnimation(event){
+        console.log('check1')
         if (this.focusedHero){
+        console.log('check2')
             const hero = this.getFocusedHero();
+            console.log(hero, 'check 5')
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.skillAnimation === 'function');
             if(hero.mainScript){
                 // if(event.keyCode == cc.macro.KEY.w){
                 //     hero.mainScript.moveAnimation(event.keyCode);
                 // }
+        console.log('check3')
                 hero.mainScript.moveAnimation(event.keyCode);
+        console.log('check4')
             }
             
         }
+        console.log('check3')
     },
 
     heroSkill() {
@@ -276,7 +279,6 @@ const GameController = cc.Class({
                 this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
                 if (this.boss.mainScript) {
                     const damage = hero.mainScript.affectDamage();
-                    console.log('Boss take damage', damage);
                     this.boss.mainScript.takeDamage(damage);
                 } else {
                     console.log('no takeDamage function');
@@ -299,7 +301,6 @@ const GameController = cc.Class({
     setCellPosition(firstCellPos, lastCellPos) {
         this.firstCellPos = firstCellPos;
         this.lastCellPos = lastCellPos;
-        console.log(this.firstCellPos, this.lastCellPos, 'setCellPosition');
     },
 
     getBoss() {
@@ -337,16 +338,11 @@ const GameController = cc.Class({
                     if (nearestHero.mainScript.getCurrentHp() <= 0) {
                         console.log('nearest hero is dead');
                         // remove hero from the list
+                        this.heros[this.heros.indexOf(nearestHero)].focusEffect.active = false;
                         this.heros.splice(this.heros.indexOf(nearestHero), 1);
-                        this.focusedHero.scale = 1;
-
-                        console.log('heros', this.heros);
-                        // this.focusedHero = this.heros[0]
-                        // console.log('focus hero', this.focusedHero);
                         this.setFocusedHero(0);
 
                         if (this.heros.length == 0) {
-                            console.log('hehf')
                             this.winner = 'boss';
 
                             return;
@@ -402,7 +398,22 @@ const GameController = cc.Class({
         this.heros = [];
         // this.focusedHero = null;
         // this.selectedHeroPrefabs = [];
-    }
+    },
+
+
+    // reset
+    resetGame() {
+        let newSelectedHeroPrefabs = this.selectedHeroPrefabs;
+        this.selectedHeroPrefabs.forEach((prefab, index) => {
+            this.selectedHeroPrefabs.slice(index, 1)
+            prefab.destroy();
+        });
+        this.selectedHeroPrefabs = [];
+
+        this.selectedHeroPrefabs = newSelectedHeroPrefabs;
+        this.setFocusedHero(0);
+    },
+
 });
 
 export default GameController;
