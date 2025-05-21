@@ -148,7 +148,7 @@ cc.Class({
         const sprite = heroImageNode.addComponent(cc.Sprite);
         sprite.spriteFrame = this.heros[clickIndex].imageSprite.getComponent(cc.Sprite).spriteFrame;
         this.selectedHero.spriteFrame = this.heros[clickIndex].imageSprite.getComponent(cc.Sprite).spriteFrame;
-        // this.heroLockedList.node.addChild(
+        // // this.heroLockedList.node.addChild(
         //     heroImageNode
         // )
     },

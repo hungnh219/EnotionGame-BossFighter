@@ -2,7 +2,7 @@ import GameScene from "./GameData";
 
 const GameController = cc.Class({
     extends: cc.Component,
-    
+
     statics: {
         instance: null,
         getInstance: function () {
@@ -24,7 +24,7 @@ const GameController = cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
         if (GameController.instance === null) {
             GameController.instance = this;
             cc.game.addPersistRootNode(this.node);
@@ -44,43 +44,42 @@ const GameController = cc.Class({
         this.winner = null; // 'boss', 'player'
     },
 
-    start () {
-
+    start() {
     },
 
     // update (dt) {},
-    testChangeScene () {
+    testChangeScene() {
         console.log("testChangeScene");
         cc.director.loadScene("map");
     },
 
-    testPrintScene (word) {
+    testPrintScene(word) {
         console.log("testPrintScene", word);
         cc.director.getScene().name;
     },
 
-    getEditBoxValue (string) {
+    getEditBoxValue(string) {
         console.log("getEditBoxValue", string);
         this.editBoxString = string;
     },
 
-    printEditBoxValue () {
+    printEditBoxValue() {
         console.log("printEditBoxValue", this.editBoxString);
     },
 
-    setMapPicked (mapPick) {
+    setMapPicked(mapPick) {
         this.mapPick = mapPick;
     },
 
-    getMapPicked () {
+    getMapPicked() {
         return this.mapPick;
     },
 
-    setHeroPick (heroPick) {
+    setHeroPick(heroPick) {
         this.heroPick = heroPick;
     },
 
-    getHeroPick () {
+    getHeroPick() {
         return this.heroPick;
     },
 
@@ -98,7 +97,7 @@ const GameController = cc.Class({
         this.mapTileWidth = tileWidth;
         this.mapTileHeight = tileHeight;
     },
-    
+
     listenKeyDown(listenNode) {
         if (this.mapTileWidth == undefined) {
             this.mapTileWidth = 64;
@@ -116,9 +115,9 @@ const GameController = cc.Class({
         this.pressedKeys.add(event.keyCode);
 
         // delay to wait set of keys down
-        this.scheduleOnce(() => {
-            this.checkMove();
-        }, 0.1);
+            this.scheduleOnce(() => {
+                this.checkMove();
+            }, 0.1);
     },
     onKeyUp(event) {
         this.pressedKeys.delete(event.keyCode);
@@ -147,13 +146,12 @@ const GameController = cc.Class({
             this.moveCharacter(dx, dy);
         }
     },
-    moveCharacter (dx, dy) {
+    moveCharacter(dx, dy) {
         const newX = this.listenMoveNode.x + dx * this.mapTileWidth;
         const newY = this.listenMoveNode.y + dy * this.mapTileHeight;
 
         // check if the new position is walkable use newX, newY, firstCellPos and lastCellPos
         if (newX < this.firstCellPos.x || newX > this.lastCellPos.x || newY < this.firstCellPos.y || newY > this.lastCellPos.y) {
-            console.log('out of map');
             return;
         }
 
@@ -161,7 +159,6 @@ const GameController = cc.Class({
         const gridX = Math.floor((newX - this.firstCellPos.x) / this.mapTileWidth);
         const gridY = Math.floor((newY - this.firstCellPos.y) / this.mapTileHeight);
         if (this.gridMap[gridX][gridY] == false) {
-            console.log('not walkable');
             return;
         }
 
@@ -248,30 +245,23 @@ const GameController = cc.Class({
 
         return false;
     },
-    
 
-    heroMoveAnimation(event){
-        console.log('check1')
-        if (this.focusedHero){
-        console.log('check2')
+
+    heroMoveAnimation(event) {
+        if (this.focusedHero) {
             const hero = this.getFocusedHero();
-            console.log(hero, 'check 5')
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.skillAnimation === 'function');
-            if(hero.mainScript){
+            if (hero.mainScript) {
                 // if(event.keyCode == cc.macro.KEY.w){
                 //     hero.mainScript.moveAnimation(event.keyCode);
                 // }
-        console.log('check3')
                 hero.mainScript.moveAnimation(event.keyCode);
-        console.log('check4')
             }
-            
         }
-        console.log('check3')
     },
 
     heroSkill() {
-        if (this.focusedHero){
+        if (this.focusedHero) {
             const hero = this.getFocusedHero();
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.skillAnimation === 'function');
             if (hero.mainScript) {
@@ -310,6 +300,7 @@ const GameController = cc.Class({
     // boss attack nearest hero
     bossAttack() {
         // calculate the distance between the boss and the heroes, take the nearest hero
+        console.log('boss attack')
         const boss = this.boss;
         const heroes = this.heros;
         let nearestHero = null;
@@ -329,57 +320,143 @@ const GameController = cc.Class({
             // attack the nearest hero
             boss.mainScript = boss.getComponents(cc.Component).find(c => typeof c.attack === 'function');
             if (boss.mainScript) {
-                boss.mainScript.attack();
-
-                nearestHero.mainScript = nearestHero.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
-                if (nearestHero.mainScript) {
-                    nearestHero.mainScript.takeDamage(40);
-
-                    if (nearestHero.mainScript.getCurrentHp() <= 0) {
-                        console.log('nearest hero is dead');
-                        // remove hero from the list
-                        this.heros[this.heros.indexOf(nearestHero)].focusEffect.active = false;
-                        this.heros.splice(this.heros.indexOf(nearestHero), 1);
-                        this.setFocusedHero(0);
-
-                        if (this.heros.length == 0) {
-                            this.winner = 'boss';
-
-                            return;
-                        }
-
-                    }
-                } else {
-                    console.log('no takeDamage function');
-                }
+                let dame = boss.mainScript.attack();
+                if (dame <= 0 || dame == undefined) return;
+                this.characterTakeDame(nearestHero, dame);
+                this.checkWin(boss);
             } else {
                 console.log('no attack function');
             }
         }
-    
+
     },
 
-    checkDeadHero() {
-        for (let i = 0; i < this.heros.length; i++) {
-            const hero = this.heros[i];
-            if (hero.mainScript.getCurrentHp() <= 0) {
-                console.log('hero is dead');
-                // remove hero from the list
-                this.heros.splice(i, 1);
-                this.focusedHero.scale = 1;
+    // boss skill
+    bossCastSkill() {
 
-                console.log('heros', this.heros);
-                // this.focusedHero = this.heros[0]
-                // console.log('focus hero', this.focusedHero);
-                this.setFocusedHero(0);
+    },
 
-                if (this.heros.length == 0) {
-                    this.winner = 'boss';
-                    return;
-                }
-            }
+    moveCharacterBot(heroBot, dx, dy) {
+        // if (!heroBot || heroBot.isMoving) return false;  
+        console.log(this.gridMap[5][1].walkable, '321')
+        const newX = heroBot.x + dx * this.mapTileWidth;
+        const newY = heroBot.y + dy * this.mapTileHeight;
+
+        if (newX < this.firstCellPos.x || newX > this.lastCellPos.x || newY < this.firstCellPos.y || newY > this.lastCellPos.y) {
+            return false;
         }
+
+        const gridX = Math.floor((newX - this.firstCellPos.x) / this.mapTileWidth);
+        const gridY = Math.floor((newY - this.firstCellPos.y) / this.mapTileHeight);
+
+        if (!this.gridMap[gridX] || !this.gridMap[gridX][gridY] || this.gridMap[gridX][gridY] === false) {
+            return false;
+        }
+
+        // move the character
+        heroBot.isMoving = true;
+
+        const oldGridX = Math.floor((heroBot.x - this.firstCellPos.x) / this.mapTileWidth);
+        const oldGridY = Math.floor((heroBot.y - this.firstCellPos.y) / this.mapTileHeight);
+
+        const moveAction = cc.moveTo(0.5, newX, newY);
+        const finishCallback = cc.callFunc(() => {
+            heroBot.isMoving = false;
+            // this.checkMove();
+            this.gridMap[oldGridX][oldGridY] = true;
+            this.gridMap[gridX][gridY] = false; 
+        });
+
+        const sequence = cc.sequence(moveAction, finishCallback);
+        heroBot.runAction(sequence);
+
+        
     },
+
+    moveHeroNotFocusesToBoss() {
+        if (!this.boss || this.heros.length === 0) return;
+
+        let bossPos = cc.v2(this.boss.x, this.boss.y);
+        let boss = this.boss;
+
+        this.heros.forEach((hero, index) => {
+            if (hero === this.focusedHero) return;
+            if (hero.isMoving) return;
+
+            let heroPos = cc.v2(hero.x, hero.y);
+            let dx = 0;
+            let dy = 0;
+
+            let diffX = bossPos.x - heroPos.x;
+            let diffY = bossPos.y - heroPos.y;
+            diffX = Math.round(diffX);
+            diffY = Math.round(diffY);
+
+            if (index == 1) {
+                console.log(diffX, diffY);
+            }
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                dx = diffX > 0 ? 1 : -1;
+            } else {
+                dy = diffY > 0 ? 1 : -1;
+            }
+            // this.moveCharacterBot(hero, dx, dy);
+            this.scheduleOnce(() => {
+                // this.checkMove();
+                this.moveCharacterBot(hero, dx, dy);
+            }, 0.1);
+        });
+    },
+
+    checkWalkableMove(hero, dx, dy) {
+        console.log('hero', hero)
+        const newX = hero.x + dx * this.mapTileWidth;
+        const newY = hero.y + dy * this.mapTileHeight;
+
+        // check if the new position is walkable use newX, newY, firstCellPos and lastCellPos
+        if (newX < this.firstCellPos.x || newX > this.lastCellPos.x || newY < this.firstCellPos.y || newY > this.lastCellPos.y) {
+            return false;
+        }
+
+        // check if the new position is walkable
+        const gridX = Math.floor((newX - this.firstCellPos.x) / this.mapTileWidth);
+        const gridY = Math.floor((newY - this.firstCellPos.y) / this.mapTileHeight);
+        if (this.gridMap[gridX][gridY] == false) {
+            return false;
+        }
+
+        this.gridMap[gridX][gridY] == false;
+        return true;
+    },
+
+    nonFocusedHeroesAttackBoss() {
+        if (!this.boss || this.heros.length === 0) return;
+
+        this.heros.forEach(hero => {
+            if (hero === this.focusedHero) return;
+
+            let heroScript = hero.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
+            if (!heroScript) {
+                console.log('Hero không có hàm attackAnimation');
+                if (this.checkAttackRangeHero(hero)) {
+                    heroScript.attackAnimation();
+
+                    let bossScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
+                    if (bossScript) {
+                        bossScript.takeDamage(2);
+
+                        if (bossScript.getHp() <= 0) {
+                            this.winner = 'player';
+                        }
+                    } else {
+                        console.log('Boss không có hàm takeDamage');
+                    }
+                }
+                return;
+            }
+        });
+    },
+
 
     getWinner() {
         if (this.winner != undefined) {
@@ -393,26 +470,62 @@ const GameController = cc.Class({
 
 
     /* game system */
-    newGame() {
-        // reset varialbe
-        this.heros = [];
-        // this.focusedHero = null;
-        // this.selectedHeroPrefabs = [];
-    },
-
 
     // reset
     resetGame() {
-        let newSelectedHeroPrefabs = this.selectedHeroPrefabs;
-        this.selectedHeroPrefabs.forEach((prefab, index) => {
-            this.selectedHeroPrefabs.slice(index, 1)
-            prefab.destroy();
-        });
-        this.selectedHeroPrefabs = [];
-
-        this.selectedHeroPrefabs = newSelectedHeroPrefabs;
-        this.setFocusedHero(0);
+        this.listenMoveNode = null;
+        this.focusedHero = null;
+        this.heros = []; // hero in game
+        this.gridMap = [];
+        this.winner = null; // 'boss', 'player'
     },
+
+    // new game
+    newGame() {
+        this.mapPick = null;
+        this.heroPick = [];
+        this.selectedHeroPrefabs = [];
+        this.listenMoveNode = null;
+
+        this.focusedHero = null;
+        this.heros = []; // hero in game
+        this.gridMap = [];
+        this.winner = null; // 'boss', 'player'
+    },
+
+    checkWin() {
+        if (this.heros.length == 0) {
+            this.winner = 'boss';
+        }
+        let bossScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
+        if (!bossScript) {
+            if (bossScript.getHp() <= 0) {
+                this.winner = 'player';
+            }
+        }
+    },
+
+    characterTakeDame(hero, dame) {
+        if (hero.mainScript == undefined) hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
+        if (hero.mainScript) {
+            hero.mainScript.takeDamage(dame);
+
+            if (hero.mainScript.getCurrentHp() <= 0) {
+                this.handleHeroDie(hero);
+            }
+        } else {
+            console.log('no takeDamage function');
+        }
+    },
+
+    handleHeroDie(hero) {
+        // remove hero from the list
+        this.heros[this.heros.indexOf(hero)].focusEffect.active = false;
+        this.heros.splice(this.heros.indexOf(hero), 1);
+        this.setFocusedHero(0);
+        
+        this.checkWin();
+    }
 
 });
 

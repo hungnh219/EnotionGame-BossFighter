@@ -33,12 +33,16 @@ cc.Class({
         }
     },
 
+    castSkill() {
 
+    },
     die(){
         // this.onDestroy.destroy();
     },
     attack() {
+        // animation skill
 
+        return 10; // dame
     },
     getHp() {
         return this.hp;

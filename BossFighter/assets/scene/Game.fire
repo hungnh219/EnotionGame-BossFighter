@@ -242,23 +242,17 @@
         "__uuid__": "915a487c-2953-48dd-a83e-99825bf67c2a"
       },
       {
-        "__uuid__": "da838a3b-caff-4e8d-8bd6-ee40a8f49edc"
+        "__uuid__": "915a487c-2953-48dd-a83e-99825bf67c2a"
       },
       {
-        "__uuid__": "b9dcfd7e-bc4a-4723-8fb4-2e631704ca59"
+        "__uuid__": "915a487c-2953-48dd-a83e-99825bf67c2a"
       }
     ],
     "winnerNotificationLabel": {
       "__id__": 15
     },
-    "bossAttackAnimation": {
-      "__id__": 12
-    },
     "mapLayout": {
       "__id__": 9
-    },
-    "boss1": {
-      "__uuid__": "915a487c-2953-48dd-a83e-99825bf67c2a"
     },
     "focusEffectPrefab": {
       "__uuid__": "8f77de87-8b0d-4c7e-a1b3-fc961fc4e785"

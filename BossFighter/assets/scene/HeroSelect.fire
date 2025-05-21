@@ -256,8 +256,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        593.013,
+        12.962,
         0,
         0,
         0,
@@ -336,7 +336,6 @@
       4,
       5
     ],
-    "focusHeroEffect": null,
     "_id": "4d0kXIs01PEIF9cDxuPMEC"
   },
   {
@@ -2333,7 +2332,6 @@
     "tankerPrefab": {
       "__uuid__": "596d3ff0-625e-4465-997b-0a3c229b8630"
     },
-    "focusHeroEffect": null,
     "_id": "14pN+7y7BHFqLJ6c0Zy5vB"
   },
   {
