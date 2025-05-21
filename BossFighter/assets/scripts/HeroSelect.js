@@ -50,6 +50,7 @@ cc.Class({
             
             if (hero.mainScript != undefined) {
                 const heroInfo = hero.mainScript.getCharacterInfo();
+                console.log('heroInfo', heroInfo);
                 this.heros[index] = heroInfo;
                 const heroImageNode = new cc.Node('HeroImageNode');
                 const sprite = heroImageNode.addComponent(cc.Sprite);

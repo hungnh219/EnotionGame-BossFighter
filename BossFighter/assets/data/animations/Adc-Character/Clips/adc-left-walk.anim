@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "adc-left-walk",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.13333333333333333,
+  "sample": 30,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "18a5ef71-a554-410c-8ddd-adf20f9cce50"
+            }
+          },
+          {
+            "frame": 0.03333333333333333,
+            "value": {
+              "__uuid__": "d8aa7a23-aa63-400e-848e-5d372f5f6eb4"
+            }
+          },
+          {
+            "frame": 0.06666666666666667,
+            "value": {
+              "__uuid__": "0425fa6b-f7f9-4ac7-a498-cfce16f6c780"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "f3c6aacd-376d-46b2-85e1-37fb1c9c0121"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

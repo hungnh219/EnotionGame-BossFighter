@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "adc-top-walk",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.13333333333333333,
+  "sample": 30,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "ed50d4ac-e661-4f13-85ef-a585391e5dbd"
+            }
+          },
+          {
+            "frame": 0.03333333333333333,
+            "value": {
+              "__uuid__": "faa65244-2863-4caa-8095-92dbf0be4c61"
+            }
+          },
+          {
+            "frame": 0.06666666666666667,
+            "value": {
+              "__uuid__": "3d27bc39-3ec1-4455-87bb-3f6e1faf0dc1"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "31553e4a-bf78-4657-bbd0-9856945ecabc"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

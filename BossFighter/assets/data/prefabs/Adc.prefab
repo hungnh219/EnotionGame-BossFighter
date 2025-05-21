@@ -163,7 +163,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "e0e47dd6-4b21-4af0-9cc3-b01aaffee970"
+      "__uuid__": "fe0e2422-d50a-4e7d-88ae-5e6b90325616"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -177,7 +177,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": {
-      "__uuid__": "7afdc0bb-ae92-4156-9a9e-45f9f11dbd62"
+      "__uuid__": "3a8517b3-42e7-409a-8318-cf4dc0cb7ecb"
     },
     "_id": ""
   },
@@ -189,14 +189,36 @@
       "__id__": 2
     },
     "_enabled": true,
-    "_defaultClip": null,
+    "_defaultClip": {
+      "__uuid__": "889f8964-eb96-4da0-b917-3185d9bbb505"
+    },
     "_clips": [
-      null,
       {
-        "__uuid__": "c7621a83-4c61-45ef-b538-44034fbbc022"
+        "__uuid__": "a9aeab97-5885-432e-aaba-e0d62d5b51da"
+      },
+      {
+        "__uuid__": "2a285dc9-6b51-4074-92c2-acb605963b56"
+      },
+      {
+        "__uuid__": "999d3a7d-16b5-4488-a216-2936ea7703af"
+      },
+      {
+        "__uuid__": "19978221-dc5a-43ac-879c-b594461b7f8e"
+      },
+      {
+        "__uuid__": "9abc8cdb-93ce-4eac-a118-36762c202469"
+      },
+      {
+        "__uuid__": "d7e9a554-2f4d-4489-870e-9d40e0273e60"
+      },
+      {
+        "__uuid__": "17028686-ebd1-4efb-8d75-2debcc50206a"
+      },
+      {
+        "__uuid__": "889f8964-eb96-4da0-b917-3185d9bbb505"
       }
     ],
-    "playOnLoad": false,
+    "playOnLoad": true,
     "_id": ""
   },
   {
@@ -449,18 +471,18 @@
     "sync": false
   },
   {
-    "__type__": "26dd3Ct4kFMAqzBq1Ul+wKQ",
+    "__type__": "f134dhbHxBAd5+Ne4NHHkT/",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "role": "Tanker",
+    "role": "ADC",
     "maxHp": 100,
     "maxMana": 100,
     "moveSpeed": 200,
-    "attackRange": 100,
+    "attackRange": 200,
     "normalAttackPower": 10,
     "manaPerAttack": 10,
     "imageSprite": {

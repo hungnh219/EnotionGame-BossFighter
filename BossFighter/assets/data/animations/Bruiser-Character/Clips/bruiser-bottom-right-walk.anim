@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "bruiser-bottom-right-walk",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.2,
+  "sample": 20,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "f5fc5cd6-757c-41c0-b505-94750b46221e"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "41258274-feeb-4948-922b-cf670827a9c4"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "f1af1f92-d8ac-46e5-a324-8cc283b60872"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "376e5f4d-96d4-4895-87ba-01c1107c732a"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

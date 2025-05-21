@@ -2318,14 +2318,17 @@
       "__id__": 4
     },
     "_enabled": true,
-    "characterPrefab": {
-      "__uuid__": "9d6466eb-ed17-4210-9cfd-6ff697751d33"
-    },
-    "enemyPrefab": {
-      "__uuid__": "20c589dd-b738-401b-8d19-7c357486fe6c"
-    },
     "tankerPrefab": {
       "__uuid__": "596d3ff0-625e-4465-997b-0a3c229b8630"
+    },
+    "adcPrefab": {
+      "__uuid__": "994158ec-f8e0-4418-81b1-33af7fc47e41"
+    },
+    "bruiserPrefab": {
+      "__uuid__": "fb8d68b4-1a7e-4a7f-8a36-984f722e086f"
+    },
+    "magePrefab": {
+      "__uuid__": "85ccb08d-8789-4cda-a6c8-18bcc60b8097"
     },
     "_id": "14pN+7y7BHFqLJ6c0Zy5vB"
   },

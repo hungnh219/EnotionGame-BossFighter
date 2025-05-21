@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "mage-top-left-walk",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.25,
+  "sample": 20,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "dff1077c-d58a-4d56-9a3c-45080c4010c0"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "0882982d-3ecb-4930-a1eb-22244dccfc70"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "415b718c-daf2-4b6a-802a-4d215039e193"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "38db82b8-9de4-406f-a178-acda3f76c157"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "916b3d6f-0379-4eb7-85ed-480784683295"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

@@ -9,13 +9,13 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        role: 'Tanker',
+        role: 'Bruiser',
 
         maxHp: 100,
         maxMana: 100,
         moveSpeed: 200,
         attackRange: 100,
-        normalAttackPower: 10,
+        normalAttackPower: 15,
         manaPerAttack: 10,
         imageSprite: cc.Sprite,
 
@@ -29,27 +29,17 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad() {
-        // const sprite = this.node.getChildByName('Image')
-        // const animation = sprite.getComponent(cc.Animation);
-        // if (animation) {
-        //     const intervalId = setInterval(() => {
-        //         animation.play('bottom-attack'); 
-        //     }, 1000); 
-        // }
+    onLoad () {
         this.hp = this.maxHp;
     },
 
-    start() {
-
-    },
     attack() {
         this.attackAnimation();
     },
     attackAnimation() {
         const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
-        animation.play('tanker-bottom-attack');
+        animation.play('bottom-attack');
     },
 
     moveAnimation(event) {
@@ -57,21 +47,21 @@ cc.Class({
         const animation = sprite.getComponent(cc.Animation);
         console.log('moveAnimation', event);
         if (event === cc.macro.KEY.w) {
-            animation.play('tanker-top-walk');
+            animation.play('bruiser-top-walk');
         } else if (event === cc.macro.KEY.s) {
-            animation.play('tanker-bottom-walk');
+            animation.play('bruiser-bottom-walk');
         } else if (event === cc.macro.KEY.a) {
-            animation.play('tanker-left-walk');
+            animation.play('bruiser-left-walk');
         } else if (event === cc.macro.KEY.d) {
-            animation.play('tanker-right-walk');
+            animation.play('bruiser-right-walk');
         } else if (event === cc.macro.KEY.w && event === cc.macro.KEY.a) {
-            animation.play('tanker-top-left-walk');
+            animation.play('bruiser-top-left-walk');
         } else if (event === cc.macro.KEY.w && event === cc.macro.KEY.d) {
-            animation.play('tanker-top-right-walk');
+            animation.play('bruiser-top-right-walk');
         } else if (event === cc.macro.KEY.s && event === cc.macro.KEY.a) {
-            animation.play('tanker-bottom-left-walk');
+            animation.play('bruiser-bottom-left-walk');
         } else if (event === cc.macro.KEY.s && event === cc.macro.KEY.d) {
-            animation.play('tanker-bottom-right-walk');
+            animation.play('bruiser-bottom-right-walk');
         } else {
             animation.stop();
         }
@@ -84,7 +74,7 @@ cc.Class({
     },
 
     affectDamage() {
-        return this.normalAttackPower * 2;
+        return this.normalAttackPower * 3;
     },
 
     takeDamage(damage) {
@@ -97,23 +87,19 @@ cc.Class({
             console.log('tanker die');
         }
     },
-    getCurrentHp() {
-        return this.hp;
+
+    die(){
+        this.onDestroy.destroy();
     },
 
-    die() {
-        this.onDestroy.destroy();
-        // console.log('die');
-        // const sprite = this.node.getChildByName('Image')
-        // const animation = sprite.getComponent(cc.Animation);
-        // animation.play('bottom-die'); 
+    getCurrentHp() {
+        return this.hp;
     },
 
     getAttackRange() {
         return this.attackRange;
     },
 
-    // update (dt) {},
     getCharacterInfo() {
         return {
             name: this.node.name,
@@ -124,5 +110,11 @@ cc.Class({
             attackRange: this.attackRange,
             role: this.role,
         }
-    }
+    },
+
+    start () {
+
+    },
+
+    // update (dt) {},
 });
