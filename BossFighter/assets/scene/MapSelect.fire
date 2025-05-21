@@ -1427,7 +1427,7 @@
     },
     "component": "",
     "_componentId": "5d17ehGS0JGjJMKeHjGTeR5",
-    "handler": "map2Picked",
+    "handler": "map3Picked",
     "customEventData": ""
   },
   {

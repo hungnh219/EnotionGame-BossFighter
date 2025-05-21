@@ -1,4 +1,4 @@
-import GameScene from "./GameScene";
+import GameScene from "./GameData";
 
 const GameController = cc.Class({
     extends: cc.Component,
@@ -85,8 +85,7 @@ const GameController = cc.Class({
 
     /* select hero */
     addSelectedHeroPrefab(prefab) {
-        if (!this.selectedHeroPrefabs) this.selectedHeroPrefabs = [];
-        console.log(this.selectedHeroPrefabs)
+        if (!this.selectedHeroPrefabs) this.selectedHeroPrefabs = []; 
         this.selectedHeroPrefabs.push(prefab);
     },
 
@@ -116,9 +115,9 @@ const GameController = cc.Class({
         this.pressedKeys.add(event.keyCode);
 
         // delay to wait set of keys down
-        this.scheduleOnce(() => {
-            this.checkMove();
-        }, 0.1);
+            this.scheduleOnce(() => {
+                this.checkMove();
+            }, 0.1);
     },
     onKeyUp(event) {
         this.pressedKeys.delete(event.keyCode);
@@ -191,9 +190,9 @@ const GameController = cc.Class({
         // set the other heroes scale to 1
         for (let i = 0; i < this.heros.length; i++) {
             if (i == heroIndex) {
-                this.heros[i].scale = 1.5;
+                this.heros[i].focusEffect.active = true;
             } else {
-                this.heros[i].scale = 1;
+                this.heros[i].focusEffect.active = false;
             }
         }
     },
@@ -221,6 +220,7 @@ const GameController = cc.Class({
 
                     // boss die
                     if (this.boss.mainScript.getHp() == 0) {
+                        console.log('player win')
                         // player win
                         this.winner = 'player';
                     }
@@ -257,7 +257,6 @@ const GameController = cc.Class({
                 // }
                 hero.mainScript.moveAnimation(event.keyCode);
             }
-
         }
     },
 
@@ -286,9 +285,7 @@ const GameController = cc.Class({
         if (this.gridMap[x] == undefined) {
             this.gridMap[x] = [];
         }
-
         this.gridMap[x][y] = walkable;
-
     },
 
     setCellPosition(firstCellPos, lastCellPos) {
@@ -303,6 +300,7 @@ const GameController = cc.Class({
     // boss attack nearest hero
     bossAttack() {
         // calculate the distance between the boss and the heroes, take the nearest hero
+        console.log('boss attack')
         const boss = this.boss;
         const heroes = this.heros;
         let nearestHero = null;
@@ -322,31 +320,10 @@ const GameController = cc.Class({
             // attack the nearest hero
             boss.mainScript = boss.getComponents(cc.Component).find(c => typeof c.attack === 'function');
             if (boss.mainScript) {
-                boss.mainScript.attack();
-
-                nearestHero.mainScript = nearestHero.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
-                if (nearestHero.mainScript) {
-                    nearestHero.mainScript.takeDamage(20);
-
-                    if (nearestHero.mainScript.getCurrentHp() <= 0) {
-                        // remove hero from the list
-                        this.heros.splice(this.heros.indexOf(nearestHero), 1);
-                        this.focusedHero.scale = 1;
-
-                        // this.focusedHero = this.heros[0]
-                        // console.log('focus hero', this.focusedHero);
-                        this.setFocusedHero(0);
-
-                        if (this.heros.length == 0) {
-                            this.winner = 'boss';
-
-                            return;
-                        }
-
-                    }
-                } else {
-                    console.log('no takeDamage function');
-                }
+                let dame = boss.mainScript.attack();
+                if (dame <= 0 || dame == undefined) return;
+                this.characterTakeDame(nearestHero, dame);
+                this.checkWin(boss);
             } else {
                 console.log('no attack function');
             }
@@ -354,49 +331,14 @@ const GameController = cc.Class({
 
     },
 
-    // moveBossToNearestHero() {
-    //     if (!this.boss || this.heros.length === 0) return;
+    // boss skill
+    bossCastSkill() {
 
-    //     let bossPos = cc.v2(this.boss.x, this.boss.y);
-    //     let nearestHero = null;
-    //     let minDistance = Infinity;
-
-    //     // find the nearest hero
-    //     for (let hero of this.heros) {
-    //         let heroPos = cc.v2(hero.x, hero.y);
-    //         let distance = bossPos.sub(heroPos).mag();
-    //         if (distance < minDistance) {
-    //             minDistance = distance;
-    //             nearestHero = hero;
-    //         }
-    //     }
-
-    //     if (!nearestHero) return;
-
-    //     let heroPos = cc.v2(nearestHero.x, nearestHero.y);
-    //     let direction = heroPos.sub(bossPos).normalize();
-
-    //     console.log('boss pos', bossPos);
-    //     console.log('hero pos', heroPos);
-    //     console.log('boss move to hero', direction);
-    //     // calculate the step size based on the direction
-    //     let stepX = direction.x * this.mapTileWidth;
-    //     let stepY = direction.y * this.mapTileHeight;
-    //     console.log('map tile', this.mapTileWidth, this.mapTileHeight);
-    //     console.log('step', stepX, stepY);
-
-    //     // move the boss to the new position
-    //     let newX = bossPos.x + stepX;
-    //     let newY = bossPos.y + stepY;
-
-    //     let moveAction = cc.moveTo(0.5, newX, newY);
-    //     this.boss.runAction(moveAction);
-    // },
-
+    },
 
     moveCharacterBot(heroBot, dx, dy) {
         // if (!heroBot || heroBot.isMoving) return false;  
-
+        console.log(this.gridMap[5][1].walkable, '321')
         const newX = heroBot.x + dx * this.mapTileWidth;
         const newY = heroBot.y + dy * this.mapTileHeight;
 
@@ -420,20 +362,22 @@ const GameController = cc.Class({
         const moveAction = cc.moveTo(0.5, newX, newY);
         const finishCallback = cc.callFunc(() => {
             heroBot.isMoving = false;
+            // this.checkMove();
             this.gridMap[oldGridX][oldGridY] = true;
-            this.gridMap[gridX][gridY] = false;
+            this.gridMap[gridX][gridY] = false; 
         });
 
         const sequence = cc.sequence(moveAction, finishCallback);
         heroBot.runAction(sequence);
 
-        return true;
+        
     },
 
     moveHeroNotFocusesToBoss() {
         if (!this.boss || this.heros.length === 0) return;
 
         let bossPos = cc.v2(this.boss.x, this.boss.y);
+        let boss = this.boss;
 
         this.heros.forEach((hero, index) => {
             if (hero === this.focusedHero) return;
@@ -443,17 +387,46 @@ const GameController = cc.Class({
             let dx = 0;
             let dy = 0;
 
-            const diffX = bossPos.x - heroPos.x;
-            const diffY = bossPos.y - heroPos.y;
+            let diffX = bossPos.x - heroPos.x;
+            let diffY = bossPos.y - heroPos.y;
+            diffX = Math.round(diffX);
+            diffY = Math.round(diffY);
 
+            if (index == 1) {
+                console.log(diffX, diffY);
+            }
             if (Math.abs(diffX) > Math.abs(diffY)) {
                 dx = diffX > 0 ? 1 : -1;
-            } else if (diffY !== 0) {
+            } else {
                 dy = diffY > 0 ? 1 : -1;
             }
-            console.log('move hero with index', hero.name, index, dx, dy);
-            this.moveCharacterBot(hero, dx, dy);
+            // this.moveCharacterBot(hero, dx, dy);
+            this.scheduleOnce(() => {
+                // this.checkMove();
+                this.moveCharacterBot(hero, dx, dy);
+            }, 0.1);
         });
+    },
+
+    checkWalkableMove(hero, dx, dy) {
+        console.log('hero', hero)
+        const newX = hero.x + dx * this.mapTileWidth;
+        const newY = hero.y + dy * this.mapTileHeight;
+
+        // check if the new position is walkable use newX, newY, firstCellPos and lastCellPos
+        if (newX < this.firstCellPos.x || newX > this.lastCellPos.x || newY < this.firstCellPos.y || newY > this.lastCellPos.y) {
+            return false;
+        }
+
+        // check if the new position is walkable
+        const gridX = Math.floor((newX - this.firstCellPos.x) / this.mapTileWidth);
+        const gridY = Math.floor((newY - this.firstCellPos.y) / this.mapTileHeight);
+        if (this.gridMap[gridX][gridY] == false) {
+            return false;
+        }
+
+        this.gridMap[gridX][gridY] == false;
+        return true;
     },
 
     nonFocusedHeroesAttackBoss() {
@@ -465,22 +438,21 @@ const GameController = cc.Class({
             let heroScript = hero.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
             if (!heroScript) {
                 console.log('Hero không có hàm attackAnimation');
-                return;
-            }
+                if (this.checkAttackRangeHero(hero)) {
+                    heroScript.attackAnimation();
 
-            if (this.checkAttackRangeHero(hero)) {
-                heroScript.attackAnimation();
+                    let bossScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
+                    if (bossScript) {
+                        bossScript.takeDamage(2);
 
-                let bossScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
-                if (bossScript) {
-                    bossScript.takeDamage(2);
-
-                    if (bossScript.getHp() <= 0) {
-                        this.winner = 'player';
+                        if (bossScript.getHp() <= 0) {
+                            this.winner = 'player';
+                        }
+                    } else {
+                        console.log('Boss không có hàm takeDamage');
                     }
-                } else {
-                    console.log('Boss không có hàm takeDamage');
                 }
+                return;
             }
         });
     },
@@ -498,12 +470,63 @@ const GameController = cc.Class({
 
 
     /* game system */
+
+    // reset
+    resetGame() {
+        this.listenMoveNode = null;
+        this.focusedHero = null;
+        this.heros = []; // hero in game
+        this.gridMap = [];
+        this.winner = null; // 'boss', 'player'
+    },
+
+    // new game
     newGame() {
-        // reset varialbe
-        this.heros = [];
-        // this.focusedHero = null;
-        // this.selectedHeroPrefabs = [];
+        this.mapPick = null;
+        this.heroPick = [];
+        this.selectedHeroPrefabs = [];
+        this.listenMoveNode = null;
+
+        this.focusedHero = null;
+        this.heros = []; // hero in game
+        this.gridMap = [];
+        this.winner = null; // 'boss', 'player'
+    },
+
+    checkWin() {
+        if (this.heros.length == 0) {
+            this.winner = 'boss';
+        }
+        let bossScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
+        if (!bossScript) {
+            if (bossScript.getHp() <= 0) {
+                this.winner = 'player';
+            }
+        }
+    },
+
+    characterTakeDame(hero, dame) {
+        if (hero.mainScript == undefined) hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
+        if (hero.mainScript) {
+            hero.mainScript.takeDamage(dame);
+
+            if (hero.mainScript.getCurrentHp() <= 0) {
+                this.handleHeroDie(hero);
+            }
+        } else {
+            console.log('no takeDamage function');
+        }
+    },
+
+    handleHeroDie(hero) {
+        // remove hero from the list
+        this.heros[this.heros.indexOf(hero)].focusEffect.active = false;
+        this.heros.splice(this.heros.indexOf(hero), 1);
+        this.setFocusedHero(0);
+        
+        this.checkWin();
     }
+
 });
 
 export default GameController;
