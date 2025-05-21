@@ -1,9 +1,6 @@
 import GameController from "./GameController";
 import GAME_DATA from "./GameData"
-var manager = cc.director.getCollisionManager();
-manager.enabled = true;
-manager.enabledDebugDraw = true;
-manager.enabledDrawBoundingBox = true;
+
 cc.Class({
     extends: cc.Component,
 
@@ -29,7 +26,10 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
+
+        cc.director.getCollisionManager().enabled = true;
+        cc.director.getPhysicsManager().enabled = true;
         // variables
         this.gridMap = [];
         this.isMoving = false;
@@ -41,19 +41,19 @@ cc.Class({
         this.rootNode = this.node.parent;
         this.bossNode = null;
         this.heroPrefabs = [];
-        
 
-        
+
+
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
 
         // test add boss into map
         this.winnerNotificationLabel.node.zIndex = 999;
         this.rootNode.sortAllChildren();
 
-        
+
     },
 
-    start () {
+    start() {
         this.initData();
     },
 
@@ -77,7 +77,7 @@ cc.Class({
         this.turnOnAutoMode();
         // this.spawnTestSkill();
 
-        
+
     },
 
     resetData() {
@@ -168,20 +168,20 @@ cc.Class({
         let size = Math.floor(Math.random() * 2) + 1;
         this.rootNode.addChild(testSkill);
         this.addObjectIntoMap(randomX, randomY, size, testSkill);
-        
+
         // detroy test skill after 5 seconds
         setTimeout(() => {
             testSkill.destroy();
             // this.gridMap[randomX][randomY].object = null;
             // this.gameController.updateWalkable(randomX, randomY, true);
         }
-        , 500);
+            , 500);
     },
 
     initMapView() {
         this.mapLayout.node.removeAllChildren();
         /* ------------- create grid map ------------- */
-            // center the map
+        // center the map
         this.mapLayout.node.x = -this.mapWidth * this.mapTileWidth / 2;
         this.mapLayout.node.y = -this.mapHeight * this.mapTileHeight / 2;
 
@@ -219,8 +219,8 @@ cc.Class({
 
         this.gameController.setCellPosition(firstCellPos, lastCellPos);
 
-            // create boss attack animation (test)
-       
+        // create boss attack animation (test)
+
     },
 
     convertGridToPosition(gridX, gridY) {
@@ -250,8 +250,8 @@ cc.Class({
 
         // set the position of the object
         const mapPos = this.mapLayout.node.getPosition();
-        objectNode.x = mapPos.x + gridX * this.mapTileWidth + (this.mapTileWidth * size)/ 2;
-        objectNode.y = mapPos.y + gridY * this.mapTileHeight + (this.mapTileHeight * size)/ 2;
+        objectNode.x = mapPos.x + gridX * this.mapTileWidth + (this.mapTileWidth * size) / 2;
+        objectNode.y = mapPos.y + gridY * this.mapTileHeight + (this.mapTileHeight * size) / 2;
     },
 
     updateWalkable(x, y, size) {
@@ -295,6 +295,11 @@ cc.Class({
             }
         }
 
+        if (event.keyCode == cc.macro.KEY.j) {
+            console.log("w");
+            this.gameController.heroSkill();
+        }
+
         if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
             this.gameController.heroMoveAnimation(event);
         }
@@ -324,9 +329,9 @@ cc.Class({
                 this.gameController.bossAttack();
                 this.bossAutoAttack();
             } else {
-                 this.endGameNotification();
+                this.endGameNotification();
             }
-        }, 2000);   
+        }, 2000);
     },
 
     bossAutoSkill() {
@@ -349,10 +354,10 @@ cc.Class({
             } else {
                 this.endGameNotification();
             }
-        }, 3000 + delay);   
+        }, 3000 + delay);
     },
 
-    turnOnAutoMode() {    
+    turnOnAutoMode() {
         if (this.gameController.getWinner() != undefined) {
             this.endGameNotification();
             return;

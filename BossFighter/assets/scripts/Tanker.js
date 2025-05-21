@@ -4,7 +4,7 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
-
+import GameController from "./GameController";
 cc.Class({
     extends: cc.Component,
 
@@ -18,6 +18,7 @@ cc.Class({
         normalAttackPower: 10,
         manaPerAttack: 10,
         imageSprite: cc.Sprite,
+        skillPrefab: cc.Prefab,
 
         skillCost: 30,
         ultimateCost: 80,
@@ -82,7 +83,24 @@ cc.Class({
         animation.play('bottom-skill');
     },
 
+    castSkill() {
+        const skill = cc.instantiate(this.skillPrefab);
+        skill.parent = this.node.parent;
+        skill.x = this.node.x;
+        skill.y = this.node.y;
+
+        this.gameController = GameController.getInstance();
+        const bossNode = this.gameController.getBoss();
+        if (bossNode) {
+            const bossPos = bossNode.getPosition();
+            skill.getComponent('Skill').initDirection(bossPos);
+        } else {
+            console.log('No boss found');
+        }
+
+    },
     affectDamage() {
+        this.castSkill();
         return this.normalAttackPower * 2;
     },
 

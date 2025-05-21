@@ -16,10 +16,21 @@ cc.Class({
 
     // onLoad () {},
 
+    direction: null,
+
+    initDirection(targetPos) {
+        // Tính vector hướng từ skill đến boss
+        const from = this.node.getPosition();
+        const to = targetPos;
+        const dir = cc.v2(to.x - from.x, to.y - from.y).normalize();
+        this.direction = dir;
+    },
+
     onCollisionEnter: function (other, self) {
         console.log('Chiêu va chạm với:', other.node.name);
 
         if (other.node.getComponent('Boss')) {
+            console.log('Chiêu va chạm với boss:', other.node.name);
             other.node.getComponent('Boss').takeDamage(this.damage);
         }
 
@@ -34,11 +45,18 @@ cc.Class({
         console.log('on collision exit');
     },
 
-    start () {
+    start() {
 
     },
 
     update(dt) {
-        this.node.x += 300 * dt;  
+        if (this.direction) {
+            // Di chuyển theo hướng đã tính
+            this.node.x += this.direction.x * 300 * dt;
+            this.node.y += this.direction.y * 300 * dt;
+        } else {
+            // Nếu chưa có hướng thì mặc định bắn lên trên
+            this.node.y += 300 * dt;
+        }
     }
 });

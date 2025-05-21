@@ -489,6 +489,9 @@
     "imageSprite": {
       "__id__": 3
     },
+    "skillPrefab": {
+      "__uuid__": "b69a4133-0e8a-41d2-9acd-5d0e63d4abd2"
+    },
     "skillCost": 30,
     "ultimateCost": 80,
     "skillCooldown": 5,
