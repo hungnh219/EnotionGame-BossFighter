@@ -107,9 +107,9 @@ cc.Class({
         this.turnOnAutoBossAttack();
 
         this.schedule(() => {
-            console.log("boss auto move");
-            this.gameController.moveBossToNearestHero();
-        }, 1.0); // boss hành động mỗi 1 giây
+            this.gameController.moveHeroNotFocusesToBoss();
+            this.gameController.nonFocusedHeroesAttackBoss();
+        }, 1.0); // hero hành động mỗi 1 giây
 
     },
 

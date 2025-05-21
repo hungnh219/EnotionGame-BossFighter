@@ -354,39 +354,137 @@ const GameController = cc.Class({
 
     },
 
-    moveBossToNearestHero() {
+    // moveBossToNearestHero() {
+    //     if (!this.boss || this.heros.length === 0) return;
+
+    //     let bossPos = cc.v2(this.boss.x, this.boss.y);
+    //     let nearestHero = null;
+    //     let minDistance = Infinity;
+
+    //     // find the nearest hero
+    //     for (let hero of this.heros) {
+    //         let heroPos = cc.v2(hero.x, hero.y);
+    //         let distance = bossPos.sub(heroPos).mag();
+    //         if (distance < minDistance) {
+    //             minDistance = distance;
+    //             nearestHero = hero;
+    //         }
+    //     }
+
+    //     if (!nearestHero) return;
+
+    //     let heroPos = cc.v2(nearestHero.x, nearestHero.y);
+    //     let direction = heroPos.sub(bossPos).normalize();
+
+    //     console.log('boss pos', bossPos);
+    //     console.log('hero pos', heroPos);
+    //     console.log('boss move to hero', direction);
+    //     // calculate the step size based on the direction
+    //     let stepX = direction.x * this.mapTileWidth;
+    //     let stepY = direction.y * this.mapTileHeight;
+    //     console.log('map tile', this.mapTileWidth, this.mapTileHeight);
+    //     console.log('step', stepX, stepY);
+
+    //     // move the boss to the new position
+    //     let newX = bossPos.x + stepX;
+    //     let newY = bossPos.y + stepY;
+
+    //     let moveAction = cc.moveTo(0.5, newX, newY);
+    //     this.boss.runAction(moveAction);
+    // },
+
+
+    moveCharacterBot(heroBot, dx, dy) {
+        // if (!heroBot || heroBot.isMoving) return false;  
+
+        const newX = heroBot.x + dx * this.mapTileWidth;
+        const newY = heroBot.y + dy * this.mapTileHeight;
+
+        if (newX < this.firstCellPos.x || newX > this.lastCellPos.x || newY < this.firstCellPos.y || newY > this.lastCellPos.y) {
+            return false;
+        }
+
+        const gridX = Math.floor((newX - this.firstCellPos.x) / this.mapTileWidth);
+        const gridY = Math.floor((newY - this.firstCellPos.y) / this.mapTileHeight);
+
+        if (!this.gridMap[gridX] || !this.gridMap[gridX][gridY] || this.gridMap[gridX][gridY] === false) {
+            return false;
+        }
+
+        // move the character
+        heroBot.isMoving = true;
+
+        const oldGridX = Math.floor((heroBot.x - this.firstCellPos.x) / this.mapTileWidth);
+        const oldGridY = Math.floor((heroBot.y - this.firstCellPos.y) / this.mapTileHeight);
+
+        const moveAction = cc.moveTo(0.5, newX, newY);
+        const finishCallback = cc.callFunc(() => {
+            heroBot.isMoving = false;
+            this.gridMap[oldGridX][oldGridY] = true;
+            this.gridMap[gridX][gridY] = false;
+        });
+
+        const sequence = cc.sequence(moveAction, finishCallback);
+        heroBot.runAction(sequence);
+
+        return true;
+    },
+
+    moveHeroNotFocusesToBoss() {
         if (!this.boss || this.heros.length === 0) return;
 
         let bossPos = cc.v2(this.boss.x, this.boss.y);
-        let nearestHero = null;
-        let minDistance = Infinity;
 
-        // find the nearest hero
-        for (let hero of this.heros) {
+        this.heros.forEach((hero, index) => {
+            if (hero === this.focusedHero) return;
+            if (hero.isMoving) return;
+
             let heroPos = cc.v2(hero.x, hero.y);
-            let distance = bossPos.sub(heroPos).mag();
-            if (distance < minDistance) {
-                minDistance = distance;
-                nearestHero = hero;
+            let dx = 0;
+            let dy = 0;
+
+            const diffX = bossPos.x - heroPos.x;
+            const diffY = bossPos.y - heroPos.y;
+
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                dx = diffX > 0 ? 1 : -1;
+            } else if (diffY !== 0) {
+                dy = diffY > 0 ? 1 : -1;
             }
-        }
-
-        if (!nearestHero) return;
-
-        let heroPos = cc.v2(nearestHero.x, nearestHero.y);
-        let direction = heroPos.sub(bossPos).normalize();
-
-        // calculate the step size based on the direction
-        let stepX = direction.x * this.mapTileWidth;
-        let stepY = direction.y * this.mapTileHeight;
-
-        // move the boss to the new position
-        let newX = bossPos.x + stepX;
-        let newY = bossPos.y + stepY;
-
-        let moveAction = cc.moveTo(0.5, newX, newY);
-        this.boss.runAction(moveAction);
+            console.log('move hero with index', hero.name, index, dx, dy);
+            this.moveCharacterBot(hero, dx, dy);
+        });
     },
+
+    nonFocusedHeroesAttackBoss() {
+        if (!this.boss || this.heros.length === 0) return;
+
+        this.heros.forEach(hero => {
+            if (hero === this.focusedHero) return;
+
+            let heroScript = hero.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
+            if (!heroScript) {
+                console.log('Hero không có hàm attackAnimation');
+                return;
+            }
+
+            if (this.checkAttackRangeHero(hero)) {
+                heroScript.attackAnimation();
+
+                let bossScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
+                if (bossScript) {
+                    bossScript.takeDamage(2);
+
+                    if (bossScript.getHp() <= 0) {
+                        this.winner = 'player';
+                    }
+                } else {
+                    console.log('Boss không có hàm takeDamage');
+                }
+            }
+        });
+    },
+
 
     getWinner() {
         if (this.winner != undefined) {
