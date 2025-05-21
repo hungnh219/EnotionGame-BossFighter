@@ -254,10 +254,14 @@ cc.Class({
         //     this.gameController.heroSkill();
         // }
 
-        // if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
-        //     console.log("event", event);
-        //     this.gameController.heroMove(event);
-        // }
+        if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
+         
+            if (this.gameController.heros.length != 0){
+       
+                this.gameController.heroMoveAnimation(event);
+            };
+            
+        }
     },
 
 
