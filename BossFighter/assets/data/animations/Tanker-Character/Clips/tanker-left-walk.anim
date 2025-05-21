@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "left-walk",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.25,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "4b1e3737-da0c-4dca-baa9-5c954659f72c"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "590a017c-4418-4d7b-9c2d-82e0f488686f"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "17c4d5b5-7d3e-495f-862a-c0c9558c5779"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "a0959c2f-cd96-4fb2-b032-a498ff672cca"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "3611346d-0ecc-4b0e-88d2-bd505985813d"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

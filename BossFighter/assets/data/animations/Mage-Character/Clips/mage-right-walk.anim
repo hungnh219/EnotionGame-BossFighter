@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "mage-right-walk",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.2,
+  "sample": 20,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "ca27171c-93a4-47ac-b7ca-e23aa39a4221"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "76dff4fe-1435-4d5b-869f-6f58a49ae7af"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "8d5edddc-26e7-4f31-b7e5-4a619abb0df5"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "edef6e2d-2620-4cf7-bada-03403d78fc62"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

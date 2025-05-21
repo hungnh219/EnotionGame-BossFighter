@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "top-walk",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.25,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "f9e38afb-6c2c-46f0-b28c-49dfa3a9e60f"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "30ea4fc3-e5d8-4c57-9c9f-e15a5bd60dd8"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "8269344d-d139-46ae-8851-b4884162ea83"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "6b2aed51-9af7-421b-8b3f-11a0229d144d"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "e0c9b408-2091-4e31-85ad-1e712f678c20"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "adc-bottom-walk",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.13333333333333333,
+  "sample": 30,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "17cbf5b6-7956-45e0-b0c6-5bc2b71b11d1"
+            }
+          },
+          {
+            "frame": 0.03333333333333333,
+            "value": {
+              "__uuid__": "07be5e18-02cb-48df-851a-de9209723b9b"
+            }
+          },
+          {
+            "frame": 0.06666666666666667,
+            "value": {
+              "__uuid__": "78d24538-46b0-48eb-90b3-56b2c1cdc5ab"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "fe0e2422-d50a-4e7d-88ae-5e6b90325616"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

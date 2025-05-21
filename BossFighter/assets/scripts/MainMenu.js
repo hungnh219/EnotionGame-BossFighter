@@ -1,4 +1,4 @@
-import GameScene from "./GameScene";
+import GAME_DATA from "./GameData";
 
 cc.Class({
     extends: cc.Component,
@@ -19,6 +19,6 @@ cc.Class({
 
     playSoloMode() {
         console.log("playSoloMode");
-        cc.director.loadScene(GameScene.MAP_SELECT);
+        cc.director.loadScene(GAME_DATA.GameScene.MAP_SELECT);
     }
 });

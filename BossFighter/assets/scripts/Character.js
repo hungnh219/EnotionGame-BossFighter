@@ -14,7 +14,7 @@ cc.Class({
         maxHp: 100,
         maxMana: 100,
         moveSpeed: 200,
-        attackRange: 150,
+        attackRange: 100,
         normalAttackPower: 10,
         manaPerAttack: 10,
         imageSprite: cc.Sprite,
@@ -45,8 +45,6 @@ cc.Class({
     },
 
     start() {
-        console.log('Initial position:', this.node.position);
-
     },
 
     // update(dt) {
@@ -208,6 +206,26 @@ cc.Class({
 
     },
 
+    takeDamage(damage) {
+        console.log('takeDamage', damage);
+        this.hp -= damage;
+        this.hp = Math.max(this.hp, 0);
+        if (this.hpBar) this.hpBar.progress = this.hp / this.maxHp;
+
+        if (this.hp <= 0) {
+            // this.die();
+        }
+    },
+    die() {
+        // this.onDestroy.destroy();
+    },
+
+    getCurrentHp() {
+        return this.hp;
+    },
+    getAttackRange() {
+        return this.attackRange;
+    },
     getCharacterInfo() {
         return {
             name: this.node.name,

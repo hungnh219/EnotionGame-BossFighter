@@ -1,0 +1,37 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "mage-left-walk",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.15,
+  "sample": 20,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "519916b6-43bb-4da3-8241-8e2312854c32"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "6dc943bd-0a82-4e85-a287-b21e2049b601"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "4bd57170-2f46-4f18-969f-f978e15504ca"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

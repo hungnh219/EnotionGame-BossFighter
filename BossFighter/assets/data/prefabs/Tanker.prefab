@@ -189,18 +189,37 @@
       "__id__": 2
     },
     "_enabled": true,
-    "_defaultClip": {
-      "__uuid__": "ab8a177d-7d48-4500-b3a2-6678394854f4"
-    },
+    "_defaultClip": null,
     "_clips": [
       {
         "__uuid__": "09018172-cfcc-43df-9baf-69b38b0c3050"
       },
       {
         "__uuid__": "ab8a177d-7d48-4500-b3a2-6678394854f4"
+      },
+      {
+        "__uuid__": "7f9bb9e0-e119-4ce4-bb96-b31f4403de8d"
+      },
+      {
+        "__uuid__": "028170b1-3b40-4763-8ca5-53a768ad59b3"
+      },
+      {
+        "__uuid__": "c87c06a4-3161-496b-81a8-d64dd9ac717d"
+      },
+      {
+        "__uuid__": "f4d08ee7-e44e-43ea-b060-85e2b03f2b8f"
+      },
+      {
+        "__uuid__": "6f513be4-355a-4c68-ad35-f0c890c1b5fc"
+      },
+      {
+        "__uuid__": "cb2c233e-118a-408e-81be-9632afa85758"
+      },
+      {
+        "__uuid__": "da09a7aa-0b69-48d7-ba02-593a8c5b7967"
       }
     ],
-    "playOnLoad": false,
+    "playOnLoad": true,
     "_id": ""
   },
   {
@@ -305,9 +324,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 21,
+      "g": 236,
+      "b": 107,
       "a": 255
     },
     "_contentSize": {
@@ -432,7 +451,7 @@
       "__id__": 6
     },
     "_enabled": true,
-    "_N$totalLength": 80,
+    "_N$totalLength": 40,
     "_N$barSprite": {
       "__id__": 8
     },
@@ -464,11 +483,14 @@
     "maxHp": 100,
     "maxMana": 100,
     "moveSpeed": 200,
-    "attackRange": 150,
+    "attackRange": 100,
     "normalAttackPower": 10,
     "manaPerAttack": 10,
     "imageSprite": {
       "__id__": 3
+    },
+    "skillPrefab": {
+      "__uuid__": "b69a4133-0e8a-41d2-9acd-5d0e63d4abd2"
     },
     "skillCost": 30,
     "ultimateCost": 80,

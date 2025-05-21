@@ -1,0 +1,55 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "thunder-skill",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.1,
+  "sample": 60,
+  "speed": 0.2,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "38e8ebed-d4c0-44a0-8125-150024d1ed57"
+            }
+          },
+          {
+            "frame": 0.016666666666666666,
+            "value": {
+              "__uuid__": "2ee71c70-e717-4869-9069-230e76185abb"
+            }
+          },
+          {
+            "frame": 0.03333333333333333,
+            "value": {
+              "__uuid__": "91079ca0-4bf2-4a59-8ef0-ddcc4efb34c4"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "373f1d38-db21-4ae7-8435-e93cae59264f"
+            }
+          },
+          {
+            "frame": 0.06666666666666667,
+            "value": {
+              "__uuid__": "c087bbfa-4696-4c9c-b7fa-e66c1ec9c2a2"
+            }
+          },
+          {
+            "frame": 0.08333333333333333,
+            "value": {
+              "__uuid__": "9af8e3a1-f0de-4140-9311-d0dd70af3f3b"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

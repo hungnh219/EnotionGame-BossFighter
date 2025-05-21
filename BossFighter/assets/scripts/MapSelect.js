@@ -1,22 +1,15 @@
 import GameController from "./GameController";
-import GameScene from "./GameScene";
+import GAME_DATA from "./GameData";
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
-
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        // if (GameController.instance === null) {
-        //     GameController.instance = this;
-        //     cc.game.addPersistRootNode(this.node);
-        // } else {
-        //     this.node.destroy();
-        // }
         const gameController = GameController.getInstance();
         if (gameController) {
             this.gameController = gameController;
@@ -35,14 +28,30 @@ cc.Class({
 
     // update (dt) {},
     map1Picked () {
+        console.log('test', this.gameController.getWonMap())
+        if (this.gameController.getWonMap() < GAME_DATA.GameMapIndex.MAP_1 || this.gameController.getWonMap() == undefined || this.gameController.getWonMap() == null) return;
         console.log("map1Picked");
-        this.gameController.setMapPicked("map1");
-        cc.director.loadScene(GameScene.HERO_SELECT);
+        this.gameController.setMapPicked(GAME_DATA.GameMapIndex.MAP_1);
+        cc.director.loadScene(GAME_DATA.GameScene.HERO_SELECT);
     },
 
     map2Picked () {
+        console.log('test', this.gameController.getWonMap())
+        if (this.gameController.getWonMap() < GAME_DATA.GameMapIndex.MAP_2 || this.gameController.getWonMap() == undefined || this.gameController.getWonMap() == null) return;
         console.log("map2Picked");
-        this.gameController.setMapPicked("map2");
-        cc.director.loadScene(GameScene.HERO_SELECT);
+        this.gameController.setMapPicked(GAME_DATA.GameMapIndex.MAP_2);
+        cc.director.loadScene(GAME_DATA.GameScene.HERO_SELECT);
+    },
+
+    map3Picked () {
+        if (this.gameController.getWonMap() < GAME_DATA.GameMapIndex.MAP_3 || this.gameController.getWonMap() == undefined || this.gameController.getWonMap() == null) return;
+        console.log("map3Picked");
+        this.gameController.setMapPicked(GAME_DATA.GameMapIndex.MAP_3);
+        cc.director.loadScene(GAME_DATA.GameScene.HERO_SELECT);
+    },
+
+    backToMainMenu() {
+        console.log("backToMainMenu");
+        cc.director.loadScene(GAME_DATA.GameScene.MAIN_MENU);
     }
 });

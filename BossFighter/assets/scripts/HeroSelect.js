@@ -1,5 +1,5 @@
 import GameController from "./GameController";
-import GameScene from "./GameScene";
+import GAME_DATA from "./GameData"
 
 cc.Class({
     extends: cc.Component,
@@ -24,6 +24,8 @@ cc.Class({
 
         heroLockedList: cc.Layout,
         selectedHero: cc.Sprite,
+
+        numberOfHeros: [cc.Integer],
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -37,6 +39,8 @@ cc.Class({
         };
         this.heros = [];
         this.heroLockList = [];
+        console.log('get map', this.gameController.getMapPicked())
+        this.maxHero = (this.gameController.getMapPicked() == undefined) ? 0 : this.numberOfHeros[this.gameController.getMapPicked()];
 
         // get all prefab
         const heroPrefabScript = this.node.getComponent("PrefabFactory");
@@ -48,26 +52,33 @@ cc.Class({
             // const heroScript = hero.getComponent('Character') || hero.getComponent('Enemy');
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
             
-            // const heroInfo = heroScript.getCharacterInfo();
-            const heroInfo = hero.mainScript.getCharacterInfo();
-            this.heros[index] = heroInfo;
-            const heroImageNode = new cc.Node('HeroImageNode');
-            const sprite = heroImageNode.addComponent(cc.Sprite);
-            sprite.spriteFrame = heroInfo.imageSprite.getComponent(cc.Sprite).spriteFrame;
+            if (hero.mainScript != undefined) {
+                const heroInfo = hero.mainScript.getCharacterInfo();
+                console.log('heroInfo', heroInfo);
+                this.heros[index] = heroInfo;
+                const heroImageNode = new cc.Node('HeroImageNode');
+                const sprite = heroImageNode.addComponent(cc.Sprite);
+                sprite.spriteFrame = heroInfo.imageSprite.getComponent(cc.Sprite).spriteFrame;
 
-            heroImageNode.customIndex = index;
+                sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
+                heroImageNode.width = 60;
+                heroImageNode.height = 60;
 
-            // heroImageNode.on(cc.Node.EventType.TOUCH_END, function () {
-            //     console.log('Hero clicked at index:', this.customIndex);
-            // }, heroImageNode);
+                heroImageNode.customIndex = index;
 
-            heroImageNode.on(cc.Node.EventType.TOUCH_END, () => {
-                console.log('check', index);
+                // heroImageNode.on(cc.Node.EventType.TOUCH_END, function () {
+                //     console.log('Hero clicked at index:', this.customIndex);
+                // }, heroImageNode);
 
-                this.heroClick(index, heroPrefab);
-            }, heroImageNode);
+                heroImageNode.on(cc.Node.EventType.TOUCH_END, () => {
+                    console.log('check', index);
 
-            this.heroScrollViewContent.addChild(heroImageNode);
+                    this.heroClick(index, heroPrefab);
+                }, heroImageNode);
+
+                this.heroScrollViewContent.addChild(heroImageNode);
+            }
+
         });
 
         // add to scrollview
@@ -116,6 +127,7 @@ cc.Class({
     },
 
     heroClick(clickIndex, heroPrefab) {
+        if (this.heroLockedList.node.childrenCount == this.maxHero + 1) return;
         this.showInformation();
         // console.log(this.customIndex)
         // console.log(this.heros[this.customIndex])
@@ -137,25 +149,48 @@ cc.Class({
         const sprite = heroImageNode.addComponent(cc.Sprite);
         sprite.spriteFrame = this.heros[clickIndex].imageSprite.getComponent(cc.Sprite).spriteFrame;
         this.selectedHero.spriteFrame = this.heros[clickIndex].imageSprite.getComponent(cc.Sprite).spriteFrame;
-        // this.heroLockedList.node.addChild(
+        // // this.heroLockedList.node.addChild(
         //     heroImageNode
         // )
     },
 
     clockHero() {
-        if (this.heroPicked != null) {
+        if (this.heroPicked.prefab != null) {
+            if (this.heroLockedList.node.childrenCount == this.maxHero + 1) return;
             const heroImageNode = new cc.Node('HeroImageNode');
             const sprite = heroImageNode.addComponent(cc.Sprite);
             sprite.spriteFrame = this.heros[this.heroPicked.index].imageSprite.getComponent(cc.Sprite).spriteFrame;
+            sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
+            heroImageNode.width = 50;
+            heroImageNode.height = 50;
 
             this.heroLockedList.node.insertChild(heroImageNode, this.heroLockedList.node.childrenCount - 1);
+            if (this.heroLockedList.node.childrenCount == this.maxHero + 1) {
+                let parentNode = this.heroLockedList.node;
+                let children = parentNode.children;
 
+                if (children.length > 0) {
+                    let lastChild = children[children.length - 1];
+                    // parentNode.removeChild(lastChild);
+                    lastChild.active = false;
+                }
+            }
+      
             this.gameController.addSelectedHeroPrefab(this.heroPicked.prefab);
         }
     },
 
     playGame() {
         // this.gameController.set
-        cc.director.loadScene(GameScene.GAME)
+        if (this.gameController.getHeroPrefabs().length == 0 || this.gameController.getHeroPrefabs() == undefined || this.gameController.getHeroPrefabs() == null) {
+            return;
+        }
+
+        cc.director.loadScene(GAME_DATA.GameScene.GAME)
+    },
+
+    backToMapSelect() {
+        this.gameController.backToMapSelect();
+        cc.director.loadScene(GAME_DATA.GameScene.MAP_SELECT);
     }
 });
