@@ -19,7 +19,7 @@ const GameController = cc.Class({
     },
 
     properties: {
-
+        gameWonIndex: 0
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -300,7 +300,6 @@ const GameController = cc.Class({
     // boss attack nearest hero
     bossAttack() {
         // calculate the distance between the boss and the heroes, take the nearest hero
-        console.log('boss attack')
         const boss = this.boss;
         const heroes = this.heros;
         let nearestHero = null;
@@ -323,7 +322,7 @@ const GameController = cc.Class({
                 let dame = boss.mainScript.attack();
                 if (dame <= 0 || dame == undefined) return;
                 this.characterTakeDame(nearestHero, dame);
-                this.checkWin(boss);
+                this.checkWin();
             } else {
                 console.log('no attack function');
             }
@@ -338,7 +337,6 @@ const GameController = cc.Class({
 
     moveCharacterBot(heroBot, dx, dy) {
         // if (!heroBot || heroBot.isMoving) return false;  
-        console.log(this.gridMap[5][1].walkable, '321')
         const newX = heroBot.x + dx * this.mapTileWidth;
         const newY = heroBot.y + dy * this.mapTileHeight;
 
@@ -393,18 +391,18 @@ const GameController = cc.Class({
             diffY = Math.round(diffY);
 
             if (index == 1) {
-                console.log(diffX, diffY);
+                // console.log(diffX, diffY);
             }
             if (Math.abs(diffX) > Math.abs(diffY)) {
                 dx = diffX > 0 ? 1 : -1;
             } else {
                 dy = diffY > 0 ? 1 : -1;
             }
-            // this.moveCharacterBot(hero, dx, dy);
-            this.scheduleOnce(() => {
-                // this.checkMove();
-                this.moveCharacterBot(hero, dx, dy);
-            }, 0.1);
+            this.moveCharacterBot(hero, dx, dy);
+            // this.scheduleOnce(() => {
+            //     // this.checkMove();
+            //     this.moveCharacterBot(hero, dx, dy);
+            // }, 0.1);
         });
     },
 
@@ -436,15 +434,19 @@ const GameController = cc.Class({
             if (hero === this.focusedHero) return;
 
             let heroScript = hero.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
-            if (!heroScript) {
-                console.log('Hero không có hàm attackAnimation');
+                // console.log('Hero không có hàm attackAnimation');
+            if (heroScript) {
+
+                console.log(this.checkAttackRangeHero(hero), hero, '321')
                 if (this.checkAttackRangeHero(hero)) {
                     heroScript.attackAnimation();
 
                     let bossScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
-                    if (bossScript) {
-                        bossScript.takeDamage(2);
 
+                    console.log(bossScript, 'check boss script')
+                    if (bossScript) {
+                        console.log('boss tack dame')
+                        bossScript.takeDamage(2);
                         if (bossScript.getHp() <= 0) {
                             this.winner = 'player';
                         }
@@ -459,9 +461,11 @@ const GameController = cc.Class({
 
 
     getWinner() {
-        if (this.winner != undefined) {
-            return this.winner;
+        if (this.winner == undefined || this.winner == null) {
+            return;
         }
+
+        return this.winner;
     },
 
     getNumberOfHero() {
@@ -491,15 +495,21 @@ const GameController = cc.Class({
         this.heros = []; // hero in game
         this.gridMap = [];
         this.winner = null; // 'boss', 'player'
+
+        this.setFocusedHero(0)
     },
 
     checkWin() {
+        console.log('check win function ')
         if (this.heros.length == 0) {
+            this.isMoving = false;
             this.winner = 'boss';
         }
         let bossScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
         if (!bossScript) {
             if (bossScript.getHp() <= 0) {
+                // this.setWonMap();
+                this.isMoving = false;
                 this.winner = 'player';
             }
         }
@@ -522,9 +532,19 @@ const GameController = cc.Class({
         // remove hero from the list
         this.heros[this.heros.indexOf(hero)].focusEffect.active = false;
         this.heros.splice(this.heros.indexOf(hero), 1);
-        this.setFocusedHero(0);
+        if (hero == this.focusedHero) this.setFocusedHero(0);
         
         this.checkWin();
+    },
+
+    getWonMap() {
+        if (this.gameWonIndex == undefined || this.gameWonIndex == null) this.gameWonIndex = 0;
+        return this.gameWonIndex;
+    },
+
+    setWonMap() {
+        console.log('e321312');
+        this.gameWonIndex = this.gameWonIndex + 1;
     }
 
 });

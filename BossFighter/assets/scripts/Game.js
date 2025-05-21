@@ -288,6 +288,7 @@ cc.Class({
                 this.winnerNotificationLabel.string = this.gameController.getWinner();
                 this.winnerNotificationLabel.node.active = true;
                 this.winnerNotificationLabel.node.parent.active = true;
+                this.gameController.setWonMap();
                 cc.director.pause();
             }
         }
@@ -317,11 +318,12 @@ cc.Class({
         }
 
         setTimeout(() => {
-            if (this.gameController.getWinner() == undefined) {
+            if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
+                this.endGameNotification();
+                return;
+            } else {
                 this.gameController.bossAttack();
                 this.bossAutoAttack();
-            } else {
-                 this.endGameNotification();
             }
         }, 2000);   
     },
@@ -339,7 +341,7 @@ cc.Class({
         }
 
         setTimeout(() => {
-            if (this.gameController.getWinner() == undefined) {
+            if (!this.gameController.getWinner()) {
                 this.gameController.bossCastSkill();
                 this.spawnSkill();
                 this.bossAutoAttack();
@@ -350,7 +352,8 @@ cc.Class({
     },
 
     turnOnAutoMode() {    
-        if (this.gameController.getWinner() != undefined) {
+        if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
+            this.gameController.setWonMap();
             this.endGameNotification();
             return;
         }
@@ -378,7 +381,7 @@ cc.Class({
         }
         // this.resetGame();
         this.gameController.newGame();
-        this.gameController.setFocusedHero(0);
+        // this.gameController.setFocusedHero(0);
         cc.director.loadScene(GAME_DATA.GameScene.MAP_SELECT)
     },
 
@@ -401,7 +404,10 @@ cc.Class({
     endGameNotification() {
         this.winnerNotificationLabel.string = this.gameController.getWinner();
         this.winnerNotificationLabel.node.parent.active = true;
-        cc.director.pause()
+            cc.director.pause()
+        // this.scheduleOnce(() => {
+        //     cc.director.pause()
+        // }, 0.5)
     }
 
 });
