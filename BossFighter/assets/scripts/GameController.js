@@ -195,9 +195,10 @@ const GameController = cc.Class({
         // set the other heroes scale to 1
         for (let i = 0; i < this.heros.length; i++) {
             if (i == heroIndex) {
-                this.heros[i].scale = 1.5;
+                console.log(this.heros[i].focusEffect)
+                this.heros[i].focusEffect.active = true;
             } else {
-                this.heros[i].scale = 1;
+                this.heros[i].focusEffect.active = false;
             }
         }
 
@@ -338,16 +339,11 @@ const GameController = cc.Class({
                     if (nearestHero.mainScript.getCurrentHp() <= 0) {
                         console.log('nearest hero is dead');
                         // remove hero from the list
+                        this.heros[this.heros.indexOf(nearestHero)].focusEffect.active = false;
                         this.heros.splice(this.heros.indexOf(nearestHero), 1);
-                        this.focusedHero.scale = 1;
-
-                        console.log('heros', this.heros);
-                        // this.focusedHero = this.heros[0]
-                        // console.log('focus hero', this.focusedHero);
                         this.setFocusedHero(0);
 
                         if (this.heros.length == 0) {
-                            console.log('hehf')
                             this.winner = 'boss';
 
                             return;

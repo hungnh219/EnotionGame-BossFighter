@@ -260,7 +260,21 @@
     "boss1": {
       "__uuid__": "915a487c-2953-48dd-a83e-99825bf67c2a"
     },
+    "focusEffectPrefab": {
+      "__uuid__": "8f77de87-8b0d-4c7e-a1b3-fc961fc4e785"
+    },
     "mapIndex": 0,
+    "testSkills": [
+      {
+        "__uuid__": "22953519-e648-4e8d-9e2c-2f7b8ded2610"
+      },
+      {
+        "__uuid__": "00b4b484-fd12-4cb6-bf5a-7a17461a5e4f"
+      },
+      {
+        "__uuid__": "534bee7b-1cfc-4939-89fd-402ead830ad9"
+      }
+    ],
     "_id": "cb8D8Be11Kb7BhNhrpGKRe"
   },
   {

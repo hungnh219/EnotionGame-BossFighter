@@ -23,8 +23,10 @@ cc.Class({
         mapLayout: cc.Layout,
 
         boss1: cc.Prefab,
-
+        focusEffectPrefab: cc.Prefab,
         mapIndex: 0,
+
+        testSkills: [cc.Prefab],
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -78,6 +80,7 @@ cc.Class({
         if (this.heros) this.spawnHero(this.heros);
         this.spawnBoss();
         this.turnOnAutoBossAttack();
+        this.spawnTestSkill();
     },
 
     // update (dt) {},
@@ -88,9 +91,13 @@ cc.Class({
         heroPrefabs.forEach((heroPrefab, index) => {
             console.log(heroPrefab)
             let prefabNode = cc.instantiate(heroPrefab)
+            let effectNode = cc.instantiate(this.focusEffectPrefab)
+            prefabNode.focusEffect = effectNode;
+            effectNode.setPosition(cc.v2(0, this.mapTileHeight));
+            effectNode.active = false;
+            prefabNode.addChild(effectNode);
 
             this.rootNode.addChild(prefabNode);
-            // this.gameController
             this.gameController.addHero(prefabNode);
             this.addObjectIntoMap(index, 0, 1, prefabNode);
         });
@@ -117,6 +124,44 @@ cc.Class({
         this.addObjectIntoMap(posX, posY, size, this.bossNode);
     },
 
+    spawnTestSkill() {
+        console.log(this.testSkills[this.mapIndex], 'test skill map')
+        console.log(this.testSkills, 'test skill')
+        setInterval(() => {
+            let randomNumber = Math.floor(Math.random() * 3)
+            let testSkill = null;
+            if (this.testSkills[this.mapIndex] == undefined) {
+                console.log('no test skill map')
+                return;
+            }
+            if (randomNumber == 0) {
+                testSkill = cc.instantiate(this.testSkills[0]);
+            }
+            if (randomNumber == 1) {
+                testSkill = cc.instantiate(this.testSkills[1]);
+            }
+            if (randomNumber == 2) {
+                testSkill = cc.instantiate(this.testSkills[2]);
+            }
+
+            let randomX = Math.floor(Math.random() * this.mapWidth);
+            let randomY = Math.floor(Math.random() * this.mapHeight);
+            console.log(randomX, randomY, 'random pos')
+
+            let size = Math.floor(Math.random() * 2) + 1;
+            this.rootNode.addChild(testSkill);
+            this.addObjectIntoMap(randomX, randomY, size, testSkill);
+            
+            // detroy test skill after 5 seconds
+            setTimeout(() => {
+                testSkill.destroy();
+                this.gridMap[randomX][randomY].object = null;
+                this.gameController.updateWalkable(randomX, randomY, true);
+            }
+            , 300);
+        }, 1000);
+
+    },
     initMapView() {
         this.mapLayout.node.removeAllChildren();
         console.log('check reset')
@@ -254,10 +299,10 @@ cc.Class({
         //     this.gameController.heroSkill();
         // }
 
-        // if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
-        //     console.log("event", event);
-        //     this.gameController.heroMove(event);
-        // }
+        if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
+            console.log("event", event);
+            this.gameController.heroMove(event);
+        }
     },
 
 
