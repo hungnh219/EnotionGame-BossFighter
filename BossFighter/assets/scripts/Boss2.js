@@ -1,7 +1,9 @@
 const ANIMATION_NAME = {
-    // IDLE: 'boss3-idle',
-    MELEE_ATTACK: 'samurai-melee-attack',
-    // DIE: 'boss3-die',
+    INTRO: 'boss2-intro',
+    MELEE_ATTACK: 'boss2-melee-attack',
+    HURT: 'boss2-hurt',
+    DEATH: 'boss2-death',
+    CAST_SKILL: 'boss2-cast-skill',
 }
 
 cc.Class({
@@ -17,27 +19,30 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
         this.hp = this.maxHp;
         this.imageSprite.node.scaleX = 1.5;
         this.imageSprite.node.scaleY = 1.5;
     },
 
-    takeDamage(damage){
+    takeDamage(damage) {
         this.hp -= damage;
         this.hp = Math.max(this.hp, 0);
-        if(this.hpBar) this.hpBar.progress = this.hp / this.maxHp;
+        if (this.hpBar) this.hpBar.progress = this.hp / this.maxHp;
 
-        if(this.hp <= 0){
+        if (this.hp <= 0) {
             this.die();
         }
     },
-
     castSkill() {
-
+        this.playAnimation(ANIMATION_NAME.CAST_SKILL, false);
     },
-    die(){
-        // this.onDestroy.destroy();
+    affectDamage() {
+        this.castSkill();
+        return this.normalAttackPower * 2;
+    },
+    die() {
+        this.node.destroy();
     },
     attack() {
         // animation skill
@@ -49,7 +54,7 @@ cc.Class({
     getHp() {
         return this.hp;
     },
-    start () {
+    start() {
 
     },
     playAnimation(animationName, loop = false) {
@@ -59,7 +64,7 @@ cc.Class({
 
         this.anim.play(animationName);
 
-        if (!loop) {
+        if (loop) {
             this.anim.once('finished', () => {
                 this.playAnimation(animationName);
             });

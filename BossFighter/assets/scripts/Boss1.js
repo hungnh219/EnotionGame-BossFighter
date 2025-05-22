@@ -42,7 +42,11 @@ cc.Class({
     },
 
     castSkill() {
-
+        this.playAnimation(ANIMATION_NAME.CAST_SKILL, false);
+    },
+    affectDamage() {
+        this.castSkill();
+        return this.normalAttackPower * 2;
     },
     die() {
         this.node.destroy();
