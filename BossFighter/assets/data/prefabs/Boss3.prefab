@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Samurai",
+    "_name": "Boss",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -28,10 +28,13 @@
     "_components": [
       {
         "__id__": 13
+      },
+      {
+        "__id__": 14
       }
     ],
     "_prefab": {
-      "__id__": 14
+      "__id__": 15
     },
     "_opacity": 255,
     "_color": {
@@ -110,8 +113,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 140,
+      "height": 93
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -122,8 +125,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        -39,
+        21,
         0,
         0,
         0,
@@ -163,10 +166,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "f4b4a4a4-aff5-4e86-85bb-60bf659fc8e2"
+      "__uuid__": "09ee6e84-3eb9-47b6-a759-6c66bcd8ac0d"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -176,9 +179,7 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "ba1ce390-7036-4b5d-b4b3-535fc845caaf"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {
@@ -189,11 +190,21 @@
       "__id__": 2
     },
     "_enabled": true,
-    "_defaultClip": null,
+    "_defaultClip": {
+      "__uuid__": "b9ea8cb3-4130-4eb2-9ae7-a9dead89a7be"
+    },
     "_clips": [
-      null,
       {
-        "__uuid__": "ad2a2994-c5b2-4177-86cc-6a0de15caf38"
+        "__uuid__": "73992410-ed35-4971-92e3-0bf89ad47ba3"
+      },
+      {
+        "__uuid__": "b9ea8cb3-4130-4eb2-9ae7-a9dead89a7be"
+      },
+      {
+        "__uuid__": "0df1962b-324f-480c-9e23-8b9022eada0c"
+      },
+      {
+        "__uuid__": "62e1ffe4-b2fa-4c6b-84e8-07272514f6c7"
       }
     ],
     "playOnLoad": false,
@@ -207,7 +218,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "557wnU1PpAqq2mV3lgu4yD",
+    "fileId": "f86AvZAsJCd5CYaEgVMdGe",
     "sync": false
   },
   {
@@ -244,7 +255,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
+      "width": 48,
       "height": 8
     },
     "_anchorPoint": {
@@ -257,7 +268,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        32,
+        46,
         0,
         0,
         0,
@@ -301,14 +312,14 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 228,
+      "g": 28,
+      "b": 28,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
+      "width": 48,
       "height": 8
     },
     "_anchorPoint": {
@@ -385,7 +396,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "c4c999W1pFX6PtwJY4BJz1",
+    "fileId": "f1Aj2A03tG4bxk19FgD1MX",
     "sync": false
   },
   {
@@ -428,7 +439,7 @@
       "__id__": 6
     },
     "_enabled": true,
-    "_N$totalLength": 40,
+    "_N$totalLength": 48,
     "_N$barSprite": {
       "__id__": 8
     },
@@ -445,33 +456,40 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "92y8ACre9NWoEDlOUTLenT",
+    "fileId": "ceORet6RNE2aQ/QAUKPvHv",
     "sync": false
   },
   {
-    "__type__": "26dd3Ct4kFMAqzBq1Ul+wKQ",
+    "__type__": "cc.CircleCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "role": "Tanker",
-    "maxHp": 100,
-    "maxMana": 100,
-    "moveSpeed": 200,
-    "attackRange": 100,
-    "normalAttackPower": 10,
-    "manaPerAttack": 10,
-    "imageSprite": {
-      "__id__": 3
+    "tag": 0,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
     },
-    "skillCost": 30,
-    "ultimateCost": 80,
-    "skillCooldown": 5,
-    "ultimateCooldown": 12,
+    "_radius": 50,
+    "_id": ""
+  },
+  {
+    "__type__": "0fe9dOH4IdGUY+wXetPV3Qk",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "maxHp": 100,
     "hpBar": {
       "__id__": 11
+    },
+    "imageSprite": {
+      "__id__": 3
     },
     "_id": ""
   },

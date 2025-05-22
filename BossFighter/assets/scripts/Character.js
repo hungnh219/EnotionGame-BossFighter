@@ -45,8 +45,6 @@ cc.Class({
     },
 
     start() {
-        console.log('Initial position:', this.node.position);
-
     },
 
     // update(dt) {

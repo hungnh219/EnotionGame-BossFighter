@@ -1,12 +1,12 @@
 {
   "__type__": "cc.AnimationClip",
-  "_name": "boss2-idle",
+  "_name": "boss1-idle",
   "_objFlags": 0,
   "_native": "",
   "_duration": 0.25,
   "sample": 60,
   "speed": 0.25,
-  "wrapMode": 2,
+  "wrapMode": 0,
   "curveData": {
     "comps": {
       "cc.Sprite": {

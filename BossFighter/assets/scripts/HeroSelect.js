@@ -155,8 +155,7 @@ cc.Class({
     },
 
     clockHero() {
-        if (this.heroPicked != null) {
-            console.log(this.heroLockedList.node.childrenCount, 'test 12312', this.maxHero);
+        if (this.heroPicked.prefab != null) {
             if (this.heroLockedList.node.childrenCount == this.maxHero + 1) return;
             const heroImageNode = new cc.Node('HeroImageNode');
             const sprite = heroImageNode.addComponent(cc.Sprite);
@@ -183,6 +182,15 @@ cc.Class({
 
     playGame() {
         // this.gameController.set
+        if (this.gameController.getHeroPrefabs().length == 0 || this.gameController.getHeroPrefabs() == undefined || this.gameController.getHeroPrefabs() == null) {
+            return;
+        }
+
         cc.director.loadScene(GAME_DATA.GameScene.GAME)
+    },
+
+    backToMapSelect() {
+        this.gameController.backToMapSelect();
+        cc.director.loadScene(GAME_DATA.GameScene.MAP_SELECT);
     }
 });

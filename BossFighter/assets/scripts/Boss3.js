@@ -1,9 +1,11 @@
-// Learn cc.Class:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/class.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
+const ANIMATION_NAME = {
+    IDLE: 'boss3-idle',
+    MELEE_ATTACK: 'boss3-melee-attack',
+    RANGED_ATTACK: 'boss3-ranged-attack',
+    SKILL: 'boss3-skill',
+    WALK: 'boss3-walk',
+    DIE: 'boss3-die',
+}
 
 cc.Class({
     extends: cc.Component,
@@ -41,7 +43,7 @@ cc.Class({
     },
     attack() {
         // animation skill
-
+        this.playAnimation(ANIMATION_NAME.RANGED_ATTACK, false);
         return 10; // dame
     },
     getHp() {
@@ -50,6 +52,20 @@ cc.Class({
     start () {
 
     },
+
+    playAnimation(animationName, loop = false) {
+        if (!this.anim) {
+            this.anim = this.imageSprite.node.getComponent(cc.Animation);
+        }
+
+        this.anim.play(animationName);
+
+        if (!loop) {
+            this.anim.once('finished', () => {
+                this.playAnim('idle');
+            });
+        }
+    }
 
     // update (dt) {},
 });

@@ -45,7 +45,6 @@ cc.Class({
     moveAnimation(event) {
         const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
-        console.log('moveAnimation', event);
         if (event === cc.macro.KEY.w) {
             animation.play('adc-top-walk');
         } else if (event === cc.macro.KEY.s) {

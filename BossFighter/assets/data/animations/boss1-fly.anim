@@ -1,12 +1,12 @@
 {
   "__type__": "cc.AnimationClip",
-  "_name": "boss2-fly",
+  "_name": "boss1-fly",
   "_objFlags": 0,
   "_native": "",
   "_duration": 0.1,
   "sample": 60,
   "speed": 0.2,
-  "wrapMode": 2,
+  "wrapMode": 1,
   "curveData": {
     "comps": {
       "cc.Sprite": {

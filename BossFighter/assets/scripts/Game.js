@@ -22,6 +22,9 @@ cc.Class({
         mapIndex: 0,
 
         testSkills: [cc.Prefab],
+
+        pauseButton: cc.Button,
+        resumeButton: cc.Button,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -47,10 +50,8 @@ cc.Class({
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
 
         // test add boss into map
-        this.winnerNotificationLabel.node.zIndex = 999;
+        this.winnerNotificationLabel.node.parent.zIndex = 999;
         this.rootNode.sortAllChildren();
-
-
     },
 
     start() {
@@ -76,7 +77,6 @@ cc.Class({
         this.turnOnAutoSkill();
         this.turnOnAutoMode();
         // this.spawnTestSkill();
-
 
     },
 
@@ -289,8 +289,9 @@ cc.Class({
             this.gameController.heroAttack();
             if (this.gameController.getWinner()) {
                 this.winnerNotificationLabel.string = this.gameController.getWinner();
-                this.winnerNotificationLabel.node.active = true;
+                // this.winnerNotificationLabel.node.active = true;
                 this.winnerNotificationLabel.node.parent.active = true;
+                this.gameController.setWonMap();
                 cc.director.pause();
             }
         }
@@ -325,11 +326,12 @@ cc.Class({
         }
 
         setTimeout(() => {
-            if (this.gameController.getWinner() == undefined) {
+            if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
+                this.endGameNotification();
+                return;
+            } else {
                 this.gameController.bossAttack();
                 this.bossAutoAttack();
-            } else {
-                this.endGameNotification();
             }
         }, 2000);
     },
@@ -347,7 +349,7 @@ cc.Class({
         }
 
         setTimeout(() => {
-            if (this.gameController.getWinner() == undefined) {
+            if (!this.gameController.getWinner()) {
                 this.gameController.bossCastSkill();
                 this.spawnSkill();
                 this.bossAutoAttack();
@@ -357,8 +359,9 @@ cc.Class({
         }, 3000 + delay);
     },
 
-    turnOnAutoMode() {
-        if (this.gameController.getWinner() != undefined) {
+    turnOnAutoMode() {    
+        if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
+            this.gameController.setWonMap();
             this.endGameNotification();
             return;
         }
@@ -386,7 +389,7 @@ cc.Class({
         }
         // this.resetGame();
         this.gameController.newGame();
-        this.gameController.setFocusedHero(0);
+        // this.gameController.setFocusedHero(0);
         cc.director.loadScene(GAME_DATA.GameScene.MAP_SELECT)
     },
 
@@ -409,7 +412,22 @@ cc.Class({
     endGameNotification() {
         this.winnerNotificationLabel.string = this.gameController.getWinner();
         this.winnerNotificationLabel.node.parent.active = true;
-        cc.director.pause()
-    }
+            cc.director.pause()
+        // this.scheduleOnce(() => {
+        //     cc.director.pause()
+        // }, 0.5)
+    },
+
+    pauseGame() {
+        cc.director.pause();
+        this.pauseButton.node.active = false;
+        this.resumeButton.node.active = true;
+    },
+
+    resumeGame() {
+        cc.director.resume();
+        this.pauseButton.node.active = true;
+        this.resumeButton.node.active = false;
+    },
 
 });

@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Boss2",
+    "_name": "Samurai",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -163,7 +163,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "e036486d-f2ad-4ff7-acc8-0f2ed367031e"
+      "__uuid__": "f4b4a4a4-aff5-4e86-85bb-60bf659fc8e2"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -176,7 +176,9 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": null,
+    "_atlas": {
+      "__uuid__": "ba1ce390-7036-4b5d-b4b3-535fc845caaf"
+    },
     "_id": ""
   },
   {
@@ -190,18 +192,8 @@
     "_defaultClip": null,
     "_clips": [
       null,
-      null,
       {
-        "__uuid__": "d69c15c7-5697-4ff4-a0c1-03e889b727b2"
-      },
-      {
-        "__uuid__": "2d25c250-2dd0-484a-b783-c879f1cc135c"
-      },
-      {
-        "__uuid__": "e99646aa-7520-442f-8d5d-37c91c69fb5e"
-      },
-      {
-        "__uuid__": "f170f233-f92b-4861-b166-117582678a9b"
+        "__uuid__": "ad2a2994-c5b2-4177-86cc-6a0de15caf38"
       }
     ],
     "playOnLoad": false,
@@ -309,9 +301,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 236,
-      "g": 16,
-      "b": 16,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_contentSize": {
@@ -457,30 +449,19 @@
     "sync": false
   },
   {
-    "__type__": "26dd3Ct4kFMAqzBq1Ul+wKQ",
+    "__type__": "f8c1aj/sVtL17s/J2yEQ6WO",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "role": "Tanker",
     "maxHp": 100,
-    "maxMana": 100,
-    "moveSpeed": 200,
-    "attackRange": 100,
-    "normalAttackPower": 10,
-    "manaPerAttack": 10,
-    "imageSprite": {
-      "__id__": 3
-    },
-    "skillPrefab": null,
-    "skillCost": 30,
-    "ultimateCost": 80,
-    "skillCooldown": 5,
-    "ultimateCooldown": 12,
     "hpBar": {
       "__id__": 11
+    },
+    "imageSprite": {
+      "__id__": 3
     },
     "_id": ""
   },
