@@ -27,10 +27,8 @@ cc.Class({
     },
 
     onCollisionEnter: function (other, self) {
-        console.log('Chiêu va chạm với:', other.node.name);
 
         if (other.node.getComponent('Boss1')) {
-            console.log('Chiêu va chạm với boss:', other.node.name);
             other.node.getComponent('Boss1').takeDamage(this.damage);
         }
 

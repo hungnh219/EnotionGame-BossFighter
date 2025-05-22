@@ -25,6 +25,7 @@ cc.Class({
         heroLockedList: cc.Layout,
         selectedHero: cc.Sprite,
 
+        lockHeroButton: cc.Button,
         numberOfHeros: [cc.Integer],
     },
 
@@ -177,6 +178,7 @@ cc.Class({
             }
       
             this.gameController.addSelectedHeroPrefab(this.heroPicked.prefab);
+            this.playSoundEffect();
         }
     },
 
@@ -192,5 +194,12 @@ cc.Class({
     backToMapSelect() {
         this.gameController.backToMapSelect();
         cc.director.loadScene(GAME_DATA.GAME_SCENE.MAP_SELECT);
+    },
+
+    playSoundEffect() {
+        let audioSource = this.lockHeroButton.node.getComponent(cc.AudioSource);
+        if (audioSource) {
+            audioSource.play();
+        }
     }
 });

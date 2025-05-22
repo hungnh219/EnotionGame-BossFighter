@@ -111,7 +111,6 @@ cc.Class({
         this.hp -= damage;
         this.hp = Math.max(this.hp, 0);
         if (this.hpBar){
-            console.log("Animation Name HURT:", ANIMATION_NAME.HURT);
             this.playAnimation(ANIMATION_NAME.HURT, false);
             this.hpBar.progress = this.hp / this.maxHp;
         } 
@@ -135,7 +134,6 @@ cc.Class({
     },
 
     playAnimation(animationName, loop = false) {
-        console.log("Animation Name:", animationName);
         if (!this.anim) {
             this.anim = this.imageSprite.node.getComponent(cc.Animation);
             // this.playSoundEffect();
@@ -170,6 +168,10 @@ cc.Class({
 
     getAttackCooldown() {
         return this.attackCooldown;
+    },
+
+    getSkillCooldown() {
+        return this.skillCooldown;
     },
 
     playSoundEffect() {

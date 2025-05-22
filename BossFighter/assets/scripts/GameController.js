@@ -281,6 +281,19 @@ const GameController = cc.Class({
         }
     },
 
+    getSkillCooldown(hero) {
+        if (hero == undefined || hero == null) hero = this.getFocusedHero();
+        // const hero = this.getFocusedHero();
+        if (!hero.mainScript) hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
+
+        if (hero.mainScript) {
+            let attackCooldown = hero.mainScript.getAttackCooldown();
+            if (attackCooldown >= 0) {
+                return attackCooldown;
+            }
+        }
+    },
+
     heroMoveAnimation(keyCode, hero) {
         if (hero == undefined || hero == null) hero = this.getFocusedHero();
 
@@ -301,8 +314,6 @@ const GameController = cc.Class({
                 this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
                 if (this.boss.mainScript) {
                     const damage = hero.mainScript.affectDamage();
-
-
                     this.boss.mainScript.takeDamage(damage);
 
                     // if (this.boss.mainScript.get)
@@ -311,7 +322,7 @@ const GameController = cc.Class({
                     // this.checkWin();
                     if (this.boss.mainScript.getHp() == 0) {
                         // player win
-
+                        console.log('boss die')
                         this.winner = GAME_DATA.ROLE.PLAYER;
                         this.checkWin();
                     }
@@ -532,7 +543,7 @@ const GameController = cc.Class({
                 let dame = boss.mainScript.attack();
                 if (dame <= 0 || dame == undefined) return;
                 this.characterTakeDame(nearestHero, dame);
-                // this.checkWin();
+                this.checkWin();
             } else {
                 console.log('no attack function');
             }

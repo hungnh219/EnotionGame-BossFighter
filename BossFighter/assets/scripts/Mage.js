@@ -132,7 +132,6 @@ cc.Class({
     },
 
     playAnimation(animationName, loop = false) {
-        console.log("Animation Name:", animationName);
         if (!this.anim) {
             this.anim = this.imageSprite.node.getComponent(cc.Animation);
         }
@@ -169,6 +168,10 @@ cc.Class({
 
     getAttackCooldown() {
         return this.attackCooldown;
+    },
+
+    getSkillCooldown() {
+        return this.skillCooldown;
     },
 
     // update (dt) {},

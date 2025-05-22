@@ -47,7 +47,7 @@ cc.Class({
         this.bossNode = null;
         this.heroPrefabs = [];
         this.isAttacking = false;
-
+        this.isCastingSkill = false;
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
 
@@ -77,8 +77,13 @@ cc.Class({
         this.spawnBoss();
         this.turnOnAutoBossAttack();
         this.turnOnAutoSkill();
-        this.turnOnAutoMode();
+        // this.turnOnAutoMode();
         // this.spawnTestSkill();
+
+        // this.gameController.setMapPicked(this.mapIndex);
+        if (this.mapIndex > 0) {
+            this.bossAutoSkill();
+        }
 
     },
 
@@ -177,7 +182,7 @@ cc.Class({
             // this.gridMap[randomX][randomY].object = null;
             // this.gameController.updateWalkable(randomX, randomY, true);
         }
-            , 500);
+        , 500);
     },
 
     initMapView() {
@@ -313,6 +318,16 @@ cc.Class({
         }
     },
 
+    heroSkill() {
+        if (this.isCastingSkill) return;
+        this.isCastingSkill = true;
+        this.gameController.heroSkill();
+
+        this.scheduleOnce(() => {
+            this.isCastingSkill = false;
+        }, this.gameController.getSkillCooldown()) // get cool down from hero
+    },
+
     turnOnAutoBossAttack() {
         this.bossAutoAttack();
     },
@@ -346,7 +361,7 @@ cc.Class({
     },
 
     bossAutoSkill() {
-        let delay = Math.random() * 3000;
+        let delay = Math.random() * 1000;
         if (this.gameController.boss == undefined) {
             console.log("no boss node");
             return;
@@ -360,12 +375,12 @@ cc.Class({
         setTimeout(() => {
             if (!this.gameController.getWinner()) {
                 this.gameController.bossCastSkill();
-                // this.spawnSkill();
+                this.spawnSkill();
                 this.bossAutoAttack();
             } else {
                 this.endGameNotification();
             }
-        }, 3000 + delay);
+        }, 1000 + delay);
     },
 
     turnOnAutoMode() {    

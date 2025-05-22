@@ -502,6 +502,7 @@
     "ultimateCost": 80,
     "skillCooldown": 5,
     "ultimateCooldown": 12,
+    "attackCooldown": 1,
     "hpBar": {
       "__id__": 11
     },
