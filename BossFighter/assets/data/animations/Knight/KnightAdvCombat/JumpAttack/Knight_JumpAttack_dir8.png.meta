@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "31c9aa8a-d1cd-441a-b941-ffa19b784f7a",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 1280,
+  "height": 1280,
+  "platformSettings": {},
+  "subMetas": {
+    "Knight_JumpAttack_dir8": {
+      "ver": "1.0.6",
+      "uuid": "130d92bb-c2f3-4e40-80c5-5deb7bc80161",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "31c9aa8a-d1cd-441a-b941-ffa19b784f7a",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 1.5,
+      "offsetY": 26,
+      "trimX": 94,
+      "trimY": 61,
+      "width": 1095,
+      "height": 1106,
+      "rawWidth": 1280,
+      "rawHeight": 1280,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "mage-top-walk",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.2,
+  "sample": 20,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "82ba350e-4ae8-4542-9cd7-f114e0356fb6"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "e0a6de7c-7a51-4601-82d8-6fe8856e0976"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "977f70b5-1ac5-42d1-91fd-02b6a53390e4"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "300dd11d-dd6f-4e9c-b25d-cb1a59f8b08d"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

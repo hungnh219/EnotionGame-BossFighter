@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "0a4260e3-7676-4903-8231-bd5ef3708007",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 400,
+  "height": 100,
+  "platformSettings": {},
+  "subMetas": {
+    "Soldier-Death": {
+      "ver": "1.0.6",
+      "uuid": "01fc69a2-6980-439f-958d-064209a67777",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "0a4260e3-7676-4903-8231-bd5ef3708007",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 4.5,
+      "offsetY": 0.5,
+      "trimX": 41,
+      "trimY": 39,
+      "width": 327,
+      "height": 21,
+      "rawWidth": 400,
+      "rawHeight": 100,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

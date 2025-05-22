@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "4415b9dc-93f0-4f05-b2f7-6876c29e516c",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 6144,
+  "height": 512,
+  "platformSettings": {},
+  "subMetas": {
+    "Boss_Samurai_Death": {
+      "ver": "1.0.6",
+      "uuid": "8909f3b0-6b8b-4edf-9e8d-b2c1bb23412b",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "4415b9dc-93f0-4f05-b2f7-6876c29e516c",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 31.5,
+      "offsetY": -1,
+      "trimX": 85,
+      "trimY": 6,
+      "width": 6037,
+      "height": 502,
+      "rawWidth": 6144,
+      "rawHeight": 512,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

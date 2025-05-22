@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "e1c1136a-57d7-4b55-bf53-d7de96b1ea25",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 1024,
+  "height": 1024,
+  "platformSettings": {},
+  "subMetas": {
+    "game-victory-no-background": {
+      "ver": "1.0.6",
+      "uuid": "a88c6e35-d551-42ad-9dde-c48f42f66909",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "e1c1136a-57d7-4b55-bf53-d7de96b1ea25",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": -74,
+      "trimX": 160,
+      "trimY": 237,
+      "width": 704,
+      "height": 698,
+      "rawWidth": 1024,
+      "rawHeight": 1024,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

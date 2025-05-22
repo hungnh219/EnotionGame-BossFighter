@@ -1,0 +1,819 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>Boss_Samurai_Death0.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{51,197}</string>
+				<key>spriteSize</key>
+				<string>{51,197}</string>
+				<key>textureRect</key>
+				<string>{{0,0},{51,197}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5098039215686274,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death1.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{100,160}</string>
+				<key>spriteSize</key>
+				<string>{100,160}</string>
+				<key>textureRect</key>
+				<string>{{52,0},{100,160}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death2.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{164,116}</string>
+				<key>spriteSize</key>
+				<string>{164,116}</string>
+				<key>textureRect</key>
+				<string>{{153,0},{164,116}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death3.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{153,114}</string>
+				<key>spriteSize</key>
+				<string>{153,114}</string>
+				<key>textureRect</key>
+				<string>{{318,0},{153,114}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.49673202614379086,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death4.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{99,171}</string>
+				<key>spriteSize</key>
+				<string>{99,171}</string>
+				<key>textureRect</key>
+				<string>{{472,0},{99,171}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5050505050505051,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death5.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{75,188}</string>
+				<key>spriteSize</key>
+				<string>{75,188}</string>
+				<key>textureRect</key>
+				<string>{{572,0},{75,188}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5066666666666667,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death6.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{78,171}</string>
+				<key>spriteSize</key>
+				<string>{78,171}</string>
+				<key>textureRect</key>
+				<string>{{648,0},{78,171}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death7.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{80,149}</string>
+				<key>spriteSize</key>
+				<string>{80,149}</string>
+				<key>textureRect</key>
+				<string>{{727,0},{80,149}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death8.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{104,138}</string>
+				<key>spriteSize</key>
+				<string>{104,138}</string>
+				<key>textureRect</key>
+				<string>{{808,0},{104,138}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death9.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{131,123}</string>
+				<key>spriteSize</key>
+				<string>{131,123}</string>
+				<key>textureRect</key>
+				<string>{{913,0},{131,123}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5038167938931297,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death10.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{144,118}</string>
+				<key>spriteSize</key>
+				<string>{144,118}</string>
+				<key>textureRect</key>
+				<string>{{1045,0},{144,118}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death11.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{149,116}</string>
+				<key>spriteSize</key>
+				<string>{149,116}</string>
+				<key>textureRect</key>
+				<string>{{1190,0},{149,116}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4966442953020134,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death12.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{149,116}</string>
+				<key>spriteSize</key>
+				<string>{149,116}</string>
+				<key>textureRect</key>
+				<string>{{0,198},{149,116}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4966442953020134,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death13.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{149,116}</string>
+				<key>spriteSize</key>
+				<string>{149,116}</string>
+				<key>textureRect</key>
+				<string>{{150,198},{149,116}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4966442953020134,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death14.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{149,116}</string>
+				<key>spriteSize</key>
+				<string>{149,116}</string>
+				<key>textureRect</key>
+				<string>{{300,198},{149,116}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4966442953020134,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death15.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{149,116}</string>
+				<key>spriteSize</key>
+				<string>{149,116}</string>
+				<key>textureRect</key>
+				<string>{{450,198},{149,116}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4966442953020134,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death16.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{149,116}</string>
+				<key>spriteSize</key>
+				<string>{149,116}</string>
+				<key>textureRect</key>
+				<string>{{600,198},{149,116}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4966442953020134,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death17.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{149,116}</string>
+				<key>spriteSize</key>
+				<string>{149,116}</string>
+				<key>textureRect</key>
+				<string>{{750,198},{149,116}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4966442953020134,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death18.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{149,116}</string>
+				<key>spriteSize</key>
+				<string>{149,116}</string>
+				<key>textureRect</key>
+				<string>{{900,198},{149,116}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4966442953020134,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death19.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{149,119}</string>
+				<key>spriteSize</key>
+				<string>{149,119}</string>
+				<key>textureRect</key>
+				<string>{{1050,198},{149,119}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4966442953020134,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death20.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{149,122}</string>
+				<key>spriteSize</key>
+				<string>{149,122}</string>
+				<key>textureRect</key>
+				<string>{{1200,198},{149,122}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4966442953020134,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death21.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{149,126}</string>
+				<key>spriteSize</key>
+				<string>{149,126}</string>
+				<key>textureRect</key>
+				<string>{{0,321},{149,126}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4966442953020134,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death22.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{149,131}</string>
+				<key>spriteSize</key>
+				<string>{149,131}</string>
+				<key>textureRect</key>
+				<string>{{150,321},{149,131}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4966442953020134,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death23.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{149,132}</string>
+				<key>spriteSize</key>
+				<string>{149,132}</string>
+				<key>textureRect</key>
+				<string>{{300,321},{149,132}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4966442953020134,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death24.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{149,132}</string>
+				<key>spriteSize</key>
+				<string>{149,132}</string>
+				<key>textureRect</key>
+				<string>{{450,321},{149,132}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4966442953020134,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death25.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{149,136}</string>
+				<key>spriteSize</key>
+				<string>{149,136}</string>
+				<key>textureRect</key>
+				<string>{{600,321},{149,136}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4966442953020134,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death26.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{153,139}</string>
+				<key>spriteSize</key>
+				<string>{153,139}</string>
+				<key>textureRect</key>
+				<string>{{750,321},{153,139}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.49673202614379086,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death27.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{153,140}</string>
+				<key>spriteSize</key>
+				<string>{153,140}</string>
+				<key>textureRect</key>
+				<string>{{904,321},{153,140}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.49673202614379086,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death28.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{155,140}</string>
+				<key>spriteSize</key>
+				<string>{155,140}</string>
+				<key>textureRect</key>
+				<string>{{1058,321},{155,140}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5032258064516129,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death29.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{155,139}</string>
+				<key>spriteSize</key>
+				<string>{155,139}</string>
+				<key>textureRect</key>
+				<string>{{1214,321},{155,139}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5032258064516129,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death30.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{155,139}</string>
+				<key>spriteSize</key>
+				<string>{155,139}</string>
+				<key>textureRect</key>
+				<string>{{0,462},{155,139}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5032258064516129,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death31.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{155,140}</string>
+				<key>spriteSize</key>
+				<string>{155,140}</string>
+				<key>textureRect</key>
+				<string>{{156,462},{155,140}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5032258064516129,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death32.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{154,139}</string>
+				<key>spriteSize</key>
+				<string>{154,139}</string>
+				<key>textureRect</key>
+				<string>{{312,462},{154,139}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5064935064935064,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death33.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{154,140}</string>
+				<key>spriteSize</key>
+				<string>{154,140}</string>
+				<key>textureRect</key>
+				<string>{{467,462},{154,140}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5064935064935064,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death34.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{154,139}</string>
+				<key>spriteSize</key>
+				<string>{154,139}</string>
+				<key>textureRect</key>
+				<string>{{622,462},{154,139}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5064935064935064,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death35.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{154,139}</string>
+				<key>spriteSize</key>
+				<string>{154,139}</string>
+				<key>textureRect</key>
+				<string>{{777,462},{154,139}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5064935064935064,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death36.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{155,139}</string>
+				<key>spriteSize</key>
+				<string>{155,139}</string>
+				<key>textureRect</key>
+				<string>{{932,462},{155,139}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5032258064516129,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death37.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{155,140}</string>
+				<key>spriteSize</key>
+				<string>{155,140}</string>
+				<key>textureRect</key>
+				<string>{{1088,462},{155,140}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5032258064516129,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death38.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{152,140}</string>
+				<key>spriteSize</key>
+				<string>{152,140}</string>
+				<key>textureRect</key>
+				<string>{{1244,462},{152,140}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death39.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{151,139}</string>
+				<key>spriteSize</key>
+				<string>{151,139}</string>
+				<key>textureRect</key>
+				<string>{{0,603},{151,139}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5033112582781457,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death40.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{154,139}</string>
+				<key>spriteSize</key>
+				<string>{154,139}</string>
+				<key>textureRect</key>
+				<string>{{152,603},{154,139}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5064935064935064,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death41.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{154,139}</string>
+				<key>spriteSize</key>
+				<string>{154,139}</string>
+				<key>textureRect</key>
+				<string>{{307,603},{154,139}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5064935064935064,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death42.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{154,140}</string>
+				<key>spriteSize</key>
+				<string>{154,140}</string>
+				<key>textureRect</key>
+				<string>{{462,603},{154,140}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5064935064935064,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death43.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{153,141}</string>
+				<key>spriteSize</key>
+				<string>{153,141}</string>
+				<key>textureRect</key>
+				<string>{{617,603},{153,141}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.49673202614379086,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death44.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{152,141}</string>
+				<key>spriteSize</key>
+				<string>{152,141}</string>
+				<key>textureRect</key>
+				<string>{{771,603},{152,141}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death45.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{152,140}</string>
+				<key>spriteSize</key>
+				<string>{152,140}</string>
+				<key>textureRect</key>
+				<string>{{924,603},{152,140}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Boss_Samurai_Death46.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{149,139}</string>
+				<key>spriteSize</key>
+				<string>{149,139}</string>
+				<key>textureRect</key>
+				<string>{{1077,603},{149,139}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4966442953020134,0}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>3</integer>
+			<key>realTextureFileName</key>
+			<string>Boss_Samurai_Death.png</string>
+			<key>textureFileName</key>
+			<string>Boss_Samurai_Death.png</string>
+			<key>size</key>
+			<string>{1396,744}</string>
+		</dict>
+	</dict>
+</plist>

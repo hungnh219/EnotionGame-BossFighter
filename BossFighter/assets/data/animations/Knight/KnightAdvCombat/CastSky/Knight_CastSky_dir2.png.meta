@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "7f5a75f5-b674-4b4e-a799-389603a0c9a1",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 1280,
+  "height": 1024,
+  "platformSettings": {},
+  "subMetas": {
+    "Knight_CastSky_dir2": {
+      "ver": "1.0.6",
+      "uuid": "315e6fe6-ab02-4695-829e-c88779068df8",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "7f5a75f5-b674-4b4e-a799-389603a0c9a1",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -3,
+      "offsetY": 34,
+      "trimX": 94,
+      "trimY": 51,
+      "width": 1086,
+      "height": 854,
+      "rawWidth": 1280,
+      "rawHeight": 1024,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

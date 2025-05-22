@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "be15da7e-c425-4249-a295-ad2994a6f4d2",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 768,
+  "height": 768,
+  "platformSettings": {},
+  "subMetas": {
+    "Knight_Climb_dir1": {
+      "ver": "1.0.6",
+      "uuid": "5f449993-e436-4c14-8f2d-9be2f34e034b",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "be15da7e-c425-4249-a295-ad2994a6f4d2",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 4,
+      "offsetY": 75,
+      "trimX": 109,
+      "trimY": 23,
+      "width": 558,
+      "height": 572,
+      "rawWidth": 768,
+      "rawHeight": 768,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

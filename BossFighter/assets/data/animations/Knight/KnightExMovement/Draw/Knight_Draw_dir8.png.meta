@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "fd0d6d59-d935-4a31-94ac-0f70ac4dd721",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 768,
+  "height": 768,
+  "platformSettings": {},
+  "subMetas": {
+    "Knight_Draw_dir8": {
+      "ver": "1.0.6",
+      "uuid": "9a37474f-2879-464e-b044-0497a1898aa9",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "fd0d6d59-d935-4a31-94ac-0f70ac4dd721",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -9.5,
+      "offsetY": 26,
+      "trimX": 92,
+      "trimY": 59,
+      "width": 565,
+      "height": 598,
+      "rawWidth": 768,
+      "rawHeight": 768,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

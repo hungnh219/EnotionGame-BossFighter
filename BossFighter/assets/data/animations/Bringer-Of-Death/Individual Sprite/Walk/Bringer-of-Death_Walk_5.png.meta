@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "739dc850-a732-4f57-b647-85e5f4fe787a",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 140,
+  "height": 93,
+  "platformSettings": {},
+  "subMetas": {
+    "Bringer-of-Death_Walk_5": {
+      "ver": "1.0.6",
+      "uuid": "5b95b139-9b82-455b-b33f-60419b71cecc",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "739dc850-a732-4f57-b647-85e5f4fe787a",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 31,
+      "offsetY": -18.5,
+      "trimX": 77,
+      "trimY": 38,
+      "width": 48,
+      "height": 54,
+      "rawWidth": 140,
+      "rawHeight": 93,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

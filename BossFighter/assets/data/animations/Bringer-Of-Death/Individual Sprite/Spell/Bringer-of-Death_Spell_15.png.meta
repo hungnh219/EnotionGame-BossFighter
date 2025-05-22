@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "c38e21d2-ff23-4e83-86bf-5705d4729dee",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 140,
+  "height": 93,
+  "platformSettings": {},
+  "subMetas": {
+    "Bringer-of-Death_Spell_15": {
+      "ver": "1.0.6",
+      "uuid": "8d0f6f77-52e4-43bc-8ddf-77ad2d4a04ac",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "c38e21d2-ff23-4e83-86bf-5705d4729dee",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -2.5,
+      "offsetY": 2,
+      "trimX": 52,
+      "trimY": 35,
+      "width": 31,
+      "height": 19,
+      "rawWidth": 140,
+      "rawHeight": 93,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
