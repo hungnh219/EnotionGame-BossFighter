@@ -768,18 +768,18 @@
     },
     "backgroundSpriteFrames": [
       {
-        "__uuid__": "6783d0a7-5ca3-4325-87e0-1726b606fabe"
+        "__uuid__": "33c11a5c-2ba7-496b-98f8-c874272207e1"
       },
       {
-        "__uuid__": "23537c22-0a82-402b-8da1-fc7cb9aa636d"
+        "__uuid__": "565b7482-3ae7-428e-b7c2-c6fd7a738d0a"
       },
       {
-        "__uuid__": "758cac62-dc13-43f3-8649-06788d136ed1"
+        "__uuid__": "bcdbe122-493f-4403-ada4-95417f1209da"
       }
     ],
     "tileSpriteFrames": [
       {
-        "__uuid__": "1fb280a0-f5c6-4698-8875-afb0c1a93cb8"
+        "__uuid__": "afc5d102-6585-4e26-9f97-e8744add78e8"
       },
       {
         "__uuid__": "e5946e53-0d4a-4d9c-9843-7a5a673887a5"

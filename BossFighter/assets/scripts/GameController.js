@@ -542,7 +542,11 @@ const GameController = cc.Class({
 
     // boss skill
     bossCastSkill() {
-
+        if (!this.boss || !this.heros || this.heros.length === 0) return;
+        let damage = 20; 
+        this.heros.forEach(hero => {
+            this.characterTakeDame(hero, damage);
+        });
     },
 
 

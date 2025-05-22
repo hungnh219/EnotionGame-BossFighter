@@ -34,7 +34,7 @@ cc.Class({
     onLoad() {
 
         cc.director.getCollisionManager().enabled = true;
-       
+
         // variables
         this.gridMap = [];
         this.isMoving = false;
@@ -178,6 +178,26 @@ cc.Class({
             // this.gameController.updateWalkable(randomX, randomY, true);
         }
             , 500);
+    },
+
+    spawnBossSkillAtHeroes() {
+        let skillPrefab = this.testSkills[0];
+
+        this.heroes.forEach(hero => {
+            let skill = cc.instantiate(skillPrefab);
+            skill.parent = this.rootNode;
+            skill.x = hero.x;
+            skill.y = hero.y;
+
+            if (hero.mainScript == undefined) {
+                hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
+            }
+            if (hero.mainScript) {
+                hero.mainScript.takeDamage(20);
+            }
+
+            skill.runAction(cc.sequence(cc.delayTime(0.5), cc.callFunc(() => skill.destroy())));
+        });
     },
 
     initMapView() {
@@ -361,6 +381,7 @@ cc.Class({
             if (!this.gameController.getWinner()) {
                 this.gameController.bossCastSkill();
                 // this.spawnSkill();
+                this.spawnBossSkillAtHeroes();
                 this.bossAutoAttack();
             } else {
                 this.endGameNotification();
@@ -368,7 +389,7 @@ cc.Class({
         }, 3000 + delay);
     },
 
-    turnOnAutoMode() {    
+    turnOnAutoMode() {
         if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
             this.gameController.setWonMap();
             this.endGameNotification();
@@ -435,7 +456,7 @@ cc.Class({
         if (winner == GAME_DATA.ROLE.PLAYER) {
             this.nextButton.node.active = true;
             notificationPanelBgSprite.spriteFrame = this.backgroundNotificationPanelSpriteFrames[0];
-           
+
         } else {
             // background noti
             notificationPanelBgSprite.spriteFrame = this.backgroundNotificationPanelSpriteFrames[1];
@@ -443,7 +464,7 @@ cc.Class({
         }
         this.winnerNotificationLabel.string = winner;
         this.winnerNotificationLabel.node.parent.active = true;
- 
+
         cc.director.pause()
         this.pauseButton.node.active = false;
         this.resumeButton.node.active = false;
@@ -464,7 +485,7 @@ cc.Class({
     nextGame() {
         if (this.gameController.getWonMap() >= (this.backgroundSpriteFrames.length - 1)) {
             this.nextButton.node.active = false;
-          
+
             return;
         }
         if (cc.director.isPaused()) {

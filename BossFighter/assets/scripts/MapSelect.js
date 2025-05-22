@@ -44,6 +44,7 @@ cc.Class({
         const wonIndex = this.gameController.getWonMap();
 
         const viewNode = this.gameMapPageView.node.getChildByName("view");
+        console.log("viewNode", viewNode);
         if (!viewNode) {
             return;
         }

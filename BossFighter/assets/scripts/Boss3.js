@@ -2,7 +2,7 @@ const ANIMATION_NAME = {
     IDLE: 'boss3-idle',
     MELEE_ATTACK: 'boss3-melee-attack',
     RANGED_ATTACK: 'boss3-ranged-attack',
-    SKILL: 'boss3-skill',
+    CAST_SKILL: 'boss3-cast-skill',
     WALK: 'boss3-walk',
     DIE: 'boss3-die',
 }
@@ -36,7 +36,7 @@ cc.Class({
     },
 
     castSkill() {
-        this.playAnimation(ANIMATION_NAME.SKILL, false);
+        this.playAnimation(ANIMATION_NAME.CAST_SKILL, false);
     },
     affectDamage() {
         this.castSkill();
