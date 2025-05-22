@@ -1,9 +1,4 @@
-// Learn cc.Class:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/class.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
+import GameController from "./GameController";
 
 cc.Class({
     extends: cc.Component,
@@ -14,7 +9,15 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+        const gameController = GameController.getInstance();
+        if (gameController) {
+            this.gameController = gameController;
+        } else {
+            this.gameController = new GameController();
+            cc.game.addPersistRootNode(this.node);
+        }
+    },
 
     direction: null,
 
@@ -28,18 +31,39 @@ cc.Class({
 
     onCollisionEnter: function (other, self) {
 
-        if (other.node.getComponent('Boss1')) {
-            other.node.getComponent('Boss1').takeDamage(this.damage);
-        } else if (other.node.getComponent('Boss2')) {
-            console.log('Chiêu va chạm với boss:', other.node.name);
-            other.node.getComponent('Boss2').takeDamage(this.damage);
-        }
-        else if (other.node.getComponent('Boss3')) {
-            console.log('Chiêu va chạm với boss:', other.node.name);
-            other.node.getComponent('Boss3').takeDamage(this.damage);
-        }
+        // if (other.node.getComponent('Boss1')) {
+        //     other.node.getComponent('Boss1').takeDamage(this.damage);
+        // } else if (other.node.getComponent('Boss2')) {
+        //     console.log('Chiêu va chạm với boss:', other.node.name);
+        //     other.node.getComponent('Boss2').takeDamage(this.damage);
+        // }
+        // else if (other.node.getComponent('Boss3')) {
+        //     console.log('Chiêu va chạm với boss:', other.node.name);
+        //     other.node.getComponent('Boss3').takeDamage(this.damage);
+        // }
 
-        this.node.destroy();
+        // this.node.destroy();
+
+        let boss = this.gameController.getBoss();
+
+        if (boss) {
+            console.log('Chiêu va chạm với boss:', other.node.name);
+            // boss.takeDamage(this.damage);
+
+            this.gameController.bossTakeDame(this.damage);
+        }
+        // const bossTypes = ['Boss1', 'Boss2', 'Boss3'];
+
+        // for (let type of bossTypes) {
+        //     const boss = other.node.getComponent(type);
+        //     if (boss) {
+        //         console.log('Chiêu va chạm với boss:', other.node.name);
+        //         boss.takeDamage(this.damage);
+        //         break;
+        //     }
+        // }
+
+    this.node.destroy();
     },
 
     onCollisionStay: function (other, self) {

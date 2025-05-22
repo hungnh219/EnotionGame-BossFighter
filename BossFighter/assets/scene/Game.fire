@@ -88,6 +88,9 @@
       },
       {
         "__id__": 64
+      },
+      {
+        "__id__": 65
       }
     ],
     "_prefab": null,
@@ -774,24 +777,24 @@
     },
     "backgroundSpriteFrames": [
       {
-        "__uuid__": "6783d0a7-5ca3-4325-87e0-1726b606fabe"
+        "__uuid__": "58a314c8-5d4f-426c-8afb-2745f62c8349"
       },
       {
-        "__uuid__": "23537c22-0a82-402b-8da1-fc7cb9aa636d"
+        "__uuid__": "597c657c-35cc-4b49-9b1f-9b1473e09e6f"
       },
       {
-        "__uuid__": "758cac62-dc13-43f3-8649-06788d136ed1"
+        "__uuid__": "2bf1a005-9079-4667-8621-d25da3db3502"
       }
     ],
     "tileSpriteFrames": [
       {
-        "__uuid__": "1fb280a0-f5c6-4698-8875-afb0c1a93cb8"
+        "__uuid__": "bbfb8529-5295-4cad-8849-ba89eae9a1f9"
       },
       {
-        "__uuid__": "e5946e53-0d4a-4d9c-9843-7a5a673887a5"
+        "__uuid__": "9fa61b8f-3682-4871-9a66-5075b06317c2"
       },
       {
-        "__uuid__": "27653540-3a08-455d-89a0-7a8f9134c512"
+        "__uuid__": "7c043728-2d2f-49e1-9c9f-90582d5f2b80"
       }
     ],
     "bossPrefabs": [
@@ -863,9 +866,7 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "6783d0a7-5ca3-4325-87e0-1726b606fabe"
-    },
+    "_spriteFrame": null,
     "_type": 0,
     "_sizeMode": 0,
     "_fillType": 0,
@@ -3059,5 +3060,24 @@
     "_originalWidth": 0,
     "_originalHeight": 0,
     "_id": "29zXboiXFBKoIV4PQ2liTe"
+  },
+  {
+    "__type__": "cc.AudioSource",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "_clip": {
+      "__uuid__": "cb60b294-8663-4814-b992-349eb6341202"
+    },
+    "_volume": 1,
+    "_mute": false,
+    "_loop": true,
+    "_firstlyEnabled": true,
+    "playOnLoad": true,
+    "preload": false,
+    "_id": "34Wihv1YZF5rlUXJiiiYPl"
   }
 ]

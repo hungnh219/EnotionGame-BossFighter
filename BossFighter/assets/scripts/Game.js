@@ -75,7 +75,7 @@ cc.Class({
 
         if (this.heroPrefabs) this.spawnHero();
         this.spawnBoss();
-        // this.turnOnAutoBossAttack();
+        this.turnOnAutoBossAttack();
         this.turnOnAutoSkill();
         this.turnOnAutoMode();
         // this.spawnTestSkill();
@@ -495,7 +495,7 @@ cc.Class({
     },
 
     nextGame() {
-        if (this.gameController.getWonMap() >= (this.backgroundSpriteFrames.length - 1)) {
+        if (this.gameController.getWonMap() >= (this.backgroundSpriteFrames.length)) {
             this.nextButton.node.active = false;
           
             return;

@@ -1,6 +1,6 @@
 import GameController from "./GameController";
 const ANIMATION_NAME = {
-    MELEE_ATTACK: 'adc-bottom-attack',
+    MELEE_ATTACK: 'adc-top-walk',
     BOTTOM_WALK: 'adc-bottom-walk',
     TOP_WALK: 'adc-top-walk',
     LEFT_WALK: 'adc-left-walk',
@@ -163,6 +163,8 @@ cc.Class({
     },
 
     getAttackDame() {
+        // this.attack();
+        // this.attackAnimation();
         return this.normalAttackPower;
     },
 

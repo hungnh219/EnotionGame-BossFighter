@@ -47,6 +47,9 @@ const GameController = cc.Class({
         this.gridMap = [];
         this.winner = null; // 'boss', 'player'
         this.isAutoMode = false;
+        this.isUsingSkill = false;
+        this.isTurnOnMusic = true;
+
     },
 
     start() {
@@ -232,15 +235,16 @@ const GameController = cc.Class({
 
                 this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
                 if (this.boss.mainScript) {
-                    this.boss.mainScript.takeDamage(attackDame);
-                    // this.checkWin();
-                    // boss die
-                    if (this.boss.mainScript.getHp() == 0) {
-                        // player win
-
-                        this.winner = GAME_DATA.ROLE.PLAYER;
-                        this.checkWin();
-                    }
+                    this.bossTakeDame(attackDame);
+                    // this.boss.mainScript.takeDamage(attackDame);
+                    // // this.checkWin();
+                    // // boss die
+                    // if (this.boss.mainScript.getHp() == 0) {
+                    //     // player win
+                    //     this.setWonMap();
+                    //     this.winner = GAME_DATA.ROLE.PLAYER;
+                    //     this.checkWin();
+                    // }
                 } else {
                     console.log('no takeDamage function');
                 }
@@ -287,9 +291,9 @@ const GameController = cc.Class({
         if (!hero.mainScript) hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
 
         if (hero.mainScript) {
-            let attackCooldown = hero.mainScript.getAttackCooldown();
-            if (attackCooldown >= 0) {
-                return attackCooldown;
+            let skillCooldown = hero.mainScript.getSkillCooldown();
+            if (skillCooldown >= 0) {
+                return skillCooldown;
             }
         }
     },
@@ -306,26 +310,38 @@ const GameController = cc.Class({
     },
 
     heroSkill() {
+        if (this.isUsingSkill) return;
+        this.isUsingSkill = true;
+
         if (this.focusedHero) {
             const hero = this.getFocusedHero();
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.skillAnimation === 'function');
             if (hero.mainScript) {
                 hero.mainScript.skillAnimation();
+                let damage = hero.mainScript.affectDamage();
+                if (damage <= 0) return;
+
                 this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
                 if (this.boss.mainScript) {
-                    const damage = hero.mainScript.affectDamage();
-                    this.boss.mainScript.takeDamage(damage);
 
-                    // if (this.boss.mainScript.get)
-                    // this.winner = GAME_DATA.ROLE.PLAYER;
-                    // console.log('hero skill klekeke')
-                    // this.checkWin();
-                    if (this.boss.mainScript.getHp() == 0) {
-                        // player win
-                        console.log('boss die')
-                        this.winner = GAME_DATA.ROLE.PLAYER;
-                        this.checkWin();
-                    }
+                    setTimeout(() => {
+                        this.isUsingSkill = false;
+                    }, this.getSkillCooldown(hero));
+
+                    this.bossTakeDame(damage);
+                    // this.boss.mainScript.takeDamage(damage);
+
+                    // // if (this.boss.mainScript.get)
+                    // // this.winner = GAME_DATA.ROLE.PLAYER;
+                    // // console.log('hero skill klekeke')
+                    // // this.checkWin();
+                    // if (this.boss.mainScript.getHp() == 0) {
+                    //     // player win
+                    //     console.log('boss die')
+                    //     this.setWonMap();
+                    //     this.winner = GAME_DATA.ROLE.PLAYER;
+                    //     this.checkWin();
+                    // }
                 } else {
                     console.log('no takeDamage function');
                 }
@@ -348,7 +364,6 @@ const GameController = cc.Class({
             if (!this.boss || this.heros.length == 0) return;
 
             let bossPos = cc.v2(this.boss.x, this.boss.y);
-            let boss = this.boss;
 
             this.heros.forEach((hero, index) => {
                 // check attack range hero
@@ -716,9 +731,45 @@ const GameController = cc.Class({
     },
 
     setWonMap() {
-        if (this.mapPick > this.gameWonIndex) return;
+        if (this.mapPick < this.gameWonIndex) return;
         this.gameWonIndex = this.gameWonIndex + 1;
+
+        // if (this.gameWonIndex == undefined || this.gameWonIndex == null) this.gameWonIndex = 0;
+        // if (this.mapPick < this.gameWonIndex) return;
+        // this.gameWonIndex = this.mapPick;
     },
+
+    bossTakeDame(dame) {
+        if (this.boss.mainScript == undefined) this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
+        if (this.boss.mainScript) {
+            this.boss.mainScript.takeDamage(dame);
+            if (this.boss.mainScript.getHp() <= 0) {
+                this.setWonMap();
+                this.isMoving = false;
+                this.winner = GAME_DATA.ROLE.PLAYER;
+                this.isAttacking = false;
+                this.isUsingSkill = false;
+            }
+        } else {
+            console.log('no takeDamage function');
+        }
+    },
+
+    getTurnOnMusic() {
+        if (this.isTurnOnMusic == undefined || this.isTurnOnMusic == null) this.isTurnOnMusic = true;
+        return this.isTurnOnMusic;
+    },
+
+    setIsTurnOnMusic(isTurnOn) {
+        this.isTurnOnMusic = isTurnOn;
+        if (isTurnOn) {
+            // cc.audioEngine.setMusicVolume(0.5);
+            // cc.audioEngine.setEffectsVolume(0.5);
+        } else {
+            // cc.audioEngine.setMusicVolume(0);
+            // cc.audioEngine.setEffectsVolume(0);
+        }
+    }
 
 
 });
