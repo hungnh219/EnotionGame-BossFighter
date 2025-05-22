@@ -42,7 +42,11 @@ cc.Class({
     // update (dt) {},
     map1Picked () {
         console.log('test', this.gameController.getWonMap())
-        if (this.gameController.getWonMap() < GAME_DATA.GAME_MAP_INDEX.MAP_1 || this.gameController.getWonMap() == undefined || this.gameController.getWonMap() == null) return;
+        if (this.gameController.getWonMap() < GAME_DATA.GAME_MAP_INDEX.MAP_1 || this.gameController.getWonMap() == undefined || this.gameController.getWonMap() == null){
+            this.node.getChildByName("LockMapSprite").active = false;
+            
+            return;
+        } 
         console.log("map1Picked");
         this.gameController.setMapPicked(GAME_DATA.GAME_MAP_INDEX.MAP_1);
         cc.director.loadScene(GAME_DATA.GAME_SCENE.HERO_SELECT);
