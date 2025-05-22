@@ -343,7 +343,7 @@ const GameController = cc.Class({
 
     executeAutoMode() {
         if (!this.isAutoMode) return;
-
+        if (cc.director.isPaused()) return;
         this.scheduleOnce(() => {
             if (!this.boss || this.heros.length == 0) return;
 
@@ -552,8 +552,37 @@ const GameController = cc.Class({
     },
 
     // boss skill
-    bossCastSkill() {
+    bossCastSkill(gridX, gridY, size) {
+        // check if is there is a hero in the area
+        if (this.gridMap[gridX] == undefined) {
+            this.gridMap[gridX] = [];
+        }
+        if (this.gridMap[gridX][gridY] == undefined) {
+            this.gridMap[gridX][gridY] = [];
+        }
 
+        for (let i = gridX - size; i <= gridX + size; i++) {
+            for (let j = gridY - size; j <= gridY + size; j++) {
+                if (this.gridMap[i] == undefined) {
+                    this.gridMap[i] = [];
+                }
+                if (this.gridMap[i][j] == undefined) {
+                    this.gridMap[i][j] = [];
+                }
+                if (this.gridMap[i][j] == false) {
+                    // check if there is a hero in the area
+                    const hero = this.heros.find(hero => {
+                        const heroX = Math.floor((hero.x - this.firstCellPos.x) / this.mapTileWidth);
+                        const heroY = Math.floor((hero.y - this.firstCellPos.y) / this.mapTileHeight);
+                        return heroX == i && heroY == j;
+                    });
+                    if (hero) {
+                        // attack the hero
+                        this.characterTakeDame(hero, 10);
+                    }
+                }
+            }
+        }
     },
 
 
@@ -690,6 +719,8 @@ const GameController = cc.Class({
         if (this.mapPick > this.gameWonIndex) return;
         this.gameWonIndex = this.gameWonIndex + 1;
     },
+
+
 });
 
 export default GameController;

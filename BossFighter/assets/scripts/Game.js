@@ -75,9 +75,9 @@ cc.Class({
 
         if (this.heroPrefabs) this.spawnHero();
         this.spawnBoss();
-        this.turnOnAutoBossAttack();
+        // this.turnOnAutoBossAttack();
         this.turnOnAutoSkill();
-        // this.turnOnAutoMode();
+        this.turnOnAutoMode();
         // this.spawnTestSkill();
 
         // this.gameController.setMapPicked(this.mapIndex);
@@ -136,17 +136,30 @@ cc.Class({
     },
 
     spawnBoss() {
-        this.bossNode = cc.instantiate(this.bossPrefabs[this.mapIndex]);
-        this.gameController.addBoss(this.bossNode);
-        // this.bossNode.playA
-        // const sprite = this.bossNode.getChildByName('Image')
-        // const animation = sprite.getComponent(cc.Animation);
-        // animation.play('boss2-fly'); 
-        this.rootNode.addChild(this.bossNode);
-
         const size = 2;
         const posX = 2;
         const posY = 5;
+
+        this.bossNode = cc.instantiate(this.bossPrefabs[this.mapIndex]);
+        this.gameController.addBoss(this.bossNode);
+
+        // scale boss to 1.5 if size > 1
+        if (size == 1) {
+            this.bossNode.scale = 1;
+        } else if (size > 1) {
+            this.bossNode.scale = 1.5;
+
+            if (this.mapIndex == 2) {
+                this.bossNode.scale = 1;
+            }
+        } else if (size > 3) {
+            this.bossNode.scale = 2;
+        }
+
+
+        this.rootNode.addChild(this.bossNode);
+
+        
         this.addObjectIntoMap(posX, posY, size, this.bossNode);
         this.updateWalkable(posX, posY, size);
     },
@@ -176,6 +189,7 @@ cc.Class({
         this.rootNode.addChild(testSkill);
         this.addObjectIntoMap(randomX, randomY, size, testSkill);
 
+        this.gameController.bossCastSkill(randomX, randomY, size);
         // detroy test skill after 5 seconds
         setTimeout(() => {
             testSkill.destroy();
@@ -292,7 +306,7 @@ cc.Class({
             this.gameController.listenKeyDown(this.gameController.getFocusedHero());
         }
 
-        if (event.keyCode == cc.macro.KEY.q) {
+        if (event.keyCode == cc.macro.KEY.j) {
             this.heroAttack();
             if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
                 this.endGameNotification();
@@ -302,7 +316,7 @@ cc.Class({
             }
         }
 
-        if (event.keyCode == cc.macro.KEY.j) {
+        if (event.keyCode == cc.macro.KEY.k) {
             this.gameController.heroSkill();
             if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
                 console.log('skill')
@@ -361,6 +375,7 @@ cc.Class({
     },
 
     bossAutoSkill() {
+        console.log('boss auto skill')
         let delay = Math.random() * 1000;
         if (this.gameController.boss == undefined) {
             console.log("no boss node");
@@ -376,11 +391,11 @@ cc.Class({
             if (!this.gameController.getWinner()) {
                 this.gameController.bossCastSkill();
                 this.spawnSkill();
-                this.bossAutoAttack();
+                this.bossAutoSkill();
             } else {
                 this.endGameNotification();
             }
-        }, 1000 + delay);
+        }, 100 + delay);
     },
 
     turnOnAutoMode() {    
@@ -450,16 +465,19 @@ cc.Class({
         if (winner == GAME_DATA.ROLE.PLAYER) {
             this.nextButton.node.active = true;
             notificationPanelBgSprite.spriteFrame = this.backgroundNotificationPanelSpriteFrames[0];
-           
+
+            // play sound effect win game, source 
+            let audioSources = this.node.getComponents(cc.AudioSource)
+            audioSources[0].play();
         } else {
-            // background noti
             notificationPanelBgSprite.spriteFrame = this.backgroundNotificationPanelSpriteFrames[1];
-            // this.nextButton.node.active = false;
+            let audioSources = this.node.getComponents(cc.AudioSource)
+            audioSources[1].play();
         }
         this.winnerNotificationLabel.string = winner;
         this.winnerNotificationLabel.node.parent.active = true;
  
-        cc.director.pause()
+        // cc.director.pause()
         this.pauseButton.node.active = false;
         this.resumeButton.node.active = false;
     },
