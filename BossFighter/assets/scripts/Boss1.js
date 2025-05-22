@@ -46,7 +46,7 @@ cc.Class({
 
     },
     die() {
-        this.onDestroy.destroy();
+        this.node.destroy();
     },
     attack() {
         // animation skill

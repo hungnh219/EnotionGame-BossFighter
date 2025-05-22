@@ -223,13 +223,13 @@
     },
     "backgroundSpriteFrames": [
       {
-        "__uuid__": "6783d0a7-5ca3-4325-87e0-1726b606fabe"
+        "__uuid__": "08cec8b4-641e-475a-8192-66162266211d"
       },
       {
-        "__uuid__": "23537c22-0a82-402b-8da1-fc7cb9aa636d"
+        "__uuid__": "fbcdcf09-4f9d-4e47-8827-a7bd278a4d1f"
       },
       {
-        "__uuid__": "758cac62-dc13-43f3-8649-06788d136ed1"
+        "__uuid__": "5437ef4b-b38b-4f1f-83f9-c291980f3fa8"
       }
     ],
     "tileSpriteFrames": [
@@ -299,7 +299,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "6783d0a7-5ca3-4325-87e0-1726b606fabe"
+      "__uuid__": "17e1c184-a563-4fbf-8535-4a49228f8a63"
     },
     "_type": 0,
     "_sizeMode": 0,
