@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "mage-death",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.16666666666666666,
+  "sample": 30,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "46ab4ef5-2b90-4a94-8718-5a2cbb05aec5"
+            }
+          },
+          {
+            "frame": 0.03333333333333333,
+            "value": {
+              "__uuid__": "0700ff8f-3a03-4528-8d8c-b0276fe0c906"
+            }
+          },
+          {
+            "frame": 0.06666666666666667,
+            "value": {
+              "__uuid__": "d4f00889-a734-421e-925f-b8704af0128c"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "3b2fd0af-e278-416e-954b-e37f8f2bb5fa"
+            }
+          },
+          {
+            "frame": 0.13333333333333333,
+            "value": {
+              "__uuid__": "c0eb8024-68a6-4d70-9d5a-739d5ffa395a"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

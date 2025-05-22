@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "adc-death",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.16666666666666666,
+  "sample": 30,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "4f7b81e9-d58e-40a9-be1e-065c7be92eae"
+            }
+          },
+          {
+            "frame": 0.03333333333333333,
+            "value": {
+              "__uuid__": "0fbc69f3-644c-4691-be46-255ce967e40c"
+            }
+          },
+          {
+            "frame": 0.06666666666666667,
+            "value": {
+              "__uuid__": "a048727f-42c0-4536-b5fd-c2f7b04208af"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "0fbf9ae4-7cc4-4ac2-9480-1216e0e6ce5c"
+            }
+          },
+          {
+            "frame": 0.13333333333333333,
+            "value": {
+              "__uuid__": "3e756be6-b4c2-44df-a6d9-d88c720059bc"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

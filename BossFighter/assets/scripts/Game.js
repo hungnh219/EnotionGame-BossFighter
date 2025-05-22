@@ -34,7 +34,7 @@ cc.Class({
     onLoad() {
 
         cc.director.getCollisionManager().enabled = true;
-        cc.director.getPhysicsManager().enabled = true;
+       
         // variables
         this.gridMap = [];
         this.isMoving = false;
@@ -433,7 +433,6 @@ cc.Class({
         let notificationPanel = this.winnerNotificationLabel.node.parent;
         let notificationPanelBgSprite = notificationPanel.getComponent(cc.Sprite);
         if (winner == GAME_DATA.ROLE.PLAYER) {
-
             this.nextButton.node.active = true;
             notificationPanelBgSprite.spriteFrame = this.backgroundNotificationPanelSpriteFrames[0];
            
@@ -463,7 +462,7 @@ cc.Class({
     },
 
     nextGame() {
-        if (this.gameController.getWonMap() >= (this.backgroundSpriteFrames.length)) {
+        if (this.gameController.getWonMap() >= (this.backgroundSpriteFrames.length - 1)) {
             this.nextButton.node.active = false;
           
             return;

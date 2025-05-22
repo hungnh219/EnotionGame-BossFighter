@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "boss1-hurt",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.16666666666666666,
+  "sample": 30,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "a908e46f-69aa-4426-81f0-c29cecf06e50"
+            }
+          },
+          {
+            "frame": 0.03333333333333333,
+            "value": {
+              "__uuid__": "5f53f809-7287-4e9b-a3f7-c758c45ca3b8"
+            }
+          },
+          {
+            "frame": 0.06666666666666667,
+            "value": {
+              "__uuid__": "c0ead580-006e-4317-9c9c-b3bdb989348a"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "dcf49d17-0119-4759-b421-c7570f1be2e7"
+            }
+          },
+          {
+            "frame": 0.13333333333333333,
+            "value": {
+              "__uuid__": "c6c258c2-0de6-4449-b798-440f3cffd063"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

@@ -205,9 +205,15 @@
       },
       {
         "__uuid__": "f170f233-f92b-4861-b166-117582678a9b"
+      },
+      {
+        "__uuid__": "0015db1a-bfea-474e-879e-6ea1c8b1c0eb"
+      },
+      {
+        "__uuid__": "82ff712c-212f-4817-83f9-e6d9ef03563d"
       }
     ],
-    "playOnLoad": false,
+    "playOnLoad": true,
     "_id": ""
   },
   {
@@ -490,7 +496,7 @@
       "x": 0,
       "y": 0
     },
-    "_radius": 25,
+    "_radius": 50,
     "_id": ""
   },
   {

@@ -1191,9 +1191,7 @@
     "_enabled": true,
     "_defaultClip": null,
     "_clips": [
-      {
-        "__uuid__": "a5ceb716-0494-4532-afd7-38b4e13e093c"
-      }
+      null
     ],
     "playOnLoad": true,
     "_id": "04fHjMYpZNWojcJj5kKIxt"
