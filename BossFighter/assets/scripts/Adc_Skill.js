@@ -29,14 +29,16 @@ cc.Class({
     onCollisionEnter: function (other, self) {
         // console.log('Chiêu va chạm với:', other.node.name);
 
-<<<<<<< HEAD:BossFighter/assets/scripts/Skill.js
-        if (other.node.getComponent('Boss')) {
-            // console.log('Chiêu va chạm với boss:', other.node.name);
-=======
         if (other.node.getComponent('Boss1')) {
             console.log('Chiêu va chạm với boss:', other.node.name);
->>>>>>> eedac5c38fc6ba868e15ed1734fbd84c12673420:BossFighter/assets/scripts/Adc_Skill.js
             other.node.getComponent('Boss1').takeDamage(this.damage);
+        }else if (other.node.getComponent('Boss2')) {
+            console.log('Chiêu va chạm với boss:', other.node.name);
+            other.node.getComponent('Boss2').takeDamage(this.damage);
+        }
+        else if (other.node.getComponent('Boss3')) {
+            console.log('Chiêu va chạm với boss:', other.node.name);
+            other.node.getComponent('Boss3').takeDamage(this.damage);
         }
 
         this.node.destroy();

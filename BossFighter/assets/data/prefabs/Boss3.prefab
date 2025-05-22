@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Boss",
+    "_name": "Boss3",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -205,6 +205,9 @@
       },
       {
         "__uuid__": "62e1ffe4-b2fa-4c6b-84e8-07272514f6c7"
+      },
+      {
+        "__uuid__": "31babcee-9072-4d79-b182-00da0e45c3a4"
       }
     ],
     "playOnLoad": false,

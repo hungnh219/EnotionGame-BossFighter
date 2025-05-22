@@ -26,12 +26,19 @@ cc.Class({
         this.direction = dir;
     },
 
-    onCollisionEnter: function (other, self) {
-        console.log('Chiêu va chạm với:', other.node.name);
+  onCollisionEnter: function (other, self) {
+        // console.log('Chiêu va chạm với:', other.node.name);
 
         if (other.node.getComponent('Boss1')) {
             console.log('Chiêu va chạm với boss:', other.node.name);
             other.node.getComponent('Boss1').takeDamage(this.damage);
+        }else if (other.node.getComponent('Boss2')) {
+            console.log('Chiêu va chạm với boss:', other.node.name);
+            other.node.getComponent('Boss2').takeDamage(this.damage);
+        }
+        else if (other.node.getComponent('Boss3')) {
+            console.log('Chiêu va chạm với boss:', other.node.name);
+            other.node.getComponent('Boss3').takeDamage(this.damage);
         }
 
         this.node.destroy();
