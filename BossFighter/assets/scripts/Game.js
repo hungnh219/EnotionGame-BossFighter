@@ -17,6 +17,7 @@ cc.Class({
         tileSpriteFrames: [cc.SpriteFrame],
         bossPrefabs: [cc.Prefab],
         winnerNotificationLabel: cc.Label,
+        backgroundNotificationPanelSpriteFrames: [cc.SpriteFrame], // win index bg = 1, lose = 0
         mapLayout: cc.Layout,
         focusEffectPrefab: cc.Prefab,
         mapIndex: 0,
@@ -25,6 +26,7 @@ cc.Class({
 
         pauseButton: cc.Button,
         resumeButton: cc.Button,
+        nextButton: cc.Button,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -44,7 +46,7 @@ cc.Class({
         this.rootNode = this.node.parent;
         this.bossNode = null;
         this.heroPrefabs = [];
-
+        this.isAttacking = false;
 
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -286,23 +288,28 @@ cc.Class({
         }
 
         if (event.keyCode == cc.macro.KEY.q) {
-            this.gameController.heroAttack();
-            if (this.gameController.getWinner()) {
-                this.winnerNotificationLabel.string = this.gameController.getWinner();
-                // this.winnerNotificationLabel.node.active = true;
-                this.winnerNotificationLabel.node.parent.active = true;
+            this.heroAttack();
+            if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
+                this.endGameNotification();
                 this.gameController.setWonMap();
                 cc.director.pause();
+                this.pauseButton.node.active = false;
             }
         }
 
         if (event.keyCode == cc.macro.KEY.j) {
-            console.log("w");
             this.gameController.heroSkill();
+            if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
+                console.log('skill')
+                this.endGameNotification();
+                this.gameController.setWonMap();
+                cc.director.pause();
+                this.pauseButton.node.active = false;
+            }
         }
 
         if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
-            this.gameController.heroMoveAnimation(event);
+            this.gameController.heroMoveAnimation(event.keyCode);
         }
     },
 
@@ -325,6 +332,8 @@ cc.Class({
             return;
         }
 
+        if (cc.director.isPaused()) return;
+
         setTimeout(() => {
             if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
                 this.endGameNotification();
@@ -333,7 +342,7 @@ cc.Class({
                 this.gameController.bossAttack();
                 this.bossAutoAttack();
             }
-        }, 2000);
+        }, 1000);
     },
 
     bossAutoSkill() {
@@ -351,7 +360,7 @@ cc.Class({
         setTimeout(() => {
             if (!this.gameController.getWinner()) {
                 this.gameController.bossCastSkill();
-                this.spawnSkill();
+                // this.spawnSkill();
                 this.bossAutoAttack();
             } else {
                 this.endGameNotification();
@@ -366,12 +375,26 @@ cc.Class({
             return;
         }
 
-        this.scheduleOnce(() => {
-            this.gameController.moveHeroNotFocusesToBoss();
-            this.gameController.nonFocusedHeroesAttackBoss();
-            this.turnOnAutoMode();
-        }, 1)
+        // this.scheduleOnce(() => {
+        //     this.gameController.moveHeroNotFocusesToBoss();
+        //     this.gameController.nonFocusedHeroesAttackBoss();
+        //     this.turnOnAutoMode();
+        // }, 1)
+
+        this.gameController.turnOnAutoMode();
     },
+
+    heroAttack() {
+        if (this.isAttacking) return;
+        this.isAttacking = true;
+        this.gameController.heroAttack();
+
+
+        this.scheduleOnce(() => {
+            this.isAttacking = false;
+        }, this.gameController.getAttackCooldown()) // get cool down from hero
+    },
+
     replayGame() {
         // if (cc.director.isPaused()) {
         //     cc.director.resume();
@@ -380,7 +403,7 @@ cc.Class({
         // this.gameController.newGame();
         // this.node.destroy();
 
-        cc.director.loadScene(GameScene.GAME)
+        cc.director.loadScene(GAME_SCENE.GAME)
     },
 
     newGame() {
@@ -390,32 +413,41 @@ cc.Class({
         // this.resetGame();
         this.gameController.newGame();
         // this.gameController.setFocusedHero(0);
-        cc.director.loadScene(GAME_DATA.GameScene.MAP_SELECT)
+        cc.director.loadScene(GAME_DATA.GAME_SCENE.MAP_SELECT)
     },
 
     resetGame() {
-        // reset
-
-        console.log('ispause():', cc.director.isPaused())
 
         if (cc.director.isPaused()) {
             console.log('resume')
             cc.director.resume();
         }
-        console.log('ispause():', cc.director.isPaused())
 
         this.gameController.resetGame();
-        cc.director.loadScene(GAME_DATA.GameScene.GAME)
-
+        cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME)
     },
 
     endGameNotification() {
-        this.winnerNotificationLabel.string = this.gameController.getWinner();
+        let winner = this.gameController.getWinner();
+        // console.log()
+        let notificationPanel = this.winnerNotificationLabel.node.parent;
+        let notificationPanelBgSprite = notificationPanel.getComponent(cc.Sprite);
+        if (winner == GAME_DATA.ROLE.PLAYER) {
+
+            this.nextButton.node.active = true;
+            notificationPanelBgSprite.spriteFrame = this.backgroundNotificationPanelSpriteFrames[0];
+           
+        } else {
+            // background noti
+            notificationPanelBgSprite.spriteFrame = this.backgroundNotificationPanelSpriteFrames[1];
+            // this.nextButton.node.active = false;
+        }
+        this.winnerNotificationLabel.string = winner;
         this.winnerNotificationLabel.node.parent.active = true;
-            cc.director.pause()
-        // this.scheduleOnce(() => {
-        //     cc.director.pause()
-        // }, 0.5)
+ 
+        cc.director.pause()
+        this.pauseButton.node.active = false;
+        this.resumeButton.node.active = false;
     },
 
     pauseGame() {
@@ -428,6 +460,22 @@ cc.Class({
         cc.director.resume();
         this.pauseButton.node.active = true;
         this.resumeButton.node.active = false;
+    },
+
+    nextGame() {
+        if (this.gameController.getWonMap() >= (this.backgroundSpriteFrames.length)) {
+            this.nextButton.node.active = false;
+          
+            return;
+        }
+        if (cc.director.isPaused()) {
+            console.log('resume')
+            cc.director.resume();
+        }
+
+        this.gameController.resetGame();
+        this.gameController.setMapPicked(this.mapIndex + 1);
+        cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME);
     },
 
 });

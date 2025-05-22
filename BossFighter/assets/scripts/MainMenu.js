@@ -19,6 +19,6 @@ cc.Class({
 
     playSoloMode() {
         console.log("playSoloMode");
-        cc.director.loadScene(GAME_DATA.GameScene.MAP_SELECT);
+        cc.director.loadScene(GAME_DATA.GAME_SCENE.MAP_SELECT);
     }
 });

@@ -27,11 +27,11 @@ cc.Class({
     },
 
     onCollisionEnter: function (other, self) {
-        console.log('Chiêu va chạm với:', other.node.name);
+        // console.log('Chiêu va chạm với:', other.node.name);
 
         if (other.node.getComponent('Boss')) {
-            console.log('Chiêu va chạm với boss:', other.node.name);
-            other.node.getComponent('Boss').takeDamage(this.damage);
+            // console.log('Chiêu va chạm với boss:', other.node.name);
+            other.node.getComponent('Boss1').takeDamage(this.damage);
         }
 
         this.node.destroy();

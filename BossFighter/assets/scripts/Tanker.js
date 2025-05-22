@@ -24,6 +24,7 @@ cc.Class({
         ultimateCost: 80,
         skillCooldown: 5,
         ultimateCooldown: 12,
+        attackCooldown: 1,
 
         hpBar: cc.ProgressBar,
     },
@@ -31,13 +32,6 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        // const sprite = this.node.getChildByName('Image')
-        // const animation = sprite.getComponent(cc.Animation);
-        // if (animation) {
-        //     const intervalId = setInterval(() => {
-        //         animation.play('bottom-attack'); 
-        //     }, 1000); 
-        // }
         this.hp = this.maxHp;
     },
 
@@ -119,10 +113,6 @@ cc.Class({
 
     die() {
         this.onDestroy.destroy();
-        // console.log('die');
-        // const sprite = this.node.getChildByName('Image')
-        // const animation = sprite.getComponent(cc.Animation);
-        // animation.play('bottom-die'); 
     },
 
     getAttackRange() {
@@ -140,5 +130,13 @@ cc.Class({
             attackRange: this.attackRange,
             role: this.role,
         }
+    },
+
+    getAttackDame() {
+        return this.normalAttackPower;
+    },
+
+    getAttackCooldown() {
+        return this.attackCooldown;
     }
 });

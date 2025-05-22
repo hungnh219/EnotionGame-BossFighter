@@ -58,9 +58,9 @@ cc.Class({
 
         this.anim.play(animationName);
 
-        if (!loop) {
+        if (loop) {
             this.anim.once('finished', () => {
-                this.playAnim('idle');
+                this.playAnimation(animationName);
             });
         }
     }
