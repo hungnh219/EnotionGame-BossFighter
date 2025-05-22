@@ -62,7 +62,7 @@ cc.Class({
 
         if (!loop) {
             this.anim.once('finished', () => {
-                this.playAnim('idle');
+                this.playAnimation(animationName);
             });
         }
     }

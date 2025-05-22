@@ -32,6 +32,7 @@ cc.Class({
         ultimateCost: 80,
         skillCooldown: 5,
         ultimateCooldown: 12,
+        attackCooldown: 1,
 
         hpBar: cc.ProgressBar,
     },
@@ -52,6 +53,7 @@ cc.Class({
         const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
         this.playAnimation(ANIMATION_NAME.MELEE_ATTACK, false);
+        this.playSoundEffect();
     },
 
     moveAnimation(event) {
@@ -136,6 +138,7 @@ cc.Class({
         console.log("Animation Name:", animationName);
         if (!this.anim) {
             this.anim = this.imageSprite.node.getComponent(cc.Animation);
+            // this.playSoundEffect();
         }
 
         this.anim.play(animationName);
@@ -158,6 +161,23 @@ cc.Class({
             mana: this.maxMana,
             attackRange: this.attackRange,
             role: this.role,
+        }
+    },
+
+    getAttackDame() {
+        return this.normalAttackPower;
+    },
+
+    getAttackCooldown() {
+        return this.attackCooldown;
+    },
+
+    playSoundEffect() {
+        let audioSource = this.imageSprite.node.getComponent(cc.AudioSource);
+        if (audioSource) {
+            audioSource.play();
+        } else {
+            cc.log("AudioSource component not found on the node.");
         }
     }
 });

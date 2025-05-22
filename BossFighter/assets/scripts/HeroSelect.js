@@ -93,7 +93,7 @@ cc.Class({
     // update (dt) {},
     playGame() {
         console.log("playGame");
-        cc.director.loadScene(GameScene.GAME);
+        cc.director.loadScene(GAME_SCENE.GAME);
     },
 
     initPrefabData(data) {
@@ -186,11 +186,11 @@ cc.Class({
             return;
         }
 
-        cc.director.loadScene(GAME_DATA.GameScene.GAME)
+        cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME)
     },
 
     backToMapSelect() {
         this.gameController.backToMapSelect();
-        cc.director.loadScene(GAME_DATA.GameScene.MAP_SELECT);
+        cc.director.loadScene(GAME_DATA.GAME_SCENE.MAP_SELECT);
     }
 });

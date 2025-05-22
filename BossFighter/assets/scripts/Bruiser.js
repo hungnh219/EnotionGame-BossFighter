@@ -31,6 +31,7 @@ cc.Class({
         ultimateCost: 80,
         skillCooldown: 5,
         ultimateCooldown: 12,
+        attackCooldown: 1,
 
         hpBar: cc.ProgressBar,
     },
@@ -160,5 +161,12 @@ cc.Class({
 
     },
 
+    getAttackDame() {
+        return this.normalAttackPower;
+    },
+
+    getAttackCooldown() {
+        return this.attackCooldown;
+    },
     // update (dt) {},
 });
