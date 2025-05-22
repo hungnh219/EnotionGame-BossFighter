@@ -269,7 +269,7 @@ const GameController = cc.Class({
                 this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
                 if (this.boss.mainScript) {
                     const damage = hero.mainScript.affectDamage();
-                    this.boss.mainScript.takeDamage(damage);
+                    // this.boss.mainScript.takeDamage(damage);
                 } else {
                     console.log('no takeDamage function');
                 }

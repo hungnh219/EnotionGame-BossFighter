@@ -216,6 +216,12 @@
       },
       {
         "__uuid__": "889f8964-eb96-4da0-b917-3185d9bbb505"
+      },
+      {
+        "__uuid__": "e20ed139-37d7-426e-a81d-ef230e394b38"
+      },
+      {
+        "__uuid__": "cdd77bc1-99f5-4ffa-900c-21dfe7246527"
       }
     ],
     "playOnLoad": true,
@@ -487,6 +493,9 @@
     "manaPerAttack": 10,
     "imageSprite": {
       "__id__": 3
+    },
+    "skillPrefab": {
+      "__uuid__": "3ef9ee0f-e93e-4512-bc1c-b7e2c2540ef6"
     },
     "skillCost": 30,
     "ultimateCost": 80,

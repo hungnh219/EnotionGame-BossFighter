@@ -217,6 +217,12 @@
       },
       {
         "__uuid__": "da09a7aa-0b69-48d7-ba02-593a8c5b7967"
+      },
+      {
+        "__uuid__": "58554a6d-0af8-4d51-aeb5-4f54282924d1"
+      },
+      {
+        "__uuid__": "3a78080b-ea50-4663-b0e7-1f6d0952f0c1"
       }
     ],
     "playOnLoad": true,
@@ -490,7 +496,7 @@
       "__id__": 3
     },
     "skillPrefab": {
-      "__uuid__": "b69a4133-0e8a-41d2-9acd-5d0e63d4abd2"
+      "__uuid__": "580c3aba-6230-4026-bdb7-f495369fed1a"
     },
     "skillCost": 30,
     "ultimateCost": 80,

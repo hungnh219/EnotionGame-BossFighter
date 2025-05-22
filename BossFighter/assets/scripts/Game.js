@@ -32,7 +32,7 @@ cc.Class({
     onLoad() {
 
         cc.director.getCollisionManager().enabled = true;
-        cc.director.getPhysicsManager().enabled = true;
+       
         // variables
         this.gridMap = [];
         this.isMoving = false;

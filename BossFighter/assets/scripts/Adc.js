@@ -1,10 +1,17 @@
-// Learn cc.Class:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/class.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
-
+import GameController from "./GameController";
+const ANIMATION_NAME = {
+    MELEE_ATTACK: 'adc-bottom-attack',
+    BOTTOM_WALK: 'adc-bottom-walk',
+    TOP_WALK: 'adc-top-walk',
+    LEFT_WALK: 'adc-left-walk',
+    RIGHT_WALK: 'adc-right-walk',
+    TOP_LEFT_WALK: 'adc-top-left-walk',
+    TOP_RIGHT_WALK: 'adc-top-right-walk',
+    BOTTOM_LEFT_WALK: 'adc-bottom-left-walk',
+    BOTTOM_RIGHT_WALK: 'adc-bottom-right-walk',
+    HURT: 'adc-hurt',
+    DEATH: 'adc-death',
+}
 cc.Class({
     extends: cc.Component,
 
@@ -18,6 +25,7 @@ cc.Class({
         normalAttackPower: 5,
         manaPerAttack: 10,
         imageSprite: cc.Sprite,
+        skillPrefab: cc.Prefab,
 
         skillCost: 30,
         ultimateCost: 80,
@@ -39,28 +47,28 @@ cc.Class({
     attackAnimation() {
         const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
-        animation.play('bottom-attack');
+        this.playAnimation(ANIMATION_NAME.MELEE_ATTACK, false);
     },
 
     moveAnimation(event) {
         const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
         if (event === cc.macro.KEY.w) {
-            animation.play('adc-top-walk');
+            this.playAnimation(ANIMATION_NAME.TOP_WALK, false);
         } else if (event === cc.macro.KEY.s) {
-            animation.play('adc-bottom-walk');
+            this.playAnimation(ANIMATION_NAME.BOTTOM_WALK, false);
         } else if (event === cc.macro.KEY.a) {
-            animation.play('adc-left-walk');
+            this.playAnimation(ANIMATION_NAME.LEFT_WALK, false);
         } else if (event === cc.macro.KEY.d) {
-            animation.play('adc-right-walk');
+            this.playAnimation(ANIMATION_NAME.RIGHT_WALK, false);
         } else if (event === cc.macro.KEY.w && event === cc.macro.KEY.a) {
-            animation.play('adc-top-left-walk');
+            this.playAnimation(ANIMATION_NAME.TOP_LEFT_WALK, false);
         } else if (event === cc.macro.KEY.w && event === cc.macro.KEY.d) {
-            animation.play('adc-top-right-walk');
+            this.playAnimation(ANIMATION_NAME.TOP_RIGHT_WALK, false);
         } else if (event === cc.macro.KEY.s && event === cc.macro.KEY.a) {
-            animation.play('adc-bottom-left-walk');
+            this.playAnimation(ANIMATION_NAME.BOTTOM_LEFT_WALK, false);
         } else if (event === cc.macro.KEY.s && event === cc.macro.KEY.d) {
-            animation.play('adc-bottom-right-walk');
+            this.playAnimation(ANIMATION_NAME.BOTTOM_RIGHT_WALK, false);
         } else {
             animation.stop();
         }
@@ -72,23 +80,46 @@ cc.Class({
         animation.play('bottom-skill');
     },
 
+    castSkill() {
+        const skill = cc.instantiate(this.skillPrefab);
+        skill.parent = this.node.parent;
+        skill.x = this.node.x;
+        skill.y = this.node.y;
+
+        this.gameController = GameController.getInstance();
+        const bossNode = this.gameController.getBoss();
+        if (bossNode) {
+            const bossPos = bossNode.getPosition();
+            skill.getComponent('Adc_Skill').initDirection(bossPos);
+        } else {
+            console.log('No boss found');
+        }
+
+    },
     affectDamage() {
-        return this.normalAttackPower * 3;
+        this.castSkill();
+        return this.normalAttackPower * 2;
     },
 
     takeDamage(damage) {
-        console.log('tanker takeDamage', damage);
+        console.log('adc takeDamage', damage);
         this.hp -= damage;
         this.hp = Math.max(this.hp, 0);
-        if (this.hpBar) this.hpBar.progress = this.hp / this.maxHp;
+        if (this.hpBar) {
+            this.playAnimation(ANIMATION_NAME.HURT, false);
+            this.hpBar.progress = this.hp / this.maxHp;
+        }
 
         if (this.hp <= 0) {
-            console.log('tanker die');
+            this.playAnimation(ANIMATION_NAME.DEATH, false);
+            this.scheduleOnce(() => {
+                this.die();
+            },1);
         }
     },
 
     die(){
-        this.onDestroy.destroy();
+        this.node.destroy();
     },
 
     getCurrentHp() {
@@ -97,6 +128,22 @@ cc.Class({
 
     getAttackRange() {
         return this.attackRange;
+    },
+
+    playAnimation(animationName, loop = false) {
+        console.log("Animation Name:", animationName);
+        if (!this.anim) {
+            this.anim = this.imageSprite.node.getComponent(cc.Animation);
+        }
+
+        this.anim.play(animationName);
+
+        if (loop) {
+            
+            this.anim.once('finished', () => {
+                this.playAnimation(animationName);
+            });
+        }
     },
 
     getCharacterInfo() {

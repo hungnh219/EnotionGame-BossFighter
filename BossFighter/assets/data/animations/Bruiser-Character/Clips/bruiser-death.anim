@@ -1,0 +1,55 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "buiser-death",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.2,
+  "sample": 30,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "c8d65c6e-4f65-4829-bf8e-3fe6f80baf21"
+            }
+          },
+          {
+            "frame": 0.03333333333333333,
+            "value": {
+              "__uuid__": "413738be-cce4-4d75-9201-f251a253f4be"
+            }
+          },
+          {
+            "frame": 0.06666666666666667,
+            "value": {
+              "__uuid__": "db6dc28f-6729-48f4-a9f7-2077327cbf55"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "c1479fd0-a208-4751-a1e8-dcb5c2d85321"
+            }
+          },
+          {
+            "frame": 0.13333333333333333,
+            "value": {
+              "__uuid__": "d07894f0-e9b0-4527-ae7f-bc3cfd7ab451"
+            }
+          },
+          {
+            "frame": 0.16666666666666666,
+            "value": {
+              "__uuid__": "82a4f55d-f43f-43d7-ae48-2c232bf68293"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
