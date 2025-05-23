@@ -473,7 +473,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "maxHp": 100,
+    "maxHp": 200,
     "hpBar": {
       "__id__": 11
     },

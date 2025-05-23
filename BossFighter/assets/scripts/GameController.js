@@ -326,7 +326,7 @@ const GameController = cc.Class({
 
                     setTimeout(() => {
                         this.isUsingSkill = false;
-                    }, this.getSkillCooldown(hero));
+                    }, this.getSkillCooldown(hero) * 1000);
 
                     this.bossTakeDame(damage);
                     // this.boss.mainScript.takeDamage(damage);
@@ -648,6 +648,8 @@ const GameController = cc.Class({
         this.gridMap = [];
         this.winner = null; // 'boss', 'player'
         this.isMoving = false;
+        this.isAttacking = false;
+        this.isUsingSkill = false;
     },
 
     // new game
@@ -664,20 +666,26 @@ const GameController = cc.Class({
 
         this.setFocusedHero(0)
         this.isMoving = false;
+        this.isAttacking = false;
+        this.isUsingSkill = false;
     },
 
     checkWin() {
         console.log('check win')
         if (this.heros.length == 0) {
+            this.setWonMap();
             this.isMoving = false;
+            this.isAttacking = false;
+            this.isUsingSkill = false;
             this.winner = GAME_DATA.ROLE.BOSS;
         }
         let bossScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
         if (!bossScript) {
-            console.log('boss da win fuck')
             if (bossScript.getHp() <= 0) {
-                // this.setWonMap();
+                this.setWonMap();
                 this.isMoving = false;
+                this.isAttacking = false;
+                this.isUsingSkill = false;
                 this.winner = GAME_DATA.ROLE.PLAYER;
             }
         }
@@ -745,8 +753,8 @@ const GameController = cc.Class({
             this.boss.mainScript.takeDamage(dame);
             if (this.boss.mainScript.getHp() <= 0) {
                 this.setWonMap();
-                this.isMoving = false;
                 this.winner = GAME_DATA.ROLE.PLAYER;
+                this.isMoving = false;
                 this.isAttacking = false;
                 this.isUsingSkill = false;
             }
@@ -762,13 +770,6 @@ const GameController = cc.Class({
 
     setIsTurnOnMusic(isTurnOn) {
         this.isTurnOnMusic = isTurnOn;
-        if (isTurnOn) {
-            // cc.audioEngine.setMusicVolume(0.5);
-            // cc.audioEngine.setEffectsVolume(0.5);
-        } else {
-            // cc.audioEngine.setMusicVolume(0);
-            // cc.audioEngine.setEffectsVolume(0);
-        }
     }
 
 
