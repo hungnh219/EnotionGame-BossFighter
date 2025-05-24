@@ -849,6 +849,20 @@
     "nextButton": {
       "__id__": 42
     },
+    "heroPrefabs": [
+      {
+        "__uuid__": "994158ec-f8e0-4418-81b1-33af7fc47e41"
+      },
+      {
+        "__uuid__": "fb8d68b4-1a7e-4a7f-8a36-984f722e086f"
+      },
+      {
+        "__uuid__": "85ccb08d-8789-4cda-a6c8-18bcc60b8097"
+      },
+      {
+        "__uuid__": "596d3ff0-625e-4465-997b-0a3c229b8630"
+      }
+    ],
     "_id": "cb8D8Be11Kb7BhNhrpGKRe"
   },
   {

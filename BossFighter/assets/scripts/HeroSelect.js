@@ -1,4 +1,4 @@
-import GameController from "./GameController";
+// import GameController from "./GameController";
 import GAME_DATA from "./GameData"
 
 cc.Class({
@@ -32,7 +32,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        this.gameController = GameController.getInstance();
+        // this.gameController = GameController.getInstance();
         this.hideInformation();
         this.heroPicked = {
             index: 0,
@@ -40,9 +40,8 @@ cc.Class({
         };
         this.heros = [];
         this.heroLockList = [];
-        console.log('get map', this.gameController.getMapPicked())
-        this.maxHero = (this.gameController.getMapPicked() == undefined) ? 0 : this.numberOfHeros[this.gameController.getMapPicked()];
-
+        // this.maxHero = (this.gameController.getMapPicked() == undefined) ? 0 : this.numberOfHeros[this.gameController.getMapPicked()];
+        this.maxHero = 5;
         // get all prefab
         const heroPrefabScript = this.node.getComponent("PrefabFactory");
         this.heroPrefabs = heroPrefabScript.getAllPrefab();
@@ -93,7 +92,6 @@ cc.Class({
 
     // update (dt) {},
     playGame() {
-        console.log("playGame");
         cc.director.loadScene(GAME_SCENE.GAME);
     },
 
@@ -177,22 +175,22 @@ cc.Class({
                 }
             }
       
-            this.gameController.addSelectedHeroPrefab(this.heroPicked.prefab);
+            // this.gameController.addSelectedHeroPrefab(this.heroPicked.prefab);
             this.playSoundEffect();
         }
     },
 
     playGame() {
         // this.gameController.set
-        if (this.gameController.getHeroPrefabs().length == 0 || this.gameController.getHeroPrefabs() == undefined || this.gameController.getHeroPrefabs() == null) {
-            return;
-        }
+        // if (this.gameController.getHeroPrefabs().length == 0 || this.gameController.getHeroPrefabs() == undefined || this.gameController.getHeroPrefabs() == null) {
+        //     return;
+        // }
 
         cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME)
     },
 
     backToMapSelect() {
-        this.gameController.backToMapSelect();
+        // this.gameController.backToMapSelect();
         cc.director.loadScene(GAME_DATA.GAME_SCENE.MAP_SELECT);
     },
 

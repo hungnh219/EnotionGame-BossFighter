@@ -29,7 +29,7 @@ cc.Class({
     onCollisionEnter: function (other, self) {
 
         if (other.node.getComponent('Boss1')) {
-            other.node.getComponent('Boss1').takeDamage(this.damage);
+            // other.node.getComponent('Boss1').takeDamage(this.damage);
         }
 
         this.node.destroy();

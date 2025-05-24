@@ -56,25 +56,6 @@ const GameController = cc.Class({
     },
 
     // update (dt) {},
-    testChangeScene() {
-        console.log("testChangeScene");
-        cc.director.loadScene("map");
-    },
-
-    testPrintScene(word) {
-        console.log("testPrintScene", word);
-        cc.director.getScene().name;
-    },
-
-    getEditBoxValue(string) {
-        console.log("getEditBoxValue", string);
-        this.editBoxString = string;
-    },
-
-    printEditBoxValue() {
-        console.log("printEditBoxValue", this.editBoxString);
-    },
-
     setMapPicked(mapPick) {
         this.mapPick = mapPick;
     },
@@ -235,7 +216,7 @@ const GameController = cc.Class({
 
                 this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
                 if (this.boss.mainScript) {
-                    this.bossTakeDame(attackDame);
+                    // this.bossTakeDame(attackDame);
                     // this.boss.mainScript.takeDamage(attackDame);
                     // // this.checkWin();
                     // // boss die
@@ -328,7 +309,7 @@ const GameController = cc.Class({
                         this.isUsingSkill = false;
                     }, this.getSkillCooldown(hero) * 1000);
 
-                    this.bossTakeDame(damage);
+                    // this.bossTakeDame(damage);
                     // this.boss.mainScript.takeDamage(damage);
 
                     // // if (this.boss.mainScript.get)
@@ -556,8 +537,8 @@ const GameController = cc.Class({
             boss.mainScript = boss.getComponents(cc.Component).find(c => typeof c.attack === 'function');
             if (boss.mainScript) {
                 let dame = boss.mainScript.attack();
-                if (dame <= 0 || dame == undefined) return;
-                this.characterTakeDame(nearestHero, dame);
+                // if (dame <= 0 || dame == undefined) return;
+                // this.characterTakeDame(nearestHero, dame);
                 this.checkWin();
             } else {
                 console.log('no attack function');
@@ -593,7 +574,7 @@ const GameController = cc.Class({
                     });
                     if (hero) {
                         // attack the hero
-                        this.characterTakeDame(hero, 10);
+                        // this.characterTakeDame(hero, 10);
                     }
                 }
             }
@@ -750,7 +731,7 @@ const GameController = cc.Class({
     bossTakeDame(dame) {
         if (this.boss.mainScript == undefined) this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
         if (this.boss.mainScript) {
-            this.boss.mainScript.takeDamage(dame);
+            // this.boss.mainScript.takeDamage(dame);
             if (this.boss.mainScript.getHp() <= 0) {
                 this.setWonMap();
                 this.winner = GAME_DATA.ROLE.PLAYER;

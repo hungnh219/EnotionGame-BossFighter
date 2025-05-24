@@ -27,6 +27,7 @@ cc.Class({
         pauseButton: cc.Button,
         resumeButton: cc.Button,
         nextButton: cc.Button,
+        heroPrefabs: [cc.Prefab],
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -45,7 +46,7 @@ cc.Class({
         this.heroes = [];
         this.rootNode = this.node.parent;
         this.bossNode = null;
-        this.heroPrefabs = [];
+        // this.heroPrefabs = [];
         this.isAttacking = false;
         this.isCastingSkill = false;
 
@@ -66,8 +67,18 @@ cc.Class({
     initData() {
         this.initGridMap();
 
-        this.heroPrefabs = this.gameController.getHeroPrefabs();
-        this.mapIndex = this.gameController.getMapPicked() ?? 0;
+        // this.heroPrefabs = this.gameController.getHeroPrefabs();
+        this.heroPrefabs.forEach((heroPrefab, index) => {
+            console.log('heroPrefab', heroPrefab);
+            if (heroPrefab) {
+                this.gameController.addSelectedHeroPrefab(heroPrefab);
+            }
+        });
+
+        console.log('heroPrefabs', this.gameController.getHeroPrefabs());
+        // this.gameController.setHe
+        // this.mapIndex = this.gameController.getMapPicked() ?? 0;
+        this.mapIndex = 1;
         this.tileSpriteFrame = this.tileSpriteFrames[this.mapIndex];
         this.backgroundSprite.spriteFrame = this.backgroundSpriteFrames[this.mapIndex];
 
@@ -80,7 +91,7 @@ cc.Class({
         this.turnOnAutoMode();
         // this.spawnTestSkill();
 
-        // this.gameController.setMapPicked(this.mapIndex);
+        this.gameController.setMapPicked(this.mapIndex);
         if (this.mapIndex > 0) {
             this.turnOnAutoSkill();
         }

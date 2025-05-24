@@ -50,7 +50,7 @@ cc.Class({
             console.log('Chiêu va chạm với boss:', other.node.name);
             // boss.takeDamage(this.damage);
 
-            this.gameController.bossTakeDame(this.damage);
+            // this.gameController.bossTakeDame(this.damage);
         }
         // const bossTypes = ['Boss1', 'Boss2', 'Boss3'];
 
