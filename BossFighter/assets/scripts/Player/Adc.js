@@ -1,6 +1,8 @@
 import GameController from "../Game/GameController";
 const ANIMATION_NAME = {
     MELEE_ATTACK: 'adc-top-walk',
+    SKILL: 'adc-bottom-skill',
+    ULTIMATE: 'adc-bottom-ultimate',
     BOTTOM_WALK: 'adc-bottom-walk',
     TOP_WALK: 'adc-top-walk',
     LEFT_WALK: 'adc-left-walk',
@@ -24,31 +26,59 @@ cc.Class({
         attackRange: 200,
         normalAttackPower: 5,
         manaPerAttack: 10,
-        imageSprite: cc.Sprite,
-        skillPrefab: cc.Prefab,
 
         skillCost: 30,
         ultimateCost: 80,
-        skillCooldown: 5,
-        ultimateCooldown: 12,
-        attackCooldown: 0.8,
 
+        attackCooldown: 1,
+        skillCooldown: 3,
+        ultimateCooldown: 6,
+
+        imageSprite: cc.Sprite,
+        skillPrefab: cc.Prefab,
         hpBar: cc.ProgressBar,
+
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
         this.hp = this.maxHp;
+
+        this.attackCooldownTurns = this.attackCooldown;
+        this.skillCooldownTurns = this.skillCooldown
+        this.ultimateCooldownTurns = this.ultimateCooldown;
+
+        this.attackCooldownRemaining = 0;
+        this.skillCooldownRemaining = 0;
+        this.ultimateCooldownRemaining = 0;
+
     },
 
-    attack() {
-        this.attackAnimation();
+    startTurn() {
+        if (this.attackCooldownRemaining > 0) this.attackCooldownRemaining--;
+        if (this.skillCooldownRemaining > 0) this.skillCooldownRemaining--;
+        if (this.ultimateCooldownRemaining > 0) this.ultimateCooldownRemaining--;
     },
-    attackAnimation() {
-        const sprite = this.node.getChildByName('Image')
-        const animation = sprite.getComponent(cc.Animation);
-        this.playAnimation(ANIMATION_NAME.MELEE_ATTACK, false);
+
+    canAttack() {
+        return this.attackCooldownRemaining <= 0;
+    },
+    canUseSkill() {
+        return this.skillCooldownRemaining <= 0;
+    },
+    canUseUltimate() {
+        return this.ultimateCooldownRemaining <= 0;
+    },
+
+    useAttack() {
+        this.attackCooldownRemaining = this.attackCooldownTurns;
+    },
+    useSkill() {
+        this.skillCooldownRemaining = this.skillCooldownTurns;
+    },
+    useUltimate() {
+        this.ultimateCooldownRemaining = this.ultimateCooldownTurns;
     },
 
     moveAnimation(event) {
@@ -75,31 +105,13 @@ cc.Class({
         }
     },
 
+    attackAnimation() {
+        this.playAnimation(ANIMATION_NAME.MELEE_ATTACK, false);
+    },
+
+
     skillAnimation() {
-        const sprite = this.node.getChildByName('Image')
-        const animation = sprite.getComponent(cc.Animation);
-        animation.play('bottom-skill');
-    },
-
-    castSkill() {
-        const skill = cc.instantiate(this.skillPrefab);
-        skill.parent = this.node.parent;
-        skill.x = this.node.x;
-        skill.y = this.node.y;
-
-        this.gameController = GameController.getInstance();
-        const bossNode = this.gameController.getBoss();
-        if (bossNode) {
-            const bossPos = bossNode.getPosition();
-            skill.getComponent('Adc_Skill').initDirection(bossPos);
-        } else {
-            console.log('No boss found');
-        }
-
-    },
-    affectDamage() {
-        this.castSkill();
-        return this.normalAttackPower * 2;
+        this.playAnimation(ANIMATION_NAME.MELEE_ATTACK, false);
     },
 
     takeDamage(damage) {
@@ -163,9 +175,27 @@ cc.Class({
     },
 
     getAttackDame() {
-        // this.attack();
-        // this.attackAnimation();
+        this.attackAnimation();
         return this.normalAttackPower;
+    },
+
+    getSkillDame() {
+        this.skillAnimation();
+        const skill = cc.instantiate(this.skillPrefab);
+        skill.parent = this.node.parent;
+        skill.x = this.node.x;
+        skill.y = this.node.y;
+
+        this.gameController = GameController.getInstance();
+        const bossNode = this.gameController.getBoss();
+        if (bossNode) {
+            const bossPos = bossNode.getPosition();
+            skill.getComponent('Adc_Skill').initDirection(bossPos);
+        } else {
+            console.log('No boss found');
+        }
+        return this.normalAttackPower * 2;
+
     },
 
     getAttackCooldown() {

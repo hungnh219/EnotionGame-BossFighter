@@ -24,7 +24,7 @@ const GameController = cc.Class({
 
     properties: {
         gameWonIndex: 0,
-        playerTurnCount: 3, // number of points player can move in one turn
+        playerTurnCount: 3,
         isPlayerTurn: true,
         bossTurnCount: 1,
     },
@@ -52,7 +52,6 @@ const GameController = cc.Class({
         this.isAutoMode = false;
         this.isUsingSkill = false;
         this.isTurnOnMusic = true;
-        this.startPlayerTurn();
     },
 
     consumePlayerTurn() {
@@ -61,7 +60,7 @@ const GameController = cc.Class({
 
         if (this.playerTurnCount <= 0) {
             this.isPlayerTurn = false;
-            this.bossAttackTurn();
+            this.bossAttack();
         }
     },
 
@@ -190,7 +189,7 @@ const GameController = cc.Class({
         }
     },
 
-    bossAttackTurn() {
+    bossAttack() {
         if (!this.boss) return;
 
         // update the turn labels
@@ -213,15 +212,19 @@ const GameController = cc.Class({
 
         if (nearestHero) {
             // attack the nearest hero
-            boss.mainScript = boss.getComponents(cc.Component).find(c => typeof c.attack === 'function');
+            boss.mainScript = boss.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
             if (boss.mainScript) {
-                let dame = boss.mainScript.attack();
+                let dame = boss.mainScript.getAttackDame();
                 // handle the case when dame is 0 or undefined
                 if (nearestHero.mainScript === undefined) {
                     nearestHero.mainScript = nearestHero.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
                 }
                 if (nearestHero.mainScript) {
                     nearestHero.mainScript.takeDamage(dame);
+
+                    if (this.gameScript && typeof this.gameScript.updateHeroInfoUI === 'function') {
+                        this.gameScript.updateHeroInfoUI(nearestHero);
+                    }
                     // check if hero is dead
                     if (nearestHero.mainScript.getCurrentHp() <= 0) {
                         this.handleHeroDie(nearestHero);
@@ -239,9 +242,22 @@ const GameController = cc.Class({
 
     startPlayerTurn() {
         this.isPlayerTurn = true;
-        this.playerTurnCount = 3; // reset player move points
+        this.playerTurnCount = 3;
+
+        // Giảm cooldown lượt của tất cả hero
+        this.heros.forEach(hero => {
+            if (hero.mainScript && typeof hero.mainScript.startTurn === 'function') {
+                hero.mainScript.startTurn();
+            }
+        });
+
         this.updateTurnLabels();
+
+        if (this.gameScript && typeof this.gameScript.updateCooldownUI === 'function') {
+        this.gameScript.updateCooldownUI(this.getFocusedHero());
+    }
     },
+
 
     updateTurnLabels() {
         if (this.gameScript) {
@@ -264,7 +280,14 @@ const GameController = cc.Class({
                 this.heros[i].focusEffect.active = false;
             }
         }
+
+        // update the hero info UI
+        if (this.gameScript && typeof this.gameScript.updateHeroInfoUI === 'function') {
+            this.gameScript.updateHeroInfoUI(this.focusedHero);
+        }
     },
+
+
     getFocusedHero() {
         return this.focusedHero;
     },
@@ -282,17 +305,27 @@ const GameController = cc.Class({
         // check attack cooldown
         if (hero.isAttacking) return;
 
-        hero.isAttacking = true;
+        hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
+
+        if (!hero.mainScript.canAttack()) {
+            console.log('Chưa hết cooldown đánh thường');
+            return;
+        }
+
+        hero.mainScript.attackCooldownRemaining = Math.ceil(hero.mainScript.attackCooldown);
 
         if (this.checkAttackRangeHero(hero) && hero) {
             // const hero = this.getFocusedHero();
-            hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
+
+            hero.isAttacking = true;
+
             if (hero.mainScript) {
+
                 let attackDame = hero.mainScript.getAttackDame();
 
-                if (attackDame <= 0) return;
+                hero.mainScript.useAttack();
 
-                hero.mainScript.attackAnimation();
+                if (attackDame <= 0) return;
 
                 this.consumePlayerTurn();
 
@@ -319,14 +352,14 @@ const GameController = cc.Class({
 
         this.scheduleOnce(() => {
             hero.isAttacking = false;
-        }, this.getAttackCooldown(hero))
+        }, 0.1)
     },
 
     checkAttackRangeHero(hero) {
         let boss = this.boss;
 
         const distance = cc.v2(boss.x - hero.x, boss.y - hero.y).mag();
-        hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.attack === 'function');
+        hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
 
         if (distance <= hero.mainScript.getAttackRange()) {
             return true;
@@ -379,10 +412,27 @@ const GameController = cc.Class({
         if (this.focusedHero) {
             const hero = this.getFocusedHero();
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.skillAnimation === 'function');
+
+            
+
+            if (!hero.mainScript.canUseSkill()) {
+                console.log('Chưa hết cooldown skill');
+                this.isUsingSkill = false;
+                return;
+            }
+
+            hero.mainScript.skillCooldownRemaining = Math.ceil(hero.mainScript.skillCooldown);
+
             if (hero.mainScript) {
-                hero.mainScript.skillAnimation();
-                let damage = hero.mainScript.affectDamage();
-                if (damage <= 0) return;
+                let damage = hero.mainScript.getSkillDame();
+
+                hero.mainScript.useSkill();
+
+                if (damage <= 0) {
+                    this.isUsingSkill = false;
+                    return;
+                }
+
 
                 this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
                 if (this.boss.mainScript) {
@@ -391,7 +441,7 @@ const GameController = cc.Class({
 
                     setTimeout(() => {
                         this.isUsingSkill = false;
-                    }, this.getSkillCooldown(hero) * 1000);
+                    }, 0.1);
 
                     // this.bossTakeDame(damage);
                     // this.boss.mainScript.takeDamage(damage);
@@ -596,39 +646,6 @@ const GameController = cc.Class({
 
     getBoss() {
         return this.boss;
-    },
-
-    // boss attack nearest hero
-    bossAttack() {
-        // calculate the distance between the boss and the heroes, take the nearest hero
-        const boss = this.boss;
-        const heroes = this.heros;
-        let nearestHero = null;
-        let minDistance = Infinity;
-
-        for (let i = 0; i < heroes.length; i++) {
-            const hero = heroes[i];
-            const distance = cc.v2(boss.x - hero.x, boss.y - hero.y).mag();
-
-            if (distance < minDistance) {
-                minDistance = distance;
-                nearestHero = hero;
-            }
-        }
-
-        if (nearestHero) {
-            // attack the nearest hero
-            boss.mainScript = boss.getComponents(cc.Component).find(c => typeof c.attack === 'function');
-            if (boss.mainScript) {
-                let dame = boss.mainScript.attack();
-                // if (dame <= 0 || dame == undefined) return;
-                // this.characterTakeDame(nearestHero, dame);
-                this.checkWin();
-            } else {
-                console.log('no attack function');
-            }
-        }
-
     },
 
     // boss skill

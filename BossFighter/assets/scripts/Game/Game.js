@@ -15,6 +15,10 @@ cc.Class({
         playerTurn: cc.Label,
         bossTurn: cc.Label,
 
+        attackCooldownLabel: cc.Label,
+        skillCooldownLabel: cc.Label,
+        ultimateCooldownLabel: cc.Label,
+
         backgroundSprite: cc.Sprite,
         backgroundSpriteFrames: [cc.SpriteFrame],
         tileSpriteFrames: [cc.SpriteFrame],
@@ -31,6 +35,11 @@ cc.Class({
         resumeButton: cc.Button,
         nextButton: cc.Button,
         heroPrefabs: [cc.Prefab],
+
+        heroInfoPanel: cc.Node,
+        heroNameLabel: cc.Label,
+        heroHpLabel: cc.Label,
+        heroImage: cc.Sprite,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -61,7 +70,6 @@ cc.Class({
 
         this.gameController.gameScript = this;
 
-        this.gameController.startPlayerTurn();
     },
 
     start() {
@@ -102,7 +110,15 @@ cc.Class({
         // if (this.mapIndex > 0) {
         //     this.turnOnAutoSkill();
         // }
+        this.gameController.startPlayerTurn();
+    },
 
+    updateCooldownUI(hero) {
+        if (!hero || !hero.mainScript) return;
+
+        this.attackCooldownLabel.string = `Attack CD: ${hero.mainScript.attackCooldownRemaining}`;
+        this.skillCooldownLabel.string = `Skill CD: ${hero.mainScript.skillCooldownRemaining}`;
+        this.ultimateCooldownLabel.string = `Ultimate CD: ${hero.mainScript.ultimateCooldownRemaining}`;
     },
 
     updatePlayerTurnLabel(points) {
@@ -114,6 +130,26 @@ cc.Class({
     updateBossTurnLabel(points) {
         if (this.bossTurn) {
             this.bossTurn.string = points;
+        }
+    },
+
+    updateHeroInfoUI(hero) {
+        if (!hero) {
+            this.heroInfoPanel.active = false;
+            return;
+        }
+
+        this.heroInfoPanel.active = true;
+
+        const heroScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
+
+        if (heroScript && typeof heroScript.getCharacterInfo === 'function') {
+            const info = heroScript.getCharacterInfo();
+
+            this.heroNameLabel.string = info.name || '';
+            // const currentHp = heroScript.getCurrentHp ? heroScript.getCurrentHp() : info.health;
+            this.heroHpLabel.string = `${heroScript.getCurrentHp()} / ${info.health}`;
+            this.heroImage.spriteFrame = info.imageSprite ? info.imageSprite.spriteFrame : null;
         }
     },
 
@@ -363,7 +399,6 @@ cc.Class({
         }
     },
 
-
     heroAttack() {
         if (this.isAttacking) return;
         this.isAttacking = true;
@@ -372,7 +407,7 @@ cc.Class({
 
         this.scheduleOnce(() => {
             this.isAttacking = false;
-        }, this.gameController.getAttackCooldown()) // get cool down from hero
+        }, 0.1) // get cool down from hero
     },
 
     heroSkill() {
@@ -382,7 +417,7 @@ cc.Class({
 
         this.scheduleOnce(() => {
             this.isCastingSkill = false;
-        }, this.gameController.getSkillCooldown()) // get cool down from hero
+        }, 0.1) // get cool down from hero
     },
 
     // turnOnAutoBossAttack() {
@@ -456,6 +491,7 @@ cc.Class({
 
     //     this.gameController.turnOnAutoMode();
     // },
+
 
 
     replayGame() {

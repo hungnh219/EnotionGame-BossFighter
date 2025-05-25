@@ -24,21 +24,22 @@ cc.Class({
         attackRange: 100,
         normalAttackPower: 15,
         manaPerAttack: 10,
-        imageSprite: cc.Sprite,
-        skillPrefab: cc.Prefab,
-
+        
         skillCost: 30,
         ultimateCost: 80,
+        
         skillCooldown: 5,
         ultimateCooldown: 12,
         attackCooldown: 1,
 
+        imageSprite: cc.Sprite,
+        skillPrefab: cc.Prefab,
         hpBar: cc.ProgressBar,
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
         this.hp = this.maxHp;
     },
 
@@ -81,7 +82,7 @@ cc.Class({
         animation.play('bottom-skill');
     },
 
-    castSkill() {
+    getSkillDame() {
         const skill = cc.instantiate(this.skillPrefab);
         skill.parent = this.node.parent;
         skill.x = this.node.x;
@@ -97,26 +98,26 @@ cc.Class({
         }
 
     },
-    affectDamage() {
-        this.castSkill();
+    getSkillDame() {
+        this.getSkillDame();
         return this.normalAttackPower * 2;
     },
     takeDamage(damage) {
         this.hp -= damage;
         this.hp = Math.max(this.hp, 0);
-        if (this.hpBar){
+        if (this.hpBar) {
             this.playAnimation(ANIMATION_NAME.HURT, false);
             this.hpBar.progress = this.hp / this.maxHp;
-        } 
+        }
         if (this.hp <= 0) {
             this.playAnimation(ANIMATION_NAME.DEATH, false);
             this.scheduleOnce(() => {
                 this.die();
-            },1);
+            }, 1);
         }
     },
 
-    die(){
+    die() {
         this.node.destroy();
     },
 
@@ -136,7 +137,7 @@ cc.Class({
         this.anim.play(animationName);
 
         if (loop) {
-            
+
             this.anim.once('finished', () => {
                 this.playAnimation(animationName);
             });
@@ -155,7 +156,7 @@ cc.Class({
         }
     },
 
-    start () {
+    start() {
 
     },
 

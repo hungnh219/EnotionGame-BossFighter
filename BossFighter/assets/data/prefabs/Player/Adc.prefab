@@ -491,17 +491,17 @@
     "attackRange": 200,
     "normalAttackPower": 10,
     "manaPerAttack": 10,
+    "skillCost": 30,
+    "ultimateCost": 80,
+    "attackCooldown": 1,
+    "skillCooldown": 3,
+    "ultimateCooldown": 6,
     "imageSprite": {
       "__id__": 3
     },
     "skillPrefab": {
       "__uuid__": "3ef9ee0f-e93e-4512-bc1c-b7e2c2540ef6"
     },
-    "skillCost": 30,
-    "ultimateCost": 80,
-    "skillCooldown": 5,
-    "ultimateCooldown": 12,
-    "attackCooldown": 0.8,
     "hpBar": {
       "__id__": 11
     },

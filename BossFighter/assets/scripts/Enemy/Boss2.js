@@ -12,7 +12,7 @@ cc.Class({
     properties: {
         maxHp: 100,
         hpBar: cc.ProgressBar,
-
+        normalAttackPower: 10,
         imageSprite: cc.Sprite,
         animations: [cc.Animation]
     },
@@ -25,6 +25,10 @@ cc.Class({
         this.imageSprite.node.scaleY = 1.5;
     },
 
+    attackAnimation() {
+        this.playAnimation(ANIMATION_NAME.MELEE_ATTACK, false);
+    },
+
     takeDamage(damage) {
         this.hp -= damage;
         this.hp = Math.max(this.hp, 0);
@@ -34,23 +38,15 @@ cc.Class({
             this.die();
         }
     },
-    castSkill() {
-        this.playAnimation(ANIMATION_NAME.CAST_SKILL, false);
+    getAttackDame() {
+        this.attackAnimation();
+        return this.normalAttackPower;
     },
-    affectDamage() {
-        this.castSkill();
-        return this.normalAttackPower * 2;
-    },
+
     die() {
         this.node.destroy();
     },
-    attack() {
-        // animation skill
-        // this.animations[0].play("attack");
-        console.log("attack", this.animations[0]);
-        this.playAnimation(ANIMATION_NAME.MELEE_ATTACK, false);
-        return 10; // dame
-    },
+
     getHp() {
         return this.hp;
     },
