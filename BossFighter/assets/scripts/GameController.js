@@ -24,7 +24,7 @@ const GameController = cc.Class({
 
     properties: {
         gameWonIndex: 0,
-        playerMovePoints: 3, // number of points player can move in one turn
+        playerTurnCount: 3, // number of points player can move in one turn
         isPlayerTurn: true,
         bossTurnCount: 1,
     },
@@ -54,6 +54,17 @@ const GameController = cc.Class({
         this.isTurnOnMusic = true;
         this.startPlayerTurn();
     },
+
+    consumePlayerTurn() {
+        this.playerTurnCount--;
+        this.updateTurnLabels();
+
+        if (this.playerTurnCount <= 0) {
+            this.isPlayerTurn = false;
+            this.bossAttackTurn();
+        }
+    },
+
 
     start() {
     },
@@ -164,13 +175,7 @@ const GameController = cc.Class({
         const finishCallback = cc.callFunc(() => {
             this.isMoving = false;
 
-            this.playerMovePoints--;
-            this.updateTurnLabels();
-
-            if (this.playerMovePoints <= 0) {
-                this.isPlayerTurn = false;
-                this.bossAttackTurn();
-            }
+            this.consumePlayerTurn();
             // this.checkMove();
         });
         const sequence = cc.sequence(moveAction, finishCallback);
@@ -189,7 +194,7 @@ const GameController = cc.Class({
         if (!this.boss) return;
 
         // update the turn labels
-         this.updateTurnLabels();
+        this.updateTurnLabels();
         // calculate the distance between the boss and the heroes, take the nearest hero
         const boss = this.boss;
         const heroes = this.heros;
@@ -234,16 +239,16 @@ const GameController = cc.Class({
 
     startPlayerTurn() {
         this.isPlayerTurn = true;
-        this.playerMovePoints = 3; // reset player move points
+        this.playerTurnCount = 3; // reset player move points
         this.updateTurnLabels();
     },
 
     updateTurnLabels() {
-    if (this.gameScript) {
-        this.gameScript.updatePlayerTurnLabel(this.playerMovePoints);
-        this.gameScript.updateBossTurnLabel(this.isPlayerTurn ? 0 : this.bossTurnCount);
-    }
-},
+        if (this.gameScript) {
+            this.gameScript.updatePlayerTurnLabel(this.playerTurnCount);
+            this.gameScript.updateBossTurnLabel(this.isPlayerTurn ? 0 : this.bossTurnCount);
+        }
+    },
 
 
 
@@ -288,6 +293,8 @@ const GameController = cc.Class({
                 if (attackDame <= 0) return;
 
                 hero.mainScript.attackAnimation();
+
+                this.consumePlayerTurn();
 
                 this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
                 if (this.boss.mainScript) {
@@ -379,6 +386,8 @@ const GameController = cc.Class({
 
                 this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
                 if (this.boss.mainScript) {
+
+                    this.consumePlayerTurn();
 
                     setTimeout(() => {
                         this.isUsingSkill = false;
