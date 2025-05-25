@@ -86,9 +86,9 @@ cc.Class({
 
         if (this.heroPrefabs) this.spawnHero();
         this.spawnBoss();
-        this.turnOnAutoBossAttack();
+        // this.turnOnAutoBossAttack();
         // this.turnOnAutoSkill();
-        this.turnOnAutoMode();
+        // this.turnOnAutoMode();
         // this.spawnTestSkill();
 
         this.gameController.setMapPicked(this.mapIndex);
@@ -386,7 +386,7 @@ cc.Class({
     },
 
     bossAutoSkill() {
-        console.log('boss auto skill')
+        // console.log('boss auto skill')
         let delay = (Math.random() * 3000 + 1000) / this.mapIndex;
         if (this.gameController.boss == undefined) {
             console.log("no boss node");

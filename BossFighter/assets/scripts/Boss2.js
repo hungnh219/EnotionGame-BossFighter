@@ -47,7 +47,6 @@ cc.Class({
     attack() {
         // animation skill
         // this.animations[0].play("attack");
-        console.log("attack", this.animations[0]);
         this.playAnimation(ANIMATION_NAME.MELEE_ATTACK, false);
         return 10; // dame
     },

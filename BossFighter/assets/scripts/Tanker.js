@@ -52,6 +52,7 @@ cc.Class({
     attackAnimation() {
         const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
+        sprite.angle = sprite.angle + 45; // Rotate the sprite by 90 degrees
         this.playAnimation(ANIMATION_NAME.MELEE_ATTACK, false);
         this.playSoundEffect();
     },
@@ -83,7 +84,12 @@ cc.Class({
     skillAnimation() {
         const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
+        
         animation.play('bottom-skill');
+        console.log('1', sprite.angle);
+        sprite.angle = 90;
+        console.log('2', sprite.angle);
+
     },
 
     castSkill() {

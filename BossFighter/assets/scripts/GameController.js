@@ -652,7 +652,7 @@ const GameController = cc.Class({
     },
 
     checkWin() {
-        console.log('check win')
+        // console.log('check win')
         if (this.heros.length == 0) {
             this.setWonMap();
             this.isMoving = false;
