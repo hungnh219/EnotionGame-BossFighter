@@ -1,22 +1,23 @@
-import GameController from "./GameController";
+import GameController from "../Game/GameController";
 const ANIMATION_NAME = {
-    MELEE_ATTACK: 'adc-top-walk',
-    BOTTOM_WALK: 'adc-bottom-walk',
-    TOP_WALK: 'adc-top-walk',
-    LEFT_WALK: 'adc-left-walk',
-    RIGHT_WALK: 'adc-right-walk',
-    TOP_LEFT_WALK: 'adc-top-left-walk',
-    TOP_RIGHT_WALK: 'adc-top-right-walk',
-    BOTTOM_LEFT_WALK: 'adc-bottom-left-walk',
-    BOTTOM_RIGHT_WALK: 'adc-bottom-right-walk',
-    HURT: 'adc-hurt',
-    DEATH: 'adc-death',
+    MELEE_ATTACK: 'mage-bottom-attack',
+    BOTTOM_WALK: 'mage-bottom-walk',
+    TOP_WALK: 'mage-top-walk',
+    LEFT_WALK: 'mage-left-walk',
+    RIGHT_WALK: 'mage-right-walk',
+    TOP_LEFT_WALK: 'mage-top-left-walk',
+    TOP_RIGHT_WALK: 'mage-top-right-walk',
+    BOTTOM_LEFT_WALK: 'mage-bottom-left-walk',
+    BOTTOM_RIGHT_WALK: 'mage-bottom-right-walk',
+    HURT: 'mage-hurt',
+    DEATH: 'mage-death',
 }
+
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        role: 'Adc',
+        role: 'Mage',
 
         maxHp: 100,
         maxMana: 100,
@@ -31,14 +32,14 @@ cc.Class({
         ultimateCost: 80,
         skillCooldown: 5,
         ultimateCooldown: 12,
-        attackCooldown: 0.8,
+        attackCooldown: 1,
 
         hpBar: cc.ProgressBar,
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
         this.hp = this.maxHp;
     },
 
@@ -91,7 +92,7 @@ cc.Class({
         const bossNode = this.gameController.getBoss();
         if (bossNode) {
             const bossPos = bossNode.getPosition();
-            skill.getComponent('Adc_Skill').initDirection(bossPos);
+            skill.getComponent('Mage_Skill').initDirection(bossPos);
         } else {
             console.log('No boss found');
         }
@@ -103,13 +104,13 @@ cc.Class({
     },
 
     takeDamage(damage) {
-        console.log('adc takeDamage', damage);
+        console.log('mage takeDamage', damage);
         this.hp -= damage;
         this.hp = Math.max(this.hp, 0);
-        if (this.hpBar) {
+        if (this.hpBar){
             this.playAnimation(ANIMATION_NAME.HURT, false);
             this.hpBar.progress = this.hp / this.maxHp;
-        }
+        } 
 
         if (this.hp <= 0) {
             this.playAnimation(ANIMATION_NAME.DEATH, false);
@@ -158,14 +159,12 @@ cc.Class({
         }
     },
 
-    start () {
-
+    getAttackDame() {
+        return this.normalAttackPower;
     },
 
-    getAttackDame() {
-        // this.attack();
-        // this.attackAnimation();
-        return this.normalAttackPower;
+    start() {
+
     },
 
     getAttackCooldown() {
@@ -175,5 +174,6 @@ cc.Class({
     getSkillCooldown() {
         return this.skillCooldown;
     },
+
     // update (dt) {},
 });

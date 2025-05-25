@@ -1,4 +1,4 @@
-import GameController from "./GameController";
+import GameController from "../Game/GameController";
 const ANIMATION_NAME = {
     MELEE_ATTACK: 'bruiser-bottom-attack',
     BOTTOM_WALK: 'bruiser-bottom-walk',

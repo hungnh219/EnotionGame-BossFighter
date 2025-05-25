@@ -1,4 +1,4 @@
-import GameController from "./GameController";
+import GameController from "../Game/GameController";
 
 cc.Class({
     extends: cc.Component,

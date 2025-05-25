@@ -337,7 +337,7 @@ cc.Class({
             this.gameController.listenKeyDown(this.gameController.getFocusedHero());
         }
 
-        if (event.keyCode == cc.macro.KEY.j) {
+        if (event.keyCode == cc.macro.KEY.q) {
             this.heroAttack();
             if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
                 this.endGameNotification();
@@ -347,8 +347,8 @@ cc.Class({
             }
         }
 
-        if (event.keyCode == cc.macro.KEY.k) {
-            this.gameController.heroSkill();
+        if (event.keyCode == cc.macro.KEY.j) {
+            this.heroSkill();
             if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
                 console.log('skill')
                 this.endGameNotification();
@@ -361,6 +361,18 @@ cc.Class({
         if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
             this.gameController.heroMoveAnimation(event.keyCode);
         }
+    },
+
+
+    heroAttack() {
+        if (this.isAttacking) return;
+        this.isAttacking = true;
+        this.gameController.heroAttack();
+
+
+        this.scheduleOnce(() => {
+            this.isAttacking = false;
+        }, this.gameController.getAttackCooldown()) // get cool down from hero
     },
 
     heroSkill() {
@@ -377,9 +389,9 @@ cc.Class({
     //     this.bossAutoAttack();
     // },
 
-    turnOnAutoSkill() {
-        this.bossAutoSkill();
-    },
+    // turnOnAutoSkill() {
+    //     this.bossAutoSkill();
+    // },
 
     // bossAutoAttack() {
     //     if (this.gameController.boss == undefined) {
@@ -405,56 +417,46 @@ cc.Class({
     //     }, 1000);
     // },
 
-    bossAutoSkill() {
-        console.log('boss auto skill')
-        let delay = (Math.random() * 3000 + 1000) / this.mapIndex;
-        if (this.gameController.boss == undefined) {
-            console.log("no boss node");
-            return;
-        }
+    // bossAutoSkill() {
+    //     console.log('boss auto skill')
+    //     let delay = (Math.random() * 3000 + 1000) / this.mapIndex;
+    //     if (this.gameController.boss == undefined) {
+    //         console.log("no boss node");
+    //         return;
+    //     }
 
-        if (this.gameController.getWinner()) {
-            this.endGameNotification();
-            return;
-        }
+    //     if (this.gameController.getWinner()) {
+    //         this.endGameNotification();
+    //         return;
+    //     }
 
-        setTimeout(() => {
-            if (!this.gameController.getWinner()) {
-                this.gameController.bossCastSkill();
-                this.spawnSkill();
-                this.bossAutoSkill();
-            } else {
-                this.endGameNotification();
-            }
-        }, delay);
-    },
+    //     setTimeout(() => {
+    //         if (!this.gameController.getWinner()) {
+    //             this.gameController.bossCastSkill();
+    //             this.spawnSkill();
+    //             this.bossAutoSkill();
+    //         } else {
+    //             this.endGameNotification();
+    //         }
+    //     }, delay);
+    // },
 
-    turnOnAutoMode() {
-        if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
-            this.gameController.setWonMap();
-            this.endGameNotification();
-            return;
-        }
+    // turnOnAutoMode() {
+    //     if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
+    //         this.gameController.setWonMap();
+    //         this.endGameNotification();
+    //         return;
+    //     }
 
-        // this.scheduleOnce(() => {
-        //     this.gameController.moveHeroNotFocusesToBoss();
-        //     this.gameController.nonFocusedHeroesAttackBoss();
-        //     this.turnOnAutoMode();
-        // }, 1)
+    //     // this.scheduleOnce(() => {
+    //     //     this.gameController.moveHeroNotFocusesToBoss();
+    //     //     this.gameController.nonFocusedHeroesAttackBoss();
+    //     //     this.turnOnAutoMode();
+    //     // }, 1)
 
-        this.gameController.turnOnAutoMode();
-    },
+    //     this.gameController.turnOnAutoMode();
+    // },
 
-    heroAttack() {
-        if (this.isAttacking) return;
-        this.isAttacking = true;
-        this.gameController.heroAttack();
-
-
-        this.scheduleOnce(() => {
-            this.isAttacking = false;
-        }, this.gameController.getAttackCooldown()) // get cool down from hero
-    },
 
     replayGame() {
         // if (cc.director.isPaused()) {

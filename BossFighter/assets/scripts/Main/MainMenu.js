@@ -1,5 +1,5 @@
-import GAME_DATA from "./GameData";
-import GameController from "./GameController";
+import GAME_DATA from "../Game/GameData";
+import GameController from "../Game/GameController";
 
 cc.Class({
     extends: cc.Component,
@@ -11,8 +11,10 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
+        console.log("Mfádfgsd");
         const gameController = GameController.getInstance();
+        console.log('MainMenu onLoad', gameController);
         if (gameController) {
             this.gameController = gameController;
         } else {
@@ -38,7 +40,7 @@ cc.Class({
         }
     },
 
-    start () {
+    start() {
 
     },
 
