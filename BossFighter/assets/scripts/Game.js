@@ -12,6 +12,9 @@ cc.Class({
         mapTileHeight: cc.Integer,
         // mapTileSize: cc.Integer,
 
+        playerTurn: cc.Label,
+        bossTurn: cc.Label,
+
         backgroundSprite: cc.Sprite,
         backgroundSpriteFrames: [cc.SpriteFrame],
         tileSpriteFrames: [cc.SpriteFrame],
@@ -35,7 +38,7 @@ cc.Class({
     onLoad() {
 
         cc.director.getCollisionManager().enabled = true;
-       
+
         // variables
         this.gridMap = [];
         this.isMoving = false;
@@ -55,6 +58,10 @@ cc.Class({
         // test add boss into map
         this.winnerNotificationLabel.node.parent.zIndex = 999;
         this.rootNode.sortAllChildren();
+
+        this.gameController.gameScript = this;
+
+        this.gameController.startPlayerTurn();
     },
 
     start() {
@@ -86,17 +93,30 @@ cc.Class({
 
         if (this.heroPrefabs) this.spawnHero();
         this.spawnBoss();
-        this.turnOnAutoBossAttack();
+        // this.turnOnAutoBossAttack();
         // this.turnOnAutoSkill();
-        this.turnOnAutoMode();
+        // this.turnOnAutoMode();
         // this.spawnTestSkill();
 
-        this.gameController.setMapPicked(this.mapIndex);
-        if (this.mapIndex > 0) {
-            this.turnOnAutoSkill();
-        }
+        // this.gameController.setMapPicked(this.mapIndex);
+        // if (this.mapIndex > 0) {
+        //     this.turnOnAutoSkill();
+        // }
 
     },
+
+    updatePlayerTurnLabel(points) {
+        if (this.playerTurn) {
+            this.playerTurn.string = points;
+        }
+    },
+
+    updateBossTurnLabel(points) {
+        if (this.bossTurn) {
+            this.bossTurn.string = points;
+        }
+    },
+
 
     resetData() {
         this.gameController.resetGame();
@@ -170,7 +190,7 @@ cc.Class({
 
         this.rootNode.addChild(this.bossNode);
 
-        
+
         this.addObjectIntoMap(posX, posY, size, this.bossNode);
         this.updateWalkable(posX, posY, size);
     },
@@ -207,7 +227,7 @@ cc.Class({
             // this.gridMap[randomX][randomY].object = null;
             // this.gameController.updateWalkable(randomX, randomY, true);
         }
-        , 500);
+            , 500);
     },
 
     initMapView() {
@@ -353,37 +373,37 @@ cc.Class({
         }, this.gameController.getSkillCooldown()) // get cool down from hero
     },
 
-    turnOnAutoBossAttack() {
-        this.bossAutoAttack();
-    },
+    // turnOnAutoBossAttack() {
+    //     this.bossAutoAttack();
+    // },
 
     turnOnAutoSkill() {
         this.bossAutoSkill();
     },
 
-    bossAutoAttack() {
-        if (this.gameController.boss == undefined) {
-            console.log("no boss node");
-            return;
-        }
+    // bossAutoAttack() {
+    //     if (this.gameController.boss == undefined) {
+    //         console.log("no boss node");
+    //         return;
+    //     }
 
-        if (this.gameController.getWinner()) {
-            this.endGameNotification();
-            return;
-        }
+    //     if (this.gameController.getWinner()) {
+    //         this.endGameNotification();
+    //         return;
+    //     }
 
-        if (cc.director.isPaused()) return;
+    //     if (cc.director.isPaused()) return;
 
-        setTimeout(() => {
-            if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
-                this.endGameNotification();
-                return;
-            } else {
-                this.gameController.bossAttack();
-                this.bossAutoAttack();
-            }
-        }, 1000);
-    },
+    //     setTimeout(() => {
+    //         if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
+    //             this.endGameNotification();
+    //             return;
+    //         } else {
+    //             this.gameController.bossAttack();
+    //             this.bossAutoAttack();
+    //         }
+    //     }, 1000);
+    // },
 
     bossAutoSkill() {
         console.log('boss auto skill')
@@ -409,7 +429,7 @@ cc.Class({
         }, delay);
     },
 
-    turnOnAutoMode() {    
+    turnOnAutoMode() {
         if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
             this.gameController.setWonMap();
             this.endGameNotification();
@@ -487,7 +507,7 @@ cc.Class({
         }
         this.winnerNotificationLabel.string = winner;
         this.winnerNotificationLabel.node.parent.active = true;
- 
+
         // cc.director.pause()
         this.pauseButton.node.active = false;
         this.resumeButton.node.active = false;
@@ -508,7 +528,7 @@ cc.Class({
     nextGame() {
         if (this.gameController.getWonMap() >= (this.backgroundSpriteFrames.length)) {
             this.nextButton.node.active = false;
-          
+
             return;
         }
         if (cc.director.isPaused()) {

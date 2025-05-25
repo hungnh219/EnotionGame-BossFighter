@@ -23,7 +23,10 @@ const GameController = cc.Class({
     },
 
     properties: {
-        gameWonIndex: 0
+        gameWonIndex: 0,
+        playerMovePoints: 3, // number of points player can move in one turn
+        isPlayerTurn: true,
+        bossTurnCount: 1,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -49,7 +52,7 @@ const GameController = cc.Class({
         this.isAutoMode = false;
         this.isUsingSkill = false;
         this.isTurnOnMusic = true;
-
+        this.startPlayerTurn();
     },
 
     start() {
@@ -136,6 +139,9 @@ const GameController = cc.Class({
         }
     },
     moveCharacter(dx, dy) {
+        if (!this.isPlayerTurn) return;
+
+        // find new position
         const newX = this.listenMoveNode.x + dx * this.mapTileWidth;
         const newY = this.listenMoveNode.y + dy * this.mapTileHeight;
 
@@ -157,7 +163,15 @@ const GameController = cc.Class({
         // const moveAction = cc.moveTo(0.5, newX, newY).easing(cc.easeCubicActionOut());
         const finishCallback = cc.callFunc(() => {
             this.isMoving = false;
-            this.checkMove();
+
+            this.playerMovePoints--;
+            this.updateTurnLabels();
+
+            if (this.playerMovePoints <= 0) {
+                this.isPlayerTurn = false;
+                this.bossAttackTurn();
+            }
+            // this.checkMove();
         });
         const sequence = cc.sequence(moveAction, finishCallback);
         this.listenMoveNode.runAction(sequence);
@@ -170,6 +184,67 @@ const GameController = cc.Class({
             this.gridMap[gridX][gridY] = false;
         }
     },
+
+    bossAttackTurn() {
+        if (!this.boss) return;
+
+        // update the turn labels
+         this.updateTurnLabels();
+        // calculate the distance between the boss and the heroes, take the nearest hero
+        const boss = this.boss;
+        const heroes = this.heros;
+        let nearestHero = null;
+        let minDistance = Infinity;
+
+        for (let i = 0; i < heroes.length; i++) {
+            const hero = heroes[i];
+            const distance = cc.v2(boss.x - hero.x, boss.y - hero.y).mag();
+
+            if (distance < minDistance) {
+                minDistance = distance;
+                nearestHero = hero;
+            }
+        }
+
+        if (nearestHero) {
+            // attack the nearest hero
+            boss.mainScript = boss.getComponents(cc.Component).find(c => typeof c.attack === 'function');
+            if (boss.mainScript) {
+                let dame = boss.mainScript.attack();
+                // handle the case when dame is 0 or undefined
+                if (nearestHero.mainScript === undefined) {
+                    nearestHero.mainScript = nearestHero.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
+                }
+                if (nearestHero.mainScript) {
+                    nearestHero.mainScript.takeDamage(dame);
+                    // check if hero is dead
+                    if (nearestHero.mainScript.getCurrentHp() <= 0) {
+                        this.handleHeroDie(nearestHero);
+                    }
+                }
+                this.checkWin();
+            }
+        }
+
+        // after boss attack, set isPlayerTurn to true
+        this.scheduleOnce(() => {
+            this.startPlayerTurn();
+        }, 1); // wait 1 second before next player turn
+    },
+
+    startPlayerTurn() {
+        this.isPlayerTurn = true;
+        this.playerMovePoints = 3; // reset player move points
+        this.updateTurnLabels();
+    },
+
+    updateTurnLabels() {
+    if (this.gameScript) {
+        this.gameScript.updatePlayerTurnLabel(this.playerMovePoints);
+        this.gameScript.updateBossTurnLabel(this.isPlayerTurn ? 0 : this.bossTurnCount);
+    }
+},
+
 
 
     /* game scene */
