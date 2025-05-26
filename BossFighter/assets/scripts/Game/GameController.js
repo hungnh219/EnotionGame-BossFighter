@@ -52,22 +52,23 @@ const GameController = cc.Class({
         this.winner = null; // 'boss', 'player'
         this.isAutoMode = false;
         this.isUsingSkill = false;
+        this.enemies = [];
+
         this.isTurnOnMusic = true;
 
         this.mapHeight = null;
         this.mapWidth = null;
         this.mapTileWidth = null;
         this.mapTileHeight = null;
-   
+        
     },
 
     consumePlayerTurn() {
-        console.log('consume player turn');
         this.playerTurnCount--;
         this.updateTurnLabels();
-
         if (this.playerTurnCount <= 0) {
             this.isPlayerTurn = false;
+            this.enemyAutoMode();
             this.bossAttack();
         }
     },
@@ -108,7 +109,114 @@ const GameController = cc.Class({
             mapTileHeight: this.mapTileHeight,
         };
     },
+    // =================== Enemy Logic: Start ===================
+    setNewEmemy(newEnemy) {
+        if (this.enemies == null || this.enemies == undefined) this.enemies = [];
 
+
+        this.enemies.push(newEnemy);
+    },
+
+    getEnemy() {
+        return this.enemies;
+    },
+
+    // each enemy moves to nearest hero and attack if their attack range is enough
+    // execute in boss turn, before boss attack
+    enemyAutoMode() {
+        if (this.enemies == undefined || this.enemies == null) return;
+        if (this.enemies.length == 0) return;
+
+        this.enemies.forEach((enemy, index) => {
+            // if (this.getWinner() != undefined && this.getWinner() != null) return;
+            // check attack range hero
+            // if enough -> attack
+            // else -> move
+            let nearestHero = this.findNearestHero(enemy);
+            if (!nearestHero) return;
+
+            // distance between enemy and nearest hero
+            let enemyPos = cc.v2(enemy.x, enemy.y);
+            let heroPos = cc.v2(nearestHero.x, nearestHero.y);
+
+            let dis = cc.v2(enemyPos.x - heroPos.x, enemyPos.y - heroPos.y).mag();
+
+            // let enemyAttackRange = this.getAttackRange(enemies);
+            let enemyAttackRange = 100;
+
+            if (dis <= enemyAttackRange) {
+                // attack
+                console.log('attack')
+            } else {
+                // move to nearest hero
+                EventBus.emit(EventBus.events.ENEMY_AUTO_MODE, enemy, nearestHero);
+            }
+
+
+            // if (this.checkAttackRangeHero(hero)) {
+            //     this.heroAttack(hero);
+            // } else {
+            //     // move
+            //     if (hero === this.focusedHero) return;
+            //     if (hero.isMoving) return;
+
+            //     let heroPos = cc.v2(hero.x, hero.y);
+            //     let dx = 0;
+            //     let dy = 0;
+
+            //     let diffX = bossPos.x - heroPos.x;
+            //     let diffY = bossPos.y - heroPos.y;
+            //     diffX = Math.round(diffX);
+            //     diffY = Math.round(diffY);
+
+            //     if (index == 1) {
+            //         // console.log(diffX, diffY);
+            //     }
+            //     if (Math.abs(diffX) > Math.abs(diffY)) {
+            //         dx = diffX > 0 ? 1 : -1;
+            //     } else {
+            //         dy = diffY > 0 ? 1 : -1;
+            //     }
+            //     this.moveCharacterBot(hero, dx, dy);
+
+            //     // play animation move
+            //     let keyCode = null;
+            //     if (dx === 0 && dy === 1) {
+            //         keyCode = cc.macro.KEY.w;
+            //     } else if (dx === 0 && dy === -1) {
+            //         keyCode = cc.macro.KEY.s;
+            //     } else if (dx === -1 && dy === 0) {
+            //         keyCode = cc.macro.KEY.a;
+            //     } else if (dx === 1 && dy === 0) {
+            //         keyCode = cc.macro.KEY.d;
+            //     }
+
+            //     if (keyCode != null) {
+            //         this.heroMoveAnimation(keyCode, hero);
+            //     }
+            // }
+
+        })
+    },
+
+    findNearestHero(enemy) {
+        if (!this.heros || this.heros.length === 0) return null;
+
+        let nearestHero = null;
+
+        let minDistance = Infinity;
+
+        this.heros.forEach(hero => {
+            const distance = cc.v2(enemy.x - hero.x, enemy.y - hero.y).mag();
+            
+            if (distance < minDistance) {
+                minDistance = distance;
+                nearestHero = hero;
+            }
+        });
+        return nearestHero;
+    },
+    // =================== Enemy Logic: End ===================
     heroClick(node) {
         this.setFocusedHero(this.heros.indexOf(node));
         EventBus.emit(EventBus.events.DISPLAY_WALKABLE_AREA, this.firstCellPos, this.lastCellPos, this.gridMap, node);
@@ -174,46 +282,46 @@ const GameController = cc.Class({
     //         this.moveCharacter(dx, dy);
     //     }
     // },
-    moveCharacter(dx, dy) {
-        if (!this.isPlayerTurn) return;
+    // moveCharacter(dx, dy) {
+    //     if (!this.isPlayerTurn) return;
 
-        // find new position
-        const newX = this.listenMoveNode.x + dx * this.mapTileWidth;
-        const newY = this.listenMoveNode.y + dy * this.mapTileHeight;
+    //     // find new position
+    //     const newX = this.listenMoveNode.x + dx * this.mapTileWidth;
+    //     const newY = this.listenMoveNode.y + dy * this.mapTileHeight;
 
-        // check if the new position is walkable use newX, newY, firstCellPos and lastCellPos
-        if (newX < this.firstCellPos.x || newX > this.lastCellPos.x || newY < this.firstCellPos.y || newY > this.lastCellPos.y) {
-            return;
-        }
+    //     // check if the new position is walkable use newX, newY, firstCellPos and lastCellPos
+    //     if (newX < this.firstCellPos.x || newX > this.lastCellPos.x || newY < this.firstCellPos.y || newY > this.lastCellPos.y) {
+    //         return;
+    //     }
 
-        // check if the new position is walkable
-        const gridX = Math.floor((newX - this.firstCellPos.x) / this.mapTileWidth);
-        const gridY = Math.floor((newY - this.firstCellPos.y) / this.mapTileHeight);
-        if (this.gridMap[gridX][gridY] == false) {
-            return;
-        }
+    //     // check if the new position is walkable
+    //     const gridX = Math.floor((newX - this.firstCellPos.x) / this.mapTileWidth);
+    //     const gridY = Math.floor((newY - this.firstCellPos.y) / this.mapTileHeight);
+    //     if (this.gridMap[gridX][gridY] == false) {
+    //         return;
+    //     }
 
-        // move the character
-        this.isMoving = true;
-        const moveAction = cc.moveTo(DEFAULT_DATA.MOVEMENT_DELAY_TIME, newX, newY);
-        // const moveAction = cc.moveTo(0.5, newX, newY).easing(cc.easeCubicActionOut());
-        const finishCallback = cc.callFunc(() => {
-            this.isMoving = false;
+    //     // move the character
+    //     this.isMoving = true;
+    //     const moveAction = cc.moveTo(DEFAULT_DATA.MOVEMENT_DELAY_TIME, newX, newY);
+    //     // const moveAction = cc.moveTo(0.5, newX, newY).easing(cc.easeCubicActionOut());
+    //     const finishCallback = cc.callFunc(() => {
+    //         this.isMoving = false;
 
-            this.consumePlayerTurn();
-            // this.checkMove();
-        });
-        const sequence = cc.sequence(moveAction, finishCallback);
-        this.listenMoveNode.runAction(sequence);
+    //         this.consumePlayerTurn();
+    //         // this.checkMove();
+    //     });
+    //     const sequence = cc.sequence(moveAction, finishCallback);
+    //     this.listenMoveNode.runAction(sequence);
 
-        // set old position to walkable and new position to not walkable
-        const oldGridX = Math.floor((this.listenMoveNode.x - this.firstCellPos.x) / this.mapTileWidth);
-        const oldGridY = Math.floor((this.listenMoveNode.y - this.firstCellPos.y) / this.mapTileHeight);
-        if (this.gridMap[oldGridX][oldGridY] !== undefined) {
-            this.gridMap[oldGridX][oldGridY] = true;
-            this.gridMap[gridX][gridY] = false;
-        }
-    },
+    //     // set old position to walkable and new position to not walkable
+    //     const oldGridX = Math.floor((this.listenMoveNode.x - this.firstCellPos.x) / this.mapTileWidth);
+    //     const oldGridY = Math.floor((this.listenMoveNode.y - this.firstCellPos.y) / this.mapTileHeight);
+    //     if (this.gridMap[oldGridX][oldGridY] !== undefined) {
+    //         this.gridMap[oldGridX][oldGridY] = true;
+    //         this.gridMap[gridX][gridY] = false;
+    //     }
+    // },
 
     bossAttack() {
         if (!this.boss) return;
@@ -371,7 +479,7 @@ const GameController = cc.Class({
 
                 if (attackDame <= 0) return;
 
-                this.consumePlayerTurn();
+                // this.consumePlayerTurn();
 
                 this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
                 if (this.boss.mainScript) {
@@ -410,6 +518,21 @@ const GameController = cc.Class({
         }
 
         return false;
+    },
+
+    getAttackRange(object) {
+        if (object == undefined || object == null) return 0;
+
+        object.mainScript = object.getComponents(cc.Component).find(c => typeof c.getAttackRange === 'function');
+
+        if (object.mainScript) {
+            let attackRange = object.mainScript.getAttackRange();
+            if (attackRange > 0) {
+                return attackRange;
+            }
+        }
+
+        return 0;
     },
 
     getAttackCooldown(hero) {
@@ -481,7 +604,7 @@ const GameController = cc.Class({
                 this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
                 if (this.boss.mainScript) {
 
-                    this.consumePlayerTurn();
+                    // this.consumePlayerTurn();
 
                     setTimeout(() => {
                         this.isUsingSkill = false;
