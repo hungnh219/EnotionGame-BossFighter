@@ -148,6 +148,8 @@ cc.Class({
         const sprite = heroImageNode.addComponent(cc.Sprite);
         sprite.spriteFrame = this.heros[clickIndex].imageSprite.getComponent(cc.Sprite).spriteFrame;
         this.selectedHero.spriteFrame = this.heros[clickIndex].imageSprite.getComponent(cc.Sprite).spriteFrame;
+        heroImageNode.width = 250;
+        heroImageNode.height = 250;
 
         this.selectedHero.node.removeAllChildren();
 
@@ -170,8 +172,8 @@ cc.Class({
             const sprite = heroImageNode.addComponent(cc.Sprite);
             sprite.spriteFrame = this.heros[this.heroPicked.index].imageSprite.getComponent(cc.Sprite).spriteFrame;
             sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
-            heroImageNode.width = 300;
-            heroImageNode.height = 300;
+            heroImageNode.width = 250;
+            heroImageNode.height = 250;
 
             this.heroLockedList.node.insertChild(heroImageNode, this.heroLockedList.node.childrenCount - 1);
 
