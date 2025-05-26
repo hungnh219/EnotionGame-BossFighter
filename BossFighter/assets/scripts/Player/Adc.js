@@ -1,6 +1,6 @@
 import GameController from "../Game/GameController";
 const ANIMATION_NAME = {
-    MELEE_ATTACK: 'adc-top-walk',
+    MELEE_ATTACK: 'adc-right-attack',
     SKILL: 'adc-bottom-skill',
     ULTIMATE: 'adc-bottom-ultimate',
     BOTTOM_WALK: 'adc-bottom-walk',
@@ -106,6 +106,7 @@ cc.Class({
     },
 
     attackAnimation() {
+        console.log('adc attackAnimation');
         this.playAnimation(ANIMATION_NAME.MELEE_ATTACK, false);
     },
 
