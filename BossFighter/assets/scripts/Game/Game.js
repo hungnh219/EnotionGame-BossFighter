@@ -81,7 +81,7 @@ cc.Class({
             let ranNum = Math.floor(Math.random() * this.bossPrefabs.length);
             let ranBoss = cc.instantiate(this.bossPrefabs[ranNum]);
 
-            this.spawnEnemy(ranBoss, 2);
+            this.spawnEnemy(ranBoss, 1);
         }, this);
 
 
@@ -296,7 +296,7 @@ cc.Class({
 
         this.rootNode.addChild(enemy);
 
-
+        this.gameController.setNewEmemy(enemy);
         this.addObjectIntoMap(posX, posY, size, enemy);
         this.updateWalkable(posX, posY, size);
     },

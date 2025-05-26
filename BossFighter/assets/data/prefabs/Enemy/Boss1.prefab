@@ -477,6 +477,7 @@
     "hpBar": {
       "__id__": 11
     },
+    "normalAttackPower": 10,
     "imageSprite": {
       "__id__": 3
     },
