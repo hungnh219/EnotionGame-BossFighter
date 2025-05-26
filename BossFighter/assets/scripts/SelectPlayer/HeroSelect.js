@@ -41,7 +41,7 @@ cc.Class({
         this.heros = [];
         this.heroLockList = [];
         // this.maxHero = (this.gameController.getMapPicked() == undefined) ? 0 : this.numberOfHeros[this.gameController.getMapPicked()];
-        this.maxHero = 5;
+        this.maxHero = 3;
         // get all prefab
         const heroPrefabScript = this.node.getComponent("PrefabFactory");
         this.heroPrefabs = heroPrefabScript.getAllPrefab();
@@ -51,7 +51,7 @@ cc.Class({
 
             // const heroScript = hero.getComponent('Character') || hero.getComponent('Enemy');
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
-            
+
             if (hero.mainScript != undefined) {
                 const heroInfo = hero.mainScript.getCharacterInfo();
                 console.log('heroInfo', heroInfo);
@@ -148,22 +148,33 @@ cc.Class({
         const sprite = heroImageNode.addComponent(cc.Sprite);
         sprite.spriteFrame = this.heros[clickIndex].imageSprite.getComponent(cc.Sprite).spriteFrame;
         this.selectedHero.spriteFrame = this.heros[clickIndex].imageSprite.getComponent(cc.Sprite).spriteFrame;
-        // // this.heroLockedList.node.addChild(
-        //     heroImageNode
-        // )
+
+        this.selectedHero.node.removeAllChildren();
+
+        const nameLabelNode = new cc.Node('NameLabelNode');
+        const nameLabel = nameLabelNode.addComponent(cc.Label);
+        nameLabel.string = this.heros[clickIndex].name;
+        nameLabel.fontSize = 20;
+        nameLabel.lineHeight = 24;
+
+        nameLabelNode.setPosition(0, -200);
+
+        this.selectedHero.node.addChild(nameLabelNode);
     },
 
     clockHero() {
         if (this.heroPicked.prefab != null) {
             if (this.heroLockedList.node.childrenCount == this.maxHero + 1) return;
+
             const heroImageNode = new cc.Node('HeroImageNode');
             const sprite = heroImageNode.addComponent(cc.Sprite);
             sprite.spriteFrame = this.heros[this.heroPicked.index].imageSprite.getComponent(cc.Sprite).spriteFrame;
             sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
-            heroImageNode.width = 50;
-            heroImageNode.height = 50;
+            heroImageNode.width = 300;
+            heroImageNode.height = 300;
 
             this.heroLockedList.node.insertChild(heroImageNode, this.heroLockedList.node.childrenCount - 1);
+
             if (this.heroLockedList.node.childrenCount == this.maxHero + 1) {
                 let parentNode = this.heroLockedList.node;
                 let children = parentNode.children;
@@ -174,17 +185,35 @@ cc.Class({
                     lastChild.active = false;
                 }
             }
-      
+
+            const nameLabelNode = new cc.Node('NameLabelNode');
+            const nameLabel = nameLabelNode.addComponent(cc.Label);
+            nameLabel.string = this.heros[this.heroPicked.index].name;
+            nameLabel.fontSize = 20;
+            nameLabel.lineHeight = 24;
+            nameLabelNode.setPosition(0, -200);
+            heroImageNode.addChild(nameLabelNode);
+
+            // save hero data to local storage
+            const heroData = {
+                name: this.heros[this.heroPicked.index].name,
+                role: this.heros[this.heroPicked.index].role,
+                health: this.heros[this.heroPicked.index].health,
+                mana: this.heros[this.heroPicked.index].mana,
+                attackRange: this.heros[this.heroPicked.index].attackRange,
+                // spriteFrame: this.heros[this.heroPicked.index].imageSprite.getComponent(cc.Sprite).spriteFrame,                
+            };
+
+            let savedHeroes = JSON.parse(cc.sys.localStorage.getItem('selectedHeroes')) || [];
+            savedHeroes.push(heroData);
+            cc.sys.localStorage.setItem('selectedHeroes', JSON.stringify(savedHeroes));
+
             // this.gameController.addSelectedHeroPrefab(this.heroPicked.prefab);
             this.playSoundEffect();
         }
     },
 
     playGame() {
-        // this.gameController.set
-        // if (this.gameController.getHeroPrefabs().length == 0 || this.gameController.getHeroPrefabs() == undefined || this.gameController.getHeroPrefabs() == null) {
-        //     return;
-        // }
 
         cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME)
     },

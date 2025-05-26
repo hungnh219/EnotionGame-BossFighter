@@ -1802,7 +1802,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "496SQXKpRPwJcx9doOrd8c"
+    "_id": "90rvugASFI1KUweclPwNiE"
   },
   {
     "__type__": "5d17ehGS0JGjJMKeHjGTeR5",
@@ -1812,8 +1812,10 @@
       "__id__": 38
     },
     "_enabled": true,
-    "gameMapPageView": null,
-    "_id": "ddC/+4HmRMFIcDp6xQgoaB"
+    "gameMapPageView": {
+      "__id__": 17
+    },
+    "_id": "07/eauPXVFwZTnUC/COLBQ"
   },
   {
     "__type__": "cc.Node",
