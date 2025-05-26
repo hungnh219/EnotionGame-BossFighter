@@ -11,6 +11,8 @@ EventBus.events = {
     MOVE_TO_WALKABLE_TILE: 'move_to_walkable_tile',
 
     END_ACTION: 'end_action',
+
+    BOSS2_SPAWN_ENEMY: 'boss2_spawn_enemy',
 };
 
 

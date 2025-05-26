@@ -6,6 +6,9 @@ const ANIMATION_NAME = {
     CAST_SKILL: 'boss2-cast-skill',
 }
 
+// import EventBus from "../../EventBus";
+import EventBus from "../EventBus"
+
 cc.Class({
     extends: cc.Component,
 
@@ -14,7 +17,8 @@ cc.Class({
         hpBar: cc.ProgressBar,
         normalAttackPower: 10,
         imageSprite: cc.Sprite,
-        animations: [cc.Animation]
+        animations: [cc.Animation],
+        attackRange: 250,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -65,6 +69,15 @@ cc.Class({
                 this.playAnimation(animationName);
             });
         }
+    },
+
+    getAttackRange() {
+        return this.attackRange;
+    },
+
+    secondarySkill() {
+        // spawn enemy near hero
+        EventBus.emit(EventBus.events.BOSS2_SPAWN_ENEMY);
     }
     // update (dt) {},
 });

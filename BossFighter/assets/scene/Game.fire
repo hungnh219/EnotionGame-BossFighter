@@ -771,8 +771,8 @@
       "__id__": 14
     },
     "_enabled": true,
-    "mapHeight": 8,
-    "mapWidth": 8,
+    "mapHeight": 12,
+    "mapWidth": 12,
     "mapTileWidth": 48,
     "mapTileHeight": 48,
     "playerTurn": {
@@ -4114,6 +4114,9 @@
     "_enabled": true,
     "greenTilePrefab": {
       "__uuid__": "a639c769-fa64-4e2b-bb9c-41195e15d80f"
+    },
+    "redTilePrefab": {
+      "__uuid__": "2cf14c65-b533-4a2c-8153-8133ee63cce9"
     },
     "mapLayout": {
       "__id__": 22

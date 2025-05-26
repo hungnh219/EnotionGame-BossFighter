@@ -55,7 +55,7 @@ cc.Class({
         this.isMoving = false;
         this.pressedKeys = new Set();
         this.gameController = GameController.getInstance();
-        this.gameController.setTileSize(this.mapTileWidth, this.mapTileHeight)
+        // this.gameController.setTileSize(this.mapTileWidth, this.mapTileHeight)
         this.focusedHeroIndex = -1;
         this.heroes = [];
         this.rootNode = this.node.parent;
@@ -76,11 +76,20 @@ cc.Class({
         EventBus.on(EventBus.events.CLICK_TO_MOVE, (node) => {
             this.heroClick(node);   
         }, this);
+
+        EventBus.on(EventBus.events.BOSS2_SPAWN_ENEMY, () => {
+            let ranNum = Math.floor(Math.random() * this.bossPrefabs.length);
+            let ranBoss = cc.instantiate(this.bossPrefabs[ranNum]);
+
+            this.spawnEnemy(ranBoss, 2);
+        }, this);
+
+
         this.mapLayout.node.on(cc.Node.EventType.TOUCH_END, (event) => {
             EventBus.emit(EventBus.events.CLEAR_WALKABLE_AREA);
         }, this);
 
-
+        this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
     },
 
     start() {
@@ -216,7 +225,7 @@ cc.Class({
 
         this.focusedHeroIndex = 0;
         this.gameController.setFocusedHero(this.focusedHeroIndex);
-        this.gameController.listenKeyDown(this.gameController.getFocusedHero());
+        // this.gameController.listenKeyDown(this.gameController.getFocusedHero());
     },
 
     spawnBoss() {
@@ -248,6 +257,47 @@ cc.Class({
 
 
         this.addObjectIntoMap(posX, posY, size, this.bossNode);
+        this.updateWalkable(posX, posY, size);
+    },
+
+    spawnEnemy(enemy, size) {
+        if (!enemy) {
+            console.error("No enemy to spawn");
+            return;
+        }
+        // const size = 2;
+        // const posX = 2;
+        // const posY = 5;
+
+        // const posX = (this.mapWidth - size) / 2;
+        // const posY = this.mapHeight - 3;
+
+        // this.bossNode = cc.instantiate(this.bossPrefabs[this.mapIndex]);
+        // this.gameController.addBoss(this.bossNode);
+
+        // scale boss to 1.5 if size > 1
+
+        let posX = Math.floor(Math.random() * (this.mapWidth - size));
+        let posY = Math.floor(Math.random() * (this.mapHeight - size));
+
+
+        if (size == 1) {
+            enemy.scale = 1;
+        } else if (size > 1) {
+            enemy.scale = 1.5;
+
+            if (this.mapIndex == 2) {
+                enemy.scale = 1;
+            }
+        } else if (size > 3) {
+            enemy.scale = 2;
+        }
+
+
+        this.rootNode.addChild(enemy);
+
+
+        this.addObjectIntoMap(posX, posY, size, enemy);
         this.updateWalkable(posX, posY, size);
     },
 
@@ -390,7 +440,7 @@ cc.Class({
             }
 
             this.gameController.setFocusedHero(this.focusedHeroIndex);
-            this.gameController.listenKeyDown(this.gameController.getFocusedHero());
+            // this.gameController.listenKeyDown(this.gameController.getFocusedHero());
         }
 
         if (event.keyCode == cc.macro.KEY.q) {
@@ -414,9 +464,9 @@ cc.Class({
             }
         }
 
-        if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
-            this.gameController.heroMoveAnimation(event.keyCode);
-        }
+        // if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
+        //     this.gameController.heroMoveAnimation(event.keyCode);
+        // }
     },
 
     heroSkill() {

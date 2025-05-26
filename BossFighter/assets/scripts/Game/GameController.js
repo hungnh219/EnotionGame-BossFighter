@@ -53,6 +53,11 @@ const GameController = cc.Class({
         this.isAutoMode = false;
         this.isUsingSkill = false;
         this.isTurnOnMusic = true;
+
+        this.mapHeight = null;
+        this.mapWidth = null;
+        this.mapTileWidth = null;
+        this.mapTileHeight = null;
    
     },
 
@@ -88,9 +93,28 @@ const GameController = cc.Class({
         return this.heroPick;
     },
 
+    setMapSetting(mapHeight, mapWidth, mapTileWidth, mapTileHeight) {
+        this.mapHeight = mapHeight;
+        this.mapWidth = mapWidth;
+        this.mapTileWidth = mapTileWidth;
+        this.mapTileHeight = mapTileHeight;
+    },
+
+    getMapSetting() {
+        return {
+            mapHeight: this.mapHeight,
+            mapWidth: this.mapWidth,
+            mapTileWidth: this.mapTileWidth,
+            mapTileHeight: this.mapTileHeight,
+        };
+    },
+
     heroClick(node) {
+        this.setFocusedHero(this.heros.indexOf(node));
         EventBus.emit(EventBus.events.DISPLAY_WALKABLE_AREA, this.firstCellPos, this.lastCellPos, this.gridMap, node);
     },
+
+
 
     /* select hero */
     addSelectedHeroPrefab(prefab) {
@@ -102,59 +126,54 @@ const GameController = cc.Class({
         return this.selectedHeroPrefabs;
     },
 
-    setTileSize(tileWidth, tileHeight) {
-        this.mapTileWidth = tileWidth;
-        this.mapTileHeight = tileHeight;
-    },
+    // listenKeyDown(listenNode) {
+    //     if (this.mapTileWidth == undefined) {
+    //         this.mapTileWidth = 64;
+    //     }
 
-    listenKeyDown(listenNode) {
-        if (this.mapTileWidth == undefined) {
-            this.mapTileWidth = 64;
-        }
+    //     if (this.mapTileHeight == undefined) {
+    //         this.mapTileHeight = 64;
+    //     }
+    //     this.listenMoveNode = listenNode;
+    //     this.pressedKeys = new Set();
+    //     cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+    //     cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+    // },
+    // onKeyDown(event) {
+    //     this.pressedKeys.add(event.keyCode);
 
-        if (this.mapTileHeight == undefined) {
-            this.mapTileHeight = 64;
-        }
-        this.listenMoveNode = listenNode;
-        this.pressedKeys = new Set();
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
-    },
-    onKeyDown(event) {
-        this.pressedKeys.add(event.keyCode);
+    //     // delay to wait set of keys down
+    //     this.scheduleOnce(() => {
+    //         this.checkMove();
+    //     }, 0.1);
+    // },
+    // onKeyUp(event) {
+    //     this.pressedKeys.delete(event.keyCode);
+    // },
+    // checkMove() {
+    //     if (this.isMoving) return;
+    //     if (this.heros.length == 0) return;
 
-        // delay to wait set of keys down
-        this.scheduleOnce(() => {
-            this.checkMove();
-        }, 0.1);
-    },
-    onKeyUp(event) {
-        this.pressedKeys.delete(event.keyCode);
-    },
-    checkMove() {
-        if (this.isMoving) return;
-        if (this.heros.length == 0) return;
+    //     let dx = 0;
+    //     let dy = 0;
 
-        let dx = 0;
-        let dy = 0;
+    //     if (this.pressedKeys.has(cc.macro.KEY.w) || this.pressedKeys.has(cc.macro.KEY.up)) {
+    //         dy += 1;
+    //     }
+    //     if (this.pressedKeys.has(cc.macro.KEY.s) || this.pressedKeys.has(cc.macro.KEY.down)) {
+    //         dy -= 1;
+    //     }
+    //     if (this.pressedKeys.has(cc.macro.KEY.a) || this.pressedKeys.has(cc.macro.KEY.left)) {
+    //         dx -= 1;
+    //     }
+    //     if (this.pressedKeys.has(cc.macro.KEY.d) || this.pressedKeys.has(cc.macro.KEY.right)) {
+    //         dx += 1;
+    //     }
 
-        if (this.pressedKeys.has(cc.macro.KEY.w) || this.pressedKeys.has(cc.macro.KEY.up)) {
-            dy += 1;
-        }
-        if (this.pressedKeys.has(cc.macro.KEY.s) || this.pressedKeys.has(cc.macro.KEY.down)) {
-            dy -= 1;
-        }
-        if (this.pressedKeys.has(cc.macro.KEY.a) || this.pressedKeys.has(cc.macro.KEY.left)) {
-            dx -= 1;
-        }
-        if (this.pressedKeys.has(cc.macro.KEY.d) || this.pressedKeys.has(cc.macro.KEY.right)) {
-            dx += 1;
-        }
-
-        if (dx !== 0 || dy !== 0) {
-            this.moveCharacter(dx, dy);
-        }
-    },
+    //     if (dx !== 0 || dy !== 0) {
+    //         this.moveCharacter(dx, dy);
+    //     }
+    // },
     moveCharacter(dx, dy) {
         if (!this.isPlayerTurn) return;
 
@@ -217,29 +236,47 @@ const GameController = cc.Class({
             }
         }
 
-        if (nearestHero) {
-            // attack the nearest hero
-            boss.mainScript = boss.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
-            if (boss.mainScript) {
-                let dame = boss.mainScript.getAttackDame();
-                // handle the case when dame is 0 or undefined
-                if (nearestHero.mainScript === undefined) {
-                    nearestHero.mainScript = nearestHero.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
-                }
-                if (nearestHero.mainScript) {
-                    nearestHero.mainScript.takeDamage(dame);
+        boss.mainScript = boss.getComponents(cc.Component).find(c => typeof c.getAttackRange === 'function');
+        if (boss.mainScript && minDistance > boss.mainScript.getAttackRange()) {
+            // this.boss
+            this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.secondarySkill === 'function');
 
-                    if (this.gameScript && typeof this.gameScript.updateHeroInfoUI === 'function') {
-                        this.gameScript.updateHeroInfoUI(nearestHero);
-                    }
-                    // check if hero is dead
-                    if (nearestHero.mainScript.getCurrentHp() <= 0) {
-                        this.handleHeroDie(nearestHero);
-                    }
+            if (this.boss.mainScript) {
+                // use secondary skill
+                this.boss.mainScript.secondarySkill();
+                
+                // update the cooldown UI
+                if (this.gameScript && typeof this.gameScript.updateCooldownUI === 'function') {
+                    this.gameScript.updateCooldownUI(this.getFocusedHero());
                 }
-                this.checkWin();
+            }
+        } else {
+            if (nearestHero) {
+                // attack the nearest hero
+                boss.mainScript = boss.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
+                if (boss.mainScript) {
+                    let dame = boss.mainScript.getAttackDame();
+                    // handle the case when dame is 0 or undefined
+                    if (nearestHero.mainScript === undefined) {
+                        nearestHero.mainScript = nearestHero.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
+                    }
+                    if (nearestHero.mainScript) {
+                        nearestHero.mainScript.takeDamage(dame);
+
+                        if (this.gameScript && typeof this.gameScript.updateHeroInfoUI === 'function') {
+                            this.gameScript.updateHeroInfoUI(nearestHero);
+                        }
+                        // check if hero is dead
+                        if (nearestHero.mainScript.getCurrentHp() <= 0) {
+                            this.handleHeroDie(nearestHero);
+                        }
+                    }
+                    this.checkWin();
+                }
             }
         }
+
+        
 
         // after boss attack, set isPlayerTurn to true
         this.scheduleOnce(() => {
@@ -278,7 +315,7 @@ const GameController = cc.Class({
     /* game scene */
     setFocusedHero(heroIndex) {
         this.focusedHero = this.heros[heroIndex];
-        this.listenKeyDown(this.focusedHero);
+        // this.listenKeyDown(this.focusedHero);
         // set the other heroes scale to 1
         for (let i = 0; i < this.heros.length; i++) {
             if (i == heroIndex) {
@@ -401,16 +438,16 @@ const GameController = cc.Class({
         }
     },
 
-    heroMoveAnimation(keyCode, hero) {
-        if (hero == undefined || hero == null) hero = this.getFocusedHero();
+    // heroMoveAnimation(keyCode, hero) {
+    //     if (hero == undefined || hero == null) hero = this.getFocusedHero();
 
-        if (hero) {
-            hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.skillAnimation === 'function');
-            if (hero.mainScript) {
-                hero.mainScript.moveAnimation(keyCode);
-            }
-        }
-    },
+    //     if (hero) {
+    //         hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.skillAnimation === 'function');
+    //         if (hero.mainScript) {
+    //             hero.mainScript.moveAnimation(keyCode);
+    //         }
+    //     }
+    // },
 
     heroSkill() {
         if (this.isUsingSkill) return;
