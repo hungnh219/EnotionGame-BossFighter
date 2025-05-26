@@ -360,12 +360,14 @@ const GameController = cc.Class({
     executeAutoMode() {
         if (!this.isAutoMode) return;
         if (cc.director.isPaused()) return;
+        if (this.getWinner() != undefined && this.getWinner() != null) return;
         this.scheduleOnce(() => {
             if (!this.boss || this.heros.length == 0) return;
 
             let bossPos = cc.v2(this.boss.x, this.boss.y);
 
             this.heros.forEach((hero, index) => {
+                if (this.getWinner() != undefined && this.getWinner() != null) return;
                 // check attack range hero
                 // if enough -> attack
                 // else -> move
@@ -417,6 +419,7 @@ const GameController = cc.Class({
             this.executeAutoMode();
         }, DEFAULT_DATA.MOVEMENT_DELAY_TIME)
     },
+    
     moveCharacterBot(heroBot, dx, dy) {
         // if (!heroBot || heroBot.isMoving) return false;  
         const newX = heroBot.x + dx * this.mapTileWidth;

@@ -67,7 +67,7 @@ cc.Class({
 
     // update (dt) {},
     map1Picked() {
-        console.log('test', this.gameController.getWonMap())
+        this.playSoundEffect();
         if (this.gameController.getWonMap() < GAME_DATA.GAME_MAP_INDEX.MAP_1 || this.gameController.getWonMap() == undefined || this.gameController.getWonMap() == null) return
         console.log("map1Picked");
         this.gameController.setMapPicked(GAME_DATA.GAME_MAP_INDEX.MAP_1);
@@ -75,7 +75,7 @@ cc.Class({
     },
 
     map2Picked() {
-        console.log('test', this.gameController.getWonMap())
+        this.playSoundEffect();
         if (this.gameController.getWonMap() < GAME_DATA.GAME_MAP_INDEX.MAP_2 || this.gameController.getWonMap() == undefined || this.gameController.getWonMap() == null) return;
         console.log("map2Picked");
         this.gameController.setMapPicked(GAME_DATA.GAME_MAP_INDEX.MAP_2);
@@ -83,14 +83,20 @@ cc.Class({
     },
 
     map3Picked() {
+        this.playSoundEffect();
         if (this.gameController.getWonMap() < GAME_DATA.GAME_MAP_INDEX.MAP_3 || this.gameController.getWonMap() == undefined || this.gameController.getWonMap() == null) return;
-        console.log("map3Picked");
         this.gameController.setMapPicked(GAME_DATA.GAME_MAP_INDEX.MAP_3);
         cc.director.loadScene(GAME_DATA.GAME_SCENE.HERO_SELECT);
     },
 
     backToMainMenu() {
+        this.playSoundEffect();
         console.log("backToMainMenu");
         cc.director.loadScene(GAME_DATA.GAME_SCENE.MAIN_MENU);
+    },
+
+    playSoundEffect() {
+        let pickSoundEffect = this.node.getComponent(cc.AudioSource);
+        pickSoundEffect.play();
     }
 });

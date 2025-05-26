@@ -338,9 +338,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 175,
+      "g": 63,
+      "b": 63,
       "a": 255
     },
     "_contentSize": {
@@ -493,7 +493,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "maxHp": 300,
+    "maxHp": 500,
     "hpBar": {
       "__id__": 11
     },

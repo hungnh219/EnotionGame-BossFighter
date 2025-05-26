@@ -54,6 +54,12 @@ cc.Class({
         // test add boss into map
         this.winnerNotificationLabel.node.parent.zIndex = 999;
         this.rootNode.sortAllChildren();
+
+        if (this.mapWidth > 8) this.mapWidth = 8;
+        if (this.mapHeight > 10) this.mapWidth = 10;
+
+        if (this.mapWidth < 3) this.mapWidth = 3;
+        if (this.mapHeight < 5) this.mapHeight = 5;
     },
 
     start() {
@@ -77,7 +83,7 @@ cc.Class({
         this.spawnBoss();
         this.turnOnAutoBossAttack();
         // this.turnOnAutoSkill();
-        this.turnOnAutoMode();
+        // this.turnOnAutoMode();
         // this.spawnTestSkill();
 
         // this.gameController.setMapPicked(this.mapIndex);
@@ -137,8 +143,11 @@ cc.Class({
 
     spawnBoss() {
         const size = 2;
-        const posX = 2;
-        const posY = 5;
+        // const posX = 2;
+        // const posY = 5;
+
+        const posX = (this.mapWidth - size) / 2;
+        const posY = this.mapHeight - 3;
 
         this.bossNode = cc.instantiate(this.bossPrefabs[this.mapIndex]);
         this.gameController.addBoss(this.bossNode);
@@ -376,7 +385,7 @@ cc.Class({
 
     bossAutoSkill() {
         console.log('boss auto skill')
-        let delay = (Math.random() * 3000 + 1000) / this.mapIndex;
+        let delay = (Math.random() * 3000 + 1000) / (this.mapIndex * this.mapIndex);
         if (this.gameController.boss == undefined) {
             console.log("no boss node");
             return;

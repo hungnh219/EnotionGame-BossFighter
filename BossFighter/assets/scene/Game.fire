@@ -769,7 +769,7 @@
     },
     "_enabled": true,
     "mapHeight": 8,
-    "mapWidth": 6,
+    "mapWidth": 8,
     "mapTileWidth": 48,
     "mapTileHeight": 48,
     "backgroundSprite": {
@@ -1438,7 +1438,7 @@
         1,
         1,
         1,
-        1
+        0
       ]
     },
     "_eulerAngles": {
@@ -1627,8 +1627,8 @@
     ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
-    "_N$transition": 2,
-    "transition": 2,
+    "_N$transition": 3,
+    "transition": 3,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 230,
@@ -2012,8 +2012,8 @@
     ],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
-    "_N$transition": 2,
-    "transition": 2,
+    "_N$transition": 3,
+    "transition": 3,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 230,

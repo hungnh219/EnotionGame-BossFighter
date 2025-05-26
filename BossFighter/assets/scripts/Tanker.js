@@ -97,6 +97,7 @@ cc.Class({
         if (bossNode) {
             const bossPos = bossNode.getPosition();
             skill.getComponent('Mage_Skill').initDirection(bossPos);
+            // this.playSoundEffectSkill();
         } else {
             console.log('No boss found');
         }
@@ -181,5 +182,11 @@ cc.Class({
         } else {
             cc.log("AudioSource component not found on the node.");
         }
-    }
+    },
+
+    playSoundEffectSkill() {
+        console.log(this.node)
+        let skillSoundEffect = this.node.getComponent(cc.AudioSource);
+        skillSoundEffect.play();
+    },
 });

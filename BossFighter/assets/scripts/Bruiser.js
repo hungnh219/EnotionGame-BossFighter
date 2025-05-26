@@ -49,6 +49,7 @@ cc.Class({
         const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
         this.playAnimation(ANIMATION_NAME.MELEE_ATTACK, false);
+        this.playSoundEffect();
     },
 
     moveAnimation(event) {
@@ -92,6 +93,7 @@ cc.Class({
         if (bossNode) {
             const bossPos = bossNode.getPosition();
             skill.getComponent('Bruiser_Skill').initDirection(bossPos);
+            this.playSoundEffectSkill();
         } else {
             console.log('No boss found');
         }
@@ -169,6 +171,19 @@ cc.Class({
 
     getSkillCooldown() {
         return this.skillCooldown;
+    },
+    playSoundEffect() {
+        let audioSource = this.imageSprite.node.getComponent(cc.AudioSource);
+        if (audioSource) {
+            audioSource.play();
+        } else {
+            cc.log("AudioSource component not found on the node.");
+        }
+    },
+    playSoundEffectSkill() {
+        console.log(this.node)
+        let skillSoundEffect = this.node.getComponent(cc.AudioSource);
+        skillSoundEffect.play();
     },
     // update (dt) {},
 });
