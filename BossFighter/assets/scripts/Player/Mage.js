@@ -1,6 +1,6 @@
 import GameController from "../Game/GameController";
 const ANIMATION_NAME = {
-    MELEE_ATTACK: 'mage-bottom-attack',
+    MELEE_ATTACK: 'mage-left-attack',
     BOTTOM_WALK: 'mage-bottom-walk',
     TOP_WALK: 'mage-top-walk',
     LEFT_WALK: 'mage-left-walk',
@@ -46,11 +46,13 @@ cc.Class({
 
     attack() {
         this.attackAnimation();
+
     },
     attackAnimation() {
         const sprite = this.node.getChildByName('Image')
         const animation = sprite.getComponent(cc.Animation);
         this.playAnimation(ANIMATION_NAME.MELEE_ATTACK, false);
+        this.playSoundEffect(); 
     },
 
     moveAnimation(event) {
@@ -94,6 +96,7 @@ cc.Class({
         if (bossNode) {
             const bossPos = bossNode.getPosition();
             skill.getComponent('Mage_Skill').initDirection(bossPos);
+            this.playSoundEffectSkill();
         } else {
             console.log('No boss found');
         }
@@ -176,5 +179,19 @@ cc.Class({
         return this.skillCooldown;
     },
 
+    playSoundEffect() {
+        let audioSource = this.imageSprite.node.getComponent(cc.AudioSource);
+        if (audioSource) {
+            audioSource.play();
+        } else {
+            cc.log("AudioSource component not found on the node.");
+        }
+    },
+
+    playSoundEffectSkill() {
+        console.log(this.node)
+        let skillSoundEffect = this.node.getComponent(cc.AudioSource);
+        skillSoundEffect.play();
+    }
     // update (dt) {},
 });

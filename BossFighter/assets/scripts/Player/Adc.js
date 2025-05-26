@@ -206,5 +206,20 @@ cc.Class({
     getSkillCooldown() {
         return this.skillCooldown;
     },
+
+    playSoundEffect() {
+        let audioSource = this.imageSprite.node.getComponent(cc.AudioSource);
+        if (audioSource) {
+            audioSource.play();
+        } else {
+            cc.log("AudioSource component not found on the node.");
+        }
+    },
+
+    playSoundEffectSkill() {
+        console.log(this.node)
+        let skillSoundEffect = this.node.getComponent(cc.AudioSource);
+        skillSoundEffect.play();
+    },
     // update (dt) {},
 });

@@ -126,7 +126,6 @@ cc.Class({
     },
 
     heroClick(clickIndex, heroPrefab) {
-
         if (this.heroLockedList.node.childrenCount == this.maxHero + 1) return;
         this.showInformation();
         // console.log(this.customIndex)
@@ -229,5 +228,11 @@ cc.Class({
         if (audioSource) {
             audioSource.play();
         }
+    },
+
+    playPickSoundEffect() {
+        let pickSoundEffect = this.node.getComponent(cc.AudioSource);
+
+        pickSoundEffect.play();
     }
 });

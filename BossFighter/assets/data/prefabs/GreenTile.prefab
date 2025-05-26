@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "thunder-skill",
+    "_name": "GreenTile",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -32,12 +32,12 @@
     "_prefab": {
       "__id__": 5
     },
-    "_opacity": 255,
+    "_opacity": 126,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 163,
+      "g": 247,
+      "b": 116,
       "a": 255
     },
     "_contentSize": {
@@ -95,9 +95,9 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
+      "__uuid__": "9bbda31e-ad49-43c9-aaf2-f7d9896bac69"
     },
-    "_type": 0,
+    "_type": 1,
     "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
@@ -112,41 +112,45 @@
     "_id": ""
   },
   {
-    "__type__": "cc.Animation",
+    "__type__": "cc.Layout",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "_defaultClip": {
-      "__uuid__": "3b8578a9-87fe-41dd-9603-5ba564e24544"
+    "_layoutSize": {
+      "__type__": "cc.Size",
+      "width": 48,
+      "height": 48
     },
-    "_clips": [
-      {
-        "__uuid__": "3b8578a9-87fe-41dd-9603-5ba564e24544"
-      }
-    ],
-    "playOnLoad": true,
+    "_resize": 0,
+    "_N$layoutType": 0,
+    "_N$cellSize": {
+      "__type__": "cc.Size",
+      "width": 40,
+      "height": 40
+    },
+    "_N$startAxis": 0,
+    "_N$paddingLeft": 0,
+    "_N$paddingRight": 0,
+    "_N$paddingTop": 0,
+    "_N$paddingBottom": 0,
+    "_N$spacingX": 0,
+    "_N$spacingY": 0,
+    "_N$verticalDirection": 1,
+    "_N$horizontalDirection": 0,
+    "_N$affectedByScale": false,
     "_id": ""
   },
   {
-    "__type__": "cc.AudioSource",
+    "__type__": "d37addYYFNGGJ5cuAMK0Zw2",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "_clip": {
-      "__uuid__": "d441c57e-9556-417b-99ef-4fceeec761ca"
-    },
-    "_volume": 1,
-    "_mute": false,
-    "_loop": false,
-    "_firstlyEnabled": true,
-    "playOnLoad": true,
-    "preload": false,
     "_id": ""
   },
   {

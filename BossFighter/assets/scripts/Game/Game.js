@@ -1,5 +1,6 @@
 import GameController from "./GameController";
 import GAME_DATA from "./GameData"
+import EventBus from "../EventBus";
 
 cc.Class({
     extends: cc.Component,
@@ -32,7 +33,6 @@ cc.Class({
         testSkills: [cc.Prefab],
 
         pauseButton: cc.Button,
-        resumeButton: cc.Button,
         nextButton: cc.Button,
         heroPrefabs: [cc.Prefab],
 
@@ -40,6 +40,8 @@ cc.Class({
         heroNameLabel: cc.Label,
         heroHpLabel: cc.Label,
         heroImage: cc.Sprite,
+
+        greenTilePrefab: cc.Prefab, // prefab for walkable tile
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -70,6 +72,15 @@ cc.Class({
 
         this.gameController.gameScript = this;
 
+
+        EventBus.on(EventBus.events.CLICK_TO_MOVE, (node) => {
+            this.heroClick(node);   
+        }, this);
+        this.mapLayout.node.on(cc.Node.EventType.TOUCH_END, (event) => {
+            EventBus.emit(EventBus.events.CLEAR_WALKABLE_AREA);
+        }, this);
+
+
     },
 
     start() {
@@ -77,8 +88,11 @@ cc.Class({
     },
 
     // update (dt) {},
-    // onDestroy() {
-    // },
+    onDestroy() {
+        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+        EventBus.off(EventBus.events.CLICK_TO_MOVE, this.onClickToMove, this);
+    },
+
     initData() {
         this.initGridMap();
 
@@ -113,6 +127,9 @@ cc.Class({
         this.gameController.startPlayerTurn();
     },
 
+    heroClick(node) {
+        this.gameController.heroClick(node);
+    },
     updateCooldownUI(hero) {
         if (!hero || !hero.mainScript) return;
 
@@ -204,8 +221,11 @@ cc.Class({
 
     spawnBoss() {
         const size = 2;
-        const posX = 2;
-        const posY = 5;
+        // const posX = 2;
+        // const posY = 5;
+
+        const posX = (this.mapWidth - size) / 2;
+        const posY = this.mapHeight - 3;
 
         this.bossNode = cc.instantiate(this.bossPrefabs[this.mapIndex]);
         this.gameController.addBoss(this.bossNode);
@@ -397,6 +417,88 @@ cc.Class({
         if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
             this.gameController.heroMoveAnimation(event.keyCode);
         }
+    },
+
+    heroSkill() {
+        if (this.isCastingSkill) return;
+        this.isCastingSkill = true;
+        this.gameController.heroSkill();
+
+        this.scheduleOnce(() => {
+            this.isCastingSkill = false;
+        }, this.gameController.getSkillCooldown()) // get cool down from hero
+    },
+
+    turnOnAutoBossAttack() {
+        this.bossAutoAttack();
+    },
+
+    turnOnAutoSkill() {
+        this.bossAutoSkill();
+    },
+
+    bossAutoAttack() {
+        if (this.gameController.boss == undefined) {
+            console.log("no boss node");
+            return;
+        }
+
+        if (this.gameController.getWinner()) {
+            this.endGameNotification();
+            return;
+        }
+
+        if (cc.director.isPaused()) return;
+
+        setTimeout(() => {
+            if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
+                this.endGameNotification();
+                return;
+            } else {
+                this.gameController.bossAttack();
+                this.bossAutoAttack();
+            }
+        }, 1000);
+    },
+
+    bossAutoSkill() {
+        console.log('boss auto skill')
+        let delay = (Math.random() * 3000 + 1000) / (this.mapIndex * this.mapIndex);
+        if (this.gameController.boss == undefined) {
+            console.log("no boss node");
+            return;
+        }
+
+        if (this.gameController.getWinner()) {
+            this.endGameNotification();
+            return;
+        }
+
+        setTimeout(() => {
+            if (!this.gameController.getWinner()) {
+                this.gameController.bossCastSkill();
+                this.spawnSkill();
+                this.bossAutoSkill();
+            } else {
+                this.endGameNotification();
+            }
+        }, delay);
+    },
+
+    turnOnAutoMode() {    
+        if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
+            this.gameController.setWonMap();
+            this.endGameNotification();
+            return;
+        }
+
+        // this.scheduleOnce(() => {
+        //     this.gameController.moveHeroNotFocusesToBoss();
+        //     this.gameController.nonFocusedHeroesAttackBoss();
+        //     this.turnOnAutoMode();
+        // }, 1)
+
+        this.gameController.turnOnAutoMode();
     },
 
     heroAttack() {

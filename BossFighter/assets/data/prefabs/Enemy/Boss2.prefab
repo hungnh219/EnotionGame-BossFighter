@@ -338,9 +338,15 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
+<<<<<<< HEAD:BossFighter/assets/data/prefabs/Boss2.prefab
+      "r": 175,
+      "g": 63,
+      "b": 63,
+=======
       "r": 230,
       "g": 24,
       "b": 24,
+>>>>>>> 321e99dcc9dfbd47b1d0f7e3841a9b4526d6cd64:BossFighter/assets/data/prefabs/Enemy/Boss2.prefab
       "a": 255
     },
     "_contentSize": {
@@ -493,7 +499,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "maxHp": 300,
+    "maxHp": 500,
     "hpBar": {
       "__id__": 11
     },

@@ -28,10 +28,13 @@
     "_components": [
       {
         "__id__": 14
+      },
+      {
+        "__id__": 15
       }
     ],
     "_prefab": {
-      "__id__": 15
+      "__id__": 16
     },
     "_opacity": 255,
     "_color": {
@@ -514,20 +517,30 @@
     "attackRange": 100,
     "normalAttackPower": 10,
     "manaPerAttack": 10,
+    "skillCost": 30,
+    "ultimateCost": 80,
+    "skillCooldown": 5,
+    "ultimateCooldown": 12,
+    "attackCooldown": 1,
     "imageSprite": {
       "__id__": 3
     },
     "skillPrefab": {
       "__uuid__": "580c3aba-6230-4026-bdb7-f495369fed1a"
     },
-    "skillCost": 30,
-    "ultimateCost": 80,
-    "skillCooldown": 5,
-    "ultimateCooldown": 12,
-    "attackCooldown": 1,
     "hpBar": {
       "__id__": 12
     },
+    "_id": ""
+  },
+  {
+    "__type__": "e03d4/eLjRE1p4OiLvteGNK",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
     "_id": ""
   },
   {
