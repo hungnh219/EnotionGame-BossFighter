@@ -31,10 +31,13 @@
       },
       {
         "__id__": 15
+      },
+      {
+        "__id__": 16
       }
     ],
     "_prefab": {
-      "__id__": 16
+      "__id__": 17
     },
     "_opacity": 255,
     "_color": {
@@ -529,6 +532,22 @@
       "__id__": 1
     },
     "_enabled": true,
+    "_id": ""
+  },
+  {
+    "__type__": "d887eDtygNBQrhm61rkIjiq",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "imageSprite": {
+      "__id__": 3
+    },
+    "hpBar": {
+      "__id__": 12
+    },
     "_id": ""
   },
   {

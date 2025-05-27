@@ -16,8 +16,13 @@ const ROLE = {
     PLAYER: 'player'
 }
 
+const EVENT_NAME = {
+    TAKE_DAME: 'take_dame',
+}
+
 export default {
     GAME_MAP_INDEX,
     GAME_SCENE,
     ROLE,
+    EVENT_NAME
 };

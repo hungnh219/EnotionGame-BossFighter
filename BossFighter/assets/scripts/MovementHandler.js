@@ -25,7 +25,6 @@ cc.Class({
         this.walkableGridMap = null;
 
         EventBus.on(EventBus.events.DISPLAY_WALKABLE_AREA, (firstCellPos, lastCellPos, walkableGridMap, node) => {
-            // console.log(123, gridMap);
             if (this.clickNode != node) this.clearWalkableArea();
             if (this.clickNode != null && this.clickNode == node) return;
             this.clickNode = node;
@@ -37,7 +36,6 @@ cc.Class({
         }, this);
 
         EventBus.on(EventBus.events.MOVE_TO_WALKABLE_TILE, (nodeMove, tileNode) => {
-            console.log('Move to walkable tile', nodeMove, tileNode);
             this.moveToWalkableTile(nodeMove, tileNode);
         }, this);
 
@@ -107,14 +105,24 @@ cc.Class({
             const px = this.firstCellPos.x + p.x * mapSetting.mapTileWidth + mapSetting.mapTileWidth / 2;
             const py = this.firstCellPos.y + p.y * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
             steps.push(cc.moveTo(0.4, px, py));
+
+            // let move = cc.Tween(nodeMove)
+            //     .to(0.4, { x: px, y: py })
+            // steps.push(move);
         }
 
         const finishCallback = cc.callFunc(() => {
+            console.log('Node moved to new position');
             this.walkableGridMap[oldGridX][oldGridY] = true;
             this.walkableGridMap[newGridX][newGridY] = false;
 
-            // this.gameController.consumePlayerTurn();
-            this.clearWalkableArea();
+            this.gameController.consumePlayerTurn();
+
+            if (this.gameController.getPlayerTurnCount() <= 0) {
+                this.gameController.enemyAutoMode();
+            }
+            this.isHeroMoving = false;
+            // this.clearWalkableArea();
         });
 
         // Chạy sequence
@@ -123,7 +131,7 @@ cc.Class({
         nodeMove.runAction(sequence);
         
         // if node is hero, update turn
-        this.gameController.consumePlayerTurn();
+        // this.gameController.consumePlayerTurn();
         this.clearWalkableArea();
     },
 
@@ -169,6 +177,68 @@ cc.Class({
         }
     },
 
+    // autoMoveToHero(enemy, hero) {
+    //     if (!enemy || !hero) {
+    //         console.warn('Enemy or hero is not defined');
+    //         return;
+    //     }
+
+    //     const mapSetting = this.gameController.getMapSetting();
+    //     if (!mapSetting) {
+    //         console.warn('Map setting is not initialized');
+    //         return;
+    //     }
+
+    //     const enemyGridX = Math.floor((enemy.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
+    //     const enemyGridY = Math.floor((enemy.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
+
+    //     const heroGridX = Math.floor((hero.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
+    //     const heroGridY = Math.floor((hero.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
+
+    //     this.walkableGridMap[heroGridX][heroGridY] = true; // Đảm bảo ô hero là có thể đi lại
+
+    //     const path = this.findPath(
+    //         {x: enemyGridX, y: enemyGridY },
+    //         {x: heroGridX, y: heroGridY },
+    //         this.walkableGridMap,
+    //         100,
+    //     );
+
+    //     if (!path) {
+    //         console.warn("Không tìm được đường đi!");
+    //         return;
+    //     }
+    //     // calcalute steps to move
+    //     let steps = [];
+    //     for (let i = 1; i < path.length; i++) {
+    //         const p = path[i];
+    //         const px = this.firstCellPos.x + p.x * mapSetting.mapTileWidth + mapSetting.mapTileWidth / 2;
+    //         const py = this.firstCellPos.y + p.y * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
+    //         steps.push(cc.moveTo(0.4, px, py));
+    //     }
+
+    //     const finishCallback = cc.callFunc(() => {
+    //         console.log('Enemy reached hero position');
+
+    //         // calculate new position of enemy
+    //         const newEnemyPosX = Math.floor((enemy.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
+    //         const newEnemyPosY = Math.floor((enemy.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
+    //         this.walkableGridMap[newEnemyPosX][newEnemyPosY] = false;
+    //         this.walkableGridMap[heroGridX][heroGridY] = false;
+    //         this.walkableGridMap[enemyGridX][enemyGridY] = true;
+    //     });
+
+    //     // Chạy sequence
+    //     let restrictSteps = steps.slice(0, 3); // Giới hạn số bước di chuyển
+    //     if (restrictSteps.length === 0) {
+    //         console.warn("Không có bước di chuyển nào hợp lệ!");
+    //         return;
+    //     }
+    //     restrictSteps.push(finishCallback);
+    //     const sequence = cc.sequence(...restrictSteps);
+    //     enemy.runAction(sequence);
+
+    // },
     autoMoveToHero(enemy, hero) {
         if (!enemy || !hero) {
             console.warn('Enemy or hero is not defined');
@@ -187,56 +257,60 @@ cc.Class({
         const heroGridX = Math.floor((hero.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
         const heroGridY = Math.floor((hero.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
         
-        this.walkableGridMap[heroGridX][heroGridY] = true; // Đảm bảo ô hero là có thể đi lại
+        // Tạm thời cho phép tìm đường đến hero
+        this.walkableGridMap[heroGridX][heroGridY] = true;
 
-        // const maxSteps = 3 + 3 - 2;
         const path = this.findPath(
             {x: enemyGridX, y: enemyGridY },
-            { x: heroGridX, y: heroGridY },
+            {x: heroGridX, y: heroGridY },
             this.walkableGridMap,
-            100,
+            100
         );
 
-        if (!path) {
+        if (!path || path.length < 2) {
             console.warn("Không tìm được đường đi!");
             return;
         }
 
-        // calcalute steps to move
-        let steps = [];
-        for (let i = 1; i < path.length; i++) {
+        const maxSteps = 3;
+        let finalStepIndex = Math.min(maxSteps, path.length - 1);
+
+        // Nếu bước cuối là ô hero, lùi lại 1 bước để không bước vào hero
+        const lastStep = path[finalStepIndex];
+        if (lastStep.x === heroGridX && lastStep.y === heroGridY) {
+            finalStepIndex--;
+            if (finalStepIndex < 1) {
+                console.warn("Enemy không thể tiếp cận hero trong phạm vi di chuyển.");
+                return;
+            }
+        }
+
+        const steps = [];
+        for (let i = 1; i <= finalStepIndex; i++) {
             const p = path[i];
             const px = this.firstCellPos.x + p.x * mapSetting.mapTileWidth + mapSetting.mapTileWidth / 2;
             const py = this.firstCellPos.y + p.y * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
             steps.push(cc.moveTo(0.4, px, py));
+            // let move = cc.Tween(nodeMove)
+            //     .to(0.4, { x: px, y: py })
+            // steps.push(move);
         }
 
         const finishCallback = cc.callFunc(() => {
-            console.log('Enemy reached hero position');
+            console.log('Enemy moved toward hero');
+
+            // Cập nhật lại walkable map
             this.walkableGridMap[enemyGridX][enemyGridY] = true;
 
-            // calculate new position of enemy
-            const newEnemyPosX = Math.floor((enemy.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
-            const newEnemyPosY = Math.floor((enemy.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
-            this.walkableGridMap[newEnemyPosX][newEnemyPosY] = false;
-            // this.walkableGridMap[heroGridX][heroGridY] = false;
-            // this.walkableGridMap[heroGridX][heroGridY] = false;
-
-            // this.gameController.consumePlayerTurn();
-            // this.clearWalkableArea();
+            const newEnemyX = Math.floor((enemy.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
+            const newEnemyY = Math.floor((enemy.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
+            this.walkableGridMap[newEnemyX][newEnemyY] = false;
         });
 
-        // Chạy sequence
-        let restrictSteps = steps.slice(0, 3); // Giới hạn số bước di chuyển
-        if (restrictSteps.length === 0) {
-            console.warn("Không có bước di chuyển nào hợp lệ!");
-            return;
-        }
-        restrictSteps.push(finishCallback);
-        const sequence = cc.sequence(...restrictSteps);
-        enemy.runAction(sequence);
-
+        steps.push(finishCallback);
+        enemy.runAction(cc.sequence(...steps));
     },
+
 
     clearWalkableArea() {
         if (!this.clickNode) return;

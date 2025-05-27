@@ -486,26 +486,6 @@
     "sync": false
   },
   {
-    "__type__": "f8c1aj/sVtL17s/J2yEQ6WO",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "maxHp": 500,
-    "hpBar": {
-      "__id__": 11
-    },
-    "normalAttackPower": 10,
-    "imageSprite": {
-      "__id__": 3
-    },
-    "animations": [],
-    "attackRange": 250,
-    "_id": ""
-  },
-  {
     "__type__": "cc.CircleCollider",
     "_name": "",
     "_objFlags": 0,
@@ -520,6 +500,22 @@
       "y": 0
     },
     "_radius": 24,
+    "_id": ""
+  },
+  {
+    "__type__": "c898dRJCLhEHJnGsRuDGMUZ",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "imageSprite": {
+      "__id__": 3
+    },
+    "hpBar": {
+      "__id__": 11
+    },
     "_id": ""
   },
   {

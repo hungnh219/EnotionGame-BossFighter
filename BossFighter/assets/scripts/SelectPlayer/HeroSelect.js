@@ -49,12 +49,10 @@ cc.Class({
         this.heroPrefabs.forEach((heroPrefab, index) => {
             const hero = cc.instantiate(heroPrefab);
 
-            // const heroScript = hero.getComponent('Character') || hero.getComponent('Enemy');
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
 
             if (hero.mainScript != undefined) {
                 const heroInfo = hero.mainScript.getCharacterInfo();
-                console.log('heroInfo', heroInfo);
                 this.heros[index] = heroInfo;
                 const heroImageNode = new cc.Node('HeroImageNode');
                 const sprite = heroImageNode.addComponent(cc.Sprite);
@@ -71,8 +69,6 @@ cc.Class({
                 // }, heroImageNode);
 
                 heroImageNode.on(cc.Node.EventType.TOUCH_END, () => {
-                    console.log('check', index);
-
                     this.heroClick(index, heroPrefab);
                 }, heroImageNode);
 

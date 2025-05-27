@@ -192,9 +192,7 @@
       "__id__": 2
     },
     "_enabled": true,
-    "_defaultClip": {
-      "__uuid__": "d69c15c7-5697-4ff4-a0c1-03e889b727b2"
-    },
+    "_defaultClip": null,
     "_clips": [
       {
         "__uuid__": "d69c15c7-5697-4ff4-a0c1-03e889b727b2"
@@ -468,24 +466,6 @@
     "sync": false
   },
   {
-    "__type__": "bd1f7Ij7t9IpaGwmdWJbAGh",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "maxHp": 200,
-    "hpBar": {
-      "__id__": 11
-    },
-    "normalAttackPower": 10,
-    "imageSprite": {
-      "__id__": 3
-    },
-    "_id": ""
-  },
-  {
     "__type__": "cc.CircleCollider",
     "_name": "",
     "_objFlags": 0,
@@ -500,6 +480,23 @@
       "y": 0
     },
     "_radius": 24,
+    "_id": ""
+  },
+  {
+    "__type__": "19cd1/2PdNAJKgyDI+KtvRs",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "imageSprite": {
+      "__id__": 3
+    },
+    "skillPrefab": null,
+    "hpBar": {
+      "__id__": 11
+    },
     "_id": ""
   },
   {

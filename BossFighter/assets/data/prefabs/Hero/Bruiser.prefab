@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Adc",
+    "_name": "Bruiser",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -172,7 +172,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "fe0e2422-d50a-4e7d-88ae-5e6b90325616"
+      "__uuid__": "0923ad35-ab75-4149-9221-a733e2ac4e0f"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -185,9 +185,7 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "3a8517b3-42e7-409a-8318-cf4dc0cb7ecb"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {
@@ -198,9 +196,7 @@
       "__id__": 2
     },
     "_enabled": true,
-    "_defaultClip": {
-      "__uuid__": "889f8964-eb96-4da0-b917-3185d9bbb505"
-    },
+    "_defaultClip": null,
     "_clips": [
       {
         "__uuid__": "a9aeab97-5885-432e-aaba-e0d62d5b51da"
@@ -508,37 +504,6 @@
     "sync": false
   },
   {
-    "__type__": "f134dhbHxBAd5+Ne4NHHkT/",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "role": "ADC",
-    "maxHp": 100,
-    "maxMana": 100,
-    "moveSpeed": 200,
-    "attackRange": 200,
-    "normalAttackPower": 10,
-    "manaPerAttack": 10,
-    "skillCost": 30,
-    "ultimateCost": 80,
-    "attackCooldown": 0.8,
-    "skillCooldown": 5,
-    "ultimateCooldown": 12,
-    "imageSprite": {
-      "__id__": 3
-    },
-    "skillPrefab": {
-      "__uuid__": "3ef9ee0f-e93e-4512-bc1c-b7e2c2540ef6"
-    },
-    "hpBar": {
-      "__id__": 12
-    },
-    "_id": ""
-  },
-  {
     "__type__": "cc.AudioSource",
     "_name": "",
     "_objFlags": 0,
@@ -565,6 +530,30 @@
       "__id__": 1
     },
     "_enabled": true,
+    "_id": ""
+  },
+  {
+    "__type__": "8f7ee8tv8BM+oipCfmykXQg",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "imageSprite": {
+      "__id__": 3
+    },
+    "hpBar": {
+      "__id__": 12
+    },
+    "health": 100,
+    "maxHp": 100,
+    "attackPower": 0,
+    "moveSpeed": 0,
+    "attackRange": 0,
+    "attackCooldown": 0,
+    "skillCooldown": 0,
+    "ultimateCooldown": 0,
     "_id": ""
   },
   {
