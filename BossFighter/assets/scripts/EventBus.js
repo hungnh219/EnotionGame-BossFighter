@@ -3,6 +3,8 @@ const EventBus = new cc.EventTarget();
 console.log('EventBus initialized');
 
 EventBus.events = {
+    TAKE_DAME: 'take_dame',
+    DEAL_DAME: 'deal_dame',
     CLICK_TO_MOVE: 'click_to_move',
     HERO_MOVEMENT: 'hero_movement',
     DISPLAY_WALKABLE_AREA: 'display_walkable_area',

@@ -1,4 +1,5 @@
 import GameController from "../Game/GameController";
+var Character = require('Character');
 const ANIMATION_NAME = {
     MELEE_ATTACK: 'tanker-bottom-attack',
     BOTTOM_WALK: 'tanker-bottom-walk',
@@ -14,7 +15,7 @@ const ANIMATION_NAME = {
 }
 
 cc.Class({
-    extends: cc.Component,
+    extends: Character,
 
     properties: {
         role: 'Tanker',

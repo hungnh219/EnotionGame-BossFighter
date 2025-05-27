@@ -1,4 +1,5 @@
 import GameController from "../Game/GameController";
+var Character = require('Character');
 const ANIMATION_NAME = {
     MELEE_ATTACK: 'bruiser-bottom-attack',
     BOTTOM_WALK: 'bruiser-bottom-walk',
@@ -13,7 +14,7 @@ const ANIMATION_NAME = {
     DEATH: 'bruiser-death',
 }
 cc.Class({
-    extends: cc.Component,
+    extends: Character,
 
     properties: {
         role: 'Bruiser',

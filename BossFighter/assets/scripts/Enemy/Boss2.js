@@ -27,6 +27,8 @@ cc.Class({
         this.hp = this.maxHp;
         this.imageSprite.node.scaleX = 1.5;
         this.imageSprite.node.scaleY = 1.5;
+
+        EventBus.on(EventBus.events.TAKE_DAME, this.takeDamage, this);
     },
 
     attackAnimation() {
