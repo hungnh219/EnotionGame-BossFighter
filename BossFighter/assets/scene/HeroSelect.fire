@@ -2741,17 +2741,17 @@
       "__id__": 4
     },
     "_enabled": true,
-    "tankerPrefab": {
-      "__uuid__": "596d3ff0-625e-4465-997b-0a3c229b8630"
-    },
     "adcPrefab": {
-      "__uuid__": "994158ec-f8e0-4418-81b1-33af7fc47e41"
+      "__uuid__": "b8cb3a8d-024c-4a1e-a144-f47a20d80811"
     },
     "bruiserPrefab": {
-      "__uuid__": "fb8d68b4-1a7e-4a7f-8a36-984f722e086f"
+      "__uuid__": "7209dc79-2e79-4ca9-9d9a-106dfac2ec9f"
     },
-    "magePrefab": {
-      "__uuid__": "85ccb08d-8789-4cda-a6c8-18bcc60b8097"
+    "tankerPrefab": {
+      "__uuid__": "cba5efc6-f11a-4c0f-b87b-a95a8346f9af"
+    },
+    "vampirePrefab": {
+      "__uuid__": "79e5f371-b7f8-463a-a1a3-26c02052c5cb"
     },
     "_id": "14pN+7y7BHFqLJ6c0Zy5vB"
   },

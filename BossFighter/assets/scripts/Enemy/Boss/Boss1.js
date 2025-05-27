@@ -4,33 +4,27 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
 // Learn life-cycle callbacks:
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
+// import Character from "../../Character"
+import Character from "../../Character";
 
 cc.Class({
-    extends: cc.Component,
+    extends: Character,
 
     properties: {
-        adcPrefab: cc.Prefab,
-        bruiserPrefab: cc.Prefab,
-        tankerPrefab: cc.Prefab,
-        vampirePrefab: cc.Prefab,
+  
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+        console.log("Boss1 script onload");
+        console.log('character boss1 script onload', Character);
+        this.test();
+    },
 
     start () {
 
     },
 
     // update (dt) {},
-
-    getAllPrefab() {
-        return [
-            this.adcPrefab,
-            this.bruiserPrefab,
-            this.tankerPrefab,
-            this.vampirePrefab,
-        ]
-    }
 });

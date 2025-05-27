@@ -1389,13 +1389,13 @@
     ],
     "bossPrefabs": [
       {
-        "__uuid__": "da838a3b-caff-4e8d-8bd6-ee40a8f49edc"
+        "__uuid__": "2efb3306-4ebd-4c4b-b2e1-525a442cdc7d"
       },
       {
-        "__uuid__": "b9dcfd7e-bc4a-4723-8fb4-2e631704ca59"
+        "__uuid__": "2efb3306-4ebd-4c4b-b2e1-525a442cdc7d"
       },
       {
-        "__uuid__": "915a487c-2953-48dd-a83e-99825bf67c2a"
+        "__uuid__": "2efb3306-4ebd-4c4b-b2e1-525a442cdc7d"
       }
     ],
     "winnerNotificationLabel": {

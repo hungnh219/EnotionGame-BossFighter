@@ -482,20 +482,18 @@
     "_id": ""
   },
   {
-    "__type__": "0fe9dOH4IdGUY+wXetPV3Qk",
+    "__type__": "68efbfl3npDY4cuMK94MG07",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "maxHp": 800,
-    "hpBar": {
-      "__id__": 11
-    },
-    "normalAttackPower": 10,
     "imageSprite": {
       "__id__": 3
+    },
+    "hpBar": {
+      "__id__": 11
     },
     "_id": ""
   },

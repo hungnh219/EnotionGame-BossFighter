@@ -23,12 +23,12 @@ const GameController = cc.Class({
         },
     },
 
-    properties: {
-        gameWonIndex: 0,
-        playerTurnCount: 3,
-        isPlayerTurn: true,
-        bossTurnCount: 1,
-    },
+    // properties: {
+    //     gameWonIndex: 0,
+    //     playerTurnCount: 1,
+    //     isPlayerTurn: true,
+    //     bossTurnCount: 1,
+    // },
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -68,13 +68,19 @@ const GameController = cc.Class({
         this.updateTurnLabels();
         if (this.playerTurnCount <= 0) {
             this.isPlayerTurn = false;
-            this.enemyAutoMode();
+            // this.enemyAutoMode();
+            EventBus.emit(EventBus.events.BOSS2_SPAWN_ENEMY);
             this.bossAttack();
         }
     },
 
 
     start() {
+    },
+
+    getPlayerTurnCount() {
+        if (this.playerTurnCount == undefined || this.playerTurnCount == null) this.playerTurnCount = 3;
+        return this.playerTurnCount;
     },
 
     // update (dt) {},
@@ -94,11 +100,12 @@ const GameController = cc.Class({
         return this.heroPick;
     },
 
-    setMapSetting(mapHeight, mapWidth, mapTileWidth, mapTileHeight) {
+    setMapSetting(mapHeight, mapWidth, mapTileWidth, mapTileHeight, endGameCallback) {
         this.mapHeight = mapHeight;
         this.mapWidth = mapWidth;
         this.mapTileWidth = mapTileWidth;
         this.mapTileHeight = mapTileHeight;
+        this.endGameCallback = endGameCallback;
     },
 
     getMapSetting() {
@@ -147,55 +154,22 @@ const GameController = cc.Class({
             if (dis <= enemyAttackRange) {
                 // attack
                 console.log('attack')
+                enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.dealDame === 'function');
+
+                if (enemy.mainScript) {
+                    enemy.mainScript.dealDame(nearestHero, 40);
+
+                    // check if hero is dead
+                    nearestHero.mainScript = nearestHero.getComponents(cc.Component).find(c => typeof c.getCurrentHp === 'function');
+                    if (nearestHero.mainScript && nearestHero.mainScript.getCurrentHp() <= 0) {
+                        this.handleHeroDie(nearestHero);
+                    }
+
+                }
             } else {
                 // move to nearest hero
                 EventBus.emit(EventBus.events.ENEMY_AUTO_MODE, enemy, nearestHero);
             }
-
-
-            // if (this.checkAttackRangeHero(hero)) {
-            //     this.heroAttack(hero);
-            // } else {
-            //     // move
-            //     if (hero === this.focusedHero) return;
-            //     if (hero.isMoving) return;
-
-            //     let heroPos = cc.v2(hero.x, hero.y);
-            //     let dx = 0;
-            //     let dy = 0;
-
-            //     let diffX = bossPos.x - heroPos.x;
-            //     let diffY = bossPos.y - heroPos.y;
-            //     diffX = Math.round(diffX);
-            //     diffY = Math.round(diffY);
-
-            //     if (index == 1) {
-            //         // console.log(diffX, diffY);
-            //     }
-            //     if (Math.abs(diffX) > Math.abs(diffY)) {
-            //         dx = diffX > 0 ? 1 : -1;
-            //     } else {
-            //         dy = diffY > 0 ? 1 : -1;
-            //     }
-            //     this.moveCharacterBot(hero, dx, dy);
-
-            //     // play animation move
-            //     let keyCode = null;
-            //     if (dx === 0 && dy === 1) {
-            //         keyCode = cc.macro.KEY.w;
-            //     } else if (dx === 0 && dy === -1) {
-            //         keyCode = cc.macro.KEY.s;
-            //     } else if (dx === -1 && dy === 0) {
-            //         keyCode = cc.macro.KEY.a;
-            //     } else if (dx === 1 && dy === 0) {
-            //         keyCode = cc.macro.KEY.d;
-            //     }
-
-            //     if (keyCode != null) {
-            //         this.heroMoveAnimation(keyCode, hero);
-            //     }
-            // }
-
         })
     },
 
@@ -233,95 +207,6 @@ const GameController = cc.Class({
     getHeroPrefabs() {
         return this.selectedHeroPrefabs;
     },
-
-    // listenKeyDown(listenNode) {
-    //     if (this.mapTileWidth == undefined) {
-    //         this.mapTileWidth = 64;
-    //     }
-
-    //     if (this.mapTileHeight == undefined) {
-    //         this.mapTileHeight = 64;
-    //     }
-    //     this.listenMoveNode = listenNode;
-    //     this.pressedKeys = new Set();
-    //     cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
-    //     cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
-    // },
-    // onKeyDown(event) {
-    //     this.pressedKeys.add(event.keyCode);
-
-    //     // delay to wait set of keys down
-    //     this.scheduleOnce(() => {
-    //         this.checkMove();
-    //     }, 0.1);
-    // },
-    // onKeyUp(event) {
-    //     this.pressedKeys.delete(event.keyCode);
-    // },
-    // checkMove() {
-    //     if (this.isMoving) return;
-    //     if (this.heros.length == 0) return;
-
-    //     let dx = 0;
-    //     let dy = 0;
-
-    //     if (this.pressedKeys.has(cc.macro.KEY.w) || this.pressedKeys.has(cc.macro.KEY.up)) {
-    //         dy += 1;
-    //     }
-    //     if (this.pressedKeys.has(cc.macro.KEY.s) || this.pressedKeys.has(cc.macro.KEY.down)) {
-    //         dy -= 1;
-    //     }
-    //     if (this.pressedKeys.has(cc.macro.KEY.a) || this.pressedKeys.has(cc.macro.KEY.left)) {
-    //         dx -= 1;
-    //     }
-    //     if (this.pressedKeys.has(cc.macro.KEY.d) || this.pressedKeys.has(cc.macro.KEY.right)) {
-    //         dx += 1;
-    //     }
-
-    //     if (dx !== 0 || dy !== 0) {
-    //         this.moveCharacter(dx, dy);
-    //     }
-    // },
-    // moveCharacter(dx, dy) {
-    //     if (!this.isPlayerTurn) return;
-
-    //     // find new position
-    //     const newX = this.listenMoveNode.x + dx * this.mapTileWidth;
-    //     const newY = this.listenMoveNode.y + dy * this.mapTileHeight;
-
-    //     // check if the new position is walkable use newX, newY, firstCellPos and lastCellPos
-    //     if (newX < this.firstCellPos.x || newX > this.lastCellPos.x || newY < this.firstCellPos.y || newY > this.lastCellPos.y) {
-    //         return;
-    //     }
-
-    //     // check if the new position is walkable
-    //     const gridX = Math.floor((newX - this.firstCellPos.x) / this.mapTileWidth);
-    //     const gridY = Math.floor((newY - this.firstCellPos.y) / this.mapTileHeight);
-    //     if (this.gridMap[gridX][gridY] == false) {
-    //         return;
-    //     }
-
-    //     // move the character
-    //     this.isMoving = true;
-    //     const moveAction = cc.moveTo(DEFAULT_DATA.MOVEMENT_DELAY_TIME, newX, newY);
-    //     // const moveAction = cc.moveTo(0.5, newX, newY).easing(cc.easeCubicActionOut());
-    //     const finishCallback = cc.callFunc(() => {
-    //         this.isMoving = false;
-
-    //         this.consumePlayerTurn();
-    //         // this.checkMove();
-    //     });
-    //     const sequence = cc.sequence(moveAction, finishCallback);
-    //     this.listenMoveNode.runAction(sequence);
-
-    //     // set old position to walkable and new position to not walkable
-    //     const oldGridX = Math.floor((this.listenMoveNode.x - this.firstCellPos.x) / this.mapTileWidth);
-    //     const oldGridY = Math.floor((this.listenMoveNode.y - this.firstCellPos.y) / this.mapTileHeight);
-    //     if (this.gridMap[oldGridX][oldGridY] !== undefined) {
-    //         this.gridMap[oldGridX][oldGridY] = true;
-    //         this.gridMap[gridX][gridY] = false;
-    //     }
-    // },
 
     bossAttack() {
         if (!this.boss) return;
@@ -561,17 +446,6 @@ const GameController = cc.Class({
         }
     },
 
-    // heroMoveAnimation(keyCode, hero) {
-    //     if (hero == undefined || hero == null) hero = this.getFocusedHero();
-
-    //     if (hero) {
-    //         hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.skillAnimation === 'function');
-    //         if (hero.mainScript) {
-    //             hero.mainScript.moveAnimation(keyCode);
-    //         }
-    //     }
-    // },
-
     heroSkill() {
         if (this.isUsingSkill) return;
         this.isUsingSkill = true;
@@ -633,173 +507,6 @@ const GameController = cc.Class({
             }
         }
     },
-
-    turnOnAutoMode() {
-        this.isAutoMode = true;
-        this.executeAutoMode();
-    },
-
-    executeAutoMode() {
-        if (!this.isAutoMode) return;
-        if (cc.director.isPaused()) return;
-        if (this.getWinner() != undefined && this.getWinner() != null) return;
-        this.scheduleOnce(() => {
-            if (!this.boss || this.heros.length == 0) return;
-
-            let bossPos = cc.v2(this.boss.x, this.boss.y);
-
-            this.heros.forEach((hero, index) => {
-                if (this.getWinner() != undefined && this.getWinner() != null) return;
-                // check attack range hero
-                // if enough -> attack
-                // else -> move
-                if (this.checkAttackRangeHero(hero)) {
-                    this.heroAttack(hero);
-                } else {
-                    // move
-                    if (hero === this.focusedHero) return;
-                    if (hero.isMoving) return;
-
-                    let heroPos = cc.v2(hero.x, hero.y);
-                    let dx = 0;
-                    let dy = 0;
-
-                    let diffX = bossPos.x - heroPos.x;
-                    let diffY = bossPos.y - heroPos.y;
-                    diffX = Math.round(diffX);
-                    diffY = Math.round(diffY);
-
-                    if (index == 1) {
-                        // console.log(diffX, diffY);
-                    }
-                    if (Math.abs(diffX) > Math.abs(diffY)) {
-                        dx = diffX > 0 ? 1 : -1;
-                    } else {
-                        dy = diffY > 0 ? 1 : -1;
-                    }
-                    this.moveCharacterBot(hero, dx, dy);
-
-                    // play animation move
-                    let keyCode = null;
-                    if (dx === 0 && dy === 1) {
-                        keyCode = cc.macro.KEY.w;
-                    } else if (dx === 0 && dy === -1) {
-                        keyCode = cc.macro.KEY.s;
-                    } else if (dx === -1 && dy === 0) {
-                        keyCode = cc.macro.KEY.a;
-                    } else if (dx === 1 && dy === 0) {
-                        keyCode = cc.macro.KEY.d;
-                    }
-
-                    if (keyCode != null) {
-                        this.heroMoveAnimation(keyCode, hero);
-                    }
-                }
-
-            })
-
-            this.executeAutoMode();
-        }, DEFAULT_DATA.MOVEMENT_DELAY_TIME)
-    },
-    
-    moveCharacterBot(heroBot, dx, dy) {
-        // if (!heroBot || heroBot.isMoving) return false;  
-        const newX = heroBot.x + dx * this.mapTileWidth;
-        const newY = heroBot.y + dy * this.mapTileHeight;
-
-        if (newX < this.firstCellPos.x || newX > this.lastCellPos.x || newY < this.firstCellPos.y || newY > this.lastCellPos.y) {
-            return false;
-        }
-
-        const gridX = Math.floor((newX - this.firstCellPos.x) / this.mapTileWidth);
-        const gridY = Math.floor((newY - this.firstCellPos.y) / this.mapTileHeight);
-
-        if (!this.gridMap[gridX] || !this.gridMap[gridX][gridY] || this.gridMap[gridX][gridY] === false) {
-            return false;
-        }
-
-        // move the character
-        heroBot.isMoving = true;
-
-        const oldGridX = Math.floor((heroBot.x - this.firstCellPos.x) / this.mapTileWidth);
-        const oldGridY = Math.floor((heroBot.y - this.firstCellPos.y) / this.mapTileHeight);
-
-        const moveAction = cc.moveTo(0.5, newX, newY);
-        const finishCallback = cc.callFunc(() => {
-            heroBot.isMoving = false;
-            // this.checkMove();
-            this.gridMap[oldGridX][oldGridY] = true;
-            this.gridMap[gridX][gridY] = false;
-        });
-
-        const sequence = cc.sequence(moveAction, finishCallback);
-        heroBot.runAction(sequence);
-    },
-
-    // moveHeroNotFocusesToBoss() {
-    //     if (!this.boss || this.heros.length === 0) return;
-
-    //     let bossPos = cc.v2(this.boss.x, this.boss.y);
-    //     let boss = this.boss;
-
-    //     this.heros.forEach((hero, index) => {
-    //         if (hero === this.focusedHero) return;
-    //         if (hero.isMoving) return;
-
-    //         let heroPos = cc.v2(hero.x, hero.y);
-    //         let dx = 0;
-    //         let dy = 0;
-
-    //         let diffX = bossPos.x - heroPos.x;
-    //         let diffY = bossPos.y - heroPos.y;
-    //         diffX = Math.round(diffX);
-    //         diffY = Math.round(diffY);
-
-    //         if (index == 1) {
-    //             // console.log(diffX, diffY);
-    //         }
-    //         if (Math.abs(diffX) > Math.abs(diffY)) {
-    //             dx = diffX > 0 ? 1 : -1;
-    //         } else {
-    //             dy = diffY > 0 ? 1 : -1;
-    //         }
-    //         this.moveCharacterBot(hero, dx, dy);
-    //         // this.scheduleOnce(() => {
-    //         //     // this.checkMove();
-    //         //     this.moveCharacterBot(hero, dx, dy);
-    //         // }, 0.1);
-    //     });
-    // },
-
-    // nonFocusedHeroesAttackBoss() {
-    //     if (!this.boss || this.heros.length === 0) return;
-
-    //     this.heros.forEach(hero => {
-    //         if (hero === this.focusedHero) return;
-
-    //         let heroScript = hero.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
-    //         if (heroScript) {
-
-    //             console.log(this.checkAttackRangeHero(hero), hero, '321')
-    //             if (this.checkAttackRangeHero(hero)) {
-    //                 heroScript.attackAnimation();
-
-    //                 let bossScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
-
-    //                 if (bossScript) {
-    //                     console.log('boss tack dame')
-    //                     bossScript.takeDamage(2);
-    //                     if (bossScript.getHp() <= 0) {
-    //                         this.winner = GAME_DATA.ROLE.PLAYER;
-    //                     }
-    //                 } else {
-    //                     console.log('Boss không có hàm takeDamage');
-    //                 }
-    //             }
-    //             return;
-    //         }
-    //     });
-    // },
 
     updateWalkable(x, y, walkable) {
         if (!this.gridMap) this.gridMap = [];
@@ -930,15 +637,17 @@ const GameController = cc.Class({
             this.isAttacking = false;
             this.isUsingSkill = false;
             this.winner = GAME_DATA.ROLE.BOSS;
+            this.endGameCallback();
         }
-        let bossScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
+        let bossScript = this.boss.getComponents(cc.Component).find(c => typeof c.getCurrentHp === 'function');
         if (!bossScript) {
-            if (bossScript.getHp() <= 0) {
+            if (bossScript.getCurrentHp() <= 0) {
                 this.setWonMap();
                 this.isMoving = false;
                 this.isAttacking = false;
                 this.isUsingSkill = false;
                 this.winner = GAME_DATA.ROLE.PLAYER;
+                this.endGameCallback();
             }
         }
     },

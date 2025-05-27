@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Tanker",
+    "_name": "Adc",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -31,10 +31,13 @@
       },
       {
         "__id__": 15
+      },
+      {
+        "__id__": 16
       }
     ],
     "_prefab": {
-      "__id__": 16
+      "__id__": 17
     },
     "_opacity": 255,
     "_color": {
@@ -169,7 +172,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "e0e47dd6-4b21-4af0-9cc3-b01aaffee970"
+      "__uuid__": "fe0e2422-d50a-4e7d-88ae-5e6b90325616"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -183,7 +186,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": {
-      "__uuid__": "7afdc0bb-ae92-4156-9a9e-45f9f11dbd62"
+      "__uuid__": "3a8517b3-42e7-409a-8318-cf4dc0cb7ecb"
     },
     "_id": ""
   },
@@ -198,37 +201,37 @@
     "_defaultClip": null,
     "_clips": [
       {
-        "__uuid__": "09018172-cfcc-43df-9baf-69b38b0c3050"
+        "__uuid__": "a9aeab97-5885-432e-aaba-e0d62d5b51da"
       },
       {
-        "__uuid__": "ab8a177d-7d48-4500-b3a2-6678394854f4"
+        "__uuid__": "2a285dc9-6b51-4074-92c2-acb605963b56"
       },
       {
-        "__uuid__": "7f9bb9e0-e119-4ce4-bb96-b31f4403de8d"
+        "__uuid__": "999d3a7d-16b5-4488-a216-2936ea7703af"
       },
       {
-        "__uuid__": "028170b1-3b40-4763-8ca5-53a768ad59b3"
+        "__uuid__": "19978221-dc5a-43ac-879c-b594461b7f8e"
       },
       {
-        "__uuid__": "c87c06a4-3161-496b-81a8-d64dd9ac717d"
+        "__uuid__": "9abc8cdb-93ce-4eac-a118-36762c202469"
       },
       {
-        "__uuid__": "f4d08ee7-e44e-43ea-b060-85e2b03f2b8f"
+        "__uuid__": "d7e9a554-2f4d-4489-870e-9d40e0273e60"
       },
       {
-        "__uuid__": "6f513be4-355a-4c68-ad35-f0c890c1b5fc"
+        "__uuid__": "17028686-ebd1-4efb-8d75-2debcc50206a"
       },
       {
-        "__uuid__": "cb2c233e-118a-408e-81be-9632afa85758"
+        "__uuid__": "889f8964-eb96-4da0-b917-3185d9bbb505"
       },
       {
-        "__uuid__": "da09a7aa-0b69-48d7-ba02-593a8c5b7967"
+        "__uuid__": "e20ed139-37d7-426e-a81d-ef230e394b38"
       },
       {
-        "__uuid__": "58554a6d-0af8-4d51-aeb5-4f54282924d1"
+        "__uuid__": "cdd77bc1-99f5-4ffa-900c-21dfe7246527"
       },
       {
-        "__uuid__": "3a78080b-ea50-4663-b0e7-1f6d0952f0c1"
+        "__uuid__": "5e55919b-24b3-4cba-84bb-a91e2a8e6da7"
       }
     ],
     "playOnLoad": true,
@@ -355,9 +358,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 21,
+      "r": 11,
       "g": 236,
-      "b": 107,
+      "b": 101,
       "a": 255
     },
     "_contentSize": {
@@ -503,34 +506,22 @@
     "sync": false
   },
   {
-    "__type__": "26dd3Ct4kFMAqzBq1Ul+wKQ",
+    "__type__": "cc.AudioSource",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "role": "Tanker",
-    "maxHp": 100,
-    "maxMana": 100,
-    "moveSpeed": 200,
-    "attackRange": 100,
-    "normalAttackPower": 10,
-    "manaPerAttack": 10,
-    "skillCost": 30,
-    "ultimateCost": 80,
-    "skillCooldown": 5,
-    "ultimateCooldown": 12,
-    "attackCooldown": 1,
-    "imageSprite": {
-      "__id__": 3
+    "_clip": {
+      "__uuid__": "335f0309-9e1e-43b1-9278-988b0acd303e"
     },
-    "skillPrefab": {
-      "__uuid__": "580c3aba-6230-4026-bdb7-f495369fed1a"
-    },
-    "hpBar": {
-      "__id__": 12
-    },
+    "_volume": 1,
+    "_mute": false,
+    "_loop": false,
+    "_firstlyEnabled": true,
+    "playOnLoad": false,
+    "preload": false,
     "_id": ""
   },
   {
@@ -541,6 +532,30 @@
       "__id__": 1
     },
     "_enabled": true,
+    "_id": ""
+  },
+  {
+    "__type__": "f134dhbHxBAd5+Ne4NHHkT/",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "imageSprite": {
+      "__id__": 3
+    },
+    "hpBar": {
+      "__id__": 12
+    },
+    "health": 100,
+    "maxHp": 100,
+    "attackPower": 0,
+    "moveSpeed": 0,
+    "attackRange": 0,
+    "attackCooldown": 0,
+    "skillCooldown": 0,
+    "ultimateCooldown": 0,
     "_id": ""
   },
   {

@@ -64,7 +64,7 @@ cc.Class({
         this.isAttacking = false;
         this.isCastingSkill = false;
 
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+        // cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
 
         // test add boss into map
         this.winnerNotificationLabel.node.parent.zIndex = 999;
@@ -89,7 +89,9 @@ cc.Class({
             EventBus.emit(EventBus.events.CLEAR_WALKABLE_AREA);
         }, this);
 
-        this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
+        this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight, () => {
+            this.endGameNotification();
+        });
     },
 
     start() {
@@ -98,7 +100,7 @@ cc.Class({
 
     // update (dt) {},
     onDestroy() {
-        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+        // cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         EventBus.off(EventBus.events.CLICK_TO_MOVE, this.onClickToMove, this);
     },
 
@@ -113,9 +115,6 @@ cc.Class({
             }
         });
 
-        console.log('heroPrefabs', this.gameController.getHeroPrefabs());
-        // this.gameController.setHe
-        // this.mapIndex = this.gameController.getMapPicked() ?? 0;
         this.mapIndex = 1;
         this.tileSpriteFrame = this.tileSpriteFrames[this.mapIndex];
         this.backgroundSprite.spriteFrame = this.backgroundSpriteFrames[this.mapIndex];
@@ -124,15 +123,6 @@ cc.Class({
 
         if (this.heroPrefabs) this.spawnHero();
         this.spawnBoss();
-        // this.turnOnAutoBossAttack();
-        // this.turnOnAutoSkill();
-        // this.turnOnAutoMode();
-        // this.spawnTestSkill();
-
-        // this.gameController.setMapPicked(this.mapIndex);
-        // if (this.mapIndex > 0) {
-        //     this.turnOnAutoSkill();
-        // }
         this.gameController.startPlayerTurn();
     },
 
@@ -173,7 +163,6 @@ cc.Class({
             const info = heroScript.getCharacterInfo();
 
             this.heroNameLabel.string = info.name || '';
-            // const currentHp = heroScript.getCurrentHp ? heroScript.getCurrentHp() : info.health;
             this.heroHpLabel.string = `${heroScript.getCurrentHp()} / ${info.health}`;
             this.heroImage.spriteFrame = info.imageSprite ? info.imageSprite.spriteFrame : null;
         }
@@ -230,8 +219,6 @@ cc.Class({
 
     spawnBoss() {
         const size = 2;
-        // const posX = 2;
-        // const posY = 5;
 
         const posX = (this.mapWidth - size) / 2;
         const posY = this.mapHeight - 3;
@@ -265,17 +252,6 @@ cc.Class({
             console.error("No enemy to spawn");
             return;
         }
-        // const size = 2;
-        // const posX = 2;
-        // const posY = 5;
-
-        // const posX = (this.mapWidth - size) / 2;
-        // const posY = this.mapHeight - 3;
-
-        // this.bossNode = cc.instantiate(this.bossPrefabs[this.mapIndex]);
-        // this.gameController.addBoss(this.bossNode);
-
-        // scale boss to 1.5 if size > 1
 
         let posX = Math.floor(Math.random() * (this.mapWidth - size));
         let posY = Math.floor(Math.random() * (this.mapHeight - size));
@@ -429,45 +405,45 @@ cc.Class({
         }
     },
 
-    onKeyDown(event) {
-        if (event.keyCode == cc.macro.KEY.tab) {
-            // this.focusedHeroIndex = this.focusedHeroIndex++ % this.heros.length;
-            if (this.gameController.getNumberOfHero() == 1) return; // only 1 hero remain
-            this.focusedHeroIndex++;
+    // onKeyDown(event) {
+    //     if (event.keyCode == cc.macro.KEY.tab) {
+    //         // this.focusedHeroIndex = this.focusedHeroIndex++ % this.heros.length;
+    //         if (this.gameController.getNumberOfHero() == 1) return; // only 1 hero remain
+    //         this.focusedHeroIndex++;
 
-            if (this.focusedHeroIndex == this.heroPrefabs.length) {
-                this.focusedHeroIndex = 0;
-            }
+    //         if (this.focusedHeroIndex == this.heroPrefabs.length) {
+    //             this.focusedHeroIndex = 0;
+    //         }
 
-            this.gameController.setFocusedHero(this.focusedHeroIndex);
-            // this.gameController.listenKeyDown(this.gameController.getFocusedHero());
-        }
+    //         this.gameController.setFocusedHero(this.focusedHeroIndex);
+    //         // this.gameController.listenKeyDown(this.gameController.getFocusedHero());
+    //     }
 
-        if (event.keyCode == cc.macro.KEY.q) {
-            this.heroAttack();
-            if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
-                this.endGameNotification();
-                this.gameController.setWonMap();
-                cc.director.pause();
-                this.pauseButton.node.active = false;
-            }
-        }
+    //     if (event.keyCode == cc.macro.KEY.q) {
+    //         this.heroAttack();
+    //         if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
+    //             this.endGameNotification();
+    //             this.gameController.setWonMap();
+    //             cc.director.pause();
+    //             this.pauseButton.node.active = false;
+    //         }
+    //     }
 
-        if (event.keyCode == cc.macro.KEY.j) {
-            this.heroSkill();
-            if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
-                console.log('skill')
-                this.endGameNotification();
-                this.gameController.setWonMap();
-                cc.director.pause();
-                this.pauseButton.node.active = false;
-            }
-        }
+    //     if (event.keyCode == cc.macro.KEY.j) {
+    //         this.heroSkill();
+    //         if (this.gameController.getWinner() != undefined && this.gameController.getWinner() != null) {
+    //             console.log('skill')
+    //             this.endGameNotification();
+    //             this.gameController.setWonMap();
+    //             cc.director.pause();
+    //             this.pauseButton.node.active = false;
+    //         }
+    //     }
 
-        // if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
-        //     this.gameController.heroMoveAnimation(event.keyCode);
-        // }
-    },
+    //     // if (event.keyCode == cc.macro.KEY.a || event.keyCode == cc.macro.KEY.d || event.keyCode == cc.macro.KEY.w || event.keyCode == cc.macro.KEY.s) {
+    //     //     this.gameController.heroMoveAnimation(event.keyCode);
+    //     // }
+    // },
 
     heroSkill() {
         if (this.isCastingSkill) return;
