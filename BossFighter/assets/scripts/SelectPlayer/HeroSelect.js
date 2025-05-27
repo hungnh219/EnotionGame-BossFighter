@@ -156,11 +156,10 @@ cc.Class({
         const nameLabelNode = new cc.Node('NameLabelNode');
         const nameLabel = nameLabelNode.addComponent(cc.Label);
         nameLabel.string = this.heros[clickIndex].name;
-        nameLabel.fontSize = 20;
+        nameLabel.fontSize = 30;
         nameLabel.lineHeight = 24;
-
-        nameLabelNode.setPosition(0, -200);
-
+        nameLabelNode.color = cc.Color.BLACK;
+        nameLabelNode.setPosition(0, -180);
         this.selectedHero.node.addChild(nameLabelNode);
     },
 
@@ -191,9 +190,10 @@ cc.Class({
             const nameLabelNode = new cc.Node('NameLabelNode');
             const nameLabel = nameLabelNode.addComponent(cc.Label);
             nameLabel.string = this.heros[this.heroPicked.index].name;
-            nameLabel.fontSize = 20;
+            nameLabel.fontSize = 30;
             nameLabel.lineHeight = 24;
-            nameLabelNode.setPosition(0, -200);
+            nameLabelNode.color = cc.Color.BLACK;
+            nameLabelNode.setPosition(0, -180);
             heroImageNode.addChild(nameLabelNode);
 
             // save hero data to local storage
