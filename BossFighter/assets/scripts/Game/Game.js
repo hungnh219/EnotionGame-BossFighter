@@ -61,7 +61,6 @@ cc.Class({
         this.rootNode = this.node.parent;
         this.bossNode = null;
         // this.heroPrefabs = [];
-        this.isAttacking = false;
         this.isCastingSkill = false;
 
         // cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -528,14 +527,7 @@ cc.Class({
     },
 
     heroAttack() {
-        if (this.isAttacking) return;
-        this.isAttacking = true;
         this.gameController.heroAttack();
-
-
-        this.scheduleOnce(() => {
-            this.isAttacking = false;
-        }, 0.1) // get cool down from hero
     },
 
     heroSkill() {

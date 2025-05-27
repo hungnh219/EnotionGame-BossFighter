@@ -339,70 +339,92 @@ const GameController = cc.Class({
     heroAttack(hero) {
         if (hero == null || hero == undefined) hero = this.focusedHero;
 
-        // check attack cooldown
-        if (hero.isAttacking) return;
+        hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.dealDame === 'function');
 
-        hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
-
-        if (!hero.mainScript.canAttack()) {
-            console.log('Chưa hết cooldown đánh thường');
+        if (hero.mainScript) {
+            let enemiesInRange = this.checkAttackRangeHero(hero);
+            if (enemiesInRange.length == 0) {
+                console.log('no enemy in range');
+                return;
+            }
+            
+            this.showEnemySelection(enemiesInRange, (selectedEnemy) => {
+                this.heroAttackTarget(hero, selectedEnemy);
+            });
+        }
+    },
+    heroAttackTarget(hero, enemy) {
+        if (!hero || !enemy || !hero.mainScript) {
+            console.warn("Thiếu hero hoặc enemy hoặc mainScript");
             return;
         }
 
-        hero.mainScript.attackCooldownRemaining = Math.ceil(hero.mainScript.attackCooldown);
+        hero.mainScript.dealDame(enemy, 20);
 
-        if (this.checkAttackRangeHero(hero) && hero) {
-            // const hero = this.getFocusedHero();
+        this.consumePlayerTurn();
+        this.checkWin();
+    },
 
-            hero.isAttacking = true;
+    showEnemySelection(enemies, onEnemySelected) {
+        enemies.forEach(enemy => {
+            this.highlightEnemy(enemy);
 
-            if (hero.mainScript) {
+            enemy.once(cc.Node.EventType.TOUCH_END, () => {
+                this.clearEnemyHighlights();
+                onEnemySelected(enemy);
+            });
+        });
+    },
 
-                let attackDame = hero.mainScript.getAttackDame();
+    highlightEnemy(enemy) {
+        enemy.scale = enemy.scale * 1.5;
+    },
 
-                hero.mainScript.useAttack();
-
-                if (attackDame <= 0) return;
-
-                // this.consumePlayerTurn();
-
-                this.boss.mainScript = this.boss.getComponents(cc.Component).find(c => typeof c.takeDamage === 'function');
-                if (this.boss.mainScript) {
-                    // this.bossTakeDame(attackDame);
-                    // this.boss.mainScript.takeDamage(attackDame);
-                    // // this.checkWin();
-                    // // boss die
-                    // if (this.boss.mainScript.getHp() == 0) {
-                    //     // player win
-                    //     this.setWonMap();
-                    //     this.winner = GAME_DATA.ROLE.PLAYER;
-                    //     this.checkWin();
-                    // }
-                } else {
-                    console.log('no takeDamage function');
-                }
-
-            } else {
-                console.log('no attack function');
-            }
-        }
-
-        this.scheduleOnce(() => {
-            hero.isAttacking = false;
-        }, 0.1)
+    clearEnemyHighlights() {
+        this.enemies.forEach(enemy => {
+            enemy.scale = enemy.scale / 1.5; // reset scale
+            enemy.off(cc.Node.EventType.TOUCH_END); // xóa listener cũ
+        });
     },
 
     checkAttackRangeHero(hero) {
-        let boss = this.boss;
+        let enemiesInRange = [];
+        if (hero == undefined || hero == null) hero = this.getFocusedHero();
 
-        const distance = cc.v2(boss.x - hero.x, boss.y - hero.y).mag();
-        hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.attackAnimation === 'function');
-
-        if (distance <= hero.mainScript.getAttackRange()) {
-            return true;
+        hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getAttackRange === 'function');
+        if (!hero.mainScript) {
+            console.log('no getAttackRange function');
+            return enemiesInRange;
         }
 
-        return false;
+        let attackRange = hero.mainScript.getAttackRange() * this.mapTileWidth;
+
+        console.log('attack range: ', attackRange);
+
+        if (attackRange <= 0) {
+            console.log('attack range is 0');
+            return enemiesInRange;
+        }
+
+        let currentEnemies = this.enemies ? this.enemies : [];
+        currentEnemies.push(this.boss); // add boss to the enemies list
+
+        currentEnemies.forEach(enemy => {
+            let enemyPos = cc.v2(enemy.x, enemy.y);
+            let heroPos = cc.v2(hero.x, hero.y);
+            
+            let dis = cc.v2(enemyPos.x - heroPos.x, enemyPos.y - heroPos.y).mag();
+
+            if (enemy == this.boss) dis += 48;
+            if (dis <= attackRange) {
+                enemiesInRange.push(enemy);
+            }
+        });
+
+        console.log('enemies in range: ', currentEnemies, enemiesInRange);
+            
+
+        return enemiesInRange;
     },
 
     getAttackRange(object) {
@@ -640,8 +662,9 @@ const GameController = cc.Class({
             this.endGameCallback();
         }
         let bossScript = this.boss.getComponents(cc.Component).find(c => typeof c.getCurrentHp === 'function');
-        if (!bossScript) {
+        if (bossScript) {
             if (bossScript.getCurrentHp() <= 0) {
+                console.log('boss die')
                 this.setWonMap();
                 this.isMoving = false;
                 this.isAttacking = false;

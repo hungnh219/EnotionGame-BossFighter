@@ -23,8 +23,10 @@ cc.Class({
         this.firstCellPos = null;
         this.lastCellPos = null;
         this.walkableGridMap = null;
+        // this.isHeroMoving = false;
 
         EventBus.on(EventBus.events.DISPLAY_WALKABLE_AREA, (firstCellPos, lastCellPos, walkableGridMap, node) => {
+            // if (this.isHeroMoving) return;
             if (this.clickNode != node) this.clearWalkableArea();
             if (this.clickNode != null && this.clickNode == node) return;
             this.clickNode = node;
@@ -64,6 +66,7 @@ cc.Class({
 
     // =================== Movement Logic ===================
     moveToWalkableTile(nodeMove, newPosNode) {
+        // this.isHeroMoving = true;
         let mapSetting = this.gameController.getMapSetting();
         if (!mapSetting) {
             console.warn('Map setting is not initialized');
@@ -106,6 +109,7 @@ cc.Class({
             const py = this.firstCellPos.y + p.y * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
             steps.push(cc.moveTo(0.4, px, py));
 
+            this.isMoving = false;
             // let move = cc.Tween(nodeMove)
             //     .to(0.4, { x: px, y: py })
             // steps.push(move);
@@ -121,7 +125,7 @@ cc.Class({
             if (this.gameController.getPlayerTurnCount() <= 0) {
                 this.gameController.enemyAutoMode();
             }
-            this.isHeroMoving = false;
+            // this.isHeroMoving = false;
             // this.clearWalkableArea();
         });
 

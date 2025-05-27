@@ -25,6 +25,7 @@ cc.Class({
             console.log('Character ', this.node.name ," received damage event:", dame);
             this.takeDame(dame);
         }, this);
+        this.attackRange = 1;
         // this.health = this.health ?? 100;
         
     },
@@ -81,6 +82,9 @@ cc.Class({
         return this.health;
     },
 
+    getAttackRange () {
+        return this.attackRange;
+    },
     die() {
         console.log("Character died");
         this.node.destroy();
