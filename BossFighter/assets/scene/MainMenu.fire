@@ -1582,7 +1582,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "SettingButton",
+    "_name": "PlayOnlineButton",
     "_objFlags": 0,
     "_parent": {
       "__id__": 5
@@ -1644,7 +1644,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "d8ORDekSRO8J/Ma/YPdxCY"
+    "_id": "36tHQxablBZ6hMJgBqn7EY"
   },
   {
     "__type__": "cc.Node",
@@ -1671,9 +1671,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 230,
+      "g": 230,
+      "b": 230,
       "a": 255
     },
     "_contentSize": {
@@ -1713,7 +1713,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "e21nVBcuZIr541QrwAVRfl"
+    "_id": "4dTcTzCEBFkY9/kXRdHQ8j"
   },
   {
     "__type__": "cc.Node",
@@ -1740,7 +1740,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
+      "width": 200,
       "height": 40
     },
     "_anchorPoint": {
@@ -1775,7 +1775,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "d2rTHFfZZLSa+HAfQ2hE6q"
+    "_id": "41++pBMsBFTrScFw2NUz42"
   },
   {
     "__type__": "cc.Label",
@@ -1792,8 +1792,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Setting",
-    "_N$string": "Setting",
+    "_string": "Play Online",
+    "_N$string": "Play Online",
     "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": false,
@@ -1808,7 +1808,7 @@
     "_N$fontFamily": "Arial",
     "_N$overflow": 1,
     "_N$cacheMode": 1,
-    "_id": "e9B+yYaHBDh63z8HajSlec"
+    "_id": "c4Hk+ug09Hg725U/SG6b1O"
   },
   {
     "__type__": "cc.Sprite",
@@ -1840,7 +1840,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": null,
-    "_id": "27YmO7mxBBz4VDsoOWyLOq"
+    "_id": "e7UxWPSCFCYqNUn2ITxx8d"
   },
   {
     "__type__": "cc.Widget",
@@ -1867,7 +1867,7 @@
     "_isAbsVerticalCenter": true,
     "_originalWidth": 100,
     "_originalHeight": 40,
-    "_id": "1abfoSMYBFcJoeCTtKskoB"
+    "_id": "f8BQxKpNlGH6BvV+9ylbE4"
   },
   {
     "__type__": "cc.Button",
@@ -1877,7 +1877,9 @@
       "__id__": 33
     },
     "_enabled": true,
-    "_normalMaterial": null,
+    "_normalMaterial": {
+      "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+    },
     "_grayMaterial": null,
     "duration": 0.1,
     "zoomScale": 1.2,
@@ -1913,16 +1915,16 @@
     },
     "_N$hoverColor": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 223,
+      "g": 40,
+      "b": 40,
       "a": 255
     },
     "hoverColor": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 223,
+      "g": 40,
+      "b": 40,
       "a": 255
     },
     "_N$disabledColor": {
@@ -1951,7 +1953,7 @@
     "_N$target": {
       "__id__": 34
     },
-    "_id": "61QXt4lxdN75oV7j3aLire"
+    "_id": "91cQ0OzPlFa5RnRbFilN4L"
   },
   {
     "__type__": "cc.ClickEvent",
@@ -1965,7 +1967,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "PlayOnlineButton",
+    "_name": "SettingButton",
     "_objFlags": 0,
     "_parent": {
       "__id__": 5
@@ -2027,7 +2029,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "36tHQxablBZ6hMJgBqn7EY"
+    "_id": "d8ORDekSRO8J/Ma/YPdxCY"
   },
   {
     "__type__": "cc.Node",
@@ -2054,9 +2056,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 230,
-      "g": 230,
-      "b": 230,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_contentSize": {
@@ -2096,7 +2098,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "4dTcTzCEBFkY9/kXRdHQ8j"
+    "_id": "e21nVBcuZIr541QrwAVRfl"
   },
   {
     "__type__": "cc.Node",
@@ -2123,7 +2125,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 200,
+      "width": 100,
       "height": 40
     },
     "_anchorPoint": {
@@ -2158,7 +2160,7 @@
     "_is3DNode": false,
     "_groupIndex": 0,
     "groupIndex": 0,
-    "_id": "41++pBMsBFTrScFw2NUz42"
+    "_id": "d2rTHFfZZLSa+HAfQ2hE6q"
   },
   {
     "__type__": "cc.Label",
@@ -2175,8 +2177,8 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Play Online",
-    "_N$string": "Play Online",
+    "_string": "Setting",
+    "_N$string": "Setting",
     "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": false,
@@ -2191,7 +2193,7 @@
     "_N$fontFamily": "Arial",
     "_N$overflow": 1,
     "_N$cacheMode": 1,
-    "_id": "c4Hk+ug09Hg725U/SG6b1O"
+    "_id": "e9B+yYaHBDh63z8HajSlec"
   },
   {
     "__type__": "cc.Sprite",
@@ -2223,7 +2225,7 @@
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": null,
-    "_id": "e7UxWPSCFCYqNUn2ITxx8d"
+    "_id": "27YmO7mxBBz4VDsoOWyLOq"
   },
   {
     "__type__": "cc.Widget",
@@ -2250,7 +2252,7 @@
     "_isAbsVerticalCenter": true,
     "_originalWidth": 100,
     "_originalHeight": 40,
-    "_id": "f8BQxKpNlGH6BvV+9ylbE4"
+    "_id": "1abfoSMYBFcJoeCTtKskoB"
   },
   {
     "__type__": "cc.Button",
@@ -2260,9 +2262,7 @@
       "__id__": 41
     },
     "_enabled": true,
-    "_normalMaterial": {
-      "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
-    },
+    "_normalMaterial": null,
     "_grayMaterial": null,
     "duration": 0.1,
     "zoomScale": 1.2,
@@ -2298,16 +2298,16 @@
     },
     "_N$hoverColor": {
       "__type__": "cc.Color",
-      "r": 223,
-      "g": 40,
-      "b": 40,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "hoverColor": {
       "__type__": "cc.Color",
-      "r": 223,
-      "g": 40,
-      "b": 40,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_N$disabledColor": {
@@ -2336,7 +2336,7 @@
     "_N$target": {
       "__id__": 42
     },
-    "_id": "91cQ0OzPlFa5RnRbFilN4L"
+    "_id": "61QXt4lxdN75oV7j3aLire"
   },
   {
     "__type__": "cc.ClickEvent",
