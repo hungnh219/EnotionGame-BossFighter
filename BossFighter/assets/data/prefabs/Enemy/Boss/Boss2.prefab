@@ -492,7 +492,7 @@
     "node": {
       "__id__": 1
     },
-    "_enabled": true,
+    "_enabled": false,
     "tag": 0,
     "_offset": {
       "__type__": "cc.Vec2",

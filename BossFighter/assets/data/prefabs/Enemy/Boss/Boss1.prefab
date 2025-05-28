@@ -472,7 +472,7 @@
     "node": {
       "__id__": 1
     },
-    "_enabled": true,
+    "_enabled": false,
     "tag": 0,
     "_offset": {
       "__type__": "cc.Vec2",
@@ -493,7 +493,6 @@
     "imageSprite": {
       "__id__": 3
     },
-    "skillPrefab": null,
     "hpBar": {
       "__id__": 11
     },

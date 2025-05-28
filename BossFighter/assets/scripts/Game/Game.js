@@ -422,7 +422,6 @@ cc.Class({
     },
 
     addObjectIntoMap(gridX, gridY, size, object) {
-        console.log('addObjectIntoMap', gridX, gridY, size, object);
         let objectNode = object;
 
         if (object.node) objectNode = object.node;
