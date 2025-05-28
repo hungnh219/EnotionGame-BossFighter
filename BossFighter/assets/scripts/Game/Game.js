@@ -107,6 +107,10 @@ cc.Class({
         this.spawnObjectsFromJson();
     },
 
+    onClickPanel(event) {
+        event.stopPropagation();
+    },
+
     spawnObjectsFromJson() {
         if (!this.objectsJsonData || !this.objectsJsonData.json) {
             console.error("No objects data found");
