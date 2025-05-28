@@ -2588,6 +2588,7 @@
         "__uuid__": "534bee7b-1cfc-4939-89fd-402ead830ad9"
       }
     ],
+    "resumeButton": null,
     "pauseButton": {
       "__id__": 74
     },
