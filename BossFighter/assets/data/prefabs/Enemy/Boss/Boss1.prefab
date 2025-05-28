@@ -195,22 +195,16 @@
     "_defaultClip": null,
     "_clips": [
       {
-        "__uuid__": "d69c15c7-5697-4ff4-a0c1-03e889b727b2"
+        "__uuid__": "1689abae-aa11-44f7-a6f1-b7a95ebd904a"
       },
       {
-        "__uuid__": "2d25c250-2dd0-484a-b783-c879f1cc135c"
+        "__uuid__": "e912087d-cf79-4de9-8a6a-b93f918038a0"
       },
       {
-        "__uuid__": "e99646aa-7520-442f-8d5d-37c91c69fb5e"
+        "__uuid__": "2f17cbcb-795c-4047-a230-1e74f5899472"
       },
       {
-        "__uuid__": "f170f233-f92b-4861-b166-117582678a9b"
-      },
-      {
-        "__uuid__": "0015db1a-bfea-474e-879e-6ea1c8b1c0eb"
-      },
-      {
-        "__uuid__": "82ff712c-212f-4817-83f9-e6d9ef03563d"
+        "__uuid__": "25664aaf-627c-4235-8270-598c53e212ab"
       }
     ],
     "playOnLoad": true,
