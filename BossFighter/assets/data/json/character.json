@@ -1,0 +1,78 @@
+{
+    "hero001" : {
+        "name": "Hero 001",
+        "role": "Bruiser",
+        "description": "A strong and resilient fighter who excels in close combat, able to withstand heavy damage while dealing significant blows to enemies.",
+        "properties": {
+            "health": 1500,
+            "attackDame": 200,
+            "attackRange": 1
+        }
+    },
+
+    "hero002" : {
+        "name": "Hero 002",
+        "role": "Adc",
+        "description": "A ranged damage dealer who can inflict high damage from a distance, specializing in taking down enemies quickly with precise attacks.",
+        "properties": {
+            "health": 1000,
+            "attackDame": 250,
+            "attackRange": 4
+        }
+    },
+
+    "hero003" : {
+        "name": "Vampire",
+        "role": "Mage",
+        "description": "A powerful mage who uses dark magic to drain the life from enemies, restoring health while dealing damage.",
+        "properties": {
+            "health": 1200,
+            "attackDame": 300,
+            "attackRange": 3
+        }
+    },
+
+    "hero004" : {
+        "name": "Hero 004",
+        "role": "Tanker",
+        "description": "A heavily armored warrior who can absorb massive amounts of damage, protecting allies and controlling the battlefield.",
+        "properties": {
+            "health": 2000,
+            "attackDame": 150,
+            "attackRange": 1
+        }
+    },
+
+    "boss001": {
+        "name": "Boss 001",
+        "role": "Boss",
+        "description": "A formidable enemy that poses a significant challenge, requiring teamwork and strategy to defeat. It has high health and devastating attacks.",
+        "properties": {
+            "health": 5000,
+            "attackDame": 400,
+            "attackRange": 2
+        }
+    },
+
+    "boss002": {
+        "name": "Boss 002",
+        "role": "Boss",
+        "description": "An even more powerful boss that tests the limits of the players' abilities, with unique attacks and mechanics that require careful planning to overcome.",
+        "properties": {
+            "health": 7000,
+            "attackDame": 500,
+            "attackRange": 3
+        }
+    },
+
+    "boss003": {
+        "name": "Boss 003",
+        "role": "Boss",
+        "description": "The ultimate challenge, this boss combines devastating attacks with complex mechanics, requiring the best strategies and teamwork to defeat.",
+        "properties": {
+            "health": 10000,
+            "attackDame": 600,
+            "attackRange": 3
+        }
+    }
+}

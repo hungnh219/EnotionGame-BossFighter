@@ -25,7 +25,7 @@ cc.Class({
     onMouseMove(event) {
         // Lấy vị trí chuột trong hệ tọa độ canvas hoặc node
         this._mousePos = event.getLocation();
-        console.log("Mouse position:", this._mousePos);
+        // console.log("Mouse position:", this._mousePos);
     },
 
     update(dt) {

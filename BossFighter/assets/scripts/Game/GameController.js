@@ -346,6 +346,8 @@ const GameController = cc.Class({
             size: size || 1,
         });
     },
+
+    // =================== Hero Attack: Start ===================
     heroAttack(hero) {
         if (hero == null || hero == undefined) hero = this.focusedHero;
 
@@ -494,6 +496,167 @@ const GameController = cc.Class({
 
         return 0;
     },
+    // =================== Hero Attack: End ===================
+
+
+    // =================== Hero Ultimate: Start ===================
+    setHighlightTilePrefab(highlightTilePrefab) {
+        this.highlightTilePrefab = highlightTilePrefab;
+    },
+
+    setRootNode(node) {
+        this.rootNode = node;
+    },
+    heroUltimate(hero) {
+        if (hero == null || hero == undefined) hero = this.focusedHero;
+
+        hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.ultimate === 'function');
+        if (hero.mainScript) {
+
+            // enemiesInRange = bosses + enemies
+            let enemiesInRange = [];
+            // this.enemies.forEach((enemy) => {
+
+            if (this.enemies == undefined || this.enemies == null) this.enemies = [];
+            if (this.bosses == undefined || this.bosses == null) this.bosses = [];
+            this.enemies.forEach((enemy) => {
+                enemiesInRange.push(enemy);
+            })
+
+            this.bosses.forEach((boss) => {
+                enemiesInRange.push(boss.node);
+            });
+
+            this.showEnemySelection(enemiesInRange, (selectedEnemy) => {
+                this.heroUltimateEnemy(hero, selectedEnemy);
+            });
+        }
+    },
+
+    testVampireUltimate(hero) {
+        if (hero == null || hero == undefined) hero = this.focusedHero;
+
+        console.log('test vampire ultimate');
+
+        hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.ultimate === 'function');
+        if (hero.mainScript) {
+            console.log('hero main script', hero.mainScript);
+            this.showTileSelection((startTile) => {
+                hero.mainScript.ultimate(startTile, (affactedTile, dame) => {
+                    // console.log('affactedTile', affactedTile, 'dame', dame);
+                    // this.dealDameAoe(affactedTile, dame);
+                }, (animPrefab, tile, times, dame) => {
+                    this.spawnUltimateAnimation(animPrefab, tile, times, dame);
+                });
+            });
+
+        }
+        
+
+    },
+
+    showTileSelection(onTileSelected) {
+
+        console.log('show tile selection');
+        if (!this.highlightTiles) this.highlightTiles = [];
+        for (let x = 0; x < this.mapWidth; x++) {
+            for (let y = 0; y < this.mapHeight; y++) {
+                let highlight = cc.instantiate(this.highlightTilePrefab);
+                // highlight.parent = this.mapNode;
+                this.rootNode.addChild(highlight);
+                highlight.setPosition(
+                    this.firstCellPos.x + x * this.mapTileWidth + this.mapTileWidth / 2,
+                    this.firstCellPos.y + y * this.mapTileHeight + this.mapTileHeight / 2
+                );
+                highlight.on(cc.Node.EventType.TOUCH_END, () => {
+                    this.clearTileHighlights();
+                    onTileSelected({ x, y });
+                });
+                this.highlightTiles.push(highlight);
+            }
+        }
+    },
+    clearTileHighlights() {
+        if (!this.highlightTiles) return;
+        this.highlightTiles.forEach(tile => tile.destroy());
+        this.highlightTiles = [];
+    },
+
+    heroUltimateEnemy(hero, enemy) {
+        console.log('enemy pos', enemy.x, enemy.y);
+        if (!hero || !enemy || !hero.mainScript) {
+            console.warn("Thiếu hero hoặc enemy hoặc mainScript");
+            return;
+        }
+
+        hero.mainScript.ultimate(enemy);
+    },
+
+    spawnUltimateAnimation(animPrefab, tile, times, dame) {
+        if (times == 0) return;
+        let ranTimeToSpawn = Math.random();
+
+        if (!this.rootNode) {
+            console.error('Root node is not set for spawning ultimate animation');
+            return;
+        }
+        this.scheduleOnce(() => {
+            const anim = cc.instantiate(animPrefab);
+
+            anim.setPosition(
+                this.firstCellPos.x + tile.x * this.mapTileWidth + this.mapTileWidth / 2,
+                this.firstCellPos.y + tile.y * this.mapTileHeight + this.mapTileHeight / 2
+            );
+            this.rootNode.addChild(anim);
+
+            this.dealDameTile(tile, dame);
+            times--;
+
+            // spawn the animation again after 0.5 seconds
+            this.scheduleOnce(() => {
+                this.spawnUltimateAnimation(anim, tile, times, dame);
+            }, 1);
+        }, ranTimeToSpawn);
+    },
+
+    dealDameTile(tile, dame) {
+        if (this.enemies == undefined || this.enemies == null) this.enemies = [];
+        if (this.bosses == undefined || this.bosses == null) this.bosses = [];
+
+        // deal dame to all enemies and bosses in the affactedTile
+
+        if (this.gridMap[tile.x] == undefined || this.gridMap[tile.x][tile.y] == undefined) return;
+        if (this.gridMap[tile.x][tile.y] == false) {
+            // tile is walkable, so we can deal dame to enemies and bosses
+            this.enemies.forEach((enemy) => {
+                let enemyPos = this.positionToGrid(enemy);
+                if (enemyPos && enemyPos.x === tile.x && enemyPos.y === tile.y) {
+                    enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.takeDame === 'function');
+                    if (enemy.mainScript) {
+                        enemy.mainScript.takeDame(dame);
+                        if (enemy.mainScript.getCurrentHp() <= 0) {
+                            this.handleHeroDie(enemy);
+                        }
+                    }
+                }
+            });
+
+            this.bosses.forEach((boss) => {
+                let bossPos = this.bossStartPositionToGrid(boss);
+                if (bossPos && bossPos.x === tile.x && bossPos.y === tile.y) {
+                    boss.node.mainScript = boss.node.getComponents(cc.Component).find(c => typeof c.takeDame === 'function');
+                    if (boss.node.mainScript) {
+                        boss.node.mainScript.takeDame(dame);
+                        if (boss.node.mainScript.getCurrentHp() <= 0) {
+                            this.handleBossDie(boss.node);
+                        }
+                    }
+                }
+            });
+        }
+
+    },
+    // =================== Hero Ultimate: End ===================
 
     updateWalkable(x, y, size, walkable) {
         if (!this.gridMap) this.gridMap = [];

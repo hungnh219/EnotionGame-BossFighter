@@ -21,5 +21,17 @@ cc.Class({
 
     },
 
+    // handle collision with skills
+    // onCollisionEnter: function (other, self) {
+    //     console.log('Boss3 collided with:', other.node.name);
+        
+    //     // Check if the other node has a skill component
+    //     if (other.node.getComponent('AdcSkill')) {
+    //         console.log('Boss3 hit by ADC skill:', other.node.name);
+    //         // Call takeDamage on the boss with the skill's damage
+    //         this.takeDamage(other.node.getComponent('AdcSkill').damage);
+    //     }
+    // }
+
     // update (dt) {},
 });

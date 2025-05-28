@@ -22,28 +22,20 @@ cc.Class({
         this.health = 100;
         this.maxHp = 100;
         this.node.on(GAME_DATA.EVENT_NAME.TAKE_DAME, (dame) => {
-            console.log('Character ', this.node.name ," received damage event:", dame);
             this.takeDame(dame);
         }, this);
         this.attackRange = 1;
-        // this.health = this.health ?? 100;
-        
     },
 
     start() {
-        console.log("Character started");
-        console.log("Character info:", this.getCharacterInfo());
     },
 
     initData() {
         
 
-        console.log("Character data initialized");
     },
 
     takeDame(dame) {
-        console.log("Taking damage:", dame);
-        console.log('name', this.node.name); 
 
         this.health -= dame;
         this.health = Math.max(this.health, 0);
@@ -59,21 +51,18 @@ cc.Class({
     },
 
     dealDame(characterNode, dame) {
-        console.log("Dealing damage:", dame, "to character: ", characterNode.name);
-        const comps = characterNode.getComponents(cc.Component);
-        console.log("CharacterNode components: ", comps.map(c => c.constructor.name));
+        // const comps = characterNode.getComponents(cc.Component);
         characterNode.emit(GAME_DATA.EVENT_NAME.TAKE_DAME, dame);
     },
 
     getCharacterInfo() {
         return {
             health: this.health ?? 100,
-            attackPower: this.attackPower,
-            moveSpeed: this.moveSpeed,
+            attackDame: this.attackDame,
             attackRange: this.attackRange,
-            attackCooldown: this.attackCooldown,
-            skillCooldown: this.skillCooldown,
-            ultimateCooldown: this.ultimateCooldown,
+            // attackCooldown: this.attackCooldown,
+            // skillCooldown: this.skillCooldown,
+            // ultimateCooldown: this.ultimateCooldown,
             imageSprite: this.imageSprite,
         };
     },

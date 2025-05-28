@@ -105,6 +105,8 @@ cc.Class({
     start() {
         this.initData();
         this.spawnObjectsFromJson();
+        this.gameController.setHighlightTilePrefab(this.greenTilePrefab);
+        this.gameController.setRootNode(this.rootNode);
     },
 
     onClickPanel(event) {
@@ -451,6 +453,10 @@ cc.Class({
 
     heroAttack() {
         this.gameController.heroAttack();
+    },
+
+    heroUltimate() {
+        this.gameController.testVampireUltimate();
     },
 
     replayGame() {
