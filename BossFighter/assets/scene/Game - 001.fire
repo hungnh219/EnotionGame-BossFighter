@@ -2501,8 +2501,8 @@
       "__id__": 50
     },
     "_enabled": true,
-    "mapHeight": 8,
-    "mapWidth": 10,
+    "mapHeight": 10,
+    "mapWidth": 14,
     "mapTileWidth": 48,
     "mapTileHeight": 48,
     "playerTurn": {
@@ -6425,6 +6425,7 @@
     "cameraNode": {
       "__id__": 3
     },
+    "backgroundCamera": null,
     "edgeThreshold": 20,
     "moveSpeed": 200,
     "_id": "79aJfIP+dPD6RWcBKiQtfc"
