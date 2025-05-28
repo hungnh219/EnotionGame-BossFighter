@@ -172,7 +172,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "fe0e2422-d50a-4e7d-88ae-5e6b90325616"
+      "__uuid__": "94c777fe-f8da-4386-8b15-15a34c499da7"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -185,9 +185,7 @@
     "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
-    "_atlas": {
-      "__uuid__": "3a8517b3-42e7-409a-8318-cf4dc0cb7ecb"
-    },
+    "_atlas": null,
     "_id": ""
   },
   {
@@ -548,14 +546,6 @@
     "hpBar": {
       "__id__": 12
     },
-    "health": 100,
-    "maxHp": 100,
-    "attackPower": 0,
-    "moveSpeed": 0,
-    "attackRange": 0,
-    "attackCooldown": 0,
-    "skillCooldown": 0,
-    "ultimateCooldown": 0,
     "_id": ""
   },
   {
