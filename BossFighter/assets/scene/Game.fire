@@ -17,7 +17,6 @@
         "__id__": 2
       },
       {
-<<<<<<< HEAD
         "__id__": 122
       },
       {
@@ -43,33 +42,6 @@
       },
       {
         "__id__": 138
-=======
-        "__id__": 121
-      },
-      {
-        "__id__": 123
-      },
-      {
-        "__id__": 125
-      },
-      {
-        "__id__": 127
-      },
-      {
-        "__id__": 129
-      },
-      {
-        "__id__": 131
-      },
-      {
-        "__id__": 133
-      },
-      {
-        "__id__": 135
-      },
-      {
-        "__id__": 137
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_active": false,
@@ -227,8 +199,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
+      "width": 960,
+      "height": 640
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -461,7 +433,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        0,
+        231.521,
         0,
         0,
         0,
@@ -1476,11 +1448,7 @@
     },
     "_enabled": true,
     "mapHeight": 8,
-<<<<<<< HEAD
     "mapWidth": 10,
-=======
-    "mapWidth": 8,
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     "mapTileWidth": 48,
     "mapTileHeight": 48,
     "playerTurn": {
@@ -1493,17 +1461,10 @@
       "__id__": 62
     },
     "skillCooldownLabel": {
-<<<<<<< HEAD
       "__id__": 68
     },
     "ultimateCooldownLabel": {
       "__id__": 72
-=======
-      "__id__": 67
-    },
-    "ultimateCooldownLabel": {
-      "__id__": 71
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     },
     "backgroundSprite": {
       "__id__": 81
@@ -1532,11 +1493,7 @@
     ],
     "bossPrefabs": [
       {
-<<<<<<< HEAD
         "__uuid__": "6a0059bf-7362-47e9-b4f6-f80307c0a9dd"
-=======
-        "__uuid__": "2efb3306-4ebd-4c4b-b2e1-525a442cdc7d"
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       },
       {
         "__uuid__": "2efb3306-4ebd-4c4b-b2e1-525a442cdc7d"
@@ -1785,11 +1742,7 @@
     "_active": true,
     "_components": [
       {
-<<<<<<< HEAD
         "__id__": 76
-=======
-        "__id__": 75
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_prefab": null,
@@ -1852,17 +1805,10 @@
         "__id__": 60
       },
       {
-<<<<<<< HEAD
         "__id__": 66
       },
       {
         "__id__": 70
-=======
-        "__id__": 65
-      },
-      {
-        "__id__": 69
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       },
       {
         "__id__": 33
@@ -1871,17 +1817,10 @@
     "_active": true,
     "_components": [
       {
-<<<<<<< HEAD
         "__id__": 74
       },
       {
         "__id__": 75
-=======
-        "__id__": 73
-      },
-      {
-        "__id__": 74
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_prefab": null,
@@ -3278,15 +3217,11 @@
     "_grayMaterial": null,
     "duration": 0.1,
     "zoomScale": 1.2,
-<<<<<<< HEAD
     "clickEvents": [
       {
         "__id__": 65
       }
     ],
-=======
-    "clickEvents": [],
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
     "_N$transition": 0,
@@ -3341,7 +3276,6 @@
     "_N$disabledSprite": null,
     "_N$target": null,
     "_id": "f6PTiaZH9If4XAjzkYuhq3"
-<<<<<<< HEAD
   },
   {
     "__type__": "cc.ClickEvent",
@@ -3352,8 +3286,6 @@
     "_componentId": "64416qwka9JyLGBQ0ciOcvS",
     "handler": "heroAttack",
     "customEventData": ""
-=======
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
   },
   {
     "__type__": "cc.Node",
@@ -3364,21 +3296,13 @@
     },
     "_children": [
       {
-<<<<<<< HEAD
         "__id__": 67
-=======
-        "__id__": 66
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_active": true,
     "_components": [
       {
-<<<<<<< HEAD
         "__id__": 69
-=======
-        "__id__": 68
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_prefab": null,
@@ -3434,21 +3358,13 @@
     "_name": "HeroSkillTurn",
     "_objFlags": 0,
     "_parent": {
-<<<<<<< HEAD
       "__id__": 66
-=======
-      "__id__": 65
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-<<<<<<< HEAD
         "__id__": 68
-=======
-        "__id__": 67
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_prefab": null,
@@ -3504,11 +3420,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-<<<<<<< HEAD
       "__id__": 67
-=======
-      "__id__": 66
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     },
     "_enabled": true,
     "_materials": [
@@ -3541,11 +3453,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-<<<<<<< HEAD
       "__id__": 66
-=======
-      "__id__": 65
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     },
     "_enabled": true,
     "_materials": [
@@ -3581,21 +3489,13 @@
     },
     "_children": [
       {
-<<<<<<< HEAD
         "__id__": 71
-=======
-        "__id__": 70
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_active": true,
     "_components": [
       {
-<<<<<<< HEAD
         "__id__": 73
-=======
-        "__id__": 72
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_prefab": null,
@@ -3651,21 +3551,13 @@
     "_name": "HeroUltimateTurn",
     "_objFlags": 0,
     "_parent": {
-<<<<<<< HEAD
       "__id__": 70
-=======
-      "__id__": 69
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     },
     "_children": [],
     "_active": true,
     "_components": [
       {
-<<<<<<< HEAD
         "__id__": 72
-=======
-        "__id__": 71
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_prefab": null,
@@ -3721,11 +3613,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-<<<<<<< HEAD
       "__id__": 71
-=======
-      "__id__": 70
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     },
     "_enabled": true,
     "_materials": [
@@ -3758,11 +3646,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-<<<<<<< HEAD
       "__id__": 70
-=======
-      "__id__": 69
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     },
     "_enabled": true,
     "_materials": [
@@ -3890,11 +3774,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-<<<<<<< HEAD
       "__id__": 78
-=======
-      "__id__": 77
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     },
     "_enabled": true,
     "_materials": [
@@ -5941,11 +5821,7 @@
     "_active": true,
     "_components": [
       {
-<<<<<<< HEAD
         "__id__": 123
-=======
-        "__id__": 122
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_prefab": null,
@@ -6001,11 +5877,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-<<<<<<< HEAD
       "__id__": 122
-=======
-      "__id__": 121
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     },
     "_enabled": true,
     "_materials": [
@@ -6043,11 +5915,7 @@
     "_active": true,
     "_components": [
       {
-<<<<<<< HEAD
         "__id__": 125
-=======
-        "__id__": 124
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_prefab": null,
@@ -6103,11 +5971,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-<<<<<<< HEAD
       "__id__": 124
-=======
-      "__id__": 123
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     },
     "_enabled": true,
     "_materials": [
@@ -6145,11 +6009,7 @@
     "_active": true,
     "_components": [
       {
-<<<<<<< HEAD
         "__id__": 127
-=======
-        "__id__": 126
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_prefab": null,
@@ -6205,11 +6065,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-<<<<<<< HEAD
       "__id__": 126
-=======
-      "__id__": 125
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     },
     "_enabled": true,
     "_materials": [
@@ -6247,11 +6103,7 @@
     "_active": true,
     "_components": [
       {
-<<<<<<< HEAD
         "__id__": 129
-=======
-        "__id__": 128
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_prefab": null,
@@ -6307,11 +6159,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-<<<<<<< HEAD
       "__id__": 128
-=======
-      "__id__": 127
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     },
     "_enabled": true,
     "_materials": [
@@ -6349,11 +6197,7 @@
     "_active": true,
     "_components": [
       {
-<<<<<<< HEAD
         "__id__": 131
-=======
-        "__id__": 130
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_prefab": null,
@@ -6409,11 +6253,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-<<<<<<< HEAD
       "__id__": 130
-=======
-      "__id__": 129
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     },
     "_enabled": true,
     "_materials": [
@@ -6451,11 +6291,7 @@
     "_active": true,
     "_components": [
       {
-<<<<<<< HEAD
         "__id__": 133
-=======
-        "__id__": 132
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_prefab": null,
@@ -6511,11 +6347,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-<<<<<<< HEAD
       "__id__": 132
-=======
-      "__id__": 131
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     },
     "_enabled": true,
     "_materials": [
@@ -6553,11 +6385,7 @@
     "_active": true,
     "_components": [
       {
-<<<<<<< HEAD
         "__id__": 135
-=======
-        "__id__": 134
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_prefab": null,
@@ -6613,11 +6441,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-<<<<<<< HEAD
       "__id__": 134
-=======
-      "__id__": 133
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     },
     "_enabled": true,
     "_materials": [
@@ -6655,11 +6479,7 @@
     "_active": true,
     "_components": [
       {
-<<<<<<< HEAD
         "__id__": 137
-=======
-        "__id__": 136
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_prefab": null,
@@ -6715,11 +6535,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-<<<<<<< HEAD
       "__id__": 136
-=======
-      "__id__": 135
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     },
     "_enabled": true,
     "_materials": [
@@ -6757,11 +6573,7 @@
     "_active": false,
     "_components": [
       {
-<<<<<<< HEAD
         "__id__": 139
-=======
-        "__id__": 138
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
       }
     ],
     "_prefab": null,
@@ -6817,11 +6629,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-<<<<<<< HEAD
       "__id__": 138
-=======
-      "__id__": 137
->>>>>>> a4ba3be7b3f24927cc16b62ef4d912ed1b3cad42
     },
     "_enabled": true,
     "_materials": [
