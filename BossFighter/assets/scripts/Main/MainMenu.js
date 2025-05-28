@@ -46,6 +46,14 @@ cc.Class({
 
     // update (dt) {},
 
+    onExitGame() {
+            if (cc.sys.isNative) {
+                cc.game.end(); // PC
+            } else {
+                window.location.href = "https://www.google.com/";
+            }
+        },
+
     playSoloMode() {
         console.log("playSoloMode");
         cc.director.loadScene(GAME_DATA.GAME_SCENE.MAP_SELECT);
