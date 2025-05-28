@@ -32,6 +32,7 @@ cc.Class({
 
         testSkills: [cc.Prefab],
 
+        resumeButton: cc.Button,
         pauseButton: cc.Button,
         nextButton: cc.Button,
         heroPrefabs: [cc.Prefab],
