@@ -479,7 +479,7 @@
       "x": 0,
       "y": 0
     },
-    "_radius": 24,
+    "_radius": 20,
     "_id": ""
   },
   {
@@ -493,7 +493,6 @@
     "imageSprite": {
       "__id__": 3
     },
-    "skillPrefab": null,
     "hpBar": {
       "__id__": 11
     },

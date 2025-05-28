@@ -548,6 +548,11 @@
     "hpBar": {
       "__id__": 12
     },
+    "damage": 50,
+    "range": 1,
+    "ultimatePrefab": {
+      "__uuid__": "af47875d-d3b5-4faf-a632-752989edd6d2"
+    },
     "_id": ""
   },
   {

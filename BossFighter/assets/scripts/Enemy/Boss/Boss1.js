@@ -17,9 +17,6 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        console.log("Boss1 script onload");
-        console.log('character boss1 script onload', Character);
-        this.test();
     },
 
     start () {
