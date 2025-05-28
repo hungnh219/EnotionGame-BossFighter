@@ -246,7 +246,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 400,
-      "height": 350
+      "height": 500
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -308,7 +308,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 400,
-      "height": 350
+      "height": 500
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -360,7 +360,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "9bbda31e-ad49-43c9-aaf2-f7d9896bac69"
+      "__uuid__": "c8ddefb1-e8f6-4ca6-93dc-b19df792483e"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -406,7 +406,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 400,
-      "height": 350
+      "height": 500
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -478,7 +478,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 1200,
-      "height": 350
+      "height": 500
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -540,7 +540,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 400,
-      "height": 290
+      "height": 400
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -634,7 +634,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 400,
-      "height": 290
+      "height": 400
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -728,7 +728,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 400,
-      "height": 290
+      "height": 400
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -807,7 +807,7 @@
     "_layoutSize": {
       "__type__": "cc.Size",
       "width": 1200,
-      "height": 350
+      "height": 500
     },
     "_resize": 1,
     "_N$layoutType": 1,
@@ -1013,7 +1013,7 @@
         "__id__": 22
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 32
@@ -1588,7 +1588,7 @@
         "__id__": 48
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 209
