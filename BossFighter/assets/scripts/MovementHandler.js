@@ -29,6 +29,10 @@ cc.Class({
             // if (this.isHeroMoving) return;
             if (this.clickNode != node) this.clearWalkableArea();
             if (this.clickNode != null && this.clickNode == node) return;
+            if (!firstCellPos || !lastCellPos || !walkableGridMap || !node) {
+                console.warn('Invalid parameters for displaying walkable area');
+                return;
+            }
             this.clickNode = node;
             this.displayWalkableArea(firstCellPos, lastCellPos, walkableGridMap, node);
         }, this);

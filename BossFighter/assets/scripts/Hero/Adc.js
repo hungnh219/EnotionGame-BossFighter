@@ -4,6 +4,7 @@ cc.Class({
     extends: Character,
 
     properties: {
+        characterId: "hero002",
         // foo: {
         //     // ATTRIBUTES:
         //     default: null,        // The default value will be used only when the component attaching
@@ -27,7 +28,12 @@ cc.Class({
     // onLoad () {},
 
     start () {
+        // this._super.initData('123');
+        this.initData(this.characterId);
+    },
 
+    initData(characterNameId) {
+        this._super(characterNameId);
     },
 
     ultimate(enemy) {

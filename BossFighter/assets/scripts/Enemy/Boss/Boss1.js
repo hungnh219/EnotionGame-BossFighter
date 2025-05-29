@@ -17,6 +17,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+        console.log("Boss1 onLoad");
     },
 
     start () {

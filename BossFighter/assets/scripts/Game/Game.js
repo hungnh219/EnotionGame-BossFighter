@@ -58,14 +58,13 @@ cc.Class({
 
     onLoad() {
 
+        this.gameController = GameController.getInstance();
         cc.director.getCollisionManager().enabled = true;
-
         // variables
         this.gridMap = [];
         this.isMoving = false;
         this.pressedKeys = new Set();
-        this.gameController = GameController.getInstance();
-        // this.gameController.setTileSize(this.mapTileWidth, this.mapTileHeight)
+
         this.focusedHeroIndex = -1;
         this.heroes = [];
         this.rootNode = this.node.parent;
@@ -106,6 +105,7 @@ cc.Class({
 
         this.initData();
         this.spawnObjectsFromJson();
+        console.log('map picked',this.gameController.getMapPicked());
         
         this.gameController.setHighlightTilePrefab(this.greenTilePrefab);
         this.gameController.setRootNode(this.rootNode);
@@ -175,15 +175,9 @@ cc.Class({
     initData() {
         this.initGridMap();
 
-        // this.heroPrefabs = this.gameController.getHeroPrefabs();
-        this.heroPrefabs.forEach((heroPrefab, index) => {
-            // console.log('heroPrefab', heroPrefab);
-            if (heroPrefab) {
-                this.gameController.addSelectedHeroPrefab(heroPrefab);
-            }
-        });
+        this.heroPrefabs = this.gameController.getSelectedHeroPrefabs();
 
-        this.mapIndex = 2;
+        this.mapIndex = this.gameController.getMapPicked() ?? 0;
         this.tileSpriteFrame = this.tileSpriteFrames[this.mapIndex];
         this.backgroundSprite.spriteFrame = this.backgroundSpriteFrames[this.mapIndex];
 
@@ -210,12 +204,6 @@ cc.Class({
             this.playerTurn.string = playerTurnCount;
         }
     },
-
-    // updateBossTurnLabel(points) {
-    //     if (this.bossTurn) {
-    //         this.bossTurn.string = points;
-    //     }
-    // },
 
     updateHeroInfoUI(hero) {
         if (!hero) {
@@ -258,7 +246,7 @@ cc.Class({
                     object: null,
                 })
 
-                this.gameController.updateWalkable(j, i, 1, true);
+                this.gameController.updateWalkable(i, j, 1, true);
             }
             this.gridMap.push(row);
         }
@@ -494,7 +482,6 @@ cc.Class({
     endGameNotification() {
 
         let winner = this.gameController.getWinner();
-        // console.log()
         let notificationPanel = this.winnerNotificationLabel.node.parent;
         let notificationPanelBgSprite = notificationPanel.getComponent(cc.Sprite);
         if (winner == GAME_DATA.ROLE.PLAYER) {

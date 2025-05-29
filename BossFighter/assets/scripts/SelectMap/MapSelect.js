@@ -19,8 +19,6 @@ cc.Class({
             cc.game.addPersistRootNode(this.node);
         }
 
-        console.log("gameController", this.gameController);
-
         const currentMap = this.gameController.getWonMap();
         if (
             typeof currentMap === "number" &&

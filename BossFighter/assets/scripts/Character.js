@@ -1,5 +1,8 @@
 // import GAME_DATA from './Game/GameData';
+// import 
 import GAME_DATA from './Game/GameData'
+// import CharacterJsonData from '../data/json/character'
+// const CharacterJsonData = required('../data/json/character')
 
 cc.Class({
     extends: cc.Component,
@@ -8,8 +11,8 @@ cc.Class({
         imageSprite: cc.Sprite,
         hpBar: cc.ProgressBar,
 
-        // health: cc.Integer,
-        // maxHp: cc.Integer,
+        // health: 100,
+        // maxHp: 100,
         // attackPower: cc.Integer,
         // moveSpeed: cc.Float,
         // attackRange: cc.Float,
@@ -28,15 +31,16 @@ cc.Class({
     },
 
     start() {
+        console.log('123 json data', CharacterJsonData);
     },
 
-    initData() {
-        
-
+    initData(characterNameId) {
+        console.log('123 json data', CharacterJsonData);
     },
 
     takeDame(dame) {
-
+        console.log(this.node.name, "taking damage:", dame);
+        
         this.health -= dame;
         this.health = Math.max(this.health, 0);
         if (this.hpBar) {

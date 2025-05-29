@@ -1,4 +1,5 @@
-// import GameController from "./GameController";
+// import GameController from "./GameController";  
+import GameController from "../Game/GameController";
 import GAME_DATA from "../Game/GameData"
 
 cc.Class({
@@ -32,7 +33,16 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        this.gameController = GameController.getInstance();
+        const gameController = GameController.getInstance();
+        if (gameController) {
+            this.gameController = gameController;
+        } else {
+            this.gameController = new GameController();
+            cc.game.addPersistRootNode(this.node);
+        }
+    },
+
+    start() {
         this.hideInformation();
         this.heroPicked = {
             index: 0,
@@ -45,7 +55,6 @@ cc.Class({
         // get all prefab
         const heroPrefabScript = this.node.getComponent("PrefabFactory");
         this.heroPrefabs = heroPrefabScript.getAllPrefab();
-        console.log(this.heroPrefabs);
         this.heroPrefabs.forEach((heroPrefab, index) => {
             const hero = cc.instantiate(heroPrefab);
 
@@ -76,14 +85,6 @@ cc.Class({
             }
 
         });
-
-        // add to scrollview
-
-        // handle onclick
-    },
-
-    start() {
-
     },
 
     // update (dt) {},
@@ -131,7 +132,6 @@ cc.Class({
 
 
         // view information panel
-        console.log(this.heros[clickIndex])
         this.heroName.string = this.heros[clickIndex].name;
         this.heroRole.string = this.heros[clickIndex].role;
         this.heroHealth.string = this.heros[clickIndex].health;

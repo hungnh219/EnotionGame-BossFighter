@@ -13,6 +13,7 @@ const GameController = cc.Class({
         getInstance: function () {
             if (GameController.instance === null) {
                 GameController.instance = new GameController();
+                cc.game.addPersistRootNode(this.node);
             }
             return GameController.instance;
         },
@@ -23,6 +24,9 @@ const GameController = cc.Class({
         },
     },
 
+    properties: {
+        characterJsonData: cc.JsonAsset,
+    },
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
@@ -171,7 +175,7 @@ const GameController = cc.Class({
     },
 
 
-    getHeroPrefabs() {
+    getSelectedHeroPrefabs() {
         return this.selectedHeroPrefabs;
     },
 
@@ -328,28 +332,24 @@ const GameController = cc.Class({
             return;
         }
 
-        hero.mainScript.dealDame(enemy, 20);
         enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.getCurrentHp === 'function');
 
-        if (enemy.mainScript && enemy.mainScript.getCurrentHp() <= 0) {
+        if (enemy.mainScript) {
+            // hero.mainScript.dealDame(enemy, 20);
+            enemy.mainScript.takeDame(20);
             let isBoss = this.bosses.some(b => b.node === enemy);
-            if (isBoss) {
-                console.log('boss die');
-                this.handleBossDie(enemy);
-            } else {
-                console.log('enemy die', this.bosses, enemy);
-                this.enemies.splice(this.enemies.indexOf(enemy), 1);
-            }
 
-            // if (this.bosses.includes(enemy)) {
-            //     console.log('boss die');
-            //     this.handleBossDie(enemy);
-            // } else {
-            //     console.log('enemy die', this.bosses, enemy);
-            //     this.enemies.splice(this.enemies.indexOf(enemy), 1);
-            // }
+            if (enemy.mainScript.getCurrentHp() <= 0)  {
+                if (isBoss) {
+                    console.log('boss die');
+                    this.handleEnemyDie(enemy);
+                } else {
+                    console.log('enemy die', this.bosses, enemy);
+                    this.enemies.splice(this.enemies.indexOf(enemy), 1);
+                }
+            }
+            
         }
-        
 
         this.consumePlayerTurn();
         this.checkWin();
@@ -645,7 +645,6 @@ const GameController = cc.Class({
                         if (boss.node.mainScript.getCurrentHp() <= 0) {
                             console.log('boss die check 123');
                             this.handleEnemyDie(boss);
-                            // this.handleBossDie(boss.node);
                         }
                     }
                 }
@@ -714,9 +713,8 @@ const GameController = cc.Class({
             console.log('enemy die', this.enemies, enemy);
             this.enemies.splice(this.enemies.indexOf(enemy), 1);
         }
-        else if (this.bosses.includes(enemy)) {
-            console.log('boss die');
-            // this.handleBossDie(enemy);
+        else if (this.bosses.includes(enemy) || this.bosses.some(b => b.node = enemy)) {
+            // console.log('boss die');
             // this.bosses = this.bosses.filter(b => b.node !== enemy);
             this.bosses.splice(this.bosses.indexOf(enemy), 1);
 
@@ -726,33 +724,11 @@ const GameController = cc.Class({
             }
         }
 
+        
+
 
     },
 
-    handleBossDie(boss) {
-        // const bossPos = this.bossStartPositionToGrid(this.bosses[this.bosses.indexOf(boss)]);
-        // console.log('bossPos', bossPos);
-        // if (!bossPos) return;
-        // const gridX = bossPos.x;
-        // const gridY = bossPos.y;
-        // for (let i = 0; i < boss.size; i++) {
-        //     for (let j = 0; j < boss.size; j++) {
-        //         if (this.gridMap[gridX + i] == undefined) {
-        //             this.gridMap[gridX + i] = [];
-        //         }
-        //         this.gridMap[gridX + i][gridY + j] = true;
-        //     }
-        // }
-
-        // this.bosses.splice(this.bosses.indexOf(boss), 1);
-        // if (this.bosses.length == 0) {
-        //     console.log('boss die, no more boss');
-        //     this.checkWin();
-        //     return;
-        // }
-    },
-
-    
     checkWalkableMove(hero, dx, dy) {
         const newX = hero.x + dx * this.mapTileWidth;
         const newY = hero.y + dy * this.mapTileHeight;
@@ -841,7 +817,6 @@ const GameController = cc.Class({
     },
 
     checkWin() {
-        console.log('check win')
         if (this.heroes.length == 0) {
             console.log('boss win');
             this.setWonMap();
