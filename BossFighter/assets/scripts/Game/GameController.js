@@ -328,31 +328,23 @@ const GameController = cc.Class({
             return;
         }
 
-        hero.mainScript.dealDame(enemy, 20);
+        if (this.enemies == undefined || this.enemies == null) this.enemies = [];
+        if (this.bosses == undefined || this.bosses == null) this.bosses = [];
+
+        if (this.bosses.includes(enemy)) {
+            enemy = enemy.node; // convert boss object to node
+        }
+
+        hero.mainScript.dealDame(enemy, 40);
         enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.getCurrentHp === 'function');
 
         if (enemy.mainScript && enemy.mainScript.getCurrentHp() <= 0) {
-            let isBoss = this.bosses.some(b => b.node === enemy);
-            if (isBoss) {
-                console.log('boss die');
-                this.handleBossDie(enemy);
-            } else {
-                console.log('enemy die', this.bosses, enemy);
-                this.enemies.splice(this.enemies.indexOf(enemy), 1);
-            }
-
-            // if (this.bosses.includes(enemy)) {
-            //     console.log('boss die');
-            //     this.handleBossDie(enemy);
-            // } else {
-            //     console.log('enemy die', this.bosses, enemy);
-            //     this.enemies.splice(this.enemies.indexOf(enemy), 1);
-            // }
+            this.handleEnemyDie(enemy);
+            this.checkWin();
         }
         
 
         this.consumePlayerTurn();
-        this.checkWin();
     },
 
     // highlight enemy when selected to attack

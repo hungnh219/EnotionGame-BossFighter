@@ -201,37 +201,16 @@
     "_defaultClip": null,
     "_clips": [
       {
-        "__uuid__": "a9aeab97-5885-432e-aaba-e0d62d5b51da"
+        "__uuid__": "30d359ed-3864-441f-9c97-d72c16b3c084"
       },
       {
-        "__uuid__": "2a285dc9-6b51-4074-92c2-acb605963b56"
+        "__uuid__": "0b1b7043-f010-4906-8f21-5c0a56b366cd"
       },
       {
-        "__uuid__": "999d3a7d-16b5-4488-a216-2936ea7703af"
+        "__uuid__": "75007816-a95c-40e5-b569-0dbbd77b671c"
       },
       {
-        "__uuid__": "19978221-dc5a-43ac-879c-b594461b7f8e"
-      },
-      {
-        "__uuid__": "9abc8cdb-93ce-4eac-a118-36762c202469"
-      },
-      {
-        "__uuid__": "d7e9a554-2f4d-4489-870e-9d40e0273e60"
-      },
-      {
-        "__uuid__": "17028686-ebd1-4efb-8d75-2debcc50206a"
-      },
-      {
-        "__uuid__": "889f8964-eb96-4da0-b917-3185d9bbb505"
-      },
-      {
-        "__uuid__": "e20ed139-37d7-426e-a81d-ef230e394b38"
-      },
-      {
-        "__uuid__": "cdd77bc1-99f5-4ffa-900c-21dfe7246527"
-      },
-      {
-        "__uuid__": "5e55919b-24b3-4cba-84bb-a91e2a8e6da7"
+        "__uuid__": "b38d5dc7-4c23-45c7-a2aa-0b28c32bb42b"
       }
     ],
     "playOnLoad": true,
