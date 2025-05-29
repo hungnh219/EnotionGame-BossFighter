@@ -56,11 +56,14 @@ cc.Class({
         groundSpriteFrame: [cc.SpriteFrame], // sprite frame for ground tile
 
         characterHolder: cc.Node,
+
+        guideBook: cc.Node
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
+        this.guideBook.active = false
         console.log('Game onLoad');
         this.gameController = GameController.getInstance();
         cc.director.getCollisionManager().enabled = true;
@@ -84,7 +87,7 @@ cc.Class({
 
 
         EventBus.on(EventBus.events.CLICK_TO_MOVE, (node) => {
-            this.heroClick(node);   
+            this.heroClick(node);
         }, this);
 
         EventBus.on(EventBus.events.BOSS2_SPAWN_ENEMY, () => {
@@ -104,8 +107,8 @@ cc.Class({
 
     start() {
         this.spawnObjectsFromJson();
-        console.log('start game map picked',this.gameController.getMapPicked());
-        
+        console.log('start game map picked', this.gameController.getMapPicked());
+
         this.gameController.setHighlightTilePrefab(this.greenTilePrefab);
         this.gameController.setRootNode(this.rootNode);
         this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
@@ -192,7 +195,7 @@ cc.Class({
         EventBus.off(EventBus.events.CLICK_TO_MOVE, this.onClickToMove, this);
     },
 
-    
+
 
     heroClick(node) {
         this.gameController.heroClick(node);
@@ -312,7 +315,7 @@ cc.Class({
         let posY = Math.floor(Math.random() * this.mapHeight);
 
         let walkableMap = this.gameController.getWalkableMap();
-        while(!walkableMap[posX][posY]) {
+        while (!walkableMap[posX][posY]) {
             posX = Math.floor(Math.random() * this.mapWidth);
             posY = Math.floor(Math.random() * this.mapHeight);
         }
@@ -367,8 +370,8 @@ cc.Class({
                     // set top tile
                     sprite.spriteFrame = this.groundSpriteFrame[0];
                 } else if (j == this.mapHeight - 1) {
-                        // set bottom tile
-                        sprite.spriteFrame = this.groundSpriteFrame[2];
+                    // set bottom tile
+                    sprite.spriteFrame = this.groundSpriteFrame[2];
                 } else {
                     // set ground tile
                     sprite.spriteFrame = this.tileSpriteFrame;
@@ -500,10 +503,19 @@ cc.Class({
         this.scheduleOnce(() => {
             cc.director.pause()
         }, 1.5);
-            
+
         this.pauseButton.node.active = false;
         // this.resumeButton.node.active = false;
     },
+
+    showGuideBook() {
+        this.guideBook.active = true
+
+    },
+    closeGuideBook(){
+        this.guideBook.active = false
+    },
+
 
     pauseGame() {
         cc.director.pause();
