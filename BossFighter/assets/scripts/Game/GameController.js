@@ -882,8 +882,8 @@ const GameController = cc.Class({
     },
 
     setWonMap() {
-        if (this.mapPick < this.gameWonIndex) return;
-        this.gameWonIndex = this.gameWonIndex + 1;
+        if (this.mapPick <= this.gameWonIndex) return;
+        this.gameWonIndex = this.mapPick;
     },
 
     getTurnOnMusic() {

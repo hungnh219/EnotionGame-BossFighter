@@ -32,7 +32,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        // this.gameController = GameController.getInstance();
+        this.gameController = GameController.getInstance();
         this.hideInformation();
         this.heroPicked = {
             index: 0,
@@ -40,7 +40,7 @@ cc.Class({
         };
         this.heros = [];
         this.heroLockList = [];
-        // this.maxHero = (this.gameController.getMapPicked() == undefined) ? 0 : this.numberOfHeros[this.gameController.getMapPicked()];
+        this.maxHero = (this.gameController.getMapPicked() == undefined) ? 0 : this.numberOfHeros[this.gameController.getMapPicked()];
         this.maxHero = 3;
         // get all prefab
         const heroPrefabScript = this.node.getComponent("PrefabFactory");
@@ -206,7 +206,7 @@ cc.Class({
             savedHeroes.push(heroData);
             cc.sys.localStorage.setItem('selectedHeroes', JSON.stringify(savedHeroes));
 
-            // this.gameController.addSelectedHeroPrefab(this.heroPicked.prefab);
+            this.gameController.addSelectedHeroPrefab(this.heroPicked.prefab);
             this.playSoundEffect();
         }
     },

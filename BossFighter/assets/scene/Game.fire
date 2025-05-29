@@ -2109,8 +2109,8 @@
       "__id__": 42
     },
     "_enabled": true,
-    "mapHeight": 8,
-    "mapWidth": 10,
+    "mapHeight": 12,
+    "mapWidth": 20,
     "mapTileWidth": 48,
     "mapTileHeight": 48,
     "playerTurn": {
