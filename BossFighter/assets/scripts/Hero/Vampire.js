@@ -57,8 +57,11 @@ cc.Class({
 
                 console.log(this.damage)
                 spawnAnimationCallback(this.ultimatePrefab ,tile, times, this.ultimateDame);
+                
             }
         }
+
+        this.resetUltimateCooldown();
     }
 
     // update (dt) {},

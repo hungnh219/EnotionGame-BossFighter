@@ -38,6 +38,8 @@ cc.Class({
             if (ultimate.mainScript) {
                 ultimate.mainScript.initDirection(enemy, this.ultimateDame);
             }
+
+            this.resetUltimateCooldown();
         } else {
             cc.error("Ultimate prefab is not set for ADC.");
         }
