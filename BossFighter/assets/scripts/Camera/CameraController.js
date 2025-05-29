@@ -13,8 +13,6 @@ cc.Class({
         this._mousePos = cc.v2(0, 0);
 
         this.node.on(cc.Node.EventType.MOUSE_MOVE, this.onMouseMove, this);
-
-        this.node.zIndex = 9999;
     },
 
     onMouseMove(event) {
