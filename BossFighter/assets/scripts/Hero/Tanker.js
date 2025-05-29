@@ -17,6 +17,9 @@ cc.Class({
         
     },
 
+    ultimate() {
+
+    },
     initData(characterNameId) {
         this._super(characterNameId);
     }

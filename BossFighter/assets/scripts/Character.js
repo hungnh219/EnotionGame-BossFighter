@@ -76,7 +76,11 @@ const CHARACTER_DATA = {
         "properties": {
             "health": 5000,
             "attackDame": 400,
-            "attackRange": 2
+            "attackRange": 2,
+
+            "ultimateCooldown": 2,
+            "ultimateDame": 1000,
+            "ultimateRange": 2,
         }
     },
 
@@ -87,7 +91,11 @@ const CHARACTER_DATA = {
         "properties": {
             "health": 7000,
             "attackDame": 500,
-            "attackRange": 3
+            "attackRange": 3,
+
+            "ultimateCooldown": 2,
+            "ultimateDame": 1000,
+            "ultimateRange": 2,
         }
     },
 
@@ -98,7 +106,11 @@ const CHARACTER_DATA = {
         "properties": {
             "health": 10000,
             "attackDame": 600,
-            "attackRange": 3
+            "attackRange": 3,
+
+            "ultimateCooldown": 2,
+            "ultimateDame": 1000,
+            "ultimateRange": 2,
         }
     }
 }
@@ -134,7 +146,6 @@ cc.Class({
     },
 
     initData(characterNameId) {
-        // console.log('123 json data', this.gameController.getCharacterData());
         console.log('Character data:', CHARACTER_DATA[characterNameId]);
         this.health = CHARACTER_DATA[characterNameId].properties.health ?? 100;
         this.maxHp = this.health;
@@ -149,7 +160,8 @@ cc.Class({
 
         this.name = CHARACTER_DATA[characterNameId].name ?? "Unknown Character";
         this.role = CHARACTER_DATA[characterNameId].role ?? "Unknown Role";
-        // this.ultimateCooldown = CHARACTER_DATA[characterNameId].properties.ultimateCooldown;
+
+        this.roundCountToUltimate = this.ultimateCooldown ?? 100;
     },
 
     takeDame(dame) {
@@ -203,6 +215,24 @@ cc.Class({
     getAttackDame() {
         return this.attackDame;
     },
+
+    getUltimateCooldown() {
+        return this.roundCountToUltimate;
+    },
+
+    resetUltimateCooldown() {
+        this.roundCountToUltimate = this.ultimateCooldown;
+    },
+
+    countUltimateCooldown() {
+        if (this.roundCountToUltimate > 0) {
+            this.roundCountToUltimate--;
+        }
+        if (this.roundCountToUltimate < 0) {
+            this.roundCountToUltimate = 0;
+        }
+    },
+
     die() {
         console.log("Character died");
         // this.node.destroy();

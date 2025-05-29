@@ -68,18 +68,27 @@ const GameController = cc.Class({
     //-------------------------------------------------------------------------------//
     startGame() {
         this.playerTurn();
-
-        this.playerTurn();
-
         this.updatePlayerTurn(this.playerTurnCount);
-
         this.setFocusedHero(0);
     },
 
     playerTurn() {
         this.isPlayerTurn = true;
         this.playerTurnCount = 3; // reset player turn count
+
         this.updatePlayerTurn(this.playerTurnCount);
+    },
+    
+    updateInfo() {
+        let hero = this.focusedHero;
+        if (!hero) return;
+        hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getUltimateCooldown === 'function');
+
+        if (hero.mainScript && hero) {
+            let ultimateCooldown = hero.mainScript.getUltimateCooldown();
+            let heroInfo = hero.mainScript.getCharacterInfo();
+            this.updateHeroInfoUI(heroInfo, ultimateCooldown);
+        }
     },
 
     bossTurn() {
@@ -88,6 +97,14 @@ const GameController = cc.Class({
         EventBus.emit(EventBus.events.BOSS2_SPAWN_ENEMY, this.enemies, this.bosses, this.gridMap, this.firstCellPos, this.lastCellPos, this.mapTileWidth, this.mapTileHeight);
         this.enemyAutoMode();
 
+        this.heroes.forEach(hero => {
+            hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.countUltimateCooldown === 'function');
+            if (hero.mainScript) {
+                hero.mainScript.countUltimateCooldown();
+            }
+        });
+
+        this.updateInfo();
         this.playerTurn();
     },
 
@@ -103,16 +120,13 @@ const GameController = cc.Class({
             }
         }
 
-        // update the hero info UI
-        if (this.gameScript && typeof this.gameScript.updateHeroInfoUI === 'function') {
-            this.gameScript.updateHeroInfoUI(this.focusedHero);
-        }
+        this.updateInfo();
     },
 
     // =================== Get-Set: Start ===================
     setCallbacks(playerTurnCallback, playerInfoCallback, endGameCallback) {
         this.updatePlayerTurn = playerTurnCallback;
-        this.updatePlayerInfo = playerInfoCallback;
+        this.updateHeroInfoUI = playerInfoCallback;
         this.endGameCallback = endGameCallback;
     },
 
@@ -464,8 +478,18 @@ const GameController = cc.Class({
     heroUltimate(hero) {
         if (hero == null || hero == undefined) hero = this.focusedHero;
 
+
         hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.ultimate === 'function');
+
+
+
         if (hero.mainScript) {
+            let ultimateCooldown = hero.mainScript.getUltimateCooldown();
+            if (ultimateCooldown > 0) {
+                console.warn('Ultimate is on cooldown, please wait for it to be ready');
+                return;
+            }
+
             if (hero.name == 'Vampire') {
                 this.testVampireUltimate(hero);
             } else if (hero.name == 'Bruiser') {
@@ -478,6 +502,9 @@ const GameController = cc.Class({
                 return;
             }
 
+            hero.mainScript.resetUltimateCooldown();
+            // this.updateHeroInfoUI
+            this.updateInfo();
             this.consumePlayerTurn();
             this.checkWin();
         }

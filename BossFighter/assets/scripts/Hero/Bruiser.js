@@ -47,6 +47,7 @@ cc.Class({
             this.node.parent.addChild(ultimate);
             gameCtrl.updateWalkable(targetTile.x, targetTile.y,1 , false);
             gameCtrl.updateWalkable(oldGridX, oldGridY, 1, true);
+            this.resetUltimateCooldown();
         }, 0.5);
         
     }

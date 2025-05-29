@@ -111,7 +111,7 @@ cc.Class({
         this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
         this.gameController.setCallbacks(
             (playerTurn) => this.updatePlayerTurnLabel(playerTurn),
-            () => this.updateHeroInfoUI,
+            (heroInfo, ultimateCooldown) => this.updateHeroInfoUI(heroInfo, ultimateCooldown),
             () => this.endGameNotification()
         )
 
@@ -211,23 +211,22 @@ cc.Class({
         }
     },
 
-    updateHeroInfoUI(hero) {
-        if (!hero) {
+    updateHeroInfoUI(heroInfo, ultimateCooldown) {
+        if (!heroInfo) {
             this.heroInfoPanel.active = false;
             return;
         }
 
         this.heroInfoPanel.active = true;
 
-        const heroScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
+        this.heroNameLabel.string = heroInfo.name || '';
+        this.heroHpLabel.string = heroInfo.health || '';
 
-        if (heroScript && typeof heroScript.getCharacterInfo === 'function') {
-            const info = heroScript.getCharacterInfo();
+        this.heroImage.spriteFrame = heroInfo.imageSprite.spriteFrame || null;
 
-            this.heroNameLabel.string = info.name || '';
-            this.heroHpLabel.string = `${heroScript.getCurrentHp()}`;
-            this.heroImage.spriteFrame = info.imageSprite ? info.imageSprite.spriteFrame : null;
-        }
+        this.ultimateCooldownLabel.string = ultimateCooldown || '';
+
+        ultimateCooldown > 0 ? this.ultimateGreyPrefab.active = true : this.ultimateGreyPrefab.active = false;
     },
 
     initGridMap() {
