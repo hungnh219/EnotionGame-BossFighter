@@ -780,6 +780,9 @@
       "__id__": 14
     },
     "_enabled": true,
+    "customFont": {
+      "__uuid__": "63264c3c-d4f5-4b8e-ab3c-1578f2caf5bc"
+    },
     "mapPicked": {
       "__id__": 16
     },
