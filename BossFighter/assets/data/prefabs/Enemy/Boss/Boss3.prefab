@@ -205,6 +205,18 @@
       },
       {
         "__uuid__": "c69f2cd7-9a97-4aa5-a5e0-07347bf28f7e"
+      },
+      {
+        "__uuid__": "47111dfc-19cf-4063-b925-2f065405f366"
+      },
+      {
+        "__uuid__": "4377fe10-6682-4ce8-ac9a-4d9bfdfc2208"
+      },
+      {
+        "__uuid__": "010c5e70-dc8c-47f5-9bd0-1f6eaa45a19c"
+      },
+      {
+        "__uuid__": "a3307106-f39d-483c-971d-304e4bd88c0a"
       }
     ],
     "playOnLoad": true,
@@ -490,6 +502,7 @@
     "hpBar": {
       "__id__": 11
     },
+    "characterId": "boss003",
     "_id": ""
   },
   {
