@@ -6,6 +6,10 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        customFont: {
+            default: null,
+            type: cc.Font
+        },
         mapPicked: cc.Label,
 
         heroScrollViewContent: cc.Node,
@@ -61,7 +65,7 @@ cc.Class({
         // this.heroPrefabs.forEach((heroPrefab, index) => {
         //     const hero = cc.instantiate(heroPrefab);
         //     // hero.parent = this.heroScrollViewContent;
-            
+
         //     hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
 
         //     if (hero.mainScript != undefined) {
@@ -86,7 +90,7 @@ cc.Class({
         //         heroImageNode.on(cc.Node.EventType.TOUCH_END, () => {
         //             this.heroClick(index, heroPrefab);
         //         }, heroImageNode);
-                
+
         //         // hero.destroy();
         //         this.heroScrollViewContent.addChild(heroImageNode);
         //     }
@@ -203,6 +207,7 @@ cc.Class({
         nameLabel.fontSize = 30;
         nameLabel.lineHeight = 24;
         nameLabelNode.color = cc.Color.BLACK;
+        nameLabel.font = this.customFont;
         nameLabelNode.setPosition(0, -180);
         this.selectedHero.node.addChild(nameLabelNode);
     },
@@ -237,6 +242,7 @@ cc.Class({
             nameLabel.fontSize = 30;
             nameLabel.lineHeight = 24;
             nameLabelNode.color = cc.Color.BLACK;
+            nameLabel.font = this.customFont;
             nameLabelNode.setPosition(0, -180);
             heroImageNode.addChild(nameLabelNode);
 

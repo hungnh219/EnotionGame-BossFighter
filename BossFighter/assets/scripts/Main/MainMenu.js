@@ -7,12 +7,13 @@ cc.Class({
     properties: {
         soundOnButton: cc.Button,
         soundOffButton: cc.Button,
+        settingPanel: cc.Node
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        console.log("Mfádfgsd");
+        this.settingPanel.active = false;
         const gameController = GameController.getInstance();
         console.log('MainMenu onLoad', gameController);
         if (gameController) {
@@ -44,7 +45,13 @@ cc.Class({
 
     },
 
-    // update (dt) {},
+    showSettingPanel() {
+        this.settingPanel.active = true
+    },
+
+    closeSettingPanel() {
+        this.settingPanel.active = false
+    },
 
     playSoloMode() {
         console.log("playSoloMode");
