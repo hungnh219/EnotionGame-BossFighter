@@ -1,0 +1,785 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>Vampires3_Death_full0.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,30}</string>
+				<key>spriteSize</key>
+				<string>{39,30}</string>
+				<key>textureRect</key>
+				<string>{{0,0},{39,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full1.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,31}</string>
+				<key>spriteSize</key>
+				<string>{39,31}</string>
+				<key>textureRect</key>
+				<string>{{40,0},{39,31}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full2.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,30}</string>
+				<key>spriteSize</key>
+				<string>{39,30}</string>
+				<key>textureRect</key>
+				<string>{{80,0},{39,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full3.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,31}</string>
+				<key>spriteSize</key>
+				<string>{39,31}</string>
+				<key>textureRect</key>
+				<string>{{120,0},{39,31}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full4.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,32}</string>
+				<key>spriteSize</key>
+				<string>{39,32}</string>
+				<key>textureRect</key>
+				<string>{{160,0},{39,32}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full5.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,32}</string>
+				<key>spriteSize</key>
+				<string>{39,32}</string>
+				<key>textureRect</key>
+				<string>{{200,0},{39,32}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full6.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,32}</string>
+				<key>spriteSize</key>
+				<string>{39,32}</string>
+				<key>textureRect</key>
+				<string>{{240,0},{39,32}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full7.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,39}</string>
+				<key>spriteSize</key>
+				<string>{39,39}</string>
+				<key>textureRect</key>
+				<string>{{280,0},{39,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full8.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{23,17}</string>
+				<key>spriteSize</key>
+				<string>{23,17}</string>
+				<key>textureRect</key>
+				<string>{{320,0},{23,17}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5217391304347826,0}</string>
+			</dict>
+			<key>Vampires3_Death_full9.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,6}</string>
+				<key>spriteSize</key>
+				<string>{8,6}</string>
+				<key>textureRect</key>
+				<string>{{0,40},{8,6}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Death_full10.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,5}</string>
+				<key>spriteSize</key>
+				<string>{8,5}</string>
+				<key>textureRect</key>
+				<string>{{9,40},{8,5}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Death_full11.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,10}</string>
+				<key>spriteSize</key>
+				<string>{12,10}</string>
+				<key>textureRect</key>
+				<string>{{18,40},{12,10}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Death_full12.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,30}</string>
+				<key>spriteSize</key>
+				<string>{39,30}</string>
+				<key>textureRect</key>
+				<string>{{31,40},{39,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full13.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,31}</string>
+				<key>spriteSize</key>
+				<string>{39,31}</string>
+				<key>textureRect</key>
+				<string>{{71,40},{39,31}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full14.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,30}</string>
+				<key>spriteSize</key>
+				<string>{39,30}</string>
+				<key>textureRect</key>
+				<string>{{111,40},{39,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full15.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,31}</string>
+				<key>spriteSize</key>
+				<string>{39,31}</string>
+				<key>textureRect</key>
+				<string>{{151,40},{39,31}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full16.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,32}</string>
+				<key>spriteSize</key>
+				<string>{39,32}</string>
+				<key>textureRect</key>
+				<string>{{191,40},{39,32}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full17.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,32}</string>
+				<key>spriteSize</key>
+				<string>{39,32}</string>
+				<key>textureRect</key>
+				<string>{{231,40},{39,32}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full18.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,32}</string>
+				<key>spriteSize</key>
+				<string>{39,32}</string>
+				<key>textureRect</key>
+				<string>{{271,40},{39,32}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full19.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,39}</string>
+				<key>spriteSize</key>
+				<string>{39,39}</string>
+				<key>textureRect</key>
+				<string>{{0,73},{39,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full20.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,8}</string>
+				<key>spriteSize</key>
+				<string>{14,8}</string>
+				<key>textureRect</key>
+				<string>{{40,73},{14,8}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Vampires3_Death_full21.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,30}</string>
+				<key>spriteSize</key>
+				<string>{28,30}</string>
+				<key>textureRect</key>
+				<string>{{55,73},{28,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Death_full22.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,29}</string>
+				<key>spriteSize</key>
+				<string>{28,29}</string>
+				<key>textureRect</key>
+				<string>{{84,73},{28,29}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Death_full23.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{29,27}</string>
+				<key>spriteSize</key>
+				<string>{29,27}</string>
+				<key>textureRect</key>
+				<string>{{113,73},{29,27}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4827586206896552,0}</string>
+			</dict>
+			<key>Vampires3_Death_full24.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,28}</string>
+				<key>spriteSize</key>
+				<string>{28,28}</string>
+				<key>textureRect</key>
+				<string>{{143,73},{28,28}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Death_full25.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,29}</string>
+				<key>spriteSize</key>
+				<string>{28,29}</string>
+				<key>textureRect</key>
+				<string>{{172,73},{28,29}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Death_full26.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{31,30}</string>
+				<key>spriteSize</key>
+				<string>{31,30}</string>
+				<key>textureRect</key>
+				<string>{{201,73},{31,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5161290322580645,0}</string>
+			</dict>
+			<key>Vampires3_Death_full27.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{32,30}</string>
+				<key>spriteSize</key>
+				<string>{32,30}</string>
+				<key>textureRect</key>
+				<string>{{233,73},{32,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Death_full28.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,39}</string>
+				<key>spriteSize</key>
+				<string>{39,39}</string>
+				<key>textureRect</key>
+				<string>{{266,73},{39,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full29.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{23,17}</string>
+				<key>spriteSize</key>
+				<string>{23,17}</string>
+				<key>textureRect</key>
+				<string>{{306,73},{23,17}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5217391304347826,0}</string>
+			</dict>
+			<key>Vampires3_Death_full30.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,10}</string>
+				<key>spriteSize</key>
+				<string>{12,10}</string>
+				<key>textureRect</key>
+				<string>{{330,73},{12,10}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Death_full31.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,6}</string>
+				<key>spriteSize</key>
+				<string>{8,6}</string>
+				<key>textureRect</key>
+				<string>{{0,113},{8,6}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Death_full32.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,30}</string>
+				<key>spriteSize</key>
+				<string>{28,30}</string>
+				<key>textureRect</key>
+				<string>{{9,113},{28,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Death_full33.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,29}</string>
+				<key>spriteSize</key>
+				<string>{28,29}</string>
+				<key>textureRect</key>
+				<string>{{38,113},{28,29}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Death_full34.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{29,27}</string>
+				<key>spriteSize</key>
+				<string>{29,27}</string>
+				<key>textureRect</key>
+				<string>{{67,113},{29,27}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4827586206896552,0}</string>
+			</dict>
+			<key>Vampires3_Death_full35.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,28}</string>
+				<key>spriteSize</key>
+				<string>{28,28}</string>
+				<key>textureRect</key>
+				<string>{{97,113},{28,28}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Death_full36.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,29}</string>
+				<key>spriteSize</key>
+				<string>{28,29}</string>
+				<key>textureRect</key>
+				<string>{{126,113},{28,29}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Death_full37.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{31,30}</string>
+				<key>spriteSize</key>
+				<string>{31,30}</string>
+				<key>textureRect</key>
+				<string>{{155,113},{31,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5161290322580645,0}</string>
+			</dict>
+			<key>Vampires3_Death_full38.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{32,30}</string>
+				<key>spriteSize</key>
+				<string>{32,30}</string>
+				<key>textureRect</key>
+				<string>{{187,113},{32,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Death_full39.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,39}</string>
+				<key>spriteSize</key>
+				<string>{39,39}</string>
+				<key>textureRect</key>
+				<string>{{220,113},{39,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Death_full40.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,8}</string>
+				<key>spriteSize</key>
+				<string>{14,8}</string>
+				<key>textureRect</key>
+				<string>{{260,113},{14,8}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Vampires3_Death_full41.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{18,25}</string>
+				<key>spriteSize</key>
+				<string>{18,25}</string>
+				<key>textureRect</key>
+				<string>{{275,113},{18,25}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5555555555555556,0}</string>
+			</dict>
+			<key>Vampires3_Death_full42.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,5}</string>
+				<key>spriteSize</key>
+				<string>{8,5}</string>
+				<key>textureRect</key>
+				<string>{{294,113},{8,5}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Death_full43.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,10}</string>
+				<key>spriteSize</key>
+				<string>{12,10}</string>
+				<key>textureRect</key>
+				<string>{{303,113},{12,10}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Death_full44.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,7}</string>
+				<key>spriteSize</key>
+				<string>{8,7}</string>
+				<key>textureRect</key>
+				<string>{{316,113},{8,7}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>3</integer>
+			<key>realTextureFileName</key>
+			<string>Vampires3_Death_full.png</string>
+			<key>textureFileName</key>
+			<string>Vampires3_Death_full.png</string>
+			<key>size</key>
+			<string>{344,152}</string>
+		</dict>
+	</dict>
+</plist>

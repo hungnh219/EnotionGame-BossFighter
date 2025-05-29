@@ -20,5 +20,9 @@ cc.Class({
     start () {
 
     },
+
+    ultimate() {
+        
+    }
     // update (dt) {},
 });

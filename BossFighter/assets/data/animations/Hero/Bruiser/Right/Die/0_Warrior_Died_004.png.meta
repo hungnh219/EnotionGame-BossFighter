@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "1e5e1513-7692-4df6-bc92-18bbb4e27a60",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 1100,
+  "height": 1100,
+  "platformSettings": {},
+  "subMetas": {
+    "0_Warrior_Died_004": {
+      "ver": "1.0.6",
+      "uuid": "d4cc76ea-d767-4fd3-a0c1-97935242cf88",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "1e5e1513-7692-4df6-bc92-18bbb4e27a60",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -34,
+      "offsetY": -150,
+      "trimX": 229,
+      "trimY": 471,
+      "width": 574,
+      "height": 458,
+      "rawWidth": 1100,
+      "rawHeight": 1100,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -1,4 +1,5 @@
-// import GameController from "./GameController";
+// import GameController from "./GameController";  
+import GameController from "../Game/GameController";
 import GAME_DATA from "../Game/GameData"
 
 cc.Class({
@@ -32,7 +33,18 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        // this.gameController = GameController.getInstance();
+        const gameController = GameController.getInstance();
+        if (gameController) {
+            this.gameController = gameController;
+        } else {
+            this.gameController = new GameController();
+            cc.game.addPersistRootNode(this.node);
+        }
+
+        console.log('get map picked', this.gameController.getMapPicked());
+    },
+
+    start() {
         this.hideInformation();
         this.heroPicked = {
             index: 0,
@@ -40,49 +52,86 @@ cc.Class({
         };
         this.heros = [];
         this.heroLockList = [];
-        // this.maxHero = (this.gameController.getMapPicked() == undefined) ? 0 : this.numberOfHeros[this.gameController.getMapPicked()];
-        this.maxHero = 3;
+        this.maxHero = (this.gameController.getMapPicked() == undefined) ? 0 : this.numberOfHeros[this.gameController.getMapPicked()];
+        this.maxHero = 4;
         // get all prefab
         const heroPrefabScript = this.node.getComponent("PrefabFactory");
         this.heroPrefabs = heroPrefabScript.getAllPrefab();
-        console.log(this.heroPrefabs);
+
+        // this.heroPrefabs.forEach((heroPrefab, index) => {
+        //     const hero = cc.instantiate(heroPrefab);
+        //     // hero.parent = this.heroScrollViewContent;
+            
+        //     hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
+
+        //     if (hero.mainScript != undefined) {
+        //         const heroInfo = hero.mainScript.getCharacterInfo();
+        //         this.heros[index] = heroInfo;
+
+        //         console.log('Hero info:', heroInfo);
+        //         const heroImageNode = new cc.Node('HeroImageNode');
+        //         const sprite = heroImageNode.addComponent(cc.Sprite);
+        //         sprite.spriteFrame = heroInfo.imageSprite.getComponent(cc.Sprite).spriteFrame;
+
+        //         sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
+        //         heroImageNode.width = 60;
+        //         heroImageNode.height = 60;
+
+        //         heroImageNode.customIndex = index;
+
+        //         // heroImageNode.on(cc.Node.EventType.TOUCH_END, function () {
+        //         //     console.log('Hero clicked at index:', this.customIndex);
+        //         // }, heroImageNode);
+
+        //         heroImageNode.on(cc.Node.EventType.TOUCH_END, () => {
+        //             this.heroClick(index, heroPrefab);
+        //         }, heroImageNode);
+                
+        //         // hero.destroy();
+        //         this.heroScrollViewContent.addChild(heroImageNode);
+        //     }
+
+        // });
+        // Tạo node tạm thời để chạy onLoad/
+        const tempNode = new cc.Node();
+        cc.director.getScene().addChild(tempNode); // hoặc node nào đang hiển thị
+
         this.heroPrefabs.forEach((heroPrefab, index) => {
             const hero = cc.instantiate(heroPrefab);
 
-            hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
+            // Gán tạm vào temp để kích hoạt lifecycle
+            tempNode.addChild(hero);
 
-            if (hero.mainScript != undefined) {
-                const heroInfo = hero.mainScript.getCharacterInfo();
-                this.heros[index] = heroInfo;
-                const heroImageNode = new cc.Node('HeroImageNode');
-                const sprite = heroImageNode.addComponent(cc.Sprite);
-                sprite.spriteFrame = heroInfo.imageSprite.getComponent(cc.Sprite).spriteFrame;
+            // Đợi 1 frame để onLoad chạy
+            setTimeout(() => {
+                hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
 
-                sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
-                heroImageNode.width = 60;
-                heroImageNode.height = 60;
+                if (hero.mainScript) {
+                    const heroInfo = hero.mainScript.getCharacterInfo();
+                    this.heros[index] = heroInfo;
 
-                heroImageNode.customIndex = index;
+                    console.log('Hero info:', heroInfo);
+                    const heroImageNode = new cc.Node('HeroImageNode');
+                    const sprite = heroImageNode.addComponent(cc.Sprite);
+                    sprite.spriteFrame = heroInfo.imageSprite.getComponent(cc.Sprite).spriteFrame;
 
-                // heroImageNode.on(cc.Node.EventType.TOUCH_END, function () {
-                //     console.log('Hero clicked at index:', this.customIndex);
-                // }, heroImageNode);
+                    sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
+                    heroImageNode.width = 60;
+                    heroImageNode.height = 60;
 
-                heroImageNode.on(cc.Node.EventType.TOUCH_END, () => {
-                    this.heroClick(index, heroPrefab);
-                }, heroImageNode);
+                    heroImageNode.customIndex = index;
 
-                this.heroScrollViewContent.addChild(heroImageNode);
-            }
+                    heroImageNode.on(cc.Node.EventType.TOUCH_END, () => {
+                        this.heroClick(index, heroPrefab);
+                    }, heroImageNode);
 
+                    this.heroScrollViewContent.addChild(heroImageNode);
+                }
+
+                // Xóa node khỏi temp
+                hero.removeFromParent(true);
+            }, 0); // delay 1 frame (có thể dùng cc.director.once nếu thích)
         });
-
-        // add to scrollview
-
-        // handle onclick
-    },
-
-    start() {
 
     },
 
@@ -131,7 +180,6 @@ cc.Class({
 
 
         // view information panel
-        console.log(this.heros[clickIndex])
         this.heroName.string = this.heros[clickIndex].name;
         this.heroRole.string = this.heros[clickIndex].role;
         this.heroHealth.string = this.heros[clickIndex].health;
@@ -167,8 +215,8 @@ cc.Class({
             const sprite = heroImageNode.addComponent(cc.Sprite);
             sprite.spriteFrame = this.heros[this.heroPicked.index].imageSprite.getComponent(cc.Sprite).spriteFrame;
             sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
-            heroImageNode.width = 250;
-            heroImageNode.height = 250;
+            heroImageNode.width = 150;
+            heroImageNode.height = 150;
 
             this.heroLockedList.node.insertChild(heroImageNode, this.heroLockedList.node.childrenCount - 1);
 
@@ -206,7 +254,7 @@ cc.Class({
             savedHeroes.push(heroData);
             cc.sys.localStorage.setItem('selectedHeroes', JSON.stringify(savedHeroes));
 
-            // this.gameController.addSelectedHeroPrefab(this.heroPicked.prefab);
+            this.gameController.addSelectedHeroPrefab(this.heroPicked.prefab);
             this.playSoundEffect();
         }
     },

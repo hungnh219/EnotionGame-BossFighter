@@ -40,6 +40,7 @@ cc.Class({
     },
 
     onNexPage() {
+        console.log('currentPage', this.currentPage)
         if (this.currentPage < this.totalPages - 1) {
             this.currentPage++;
             this.pageView.scrollToPage(this.currentPage, 0.3);

@@ -10,15 +10,23 @@ cc.Class({
     extends: Character,
 
     properties: {
+        characterId: "boss003",
 
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+        // this.initData(this.characterId);
+    },
 
     start () {
+        this.initData(this.characterId);
+    },
 
+    initData(characterNameId) {
+        this._super(characterNameId);
+        console.log("Boss3 initData with characterId:", characterNameId);
     },
 
     // handle collision with skills

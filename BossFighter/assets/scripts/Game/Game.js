@@ -42,7 +42,10 @@ cc.Class({
         heroHpLabel: cc.Label,
         heroImage: cc.Sprite,
 
+        pausePanel: cc.Node,
+
         greenTilePrefab: cc.Prefab, // prefab for walkable tile
+        greyTilePrefab: cc.Prefab,
 
         map1Objects: [cc.SpriteFrame],
         map2Objects: [cc.SpriteFrame],
@@ -52,30 +55,34 @@ cc.Class({
         objectMapPrefab: cc.Prefab,
         groundSpriteFrame: [cc.SpriteFrame], // sprite frame for ground tile
 
+        characterHolder: cc.Node,
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-
+        console.log('Game onLoad');
+        this.gameController = GameController.getInstance();
+        this.mapIndex = this.gameController.getMapPicked() ? this.gameController.getMapPicked() : 0;
         cc.director.getCollisionManager().enabled = true;
+
+
+        // this.tileSpriteFrame = this.tileSpriteFrames[this.mapIndex];
+        this.tileSpriteFrame = this.tileSpriteFrames[1];
 
         // variables
         this.gridMap = [];
         this.isMoving = false;
         this.pressedKeys = new Set();
-        this.gameController = GameController.getInstance();
-        // this.gameController.setTileSize(this.mapTileWidth, this.mapTileHeight)
+
         this.focusedHeroIndex = -1;
         this.heroes = [];
-        this.rootNode = this.node.parent;
-        this.bossNode = null;
-        // this.heroPrefabs = [];
+        this.rootNode = this.characterHolder;
+        this.bossNode = [];
         this.isCastingSkill = false;
 
         // cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
 
-        // test add boss into map
         this.winnerNotificationLabel.node.parent.zIndex = 999;
         this.rootNode.sortAllChildren();
 
@@ -98,25 +105,50 @@ cc.Class({
             EventBus.emit(EventBus.events.CLEAR_WALKABLE_AREA);
         }, this);
 
-       
+        this.mapLayout.node.x = -this.mapWidth * this.mapTileWidth / 2;
+        this.mapLayout.node.y = -this.mapHeight * this.mapTileHeight / 2;
+
+        // this.mapHeight
+
     },
 
     start() {
-        
-
-        this.initData();
         this.spawnObjectsFromJson();
+        console.log('start game map picked',this.gameController.getMapPicked());
+        this.initData();
         
         this.gameController.setHighlightTilePrefab(this.greenTilePrefab);
         this.gameController.setRootNode(this.rootNode);
         this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
         this.gameController.setCallbacks(
             (playerTurn) => this.updatePlayerTurnLabel(playerTurn),
-            () => {},
+            (heroInfo, ultimateCooldown) => this.updateHeroInfoUI(heroInfo, ultimateCooldown),
             () => this.endGameNotification()
         )
 
         this.gameController.startGame();
+
+    },
+
+    initData() {
+        this.initGridMap();
+
+        this.heroPrefabs = this.gameController.getSelectedHeroPrefabs();
+
+        this.mapIndex = this.gameController.getMapPicked() ? this.gameController.getMapPicked() : 0;
+        
+        this.backgroundSprite.spriteFrame = this.backgroundSpriteFrames[this.mapIndex];
+
+        this.initMapView();
+
+        if (this.heroPrefabs) this.spawnHero();
+        this.spawnBoss();
+        // this.gameController.startPlayerTurn();
+
+        this.ultimateGreyPrefab = cc.instantiate(this.greyTilePrefab);
+        // this.ultimateCooldownLabel.parent.addChild(this.ultimateGreyPrefab);
+
+        this.ultimateGreyPrefab.parent = this.ultimateCooldownLabel.node.parent;
     },
 
     onClickPanel(event) {
@@ -128,13 +160,35 @@ cc.Class({
             console.error("No objects data found");
             return;
         }
+        
+        // const jsonData = this.objectsJsonData.json.mapData[this.mapIndex];
+        const jsonData = this.objectsJsonData.json.mapData[1];
 
-        const mapObjects = this.objectsJsonData.json.map1;
+
+        const mapObjects = jsonData.map;
 
         if (!Array.isArray(mapObjects)) {
             console.error("map1 must be a 2D array");
             return;
         }
+        this.mapHeight = mapObjects.length;
+        this.mapWidth = mapObjects[0].length;
+
+
+        // this.bossNode 
+        let bossesIndex = jsonData.bosses;
+        let bossesPosition = jsonData.bossesPosition;
+        let bossesSize = jsonData.bossesSize;
+
+        console.log(bossesIndex, bossesPosition, bossesSize);
+        if (bossesIndex && bossesIndex.length > 0) {
+            bossesIndex.forEach((bossIndex) => {
+                this.bossNode[bossIndex] = cc.instantiate(this.bossPrefabs[bossIndex]);
+
+                this.spawnBoss(this.bossNode[bossIndex], bossesPosition[bossIndex], bossesSize[bossIndex]);
+            })
+        }
+
 
         for (let i = 0; i < mapObjects.length; i++) {
             for (let j = 0; j < mapObjects[i].length; j++) {
@@ -146,7 +200,8 @@ cc.Class({
                     continue;
                 }
 
-                const spriteFrame = this.map1Objects[objectId];
+                // const spriteFrame = this.mapPicked == 3 ? this.map2Objects[objectId] : this.map1Objects[objectId];
+                const spriteFrame = this.map2Objects[objectId];
                 if (!spriteFrame) {
                     console.warn(`No spriteFrame found for object ID: ${objectId}`);
                     continue;
@@ -172,27 +227,7 @@ cc.Class({
         EventBus.off(EventBus.events.CLICK_TO_MOVE, this.onClickToMove, this);
     },
 
-    initData() {
-        this.initGridMap();
-
-        // this.heroPrefabs = this.gameController.getHeroPrefabs();
-        this.heroPrefabs.forEach((heroPrefab, index) => {
-            // console.log('heroPrefab', heroPrefab);
-            if (heroPrefab) {
-                this.gameController.addSelectedHeroPrefab(heroPrefab);
-            }
-        });
-
-        this.mapIndex = 2;
-        this.tileSpriteFrame = this.tileSpriteFrames[this.mapIndex];
-        this.backgroundSprite.spriteFrame = this.backgroundSpriteFrames[this.mapIndex];
-
-        this.initMapView();
-
-        if (this.heroPrefabs) this.spawnHero();
-        this.spawnBoss();
-        // this.gameController.startPlayerTurn();
-    },
+    
 
     heroClick(node) {
         this.gameController.heroClick(node);
@@ -211,40 +246,22 @@ cc.Class({
         }
     },
 
-    // updateBossTurnLabel(points) {
-    //     if (this.bossTurn) {
-    //         this.bossTurn.string = points;
-    //     }
-    // },
-
-    updateHeroInfoUI(hero) {
-        if (!hero) {
+    updateHeroInfoUI(heroInfo, ultimateCooldown) {
+        if (!heroInfo) {
             this.heroInfoPanel.active = false;
             return;
         }
 
         this.heroInfoPanel.active = true;
 
-        const heroScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
+        this.heroNameLabel.string = heroInfo.name || '';
+        this.heroHpLabel.string = heroInfo.health || '';
 
-        if (heroScript && typeof heroScript.getCharacterInfo === 'function') {
-            const info = heroScript.getCharacterInfo();
+        this.heroImage.spriteFrame = heroInfo.imageSprite.spriteFrame || null;
 
-            this.heroNameLabel.string = info.name || '';
-            this.heroHpLabel.string = `${heroScript.getCurrentHp()} / ${info.health}`;
-            this.heroImage.spriteFrame = info.imageSprite ? info.imageSprite.spriteFrame : null;
-        }
-    },
+        this.ultimateCooldownLabel.string = ultimateCooldown || '';
 
-
-    resetData() {
-        this.gameController.resetGame();
-
-        this.heroPrefabs = this.gameController.getHeroPrefabs();
-        this.mapIndex = this.gameController.getMapPicked() ?? 0;
-
-        if (this.heroPrefabs) this.spawnHero();
-        this.spawnBoss();
+        ultimateCooldown > 0 ? this.ultimateGreyPrefab.active = true : this.ultimateGreyPrefab.active = false;
     },
 
     initGridMap() {
@@ -258,7 +275,7 @@ cc.Class({
                     object: null,
                 })
 
-                this.gameController.updateWalkable(j, i, 1, true);
+                this.gameController.updateWalkable(i, j, 1, true);
             }
             this.gridMap.push(row);
         }
@@ -281,38 +298,41 @@ cc.Class({
             this.heroes.push(prefabNode)
         });
 
-        this.focusedHeroIndex = 0;
-        this.gameController.setFocusedHero(this.focusedHeroIndex);
+        // this.focusedHeroIndex = 0;
+        // this.gameController.setFocusedHero(0); 
         // this.gameController.listenKeyDown(this.gameController.getFocusedHero());
     },
 
-    spawnBoss() {
-        const size = 2;
+    spawnBoss(bossNode, position, size = 1) {
+        // const size = 2;
 
-        const posX = this.mapWidth - 3;
-        const posY = this.mapHeight - 3;
+        // const posX = this.mapWidth - 3;
+        // const posY = this.mapHeight - 3;
 
-        this.bossNode = cc.instantiate(this.bossPrefabs[this.mapIndex]);
-        this.gameController.addBoss(this.bossNode, size);
+        // this.bossNode = cc.instantiate(this.bossPrefabs[this.mapIndex]);
+        // this.gameController.addBoss(this.bossNode, size);
+
+        const posX = position.x ? position.x : this.mapWidth - 3;
+        const posY = position.y ? position.y : this.mapHeight - 3;
 
         // scale boss to 1.5 if size > 1
         if (size == 1) {
-            this.bossNode.scale = 1;
+            bossNode.scale = 1;
         } else if (size > 1) {
-            this.bossNode.scale = 1.5;
+            bossNode.scale = 1.5;
 
-            // if (this.mapIndex == 2) {
+            // if (mapIndex == 2) {
             //     this.bossNode.scale = 1;
             // }
         } else if (size > 3) {
-            this.bossNode.scale = 2;
+            bossNode.scale = 2;
         }
 
 
-        this.rootNode.addChild(this.bossNode);
+        this.rootNode.addChild(bossNode);
 
 
-        this.addObjectIntoMap(posX, posY, 2, this.bossNode);
+        this.addObjectIntoMap(posX, posY, 2, bossNode);
         // this.updateWalkable(posX, posY, size, false);
         this.gameController.updateWalkable(posX, posY, size, false);
     },
@@ -346,11 +366,14 @@ cc.Class({
         this.mapLayout.node.removeAllChildren();
         /* ------------- create grid map ------------- */
         // center the map
-        this.mapLayout.node.x = -this.mapWidth * this.mapTileWidth / 2;
-        this.mapLayout.node.y = -this.mapHeight * this.mapTileHeight / 2;
+        // this.mapLayout.node.x = -this.mapWidth * this.mapTileWidth / 2;
+        // this.mapLayout.node.y = -this.mapHeight * this.mapTileHeight / 2;
 
         this.mapLayout.node.width = this.mapWidth * this.mapTileWidth;
         this.mapLayout.node.height = this.mapHeight * this.mapTileHeight;
+        // this.tileSpriteFrame = this.tileSpriteFrames[this.mapIndex];
+        // this.tileSpriteFrame = this.tileSpriteFrames[1];
+        console.log('mapIndex', this.mapIndex);
 
         for (let j = 0; j < this.mapHeight; j++) {
             for (let i = 0; i < this.mapWidth; i++) {
@@ -358,39 +381,7 @@ cc.Class({
 
                 let tileNode = new cc.Node();
                 let sprite = tileNode.addComponent(cc.Sprite);
-                // sprite.spriteFrame = this.tileSpriteFrame;
-
-                if (i == 0 && j == 0) {
-                    sprite.spriteFrame = this.groundSpriteFrame[7];
-                } else if (i == 0 && j == this.mapHeight - 1) {
-                    // sprite.spriteFrame = this.groundSpriteFrame[7];
-                    sprite.spriteFrame = this.groundSpriteFrame[6];
-                }
-                else if (i == this.mapWidth - 1 && j == 0) {
-
-                    sprite.spriteFrame = this.groundSpriteFrame[4];
-                } else if (i == this.mapWidth - 1 && j == this.mapHeight - 1) {
-
-                    sprite.spriteFrame = this.groundSpriteFrame[5];
-                } else if (i == Math.floor(this.mapWidth / 2) && j == this.mapHeight - 1) {
-                    sprite.spriteFrame = this.groundSpriteFrame[8];
-                } else if (i == 0) {
-                    // set left tile
-                    sprite.spriteFrame = this.groundSpriteFrame[1];
-                } else if (i == this.mapWidth - 1) {
-                    // set right tile
-                    sprite.spriteFrame = this.groundSpriteFrame[3];
-                } else if (j == 0) {
-                    // set top tile
-                    sprite.spriteFrame = this.groundSpriteFrame[0];
-                } else if (j == this.mapHeight - 1) {
-                        // set bottom tile
-                        sprite.spriteFrame = this.groundSpriteFrame[2];
-                } else {
-                    // set ground tile
-                    sprite.spriteFrame = this.tileSpriteFrame;
-                }
-
+                sprite.spriteFrame = this.tileSpriteFrame;
                 sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
 
                 tileNode.width = this.mapTileWidth;
@@ -400,6 +391,46 @@ cc.Class({
                 tileNode.y = j * this.mapTileHeight;
                 // tileNode.parent = this.mapLayout.node;
                 tileNode.parent = this.mapLayout.node;
+
+                if (this.mapIndex == 0) {
+                    sprite.spriteFrame = this.tileSpriteFrame;
+                } else {
+                    // mới map 1, 2 có đủ asset ground tile
+                    if (i == 0 && j == 0) {
+                        sprite.spriteFrame = this.groundSpriteFrame[7];
+                    } else if (i == 0 && j == this.mapHeight - 1) {
+                        // sprite.spriteFrame = this.groundSpriteFrame[7];
+                        sprite.spriteFrame = this.groundSpriteFrame[6];
+                    }
+                    else if (i == this.mapWidth - 1 && j == 0) {
+
+                        sprite.spriteFrame = this.groundSpriteFrame[4];
+                    } else if (i == this.mapWidth - 1 && j == this.mapHeight - 1) {
+
+                        sprite.spriteFrame = this.groundSpriteFrame[5];
+                    } else if (i == Math.floor(this.mapWidth / 2) && j == this.mapHeight - 1) {
+                        sprite.spriteFrame = this.groundSpriteFrame[8];
+                    } else if (i == 0) {
+                        // set left tile
+                        sprite.spriteFrame = this.groundSpriteFrame[1];
+                    } else if (i == this.mapWidth - 1) {
+                        // set right tile
+                        sprite.spriteFrame = this.groundSpriteFrame[3];
+                    } else if (j == 0) {
+                        // set top tile
+                        sprite.spriteFrame = this.groundSpriteFrame[0];
+                    } else if (j == this.mapHeight - 1) {
+                            // set bottom tile
+                            sprite.spriteFrame = this.groundSpriteFrame[2];
+                    } else {
+                        // set ground tile
+                        sprite.spriteFrame = this.tileSpriteFrame;
+                    }
+                }
+
+                
+
+                
 
             }
         }
@@ -467,6 +498,9 @@ cc.Class({
         // this.gameController.newGame();
         // this.node.destroy();
 
+        // reset game data
+        this.gameController.resetGame();
+
         cc.director.loadScene(GAME_SCENE.GAME)
     },
 
@@ -494,42 +528,52 @@ cc.Class({
     endGameNotification() {
 
         let winner = this.gameController.getWinner();
-        // console.log()
         let notificationPanel = this.winnerNotificationLabel.node.parent;
         let notificationPanelBgSprite = notificationPanel.getComponent(cc.Sprite);
         if (winner == GAME_DATA.ROLE.PLAYER) {
             this.nextButton.node.active = true;
-            notificationPanelBgSprite.spriteFrame = this.backgroundNotificationPanelSpriteFrames[0];
+            // notificationPanelBgSprite.spriteFrame = this.backgroundNotificationPanelSpriteFrames[0];
 
             // play sound effect win game, source 
             let audioSources = this.node.getComponents(cc.AudioSource)
             audioSources[0].play();
         } else {
-            notificationPanelBgSprite.spriteFrame = this.backgroundNotificationPanelSpriteFrames[1];
+            // notificationPanelBgSprite.spriteFrame = this.backgroundNotificationPanelSpriteFrames[1];
             let audioSources = this.node.getComponents(cc.AudioSource)
             audioSources[1].play();
         }
         this.winnerNotificationLabel.string = winner;
         this.winnerNotificationLabel.node.parent.active = true;
 
-        cc.director.pause()
+        this.scheduleOnce(() => {
+            cc.director.pause()
+        }, 1.5);
+            
         this.pauseButton.node.active = false;
         // this.resumeButton.node.active = false;
     },
 
     pauseGame() {
         cc.director.pause();
+        this.pausePanel.active = true;
+
         this.pauseButton.node.active = false;
-        this.resumeButton.node.active = true;
+        // this.resumeButton.node.active = true;
     },
 
     resumeGame() {
         cc.director.resume();
+        this.pausePanel.active = false;
         this.pauseButton.node.active = true;
-        this.resumeButton.node.active = false;
+        // this.resumeButton.node.active = false;
     },
 
     nextGame() {
+        if (this.mapIndex >= this.backgroundSpriteFrames.length - 1) {
+            console.warn('No more maps to play');
+            return;
+        }
+
         if (this.gameController.getWonMap() >= (this.backgroundSpriteFrames.length)) {
             this.nextButton.node.active = false;
 
@@ -541,6 +585,7 @@ cc.Class({
         }
 
         this.gameController.resetGame();
+        this.gameController.setWonMap();
         this.gameController.setMapPicked(this.mapIndex + 1);
         cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME);
     },

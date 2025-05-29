@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "AdcFrontDeath",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.25,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "3bd49730-f7f8-4397-b617-40c8f6a73c47"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "4d24e676-6549-4163-b1fe-690032ac38d9"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "1a5536aa-4570-4b4a-b2d3-b432ff50ad96"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "008efa6c-0f93-4e75-803a-91515080faa2"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "49d15b96-2a3a-4097-8073-a9326f7517a7"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

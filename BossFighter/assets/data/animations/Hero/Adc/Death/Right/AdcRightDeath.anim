@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "AdcRightDeath",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.25,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "3a63d9e6-e930-4c7d-a9d2-924fb05883ad"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "cd9ff5c2-38d2-4d62-82a2-bb69830fde34"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "cb4218b2-9613-4f2b-b777-749fd55434ea"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "7bcee9a9-273d-40f5-a8b0-3943d013f9e5"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "ff85bcde-696d-4903-aa78-b87bc03015af"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

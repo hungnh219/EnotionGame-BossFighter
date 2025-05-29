@@ -4,33 +4,31 @@ cc.Class({
     extends: Character,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+        characterId: "hero002",
+
         ultimatePrefab: cc.Prefab,
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+        this.initData(this.characterId);
+    },
 
     start () {
+        // this._super.initData('123');
+    },
 
+    initData(characterNameId) {
+        this._super(characterNameId);
+
+        console.log("ADC initData with characterId:", characterNameId);
+        console.log("ADC properties:", this);
     },
 
     ultimate(enemy) {
+        let dame = this.ultimateDame;
+        console.log("Ultimate skill activated with damage:", dame);
         if (this.ultimatePrefab) {
             const ultimate = cc.instantiate(this.ultimatePrefab);
             ultimate.setPosition(this.node.getPosition());
@@ -38,7 +36,7 @@ cc.Class({
             ultimate.mainScript = ultimate.getComponents(cc.Component).find(c => typeof c.initDirection === 'function');
 
             if (ultimate.mainScript) {
-                ultimate.mainScript.initDirection(enemy);
+                ultimate.mainScript.initDirection(enemy, this.ultimateDame);
             }
         } else {
             cc.error("Ultimate prefab is not set for ADC.");

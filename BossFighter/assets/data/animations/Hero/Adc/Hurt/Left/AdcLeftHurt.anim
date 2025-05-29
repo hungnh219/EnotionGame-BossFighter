@@ -1,0 +1,37 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "AdcLeftHurt",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.15,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "6f191a60-1545-46f3-afd0-a6815989aa99"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "7ddb18e4-8e74-42d0-a198-aafa8cb6d5fd"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "23a0e9f8-8367-42cd-a9e5-d900cd7a8608"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

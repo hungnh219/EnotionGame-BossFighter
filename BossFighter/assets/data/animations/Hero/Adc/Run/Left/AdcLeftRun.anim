@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "AdcLeftRun",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.2,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "b0bc67bd-c0ed-40c0-a7c6-cd35eff97c70"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "7f935ef5-acd7-4959-9f94-2865b68072a4"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "cb7db94a-f42e-4635-8262-d3e4545c3c53"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "5077ebdc-0aa1-4f45-99e3-53996e27ee00"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

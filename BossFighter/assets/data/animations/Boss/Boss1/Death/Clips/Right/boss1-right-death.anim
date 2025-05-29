@@ -1,0 +1,67 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "boss1-right-death",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.4,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "381efb21-7a9a-4b06-af28-bd1c7b763728"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "18ccec57-b183-4218-979c-51a7195d9a20"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "b0fea907-bd45-4520-9609-3da967eef0a4"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "96d2d9e1-8517-4564-9ff0-cd1e40179b24"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "07ed6212-a294-4b6a-a94d-6ec44242aa79"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "4e2672cf-7860-4360-a008-cb6c79b4baff"
+            }
+          },
+          {
+            "frame": 0.3,
+            "value": {
+              "__uuid__": "7bb56563-2477-4698-84b6-50c116839ada"
+            }
+          },
+          {
+            "frame": 0.35,
+            "value": {
+              "__uuid__": "357b5197-7420-4d0a-a056-77956b4cc0db"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
