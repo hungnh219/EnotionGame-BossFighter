@@ -19,6 +19,7 @@ cc.Class({
 
     onMouseMove(event) {
         this._mousePos = event.getLocation();
+        // console.log("Mouse position:", this._mousePos);
     },
 
     update(dt) {

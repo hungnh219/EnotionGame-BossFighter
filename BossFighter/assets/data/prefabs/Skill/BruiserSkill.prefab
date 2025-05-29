@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "VampireSkill",
+    "_name": "BruiserSkill",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -98,7 +98,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "a378e4fb-db67-40e7-a71e-e8239f2f0fce"
+      "__uuid__": "2eea6bcc-a30c-4ffe-8ad4-883edd9c2567"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -140,18 +140,18 @@
     },
     "_enabled": true,
     "_defaultClip": {
-      "__uuid__": "d563fa51-363a-464b-971b-9e01098fe27a"
+      "__uuid__": "ea2c6c4c-3c83-454a-b721-f6840e70263a"
     },
     "_clips": [
       {
-        "__uuid__": "d563fa51-363a-464b-971b-9e01098fe27a"
+        "__uuid__": "ea2c6c4c-3c83-454a-b721-f6840e70263a"
       }
     ],
     "playOnLoad": true,
     "_id": ""
   },
   {
-    "__type__": "971b3lXqhBHk7ZD6sN5hhM0",
+    "__type__": "4c422EHSQ5PjoP/k+MRITZd",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -159,7 +159,6 @@
     },
     "_enabled": true,
     "damage": 10,
-    "range": 1,
     "_id": ""
   },
   {

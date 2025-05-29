@@ -28,33 +28,29 @@ cc.Class({
         const to = targetPos;
         const dir = cc.v2(to.x - from.x, to.y - from.y).normalize();
         this.direction = dir;
+
+        const angle = Math.atan2(dir.y, dir.x) * 180 / Math.PI;
+        this.node.angle = angle;
+        console.log('Direction initialized:', this.direction);
     },
 
-    // onCollisionEnter: function (other, self) {
-    //     // console.log('Chiêu va chạm với:', other.node.name);
+    onCollisionEnter: function (other, self) {
+        other.mainScript = other.node.getComponents(cc.Component).find(c => typeof c.takeDame === 'function');
 
-    //     if (other.node.getComponent('Boss')) {
-    //         // console.log('Chiêu va chạm với boss:', other.node.name);
-    //         // other.node.getComponent('Boss1').takeDamage(this.damage);
-    //     }else if (other.node.getComponent('Boss2')) {
-    //         console.log('Chiêu va chạm với boss:', other.node.name);
-    //         // other.node.getComponent('Boss2').takeDamage(this.damage);
-    //     }
-    //     else if (other.node.getComponent('Boss3')) {
-    //         console.log('Chiêu va chạm với boss:', other.node.name);
-    //         // other.node.getComponent('Boss3').takeDamage(this.damage);
-    //     }
+        if (other.mainScript) {
+            other.mainScript.takeDame(this.damage);
+        }
 
-    //     this.node.destroy();
-    // },
+        this.node.destroy();
+    },
 
-    // onCollisionStay: function (other, self) {
-    //     console.log('on collision stay');
-    // },
+    onCollisionStay: function (other, self) {
+        console.log('on collision stay');
+    },
 
-    // onCollisionExit: function (other, self) {
-    //     console.log('on collision exit');
-    // },
+    onCollisionExit: function (other, self) {
+        console.log('on collision exit');
+    },
 
     start() {
 
@@ -69,5 +65,10 @@ cc.Class({
             // Nếu chưa có hướng thì mặc định bắn lên trên
             this.node.y += 300 * dt;
         }
+
+        // this.node.size
+        // incease size of the skill by 0.1 each frame
+        this.node.width += 0.5;
+        this.node.height += 0.5;
     }
 });

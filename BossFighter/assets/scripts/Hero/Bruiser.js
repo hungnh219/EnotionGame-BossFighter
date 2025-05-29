@@ -4,21 +4,7 @@ cc.Class({
     extends: Character,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+        ultimatePrefab: cc.Prefab
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -28,6 +14,35 @@ cc.Class({
     start () {
 
     },
+
+    ultimate(targetTile, gameCtrl) {
+        // const newPos = targetTile
+
+        const newPosX = gameCtrl.firstTile.x + targetTile.x * gameCtrl.tileWidth + gameCtrl.tileWidth / 2;
+        const newPosY = gameCtrl.firstTile.y + targetTile.y * gameCtrl.tileHeight + gameCtrl.tileHeight / 2;
+
+        const oldPosX = this.node.x;
+        const oldPosY = this.node.y;
+
+        const oldGridX = Math.floor((oldPosX - gameCtrl.firstTile.x) / gameCtrl.tileWidth);
+        const oldGridY = Math.floor((oldPosY - gameCtrl.firstTile.y) / gameCtrl.tileHeight);
+        
+        const ultimate = cc.instantiate(this.ultimatePrefab);
+        ultimate.setPosition(this.node.getPosition());
+        this.node.parent.addChild(ultimate);
+
+        this.scheduleOnce(() => {
+            this.node.x = newPosX;
+            this.node.y = newPosY;
+
+            const ultimate = cc.instantiate(this.ultimatePrefab);
+            ultimate.setPosition(this.node.getPosition());
+            this.node.parent.addChild(ultimate);
+            gameCtrl.updateWalkable(targetTile.x, targetTile.y,1 , false);
+            gameCtrl.updateWalkable(oldGridX, oldGridY, 1, true);
+        }, 0.5);
+        
+    }
 
     // update (dt) {},
 });

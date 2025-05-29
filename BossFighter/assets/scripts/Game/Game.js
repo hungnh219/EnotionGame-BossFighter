@@ -98,14 +98,25 @@ cc.Class({
             EventBus.emit(EventBus.events.CLEAR_WALKABLE_AREA);
         }, this);
 
-        this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight, () => {
-            this.endGameNotification();
-        });
+       
     },
 
     start() {
+        
+
         this.initData();
         this.spawnObjectsFromJson();
+        
+        this.gameController.setHighlightTilePrefab(this.greenTilePrefab);
+        this.gameController.setRootNode(this.rootNode);
+        this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
+        this.gameController.setCallbacks(
+            (playerTurn) => this.updatePlayerTurnLabel(playerTurn),
+            () => {},
+            () => this.endGameNotification()
+        )
+
+        this.gameController.startGame();
     },
 
     onClickPanel(event) {
@@ -127,33 +138,26 @@ cc.Class({
 
         for (let i = 0; i < mapObjects.length; i++) {
             for (let j = 0; j < mapObjects[i].length; j++) {
-                // let newJ = mapObjects[i].length - 1 - j; // Đảo ngược trục y
-                let newI = mapObjects.length - 1 - i; // Đảo ngược trục y
+                let newI = mapObjects.length - 1 - i;
 
                 const objectId = mapObjects[newI][j];
 
-                // Bỏ qua ô trống (0)
                 if (objectId === 0) {
                     continue;
                 }
 
-                // Kiểm tra spriteFrame tồn tại
                 const spriteFrame = this.map1Objects[objectId];
                 if (!spriteFrame) {
                     console.warn(`No spriteFrame found for object ID: ${objectId}`);
                     continue;
                 }
 
-                // Tạo prefab
                 const prefab = cc.instantiate(this.objectMapPrefab);
 
-                // Gán sprite tương ứng
-                // prefab.getComponent(cc.Sprite).spriteFrame = spriteFrame;
                 const sprite = prefab.getComponent(cc.Sprite);
                 if (sprite) {
                     sprite.spriteFrame = spriteFrame;
                 }
-                // Thêm vào map tại vị trí (j, i)
                 this.rootNode.addChild(prefab);
                 this.addObjectIntoMap(j, i, 1, prefab);
                 this.gameController.updateWalkable(j, i, 1, false);
@@ -179,9 +183,6 @@ cc.Class({
             }
         });
 
-        // console.log('heroPrefabs', this.gameController.getHeroPrefabs());
-        // this.gameController.setHe
-        // this.mapIndex = this.gameController.getMapPicked() ?? 0;
         this.mapIndex = 2;
         this.tileSpriteFrame = this.tileSpriteFrames[this.mapIndex];
         this.backgroundSprite.spriteFrame = this.backgroundSpriteFrames[this.mapIndex];
@@ -190,7 +191,7 @@ cc.Class({
 
         if (this.heroPrefabs) this.spawnHero();
         this.spawnBoss();
-        this.gameController.startPlayerTurn();
+        // this.gameController.startPlayerTurn();
     },
 
     heroClick(node) {
@@ -204,17 +205,17 @@ cc.Class({
         this.ultimateCooldownLabel.string = `Ultimate CD: ${hero.mainScript.ultimateCooldownRemaining}`;
     },
 
-    updatePlayerTurnLabel(points) {
+    updatePlayerTurnLabel(playerTurnCount) {
         if (this.playerTurn) {
-            this.playerTurn.string = points;
+            this.playerTurn.string = playerTurnCount;
         }
     },
 
-    updateBossTurnLabel(points) {
-        if (this.bossTurn) {
-            this.bossTurn.string = points;
-        }
-    },
+    // updateBossTurnLabel(points) {
+    //     if (this.bossTurn) {
+    //         this.bossTurn.string = points;
+    //     }
+    // },
 
     updateHeroInfoUI(hero) {
         if (!hero) {
@@ -454,6 +455,10 @@ cc.Class({
         this.gameController.heroAttack();
     },
 
+    heroUltimate() {
+        this.gameController.heroUltimate();
+    },
+
     replayGame() {
         // if (cc.director.isPaused()) {
         //     cc.director.resume();
@@ -487,6 +492,7 @@ cc.Class({
     },
 
     endGameNotification() {
+
         let winner = this.gameController.getWinner();
         // console.log()
         let notificationPanel = this.winnerNotificationLabel.node.parent;
@@ -506,9 +512,9 @@ cc.Class({
         this.winnerNotificationLabel.string = winner;
         this.winnerNotificationLabel.node.parent.active = true;
 
-        // cc.director.pause()
+        cc.director.pause()
         this.pauseButton.node.active = false;
-        this.resumeButton.node.active = false;
+        // this.resumeButton.node.active = false;
     },
 
     pauseGame() {

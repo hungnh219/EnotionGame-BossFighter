@@ -1,7 +1,8 @@
-import Character from "../Character";
+// tính toán logic tấn công của boss
+
 
 cc.Class({
-    extends: Character,
+    extends: cc.Component,
 
     properties: {
         // foo: {
@@ -19,7 +20,6 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-        ultimatePrefab: cc.Prefab,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -29,21 +29,6 @@ cc.Class({
     start () {
 
     },
-
-    ultimate(enemy) {
-        if (this.ultimatePrefab) {
-            const ultimate = cc.instantiate(this.ultimatePrefab);
-            ultimate.setPosition(this.node.getPosition());
-            this.node.parent.addChild(ultimate);
-            ultimate.mainScript = ultimate.getComponents(cc.Component).find(c => typeof c.initDirection === 'function');
-
-            if (ultimate.mainScript) {
-                ultimate.mainScript.initDirection(enemy);
-            }
-        } else {
-            cc.error("Ultimate prefab is not set for ADC.");
-        }
-    }
 
     // update (dt) {},
 });

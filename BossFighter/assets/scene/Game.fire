@@ -78,13 +78,10 @@
         "__id__": 23
       },
       {
-        "__id__": 35
-      },
-      {
         "__id__": 214
       },
       {
-        "__id__": 44
+        "__id__": 42
       },
       {
         "__id__": 216
@@ -2210,8 +2207,8 @@
       "__id__": 44
     },
     "_enabled": true,
-    "mapHeight": 20,
-    "mapWidth": 20,
+    "mapHeight": 8,
+    "mapWidth": 10,
     "mapTileWidth": 48,
     "mapTileHeight": 48,
     "playerTurn": {
@@ -2502,7 +2499,7 @@
     },
     "_children": [
       {
-        "__id__": 47
+        "__id__": 45
       },
       {
         "__id__": 105
@@ -4942,7 +4939,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 102
+        "__id__": 100
+      },
+      {
+        "__id__": 101
       }
     ],
     "_prefab": null,
@@ -5121,6 +5121,88 @@
     "_isTrimmedMode": true,
     "_atlas": null,
     "_id": "dcwrWp4LJD2rGRbbfT/rWF"
+  },
+  {
+    "__type__": "cc.Button",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 97
+    },
+    "_enabled": true,
+    "_normalMaterial": null,
+    "_grayMaterial": null,
+    "duration": 0.1,
+    "zoomScale": 1.2,
+    "clickEvents": [
+      {
+        "__id__": 102
+      }
+    ],
+    "_N$interactable": true,
+    "_N$enableAutoGrayEffect": false,
+    "_N$transition": 0,
+    "transition": 0,
+    "_N$normalColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_N$pressedColor": {
+      "__type__": "cc.Color",
+      "r": 211,
+      "g": 211,
+      "b": 211,
+      "a": 255
+    },
+    "pressedColor": {
+      "__type__": "cc.Color",
+      "r": 211,
+      "g": 211,
+      "b": 211,
+      "a": 255
+    },
+    "_N$hoverColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "hoverColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_N$disabledColor": {
+      "__type__": "cc.Color",
+      "r": 124,
+      "g": 124,
+      "b": 124,
+      "a": 255
+    },
+    "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
+    "_N$disabledSprite": null,
+    "_N$target": null,
+    "_id": "a141bmwc1PqpLUQZCqZbuL"
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 42
+    },
+    "component": "",
+    "_componentId": "64416qwka9JyLGBQ0ciOcvS",
+    "handler": "heroUltimate",
+    "customEventData": ""
   },
   {
     "__type__": "cc.Sprite",
