@@ -184,69 +184,7 @@ cc.Class({
             }
         }
     },
-
-    // autoMoveToHero(enemy, hero) {
-    //     if (!enemy || !hero) {
-    //         console.warn('Enemy or hero is not defined');
-    //         return;
-    //     }
-
-    //     const mapSetting = this.gameController.getMapSetting();
-    //     if (!mapSetting) {
-    //         console.warn('Map setting is not initialized');
-    //         return;
-    //     }
-
-    //     const enemyGridX = Math.floor((enemy.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
-    //     const enemyGridY = Math.floor((enemy.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
-
-    //     const heroGridX = Math.floor((hero.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
-    //     const heroGridY = Math.floor((hero.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
-
-    //     this.walkableGridMap[heroGridX][heroGridY] = true; // Đảm bảo ô hero là có thể đi lại
-
-    //     const path = this.findPath(
-    //         {x: enemyGridX, y: enemyGridY },
-    //         {x: heroGridX, y: heroGridY },
-    //         this.walkableGridMap,
-    //         100,
-    //     );
-
-    //     if (!path) {
-    //         console.warn("Không tìm được đường đi!");
-    //         return;
-    //     }
-    //     // calcalute steps to move
-    //     let steps = [];
-    //     for (let i = 1; i < path.length; i++) {
-    //         const p = path[i];
-    //         const px = this.firstCellPos.x + p.x * mapSetting.mapTileWidth + mapSetting.mapTileWidth / 2;
-    //         const py = this.firstCellPos.y + p.y * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
-    //         steps.push(cc.moveTo(0.4, px, py));
-    //     }
-
-    //     const finishCallback = cc.callFunc(() => {
-    //         console.log('Enemy reached hero position');
-
-    //         // calculate new position of enemy
-    //         const newEnemyPosX = Math.floor((enemy.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
-    //         const newEnemyPosY = Math.floor((enemy.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
-    //         this.walkableGridMap[newEnemyPosX][newEnemyPosY] = false;
-    //         this.walkableGridMap[heroGridX][heroGridY] = false;
-    //         this.walkableGridMap[enemyGridX][enemyGridY] = true;
-    //     });
-
-    //     // Chạy sequence
-    //     let restrictSteps = steps.slice(0, 3); // Giới hạn số bước di chuyển
-    //     if (restrictSteps.length === 0) {
-    //         console.warn("Không có bước di chuyển nào hợp lệ!");
-    //         return;
-    //     }
-    //     restrictSteps.push(finishCallback);
-    //     const sequence = cc.sequence(...restrictSteps);
-    //     enemy.runAction(sequence);
-
-    // },
+    
     autoMoveToHero(enemy, hero) {
         if (!enemy || !hero) {
             console.warn('Enemy or hero is not defined');

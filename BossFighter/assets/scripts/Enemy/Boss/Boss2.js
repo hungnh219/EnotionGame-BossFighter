@@ -10,7 +10,7 @@ cc.Class({
     extends: Character,
 
     properties: {
-
+        characterId: "boss003",
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -18,8 +18,11 @@ cc.Class({
     // onLoad () {},
 
     start () {
-
+        this.initData(this.characterId);
     },
 
+    initData(characterNameId) {
+        this._super(characterNameId);
+    }
     // update (dt) {},
 });

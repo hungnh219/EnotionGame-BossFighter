@@ -4,7 +4,6 @@ const DEFAULT_DATA = {
 
 import EventBus from '../EventBus';
 import GAME_DATA from './GameData'
-
 const GameController = cc.Class({
     extends: cc.Component,
 
@@ -24,9 +23,9 @@ const GameController = cc.Class({
         },
     },
 
-    properties: {
-        characterJsonData: cc.JsonAsset,
-    },
+    // properties: {
+    //     characterJsonData: cc.JsonAsset,
+    // },
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
@@ -38,53 +37,49 @@ const GameController = cc.Class({
         }
 
         // variables
-        this.mapPick = null;
-        this.heroPick = [];
-        this.selectedHeroPrefabs = [];
-        this.listenMoveNode = null;
+        // this.mapPick = null;
+        // this.heroPick = [];
+        // this.selectedHeroPrefabs = [];
+        // this.listenMoveNode = null;
 
-        this.focusedHero = null;
-        this.heroes = []; // hero in game
-        this.gridMap = [];
-        this.winner = null; // 'boss', 'player'
-        this.isAutoMode = false;
-        this.isUsingSkill = false;
-        this.enemies = [];
-        this.bosses = [];
-        this.isTurnOnMusic = true;
+        // this.focusedHero = null;
+        // this.heroes = []; // hero in game
+        // this.gridMap = [];
+        // this.winner = null; // 'boss', 'player'
+        // this.isAutoMode = false;
+        // this.isUsingSkill = false;
+        // this.enemies = [];
+        // this.bosses = [];
+        // this.isTurnOnMusic = true;
 
-        this.mapHeight = null;
-        this.mapWidth = null;
-        this.mapTileWidth = null;
-        this.mapTileHeight = null;
+        // this.mapHeight = null;
+        // this.mapWidth = null;
+        // this.mapTileWidth = null;
+        // this.mapTileHeight = null;
 
-        this.isPlayerTurn = true;
+        // this.isPlayerTurn = true;
         
 
-    // =================== callbacks to view info in game scene ===================
-        this.updatePlayerTurn = null;
-        this.updatePlayerInfo = null;
-
+    // // =================== callbacks to view info in game scene ===================
+    //     this.updatePlayerTurn = null;
+    //     this.updatePlayerInfo = null;
 
     },
     //-------------------------------------------------------------------------------//
-
     startGame() {
         this.playerTurn();
 
         this.playerTurn();
 
         this.updatePlayerTurn(this.playerTurnCount);
+
+        this.setFocusedHero(0);
     },
 
     playerTurn() {
         this.isPlayerTurn = true;
         this.playerTurnCount = 3; // reset player turn count
         this.updatePlayerTurn(this.playerTurnCount);
-
-
-
-
     },
 
     bossTurn() {
@@ -298,8 +293,11 @@ const GameController = cc.Class({
 
     // =================== Enemy Logic: End ===================
     heroClick(node) {
+        if (node == this.focusedHero) {
+            EventBus.emit(EventBus.events.DISPLAY_WALKABLE_AREA, this.firstCellPos, this.lastCellPos, this.gridMap, node);
+        }
+        
         this.setFocusedHero(this.heroes.indexOf(node));
-        EventBus.emit(EventBus.events.DISPLAY_WALKABLE_AREA, this.firstCellPos, this.lastCellPos, this.gridMap, node);
     },
 
 
@@ -333,10 +331,12 @@ const GameController = cc.Class({
         }
 
         enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.getCurrentHp === 'function');
+        hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.dealDame === 'function');
 
-        if (enemy.mainScript) {
+        let dame = hero.mainScript.getAttackDame();
+        if (enemy.mainScript && dame > 0) {
             // hero.mainScript.dealDame(enemy, 20);
-            enemy.mainScript.takeDame(20);
+            enemy.mainScript.takeDame(dame);
             let isBoss = this.bosses.some(b => b.node === enemy);
 
             if (enemy.mainScript.getCurrentHp() <= 0)  {
@@ -515,10 +515,7 @@ const GameController = cc.Class({
         hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.ultimate === 'function');
         if (hero.mainScript) {
             this.showTileSelection((startTile) => {
-                hero.mainScript.ultimate(startTile, (affactedTile, dame) => {
-                    // console.log('affactedTile', affactedTile, 'dame', dame);
-                    // this.dealDameAoe(affactedTile, dame);
-                }, (animPrefab, tile, times, dame) => {
+                hero.mainScript.ultimate(startTile, (animPrefab, tile, times, dame) => {
                     this.spawnUltimateAnimation(animPrefab, tile, times, dame);
                 });
             }, false);
@@ -598,6 +595,10 @@ const GameController = cc.Class({
         this.scheduleOnce(() => {
             const anim = cc.instantiate(animPrefab);
 
+            if (!anim || !anim.getComponent(cc.Animation)) {
+                console.error('Animation prefab is not valid or does not have an Animation component');
+                return;
+            }
             anim.setPosition(
                 this.firstCellPos.x + tile.x * this.mapTileWidth + this.mapTileWidth / 2,
                 this.firstCellPos.y + tile.y * this.mapTileHeight + this.mapTileHeight / 2
@@ -607,10 +608,9 @@ const GameController = cc.Class({
             this.dealDameTile(tile, dame);
             times--;
 
-            // spawn the animation again after 0.5 seconds
             this.scheduleOnce(() => {
                 this.spawnUltimateAnimation(anim, tile, times, dame);
-            }, 1);
+            }, 0.5);
         }, ranTimeToSpawn);
     },
 
@@ -786,7 +786,6 @@ const GameController = cc.Class({
 
     /* game system */
 
-    // reset
     resetGame() {
         this.listenMoveNode = null;
         this.focusedHero = null;
@@ -796,24 +795,32 @@ const GameController = cc.Class({
         this.isMoving = false;
         this.isAttacking = false;
         this.isUsingSkill = false;
+        this.enemies = [];
+        this.bosses = [];
+        this.setFocusedHero(0);
+        this.isAutoMode = false;
+        this.isPlayerTurn = true;
+        this.playerTurnCount = 3;
     },
 
     // new game
     newGame() {
-        this.mapPick = null;
-        this.heroPick = [];
+        // this.mapPick = null;
+        // this.heroPick = [];
+        // this.selectedHeroPrefabs = [];
+        // this.listenMoveNode = null;
+
+        // this.focusedHero = null;
+        // this.heroes = []; // hero in game
+        // this.gridMap = [];
+        // this.winner = null; // 'boss', 'player'
+
+        // this.setFocusedHero(0)
+        // this.isMoving = false;
+        // this.isAttacking = false;
+        // this.isUsingSkill = false;
+        this.resetGame();
         this.selectedHeroPrefabs = [];
-        this.listenMoveNode = null;
-
-        this.focusedHero = null;
-        this.heroes = []; // hero in game
-        this.gridMap = [];
-        this.winner = null; // 'boss', 'player'
-
-        this.setFocusedHero(0)
-        this.isMoving = false;
-        this.isAttacking = false;
-        this.isUsingSkill = false;
     },
 
     checkWin() {

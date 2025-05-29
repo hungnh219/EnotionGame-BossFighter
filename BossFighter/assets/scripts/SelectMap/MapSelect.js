@@ -1,5 +1,5 @@
 import GameController from "../Game/GameController";
-import GAME_DATA from "../Game/GameData";
+import GAME_DATA from "../Game/GameData"
 
 cc.Class({
     extends: cc.Component,

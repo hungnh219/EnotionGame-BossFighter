@@ -197,19 +197,16 @@
     },
     "_clips": [
       {
-        "__uuid__": "73992410-ed35-4971-92e3-0bf89ad47ba3"
+        "__uuid__": "eaca5dec-85c6-4f75-bc81-f9c8e82efd28"
       },
       {
-        "__uuid__": "b9ea8cb3-4130-4eb2-9ae7-a9dead89a7be"
+        "__uuid__": "0bcb7238-793b-420c-85bd-d10eccc8a206"
       },
       {
-        "__uuid__": "0df1962b-324f-480c-9e23-8b9022eada0c"
+        "__uuid__": "34cfc9c8-1c3a-41be-ba8e-474cf425b80e"
       },
       {
-        "__uuid__": "62e1ffe4-b2fa-4c6b-84e8-07272514f6c7"
-      },
-      {
-        "__uuid__": "31babcee-9072-4d79-b182-00da0e45c3a4"
+        "__uuid__": "c69f2cd7-9a97-4aa5-a5e0-07347bf28f7e"
       }
     ],
     "playOnLoad": false,

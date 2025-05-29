@@ -19,21 +19,31 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-        damage: 50, // Damage dealt by the ultimate skill
+        characterId: "hero003",
+        damage: 10, // Damage dealt by the ultimate skill
         range: 1, // Range of the ultimate skill
         ultimatePrefab: cc.Prefab, // Prefab for the ultimate skill effect
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
-
-    start () {
-
+    onLoad () {
+        this.initData(this.characterId);
     },
 
-    ultimate(centerGridPos, dealDameAoeCallback, spawnAnimationCallback) {
-        console.log('Vampire ultimate skill used at position:', centerGridPos);
+    start () {
+    },
+
+    initData(characterNameId) {
+        this._super(characterNameId);
+        console.log("Vampire initData with characterId:", characterNameId);
+        console.log("Vampire properties:", this);
+    },
+
+    ultimate(centerGridPos, spawnAnimationCallback) {
+        this.damage = this.ultimateDame || this.damage; // Ensure damage is set to ultimate damage
+
+        console.log('Vampire ultimate skill used at position:', centerGridPos, this.damage);
         const affactedTile = [];
         for (let i = -this.range; i <= this.range; i++) {
             for (let j = -this.range; j <= this.range; j++) {
@@ -43,12 +53,12 @@ cc.Class({
                     y: centerGridPos.y + j
                 }
                 affactedTile.push(tile);
-                let times = (i == 0 && j == 0) ? 5 : 3;
+                let times = (i == 0 && j == 0) ? 4 : 2;
 
-                spawnAnimationCallback(this.ultimatePrefab ,tile, times, this.damage);
+                console.log(this.damage)
+                spawnAnimationCallback(this.ultimatePrefab ,tile, times, this.ultimateDame);
             }
         }
-        dealDameAoeCallback(affactedTile, this.damage);
     }
 
     // update (dt) {},

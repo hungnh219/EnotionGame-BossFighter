@@ -4,30 +4,22 @@ cc.Class({
     extends: Character,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+        characterId: "hero004",
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+        this.initData(this.characterId);
+    },
 
     start () {
-
+        
     },
+
+    initData(characterNameId) {
+        this._super(characterNameId);
+    }
 
     // update (dt) {},
 });

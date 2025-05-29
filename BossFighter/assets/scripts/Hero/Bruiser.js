@@ -4,15 +4,22 @@ cc.Class({
     extends: Character,
 
     properties: {
+        characterId: "hero001",
         ultimatePrefab: cc.Prefab
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+        this.initData(this.characterId);
+
+    },
 
     start () {
+    },
 
+    initData(characterNameId) {
+        this._super(characterNameId);
     },
 
     ultimate(targetTile, gameCtrl) {

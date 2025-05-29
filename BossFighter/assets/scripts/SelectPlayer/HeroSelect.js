@@ -40,6 +40,8 @@ cc.Class({
             this.gameController = new GameController();
             cc.game.addPersistRootNode(this.node);
         }
+
+        console.log('get map picked', this.gameController.getMapPicked());
     },
 
     start() {
@@ -51,40 +53,86 @@ cc.Class({
         this.heros = [];
         this.heroLockList = [];
         this.maxHero = (this.gameController.getMapPicked() == undefined) ? 0 : this.numberOfHeros[this.gameController.getMapPicked()];
-        this.maxHero = 3;
+        this.maxHero = 4;
         // get all prefab
         const heroPrefabScript = this.node.getComponent("PrefabFactory");
         this.heroPrefabs = heroPrefabScript.getAllPrefab();
+
+        // this.heroPrefabs.forEach((heroPrefab, index) => {
+        //     const hero = cc.instantiate(heroPrefab);
+        //     // hero.parent = this.heroScrollViewContent;
+            
+        //     hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
+
+        //     if (hero.mainScript != undefined) {
+        //         const heroInfo = hero.mainScript.getCharacterInfo();
+        //         this.heros[index] = heroInfo;
+
+        //         console.log('Hero info:', heroInfo);
+        //         const heroImageNode = new cc.Node('HeroImageNode');
+        //         const sprite = heroImageNode.addComponent(cc.Sprite);
+        //         sprite.spriteFrame = heroInfo.imageSprite.getComponent(cc.Sprite).spriteFrame;
+
+        //         sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
+        //         heroImageNode.width = 60;
+        //         heroImageNode.height = 60;
+
+        //         heroImageNode.customIndex = index;
+
+        //         // heroImageNode.on(cc.Node.EventType.TOUCH_END, function () {
+        //         //     console.log('Hero clicked at index:', this.customIndex);
+        //         // }, heroImageNode);
+
+        //         heroImageNode.on(cc.Node.EventType.TOUCH_END, () => {
+        //             this.heroClick(index, heroPrefab);
+        //         }, heroImageNode);
+                
+        //         // hero.destroy();
+        //         this.heroScrollViewContent.addChild(heroImageNode);
+        //     }
+
+        // });
+        // Tạo node tạm thời để chạy onLoad/
+        const tempNode = new cc.Node();
+        cc.director.getScene().addChild(tempNode); // hoặc node nào đang hiển thị
+
         this.heroPrefabs.forEach((heroPrefab, index) => {
             const hero = cc.instantiate(heroPrefab);
 
-            hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
+            // Gán tạm vào temp để kích hoạt lifecycle
+            tempNode.addChild(hero);
 
-            if (hero.mainScript != undefined) {
-                const heroInfo = hero.mainScript.getCharacterInfo();
-                this.heros[index] = heroInfo;
-                const heroImageNode = new cc.Node('HeroImageNode');
-                const sprite = heroImageNode.addComponent(cc.Sprite);
-                sprite.spriteFrame = heroInfo.imageSprite.getComponent(cc.Sprite).spriteFrame;
+            // Đợi 1 frame để onLoad chạy
+            setTimeout(() => {
+                hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
 
-                sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
-                heroImageNode.width = 60;
-                heroImageNode.height = 60;
+                if (hero.mainScript) {
+                    const heroInfo = hero.mainScript.getCharacterInfo();
+                    this.heros[index] = heroInfo;
 
-                heroImageNode.customIndex = index;
+                    console.log('Hero info:', heroInfo);
+                    const heroImageNode = new cc.Node('HeroImageNode');
+                    const sprite = heroImageNode.addComponent(cc.Sprite);
+                    sprite.spriteFrame = heroInfo.imageSprite.getComponent(cc.Sprite).spriteFrame;
 
-                // heroImageNode.on(cc.Node.EventType.TOUCH_END, function () {
-                //     console.log('Hero clicked at index:', this.customIndex);
-                // }, heroImageNode);
+                    sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
+                    heroImageNode.width = 60;
+                    heroImageNode.height = 60;
 
-                heroImageNode.on(cc.Node.EventType.TOUCH_END, () => {
-                    this.heroClick(index, heroPrefab);
-                }, heroImageNode);
+                    heroImageNode.customIndex = index;
 
-                this.heroScrollViewContent.addChild(heroImageNode);
-            }
+                    heroImageNode.on(cc.Node.EventType.TOUCH_END, () => {
+                        this.heroClick(index, heroPrefab);
+                    }, heroImageNode);
 
+                    this.heroScrollViewContent.addChild(heroImageNode);
+                }
+
+                // Xóa node khỏi temp
+                hero.removeFromParent(true);
+            }, 0); // delay 1 frame (có thể dùng cc.director.once nếu thích)
         });
+
     },
 
     // update (dt) {},

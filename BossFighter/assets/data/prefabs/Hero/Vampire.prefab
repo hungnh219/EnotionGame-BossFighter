@@ -548,6 +548,7 @@
     "hpBar": {
       "__id__": 12
     },
+    "characterId": "hero003",
     "damage": 50,
     "range": 1,
     "ultimatePrefab": {

@@ -9,7 +9,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        damage: 10,
+        // damage: 10,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -22,7 +22,8 @@ cc.Class({
 
     // direction: null,
 
-    initDirection(targetPos) {
+    initDirection(targetPos, dame) {
+        this.damage = dame;
         // Tính vector hướng từ skill đến boss
         const from = this.node.getPosition();
         const to = targetPos;
