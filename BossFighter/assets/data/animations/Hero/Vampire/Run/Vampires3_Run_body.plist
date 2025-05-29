@@ -1,0 +1,2043 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>Vampires3_Run_full0.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,35}</string>
+				<key>spriteSize</key>
+				<string>{39,35}</string>
+				<key>textureRect</key>
+				<string>{{0,0},{39,35}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_full1.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,39}</string>
+				<key>spriteSize</key>
+				<string>{39,39}</string>
+				<key>textureRect</key>
+				<string>{{40,0},{39,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_full2.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,40}</string>
+				<key>spriteSize</key>
+				<string>{39,40}</string>
+				<key>textureRect</key>
+				<string>{{80,0},{39,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_full3.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,38}</string>
+				<key>spriteSize</key>
+				<string>{39,38}</string>
+				<key>textureRect</key>
+				<string>{{120,0},{39,38}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_full4.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,35}</string>
+				<key>spriteSize</key>
+				<string>{39,35}</string>
+				<key>textureRect</key>
+				<string>{{160,0},{39,35}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_full5.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,32}</string>
+				<key>spriteSize</key>
+				<string>{39,32}</string>
+				<key>textureRect</key>
+				<string>{{200,0},{39,32}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_full6.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,29}</string>
+				<key>spriteSize</key>
+				<string>{39,29}</string>
+				<key>textureRect</key>
+				<string>{{240,0},{39,29}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_full7.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,32}</string>
+				<key>spriteSize</key>
+				<string>{39,32}</string>
+				<key>textureRect</key>
+				<string>{{280,0},{39,32}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_full8.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,35}</string>
+				<key>spriteSize</key>
+				<string>{39,35}</string>
+				<key>textureRect</key>
+				<string>{{320,0},{39,35}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_full9.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,39}</string>
+				<key>spriteSize</key>
+				<string>{39,39}</string>
+				<key>textureRect</key>
+				<string>{{360,0},{39,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_full10.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,40}</string>
+				<key>spriteSize</key>
+				<string>{39,40}</string>
+				<key>textureRect</key>
+				<string>{{400,0},{39,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_full11.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,38}</string>
+				<key>spriteSize</key>
+				<string>{39,38}</string>
+				<key>textureRect</key>
+				<string>{{440,0},{39,38}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_full12.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,35}</string>
+				<key>spriteSize</key>
+				<string>{39,35}</string>
+				<key>textureRect</key>
+				<string>{{480,0},{39,35}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_full13.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,32}</string>
+				<key>spriteSize</key>
+				<string>{39,32}</string>
+				<key>textureRect</key>
+				<string>{{0,41},{39,32}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_full14.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,29}</string>
+				<key>spriteSize</key>
+				<string>{39,29}</string>
+				<key>textureRect</key>
+				<string>{{40,41},{39,29}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_full15.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,32}</string>
+				<key>spriteSize</key>
+				<string>{39,32}</string>
+				<key>textureRect</key>
+				<string>{{80,41},{39,32}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_full16.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,37}</string>
+				<key>spriteSize</key>
+				<string>{28,37}</string>
+				<key>textureRect</key>
+				<string>{{120,41},{28,37}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_full17.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,40}</string>
+				<key>spriteSize</key>
+				<string>{28,40}</string>
+				<key>textureRect</key>
+				<string>{{149,41},{28,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_full18.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,42}</string>
+				<key>spriteSize</key>
+				<string>{28,42}</string>
+				<key>textureRect</key>
+				<string>{{178,41},{28,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_full19.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,40}</string>
+				<key>spriteSize</key>
+				<string>{28,40}</string>
+				<key>textureRect</key>
+				<string>{{207,41},{28,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_full20.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,37}</string>
+				<key>spriteSize</key>
+				<string>{28,37}</string>
+				<key>textureRect</key>
+				<string>{{236,41},{28,37}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_full21.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{30,35}</string>
+				<key>spriteSize</key>
+				<string>{30,35}</string>
+				<key>textureRect</key>
+				<string>{{265,41},{30,35}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>Vampires3_Run_full22.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{29,33}</string>
+				<key>spriteSize</key>
+				<string>{29,33}</string>
+				<key>textureRect</key>
+				<string>{{296,41},{29,33}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4827586206896552,0}</string>
+			</dict>
+			<key>Vampires3_Run_full23.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{30,34}</string>
+				<key>spriteSize</key>
+				<string>{30,34}</string>
+				<key>textureRect</key>
+				<string>{{326,41},{30,34}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>Vampires3_Run_full24.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,37}</string>
+				<key>spriteSize</key>
+				<string>{28,37}</string>
+				<key>textureRect</key>
+				<string>{{357,41},{28,37}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_full25.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,40}</string>
+				<key>spriteSize</key>
+				<string>{28,40}</string>
+				<key>textureRect</key>
+				<string>{{386,41},{28,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_full26.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,42}</string>
+				<key>spriteSize</key>
+				<string>{28,42}</string>
+				<key>textureRect</key>
+				<string>{{415,41},{28,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_full27.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,40}</string>
+				<key>spriteSize</key>
+				<string>{28,40}</string>
+				<key>textureRect</key>
+				<string>{{444,41},{28,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_full28.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,37}</string>
+				<key>spriteSize</key>
+				<string>{28,37}</string>
+				<key>textureRect</key>
+				<string>{{473,41},{28,37}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_full29.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{30,35}</string>
+				<key>spriteSize</key>
+				<string>{30,35}</string>
+				<key>textureRect</key>
+				<string>{{502,41},{30,35}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>Vampires3_Run_full30.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{29,33}</string>
+				<key>spriteSize</key>
+				<string>{29,33}</string>
+				<key>textureRect</key>
+				<string>{{0,84},{29,33}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4827586206896552,0}</string>
+			</dict>
+			<key>Vampires3_Run_full31.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{30,34}</string>
+				<key>spriteSize</key>
+				<string>{30,34}</string>
+				<key>textureRect</key>
+				<string>{{30,84},{30,34}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>Vampires3_Run_body0.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,30}</string>
+				<key>spriteSize</key>
+				<string>{39,30}</string>
+				<key>textureRect</key>
+				<string>{{61,84},{39,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_body1.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,34}</string>
+				<key>spriteSize</key>
+				<string>{39,34}</string>
+				<key>textureRect</key>
+				<string>{{101,84},{39,34}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_body2.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,35}</string>
+				<key>spriteSize</key>
+				<string>{39,35}</string>
+				<key>textureRect</key>
+				<string>{{141,84},{39,35}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_body3.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,33}</string>
+				<key>spriteSize</key>
+				<string>{39,33}</string>
+				<key>textureRect</key>
+				<string>{{181,84},{39,33}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_body4.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,28}</string>
+				<key>spriteSize</key>
+				<string>{39,28}</string>
+				<key>textureRect</key>
+				<string>{{221,84},{39,28}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_body5.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,26}</string>
+				<key>spriteSize</key>
+				<string>{39,26}</string>
+				<key>textureRect</key>
+				<string>{{261,84},{39,26}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_body6.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,25}</string>
+				<key>spriteSize</key>
+				<string>{39,25}</string>
+				<key>textureRect</key>
+				<string>{{301,84},{39,25}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_body7.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,26}</string>
+				<key>spriteSize</key>
+				<string>{39,26}</string>
+				<key>textureRect</key>
+				<string>{{341,84},{39,26}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_body8.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,30}</string>
+				<key>spriteSize</key>
+				<string>{39,30}</string>
+				<key>textureRect</key>
+				<string>{{381,84},{39,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_body9.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,34}</string>
+				<key>spriteSize</key>
+				<string>{39,34}</string>
+				<key>textureRect</key>
+				<string>{{421,84},{39,34}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_body10.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,35}</string>
+				<key>spriteSize</key>
+				<string>{39,35}</string>
+				<key>textureRect</key>
+				<string>{{461,84},{39,35}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_body11.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,33}</string>
+				<key>spriteSize</key>
+				<string>{39,33}</string>
+				<key>textureRect</key>
+				<string>{{501,84},{39,33}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_body12.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,28}</string>
+				<key>spriteSize</key>
+				<string>{39,28}</string>
+				<key>textureRect</key>
+				<string>{{0,120},{39,28}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_body13.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,26}</string>
+				<key>spriteSize</key>
+				<string>{39,26}</string>
+				<key>textureRect</key>
+				<string>{{40,120},{39,26}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_body14.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,25}</string>
+				<key>spriteSize</key>
+				<string>{39,25}</string>
+				<key>textureRect</key>
+				<string>{{80,120},{39,25}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_body15.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,26}</string>
+				<key>spriteSize</key>
+				<string>{39,26}</string>
+				<key>textureRect</key>
+				<string>{{120,120},{39,26}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>Vampires3_Run_body16.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{25,32}</string>
+				<key>spriteSize</key>
+				<string>{25,32}</string>
+				<key>textureRect</key>
+				<string>{{160,120},{25,32}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.48,0}</string>
+			</dict>
+			<key>Vampires3_Run_body17.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{24,35}</string>
+				<key>spriteSize</key>
+				<string>{24,35}</string>
+				<key>textureRect</key>
+				<string>{{186,120},{24,35}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_body18.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{24,37}</string>
+				<key>spriteSize</key>
+				<string>{24,37}</string>
+				<key>textureRect</key>
+				<string>{{211,120},{24,37}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_body19.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{25,35}</string>
+				<key>spriteSize</key>
+				<string>{25,35}</string>
+				<key>textureRect</key>
+				<string>{{236,120},{25,35}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.48,0}</string>
+			</dict>
+			<key>Vampires3_Run_body20.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,30}</string>
+				<key>spriteSize</key>
+				<string>{26,30}</string>
+				<key>textureRect</key>
+				<string>{{262,120},{26,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>Vampires3_Run_body21.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,29}</string>
+				<key>spriteSize</key>
+				<string>{28,29}</string>
+				<key>textureRect</key>
+				<string>{{289,120},{28,29}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_body22.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,29}</string>
+				<key>spriteSize</key>
+				<string>{26,29}</string>
+				<key>textureRect</key>
+				<string>{{318,120},{26,29}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>Vampires3_Run_body23.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,28}</string>
+				<key>spriteSize</key>
+				<string>{26,28}</string>
+				<key>textureRect</key>
+				<string>{{345,120},{26,28}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>Vampires3_Run_body24.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{25,32}</string>
+				<key>spriteSize</key>
+				<string>{25,32}</string>
+				<key>textureRect</key>
+				<string>{{372,120},{25,32}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.48,0}</string>
+			</dict>
+			<key>Vampires3_Run_body25.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{24,35}</string>
+				<key>spriteSize</key>
+				<string>{24,35}</string>
+				<key>textureRect</key>
+				<string>{{398,120},{24,35}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_body26.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{24,37}</string>
+				<key>spriteSize</key>
+				<string>{24,37}</string>
+				<key>textureRect</key>
+				<string>{{423,120},{24,37}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_body27.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{25,35}</string>
+				<key>spriteSize</key>
+				<string>{25,35}</string>
+				<key>textureRect</key>
+				<string>{{448,120},{25,35}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.48,0}</string>
+			</dict>
+			<key>Vampires3_Run_body28.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,30}</string>
+				<key>spriteSize</key>
+				<string>{26,30}</string>
+				<key>textureRect</key>
+				<string>{{474,120},{26,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>Vampires3_Run_body29.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,29}</string>
+				<key>spriteSize</key>
+				<string>{28,29}</string>
+				<key>textureRect</key>
+				<string>{{501,120},{28,29}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_body30.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,29}</string>
+				<key>spriteSize</key>
+				<string>{26,29}</string>
+				<key>textureRect</key>
+				<string>{{0,158},{26,29}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>Vampires3_Run_body31.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,28}</string>
+				<key>spriteSize</key>
+				<string>{26,28}</string>
+				<key>textureRect</key>
+				<string>{{27,158},{26,28}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>Vampires3_Run_head0.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{23,16}</string>
+				<key>spriteSize</key>
+				<string>{23,16}</string>
+				<key>textureRect</key>
+				<string>{{54,158},{23,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5217391304347826,0}</string>
+			</dict>
+			<key>Vampires3_Run_head1.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{23,16}</string>
+				<key>spriteSize</key>
+				<string>{23,16}</string>
+				<key>textureRect</key>
+				<string>{{78,158},{23,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5217391304347826,0}</string>
+			</dict>
+			<key>Vampires3_Run_head2.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{23,16}</string>
+				<key>spriteSize</key>
+				<string>{23,16}</string>
+				<key>textureRect</key>
+				<string>{{102,158},{23,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5217391304347826,0}</string>
+			</dict>
+			<key>Vampires3_Run_head3.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{23,16}</string>
+				<key>spriteSize</key>
+				<string>{23,16}</string>
+				<key>textureRect</key>
+				<string>{{126,158},{23,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5217391304347826,0}</string>
+			</dict>
+			<key>Vampires3_Run_head4.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{21,16}</string>
+				<key>spriteSize</key>
+				<string>{21,16}</string>
+				<key>textureRect</key>
+				<string>{{150,158},{21,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47619047619047616,0}</string>
+			</dict>
+			<key>Vampires3_Run_head5.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{19,16}</string>
+				<key>spriteSize</key>
+				<string>{19,16}</string>
+				<key>textureRect</key>
+				<string>{{172,158},{19,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5263157894736842,0}</string>
+			</dict>
+			<key>Vampires3_Run_head6.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,15}</string>
+				<key>spriteSize</key>
+				<string>{17,15}</string>
+				<key>textureRect</key>
+				<string>{{192,158},{17,15}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_head7.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{21,16}</string>
+				<key>spriteSize</key>
+				<string>{21,16}</string>
+				<key>textureRect</key>
+				<string>{{210,158},{21,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47619047619047616,0}</string>
+			</dict>
+			<key>Vampires3_Run_head8.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{9,8}</string>
+				<key>spriteSize</key>
+				<string>{9,8}</string>
+				<key>textureRect</key>
+				<string>{{232,158},{9,8}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4444444444444444,0}</string>
+			</dict>
+			<key>Vampires3_Run_head9.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{9,7}</string>
+				<key>spriteSize</key>
+				<string>{9,7}</string>
+				<key>textureRect</key>
+				<string>{{242,158},{9,7}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4444444444444444,0}</string>
+			</dict>
+			<key>Vampires3_Run_head10.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{9,9}</string>
+				<key>spriteSize</key>
+				<string>{9,9}</string>
+				<key>textureRect</key>
+				<string>{{252,158},{9,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4444444444444444,0}</string>
+			</dict>
+			<key>Vampires3_Run_head11.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,15}</string>
+				<key>spriteSize</key>
+				<string>{16,15}</string>
+				<key>textureRect</key>
+				<string>{{262,158},{16,15}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_head12.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,16}</string>
+				<key>spriteSize</key>
+				<string>{16,16}</string>
+				<key>textureRect</key>
+				<string>{{279,158},{16,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_head13.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,16}</string>
+				<key>spriteSize</key>
+				<string>{16,16}</string>
+				<key>textureRect</key>
+				<string>{{296,158},{16,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_head14.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,16}</string>
+				<key>spriteSize</key>
+				<string>{16,16}</string>
+				<key>textureRect</key>
+				<string>{{313,158},{16,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_head15.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,15}</string>
+				<key>spriteSize</key>
+				<string>{16,15}</string>
+				<key>textureRect</key>
+				<string>{{330,158},{16,15}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_head16.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,14}</string>
+				<key>spriteSize</key>
+				<string>{16,14}</string>
+				<key>textureRect</key>
+				<string>{{347,158},{16,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_head17.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,14}</string>
+				<key>spriteSize</key>
+				<string>{16,14}</string>
+				<key>textureRect</key>
+				<string>{{364,158},{16,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_head18.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,15}</string>
+				<key>spriteSize</key>
+				<string>{16,15}</string>
+				<key>textureRect</key>
+				<string>{{381,158},{16,15}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_head19.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,15}</string>
+				<key>spriteSize</key>
+				<string>{16,15}</string>
+				<key>textureRect</key>
+				<string>{{398,158},{16,15}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_head20.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,16}</string>
+				<key>spriteSize</key>
+				<string>{16,16}</string>
+				<key>textureRect</key>
+				<string>{{415,158},{16,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_head21.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,16}</string>
+				<key>spriteSize</key>
+				<string>{16,16}</string>
+				<key>textureRect</key>
+				<string>{{432,158},{16,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_head22.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,16}</string>
+				<key>spriteSize</key>
+				<string>{16,16}</string>
+				<key>textureRect</key>
+				<string>{{449,158},{16,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_head23.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,15}</string>
+				<key>spriteSize</key>
+				<string>{16,15}</string>
+				<key>textureRect</key>
+				<string>{{466,158},{16,15}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_head24.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,14}</string>
+				<key>spriteSize</key>
+				<string>{16,14}</string>
+				<key>textureRect</key>
+				<string>{{483,158},{16,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_head25.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,14}</string>
+				<key>spriteSize</key>
+				<string>{16,14}</string>
+				<key>textureRect</key>
+				<string>{{500,158},{16,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_head26.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{16,15}</string>
+				<key>spriteSize</key>
+				<string>{16,15}</string>
+				<key>textureRect</key>
+				<string>{{517,158},{16,15}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow0.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{0,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow1.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{18,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow2.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{36,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow3.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{54,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow4.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{72,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow5.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{90,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow6.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{108,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow7.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{126,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow8.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{144,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow9.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{162,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow10.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{180,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow11.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{198,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow12.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{216,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow13.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{234,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow14.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{252,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow15.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{270,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow16.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{288,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow17.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{306,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow18.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{324,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow19.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{342,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow20.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{360,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow21.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{378,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow22.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{396,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow23.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{414,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow24.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{432,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow25.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{450,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow26.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{468,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Vampires3_Run_shadow27.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{486,188},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>3</integer>
+			<key>realTextureFileName</key>
+			<string>Vampires3_Run_body.png</string>
+			<key>textureFileName</key>
+			<string>Vampires3_Run_body.png</string>
+			<key>size</key>
+			<string>{540,198}</string>
+		</dict>
+	</dict>
+</plist>

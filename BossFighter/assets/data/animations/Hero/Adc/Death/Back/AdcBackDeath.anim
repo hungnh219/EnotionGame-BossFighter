@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "AdcBackDeath",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.25,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "46be2f10-a2e4-4612-8596-d6aee45400cb"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "e5e213f5-351c-499e-a9f3-342e298a9741"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "724e984a-bd47-434c-9001-c4804508dbbf"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "03289c1e-0cec-4527-bfbd-e98649e637fc"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "839dac99-b634-4046-a723-4f5e24493925"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>spritesheet-40.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{20,43}</string>
+				<key>spriteSize</key>
+				<string>{20,43}</string>
+				<key>textureRect</key>
+				<string>{{0,0},{20,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>spritesheet-41.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,44}</string>
+				<key>spriteSize</key>
+				<string>{26,44}</string>
+				<key>textureRect</key>
+				<string>{{21,0},{26,44}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>spritesheet-42.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{29,43}</string>
+				<key>spriteSize</key>
+				<string>{29,43}</string>
+				<key>textureRect</key>
+				<string>{{48,0},{29,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4827586206896552,0}</string>
+			</dict>
+			<key>spritesheet-43.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,43}</string>
+				<key>spriteSize</key>
+				<string>{28,43}</string>
+				<key>textureRect</key>
+				<string>{{78,0},{28,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>spritesheet-44.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{23,44}</string>
+				<key>spriteSize</key>
+				<string>{23,44}</string>
+				<key>textureRect</key>
+				<string>{{107,0},{23,44}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5217391304347826,0}</string>
+			</dict>
+			<key>spritesheet-45.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,44}</string>
+				<key>spriteSize</key>
+				<string>{28,44}</string>
+				<key>textureRect</key>
+				<string>{{131,0},{28,44}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>spritesheet-46.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{32,40}</string>
+				<key>spriteSize</key>
+				<string>{32,40}</string>
+				<key>textureRect</key>
+				<string>{{160,0},{32,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>spritesheet-47.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{35,40}</string>
+				<key>spriteSize</key>
+				<string>{35,40}</string>
+				<key>textureRect</key>
+				<string>{{193,0},{35,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5142857142857142,0}</string>
+			</dict>
+			<key>spritesheet-48.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{25,41}</string>
+				<key>spriteSize</key>
+				<string>{25,41}</string>
+				<key>textureRect</key>
+				<string>{{229,0},{25,41}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.48,0}</string>
+			</dict>
+			<key>spritesheet-49.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{20,43}</string>
+				<key>spriteSize</key>
+				<string>{20,43}</string>
+				<key>textureRect</key>
+				<string>{{255,0},{20,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>3</integer>
+			<key>realTextureFileName</key>
+			<string>spritesheet-4.png</string>
+			<key>textureFileName</key>
+			<string>spritesheet-4.png</string>
+			<key>size</key>
+			<string>{276,44}</string>
+		</dict>
+	</dict>
+</plist>

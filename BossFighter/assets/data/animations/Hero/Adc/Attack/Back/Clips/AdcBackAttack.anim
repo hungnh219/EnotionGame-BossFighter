@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "AdcBackAttack",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.2,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "78668dde-1541-4bce-b71f-c60f6bc5feeb"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "2ee5103a-f595-49f0-a8ce-4465fb55ba1f"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "831ded41-6cc7-4c63-a5ab-945b831700ee"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "cb520d30-baaa-49a4-aa73-937c1caa3ce6"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

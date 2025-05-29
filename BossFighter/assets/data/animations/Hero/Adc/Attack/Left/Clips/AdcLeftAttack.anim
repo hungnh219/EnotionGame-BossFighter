@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "AdcLeftAttack",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.25,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "207edb7b-1eaf-42ac-b177-52b2da56d990"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "640987ed-a9f9-45fc-8e7c-580eab65b79f"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "74eedf06-cdb0-4cb4-9512-118057abb5dd"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "36a3a57b-920e-44ef-aaf0-f859122287f4"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "83f7a873-5d50-4c04-9399-35aaf68d9f5f"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

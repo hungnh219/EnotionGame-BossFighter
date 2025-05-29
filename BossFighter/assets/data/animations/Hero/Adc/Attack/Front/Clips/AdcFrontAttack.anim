@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "AdcFrontAttack",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.2,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "7067d47c-da5e-4988-b719-7b127f0712c7"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "c0493fad-e8d6-4101-99fd-b769f9f2fdc9"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "94c777fe-f8da-4386-8b15-15a34c499da7"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "9bdd0f76-80eb-4f11-ab1d-dbce1a7c6429"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

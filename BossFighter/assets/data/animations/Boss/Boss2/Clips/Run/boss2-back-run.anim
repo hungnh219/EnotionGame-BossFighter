@@ -1,0 +1,37 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "boss2-back-run",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.15,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "eb867c53-9b11-46c5-926c-b71d710fa8c0"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "545515d9-4564-4cb0-9ca5-b094f573118a"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "e8d51c83-401b-4856-b486-54d190f967a5"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
