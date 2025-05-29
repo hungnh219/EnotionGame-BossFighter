@@ -1,0 +1,37 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "AdcBackHurt",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.15,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "78f64cb1-635d-4904-b7cf-c80a6d3b7683"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "46be2f10-a2e4-4612-8596-d6aee45400cb"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "e5e213f5-351c-499e-a9f3-342e298a9741"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

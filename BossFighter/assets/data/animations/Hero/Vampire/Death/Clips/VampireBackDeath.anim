@@ -1,0 +1,73 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "VampireBackDeath",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.3,
+  "sample": 30,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "b31330a3-2ab2-4e6b-b3fa-ab7ae41aa52d"
+            }
+          },
+          {
+            "frame": 0.03333333333333333,
+            "value": {
+              "__uuid__": "24bbf6cc-c465-4b20-9f99-5a4a942602be"
+            }
+          },
+          {
+            "frame": 0.06666666666666667,
+            "value": {
+              "__uuid__": "c913bea5-57ac-4d4b-bc68-fdd419b04d30"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "4a9cb14a-e65a-429c-b400-affdcc8d14e2"
+            }
+          },
+          {
+            "frame": 0.13333333333333333,
+            "value": {
+              "__uuid__": "b9c9377b-109b-497b-993e-dc7e04394682"
+            }
+          },
+          {
+            "frame": 0.16666666666666666,
+            "value": {
+              "__uuid__": "64d27433-349d-4f5d-a28a-f7cfad61020a"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "6d929257-426c-47e1-9f14-a033d94f1b74"
+            }
+          },
+          {
+            "frame": 0.23333333333333334,
+            "value": {
+              "__uuid__": "200f762e-7dfb-4d37-b666-37f0053a8c8d"
+            }
+          },
+          {
+            "frame": 0.26666666666666666,
+            "value": {
+              "__uuid__": "cd0c191f-c0f2-4a4f-a170-a02ce5513314"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
