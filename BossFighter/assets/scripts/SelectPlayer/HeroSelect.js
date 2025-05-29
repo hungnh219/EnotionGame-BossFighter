@@ -215,8 +215,8 @@ cc.Class({
             const sprite = heroImageNode.addComponent(cc.Sprite);
             sprite.spriteFrame = this.heros[this.heroPicked.index].imageSprite.getComponent(cc.Sprite).spriteFrame;
             sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
-            heroImageNode.width = 250;
-            heroImageNode.height = 250;
+            heroImageNode.width = 150;
+            heroImageNode.height = 150;
 
             this.heroLockedList.node.insertChild(heroImageNode, this.heroLockedList.node.childrenCount - 1);
 
