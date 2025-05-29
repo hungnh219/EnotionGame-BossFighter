@@ -113,7 +113,6 @@ cc.Class({
                     const heroInfo = hero.mainScript.getCharacterInfo();
                     this.heros[index] = heroInfo;
 
-                    console.log('Hero info:', heroInfo);
                     const heroImageNode = new cc.Node('HeroImageNode');
                     const sprite = heroImageNode.addComponent(cc.Sprite);
                     sprite.spriteFrame = heroInfo.imageSprite.getComponent(cc.Sprite).spriteFrame;

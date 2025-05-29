@@ -12,7 +12,6 @@ cc.Class({
 
     onMouseEnter() {
         let cursorManager = this.cursorManager.getComponent('CursorManager');
-        console.log(cursorManager)
         if (cursorManager) {
 
             cursorManager.hideBackgroundCursor();

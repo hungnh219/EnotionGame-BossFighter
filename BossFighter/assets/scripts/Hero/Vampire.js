@@ -1,5 +1,19 @@
 import Character from "../Character";
 
+const VAMPIRE_ANIMATION = {
+    "attack_front": "VampireFrontAttack",
+    "attack_left": "VampireLeftAttack",
+    "attack_back": "VampireBackAttack",
+    "attack_right": "VampireRightAttack",
+
+    "walk_front": "VampireBackRun",
+    "walk_back": "VampireFrontRun",
+    "walk_left": "VampireLeftRun",
+    "walk_right": "VampireRightRun",
+
+    "idle": "VampireIdle",
+}
+
 cc.Class({
     extends: Character,
 
@@ -57,8 +71,40 @@ cc.Class({
 
                 console.log(this.damage)
                 spawnAnimationCallback(this.ultimatePrefab ,tile, times, this.ultimateDame);
+                
             }
         }
+
+        this.resetUltimateCooldown();
+    },
+
+    playAnimation(animationName, moveTime) {
+        const clipName = VAMPIRE_ANIMATION[animationName];
+        if (!clipName) {
+            cc.error("Invalid animation name:", animationName);
+            return;
+        }
+        const imageNode = this.node.getChildByName('Image');
+        if (!imageNode) {
+            cc.error("Không tìm thấy node con image.");
+            return;
+        }
+        const anim = imageNode.getComponent(cc.Animation);
+        if (!anim) {
+            cc.error("Node 'image' không có component cc.Animation.");
+            return;
+        }
+        const clip = anim.getClips().find(c => c.name === clipName);
+        if (!clip) {
+            cc.error("Không tìm thấy animation clip:", clipName);
+            return;
+        }
+        if (moveTime && clip.duration > 0) {
+            anim.speed = clip.duration / moveTime;
+        } else {
+            anim.speed = 1;
+        }
+        anim.play(clipName);
     }
 
     // update (dt) {},

@@ -1,5 +1,20 @@
 import EventBus from "./EventBus";
 import GameController from "./Game/GameController";
+const ANIM_MAP = {
+    'idle': 'Idle',
+    'walk': {
+        'front': 'walk_front',
+        'back': 'walk_back',
+        'left': 'walk_left',
+        'right': 'walk_right',
+    }, 
+    'attack': {
+        'front': 'attack_front',
+        'back': 'attack_back',
+        'left': 'attack_left',
+        'right': 'attack_right',
+    }
+}
 
 cc.Class({
     extends: cc.Component,
@@ -33,6 +48,7 @@ cc.Class({
                 console.warn('Invalid parameters for displaying walkable area');
                 return;
             }
+
             this.clickNode = node;
             this.displayWalkableArea(firstCellPos, lastCellPos, walkableGridMap, node);
         }, this);
@@ -69,29 +85,99 @@ cc.Class({
 
 
     // =================== Movement Logic ===================
+    // moveToWalkableTile(nodeMove, newPosNode) {
+    //     // this.isHeroMoving = true;
+    //     let mapSetting = this.gameController.getMapSetting();
+    //     if (!mapSetting) {
+    //         console.warn('Map setting is not initialized');
+    //         return;
+    //     }
+
+    //     if (nodeMove == undefined || nodeMove == null) {
+    //         nodeMove = this.clickNode;
+    //         if (this.clickNode == undefined || this.clickNode == null) return;
+    //     }
+
+    //     if (newPosNode == undefined || newPosNode == null) {
+    //         console.warn('New tile node is undefined or null');
+    //         return;
+    //     }
+    //     let oldGridX = Math.floor((nodeMove.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
+    //     let oldGridY = Math.floor((nodeMove.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
+
+    //     let newGridX = Math.floor((newPosNode.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
+    //     let newGridY = Math.floor((newPosNode.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
+       
+    //     const maxSteps = 3 + 3 - 2;
+    //     const path = this.findPath(
+    //         {x: oldGridX, y: oldGridY },
+    //         { x: newGridX, y: newGridY },
+    //         this.walkableGridMap,
+    //         maxSteps,
+    //     );
+
+    //     if (!path) {
+    //         console.warn("Không tìm được đường đi!");
+    //         return;
+    //     }
+
+    //     // calcalute steps to move
+    //     let steps = [];
+    //     for (let i = 1; i < path.length; i++) {
+    //         const prev = path[i - 1];
+    //         const curr = path[i];
+    //         const direction = this.getDirection(prev, curr);
+    //         this.playAnimation(nodeMove, 'walk', direction);
+
+    //         const p = path[i];
+    //         const px = this.firstCellPos.x + p.x * mapSetting.mapTileWidth + mapSetting.mapTileWidth / 2;
+    //         const py = this.firstCellPos.y + p.y * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
+    //         steps.push(cc.moveTo(0.4, px, py));
+
+    //         this.isMoving = false;
+    //         // let move = cc.Tween(nodeMove)
+    //         //     .to(0.4, { x: px, y: py })
+    //         // steps.push(move);
+    //     }
+
+    //     const finishCallback = cc.callFunc(() => {
+    //         this.walkableGridMap[oldGridX][oldGridY] = true;
+    //         this.walkableGridMap[newGridX][newGridY] = false;
+
+    //         this.gameController.consumePlayerTurn();
+
+    //         if (this.gameController.getPlayerTurnCount() <= 0) {
+    //             this.gameController.enemyAutoMode();
+    //         }
+    //         // this.isHeroMoving = false;
+    //         // this.clearWalkableArea();
+    //     });
+
+    //     // Chạy sequence
+    //     steps.push(finishCallback);
+    //     const sequence = cc.sequence(...steps);
+    //     nodeMove.runAction(sequence);
+        
+    //     // if node is hero, update turn
+    //     // this.gameController.consumePlayerTurn();
+    //     this.clearWalkableArea();
+    // },
     moveToWalkableTile(nodeMove, newPosNode) {
-        // this.isHeroMoving = true;
         let mapSetting = this.gameController.getMapSetting();
-        if (!mapSetting) {
-            console.warn('Map setting is not initialized');
-            return;
-        }
+        if (!mapSetting) return;
 
         if (nodeMove == undefined || nodeMove == null) {
             nodeMove = this.clickNode;
             if (this.clickNode == undefined || this.clickNode == null) return;
         }
+        if (newPosNode == undefined || newPosNode == null) return;
 
-        if (newPosNode == undefined || newPosNode == null) {
-            console.warn('New tile node is undefined or null');
-            return;
-        }
         let oldGridX = Math.floor((nodeMove.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
         let oldGridY = Math.floor((nodeMove.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
 
         let newGridX = Math.floor((newPosNode.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
         let newGridY = Math.floor((newPosNode.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
-       
+
         const maxSteps = 3 + 3 - 2;
         const path = this.findPath(
             {x: oldGridX, y: oldGridY },
@@ -105,45 +191,41 @@ cc.Class({
             return;
         }
 
-        // calcalute steps to move
-        let steps = [];
-        for (let i = 1; i < path.length; i++) {
+        // Chạy từng bước một cách tuần tự
+        const moveStep = (i) => {
+            if (i >= path.length) {
+                // Finish
+                this.walkableGridMap[oldGridX][oldGridY] = true;
+                this.walkableGridMap[newGridX][newGridY] = false;
+                this.gameController.consumePlayerTurn();
+                if (this.gameController.getPlayerTurnCount() <= 0) {
+                    this.gameController.enemyAutoMode();
+                }
+                // this.clearWalkableArea();
+                return;
+            }
+            if (i > 0) {
+                const prev = path[i - 1];
+                const curr = path[i];
+                const direction = this.getDirection(prev, curr);
+                this.playAnimation(nodeMove, 'walk', direction);
+            }
             const p = path[i];
             const px = this.firstCellPos.x + p.x * mapSetting.mapTileWidth + mapSetting.mapTileWidth / 2;
             const py = this.firstCellPos.y + p.y * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
-            steps.push(cc.moveTo(0.4, px, py));
-
-            this.isMoving = false;
-            // let move = cc.Tween(nodeMove)
-            //     .to(0.4, { x: px, y: py })
-            // steps.push(move);
-        }
-
-        const finishCallback = cc.callFunc(() => {
-            console.log('Node moved to new position');
-            this.walkableGridMap[oldGridX][oldGridY] = true;
-            this.walkableGridMap[newGridX][newGridY] = false;
-
-            this.gameController.consumePlayerTurn();
-
-            if (this.gameController.getPlayerTurnCount() <= 0) {
-                this.gameController.enemyAutoMode();
-            }
-            // this.isHeroMoving = false;
-            // this.clearWalkableArea();
-        });
-
-        // Chạy sequence
-        steps.push(finishCallback);
-        const sequence = cc.sequence(...steps);
-        nodeMove.runAction(sequence);
-        
-        // if node is hero, update turn
-        // this.gameController.consumePlayerTurn();
+            nodeMove.runAction(
+                cc.sequence(
+                    cc.moveTo(0.4, px, py),
+                    cc.callFunc(() => moveStep(i + 1))
+                )
+            );
+        };
         this.clearWalkableArea();
+        moveStep(1); // bắt đầu từ bước 1 (bỏ vị trí hiện tại)
     },
 
     displayWalkableArea(firstCellPos, lastCellPos, walkableGridMap, node) {
+
         let mapSetting = this.gameController.getMapSetting();
         this.firstCellPos = firstCellPos;
         this.lastCellPos = lastCellPos;
@@ -372,4 +454,28 @@ cc.Class({
 
         return null; // không tìm được đường đi
     },
+    // =================== animation move logic ===================
+    getDirection(current, next) {
+        if (next.x > current.x) return 'right';
+        if (next.x < current.x) return 'left';
+        if (next.y > current.y) return 'front';
+        if (next.y < current.y) return 'back';
+        return 'front';
+    },
+
+    playAnimation(node, actionName, direction) {
+        node.mainScript = node.getComponents(cc.Component).find(c => typeof c.playAnimation === 'function');
+        if (!node.mainScript) {
+            cc.error("Node does not have a main script with playAnimation method");
+            return;
+        }
+
+        let animationName = ANIM_MAP[actionName][direction];
+        if (!animationName) {
+            cc.error("Invalid action name or direction:", actionName, direction);
+            return;
+        }
+
+        node.mainScript.playAnimation(animationName, 0.4);
+    }
 });

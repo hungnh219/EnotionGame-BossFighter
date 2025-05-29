@@ -1595,10 +1595,10 @@
     ],
     "bossPrefabs": [
       {
-        "__uuid__": "2efb3306-4ebd-4c4b-b2e1-525a442cdc7d"
+        "__uuid__": "6a0059bf-7362-47e9-b4f6-f80307c0a9dd"
       },
       {
-        "__uuid__": "2efb3306-4ebd-4c4b-b2e1-525a442cdc7d"
+        "__uuid__": "8450be02-85d8-4c18-8ac8-4af316a60a5d"
       },
       {
         "__uuid__": "2efb3306-4ebd-4c4b-b2e1-525a442cdc7d"
@@ -3942,7 +3942,7 @@
       "__id__": 78
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 80
@@ -12757,6 +12757,6 @@
     "cursorOnButton": {
       "__id__": 272
     },
-    "_id": "db7x7jHLZPvogZkKUO4rlk"
+    "_id": "6b7qqT66RK/7CxNWkItYJs"
   }
 ]

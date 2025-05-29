@@ -112,7 +112,11 @@ cc.Class({
         this.mapLayout.node.y = -this.mapHeight * this.mapTileHeight / 2;
 
         // this.mapHeight
-
+        this.gameController.setCallbacks(
+            (playerTurn) => this.updatePlayerTurnLabel(playerTurn),
+            (heroInfo, ultimateCooldown) => this.updateHeroInfoUI(heroInfo, ultimateCooldown),
+            () => this.endGameNotification()
+        )
     },
 
     start() {
@@ -123,11 +127,7 @@ cc.Class({
         this.gameController.setHighlightTilePrefab(this.greenTilePrefab);
         this.gameController.setRootNode(this.rootNode);
         this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
-        this.gameController.setCallbacks(
-            (playerTurn) => this.updatePlayerTurnLabel(playerTurn),
-            (heroInfo, ultimateCooldown) => this.updateHeroInfoUI(heroInfo, ultimateCooldown),
-            () => this.endGameNotification()
-        )
+        
 
         this.gameController.startGame();
 
@@ -145,11 +145,8 @@ cc.Class({
         this.initMapView();
 
         if (this.heroPrefabs) this.spawnHero();
-        this.spawnBoss();
-        // this.gameController.startPlayerTurn();
 
         this.ultimateGreyPrefab = cc.instantiate(this.greyTilePrefab);
-        // this.ultimateCooldownLabel.parent.addChild(this.ultimateGreyPrefab);
 
         this.ultimateGreyPrefab.parent = this.ultimateCooldownLabel.node.parent;
     },
@@ -177,21 +174,7 @@ cc.Class({
         this.mapHeight = mapObjects.length;
         this.mapWidth = mapObjects[0].length;
 
-
-        // this.bossNode 
-        let bossesIndex = jsonData.bosses;
-        let bossesPosition = jsonData.bossesPosition;
-        let bossesSize = jsonData.bossesSize;
-
-        console.log(bossesIndex, bossesPosition, bossesSize);
-        if (bossesIndex && bossesIndex.length > 0) {
-            bossesIndex.forEach((bossIndex) => {
-                this.bossNode[bossIndex] = cc.instantiate(this.bossPrefabs[bossIndex]);
-
-                this.spawnBoss(this.bossNode[bossIndex], bossesPosition[bossIndex], bossesSize[bossIndex]);
-            })
-        }
-
+        this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
 
         for (let i = 0; i < mapObjects.length; i++) {
             for (let j = 0; j < mapObjects[i].length; j++) {
@@ -200,6 +183,7 @@ cc.Class({
                 const objectId = mapObjects[newI][j];
 
                 if (objectId === 0) {
+                    this.gameController.updateWalkable(j, i, 1, true);
                     continue;
                 }
 
@@ -220,6 +204,18 @@ cc.Class({
                 this.addObjectIntoMap(j, i, 1, prefab);
                 this.gameController.updateWalkable(j, i, 1, false);
             }
+        }
+
+        let bossesIndex = jsonData.bosses;
+        let bossesPosition = jsonData.bossesPosition;
+        let bossesSize = jsonData.bossesSize;
+
+        if (bossesIndex && bossesIndex.length > 0) {
+            bossesIndex.forEach((bossIndex) => {
+                this.bossNode[bossIndex] = cc.instantiate(this.bossPrefabs[bossIndex]);
+
+                this.spawnBoss(this.bossNode[bossIndex], bossesPosition[bossIndex], bossesSize[bossIndex]);
+            })
         }
     },
 
@@ -278,7 +274,7 @@ cc.Class({
                     object: null,
                 })
 
-                this.gameController.updateWalkable(i, j, 1, true);
+                // this.gameController.updateWalkable(i, j, 1, true);
             }
             this.gridMap.push(row);
         }
@@ -307,14 +303,6 @@ cc.Class({
     },
 
     spawnBoss(bossNode, position, size = 1) {
-        // const size = 2;
-
-        // const posX = this.mapWidth - 3;
-        // const posY = this.mapHeight - 3;
-
-        // this.bossNode = cc.instantiate(this.bossPrefabs[this.mapIndex]);
-        // this.gameController.addBoss(this.bossNode, size);
-
         const posX = position.x ? position.x : this.mapWidth - 3;
         const posY = position.y ? position.y : this.mapHeight - 3;
 
@@ -338,6 +326,8 @@ cc.Class({
         this.addObjectIntoMap(posX, posY, 2, bossNode);
         // this.updateWalkable(posX, posY, size, false);
         this.gameController.updateWalkable(posX, posY, size, false);
+        this.gameController.addBoss(bossNode, size);
+
     },
 
     // enemy always has size = 1

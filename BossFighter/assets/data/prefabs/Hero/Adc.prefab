@@ -561,6 +561,7 @@
     "hpBar": {
       "__id__": 12
     },
+    "characterId": "hero002",
     "ultimatePrefab": {
       "__uuid__": "3ef9ee0f-e93e-4512-bc1c-b7e2c2540ef6"
     },
