@@ -1299,7 +1299,7 @@
         "__id__": 45
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 47
