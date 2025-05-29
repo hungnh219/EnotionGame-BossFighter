@@ -74,7 +74,7 @@ const CHARACTER_DATA = {
         "role": "Boss",
         "description": "A formidable enemy that poses a significant challenge, requiring teamwork and strategy to defeat. It has high health and devastating attacks.",
         "properties": {
-            "health": 5000,
+            "health": 1000,
             "attackDame": 400,
             "attackRange": 2,
 
@@ -89,7 +89,7 @@ const CHARACTER_DATA = {
         "role": "Boss",
         "description": "An even more powerful boss that tests the limits of the players' abilities, with unique attacks and mechanics that require careful planning to overcome.",
         "properties": {
-            "health": 7000,
+            "health": 1000,
             "attackDame": 500,
             "attackRange": 3,
 
@@ -104,7 +104,7 @@ const CHARACTER_DATA = {
         "role": "Boss",
         "description": "The ultimate challenge, this boss combines devastating attacks with complex mechanics, requiring the best strategies and teamwork to defeat.",
         "properties": {
-            "health": 10000,
+            "health": 1000,
             "attackDame": 600,
             "attackRange": 3,
 
