@@ -1,0 +1,55 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "boss1-front-hurt",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.3,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "f1905b2d-b341-4cc2-ba65-fb8bcb760ea2"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "afd4c644-80a8-4720-ab3f-4ed96459f57f"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "608e7efe-7f79-4856-b9a9-dfd9d564fb3d"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "6f9eed8d-832a-48b4-b7ab-64140d56d1c7"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "5e21b226-943f-4203-b490-864e8552a779"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "94552c94-8c07-4bcf-9793-d1bf5e66c628"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

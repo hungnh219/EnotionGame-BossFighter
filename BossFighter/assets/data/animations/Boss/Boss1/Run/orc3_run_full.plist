@@ -1,0 +1,564 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>orc3_run_full0.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{36,40}</string>
+				<key>spriteSize</key>
+				<string>{36,40}</string>
+				<key>textureRect</key>
+				<string>{{0,0},{36,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_run_full1.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{37,39}</string>
+				<key>spriteSize</key>
+				<string>{37,39}</string>
+				<key>textureRect</key>
+				<string>{{37,0},{37,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4864864864864865,0}</string>
+			</dict>
+			<key>orc3_run_full2.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,39}</string>
+				<key>spriteSize</key>
+				<string>{39,39}</string>
+				<key>textureRect</key>
+				<string>{{75,0},{39,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>orc3_run_full3.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{40,42}</string>
+				<key>spriteSize</key>
+				<string>{40,42}</string>
+				<key>textureRect</key>
+				<string>{{115,0},{40,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_run_full4.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{40,40}</string>
+				<key>spriteSize</key>
+				<string>{40,40}</string>
+				<key>textureRect</key>
+				<string>{{156,0},{40,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_run_full5.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,37}</string>
+				<key>spriteSize</key>
+				<string>{39,37}</string>
+				<key>textureRect</key>
+				<string>{{197,0},{39,37}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>orc3_run_full6.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{37,39}</string>
+				<key>spriteSize</key>
+				<string>{37,39}</string>
+				<key>textureRect</key>
+				<string>{{237,0},{37,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4864864864864865,0}</string>
+			</dict>
+			<key>orc3_run_full7.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{36,42}</string>
+				<key>spriteSize</key>
+				<string>{36,42}</string>
+				<key>textureRect</key>
+				<string>{{275,0},{36,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_run_full8.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{36,40}</string>
+				<key>spriteSize</key>
+				<string>{36,40}</string>
+				<key>textureRect</key>
+				<string>{{312,0},{36,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_run_full9.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{37,39}</string>
+				<key>spriteSize</key>
+				<string>{37,39}</string>
+				<key>textureRect</key>
+				<string>{{349,0},{37,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4864864864864865,0}</string>
+			</dict>
+			<key>orc3_run_full10.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{38,39}</string>
+				<key>spriteSize</key>
+				<string>{38,39}</string>
+				<key>textureRect</key>
+				<string>{{387,0},{38,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5263157894736842,0}</string>
+			</dict>
+			<key>orc3_run_full11.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,42}</string>
+				<key>spriteSize</key>
+				<string>{39,42}</string>
+				<key>textureRect</key>
+				<string>{{426,0},{39,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>orc3_run_full12.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,40}</string>
+				<key>spriteSize</key>
+				<string>{39,40}</string>
+				<key>textureRect</key>
+				<string>{{466,0},{39,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>orc3_run_full13.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{38,37}</string>
+				<key>spriteSize</key>
+				<string>{38,37}</string>
+				<key>textureRect</key>
+				<string>{{506,0},{38,37}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5263157894736842,0}</string>
+			</dict>
+			<key>orc3_run_full14.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{37,39}</string>
+				<key>spriteSize</key>
+				<string>{37,39}</string>
+				<key>textureRect</key>
+				<string>{{545,0},{37,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4864864864864865,0}</string>
+			</dict>
+			<key>orc3_run_full15.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{36,42}</string>
+				<key>spriteSize</key>
+				<string>{36,42}</string>
+				<key>textureRect</key>
+				<string>{{583,0},{36,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_run_full16.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{30,40}</string>
+				<key>spriteSize</key>
+				<string>{30,40}</string>
+				<key>textureRect</key>
+				<string>{{620,0},{30,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>orc3_run_full17.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{31,39}</string>
+				<key>spriteSize</key>
+				<string>{31,39}</string>
+				<key>textureRect</key>
+				<string>{{651,0},{31,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5161290322580645,0}</string>
+			</dict>
+			<key>orc3_run_full18.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{31,39}</string>
+				<key>spriteSize</key>
+				<string>{31,39}</string>
+				<key>textureRect</key>
+				<string>{{683,0},{31,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5161290322580645,0}</string>
+			</dict>
+			<key>orc3_run_full19.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,42}</string>
+				<key>spriteSize</key>
+				<string>{28,42}</string>
+				<key>textureRect</key>
+				<string>{{715,0},{28,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_run_full20.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{29,40}</string>
+				<key>spriteSize</key>
+				<string>{29,40}</string>
+				<key>textureRect</key>
+				<string>{{744,0},{29,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4827586206896552,0}</string>
+			</dict>
+			<key>orc3_run_full21.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{29,39}</string>
+				<key>spriteSize</key>
+				<string>{29,39}</string>
+				<key>textureRect</key>
+				<string>{{774,0},{29,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4827586206896552,0}</string>
+			</dict>
+			<key>orc3_run_full22.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{29,39}</string>
+				<key>spriteSize</key>
+				<string>{29,39}</string>
+				<key>textureRect</key>
+				<string>{{804,0},{29,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4827586206896552,0}</string>
+			</dict>
+			<key>orc3_run_full23.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,42}</string>
+				<key>spriteSize</key>
+				<string>{26,42}</string>
+				<key>textureRect</key>
+				<string>{{834,0},{26,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>orc3_run_full24.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,40}</string>
+				<key>spriteSize</key>
+				<string>{26,40}</string>
+				<key>textureRect</key>
+				<string>{{861,0},{26,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>orc3_run_full25.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{27,39}</string>
+				<key>spriteSize</key>
+				<string>{27,39}</string>
+				<key>textureRect</key>
+				<string>{{888,0},{27,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5185185185185185,0}</string>
+			</dict>
+			<key>orc3_run_full26.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{27,39}</string>
+				<key>spriteSize</key>
+				<string>{27,39}</string>
+				<key>textureRect</key>
+				<string>{{916,0},{27,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5185185185185185,0}</string>
+			</dict>
+			<key>orc3_run_full27.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{24,42}</string>
+				<key>spriteSize</key>
+				<string>{24,42}</string>
+				<key>textureRect</key>
+				<string>{{944,0},{24,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_run_full28.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{25,40}</string>
+				<key>spriteSize</key>
+				<string>{25,40}</string>
+				<key>textureRect</key>
+				<string>{{969,0},{25,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.48,0}</string>
+			</dict>
+			<key>orc3_run_full29.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{25,39}</string>
+				<key>spriteSize</key>
+				<string>{25,39}</string>
+				<key>textureRect</key>
+				<string>{{995,0},{25,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.48,0}</string>
+			</dict>
+			<key>orc3_run_full30.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{25,39}</string>
+				<key>spriteSize</key>
+				<string>{25,39}</string>
+				<key>textureRect</key>
+				<string>{{1021,0},{25,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.48,0}</string>
+			</dict>
+			<key>orc3_run_full31.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{23,42}</string>
+				<key>spriteSize</key>
+				<string>{23,42}</string>
+				<key>textureRect</key>
+				<string>{{1047,0},{23,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5217391304347826,0}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>3</integer>
+			<key>realTextureFileName</key>
+			<string>orc3_run_full.png</string>
+			<key>textureFileName</key>
+			<string>orc3_run_full.png</string>
+			<key>size</key>
+			<string>{1070,42}</string>
+		</dict>
+	</dict>
+</plist>
