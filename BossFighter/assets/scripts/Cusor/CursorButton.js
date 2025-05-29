@@ -11,7 +11,6 @@ cc.Class({
     },
 
     onMouseEnter() {
-        console.log("Nhan duoc ham hideBackground showButton")
         let cursorManager = this.cursorManager.getComponent('CursorManager');
         console.log(cursorManager)
         if (cursorManager) {
@@ -26,8 +25,6 @@ cc.Class({
     },
 
     onMouseLeave() {
-        console.log("Nhan duoc ham showButton hideBackground ")
-
         let cursorManager = this.cursorManager.getComponent('CursorManager');
         if (cursorManager) {
             cursorManager.showBackgroundCursor();

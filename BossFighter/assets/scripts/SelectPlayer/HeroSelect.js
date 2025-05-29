@@ -95,7 +95,6 @@ cc.Class({
         // Tạo node tạm thời để chạy onLoad/
         const tempNode = new cc.Node();
         cc.director.getScene().addChild(tempNode); // hoặc node nào đang hiển thị
-
         this.heroPrefabs.forEach((heroPrefab, index) => {
             const hero = cc.instantiate(heroPrefab);
 
