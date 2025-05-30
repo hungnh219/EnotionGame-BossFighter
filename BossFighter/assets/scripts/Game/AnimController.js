@@ -43,5 +43,20 @@ cc.Class({
 
     },
 
+    playAnimation(node, actionName, direction) {
+        node.mainScript = node.getComponents(cc.Component).find(c => typeof c.playAnimation === 'function');
+        if (!node.mainScript) {
+            cc.error("Node does not have a main script with playAnimation method");
+            return;
+        }
+
+        let animationName = ANIM_MAP[actionName][direction];
+        if (!animationName) {
+            cc.error("Invalid action name or direction:", actionName, direction);
+            return;
+        }
+
+        node.mainScript.playAnimation(animationName, 0.4);
+    },
     // update (dt) {},
 });
