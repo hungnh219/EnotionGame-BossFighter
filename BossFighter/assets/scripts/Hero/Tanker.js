@@ -65,7 +65,11 @@ cc.Class({
             anim.speed = 1;
         }
         anim.play(clipName);
-    }
+    },
+
+    attack(direction) {
+        this.playAnimation("attack_" + direction, 0.5);
+    },
 
     // update (dt) {},
 });

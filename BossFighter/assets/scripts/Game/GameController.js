@@ -400,32 +400,22 @@ const GameController = cc.Class({
         let dame = hero.mainScript.getAttackDame();
         if (enemy.mainScript && dame > 0) {
             // hero.mainScript.dealDame(enemy, 20);
+            
             enemy.mainScript.takeDame(dame);
+            
             let isBoss = this.bosses.some(b => b.node === enemy);
 
-            // calculate direction
+            // // calculate direction
             const enemyPos = this.positionToGrid(enemy);
             const heroPos = this.positionToGrid(hero);
             if (!enemyPos || !heroPos) return;
-            const dx = enemyPos.x - heroPos.x;
-            const dy = enemyPos.y - heroPos.y;
+            // const dx = enemyPos.x - heroPos.x;
+            // const dy = enemyPos.y - heroPos.y;
 
-            let direction = '';
-            if (dx > 0) {
-                if (dy > 0) {
-                    direction = 'back';
-                } else {
-                    direction = 'front';
-                }
-            } else {
-                if (dy > 0) {
-                    direction = 'left';
-                } else {
-                    direction = 'right';
-                }
-            }
+            let direction = this.getDirection(heroPos, enemyPos);
 
-            hero.mainScript.attack(direction);
+            // hero.mainScript.attack(direction);
+            hero.mainScript.attack(enemy, direction);
 
             if (enemy.mainScript.getCurrentHp() <= 0)  {
                 if (isBoss) {
@@ -565,11 +555,11 @@ const GameController = cc.Class({
             }
 
             if (hero.name == 'Vampire') {
-                this.testVampireUltimate(hero);
+                this.vampireUltimate(hero);
             } else if (hero.name == 'Bruiser') {
-                this.testBruiserUltimate(hero);
+                this.bruiserUltimate(hero);
             } else if (hero.name == 'Adc') {
-                this.testAdcUltimate(hero);
+                this.adcUltimate(hero);
             } else if (hero.name == 'Tanker') {
                 // this.testTankUltimate(hero);
             } else {
@@ -584,7 +574,7 @@ const GameController = cc.Class({
         }
     },
 
-    testAdcUltimate(hero) {
+    adcUltimate(hero) {
         if (hero == null || hero == undefined) hero = this.focusedHero;
 
         hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.ultimate === 'function');
@@ -610,7 +600,7 @@ const GameController = cc.Class({
         }
     },
 
-    testVampireUltimate(hero) {
+    vampireUltimate(hero) {
         if (hero == null || hero == undefined) hero = this.focusedHero;
 
         hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.ultimate === 'function');
@@ -623,7 +613,7 @@ const GameController = cc.Class({
         }
     },
 
-    testBruiserUltimate(hero) {
+    bruiserUltimate(hero) {
         if (hero == null || hero == undefined) hero = this.focusedHero;
 
         console.log('test bruiser ultimate');
@@ -972,8 +962,8 @@ const GameController = cc.Class({
     },
 
     setWonMap() {
-        if (this.mapPick <= this.gameWonIndex) return;
-        this.gameWonIndex = this.mapPick;
+        if (this.mapPick < this.gameWonIndex) return;
+        this.gameWonIndex = this.mapPick + 1;
     },
 
     getTurnOnMusic() {
@@ -983,6 +973,14 @@ const GameController = cc.Class({
 
     setIsTurnOnMusic(isTurnOn) {
         this.isTurnOnMusic = isTurnOn;
+    },
+
+    getDirection(current, next) {
+        if (next.x > current.x) return 'right';
+        if (next.x < current.x) return 'left';
+        if (next.y > current.y) return 'front';
+        if (next.y < current.y) return 'back';
+        return 'front';
     },
 });
 

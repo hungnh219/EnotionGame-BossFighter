@@ -1,10 +1,10 @@
 import Character from "../Character";
 
 const ADC_ANIMATION = {
-    "attack_front": "attack_front",
-    "attack_back": "attack_back",
-    "attack_left": "attack_left",
-    "attack_right": "attack_right",
+    "attack_front": "AdcFrontAttack",
+    "attack_back": "AdcBackAttack",
+    "attack_left": "AdcLeftAttack",
+    "attack_right": "AdcRightAttack",
 
     "walk_front": "AdcBackRun",
     "walk_back": "AdcFrontRun",
@@ -18,9 +18,10 @@ cc.Class({
     extends: Character,
 
     properties: {
-        characterId: "hero002",
+        characterId: "hero010",
 
         ultimatePrefab: cc.Prefab,
+        attackPrefab: cc.Prefab,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -59,25 +60,6 @@ cc.Class({
         }
     },
 
-    // playAnimation(animationName) {
-    //     const clipName = ADC_ANIMATION[animationName];
-    //     if (!clipName) {
-    //         cc.error("Invalid animation name:", animationName);
-    //         return;
-    //     }
-    //     // Tìm node con tên 'image'
-    //     const imageNode = this.node.getChildByName('Image');
-    //     if (!imageNode) {
-    //         cc.error("Không tìm thấy node con 'image' trên ADC.");
-    //         return;
-    //     }
-    //     const anim = imageNode.getComponent(cc.Animation);
-    //     if (!anim) {
-    //         cc.error("Node 'image' không có component cc.Animation.");
-    //         return;
-    //     }
-    //     anim.play(clipName);
-    // }
     playAnimation(animationName, moveTime) {
         const clipName = ADC_ANIMATION[animationName];
         if (!clipName) {
@@ -105,7 +87,27 @@ cc.Class({
             anim.speed = 1;
         }
         anim.play(clipName);
-    }
+    },
+    attackAnimation(direction) {
+        this.playAnimation("attack_" + direction, 0.5);
+    },
+    attack(enemy, direction){
+        console.log('Damge cua tuong', this.attackDame)
+        if(this.attackPrefab){
+            this.attackAnimation(direction);
+            const attackNode = cc.instantiate(this.attackPrefab);
+            attackNode.setPosition(this.node.getPosition());
+            this.node.parent.addChild(attackNode)
+            attackNode.mainScript = attackNode.getComponents(cc.Component).find(c=> typeof c.initDirection === 'function')
+
+            if(attackNode.mainScript){
+                attackNode.mainScript.initDirection(enemy, this.attackDame)
+            }
+        }
+        else{
+            cc.error('Attack prefab is not set for ADC')
+        }
+    },
 
     // update (dt) {},
 });

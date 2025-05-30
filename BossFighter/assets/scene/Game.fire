@@ -17,7 +17,7 @@
         "__id__": 2
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [],
     "_prefab": null,
     "_opacity": 255,
@@ -879,7 +879,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "characterHolder",
+    "_name": "holder",
     "_objFlags": 0,
     "_parent": {
       "__id__": 6
@@ -1579,7 +1579,7 @@
         "__uuid__": "1c84c57a-bb58-4fb0-a470-31ce3eda2eaf"
       },
       {
-        "__uuid__": "1c84c57a-bb58-4fb0-a470-31ce3eda2eaf"
+        "__uuid__": "556e006c-98d4-4dcc-91da-1bbba45bb835"
       },
       {
         "__uuid__": "556e006c-98d4-4dcc-91da-1bbba45bb835"
@@ -1590,7 +1590,7 @@
         "__uuid__": "76ff2a8f-ba6d-471f-8eb2-2d3b68ef7f93"
       },
       {
-        "__uuid__": "76ff2a8f-ba6d-471f-8eb2-2d3b68ef7f93"
+        "__uuid__": "284a3bfd-f044-4718-adf6-16f8b4d67532"
       },
       {
         "__uuid__": "284a3bfd-f044-4718-adf6-16f8b4d67532"
@@ -1598,7 +1598,7 @@
     ],
     "bossPrefabs": [
       {
-        "__uuid__": "2efb3306-4ebd-4c4b-b2e1-525a442cdc7d"
+        "__uuid__": "6a0059bf-7362-47e9-b4f6-f80307c0a9dd"
       },
       {
         "__uuid__": "8450be02-85d8-4c18-8ac8-4af316a60a5d"
@@ -3246,7 +3246,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 220,
+      "width": 150,
       "height": 15
     },
     "_anchorPoint": {
@@ -3309,7 +3309,7 @@
       "x": 0,
       "y": 0
     },
-    "_fillStart": 1,
+    "_fillStart": 0,
     "_fillRange": 0,
     "_isTrimmedMode": true,
     "_atlas": null,
@@ -3361,7 +3361,7 @@
     },
     "_N$mode": 0,
     "_N$progress": 1,
-    "_N$reverse": true,
+    "_N$reverse": false,
     "_id": "a2GWTAC6BDbb4muyXgo7SG"
   },
   {
@@ -8124,7 +8124,7 @@
       "__id__": 168
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 170
@@ -9288,7 +9288,7 @@
     },
     "component": "",
     "_componentId": "64416qwka9JyLGBQ0ciOcvS",
-    "handler": "nextGame",
+    "handler": "newGame",
     "customEventData": ""
   },
   {

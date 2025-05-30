@@ -30,7 +30,7 @@ const CHARACTER_DATA = {
             "attackCooldown": 1,
 
             "ultimateCooldown": 2,
-            "ultimateDame": 1500,
+            "ultimateDame": 400,
             "ultimateRange": 999,
         }
     },
@@ -146,7 +146,7 @@ cc.Class({
     },
 
     initData(characterNameId) {
-        this.health = CHARACTER_DATA[characterNameId].properties.health ?? 100;
+        this.health = CHARACTER_DATA[characterNameId].properties.health ? CHARACTER_DATA[characterNameId].properties.health : 100;
         this.maxHp = this.health;
 
         this.attackDame = CHARACTER_DATA[characterNameId].properties.attackDame ?? 10; 
@@ -164,8 +164,6 @@ cc.Class({
     },
 
     takeDame(dame) {
-        console.log(this.node.name, "taking damage:", dame);
-        
         this.health -= dame;
         this.health = Math.max(this.health, 0);
         if (this.hpBar) {
@@ -175,8 +173,6 @@ cc.Class({
         if (this.health <= 0) {
             this.die();
         }
-
-        console.log("Current health:", this.health);
     },
 
     dealDame(characterNode, dame) {

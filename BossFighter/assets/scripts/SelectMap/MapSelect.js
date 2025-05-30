@@ -41,7 +41,7 @@ cc.Class({
     hideLockedMaps() {
         const wonIndex = this.gameController.getWonMap();
 
-
+        console.log(wonIndex)
         // hardcode
         const viewNode = this.gameMapPageView.node.getChildByName("view");
         if (!viewNode || wonIndex == undefined || wonIndex == null || wonIndex < 0) {

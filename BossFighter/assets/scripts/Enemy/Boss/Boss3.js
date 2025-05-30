@@ -12,8 +12,8 @@ const BOSS3_ANIMATION = {
     "attack_back": "boss3-back-attack",
     "attack_right": "boss3-right-attack",
 
-    "walk_front": "boss3-front-run",
-    "walk_back": "boss3-back-run",
+    "walk_front": "boss3-back-run",
+    "walk_back": "boss3-front-run",
     "walk_left": "boss3-left-run",
     "walk_right": "boss3-right-run",
 };

@@ -57,17 +57,17 @@ cc.Class({
     },
 
     update(dt) {
-        // if (this.direction) {
-        //     // Di chuyển theo hướng đã tính
-        //     this.node.x += this.direction.x * 300 * dt;
-        //     this.node.y += this.direction.y * 300 * dt;
-        // } else {
-        //     // Nếu chưa có hướng thì mặc định bắn lên trên
-        //     this.node.y += 300 * dt;
-        // }
+        if (this.direction) {
+            // Di chuyển theo hướng đã tính
+            this.node.x += this.direction.x * 300 * dt;
+            this.node.y += this.direction.y * 300 * dt;
+        } else {
+            // Nếu chưa có hướng thì mặc định bắn lên trên
+            this.node.y += 300 * dt;
+        }
 
-        // // this.node.size
-        // // incease size of the skill by 0.1 each frame
+        // this.node.size
+        // incease size of the skill by 0.1 each frame
         // this.node.width += 0.5;
         // this.node.height += 0.5;
     }

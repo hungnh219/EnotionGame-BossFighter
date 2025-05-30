@@ -35,11 +35,11 @@ cc.Class({
     },
 
     onCollisionEnter: function (other, self) {
-        other.mainScript = other.node.getComponents(cc.Component).find(c => typeof c.takeDame === 'function');
+        // other.mainScript = other.node.getComponents(cc.Component).find(c => typeof c.takeDame === 'function');
 
-        if (other.mainScript) {
-            other.mainScript.takeDame(this.damage);
-        }
+        // if (other.mainScript) {
+        //     other.mainScript.takeDame(this.damage);
+        // }
 
         this.node.destroy();
     },

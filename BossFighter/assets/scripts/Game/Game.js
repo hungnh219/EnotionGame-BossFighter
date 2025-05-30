@@ -73,7 +73,7 @@ cc.Class({
         this.heroHpProgressBar.progress = 1;
 
         // this.tileSpriteFrame = this.tileSpriteFrames[this.mapIndex];
-        this.tileSpriteFrame = this.tileSpriteFrames[1];
+        // this.tileSpriteFrame = this.tileSpriteFrames[1];
 
         // variables
         this.gridMap = [];
@@ -119,6 +119,8 @@ cc.Class({
             (heroInfo, ultimateCooldown) => this.updateHeroInfoUI(heroInfo, ultimateCooldown),
             () => this.endGameNotification()
         )
+
+        // this.mapIndex = 2;
     },
 
     start() {
@@ -190,7 +192,7 @@ cc.Class({
                     continue;
                 }
 
-                const spriteFrame = this.mapPicked == 2 ? this.map2Objects[objectId] : this.map1Objects[objectId];
+                const spriteFrame = (this.mapPicked == 2) ? this.map2Objects[objectId] : this.map1Objects[objectId];
                 // const spriteFrame = this.map1Objects[objectId];
                 if (!spriteFrame) {
                     console.warn(`No spriteFrame found for object ID: ${objectId}`);
@@ -377,7 +379,7 @@ cc.Class({
 
         this.mapLayout.node.width = this.mapWidth * this.mapTileWidth;
         this.mapLayout.node.height = this.mapHeight * this.mapTileHeight;
-        // this.tileSpriteFrame = this.tileSpriteFrames[this.mapIndex];
+        this.tileSpriteFrame = this.tileSpriteFrames[this.mapIndex];
         // this.tileSpriteFrame = this.tileSpriteFrames[1];
         console.log('mapIndex', this.mapIndex);
 
@@ -398,7 +400,7 @@ cc.Class({
                 // tileNode.parent = this.mapLayout.node;
                 tileNode.parent = this.mapLayout.node;
 
-                if (this.mapIndex == 2) {
+                if (this.mapIndex == 1) {
                     sprite.spriteFrame = this.tileSpriteFrame;
                 } else {
                     // mới map 1, 2 có đủ asset ground tile

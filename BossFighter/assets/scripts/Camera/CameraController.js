@@ -51,31 +51,31 @@ cc.Class({
     },
 
     update(dt) {
-        if (this._isDragging) return; // Đang kéo thì không tự di chuyển
+        // if (this._isDragging) return; // Đang kéo thì không tự di chuyển
 
-        if (!this._mousePos) return;
+        // if (!this._mousePos) return;
 
-        let winSize = cc.winSize;
-        let pos = this._mousePos;
-        let delta = cc.v2(0, 0);
+        // let winSize = cc.winSize;
+        // let pos = this._mousePos;
+        // let delta = cc.v2(0, 0);
 
-        if (pos.x < this.edgeThreshold) {
-            delta.x = this.moveSpeed * dt;
-        } else if (pos.x > winSize.width - this.edgeThreshold) {
-            delta.x = -this.moveSpeed * dt;
-        }
+        // if (pos.x < this.edgeThreshold) {
+        //     delta.x = this.moveSpeed * dt;
+        // } else if (pos.x > winSize.width - this.edgeThreshold) {
+        //     delta.x = -this.moveSpeed * dt;
+        // }
 
-        if (pos.y < this.edgeThreshold) {
-            delta.y = this.moveSpeed * dt;
-        } else if (pos.y > winSize.height - this.edgeThreshold) {
-            delta.y = -this.moveSpeed * dt;
-        }
+        // if (pos.y < this.edgeThreshold) {
+        //     delta.y = this.moveSpeed * dt;
+        // } else if (pos.y > winSize.height - this.edgeThreshold) {
+        //     delta.y = -this.moveSpeed * dt;
+        // }
 
-        if (delta.x !== 0 || delta.y !== 0) {
-            let newPos = this.uiGameNode.position.add(cc.v3(delta.x, delta.y, 0));
-            // newPos = this._clampPositionToBackground(newPos);
-            this.uiGameNode.position = newPos;
-        }
+        // if (delta.x !== 0 || delta.y !== 0) {
+        //     let newPos = this.uiGameNode.position.add(cc.v3(delta.x, delta.y, 0));
+        //     // newPos = this._clampPositionToBackground(newPos);
+        //     this.uiGameNode.position = newPos;
+        // }
     },
 
     _clampPositionToBackground(pos) {

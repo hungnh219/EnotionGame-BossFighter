@@ -37,6 +37,7 @@ cc.Class({
         damage: 10, // Damage dealt by the ultimate skill
         range: 1, // Range of the ultimate skill
         ultimatePrefab: cc.Prefab, // Prefab for the ultimate skill effect
+        attackPrefab: cc.Prefab,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -105,7 +106,27 @@ cc.Class({
             anim.speed = 1;
         }
         anim.play(clipName);
-    }
+    },
+    attacAnimation(direction) {
+        this.playAnimation("attack_" + direction, 0.5);
+    },
+    attack(enemy, direction){
+        console.log('Damge cua tuong', this.attackDame)
+        if(this.attackPrefab){
+            this.attacAnimation(direction);
+            const attackNode = cc.instantiate(this.attackPrefab);
+            attackNode.setPosition(this.node.getPosition());
+            this.node.parent.addChild(attackNode)
+            attackNode.mainScript = attackNode.getComponents(cc.Component).find(c=> typeof c.initDirection === 'function')
+
+            if(attackNode.mainScript){
+                attackNode.mainScript.initDirection(enemy, this.attackDame)
+            }
+        }
+        else{
+            cc.error('Attack prefab is not set for ADC')
+        }
+    },
 
     // update (dt) {},
 });
