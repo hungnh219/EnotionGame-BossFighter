@@ -187,8 +187,8 @@ cc.Class({
                     continue;
                 }
 
-                // const spriteFrame = this.mapPicked == 3 ? this.map2Objects[objectId] : this.map1Objects[objectId];
-                const spriteFrame = this.map1Objects[objectId];
+                const spriteFrame = this.mapPicked == 2 ? this.map2Objects[objectId] : this.map1Objects[objectId];
+                // const spriteFrame = this.map1Objects[objectId];
                 if (!spriteFrame) {
                     console.warn(`No spriteFrame found for object ID: ${objectId}`);
                     continue;
@@ -385,7 +385,7 @@ cc.Class({
                 // tileNode.parent = this.mapLayout.node;
                 tileNode.parent = this.mapLayout.node;
 
-                if (this.mapIndex == 0) {
+                if (this.mapIndex == 2) {
                     sprite.spriteFrame = this.tileSpriteFrame;
                 } else {
                     // mới map 1, 2 có đủ asset ground tile

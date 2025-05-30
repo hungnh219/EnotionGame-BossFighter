@@ -1579,18 +1579,18 @@
         "__uuid__": "1c84c57a-bb58-4fb0-a470-31ce3eda2eaf"
       },
       {
-        "__uuid__": "1c84c57a-bb58-4fb0-a470-31ce3eda2eaf"
+        "__uuid__": "556e006c-98d4-4dcc-91da-1bbba45bb835"
       }
     ],
     "tileSpriteFrames": [
       {
-        "__uuid__": "43b570b9-0945-408f-bf2e-f81d8bd6629e"
-      },
-      {
-        "__uuid__": "4ab9d72b-fa44-4ae1-b177-ed2e42f01f79"
+        "__uuid__": "76ff2a8f-ba6d-471f-8eb2-2d3b68ef7f93"
       },
       {
         "__uuid__": "76ff2a8f-ba6d-471f-8eb2-2d3b68ef7f93"
+      },
+      {
+        "__uuid__": "284a3bfd-f044-4718-adf6-16f8b4d67532"
       }
     ],
     "bossPrefabs": [
