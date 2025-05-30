@@ -569,9 +569,7 @@
     "ultimatePrefab": {
       "__uuid__": "af47875d-d3b5-4faf-a632-752989edd6d2"
     },
-    "attackPrefab": {
-      "__uuid__": "580c3aba-6230-4026-bdb7-f495369fed1a"
-    },
+    "attackPrefab": null,
     "_id": ""
   },
   {

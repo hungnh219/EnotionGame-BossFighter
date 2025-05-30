@@ -18,7 +18,7 @@ cc.Class({
     extends: Character,
 
     properties: {
-        characterId: "hero010",
+        characterId: "hero002",
 
         ultimatePrefab: cc.Prefab,
         attackPrefab: cc.Prefab,
@@ -39,6 +39,23 @@ cc.Class({
 
         console.log("ADC initData with characterId:", characterNameId);
         console.log("ADC properties:", this);
+    },
+
+    attack(enemy){
+        console.log('Damge cua tuong', this.attackDame)
+        if(this.attackPrefab){
+            const attackNode = cc.instantiate(this.attackPrefab);
+            attackNode.setPosition(this.node.getPosition());
+            this.node.parent.addChild(attackNode)
+            attackNode.mainScript = attackNode.getComponents(cc.Component).find(c=> typeof c.initDirection === 'function')
+
+            if(attackNode.mainScript){
+                attackNode.mainScript.initDirection(enemy, this.attackDame)
+            }
+        }
+        else{
+            cc.error('Attack prefab is not set for ADC')
+        }
     },
 
     ultimate(enemy) {

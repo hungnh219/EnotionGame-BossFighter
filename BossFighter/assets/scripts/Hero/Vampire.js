@@ -55,6 +55,23 @@ cc.Class({
         console.log("Vampire properties:", this);
     },
 
+    attack(enemy){
+        console.log('Damge cua tuong', this.attackDame)
+        if(this.attackPrefab){
+            const attackNode = cc.instantiate(this.attackPrefab);
+            attackNode.setPosition(this.node.getPosition());
+            this.node.parent.addChild(attackNode)
+            attackNode.mainScript = attackNode.getComponents(cc.Component).find(c=> typeof c.initDirection === 'function')
+
+            if(attackNode.mainScript){
+                attackNode.mainScript.initDirection(enemy, this.attackDame)
+            }
+        }
+        else{
+            cc.error('Attack prefab is not set for ADC')
+        }
+    },
+
     ultimate(centerGridPos, spawnAnimationCallback) {
         this.damage = this.ultimateDame || this.damage; // Ensure damage is set to ultimate damage
 
