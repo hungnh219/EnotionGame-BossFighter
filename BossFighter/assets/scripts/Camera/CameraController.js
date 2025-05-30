@@ -13,10 +13,10 @@ cc.Class({
         this._isDragging = false;
         this._lastMousePos = null;
 
-        // this.uiGameNode.on(cc.Node.EventType.MOUSE_DOWN, this.onMouseDown, this);
-        // this.uiGameNode.on(cc.Node.EventType.MOUSE_MOVE, this.onMouseMoveDrag, this);
-        // this.uiGameNode.on(cc.Node.EventType.MOUSE_UP, this.onMouseUp, this);
-        // this.uiGameNode.on(cc.Node.EventType.MOUSE_LEAVE, this.onMouseUp, this);
+        this.uiGameNode.on(cc.Node.EventType.MOUSE_DOWN, this.onMouseDown, this);
+        this.uiGameNode.on(cc.Node.EventType.MOUSE_MOVE, this.onMouseMoveDrag, this);
+        this.uiGameNode.on(cc.Node.EventType.MOUSE_UP, this.onMouseUp, this);
+        this.uiGameNode.on(cc.Node.EventType.MOUSE_LEAVE, this.onMouseUp, this);
 
         this.node.on(cc.Node.EventType.MOUSE_MOVE, this.onMouseMoveEdgeScroll, this);
     },

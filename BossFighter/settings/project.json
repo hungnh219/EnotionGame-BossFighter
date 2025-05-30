@@ -1,3 +1,6 @@
 {
-  "start-scene": "current"
+  "start-scene": "current",
+  "group-list": [
+    "default"
+  ]
 }
