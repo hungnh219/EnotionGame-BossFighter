@@ -42,7 +42,9 @@ cc.Class({
 
         EventBus.on(EventBus.events.DISPLAY_WALKABLE_AREA, (firstCellPos, lastCellPos, walkableGridMap, node) => {
             // if (this.isHeroMoving) return;
-            if (this.clickNode != node) this.clearWalkableArea();
+            if (this.clickNode != node) {
+                this.clearWalkableArea();
+            }
             if (this.clickNode != null && this.clickNode == node) return;
             if (!firstCellPos || !lastCellPos || !walkableGridMap || !node) {
                 console.warn('Invalid parameters for displaying walkable area');
