@@ -26,7 +26,9 @@ cc.Class({
         this.damage = dame;
         // Tính vector hướng từ skill đến boss
         const from = this.node.getPosition();
+        console.log('vi tri tuong', from.x, from.y)
         const to = targetPos;
+        console.log('vi tri boss', to.x, to.y)
         const dir = cc.v2(to.x - from.x, to.y - from.y).normalize();
         this.direction = dir;
 
@@ -36,6 +38,7 @@ cc.Class({
     },
 
     onCollisionEnter: function (other, self) {
+        console.log('other', other)
         other.mainScript = other.node.getComponents(cc.Component).find(c => typeof c.takeDame === 'function');
 
         if (other.mainScript) {

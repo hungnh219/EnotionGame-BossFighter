@@ -349,10 +349,12 @@ const GameController = cc.Class({
         enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.getCurrentHp === 'function');
         hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.dealDame === 'function');
 
+        
         let dame = hero.mainScript.getAttackDame();
         if (enemy.mainScript && dame > 0) {
             // hero.mainScript.dealDame(enemy, 20);
             enemy.mainScript.takeDame(dame);
+            hero.mainScript.attack(enemy);
             let isBoss = this.bosses.some(b => b.node === enemy);
 
             if (enemy.mainScript.getCurrentHp() <= 0)  {
@@ -370,6 +372,7 @@ const GameController = cc.Class({
         this.consumePlayerTurn();
         this.checkWin();
     },
+
 
     // highlight enemy when selected to attack
     showEnemySelection(enemies, onEnemySelected) {

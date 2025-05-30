@@ -37,6 +37,7 @@ cc.Class({
         damage: 10, // Damage dealt by the ultimate skill
         range: 1, // Range of the ultimate skill
         ultimatePrefab: cc.Prefab, // Prefab for the ultimate skill effect
+        attackPrefab: cc.Prefab
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -52,6 +53,23 @@ cc.Class({
         this._super(characterNameId);
         console.log("Vampire initData with characterId:", characterNameId);
         console.log("Vampire properties:", this);
+    },
+
+    attack(enemy){
+        console.log('Damge cua tuong', this.attackDame)
+        if(this.attackPrefab){
+            const attackNode = cc.instantiate(this.attackPrefab);
+            attackNode.setPosition(this.node.getPosition());
+            this.node.parent.addChild(attackNode)
+            attackNode.mainScript = attackNode.getComponents(cc.Component).find(c=> typeof c.initDirection === 'function')
+
+            if(attackNode.mainScript){
+                attackNode.mainScript.initDirection(enemy, this.attackDame)
+            }
+        }
+        else{
+            cc.error('Attack prefab is not set for ADC')
+        }
     },
 
     ultimate(centerGridPos, spawnAnimationCallback) {
