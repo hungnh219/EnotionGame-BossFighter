@@ -97,6 +97,8 @@ const GameController = cc.Class({
         EventBus.emit(EventBus.events.BOSS2_SPAWN_ENEMY, this.enemies, this.bosses, this.gridMap, this.firstCellPos, this.lastCellPos, this.mapTileWidth, this.mapTileHeight);
         this.enemyAutoMode();
 
+        if (this.mapPick == 1) this.bossAutoMode();
+
         this.heroes.forEach(hero => {
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.countUltimateCooldown === 'function');
             if (hero.mainScript) {
@@ -267,11 +269,58 @@ const GameController = cc.Class({
 
             if (dx + dy <= enemyAttackRange) {
                 // attack
+                console.log('enemy attack')
+                enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.dealDame === 'function');
+
+                if (enemy.mainScript) {
+                    let dame = enemy.mainScript.getAttackDame();
+                    // enemy.mainScript.dealDame(nearestHero, dame);
+
+                    // check if hero is dead
+                    nearestHero.mainScript = nearestHero.getComponents(cc.Component).find(c => typeof c.getCurrentHp === 'function');
+                    nearestHero.mainScript.takeDame(dame);
+                    if (nearestHero.mainScript && nearestHero.mainScript.getCurrentHp() <= 0) {
+                        this.handleHeroDie(nearestHero);
+                    }
+
+                }
+            } else {
+                // move to nearest hero
+                EventBus.emit(EventBus.events.ENEMY_AUTO_MODE, enemy, nearestHero);
+            }
+        })
+    },
+
+    bossAutoMode() {
+        if (this.bosses == undefined || this.bosses == null) return;
+        if (this.bosses.length == 0) return;
+
+        let bossArray = this.bosses.map(b => b.node);
+        bossArray.forEach((enemy, index) => {
+            // check attack range hero
+            // if enough -> attack
+            // else -> move
+            let nearestHero = this.findNearestHero(enemy);
+            if (!nearestHero) return;
+
+            // distance between enemy and nearest hero
+            let enemyPos = this.positionToGrid(enemy);
+            let heroPos = this.positionToGrid(nearestHero);
+            if (!enemyPos || !heroPos) return;
+            const dx = Math.abs(enemyPos.x - heroPos.x);
+            const dy = Math.abs(enemyPos.y - heroPos.y);
+
+            let enemyAttackRange = 1;
+
+            if (dx + dy <= enemyAttackRange) {
+                // attack
                 console.log('attack')
                 enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.dealDame === 'function');
 
                 if (enemy.mainScript) {
-                    enemy.mainScript.dealDame(nearestHero, 80);
+                    // enemy.mainScript.dealDame(nearestHero, 80);
+                    let dame = enemy.mainScript.getAttackDame() * 1.5;
+                    enemy.mainScript.dealDame(nearestHero, dame);
 
                     // check if hero is dead
                     nearestHero.mainScript = nearestHero.getComponents(cc.Component).find(c => typeof c.getCurrentHp === 'function');
@@ -286,7 +335,6 @@ const GameController = cc.Class({
             }
         })
     },
-
     findNearestHero(enemy) {
         if (!this.heroes || this.heroes.length === 0) return null;
 
@@ -354,6 +402,30 @@ const GameController = cc.Class({
             // hero.mainScript.dealDame(enemy, 20);
             enemy.mainScript.takeDame(dame);
             let isBoss = this.bosses.some(b => b.node === enemy);
+
+            // calculate direction
+            const enemyPos = this.positionToGrid(enemy);
+            const heroPos = this.positionToGrid(hero);
+            if (!enemyPos || !heroPos) return;
+            const dx = enemyPos.x - heroPos.x;
+            const dy = enemyPos.y - heroPos.y;
+
+            let direction = '';
+            if (dx > 0) {
+                if (dy > 0) {
+                    direction = 'back';
+                } else {
+                    direction = 'front';
+                }
+            } else {
+                if (dy > 0) {
+                    direction = 'left';
+                } else {
+                    direction = 'right';
+                }
+            }
+
+            hero.mainScript.attack(direction);
 
             if (enemy.mainScript.getCurrentHp() <= 0)  {
                 if (isBoss) {

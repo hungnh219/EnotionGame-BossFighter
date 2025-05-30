@@ -66,6 +66,10 @@ cc.Class({
         
     },
 
+    attack(direction) {
+        this.playAnimation("attack_" + direction, 0.5);
+    },
+
     playAnimation(animationName, moveTime) {
         const clipName = BRUISER_ANIMATION[animationName];
         if (!clipName) {

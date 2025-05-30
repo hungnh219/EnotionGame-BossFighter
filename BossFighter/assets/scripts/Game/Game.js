@@ -20,6 +20,8 @@ cc.Class({
         skillCooldownLabel: cc.Label,
         ultimateCooldownLabel: cc.Label,
 
+        ultimateSprite: cc.Sprite,
+
         backgroundSprite: cc.Sprite,
         backgroundSpriteFrames: [cc.SpriteFrame],
         tileSpriteFrames: [cc.SpriteFrame],
@@ -41,6 +43,7 @@ cc.Class({
         heroNameLabel: cc.Label,
         heroHpLabel: cc.Label,
         heroImage: cc.Sprite,
+        heroHpProgressBar: cc.ProgressBar,
 
         pausePanel: cc.Node,
 
@@ -64,11 +67,10 @@ cc.Class({
 
     onLoad() {
         this.guideBook.active = false
-        console.log('Game onLoad');
         this.gameController = GameController.getInstance();
         this.mapIndex = this.gameController.getMapPicked() ? this.gameController.getMapPicked() : 0;
         cc.director.getCollisionManager().enabled = true;
-
+        this.heroHpProgressBar.progress = 1;
 
         // this.tileSpriteFrame = this.tileSpriteFrames[this.mapIndex];
         this.tileSpriteFrame = this.tileSpriteFrames[1];
@@ -162,6 +164,7 @@ cc.Class({
         }
         
         const jsonData = this.objectsJsonData.json.mapData[this.mapIndex];
+        // const jsonData = this.objectsJsonData.json.mapData[2];
         // const jsonData = this.objectsJsonData.json.mapData[1];
 
 
@@ -261,6 +264,12 @@ cc.Class({
         this.ultimateCooldownLabel.string = ultimateCooldown || '';
 
         ultimateCooldown > 0 ? this.ultimateGreyPrefab.active = true : this.ultimateGreyPrefab.active = false;
+
+        this.ultimateSprite.spriteFrame = heroInfo.imageSprite ? heroInfo.imageSprite.spriteFrame : null;
+
+        let hpPercentage = heroInfo.health / heroInfo.maxHp;
+        this.heroHpProgressBar.progress = hpPercentage;
+        // this.heroHpProgressBar.node.color = cc.Color.GREEN.lerp(cc.Color.RED, 1 - hpPercentage);
     },
 
     initGridMap() {
@@ -317,6 +326,10 @@ cc.Class({
             // }
         } else if (size > 3) {
             bossNode.scale = 2;
+        }
+
+        if (this.mapIndex == 1) {
+            bossNode.scale = 1.5;
         }
 
 
