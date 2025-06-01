@@ -5,81 +5,55 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        soundOnButton: cc.Button,
-        soundOffButton: cc.Button,
-        settingPanel: cc.Node
+        settingPanel: cc.Node,
+        volumeSlider: cc.Slider,
     },
-
-    // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
         this.settingPanel.active = false;
-        const gameController = GameController.getInstance();
-        console.log('MainMenu onLoad', gameController);
-        if (gameController) {
-            this.gameController = gameController;
-        } else {
-            this.gameController = new GameController();
-            cc.game.addPersistRootNode(this.node);
+        this.gameController = GameController.getInstance() || new GameController();
+
+        if (this.volumeSlider) {
+            this.volumeSlider.node.on('slide', this.onSliderChanged, this);
         }
 
-        let isTurnOnMusic = this.gameController.getTurnOnMusic();
+        this.updateUI();
+    },
 
-        if (isTurnOnMusic) {
-            this.soundOnButton.node.active = true;
-            this.soundOffButton.node.active = false;
+    updateUI() {
+        const soundMgr = require("SoundManager").instance;
+        if (!soundMgr) return;
 
-            cc.audioEngine.setMusicVolume(0.5);
-            cc.audioEngine.setEffectsVolume(0.5);
+        if (this.volumeSlider) this.volumeSlider.progress = soundMgr.currentVolume || 0.5;
+    },
 
-        } else {
-            this.soundOnButton.node.active = false;
-            this.soundOffButton.node.active = true;
-
-            cc.audioEngine.setMusicVolume(0);
-            cc.audioEngine.setEffectsVolume(0);
+    onSliderChanged() {
+        const soundMgr = require("SoundManager").instance;
+        if (soundMgr) {
+            soundMgr.setVolume(this.volumeSlider.progress);
+            this.gameController.setIsTurnOnMusic(soundMgr.isPlaying());
+            this.updateUI();
         }
-    },
-
-    start() {
-
-    },
-
-    showSettingPanel() {
-        this.settingPanel.active = true
-    },
-
-    closeSettingPanel() {
-        this.settingPanel.active = false
-    },
-
-    playSoloMode() {
-        console.log("playSoloMode");
-        cc.director.loadScene(GAME_DATA.GAME_SCENE.MAP_SELECT);
     },
 
     toggleSound() {
-        let isPlay = this.gameController.getTurnOnMusic();
+        const soundMgr = require("SoundManager").instance;
+        if (!soundMgr) return;
 
-        console.log("toggleSound", isPlay);
-        if (isPlay) {
-            this.soundOnButton.node.active = false;
-            this.soundOffButton.node.active = true;
+        soundMgr.toggleMusic();
+        this.gameController.setIsTurnOnMusic(soundMgr.isPlaying());
+        this.updateUI();
+    },
 
-            // cc.audioEngine.setMusicVolume(0);
-            // cc.audioEngine.setEffectsVolume(0);
-            this.node.getComponent(cc.AudioSource).stop();
-            this.gameController.setIsTurnOnMusic(false);
-        } else {
-            this.soundOnButton.node.active = true;
-            this.soundOffButton.node.active = false;
+    showSettingPanel() {
+        this.settingPanel.active = true;
+    },
 
-            // this.node.getComponent(cc.AudioSource).play();
-            this.node.getComponent(cc.AudioSource).play();
-            // cc.audioEngine.setMusicVolume(0.5);
-            // cc.audioEngine.setEffectsVolume(0.5);
+    closeSettingPanel() {
+        this.settingPanel.active = false;
+    },
 
-            this.gameController.setIsTurnOnMusic(true);
-        }
-    }
+    playSoloMode() {
+        cc.director.loadScene(GAME_DATA.GAME_SCENE.MAP_SELECT);
+    },
 });

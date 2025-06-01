@@ -2,9 +2,9 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        canvasNode: cc.Node,           // Kéo thả Canvas hoặc node gốc UI
-        cursorBackground: cc.Node,     // Sprite con trỏ nền
-        cursorOnButton: cc.Node,       // Sprite con trỏ khi hover button
+        canvasNode: cc.Node,           
+        cursorBackground: cc.Node,     
+        cursorOnButton: cc.Node,       
     },
 
     onLoad() {
@@ -13,15 +13,13 @@ cc.Class({
             return;
         }
 
-        // Ẩn con trỏ hệ thống luôn
+        // Ẩn con trỏ hệ thống 
         if (!cc.sys.isNative) {
             cc.game.canvas.style.cursor = 'none';
         }
 
-        // Lắng nghe sự kiện MOUSE_MOVE trên toàn Canvas
         this.canvasNode.on(cc.Node.EventType.MOUSE_MOVE, this.onMouseMove, this);
 
-        // Mặc định bật con trỏ nền, tắt con trỏ tay
         this.showBackgroundCursor();
         this.hideButtonCursor();
     },
@@ -32,20 +30,13 @@ cc.Class({
 
         this.cursorBackground.position = localPos;
         this.cursorOnButton.position = localPos;
-
-        // Đảm bảo con trỏ luôn trên cùng
-        this.node.setSiblingIndex(this.node.parent.children.length - 1);
-        this.cursorBackground.setSiblingIndex(this.cursorBackground.parent.children.length - 1);
-        this.cursorOnButton.setSiblingIndex(this.cursorOnButton.parent.children.length - 1);
     },
 
-    // Gọi khi hover vào button để đổi con trỏ sang tay
     showButtonCursor() {
         this.cursorOnButton.active = true;
         this.cursorBackground.active = false;
     },
 
-    // Gọi khi rời button để trả về con trỏ nền
     hideButtonCursor() {
         this.cursorOnButton.active = false;
         this.cursorBackground.active = true;

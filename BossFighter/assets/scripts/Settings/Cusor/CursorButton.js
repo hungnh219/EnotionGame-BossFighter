@@ -17,9 +17,6 @@ cc.Class({
             cursorManager.hideBackgroundCursor();
             cursorManager.showButtonCursor();
 
-            // if (!cc.sys.isNative) {
-            //     cc.game.canvas.style.cursor = 'none';
-            // }
         }
     },
 
@@ -29,9 +26,6 @@ cc.Class({
             cursorManager.showBackgroundCursor();
             cursorManager.hideButtonCursor();
 
-            // if (!cc.sys.isNative) {
-            //     cc.game.canvas.style.cursor = 'none';
-            // }
         }
     }
 });
