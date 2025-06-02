@@ -1,9 +1,9 @@
 import Character from "../Character"
 
 const BRUISER_ANIMATION = {
-    "attack_front": "BruiserFrontAttack",
+    "attack_front": "BruiserBackAttack",
     "attack_left": "BruiserLeftAttack",
-    "attack_back": "BruiserBackAttack",
+    "attack_back": "BruiserFrontAttack",
     "attack_right": "BruiserRightAttack",
 
     "walk_front": "BruiserBackRun",
@@ -68,6 +68,8 @@ cc.Class({
 
     attack(enemy, direction) {
         this.playAnimation("attack_" + direction, 0.5);
+
+        return this.attackDame;
     },
 
     playAnimation(animationName, moveTime) {

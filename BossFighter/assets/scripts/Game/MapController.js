@@ -21,6 +21,10 @@ cc.Class({
         instance = this;
 
         this.gameController = GameController.getInstance();
+        // this.mapObjectHolder.parent = this.mapLayout.node;
+        // this.mapLayout.node.addChild(this.mapObjectHolder);
+        // this.mapObjectHolder.setPosition(cc.v2(0, 0));
+        // this.mapObjectHolder.setPosition(this.mapLayout.node.getPosition());
     },
 
     start () {
@@ -46,6 +50,9 @@ cc.Class({
         this.mapTileWidth = tileSize.width;
         this.mapTileHeight = tileSize.height;
 
+        // center the map layout
+        this.mapLayout.node.setPosition(cc.v2(-this.mapLayout.node.width / 2, -this.mapLayout.node.height / 2));
+        this.mapObjectHolder.setPosition(this.mapLayout.node.getPosition());
 
         for (let i = 0; i < mapSize.width; i++) {
             for (let j = 0; j < mapSize.height; j++) {
@@ -59,6 +66,8 @@ cc.Class({
 
                 tileNode.setPosition(i * tileSize.width, j * tileSize.height);
                 
+                
+
                 this.mapLayout.node.addChild(tileNode);
 
                 if (i == 0 && j == 0) {
@@ -84,23 +93,55 @@ cc.Class({
         }
     },
 
+    // viewObjectsMap(mapData, mapWidth, mapHeight, mapObjectSpriteFrames) {
+    //     console.log("Viewing objects map with data:", mapData, mapWidth, mapHeight, mapObjectSpriteFrames);
+
+    //     // this.gameController.setMapSetting(mapWidth, mapHeight, mapObjectSpriteFrames);
+    //     for (let i = 0; i < mapWidth; i++) {
+    //         for (let j = 0; j < mapHeight; j++) {
+    //             // console.log(`Processing tile at (${i}, ${j}) with object ID:`, mapData[i][j]);
+    //             let newJ = mapHeight - j - 1; // Invert y-axis for correct positioning
+    //             const objectId = mapData[i][j];
+    //             if (objectId === 0) {
+    //                 this.gameController.updateWalkable(i, j, 1, true);
+    //                 continue; // Skip if no object is present
+    //             }
+    //             const spriteFrame = mapObjectSpriteFrames[objectId];
+
+    //             if (!spriteFrame) {
+    //                 continue; // Skip if no sprite frame is found
+    //             }
+
+    //             const prefab = cc.instantiate(this.mapObjectPrefab);
+    //             const sprite = prefab.getComponent(cc.Sprite);
+    //             if (sprite) {
+    //                 sprite.spriteFrame = spriteFrame;
+    //             } else {
+    //                 console.warn(`No sprite component found on prefab for object ID: ${objectId}`);
+    //                 continue; // Skip if no sprite component is found
+    //             }
+
+    //             this.mapObjectHolder.addChild(prefab);
+    //             this.addObjectIntoMap(i, j, 1, prefab);
+    //             this.gameController.updateWalkable(i, j, 1, false);
+    //         }
+    //     }
+    // },
     viewObjectsMap(mapData, mapWidth, mapHeight, mapObjectSpriteFrames) {
         console.log("Viewing objects map with data:", mapData, mapWidth, mapHeight, mapObjectSpriteFrames);
 
-        // this.gameController.setMapSetting(mapWidth, mapHeight, mapObjectSpriteFrames);
-        for (let i = 0; i < mapWidth; i++) {
-            for (let j = 0; j < mapHeight; j++) {
-                // console.log(`Processing tile at (${i}, ${j}) with object ID:`, mapData[i][j]);
-                let newJ = mapHeight - j - 1; // Invert y-axis for correct positioning
+        for (let j = 0; j < mapHeight; j++) {
+            for (let i = 0; i < mapWidth; i++) {
+                let newJ = mapHeight - j - 1;
                 const objectId = mapData[newJ][i];
                 if (objectId === 0) {
                     this.gameController.updateWalkable(i, j, 1, true);
-                    continue; // Skip if no object is present
+                    continue;
                 }
-                const spriteFrame = mapObjectSpriteFrames[objectId];
 
+                const spriteFrame = mapObjectSpriteFrames[objectId];
                 if (!spriteFrame) {
-                    continue; // Skip if no sprite frame is found
+                    continue;
                 }
 
                 const prefab = cc.instantiate(this.mapObjectPrefab);
@@ -109,7 +150,7 @@ cc.Class({
                     sprite.spriteFrame = spriteFrame;
                 } else {
                     console.warn(`No sprite component found on prefab for object ID: ${objectId}`);
-                    continue; // Skip if no sprite component is found
+                    continue;
                 }
 
                 this.mapObjectHolder.addChild(prefab);
@@ -143,12 +184,34 @@ cc.Class({
 
 
         this.mapObjectHolder.addChild(bossNode);
-
-
+        console.log('boss map object holder position:', this.mapObjectHolder.getPosition());
         this.addObjectIntoMap(posX, posY, size, bossNode);
 
         this.gameController.updateWalkable(posX, posY, size, false);
         this.gameController.addBoss(bossNode, size);
+    },
+
+    spawnEnemyIntoMap(enemy) {
+        if (!enemy) {
+            console.error("No enemy to spawn");
+            return;
+        }
+
+        let posX = Math.floor(Math.random() * this.mapWidth);
+        let posY = Math.floor(Math.random() * this.mapHeight);
+
+        let walkableMap = this.gameController.getWalkableMap();
+        while (!walkableMap[posX][posY]) {
+            posX = Math.floor(Math.random() * this.mapWidth);
+            posY = Math.floor(Math.random() * this.mapHeight);
+        }
+
+        this.mapObjectHolder.addChild(enemy);
+
+        console.log('enemy map object holder position:', this.mapObjectHolder.getPosition());
+        this.gameController.setNewEmemy(enemy);
+        this.addObjectIntoMap(posX, posY, 1, enemy);
+        this.gameController.updateWalkable(posX, posY, 1, false);
     },
 
     spawnHeroIntoMap(heroPrefabs, focusEffectPrefab) {
@@ -161,6 +224,7 @@ cc.Class({
             prefabNode.addChild(effectNode);
 
             this.mapObjectHolder.addChild(prefabNode);
+            console.log('hero map object holder position:', this.mapObjectHolder.getPosition());
             this.gameController.addHero(prefabNode);
             this.addObjectIntoMap(index, 0, 1, prefabNode);
             // this.updateWalkable(index, 0, 1);
@@ -171,6 +235,8 @@ cc.Class({
     },
 
     addObjectIntoMap(gridX, gridY, size, object) {
+        // this.mapObjectHolder.setPosition(this.mapLayout.node.getPosition());
+
         console.log(object.name, " position:", gridX, gridY, "with size:", size);
         let objectNode = object;
 
@@ -192,14 +258,25 @@ cc.Class({
         // set the position of the object
         const mapPos = this.mapLayout.node.getPosition();
 
-        console.log("Map position:", mapPos, "Grid position:", gridX, gridY, "Tile size:", this.mapTileWidth, this.mapTileHeight);
-        objectNode.x = mapPos.x + gridX * this.mapTileWidth + (this.mapTileWidth * size) / 2;
-        objectNode.y = mapPos.y + gridY * this.mapTileHeight + (this.mapTileHeight * size) / 2;
-
-        console.log("Object position set to:", objectNode.x, objectNode.y);
+        // objectNode.x = mapPos.x + gridX * this.mapTileWidth + (this.mapTileWidth * size) / 2;
+        // objectNode.y = mapPos.y + gridY * this.mapTileHeight + (this.mapTileHeight * size) / 2;
+        objectNode.x = gridX * this.mapTileWidth + (this.mapTileWidth * size) / 2;
+        objectNode.y = gridY * this.mapTileHeight + (this.mapTileHeight * size) / 2;
     },
 
+    setCellPosition() {
+        const firstCellPos = {
+            x: this.mapLayout.node.x,
+            y: this.mapLayout.node.y,
+        };
 
+        const lastCellPos = {
+            x: this.mapLayout.node.x + this.mapWidth * this.mapTileWidth,
+            y: this.mapLayout.node.y + this.mapHeight * this.mapTileHeight,
+        };
+
+        this.gameController.setCellPosition(firstCellPos, lastCellPos);
+    }
 
 
     // update (dt) {},

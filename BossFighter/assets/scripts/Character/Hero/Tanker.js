@@ -1,8 +1,8 @@
 import Character from "../Character";
 
 const TANKER_ANIMATION = {
-    "attack_front": "TankerFrontAttack",
-    "attack_back": "TankerBackAttack",
+    "attack_front": "TankerBackAttack",
+    "attack_back": "TankerFrontAttack",
     "attack_left": "TankerLeftAttack",
     "attack_right": "TankerRightAttack",
 
@@ -69,6 +69,8 @@ cc.Class({
 
     attack(enemy, direction) {
         this.playAnimation("attack_" + direction, 0.5);
+
+        return this.attackDame;
     },
 
     // update (dt) {},

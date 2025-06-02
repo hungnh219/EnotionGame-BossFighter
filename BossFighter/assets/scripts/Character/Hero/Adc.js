@@ -1,8 +1,8 @@
 import Character from "../Character";
 
 const ADC_ANIMATION = {
-    "attack_front": "AdcFrontAttack",
-    "attack_back": "AdcBackAttack",
+    "attack_front": "AdcBackAttack",
+    "attack_back": "AdcFrontAttack",
     "attack_left": "AdcLeftAttack",
     "attack_right": "AdcRightAttack",
 
@@ -80,7 +80,6 @@ cc.Class({
 
     playAnimation(animationName, moveTime) {
         const clipName = ADC_ANIMATION[animationName];
-        console.log("ADC playAnimation with name:", clipName, animationName);
         if (!clipName) {
             cc.error("Invalid animation name:", animationName);
             return;
@@ -123,6 +122,8 @@ cc.Class({
             if(attackNode.mainScript){
                 attackNode.mainScript.initDirection(enemy, this.attackDame)
             }
+
+            return this.attackDame;
         }
         else{
             cc.error('Attack prefab is not set for ADC')

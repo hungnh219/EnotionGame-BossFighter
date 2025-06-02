@@ -2,6 +2,7 @@
 // import GameController from "./Game/GameController";
 import EventBus from "../EventBus";
 import GameController from "./GameController";
+import MapController from "./MapController";
 const ANIM_MAP = {
     'idle': 'Idle',
     'walk': {
@@ -25,6 +26,8 @@ cc.Class({
         greenTilePrefab: cc.Prefab, // prefab cho ô vuông có thể đi lại
         redTilePrefab: cc.Prefab, // prefab cho ô vuông không thể đi lại
         mapLayout: cc.Layout,
+
+        mapObjectHolder: cc.Node,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -36,6 +39,7 @@ cc.Class({
             cc.game.addPersistRootNode(this.node);
         }
 
+        this.mapController = MapController.getInstance() || new MapController();
         this.clickNode = null
         this.firstCellPos = null;
         this.lastCellPos = null;
@@ -99,11 +103,18 @@ cc.Class({
         }
         if (newPosNode == undefined || newPosNode == null) return;
 
-        let oldGridX = Math.floor((nodeMove.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
-        let oldGridY = Math.floor((nodeMove.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
+        // let oldGridX = Math.floor((nodeMove.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
+        // let oldGridY = Math.floor((nodeMove.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
 
-        let newGridX = Math.floor((newPosNode.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
-        let newGridY = Math.floor((newPosNode.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
+        // let newGridX = Math.floor((newPosNode.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
+        // let newGridY = Math.floor((newPosNode.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
+
+        let oldGridX = Math.floor((nodeMove.x) / mapSetting.mapTileWidth);
+        let oldGridY = Math.floor((nodeMove.y) / mapSetting.mapTileHeight);
+        let newGridX = Math.floor((newPosNode.x) / mapSetting.mapTileWidth);
+        let newGridY = Math.floor((newPosNode.y) / mapSetting.mapTileHeight);
+
+        console.log("Moving from:", oldGridX, oldGridY, "to:", newGridX, newGridY);
 
         const maxSteps = 3 + 3 - 2;
         const path = this.findPath(
@@ -137,8 +148,11 @@ cc.Class({
                 this.playAnimation(nodeMove, 'walk', direction);
             }
             const p = path[i];
-            const px = this.firstCellPos.x + p.x * mapSetting.mapTileWidth + mapSetting.mapTileWidth / 2;
-            const py = this.firstCellPos.y + p.y * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
+            // const px = this.firstCellPos.x + p.x * mapSetting.mapTileWidth + mapSetting.mapTileWidth / 2;
+            // const py = this.firstCellPos.y + p.y * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
+            const px = p.x * mapSetting.mapTileWidth + mapSetting.mapTileWidth / 2;
+            const py = p.y * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
+            
             nodeMove.runAction(
                 cc.sequence(
                     cc.moveTo(0.4, px, py),
@@ -151,6 +165,7 @@ cc.Class({
     },
 
     displayWalkableArea(firstCellPos, lastCellPos, walkableGridMap, node) {
+        console.log(walkableGridMap)
         let mapSetting = this.gameController.getMapSetting();
         this.firstCellPos = firstCellPos;
         this.lastCellPos = lastCellPos;
@@ -158,14 +173,18 @@ cc.Class({
 
         const steps = 2; // vùng di chuyển là 3 ô
 
-        const gridX = Math.floor((this.clickNode.x - firstCellPos.x) / mapSetting.mapTileWidth);
-        const gridY = Math.floor((this.clickNode.y - firstCellPos.y) / mapSetting.mapTileHeight);
+        // const gridX = Math.floor((this.clickNode.x - firstCellPos.x) / mapSetting.mapTileWidth);
+        // const gridY = Math.floor((this.clickNode.y - firstCellPos.y) / mapSetting.mapTileHeight);
+        const gridX = Math.floor((this.clickNode.x) / mapSetting.mapTileWidth);
+        const gridY = Math.floor((this.clickNode.y) / mapSetting.mapTileWidth);
 
+        console.log(gridX, gridY, "clickNode position:", this.clickNode.x, this.clickNode.y);
         const firstTileX = Math.max(0, gridX - steps);
         const firstTileY = Math.max(0, gridY - steps);
         const lastTileX = Math.min(mapSetting.mapWidth - 1, gridX + steps);
         const lastTileY = Math.min(mapSetting.mapHeight - 1, gridY + steps);
 
+        console.log("Display walkable area from:", firstTileX, firstTileY, "to:", lastTileX, lastTileY);
         for (let i = firstTileX; i <= lastTileX; i++) {
             for (let j = firstTileY; j <= lastTileY; j++) {
                 if (!walkableGridMap[i][j]) continue;
@@ -183,11 +202,18 @@ cc.Class({
                     tile = cc.instantiate(this.redTilePrefab); // prefab màu đỏ
                 }
 
-                const mapPos = this.mapLayout.node.getPosition();
-                tile.x = mapPos.x + i * mapSetting.mapTileWidth + mapSetting.mapTileWidth / 2;
-                tile.y = mapPos.y + j * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
+                // const mapPos = this.mapLayout.node.getPosition();
+                // tile.x = mapPos.x + i * mapSetting.mapTileWidth + mapSetting.mapTileWidth / 2;
+                // tile.y = mapPos.y + j * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
 
-                this.mapLayout.node.parent.addChild(tile);
+                // this.mapLayout.node.parent.addChild(tile);
+                // tile.x = i * mapSetting.mapTileWidth + mapSetting.mapTileWidth / 2;
+                // tile.y = j * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
+                // this.mapObjectHolder.addChild(tile);
+                this.mapObjectHolder.addChild(tile);
+                this.mapController.addObjectIntoMap(i, j, 1, tile);
+                
+
             }
         }
     },
@@ -268,7 +294,7 @@ cc.Class({
     clearWalkableArea() {
         if (!this.clickNode) return;
         // Xóa tất cả các ô vuông có thể đi lại
-        this.mapLayout.node.parent.children.forEach(child => {
+        this.mapObjectHolder.children.forEach(child => {
             if (child.name === 'GreenTile') {
                 child.destroy();
             }

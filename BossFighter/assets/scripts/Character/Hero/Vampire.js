@@ -1,9 +1,9 @@
 import Character from "../Character";
 
 const VAMPIRE_ANIMATION = {
-    "attack_front": "VampireFrontAttack",
+    "attack_front": "VampireBackAttack",
     "attack_left": "VampireLeftAttack",
-    "attack_back": "VampireBackAttack",
+    "attack_back": "VampireFrontAttack",
     "attack_right": "VampireRightAttack",
 
     "walk_front": "VampireBackRun",
@@ -18,21 +18,6 @@ cc.Class({
     extends: Character,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
         characterId: "hero003",
         damage: 10, // Damage dealt by the ultimate skill
         range: 1, // Range of the ultimate skill
@@ -44,6 +29,8 @@ cc.Class({
 
     onLoad () {
         this.initData(this.characterId);
+
+        console.log("attack prefab", this.attackPrefab);
     },
 
     start () {
@@ -53,23 +40,6 @@ cc.Class({
         this._super(characterNameId);
         console.log("Vampire initData with characterId:", characterNameId);
         console.log("Vampire properties:", this);
-    },
-
-    attack(enemy){
-        console.log('Damge cua tuong', this.attackDame)
-        if(this.attackPrefab){
-            const attackNode = cc.instantiate(this.attackPrefab);
-            attackNode.setPosition(this.node.getPosition());
-            this.node.parent.addChild(attackNode)
-            attackNode.mainScript = attackNode.getComponents(cc.Component).find(c=> typeof c.initDirection === 'function')
-
-            if(attackNode.mainScript){
-                attackNode.mainScript.initDirection(enemy, this.attackDame)
-            }
-        }
-        else{
-            cc.error('Attack prefab is not set for ADC')
-        }
     },
 
     ultimate(centerGridPos, spawnAnimationCallback) {
@@ -124,13 +94,13 @@ cc.Class({
         }
         anim.play(clipName);
     },
-    attacAnimation(direction) {
+    attackAnimation(direction) {
         this.playAnimation("attack_" + direction, 0.5);
     },
     attack(enemy, direction){
-        console.log('Damge cua tuong', this.attackDame)
+        console.log("Vampire attack with direction:", direction, enemy.name);
         if(this.attackPrefab){
-            this.attacAnimation(direction);
+            this.attackAnimation(direction);
             const attackNode = cc.instantiate(this.attackPrefab);
             attackNode.setPosition(this.node.getPosition());
             this.node.parent.addChild(attackNode)
@@ -139,6 +109,9 @@ cc.Class({
             if(attackNode.mainScript){
                 attackNode.mainScript.initDirection(enemy, this.attackDame)
             }
+
+            console.log('Vampire attack with damage:', this.attackDame);
+            return this.attackDame;
         }
         else{
             cc.error('Attack prefab is not set for Vampire')

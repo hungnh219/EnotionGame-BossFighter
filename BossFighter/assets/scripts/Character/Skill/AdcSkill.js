@@ -25,15 +25,12 @@ cc.Class({
         this.damage = dame;
         // Tính vector hướng từ skill đến boss
         const from = this.node.getPosition();
-        console.log('vi tri tuong', from.x, from.y)
         const to = targetPos;
-        console.log('vi tri boss', to.x, to.y)
         const dir = cc.v2(to.x - from.x, to.y - from.y).normalize();
         this.direction = dir;
 
         const angle = Math.atan2(dir.y, dir.x) * 180 / Math.PI;
         this.node.angle = angle;
-        console.log('Direction initialized:', this.direction);
     },
 
     onCollisionEnter: function (other, self) {

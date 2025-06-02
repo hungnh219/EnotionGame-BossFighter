@@ -414,9 +414,10 @@ const GameController = cc.Class({
             let direction = this.getDirection(heroPos, enemyPos);
 
             // hero.mainScript.attack(direction);
-            console.log('hero attack direction', direction);
-            hero.mainScript.attack(enemy, direction);
+            let dame = hero.mainScript.attack(enemy, direction);
+            enemy.mainScript.takeDame(dame);
 
+            console.log('hero attack enemy', hero.name, enemy.name, 'dame: ', dame);
             if (enemy.mainScript.getCurrentHp() <= 0)  {
                 if (isBoss) {
                     console.log('boss die');
