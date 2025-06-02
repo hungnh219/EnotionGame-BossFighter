@@ -27,13 +27,13 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
         this.initData(this.characterId);
 
         console.log("attack prefab", this.attackPrefab);
     },
 
-    start () {
+    start() {
     },
 
     initData(characterNameId) {
@@ -42,7 +42,7 @@ cc.Class({
         console.log("Vampire properties:", this);
     },
 
-    ultimate(centerGridPos, spawnAnimationCallback) {
+    async ultimate(centerGridPos, spawnAnimationCallback) {
         this.damage = this.ultimateDame || this.damage; // Ensure damage is set to ultimate damage
 
         console.log('Vampire ultimate skill used at position:', centerGridPos, this.damage);
@@ -58,8 +58,8 @@ cc.Class({
                 let times = (i == 0 && j == 0) ? 4 : 2;
 
                 console.log(this.damage)
-                spawnAnimationCallback(this.ultimatePrefab ,tile, times, this.ultimateDame);
-                
+                spawnAnimationCallback(this.ultimatePrefab, tile, times, this.ultimateDame);
+
             }
         }
 
@@ -97,23 +97,31 @@ cc.Class({
     attackAnimation(direction) {
         this.playAnimation("attack_" + direction, 0.5);
     },
-    attack(enemy, direction){
+    async attack(enemy, direction) {
         console.log("Vampire attack with direction:", direction, enemy.name);
-        if(this.attackPrefab){
+        if (this.attackPrefab) {
             this.attackAnimation(direction);
             const attackNode = cc.instantiate(this.attackPrefab);
             attackNode.setPosition(this.node.getPosition());
             this.node.parent.addChild(attackNode)
-            attackNode.mainScript = attackNode.getComponents(cc.Component).find(c=> typeof c.initDirection === 'function')
+            attackNode.mainScript = attackNode.getComponents(cc.Component).find(c => typeof c.initDirection === 'function')
 
-            if(attackNode.mainScript){
+            if (attackNode.mainScript) {
                 attackNode.mainScript.initDirection(enemy, this.attackDame)
+
+                let dame = new Promise((resolve) => {
+                    enemy.on('VAMPIRE_ATTACK', () => {
+                        console.log('Enemy attacked by VAMPIRE with damage:', this.attackDame)
+                        resolve(this.attackDame)
+                    })
+                })
+
+                return dame;
             }
 
-            console.log('Vampire attack with damage:', this.attackDame);
-            return this.attackDame;
+
         }
-        else{
+        else {
             cc.error('Attack prefab is not set for Vampire')
         }
     },
