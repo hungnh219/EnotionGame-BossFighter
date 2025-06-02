@@ -230,11 +230,15 @@ cc.Class({
             return;
         }
 
-        const enemyGridX = Math.floor((enemy.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
-        const enemyGridY = Math.floor((enemy.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
+        // const enemyGridX = Math.floor((enemy.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
+        // const enemyGridY = Math.floor((enemy.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
 
-        const heroGridX = Math.floor((hero.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
-        const heroGridY = Math.floor((hero.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
+        // const heroGridX = Math.floor((hero.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
+        // const heroGridY = Math.floor((hero.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
+        const enemyGridX = Math.floor((enemy.x) / mapSetting.mapTileWidth);
+        const enemyGridY = Math.floor((enemy.y) / mapSetting.mapTileHeight);
+        const heroGridX = Math.floor((hero.x) / mapSetting.mapTileWidth);
+        const heroGridY = Math.floor((hero.y) / mapSetting.mapTileHeight);
         
         this.walkableGridMap[heroGridX][heroGridY] = true;
 
@@ -266,8 +270,11 @@ cc.Class({
             if (i > finalStepIndex) {
                 // Finish
                 this.walkableGridMap[enemyGridX][enemyGridY] = true;
-                const newEnemyX = Math.floor((enemy.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
-                const newEnemyY = Math.floor((enemy.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
+                // const newEnemyX = Math.floor((enemy.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
+                // const newEnemyY = Math.floor((enemy.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
+
+                const newEnemyX = Math.floor(enemy.x / mapSetting.mapTileWidth);
+                const newEnemyY = Math.floor(enemy.y / mapSetting.mapTileHeight);
                 this.walkableGridMap[newEnemyX][newEnemyY] = false;
                 return;
             }
@@ -278,8 +285,10 @@ cc.Class({
                 this.playAnimation(enemy, 'walk', direction);
             }
             const p = path[i];
-            const px = this.firstCellPos.x + p.x * mapSetting.mapTileWidth + mapSetting.mapTileWidth / 2;
-            const py = this.firstCellPos.y + p.y * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
+            // const px = this.firstCellPos.x + p.x * mapSetting.mapTileWidth + mapSetting.mapTileWidth / 2;
+            // const py = this.firstCellPos.y + p.y * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
+            const px = p.x * mapSetting.mapTileWidth + mapSetting.mapTileWidth / 2;
+            const py = p.y * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
             enemy.runAction(
                 cc.sequence(
                     cc.moveTo(0.4, px, py),

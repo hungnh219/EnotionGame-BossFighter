@@ -1,3 +1,5 @@
+import EventBus from "../../EventBus";
+
 cc.Class({
     extends: cc.Component,
 
@@ -19,6 +21,8 @@ cc.Class({
         this.uiGameNode.on(cc.Node.EventType.MOUSE_LEAVE, this.onMouseUp, this);
 
         this.node.on(cc.Node.EventType.MOUSE_MOVE, this.onMouseMoveEdgeScroll, this);
+
+        EventBus.on(EventBus.events.PREVENT_DRAG, this.onMouseUp, this);
     },
 
     onMouseDown(event) {

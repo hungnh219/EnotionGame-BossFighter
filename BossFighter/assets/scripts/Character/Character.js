@@ -231,6 +231,6 @@ cc.Class({
 
     die() {
         console.log("Character died");
-        this.node.destroy();
+        // this.node.destroy();
     },
 });

@@ -37,16 +37,14 @@ cc.Class({
     },
 
     ultimate(targetTile, gameCtrl) {
-        // const newPos = targetTile
-
-        const newPosX = gameCtrl.firstTile.x + targetTile.x * gameCtrl.tileWidth + gameCtrl.tileWidth / 2;
-        const newPosY = gameCtrl.firstTile.y + targetTile.y * gameCtrl.tileHeight + gameCtrl.tileHeight / 2;
+        const newPosX = targetTile.x * gameCtrl.tileWidth + gameCtrl.tileWidth / 2;
+        const newPosY = targetTile.y * gameCtrl.tileHeight + gameCtrl.tileHeight / 2;
 
         const oldPosX = this.node.x;
         const oldPosY = this.node.y;
 
-        const oldGridX = Math.floor((oldPosX - gameCtrl.firstTile.x) / gameCtrl.tileWidth);
-        const oldGridY = Math.floor((oldPosY - gameCtrl.firstTile.y) / gameCtrl.tileHeight);
+        const oldGridX = Math.floor((oldPosX) / gameCtrl.tileWidth);
+        const oldGridY = Math.floor((oldPosY) / gameCtrl.tileHeight);
         
         const ultimate = cc.instantiate(this.ultimatePrefab);
         ultimate.setPosition(this.node.getPosition());

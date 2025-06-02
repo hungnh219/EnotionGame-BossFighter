@@ -40,6 +40,7 @@ cc.Class({
         //     other.mainScript.takeDame(this.damage);
         // }
 
+        other.node.emit('ADC_ULTIMATE');
         this.node.destroy();
     },
 

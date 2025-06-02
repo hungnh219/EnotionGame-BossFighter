@@ -187,7 +187,15 @@ const GameController = cc.Class({
 
 
     getSelectedHeroPrefabs() {
+        console.log('get selected hero prefabs', this.selectedHeroPrefabs);
         return this.selectedHeroPrefabs;
+    },
+
+    addSelectedHeroPrefab(prefab) {
+        console.log('add selected hero prefab', prefab);
+        if (!this.selectedHeroPrefabs) this.selectedHeroPrefabs = [];
+        this.selectedHeroPrefabs.push(prefab);
+        console.log('selected hero prefabs', this.selectedHeroPrefabs);
     },
 
     getWalkableMap() {
@@ -224,12 +232,11 @@ const GameController = cc.Class({
             node: boss,
             size: size || 1,
         });
+
+        console.log('add boss', this.bosses, boss, size);
     },
 
-    addSelectedHeroPrefab(prefab) {
-        if (!this.selectedHeroPrefabs) this.selectedHeroPrefabs = [];
-        this.selectedHeroPrefabs.push(prefab);
-    },
+    
 
     // =================== Get-Set: End ===================
 
@@ -386,7 +393,7 @@ const GameController = cc.Class({
         }
     },
 
-    heroAttackTarget(hero, enemy) {
+    async heroAttackTarget(hero, enemy) {
         if (!hero || !enemy || !hero.mainScript) {
             console.warn("Thiếu hero hoặc enemy hoặc mainScript");
             return;
@@ -395,35 +402,23 @@ const GameController = cc.Class({
         enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.getCurrentHp === 'function');
         hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.dealDame === 'function');
 
-        
         let dame = hero.mainScript.getAttackDame();
         if (enemy.mainScript && dame > 0) {
-            // hero.mainScript.dealDame(enemy, 20);
-            
-            // enemy.mainScript.takeDame(dame);        
-            // hero.mainScript.attack(enemy);
             let isBoss = this.bosses.some(b => b.node === enemy);
 
-            // // calculate direction
             const enemyPos = this.positionToGrid(enemy);
             const heroPos = this.positionToGrid(hero);
             if (!enemyPos || !heroPos) return;
-            // const dx = enemyPos.x - heroPos.x;
-            // const dy = enemyPos.y - heroPos.y;
 
             let direction = this.getDirection(heroPos, enemyPos);
 
-            // hero.mainScript.attack(direction);
-            let dame = hero.mainScript.attack(enemy, direction);
+            let dame = await hero.mainScript.attack(enemy, direction);
             enemy.mainScript.takeDame(dame);
-
-            console.log('hero attack enemy', hero.name, enemy.name, 'dame: ', dame);
+            console.log('hero attack enemy', enemy.name, 'with damage', dame);
             if (enemy.mainScript.getCurrentHp() <= 0)  {
                 if (isBoss) {
-                    console.log('boss die');
                     this.handleEnemyDie(enemy);
                 } else {
-                    console.log('enemy die', this.bosses, enemy);
                     this.enemies.splice(this.enemies.indexOf(enemy), 1);
                 }
             }
@@ -437,6 +432,9 @@ const GameController = cc.Class({
 
     // highlight enemy when selected to attack
     showEnemySelection(enemies, onEnemySelected) {
+        if (this.isTarget) return;
+
+        this.isTarget = true;
         enemies.forEach(enemy => {
             this.highlightEnemy(enemy);
 
@@ -463,6 +461,7 @@ const GameController = cc.Class({
     },
 
     clearEnemyHighlights(enemies) {
+        this.isTarget = false;
         enemies.forEach(enemy => {
             enemy.scale = enemy.scale / 1.5; // reset scale
             enemy.off(cc.Node.EventType.TOUCH_END);
@@ -474,6 +473,7 @@ const GameController = cc.Class({
         let enemiesInRange = [];
         if (hero == undefined || hero == null) hero = this.getFocusedHero();
         if (this.enemies == undefined || this.enemies == null) this.enemies = [];
+
         hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getAttackRange === 'function');
         if (!hero.mainScript) {
             console.log('no getAttackRange function');
@@ -519,21 +519,6 @@ const GameController = cc.Class({
         console.log('enemies in range: ', enemiesInRange);
 
         return enemiesInRange;
-    },
-
-    getAttackRange(object) {
-        if (object == undefined || object == null) return 0;
-
-        object.mainScript = object.getComponents(cc.Component).find(c => typeof c.getAttackRange === 'function');
-
-        if (object.mainScript) {
-            let attackRange = object.mainScript.getAttackRange();
-            if (attackRange > 0) {
-                return attackRange;
-            }
-        }
-
-        return 0;
     },
     // =================== Hero Attack: End ===================
 
@@ -649,8 +634,10 @@ const GameController = cc.Class({
                 // highlight.parent = this.mapNode;
                 this.rootNode.addChild(highlight);
                 highlight.setPosition(
-                    this.firstCellPos.x + x * this.mapTileWidth + this.mapTileWidth / 2,
-                    this.firstCellPos.y + y * this.mapTileHeight + this.mapTileHeight / 2
+                    // this.firstCellPos.x + x * this.mapTileWidth + this.mapTileWidth / 2,
+                    // this.firstCellPos.y + y * this.mapTileHeight + this.mapTileHeight / 2
+                    x * this.mapTileWidth + this.mapTileWidth / 2,
+                    y * this.mapTileHeight + this.mapTileHeight / 2
                 );
                 highlight.on(cc.Node.EventType.TOUCH_END, () => {
                     this.clearTileHighlights();
@@ -667,19 +654,20 @@ const GameController = cc.Class({
         this.highlightTiles = [];
     },
 
-    heroUltimateEnemy(hero, enemy) {
+    async heroUltimateEnemy(hero, enemy) {
         console.log('enemy pos', enemy.x, enemy.y);
         if (!hero || !enemy || !hero.mainScript) {
             console.warn("Thiếu hero hoặc enemy hoặc mainScript");
             return;
         }
 
-        hero.mainScript.ultimate(enemy);
+        let dame = await hero.mainScript.ultimate(enemy);
 
         enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.getCurrentHp === 'function');
+        enemy.mainScript.takeDame(dame);
 
         if (enemy.mainScript && enemy.mainScript.getCurrentHp() <= 0) {
-                this.handleEnemyDie(enemy);
+            this.handleEnemyDie(enemy);
         }
     },
 
@@ -699,8 +687,10 @@ const GameController = cc.Class({
                 return;
             }
             anim.setPosition(
-                this.firstCellPos.x + tile.x * this.mapTileWidth + this.mapTileWidth / 2,
-                this.firstCellPos.y + tile.y * this.mapTileHeight + this.mapTileHeight / 2
+                // this.firstCellPos.x + tile.x * this.mapTileWidth + this.mapTileWidth / 2,
+                // this.firstCellPos.y + tile.y * this.mapTileHeight + this.mapTileHeight / 2
+                tile.x * this.mapTileWidth + this.mapTileWidth / 2,
+                tile.y * this.mapTileHeight + this.mapTileHeight / 2
             );
             this.rootNode.addChild(anim);
 
@@ -810,14 +800,13 @@ const GameController = cc.Class({
         if (this.bosses == undefined || this.bosses == null) this.bosses = [];
 
         if (this.enemies.includes(enemy)) {
-            console.log('enemy die', this.enemies, enemy);
+
             this.enemies.splice(this.enemies.indexOf(enemy), 1);
+
+            enemy.destroy(); // destroy the enemy node
         }
         else if (this.bosses.includes(enemy) || this.bosses.some(b => b.node = enemy)) {
-            // console.log('boss die');
-            // this.bosses = this.bosses.filter(b => b.node !== enemy);
             this.bosses.splice(this.bosses.indexOf(enemy), 1);
-
             if (this.bosses.length == 0) {
                 console.log('boss die, no more boss');
                 this.checkWin();
@@ -829,33 +818,15 @@ const GameController = cc.Class({
 
     },
 
-    checkWalkableMove(hero, dx, dy) {
-        const newX = hero.x + dx * this.mapTileWidth;
-        const newY = hero.y + dy * this.mapTileHeight;
-
-        // check if the new position is walkable use newX, newY, firstCellPos and lastCellPos
-        if (newX < this.firstCellPos.x || newX > this.lastCellPos.x || newY < this.firstCellPos.y || newY > this.lastCellPos.y) {
-            return false;
-        }
-
-        // check if the new position is walkable
-        const gridX = Math.floor((newX - this.firstCellPos.x) / this.mapTileWidth);
-        const gridY = Math.floor((newY - this.firstCellPos.y) / this.mapTileHeight);
-        if (this.gridMap[gridX][gridY] == false) {
-            return false;
-        }
-
-        this.gridMap[gridX][gridY] == false;
-        return true;
-    },
-
     // object with size 1
     positionToGrid(node) {
         if (this.firstCellPos == undefined || this.lastCellPos == undefined) return null;
         if (this.mapTileWidth == undefined || this.mapTileHeight == undefined) return null;
 
-        let gridX = Math.floor((node.x - this.firstCellPos.x) / this.mapTileWidth);
-        let gridY = Math.floor((node.y - this.firstCellPos.y) / this.mapTileHeight);
+        // let gridX = Math.floor((node.x - this.firstCellPos.x) / this.mapTileWidth);
+        // let gridY = Math.floor((node.y - this.firstCellPos.y) / this.mapTileHeight);
+        let gridX = Math.floor(node.x / this.mapTileWidth);
+        let gridY = Math.floor(node.y / this.mapTileHeight);
 
         if (gridX < 0 || gridY < 0 || gridX >= this.mapWidth || gridY >= this.mapHeight) {
             return null;
@@ -871,8 +842,10 @@ const GameController = cc.Class({
         if (this.firstCellPos == undefined || this.lastCellPos == undefined) return null;
         if (this.mapTileWidth == undefined || this.mapTileHeight == undefined) return null;
 
-        let gridX = Math.floor((boss.node.x - this.firstCellPos.x - (this.mapTileWidth * boss.size) / 2) / this.mapTileWidth);
-        let gridY = Math.floor((boss.node.y - this.firstCellPos.y - (this.mapTileHeight * boss.size) / 2) / this.mapTileHeight);
+        // let gridX = Math.floor((boss.node.x - this.firstCellPos.x - (this.mapTileWidth * boss.size) / 2) / this.mapTileWidth);
+        // let gridY = Math.floor((boss.node.y - this.firstCellPos.y - (this.mapTileHeight * boss.size) / 2) / this.mapTileHeight);
+        let gridX = Math.floor((boss.node.x - (this.mapTileWidth * boss.size) / 2) / this.mapTileWidth);
+        let gridY = Math.floor((boss.node.y - (this.mapTileHeight * boss.size) / 2) / this.mapTileHeight);
 
         if (gridX < 0 || gridY < 0 || gridX >= this.mapWidth || gridY >= this.mapHeight) {
             return null;

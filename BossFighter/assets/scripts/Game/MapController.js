@@ -21,10 +21,6 @@ cc.Class({
         instance = this;
 
         this.gameController = GameController.getInstance();
-        // this.mapObjectHolder.parent = this.mapLayout.node;
-        // this.mapLayout.node.addChild(this.mapObjectHolder);
-        // this.mapObjectHolder.setPosition(cc.v2(0, 0));
-        // this.mapObjectHolder.setPosition(this.mapLayout.node.getPosition());
     },
 
     start () {
@@ -93,40 +89,6 @@ cc.Class({
         }
     },
 
-    // viewObjectsMap(mapData, mapWidth, mapHeight, mapObjectSpriteFrames) {
-    //     console.log("Viewing objects map with data:", mapData, mapWidth, mapHeight, mapObjectSpriteFrames);
-
-    //     // this.gameController.setMapSetting(mapWidth, mapHeight, mapObjectSpriteFrames);
-    //     for (let i = 0; i < mapWidth; i++) {
-    //         for (let j = 0; j < mapHeight; j++) {
-    //             // console.log(`Processing tile at (${i}, ${j}) with object ID:`, mapData[i][j]);
-    //             let newJ = mapHeight - j - 1; // Invert y-axis for correct positioning
-    //             const objectId = mapData[i][j];
-    //             if (objectId === 0) {
-    //                 this.gameController.updateWalkable(i, j, 1, true);
-    //                 continue; // Skip if no object is present
-    //             }
-    //             const spriteFrame = mapObjectSpriteFrames[objectId];
-
-    //             if (!spriteFrame) {
-    //                 continue; // Skip if no sprite frame is found
-    //             }
-
-    //             const prefab = cc.instantiate(this.mapObjectPrefab);
-    //             const sprite = prefab.getComponent(cc.Sprite);
-    //             if (sprite) {
-    //                 sprite.spriteFrame = spriteFrame;
-    //             } else {
-    //                 console.warn(`No sprite component found on prefab for object ID: ${objectId}`);
-    //                 continue; // Skip if no sprite component is found
-    //             }
-
-    //             this.mapObjectHolder.addChild(prefab);
-    //             this.addObjectIntoMap(i, j, 1, prefab);
-    //             this.gameController.updateWalkable(i, j, 1, false);
-    //         }
-    //     }
-    // },
     viewObjectsMap(mapData, mapWidth, mapHeight, mapObjectSpriteFrames) {
         console.log("Viewing objects map with data:", mapData, mapWidth, mapHeight, mapObjectSpriteFrames);
 
@@ -161,7 +123,6 @@ cc.Class({
     },
 
     spawnBossIntoMap(bossNode, position, size = 1) {
-        console.log("Spawning boss into map at position:", position, "with size:", size);
         const posX = position.x ? position.x : this.mapWidth - 3;
         const posY = position.y ? position.y : this.mapHeight - 3;
 
@@ -184,7 +145,6 @@ cc.Class({
 
 
         this.mapObjectHolder.addChild(bossNode);
-        console.log('boss map object holder position:', this.mapObjectHolder.getPosition());
         this.addObjectIntoMap(posX, posY, size, bossNode);
 
         this.gameController.updateWalkable(posX, posY, size, false);
@@ -208,13 +168,13 @@ cc.Class({
 
         this.mapObjectHolder.addChild(enemy);
 
-        console.log('enemy map object holder position:', this.mapObjectHolder.getPosition());
         this.gameController.setNewEmemy(enemy);
         this.addObjectIntoMap(posX, posY, 1, enemy);
         this.gameController.updateWalkable(posX, posY, 1, false);
     },
 
     spawnHeroIntoMap(heroPrefabs, focusEffectPrefab) {
+        console.log("Spawning heroes into map with prefabs:", heroPrefabs);
         heroPrefabs.forEach((heroPrefab, index) => {
             let prefabNode = cc.instantiate(heroPrefab)
             let effectNode = cc.instantiate(focusEffectPrefab)
@@ -224,7 +184,6 @@ cc.Class({
             prefabNode.addChild(effectNode);
 
             this.mapObjectHolder.addChild(prefabNode);
-            console.log('hero map object holder position:', this.mapObjectHolder.getPosition());
             this.gameController.addHero(prefabNode);
             this.addObjectIntoMap(index, 0, 1, prefabNode);
             // this.updateWalkable(index, 0, 1);
@@ -235,9 +194,6 @@ cc.Class({
     },
 
     addObjectIntoMap(gridX, gridY, size, object) {
-        // this.mapObjectHolder.setPosition(this.mapLayout.node.getPosition());
-
-        console.log(object.name, " position:", gridX, gridY, "with size:", size);
         let objectNode = object;
 
         if (object.node) objectNode = object.node;

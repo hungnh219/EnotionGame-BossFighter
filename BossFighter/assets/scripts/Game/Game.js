@@ -136,8 +136,7 @@ cc.Class({
         this.backgroundSprite.spriteFrame = this.backgroundSpriteFrames[this.mapIndex];
 
         this.initMapView();
-
-        if (this.heroPrefabs) this.spawnHero();
+        this.spawnHero();
 
         this.ultimateGreyPrefab = cc.instantiate(this.greyTilePrefab);
         this.ultimateGreyPrefab.parent = this.ultimateCooldownLabel.node.parent;
@@ -235,7 +234,15 @@ cc.Class({
     },
 
     spawnHero() {
-        this.mapController.spawnHeroIntoMap(this.heroPrefabs, this.focusEffectPrefab);
+        let heroPrefabs = this.gameController.getSelectedHeroPrefabs();
+        let focusEffectPrefab = this.focusEffectPrefab;
+        if (!heroPrefabs || heroPrefabs.length === 0) {
+            console.warn('No hero prefabs found to spawn');
+            return;
+        }
+
+        console.log('Spawn hero with prefabs:', this.heroPrefabs);
+        this.mapController.spawnHeroIntoMap(heroPrefabs, focusEffectPrefab);
     },
 
     // enemy always has size = 1
@@ -261,11 +268,15 @@ cc.Class({
     },
 
     heroAttack() {
+        EventBus.emit(EventBus.events.CLEAR_WALKABLE_AREA);
         this.gameController.heroAttack();
+        EventBus.emit(EventBus.events.PREVENT_DRAG);
     },
 
     heroUltimate() {
+        EventBus.emit(EventBus.events.CLEAR_WALKABLE_AREA);
         this.gameController.heroUltimate();
+        EventBus.emit(EventBus.events.PREVENT_DRAG);
     },
 
     replayGame() {

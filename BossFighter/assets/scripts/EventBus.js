@@ -16,6 +16,8 @@ EventBus.events = {
 
     BOSS2_SPAWN_ENEMY: 'boss2_spawn_enemy',
     ENEMY_AUTO_MODE: 'enemy_auto_mode',
+
+    PREVENT_DRAG: 'prevent_drag',
 };
 
 

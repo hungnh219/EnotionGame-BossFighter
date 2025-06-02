@@ -1732,7 +1732,7 @@
     },
     "component": "",
     "_componentId": "f3df9Cx9EVN6J6zT2hCO3vv",
-    "handler": "clockHero",
+    "handler": "lockHero",
     "customEventData": ""
   },
   {

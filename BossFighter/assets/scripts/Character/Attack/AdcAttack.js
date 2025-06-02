@@ -31,7 +31,6 @@ cc.Class({
 
         const angle = Math.atan2(dir.y, dir.x) * 180 / Math.PI;
         this.node.angle = angle;
-        console.log('Direction initialized:', this.direction);
     },
 
     onCollisionEnter: function (other, self) {
@@ -40,7 +39,7 @@ cc.Class({
         // if (other.mainScript) {
         //     other.mainScript.takeDame(this.damage);
         // }
-
+        other.node.emit('ADC_ATTACK');
         this.node.destroy();
     },
 

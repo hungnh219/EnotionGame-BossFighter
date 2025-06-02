@@ -1,21 +1,18 @@
-// xử lý logic trong game
-// kiếm enemy trong tầm đánh, hiển thị ô để xài skill trên map,...
-// tính toán vị trí của enemy, player, boss, item trên map
-
-cc.Class({
-    extends: cc.Component,
-
-    properties: {
-   
-    },
-
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {},
-
-    start () {
-
-    },
-
-    // update (dt) {},
-});
+const GameLogic = {
+    getAttackTiles(center, range, mapWidth, mapHeight) {
+        const attackTiles = [];
+        for (let i = -range; i <= range; i++) {
+            for (let j = -range; j <= range; j++) {
+                const tileX = center.x + i;
+                const tileY = center.y + j;
+                
+                // Check if the tile is within the map boundaries
+                if (tileX >= 0 && tileX < mapWidth && tileY >= 0 && tileY < mapHeight) {
+                    attackTiles.push({ x: tileX, y: tileY });
+                }
+            }
+        }
+        
+        return attackTiles;
+    }
+}

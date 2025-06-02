@@ -210,7 +210,7 @@ cc.Class({
         this.selectedHero.node.addChild(nameLabelNode);
     },
 
-    clockHero() {
+    lockHero() {
         if (this.heroPicked.prefab != null) {
             if (this.heroLockedList.node.childrenCount == this.maxHero + 1) return;
 

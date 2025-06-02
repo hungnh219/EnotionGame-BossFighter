@@ -31,7 +31,6 @@ cc.Class({
     },
 
     start () {
-        // this._super.initData('123');
     },
 
     initData(characterNameId) {
@@ -41,17 +40,25 @@ cc.Class({
         console.log("ADC properties:", this);
     },
 
-    attack(enemy, direction) {
+    async attack(enemy, direction) {
         this.attackAnimation(direction);
-        console.log('Damge cua tuong', this.attackDame, direction)
         if(this.attackPrefab){
             const attackNode = cc.instantiate(this.attackPrefab);
             attackNode.setPosition(this.node.getPosition());
             this.node.parent.addChild(attackNode)
             attackNode.mainScript = attackNode.getComponents(cc.Component).find(c=> typeof c.initDirection === 'function')
 
-            if(attackNode.mainScript){
+            if(attackNode.mainScript) {
                 attackNode.mainScript.initDirection(enemy, this.attackDame)
+
+                let dame = new Promise((resolve) => {
+                    enemy.on('ADC_ATTACK', () => {
+                        console.log("Enemy attacked by ADC with damage:", this.attackDame);
+                        resolve(this.attackDame);
+                    })
+                })
+
+                return dame;
             }
         }
         else{
@@ -59,9 +66,7 @@ cc.Class({
         }
     },
 
-    ultimate(enemy) {
-        let dame = this.ultimateDame;
-        console.log("Ultimate skill activated with damage:", dame);
+    async ultimate(enemy) {
         if (this.ultimatePrefab) {
             const ultimate = cc.instantiate(this.ultimatePrefab);
             ultimate.setPosition(this.node.getPosition());
@@ -70,9 +75,18 @@ cc.Class({
 
             if (ultimate.mainScript) {
                 ultimate.mainScript.initDirection(enemy, this.ultimateDame);
+
+                let dame = new Promise((resolve) => {
+                    enemy.on('ADC_ULTIMATE', () => {
+                        resolve(this.ultimateDame);
+                    });
+                });
+                
+                this.resetUltimateCooldown();
+
+                return dame;    
             }
 
-            this.resetUltimateCooldown();
         } else {
             cc.error("Ultimate prefab is not set for ADC.");
         }
@@ -109,25 +123,6 @@ cc.Class({
     attackAnimation(direction) {
         console.log("ADC attackAnimation with direction:", direction);
         this.playAnimation("attack_" + direction, 0.5);
-    },
-    attack(enemy, direction){
-        console.log('Damge cua tuong', this.attackDame, direction)
-        if(this.attackPrefab){
-            this.attackAnimation(direction);
-            const attackNode = cc.instantiate(this.attackPrefab);
-            attackNode.setPosition(this.node.getPosition());
-            this.node.parent.addChild(attackNode)
-            attackNode.mainScript = attackNode.getComponents(cc.Component).find(c=> typeof c.initDirection === 'function')
-
-            if(attackNode.mainScript){
-                attackNode.mainScript.initDirection(enemy, this.attackDame)
-            }
-
-            return this.attackDame;
-        }
-        else{
-            cc.error('Attack prefab is not set for ADC')
-        }
     },
 
     // update (dt) {},
