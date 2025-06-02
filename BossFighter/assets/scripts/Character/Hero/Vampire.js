@@ -141,7 +141,7 @@ cc.Class({
             }
         }
         else{
-            cc.error('Attack prefab is not set for ADC')
+            cc.error('Attack prefab is not set for Vampire')
         }
     },
 

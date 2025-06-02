@@ -67,7 +67,7 @@ cc.Class({
         anim.play(clipName);
     },
 
-    attack(direction) {
+    attack(enemy, direction) {
         this.playAnimation("attack_" + direction, 0.5);
     },
 

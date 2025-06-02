@@ -1,4 +1,4 @@
-import Character from "../Character";
+import Character from "../Character"
 
 const BRUISER_ANIMATION = {
     "attack_front": "BruiserFrontAttack",
@@ -66,11 +66,12 @@ cc.Class({
         
     },
 
-    attack(direction) {
+    attack(enemy, direction) {
         this.playAnimation("attack_" + direction, 0.5);
     },
 
     playAnimation(animationName, moveTime) {
+        console.log("Bruiser playAnimation with name:", animationName, "and moveTime:", moveTime);
         const clipName = BRUISER_ANIMATION[animationName];
         if (!clipName) {
             cc.error("Invalid animation name:", animationName);

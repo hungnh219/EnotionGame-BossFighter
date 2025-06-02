@@ -355,9 +355,7 @@ const GameController = cc.Class({
 
     // =================== Enemy Logic: End ===================
     heroClick(node) {
-        console.log('hero click', node.name);
         if (node == this.focusedHero) {
-            console.log('checked hero is focused hero');
             EventBus.emit(EventBus.events.DISPLAY_WALKABLE_AREA, this.firstCellPos, this.lastCellPos, this.gridMap, node);
         }
         
@@ -403,7 +401,7 @@ const GameController = cc.Class({
             // hero.mainScript.dealDame(enemy, 20);
             
             // enemy.mainScript.takeDame(dame);        
-            hero.mainScript.attack(enemy);
+            // hero.mainScript.attack(enemy);
             let isBoss = this.bosses.some(b => b.node === enemy);
 
             // // calculate direction
@@ -416,6 +414,7 @@ const GameController = cc.Class({
             let direction = this.getDirection(heroPos, enemyPos);
 
             // hero.mainScript.attack(direction);
+            console.log('hero attack direction', direction);
             hero.mainScript.attack(enemy, direction);
 
             if (enemy.mainScript.getCurrentHp() <= 0)  {
@@ -758,7 +757,7 @@ const GameController = cc.Class({
     // =================== Hero Ultimate: End ===================
 
     updateWalkable(x, y, size, walkable) {
-        console.log('updateWalkable', x, y, size, walkable);
+        // console.log('updateWalkable', x, y, size, walkable);
         if (!this.gridMap) this.gridMap = [];
         if (this.gridMap[x] == undefined) {
             this.gridMap[x] = [];

@@ -1,5 +1,4 @@
-// const { default: EventBus } = require("./EventBus");
-import EventBus from "./EventBus";
+import EventBus from "../../EventBus";
 
 cc.Class({
     extends: cc.Component,

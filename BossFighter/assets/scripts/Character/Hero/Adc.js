@@ -41,8 +41,9 @@ cc.Class({
         console.log("ADC properties:", this);
     },
 
-    attack(enemy){
-        console.log('Damge cua tuong', this.attackDame)
+    attack(enemy, direction) {
+        this.attackAnimation(direction);
+        console.log('Damge cua tuong', this.attackDame, direction)
         if(this.attackPrefab){
             const attackNode = cc.instantiate(this.attackPrefab);
             attackNode.setPosition(this.node.getPosition());
@@ -79,6 +80,7 @@ cc.Class({
 
     playAnimation(animationName, moveTime) {
         const clipName = ADC_ANIMATION[animationName];
+        console.log("ADC playAnimation with name:", clipName, animationName);
         if (!clipName) {
             cc.error("Invalid animation name:", animationName);
             return;
@@ -106,10 +108,11 @@ cc.Class({
         anim.play(clipName);
     },
     attackAnimation(direction) {
+        console.log("ADC attackAnimation with direction:", direction);
         this.playAnimation("attack_" + direction, 0.5);
     },
     attack(enemy, direction){
-        console.log('Damge cua tuong', this.attackDame)
+        console.log('Damge cua tuong', this.attackDame, direction)
         if(this.attackPrefab){
             this.attackAnimation(direction);
             const attackNode = cc.instantiate(this.attackPrefab);

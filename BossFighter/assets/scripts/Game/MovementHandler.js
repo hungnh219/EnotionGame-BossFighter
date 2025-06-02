@@ -1,5 +1,7 @@
-import EventBus from "./EventBus";
-import GameController from "./Game/GameController";
+// import EventBus from "./EventBus";
+// import GameController from "./Game/GameController";
+import EventBus from "../EventBus";
+import GameController from "./GameController";
 const ANIM_MAP = {
     'idle': 'Idle',
     'walk': {
@@ -149,7 +151,6 @@ cc.Class({
     },
 
     displayWalkableArea(firstCellPos, lastCellPos, walkableGridMap, node) {
-
         let mapSetting = this.gameController.getMapSetting();
         this.firstCellPos = firstCellPos;
         this.lastCellPos = lastCellPos;

@@ -1,6 +1,6 @@
 // import GAME_DATA from './Game/GameData';
 // import 
-import GAME_DATA from './Game/GameData'
+import GAME_DATA from '../Game/GameData';
 const CHARACTER_DATA = {
     "hero001" : {
         "name": "Đấu sĩ",
