@@ -4,22 +4,23 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        prefabPlayer:cc.Prefab,
+        prefabPlayer: cc.Prefab,
         gridPlayer: cc.Node
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
-        this.socketIOManager = SocketIOManager.getInstance();
+    onLoad() {
+        this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager;
     },
 
-    start () {
-        this.socket = this.socketIOManager.getSocketIO()
-        this.getAllPlayer();
+    start() {
+        // this.socketIOManager.getRoomInformation();
+        this.socket = this.socketIOManager.getSocketIO();
+        this.getAllPlayer()
     },
 
-    getAllPlayer(){
+    getAllPlayer() {
         this.gridPlayer.removeAllChildren()
         this.nodePlayer = cc.instantiate(this.prefabPlayer);
         this.labelNode = this.nodePlayer.getChildByName("New Label");

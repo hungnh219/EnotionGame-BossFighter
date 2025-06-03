@@ -1,10 +1,3 @@
-// Learn cc.Class:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/class.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
-
 const SocketIOManager = cc.Class({
     extends: cc.Component,
 
@@ -22,12 +15,15 @@ const SocketIOManager = cc.Class({
 
 
     onLoad() {
-        this.roomName = null
-        this.playerId = null
-     },
+
+    },
 
     start() {
 
+    },
+
+    getSocketIO() {
+        return this.socketIO
     },
 
     connectToSocketIOServer(url) {
@@ -50,50 +46,112 @@ const SocketIOManager = cc.Class({
         console.log("Kết nối thanh cong Socket.IO server:", url);
     },
 
-    getSocketIO() {
-        return this.socketIO;
-    },
+    // createRoom(roomName) {
+    //     return new Promise((resolve, reject) => {
+    //         if (!this.socketIO) {
+    //             console.error("Chưa kết nối đến Socket.IO server.");
+    //             return null;
+    //         }
+    //         this.socketIO.emit('createRoom', roomName);
 
-    createRoom(roomName){
-        console.log('Tạo phòng với tên:', roomName);
-        if (!this.socketIO) {
-            console.error("Chưa kết nối đến Socket.IO server.");
-            return null;
-        }
-        this.socketIO.emit('createRoom', roomName);
-    },
+    //         this.socketIO.on('createRoomResult', (data) => {
+    //             if (data.success) {
+    //                 resolve(data)
+    //             }
+    //             else {
+    //                 reject(data.message)
+    //             }
+    //         })
+    //     })
 
-    joinRoom(roomName, socketId){
-        console.log('afssdfsadfsad', roomName, socketId)
-        if (!this.socketIO) {
-            console.error("Chưa kết nối đến Socket.IO server.");
-            return null;
-        }
 
-        this.socketIO.emit('joinRoom', {
-            roomName: roomName,
-            playerKey: socketId
+    // },
+
+    // joinRoom(roomName) {
+    //     return new Promise((resolve) => {
+    //         if (!this.socketIO) {
+    //             console.error("Chưa kết nối đến Socket.IO server.");
+    //             resolve({ success: false, message: "Chưa kết nối đến server" });
+    //             return;
+    //         }
+
+    //         this.socketIO.emit('joinRoom', roomName);
+
+    //         this.socketIO.on('joinRoomResult', (data) => {
+    //             if (data.success) {
+    //                 resolve(data);
+    //             }
+    //             else {
+    //                 reject(data.message)
+    //             }
+
+    //         });
+    //     });
+    // },
+
+    // getRoomInformation() {
+    //     console.log('ấdfádfádfs')
+    //     if (!this.socketIO) {
+    //         console.error("Chưa kết nối đến Socket.IO server.");
+    //         return null;
+    //     }
+    //     this.socketIO.on('roomInfo', (data) => {
+    //         console.log("Thông tin phòng:", data);
+
+    //     });
+    // },
+
+    createRoom(roomName, moveToWaitingRoomCallback) {
+        console.log("Yêu cầu tạo phòng với tên:", roomName);
+        this.socketIO.emit('CREATE_ROOM', roomName);
+
+        this.socketIO.on('CREATE_ROOM_SUCCESS', (data) => {
+            console.log("Phòng đã được tạo thành công:", data);
+            moveToWaitingRoomCallback();
         });
     },
 
-    getJoinRoomResult() {
+    getRooms() {
+        if (!this.socketIO) {
+            console.error("Chưa kết nối đến Socket.IO server.");
+            return null;
+        }
+        console.log("Yêu cầu danh sách phòng từ server...");
+
         return new Promise((resolve, reject) => {
-            if (!this.socketIO) {
-                console.error("Chưa kết nối đến Socket.IO server.");
-                reject("Không kết nối socket");
-                return;
-            }
-    
-            this.socketIO.once('joinRoomResult', (data) => {
-                if (data.success) {
-                    console.log('data',data)
-                    resolve(data);
-                } else {
-                    reject(data.message);
-                }
+            this.socketIO.on('ROOM_LIST', (data) => {
+                console.log("Nhận danh sách phòng:", data.rooms);
+                resolve(data.rooms);
             });
+
+            this.socketIO.emit('GET_ROOM');
+            
         });
     },
+
+    setUpdateRoomInfoCallback(callback) {
+        this.updateRoomInfoCallback = callback;
+    },
+
+    joinRoom(roomName, moveToWaitingRoomCallback) {
+        console.log("Yêu cầu tham gia phòng:", roomName);
+        if (!this.socketIO) {
+            console.error("Chưa kết nối đến Socket.IO server.");
+            return;
+        }
+
+        return new Promise((resolve, reject) => {
+            this.socketIO.on('JOIN_ROOM_SUCCESS', (data) => {
+                console.log("Đã tham gia phòng thành công:", data);
+                moveToWaitingRoomCallback();
+                resolve();
+            });
+
+            this.socketIO.emit('JOIN_ROOM', roomName);
+        });
+    },
+
+
 
     getMapData() {
         if (!this.socketIO) {
@@ -129,6 +187,21 @@ const SocketIOManager = cc.Class({
         this.socketIO.on('HERO_LOCKED', (data) => {
             console.log('Hero locked by client:', data.socketId, 'Hero Index:', data.heroIndex);
         })
+    },
+
+    listenGetRooms(callback) {
+        if (!this.socketIO) {
+            console.error("Chưa kết nối đến Socket.IO server.");
+            return;
+        }
+        console.log("Lắng nghe sự kiện GET_ROOM từ server...");
+
+        this.socketIO.on('UPDATE_ROOM_INFO', (data) => {
+            console.log("Nhận danh sách phòng:", data.rooms);
+            if (callback) {
+                callback();
+            }
+        });
     },
 
     listenWalkableGridUpdate() {
@@ -169,5 +242,3 @@ const SocketIOManager = cc.Class({
 
     // update (dt) {},
 });
-
-export default SocketIOManager;
