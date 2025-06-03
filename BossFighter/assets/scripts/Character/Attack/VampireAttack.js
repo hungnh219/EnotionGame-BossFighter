@@ -40,7 +40,7 @@ cc.Class({
         // if (other.mainScript) {
         //     other.mainScript.takeDame(this.damage);
         // }
-
+        other.node.emit('VAMPIRE_ATTACK')
         this.node.destroy();
     },
 

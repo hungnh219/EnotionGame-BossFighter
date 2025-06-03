@@ -24,12 +24,12 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
         this.initData(this.characterId);
 
     },
 
-    start () {
+    start() {
     },
 
     initData(characterNameId) {
@@ -45,7 +45,7 @@ cc.Class({
 
         const oldGridX = Math.floor((oldPosX) / gameCtrl.tileWidth);
         const oldGridY = Math.floor((oldPosY) / gameCtrl.tileHeight);
-        
+
         const ultimate = cc.instantiate(this.ultimatePrefab);
         ultimate.setPosition(this.node.getPosition());
         this.node.parent.addChild(ultimate);
@@ -57,14 +57,14 @@ cc.Class({
             const ultimate = cc.instantiate(this.ultimatePrefab);
             ultimate.setPosition(this.node.getPosition());
             this.node.parent.addChild(ultimate);
-            gameCtrl.updateWalkable(targetTile.x, targetTile.y,1 , false);
+            gameCtrl.updateWalkable(targetTile.x, targetTile.y, 1, false);
             gameCtrl.updateWalkable(oldGridX, oldGridY, 1, true);
             this.resetUltimateCooldown();
         }, 0.5);
-        
+
     },
 
-    attack(enemy, direction) {
+    async attack(enemy, direction) {
         this.playAnimation("attack_" + direction, 0.5);
 
         return this.attackDame;

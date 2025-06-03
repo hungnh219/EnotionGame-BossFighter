@@ -23,12 +23,12 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
         this.initData(this.characterId);
     },
 
-    start () {
-        
+    start() {
+
     },
 
     ultimate() {
@@ -67,7 +67,7 @@ cc.Class({
         anim.play(clipName);
     },
 
-    attack(enemy, direction) {
+    async attack(enemy, direction) {
         this.playAnimation("attack_" + direction, 0.5);
 
         return this.attackDame;
