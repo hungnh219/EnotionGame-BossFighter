@@ -21,7 +21,9 @@ const SocketIOManager = cc.Class({
     },
 
 
-    onLoad () {},
+    onLoad () {
+        
+    },
 
     start () {
 
@@ -64,6 +66,26 @@ const SocketIOManager = cc.Class({
                 resolve(data.mapData);
             });
         });
+    },
+
+    clickHero(heroIndex) {
+        this.socketIO.emit('SELECT_HERO', heroIndex);
+    },
+
+    lockHero(heroIndex) {
+        this.socketIO.emit('LOCK_HERO', heroIndex);
+    },
+
+    listenHeroSelection() {
+        this.socketIO.on('HERO_SELECTED', (data) => {
+            console.log('Hero selected by client:', data.socketId, 'Hero Index:', data.heroIndex);
+        })
+    },
+
+    listenHeroLock() {
+        this.socketIO.on('HERO_LOCKED', (data) => {
+            console.log('Hero locked by client:', data.socketId, 'Hero Index:', data.heroIndex);
+        })
     }
 
     // update (dt) {},

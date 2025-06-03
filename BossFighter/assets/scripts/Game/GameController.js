@@ -192,10 +192,8 @@ const GameController = cc.Class({
     },
 
     addSelectedHeroPrefab(prefab) {
-        console.log('add selected hero prefab', prefab);
         if (!this.selectedHeroPrefabs) this.selectedHeroPrefabs = [];
         this.selectedHeroPrefabs.push(prefab);
-        console.log('selected hero prefabs', this.selectedHeroPrefabs);
     },
 
     getWalkableMap() {
@@ -232,8 +230,6 @@ const GameController = cc.Class({
             node: boss,
             size: size || 1,
         });
-
-        console.log('add boss', this.bosses, boss, size);
     },
 
     

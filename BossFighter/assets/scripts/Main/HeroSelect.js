@@ -1,6 +1,8 @@
 // import GameController from "./GameController";  
 import GameController from "../Game/GameController";
 import GAME_DATA from "../Game/GameData"
+// import SocketIOManager from "../SocketIOManager";
+import SocketIOManager from "../SocketIOManager";
 
 cc.Class({
     extends: cc.Component,
@@ -45,7 +47,11 @@ cc.Class({
             cc.game.addPersistRootNode(this.node);
         }
 
-        console.log('get map picked', this.gameController.getMapPicked());
+        this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
+
+        this.socketIOManager.connectToSocketIOServer("http://localhost:3000");
+        this.socketIOManager.listenHeroSelection();
+        this.socketIOManager.listenHeroLock();
     },
 
     start() {
@@ -62,40 +68,6 @@ cc.Class({
         const heroPrefabScript = this.node.getComponent("PrefabFactory");
         this.heroPrefabs = heroPrefabScript.getAllPrefab();
 
-        // this.heroPrefabs.forEach((heroPrefab, index) => {
-        //     const hero = cc.instantiate(heroPrefab);
-        //     // hero.parent = this.heroScrollViewContent;
-
-        //     hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
-
-        //     if (hero.mainScript != undefined) {
-        //         const heroInfo = hero.mainScript.getCharacterInfo();
-        //         this.heros[index] = heroInfo;
-
-        //         console.log('Hero info:', heroInfo);
-        //         const heroImageNode = new cc.Node('HeroImageNode');
-        //         const sprite = heroImageNode.addComponent(cc.Sprite);
-        //         sprite.spriteFrame = heroInfo.imageSprite.getComponent(cc.Sprite).spriteFrame;
-
-        //         sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
-        //         heroImageNode.width = 60;
-        //         heroImageNode.height = 60;
-
-        //         heroImageNode.customIndex = index;
-
-        //         // heroImageNode.on(cc.Node.EventType.TOUCH_END, function () {
-        //         //     console.log('Hero clicked at index:', this.customIndex);
-        //         // }, heroImageNode);
-
-        //         heroImageNode.on(cc.Node.EventType.TOUCH_END, () => {
-        //             this.heroClick(index, heroPrefab);
-        //         }, heroImageNode);
-
-        //         // hero.destroy();
-        //         this.heroScrollViewContent.addChild(heroImageNode);
-        //     }
-
-        // });
         // Tạo node tạm thời để chạy onLoad/
         const tempNode = new cc.Node();
         cc.director.getScene().addChild(tempNode); // hoặc node nào đang hiển thị
@@ -137,7 +109,9 @@ cc.Class({
 
     },
 
-    // update (dt) {},
+    // update (dt) {
+
+    // },
     playGame() {
         cc.director.loadScene(GAME_SCENE.GAME);
     },
@@ -177,6 +151,8 @@ cc.Class({
         this.showInformation();
         // console.log(this.customIndex)
         // console.log(this.heros[this.customIndex])
+        this.socketIOManager.clickHero(clickIndex);
+        
         this.heroPicked.index = clickIndex;
         this.heroPicked.prefab = heroPrefab;
 
@@ -259,6 +235,7 @@ cc.Class({
             cc.sys.localStorage.setItem('selectedHeroes', JSON.stringify(savedHeroes));
 
             this.gameController.addSelectedHeroPrefab(this.heroPicked.prefab);
+            this.socketIOManager.lockHero(this.heroPicked.index);
             this.playSoundEffect();
         }
     },

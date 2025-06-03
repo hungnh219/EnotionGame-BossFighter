@@ -45,7 +45,6 @@ cc.Class({
     async ultimate(centerGridPos, spawnAnimationCallback) {
         this.damage = this.ultimateDame || this.damage; // Ensure damage is set to ultimate damage
 
-        console.log('Vampire ultimate skill used at position:', centerGridPos, this.damage);
         const affactedTile = [];
         for (let i = -this.range; i <= this.range; i++) {
             for (let j = -this.range; j <= this.range; j++) {
