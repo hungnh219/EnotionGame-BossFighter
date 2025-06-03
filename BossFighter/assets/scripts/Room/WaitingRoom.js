@@ -14,8 +14,8 @@ cc.Class({
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager;
     },
 
-    async start() {
-        await this.socketIOManager.getRoomInformation();
+    start() {
+        this.socketIOManager.getRoomInformation();
         this.socket = this.socketIOManager.getSocketIO();
         this.getAllPlayer()
     },
