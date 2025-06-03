@@ -1,5 +1,3 @@
-// import EventBus from "./EventBus";
-// import GameController from "./Game/GameController";
 import EventBus from "../EventBus";
 import GameController from "./GameController";
 import MapController from "./MapController";

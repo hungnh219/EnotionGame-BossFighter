@@ -86,7 +86,43 @@ const SocketIOManager = cc.Class({
         this.socketIO.on('HERO_LOCKED', (data) => {
             console.log('Hero locked by client:', data.socketId, 'Hero Index:', data.heroIndex);
         })
-    }
+    },
+
+    listenWalkableGridUpdate() {
+        this.socketIO.on('WALKABLE_GRID_UPDATED', (data) => {
+            console.log('Cập nhật lưới đi bộ từ server:', data.tileX, data.tileY, 'isWalkable:', data.isWalkable);
+        });
+    },
+
+    updateWalkableGrid(x, y, isWalkable) {
+        if (!this.socketIO) {
+            console.error("Chưa kết nối đến Socket.IO server.");
+            return;
+        }
+        console.log("Cập nhật ô đi được tại vị trí:", x, y, "với trạng thái:", isWalkable);
+
+        this.socketIO.emit('UPDATE_WALKABLE_GRID', {
+            tileX: x,
+            tileY: y,
+            isWalkable: isWalkable
+        });
+    },
+
+    getWalkableGridMap() {
+        if (!this.socketIO) {
+            console.error("Chưa kết nối đến Socket.IO server.");
+            return null;
+        }
+        console.log("Yêu cầu gridmap từ server...");
+
+        return new Promise(async (resolve) => {
+            await this.socketIO.emit('GET_WALKABLE_GRID_MAP');
+            this.socketIO.on('WALKABLE_GRID_MAP', (data) => {
+                console.log("Nhận gridmap từ server:", data.walkableGridMap);
+                resolve(data.walkableGridMap);
+            });
+        })
+    }   
 
     // update (dt) {},
 });
