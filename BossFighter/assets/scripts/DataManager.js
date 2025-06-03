@@ -1,4 +1,7 @@
-// DataManager.js
+// class dùng để đọc và lưu trữ dữ liệu của game
+// sử dụng singleton để đảm bảo chỉ có một instance duy nhất
+// có nên chia dữ liệu thành nhiều file json nhỏ hơn không?
+
 const DataManager = cc.Class({
     extends: cc.Component,
 
@@ -10,7 +13,7 @@ const DataManager = cc.Class({
     },
 
     properties: {
-        defaultDataJson: cc.JsonAsset // Kéo JSON từ Assets vào đây
+        defaultDataJson: cc.JsonAsset
     },
 
     onLoad() {
@@ -19,7 +22,7 @@ const DataManager = cc.Class({
             return;
         }
         DataManager._instance = this;
-        cc.game.addPersistRootNode(this.node); // Giữ qua các scene
+        cc.game.addPersistRootNode(this.node);
 
         this._data = null;
         this._initData();
