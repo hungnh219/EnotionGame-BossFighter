@@ -2,22 +2,24 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        statusLabel: cc.Label,
+        // statusLabel: cc.Label,
         roomNameInput: cc.EditBox,
         createRoomButton: cc.Button,
         joinRoomButton: cc.Button,
-        sendRoomMessageButton: cc.Button,
-        roomInfoLabel: cc.Label
+        // sendRoomMessageButton: cc.Button,
+        roomInfoLabel: cc.Label,
+        uiCreateRoom: cc.Node
     },
 
     socket: null, 
     currentRoom: '', 
 
     onLoad() {
-        this.statusLabel.string = "Đang kết nối...";
+        this.uiCreateRoom.active = false
+        // this.statusLabel.string = "Đang kết nối...";
         this.createRoomButton.interactable = false;
         this.joinRoomButton.interactable = false;
-        this.sendRoomMessageButton.interactable = false;
+        // this.sendRoomMessageButton.interactable = false;
         this.roomInfoLabel.string = "Tổng số phòng: 0\n";
     },
 
@@ -32,17 +34,17 @@ cc.Class({
         });
 
         this.socket.on('connect', () => {
-            this.statusLabel.string = `Đã kết nối! ID: ${this.socket.id}`;
+            // this.statusLabel.string = `Đã kết nối! ID: ${this.socket.id}`;
             this.createRoomButton.interactable = true;
             this.joinRoomButton.interactable = true;
-            this.sendRoomMessageButton.interactable = true;
+            // this.sendRoomMessageButton.interactable = true;
         });
 
         this.socket.on('disconnect', (reason) => {
-            this.statusLabel.string = `Đã ngắt kết nối: ${reason}`;
+            // this.statusLabel.string = `Đã ngắt kết nối: ${reason}`;
             this.createRoomButton.interactable = false;
             this.joinRoomButton.interactable = false;
-            this.sendRoomMessageButton.interactable = false;
+            // this.sendRoomMessageButton.interactable = false;
         });
 
         this.socket.on('roomInfo', (data) => {
@@ -55,17 +57,18 @@ cc.Class({
         });
 
         this.socket.on('error', (error) => {
-            this.statusLabel.string = `Lỗi: ${error}`;
+            // this.statusLabel.string = `Lỗi: ${error}`;
         });
     },
 
     onCreateRoomButtonClicked() {
+        this.uiCreateRoom.active = true
         const roomName = this.roomNameInput.string.trim();
         if (roomName) {
             this.socket.emit('createRoom', roomName);
-            this.statusLabel.string = `Đã gửi yêu cầu tạo phòng: ${roomName}`;
+            // this.statusLabel.string = `Đã gửi yêu cầu tạo phòng: ${roomName}`;
         } else {
-            this.statusLabel.string = "Vui lòng nhập tên phòng!";
+            // this.statusLabel.string = "Vui lòng nhập tên phòng!";
         }
     },
 
@@ -73,10 +76,14 @@ cc.Class({
         const roomName = this.roomNameInput.string.trim();
         if (roomName) {
             this.socket.emit('joinRoom', roomName);
-            this.statusLabel.string = `Đã gửi yêu cầu tham gia phòng: ${roomName}`;
+            // this.statusLabel.string = `Đã gửi yêu cầu tham gia phòng: ${roomName}`;
         } else {
-            this.statusLabel.string = "Vui lòng nhập tên phòng!";
+            // this.statusLabel.string = "Vui lòng nhập tên phòng!";
         }
+    },
+
+    onCloseCreateRoomUI(){
+        this.uiCreateRoom.active = false
     },
 
     // onSendRoomMessageButtonClicked() {
