@@ -1,5 +1,6 @@
 import GAME_DATA from "../Game/GameData";
 import GameController from "../Game/GameController";
+import SocketIOManager from "../SocketIOManager";
 
 cc.Class({
     extends: cc.Component,
@@ -12,12 +13,16 @@ cc.Class({
     onLoad() {
         this.settingPanel.active = false;
         this.gameController = GameController.getInstance() || new GameController();
+        this.socketIO = SocketIOManager.getInstance() || new SocketIOManager();
 
         if (this.volumeSlider) {
             this.volumeSlider.node.on('slide', this.onSliderChanged, this);
         }
 
         this.updateUI();
+
+        // this.connectToSocketIOServer("http://localhost:3000");
+        this.socketIO.connectToSocketIOServer("http://localhost:3000");
     },
 
     updateUI() {
