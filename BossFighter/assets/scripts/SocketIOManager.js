@@ -46,26 +46,24 @@ const SocketIOManager = cc.Class({
         console.log("Kết nối thanh cong Socket.IO server:", url);
     },
 
-    // createRoom(roomName) {
-    //     return new Promise((resolve, reject) => {
-    //         if (!this.socketIO) {
-    //             console.error("Chưa kết nối đến Socket.IO server.");
-    //             return null;
-    //         }
-    //         this.socketIO.emit('createRoom', roomName);
+    createRoom(roomName) {
+        return new Promise((resolve, reject) => {
+            if (!this.socketIO) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+            this.socketIO.emit('createRoom', roomName);
 
-    //         this.socketIO.on('createRoomResult', (data) => {
-    //             if (data.success) {
-    //                 resolve(data)
-    //             }
-    //             else {
-    //                 reject(data.message)
-    //             }
-    //         })
-    //     })
-
-
-    // },
+            this.socketIO.on('createRoomResult', (data) => {
+                if (data.success) {
+                    resolve(data)
+                }
+                else {
+                    reject(data.message)
+                }
+            })
+        })
+    },
 
     // joinRoom(roomName) {
     //     return new Promise((resolve) => {
@@ -111,22 +109,26 @@ const SocketIOManager = cc.Class({
         });
     },
 
-    getRooms() {
+    getRoomInformation() {
         if (!this.socketIO) {
             console.error("Chưa kết nối đến Socket.IO server.");
             return null;
         }
-        console.log("Yêu cầu danh sách phòng từ server...");
 
-        return new Promise((resolve, reject) => {
-            this.socketIO.on('ROOM_LIST', (data) => {
-                console.log("Nhận danh sách phòng:", data.rooms);
-                resolve(data.rooms);
-            });
-
-            this.socketIO.emit('GET_ROOM');
-            
+        this.socketIO.off('roomInfo');
+        this.socketIO.on('roomInfo', (data) => {
+            console.log("Thông tin phòng đã nhận được:", data);
+            if (this.onRoomInfoReceivedCallback) {
+                this.onRoomInfoReceivedCallback(data);
+            }
         });
+
+        console.log('Yêu cầu thông tin phòng hiện tại từ server...');
+        this.socketIO.emit('requestRoomInfo');
+    },
+
+    setOnRoomInfoReceivedCallback(callback) {
+        this.onRoomInfoReceivedCallback = callback;
     },
 
     setUpdateRoomInfoCallback(callback) {
