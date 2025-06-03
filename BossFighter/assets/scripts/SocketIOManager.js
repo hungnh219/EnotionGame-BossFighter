@@ -1,10 +1,3 @@
-// Learn cc.Class:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/class.html
-// Learn Attribute:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
-
 const SocketIOManager = cc.Class({
     extends: cc.Component,
 
@@ -22,12 +15,15 @@ const SocketIOManager = cc.Class({
 
 
     onLoad() {
-        this.roomName = null
-        this.playerId = null
-     },
+
+    },
 
     start() {
 
+    },
+
+    getSocketIO() {
+        return this.socketIO
     },
 
     connectToSocketIOServer(url) {
@@ -50,63 +46,61 @@ const SocketIOManager = cc.Class({
         console.log("Kết nối thanh cong Socket.IO server:", url);
     },
 
-    getSocketIO() {
-        return this.socketIO;
-    },
-
-    setSocketId(playerId){
-        this.playerId = playerId
-    },
-
-    getSocketId(){
-        return this.playerId
-    },
-
-    setRoomName(roomName){
-        this.roomName = roomName
-    },
-
-    getRoomName(){
-        return this.roomName
-    },
-
-    getCreateRoom(){
-        if (!this.socketIO) {
-            console.error("Chưa kết nối đến Socket.IO server.");
-            return null;
-        }
-        this.socketIO.emit('createRoom', this.roomName);
-        return
-    },
-
-    getJoinRoom(){
-        console.log('afssdfsadfsad')
-        if (!this.socketIO) {
-            console.error("Chưa kết nối đến Socket.IO server.");
-            return null;
-        }
-        this.socketIO.emit('joinRoom', this.roomName, this.playerId);
-        return
-    },
-
-    getJoinRoomResult() {
+    createRoom(roomName) {
         return new Promise((resolve, reject) => {
             if (!this.socketIO) {
                 console.error("Chưa kết nối đến Socket.IO server.");
-                reject("Không kết nối socket");
+                return null;
+            }
+            this.socketIO.emit('createRoom', roomName);
+
+            this.socketIO.on('createRoomResult', (data) => {
+                if (data.success) {
+                    resolve(data)
+                }
+                else {
+                    reject(data.message)
+                }
+            })
+        })
+
+
+    },
+
+    joinRoom(roomName) {
+        return new Promise((resolve) => {
+            if (!this.socketIO) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                resolve({ success: false, message: "Chưa kết nối đến server" });
                 return;
             }
-    
-            this.socketIO.once('joinRoomResult', (data) => {
+
+            this.socketIO.emit('joinRoom', roomName);
+
+            this.socketIO.on('joinRoomResult', (data) => {
                 if (data.success) {
-                    console.log('data',data)
                     resolve(data);
-                } else {
-                    reject(data.message);
                 }
+                else {
+                    reject(data.message)
+                }
+
             });
         });
     },
+
+    getRoomInformation() {
+        console.log('ấdfádfádfs')
+        if (!this.socketIO) {
+            console.error("Chưa kết nối đến Socket.IO server.");
+            return null;
+        }
+        this.socketIO.on('roomInfo', (data) => {
+            console.log("Thông tin phòng:", data);
+
+        });
+    },
+
 
     getMapData() {
         if (!this.socketIO) {
@@ -126,5 +120,3 @@ const SocketIOManager = cc.Class({
 
     // update (dt) {},
 });
-
-export default SocketIOManager;

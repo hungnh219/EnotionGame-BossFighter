@@ -11,7 +11,7 @@ cc.Class({
         joinRoomButton: cc.Button,
         roomInfoLabel: cc.Label,
         uiCreateRoom: cc.Node,
-        content :cc.Node,
+        content: cc.Node,
     },
 
     socket: null,
@@ -22,56 +22,48 @@ cc.Class({
         console.log('fsafsfsd')
         this.uiCreateRoom.active = false
         this.roomInfoLabel.string = "Tổng số phòng: 0\n";
-        this.socketIOManager = SocketIOManager.getInstance();
+        this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager;
         console.log(this.socketIOManager)
 
     },
 
     start() {
         this.socketIOManager.connectToSocketIOServer("http://localhost:3000");
-        
-        this.socket = this.socketIOManager.getSocketIO()
 
-        // this.socket.on('roomInfo', (data) => {
-        //     let roomInfoText = `Tổng số phòng: ${data.totalRooms}\n`;
-        //     data.rooms.forEach((room) => {
-        //         roomInfoText += `Phòng: ${room.roomName}, Số user: ${room.memberCount}\n`;
-        //     });
-        //     this.roomInfoLabel.string = roomInfoText;
-        // });
+        // this.socket = this.socketIOManager.getSocketIO()
 
-        // this.socket.on('error', (error) => {
-        //     console.error("Socket error:", error);
-        // });
     },
 
 
-    onSubmitRoomButton() {
-        
+    async onSubmitRoomButton() {
+
         const roomName = this.roomNameInput.string.trim();
-        this.socketIOManager.setRoomName(roomName)
-        if (this.socketIOManager.getRoomName()) {
-            this.socketIOManager.getCreateRoom();
-            cc.director.loadScene('WaitingRoom');
+        if (roomName) {
+            try {
+                await this.socketIOManager.createRoom(roomName)
+                cc.director.loadScene('WaitingRoom');
+            } catch (error) {
+                console.log(error)
+            }
+
         }
     },
 
     async onJoinRoomButton() {
         const roomName = this.selectRoom.string.trim();
-        this.socketIOManager.setRoomName(roomName);
-    
-        if (this.socketIOManager.getRoomName()) {
-            this.socketIOManager.getJoinRoom()
-            try {
-                const result = await this.socketIOManager.getJoinRoomResult();
-                console.log(`Đã tham gia phòng: ${result.roomName}`);
-                cc.director.loadScene('WaitingRoom');
-            } catch (errorMessage) {
-                console.log('errMessage', errorMessage)
-                console.error(errorMessage);
-            }
+
+        if (!roomName) return;
+
+        const result = await this.socketIOManager.joinRoom(roomName);
+
+        if (result.success) {
+            cc.director.loadScene('WaitingRoom');
+        } else {
+            console.warn(result.message);
+            alert(result.message);
         }
-    },    
+    },
+
 
     onOpenCreateRoomUI() {
         this.uiCreateRoom.active = true;
@@ -81,7 +73,7 @@ cc.Class({
         this.uiCreateRoom.active = false;
     },
 
-    createList(){
+    createList() {
 
     }
 
