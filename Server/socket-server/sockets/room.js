@@ -2,22 +2,35 @@ const fs = require('fs');
 const path = require('path');
 
 const DATA_FILE = path.join(__dirname, '../data/roomData.json');
+
+function readRoomData() {
+    if (fs.existsSync(DATA_FILE)) {
+        const rawData = fs.readFileSync(DATA_FILE);
+        try {
+            return JSON.parse(rawData);
+        } catch (err) {
+            console.error("Lỗi khi parse file JSON:", err);
+            return {};
+        }
+    }
+    return {};
+}
+
+function writeRoomData(data) {
+    try {
+        fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf-8');
+    } catch (err) {
+        console.error("Không thể ghi file:", err);
+    }
+}
+
 function roomEvents(io, socket) {
     console.log('Có client kết nối:', socket.id);
 
     socket.on('createRoom', (roomName) => {
-        let roomData = {};
+        let roomData = readRoomData();
 
-        // Đọc dữ liệu từ file
-        if (fs.existsSync(DATA_FILE)) {
-            const rawData = fs.readFileSync(DATA_FILE);
-            try {
-                roomData = JSON.parse(rawData);
-            } catch (err) {
-                console.error("Lỗi khi parse file JSON:", err);
-            }
-        }
-        console.log('roomName', roomName)
+        console.log('roomName', roomName);
         if (roomName in roomData) {
             socket.emit('createRoomResult', {
                 success: false,
@@ -26,125 +39,113 @@ function roomEvents(io, socket) {
             return;
         }
 
-        roomData[roomName] = {
+        roomData[roomName] = [];
+        roomData[roomName].push({
             [socket.id]: {
                 "name": 'Unknown'
             }
-        }
+        });
 
-        console.log('roomData', roomData)
+        console.log('roomData', roomData);
 
-        socket.join(roomName)
+        socket.join(roomName);
 
-        // Ghi lại dữ liệu vào file
-        fs.writeFileSync(DATA_FILE, JSON.stringify(roomData, null, 2), 'utf-8');
-
+        writeRoomData(roomData);
         socket.emit('createRoomResult', {
             success: true,
             roomName: roomName
         });
 
-        // socket.join(roomName);
-        // console.log(Phòng ${roomName} được tạo bởi ${socket.id});
-        // io.to(roomName).emit('roomCreated', Phòng ${roomName} đã được tạo bởi ${socket.id});
-        updateRoomInfo(roomData, socket);
+        const roomInfo = updateRoomInfo(roomData);
+        io.emit('roomInfo', roomInfo);
     });
 
     socket.on('joinRoom', (roomName) => {
-        let roomData = {};
-
-        // Đọc dữ liệu từ file
-        if (fs.existsSync(DATA_FILE)) {
-            const rawData = fs.readFileSync(DATA_FILE);
-            try {
-                roomData = JSON.parse(rawData);
-            } catch (err) {
-                console.error("Lỗi khi parse file JSON:", err);
-                socket.emit('joinRoomResult', { success: false, message: 'Lỗi dữ liệu phòng.' });
-                return;
-            }
-        }
+        let roomData = readRoomData();
 
         if (!(roomName in roomData)) {
             socket.emit('joinRoomResult', { success: false, message: `Phòng "${roomName}" không tồn tại. ` });
             return;
         }
 
-        const roomObject = Object.keys(roomData[roomName]);
+        const currentRoomPlayers = roomData[roomName];
 
-        if (roomObject.length >= 4) {
+        const playerExists = currentRoomPlayers.some(playerObj => Object.keys(playerObj)[0] === socket.id);
+        if (playerExists) {
+            socket.emit('joinRoomResult', { success: false, message: `Bạn đã ở trong phòng "${roomName}" rồi.` });
+            return;
+        }
+
+        if (currentRoomPlayers.length >= 4) {
             socket.emit('joinRoomResult', { success: false, message: `Phòng "${roomName}" đã đầy. ` });
             return;
         }
 
-        roomData[roomName][socket.id] = {
-            name: 'Unknown'
-        };
+        currentRoomPlayers.push({
+            [socket.id]: {
+                name: 'Unknown'
+            }
+        });
 
-        // Ghi lại dữ liệu mới vào file
-        try {
-            fs.writeFileSync(DATA_FILE, JSON.stringify(roomData, null, 2), 'utf-8');
-        } catch (err) {
-            console.error("Không thể ghi file:", err);
-            socket.emit('joinRoomResult', { success: false, message: 'Lỗi ghi dữ liệu phòng.' });
-            return;
-        }
+        writeRoomData(roomData);
 
         socket.join(roomName);
-
         socket.emit('joinRoomResult', { success: true, message: 'Vào phòng thành công' });
 
-        updateRoomInfo(roomData, socket)
-
+        const roomInfo = updateRoomInfo(roomData);
+        io.emit('roomInfo', roomInfo);
     });
 
     socket.on('disconnect', () => {
         console.log('Client ngắt kết nối:', socket.id);
 
-        let roomData = {};
-
-        // Đọc file JSON
-        if (fs.existsSync(DATA_FILE)) {
-            const rawData = fs.readFileSync(DATA_FILE);
-            try {
-                roomData = JSON.parse(rawData);
-            } catch (err) {
-                console.error("Lỗi khi parse file JSON:", err);
-                return;
-            }
-        }
+        let roomData = readRoomData();
+        let roomChanged = false;
 
         for (const roomName in roomData) {
-            if (roomData[roomName][socket.id]) {
-                delete roomData[roomName][socket.id];
+            let roomPlayers = roomData[roomName];
+            const initialLength = roomPlayers.length;
+
+            roomData[roomName] = roomPlayers.filter(playerObj => Object.keys(playerObj)[0] !== socket.id);
+
+            if (roomData[roomName].length < initialLength) {
+                roomChanged = true;
                 console.log(`Player ${socket.id} đã rời khỏi phòng ${roomName}`);
 
-                if (Object.keys(roomData[roomName]).length === 0) {
+                if (roomData[roomName].length === 0) {
                     delete roomData[roomName];
                     console.log(`Room ${roomName} đã bị xóa vì không còn người.`);
                 }
             }
         }
 
-        // Ghi lại file JSON sau khi cập nhật
-        fs.writeFileSync(DATA_FILE, JSON.stringify(roomData, null, 2), 'utf-8');
-
-        updateRoomInfo(roomData, socket);
+        if (roomChanged) {
+            writeRoomData(roomData);
+            const roomInfo = updateRoomInfo(roomData);
+            io.emit('roomInfo', roomInfo);
+        }
     });
 
-    function updateRoomInfo(roomData, socket) {
-        console.log('fasdfasdfadsfads', roomData)
+    socket.on('requestRoomInfo', () => {
+        const roomData = readRoomData();
+        const roomInfo = updateRoomInfo(roomData);
+        socket.emit('roomInfo', roomInfo);
+    });
+
+    function updateRoomInfo(roomData) {
         const rooms = Object.keys(roomData).map((roomName) => ({
             roomName,
-            memberCount: Object.keys(roomData[roomName]).length,
-            players: Object.values(roomData[roomName])
+            memberCount: roomData[roomName].length,
+            players: roomData[roomName]
         }));
-        console.log(rooms, 'romssssss')
 
-        socket.emit('roomInfo', {
+        const result = {
             totalRooms: rooms.length,
             rooms
-        });
+        };
+
+        console.log("Phát sự kiện roomInfo với dữ liệu: ", result);
+        return result;
     }
 }
 
