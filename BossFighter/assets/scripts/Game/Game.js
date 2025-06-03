@@ -2,6 +2,7 @@ import GameController from "./GameController";
 import GAME_DATA from "./GameData"
 import EventBus from "../EventBus";
 import MapController from "./MapController";
+import SocketIOManager from "../SocketIOManager";
 
 cc.Class({
     extends: cc.Component,
@@ -87,7 +88,7 @@ cc.Class({
 
         this.gameController.gameScript = this;
         this.mapController = MapController.getInstance() || new MapController();
-
+        this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
 
         EventBus.on(EventBus.events.CLICK_TO_MOVE, (node) => {
             this.heroClick(node);
@@ -118,7 +119,9 @@ cc.Class({
         // this.mapIndex = 2;
     },
 
-    start() {
+    async start() {
+        this.testData = await this.socketIOManager.getMapData();
+        this.testData = this.testData.map;
         this.spawnObjectsFromJson();
 
         this.initData();
@@ -154,7 +157,8 @@ cc.Class({
         
         const jsonData = this.objectsJsonData.json.mapData[this.mapIndex];
 
-        const mapObjects = jsonData.map;
+        // const mapObjects = jsonData.map;
+        const mapObjects = this.testData
 
         if (!Array.isArray(mapObjects)) {
             console.error("map1 must be a 2D array");
