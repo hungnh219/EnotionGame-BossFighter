@@ -878,20 +878,6 @@ const GameController = cc.Class({
 
     // new game
     newGame() {
-        // this.mapPick = null;
-        // this.heroPick = [];
-        // this.selectedHeroPrefabs = [];
-        // this.listenMoveNode = null;
-
-        // this.focusedHero = null;
-        // this.heroes = []; // hero in game
-        // this.gridMap = [];
-        // this.winner = null; // 'boss', 'player'
-
-        // this.setFocusedHero(0)
-        // this.isMoving = false;
-        // this.isAttacking = false;
-        // this.isUsingSkill = false;
         this.resetGame();
         this.selectedHeroPrefabs = [];
     },

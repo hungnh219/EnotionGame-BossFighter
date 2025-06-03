@@ -178,13 +178,11 @@ cc.Class({
         const gridX = Math.floor((this.clickNode.x) / mapSetting.mapTileWidth);
         const gridY = Math.floor((this.clickNode.y) / mapSetting.mapTileWidth);
 
-        console.log(gridX, gridY, "clickNode position:", this.clickNode.x, this.clickNode.y);
         const firstTileX = Math.max(0, gridX - steps);
         const firstTileY = Math.max(0, gridY - steps);
         const lastTileX = Math.min(mapSetting.mapWidth - 1, gridX + steps);
         const lastTileY = Math.min(mapSetting.mapHeight - 1, gridY + steps);
 
-        console.log("Display walkable area from:", firstTileX, firstTileY, "to:", lastTileX, lastTileY);
         for (let i = firstTileX; i <= lastTileX; i++) {
             for (let j = firstTileY; j <= lastTileY; j++) {
                 if (!walkableGridMap[i][j]) continue;

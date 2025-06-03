@@ -64,7 +64,6 @@ cc.Class({
             anim.speed = 1;
         }
 
-        console.log("Playing animation:", clipName, "with speed:", anim.speed);
         anim.play(clipName);
     }
     // update (dt) {},
