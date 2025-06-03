@@ -5,30 +5,77 @@ cc.Class({
 
     properties: {
         prefabPlayer: cc.Prefab,
-        gridPlayer: cc.Node
+        gridPlayer: cc.Node,
+        roomNameLabel: cc.Label,
+        totalPlayersLabel: cc.Label,
     },
 
-    // LIFE-CYCLE CALLBACKS:
+    socketIOManager: null,
+    currentRoomData: null,
 
     onLoad() {
-        this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager;
+        this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
+        if (!this.socketIOManager.getSocketIO() || !this.socketIOManager.getSocketIO().connected) {
+            this.socketIOManager.connectToSocketIOServer("http://localhost:3000");
+        }
     },
 
     start() {
+        this.socketIOManager.setOnRoomInfoReceivedCallback(this.onRoomInfoReceived.bind(this));
+
         this.socketIOManager.getRoomInformation();
-        this.socket = this.socketIOManager.getSocketIO();
-        this.getAllPlayer()
     },
 
-    getAllPlayer() {
-        this.gridPlayer.removeAllChildren()
-        this.nodePlayer = cc.instantiate(this.prefabPlayer);
-        this.labelNode = this.nodePlayer.getChildByName("New Label");
-        this.labelComp = this.labelNode.getComponent(cc.Label);
-        this.labelComp.string = this.socket.id
-        this.gridPlayer.addChild(this.nodePlayer)
-        console.log(this.socket.id)
-    }
+    onRoomInfoReceived(data) {
+        console.log("WaitingRoom: Thông tin phòng đã nhận được (onRoomInfoReceived):", data);
+        this.currentRoomData = data;
+        this.updateRoomUI();
+    },
 
-    // update (dt) {},
+    updateRoomUI() {
+        if (!this.currentRoomData) return;
+
+        const playerSocketId = this.socketIOManager.getSocketIO().id;
+        let foundRoomName = '';
+        let roomMembers = [];
+
+        for (const room of this.currentRoomData.rooms) {
+            const playerInThisRoom = room.players.find(playerObj => Object.keys(playerObj)[0] === playerSocketId);
+
+            if (playerInThisRoom) {
+                foundRoomName = room.roomName;
+                roomMembers = room.players;
+                break;
+            }
+        }
+
+        console.log('roomMembers', roomMembers)
+
+        if (foundRoomName) {
+            this.roomNameLabel.string = `Phòng: ${foundRoomName}`;
+            this.totalPlayersLabel.string = `Người chơi: ${roomMembers.length}/4`;
+            console.log("foundRoomName:", foundRoomName);
+            console.log("this.roomNameLabel:", this.roomNameLabel);
+            console.log("this.totalPlayersLabel:", this.totalPlayersLabel);
+
+
+            this.gridPlayer.removeAllChildren();
+            for (const playerObj of roomMembers) {
+                const playerId = Object.keys(playerObj)[0];
+                const playerInfo = playerObj[playerId];
+
+                const playerNode = cc.instantiate(this.prefabPlayer);
+                const labelNode = playerNode.getChildByName("New Label");
+                const labelComp = labelNode.getComponent(cc.Label);
+                labelComp.string = `ID: ${playerId.substring(0, 5)}... - Name: ${playerInfo.name}`; // Hiển thị cả ID và Name
+                this.gridPlayer.addChild(playerNode);
+            }
+        } else {
+            this.roomNameLabel.string = "Không tìm thấy thông tin phòng.";
+            this.totalPlayersLabel.string = "";
+            this.gridPlayer.removeAllChildren();
+        }
+    },
+
+
 });

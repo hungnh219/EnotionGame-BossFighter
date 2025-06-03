@@ -63,8 +63,6 @@ const SocketIOManager = cc.Class({
                 }
             })
         })
-
-
     },
 
     joinRoom(roomName) {
@@ -90,15 +88,25 @@ const SocketIOManager = cc.Class({
     },
 
     getRoomInformation() {
-        console.log('ấdfádfádfs')
         if (!this.socketIO) {
             console.error("Chưa kết nối đến Socket.IO server.");
             return null;
         }
-        this.socketIO.on('roomInfo', (data) => {
-            console.log("Thông tin phòng:", data);
 
+        this.socketIO.off('roomInfo');
+        this.socketIO.on('roomInfo', (data) => {
+            console.log("Thông tin phòng đã nhận được:", data);
+            if (this.onRoomInfoReceivedCallback) {
+                this.onRoomInfoReceivedCallback(data);
+            }
         });
+
+        console.log('Yêu cầu thông tin phòng hiện tại từ server...');
+        this.socketIO.emit('requestRoomInfo');
+    },
+
+    setOnRoomInfoReceivedCallback(callback) {
+        this.onRoomInfoReceivedCallback = callback;
     },
 
 
