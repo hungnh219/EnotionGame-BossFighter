@@ -44,7 +44,7 @@ cc.Class({
     },
 
     displayRoomList(rooms) {
-        this.content.removeAllChildren(); ư
+        this.content.removeAllChildren();
 
         if (!this.prefabRoomItem) {
             console.error("not prefab");
