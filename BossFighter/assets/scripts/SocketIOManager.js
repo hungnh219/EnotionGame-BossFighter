@@ -41,6 +41,8 @@ const SocketIOManager = cc.Class({
                 methods: ["GET", "POST"]
             }
         });
+        // console.log(this.socketIO);
+
         console.log("Kết nối thanh cong Socket.IO server:", url);
     },
 
