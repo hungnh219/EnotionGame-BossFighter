@@ -5,10 +5,13 @@ cc.Class({
 
     properties: {
         roomNameInput: cc.EditBox,
+        namePlayerInput: cc.EditBox,
         submitRoomButton: cc.Button,
+        submitPlayerNameButton: cc.Button,
         openCreateRoomButton: cc.Button,
         roomInfoLabel: cc.Label,
         uiCreateRoom: cc.Node,
+        uiNamePlayerInput: cc.Node,
         content: cc.Node,
         prefabRoomItem: cc.Prefab,
         numberPlayer: cc.Label,
@@ -23,6 +26,7 @@ cc.Class({
         this.content.removeAllChildren();
         console.log('Main Scene: onLoad');
         this.uiCreateRoom.active = false;
+        this.uiNamePlayerInput.active = false;
         this.roomInfoLabel.string = "Đang tải thông tin phòng...";
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
         this.lastClickTime = 0;
@@ -63,7 +67,7 @@ cc.Class({
             if (roomNameLabelNode) {
                 const roomNameLabelComp = roomNameLabelNode.getComponent(cc.Label);
                 if (roomNameLabelComp) {
-                    roomNameLabelComp.string = `${room.roomName} (${room.memberCount}/4)`;
+                    roomNameLabelComp.string = `${room.roomName} (${room.memberCount}/${room.maxPlayer})`;
                 } else {
                     console.log("Node 'New Label' trong prefabRoomItem không có component cc.Label.");
                 }
@@ -105,15 +109,26 @@ cc.Class({
         this.lastClickTime = currentTime;
     },
 
+    
+
     async onSubmitRoomButton() {
         if (this.numberPlayer.string == 0) {
             console.log('So luong player khong hop le')
             return
         }
+    
+        this.onCloseCreateRoomUI();
+        this.onOpenNameInputUI();
+       
+    },
+
+    async onSubmitPlayerNameButton(){
         const roomName = this.roomNameInput.string.trim();
-        if (roomName) {
+        const maxPlayer = +this.numberPlayer.string;
+        const namePlayer = +this.namePlayerInput.string.trim();
+         if (roomName && namePlayer) {
             try {
-                await this.socketIOManager.createRoom(roomName);
+                await this.socketIOManager.createRoom(roomName, maxPlayer, namePlayer);
                 cc.director.loadScene('WaitingRoom');
             } catch (error) {
                 console.error("Lỗi khi tạo phòng:", error);
@@ -141,6 +156,10 @@ cc.Class({
         } catch (error) {
             console.error("Lỗi khi tham gia phòng:", error);
         }
+    },
+
+    onOpenNameInputUI(){
+        this.uiNamePlayerInput.active = true
     },
 
     onOpenCreateRoomUI() {

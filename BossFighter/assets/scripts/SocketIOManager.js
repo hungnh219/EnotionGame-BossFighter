@@ -46,13 +46,13 @@ const SocketIOManager = cc.Class({
         console.log("Kết nối thanh cong Socket.IO server:", url);
     },
 
-    createRoom(roomName) {
+    createRoom(roomName, maxPlayer, namePlayer) {
         return new Promise((resolve, reject) => {
             if (!this.socketIO) {
                 console.error("Chưa kết nối đến Socket.IO server.");
                 return null;
             }
-            this.socketIO.emit('createRoom', roomName);
+            this.socketIO.emit('createRoom', roomName, maxPlayer, namePlayer);
 
             this.socketIO.on('createRoomResult', (data) => {
                 if (data.success) {

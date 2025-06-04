@@ -27,7 +27,7 @@ function writeRoomData(data) {
 function roomEvents(io, socket) {
     console.log('Có client kết nối:', socket.id);
 
-    socket.on('createRoom', (roomName) => {
+    socket.on('createRoom', (roomName, amoutPlayer, playerName) => {
         let roomData = readRoomData();
 
         console.log('roomName', roomName);
@@ -40,7 +40,9 @@ function roomEvents(io, socket) {
         }
 
         roomData[roomName] = {
-            player:[]
+            player:[],
+            maxPlayer: amoutPlayer,
+            status: 'waiting'
         };
 
         roomData[roomName].player.push({
@@ -76,6 +78,7 @@ function roomEvents(io, socket) {
         }
 
         const currentRoomPlayers = roomData[roomName].player;
+        const maxRoomPlayers = roomData[roomName].maxPlayer
 
         const playerExists = currentRoomPlayers.some(playerObj => Object.keys(playerObj)[0] === socket.id);
         if (playerExists) {
@@ -83,7 +86,7 @@ function roomEvents(io, socket) {
             return;
         }
 
-        if (currentRoomPlayers.length >= 4) {
+        if (currentRoomPlayers.length >= maxRoomPlayers) {
             socket.emit('joinRoomResult', { success: false, message: `Phòng "${roomName}" đã đầy. ` });
             return;
         }
@@ -232,7 +235,9 @@ function roomEvents(io, socket) {
         const rooms = Object.keys(roomData).map((roomName) => ({
             roomName,
             memberCount: roomData[roomName].player.length,
-            players: roomData[roomName].player
+            players: roomData[roomName].player,
+            maxPlayer: roomData[roomName].maxPlayer,
+            status: roomData[roomName].status
         }));
 
         const result = {
