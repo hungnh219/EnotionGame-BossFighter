@@ -61,4 +61,9 @@ cc.Class({
     playSoloMode() {
         cc.director.loadScene(GAME_DATA.GAME_SCENE.MAP_SELECT);
     },
+
+    playOnline() {
+        // this.socketIO.getRoomInformation();
+        cc.director.loadScene('RoomSelect');
+    }
 });
