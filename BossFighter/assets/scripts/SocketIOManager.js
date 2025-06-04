@@ -66,7 +66,7 @@ const SocketIOManager = cc.Class({
     },
 
     joinRoom(roomName) {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             if (!this.socketIO) {
                 console.error("Chưa kết nối đến Socket.IO server.");
                 resolve({ success: false, message: "Chưa kết nối đến server" });
