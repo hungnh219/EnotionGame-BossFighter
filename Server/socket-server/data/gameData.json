@@ -11,12 +11,8 @@
         "name": "Player2",
         "score": 150
       }
-    },
-
-    "gameState": {
-      "currentTurn": "player" || "enemy",
-      // "status": "active",
-      "round": 2
     }
+
+
   }
 }

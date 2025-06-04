@@ -69,7 +69,7 @@ const GameController = cc.Class({
     startGame() {
         this.playerTurn();
         this.updatePlayerTurn(this.playerTurnCount);
-        this.setFocusedHero(0);
+        this.setFocusedHero(this.playerIndex);
     },
 
     playerTurn() {
@@ -111,6 +111,9 @@ const GameController = cc.Class({
     },
 
     setFocusedHero(heroIndex) {
+        console.log('set focused hero', heroIndex);
+        console.log('heroes', this.heroes);
+        if (heroIndex == undefined || heroIndex == null) return;
         this.focusedHero = this.heroes[heroIndex];
         // this.listenKeyDown(this.focusedHero);
         // set the other heroes scale to 1
@@ -126,6 +129,18 @@ const GameController = cc.Class({
     },
 
     // =================== Get-Set: Start ===================
+    setPlayerIndex(playerIndex) {
+        this.playerIndex = playerIndex;
+    },
+
+    getPlayerIndex() {
+        return this.playerIndex;
+    },
+
+    getPlayerByIndex(playerIndex) {
+        return this.heroes[playerIndex];
+    },
+
     setCallbacks(playerTurnCallback, playerInfoCallback, endGameCallback) {
         this.updatePlayerTurn = playerTurnCallback;
         this.updateHeroInfoUI = playerInfoCallback;
@@ -232,8 +247,6 @@ const GameController = cc.Class({
             node: boss,
             size: size || 1,
         });
-
-        console.log('add boss', this.bosses, boss, size);
     },
 
     

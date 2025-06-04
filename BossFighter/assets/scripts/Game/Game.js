@@ -124,7 +124,12 @@ cc.Class({
         this.testData = this.testData.map;
 
         this.lockedHeroIndex = await this.socketIOManager.getLockedHeroIndex();
-        console.log('Locked hero index:', this.lockedHeroIndex);
+        this.playerIndex = await this.socketIOManager.getPlayerOrder();
+
+        if (this.playerIndex != undefined) {
+            this.gameController.setPlayerIndex(this.playerIndex);
+        }
+        console.log('Locked hero index:', this.lockedHeroIndex, 'Player index:', this.playerIndex);
 
         this.spawnObjectsFromJson();
 
@@ -238,14 +243,11 @@ cc.Class({
 
         let hpPercentage = heroInfo.health / heroInfo.maxHp;
         this.heroHpProgressBar.progress = hpPercentage;
-        // this.heroHpProgressBar.node.color = cc.Color.GREEN.lerp(cc.Color.RED, 1 - hpPercentage);
     },
 
     spawnHero() {
-        // let heroPrefabs = this.gameController.getSelectedHeroPrefabs();
         let heroPrefabs = [];
         this.lockedHeroIndex.forEach((heroIndex) => {
-            // let prefabIndex = 
             if (heroIndex >= 0 && heroIndex < this.heroPrefabs.length) {
                 heroPrefabs.push(cc.instantiate(this.heroPrefabs[heroIndex]));
             } else {
@@ -259,7 +261,6 @@ cc.Class({
             return;
         }
 
-        console.log('Spawn hero with prefabs:', this.heroPrefabs);
         this.mapController.spawnHeroIntoMap(heroPrefabs, focusEffectPrefab);
     },
 

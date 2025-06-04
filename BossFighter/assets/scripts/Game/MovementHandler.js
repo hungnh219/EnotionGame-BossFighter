@@ -3,6 +3,8 @@
 import EventBus from "../EventBus";
 import GameController from "./GameController";
 import MapController from "./MapController";
+import SocketIOManager from "../SocketIOManager";
+
 const ANIM_MAP = {
     'idle': 'Idle',
     'walk': {
@@ -40,6 +42,13 @@ cc.Class({
         }
 
         this.mapController = MapController.getInstance() || new MapController();
+        this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
+        this.socketIOManager.listenMoveToNewTile((data) => {
+            let playerNode = this.gameController.getPlayerByIndex(data.playerIndex);
+
+            this.moveToWalkableTile(playerNode, data.newX, data.newY);
+            // this.moveHeroToNewTile();
+        })
         this.clickNode = null
         this.firstCellPos = null;
         this.lastCellPos = null;
@@ -111,8 +120,14 @@ cc.Class({
 
         let oldGridX = Math.floor((nodeMove.x) / mapSetting.mapTileWidth);
         let oldGridY = Math.floor((nodeMove.y) / mapSetting.mapTileHeight);
-        let newGridX = Math.floor((newPosNode.x) / mapSetting.mapTileWidth);
-        let newGridY = Math.floor((newPosNode.y) / mapSetting.mapTileHeight);
+        let newGridX, newGridY;
+        if (newPosNode.x == undefined || newPosNode.y == undefined) {
+            newGridX = newPosNode.newX;
+            newGridY = newPosNode.newY;
+        } else {
+            newGridX = Math.floor((newPosNode.x) / mapSetting.mapTileWidth);
+            newGridY = Math.floor((newPosNode.y) / mapSetting.mapTileHeight);
+        }
 
         console.log("Moving from:", oldGridX, oldGridY, "to:", newGridX, newGridY);
 
@@ -128,6 +143,18 @@ cc.Class({
             console.warn("Không tìm được đường đi!");
             return;
         }
+
+        // this.socketIOManager.emit('MOVE_TO_WALKABLE_TILE', {
+        //     playerMove: this.gameController.getPlayerIndex(),
+        //     newPos: newPosNode,
+        // });
+        this.socketIOManager.moveToNewTile({
+            playerIndex: this.gameController.getPlayerIndex(),
+            // newPos: newPosNode,
+            newX: newGridX,
+            newY: newGridY,
+        });
+
 
         const moveStep = (i) => {
             if (i >= path.length) {

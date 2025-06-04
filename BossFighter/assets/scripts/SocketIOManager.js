@@ -223,8 +223,6 @@ const SocketIOManager = cc.Class({
             return null;
         }
 
-        console.log("Yêu cầu bắt đầu trò chơi từ client...");
-
         this.socketIO.emit('PLAY_GAME');
     },
 
@@ -235,5 +233,41 @@ const SocketIOManager = cc.Class({
                 playGameCallback();
             }
         });
+    },
+
+    getPlayerOrder() {
+        console.log("Yêu cầu thứ tự người chơi từ server...");
+        if (!this.socketIO) {
+            console.error("Chưa kết nối đến Socket.IO server.");
+            return null;
+        }
+        
+        return new Promise((resolve, reject) => {
+            this.socketIO.on('PLAYER_ORDER', (data) => {
+                console.log('Nhận thứ tự người chơi data:', data.order);
+                console.log('Nhận thứ tự người chơi data order:', data.order);
+                resolve(data.order);
+            });
+            this.socketIO.emit('GET_PLAYER_ORDER');
+        });
+    },
+
+    moveToNewTile(data) {
+        if (!this.socketIO) {
+            console.error("Chưa kết nối đến Socket.IO server.");
+            return null;
+        }
+
+        this.socketIO.emit('MOVE_TO_NEW_TILE', data);
+    },
+
+    listenMoveToNewTile(moveToNewTileCallback) {
+        this.socketIO.on('LISTEN_MOVE_TO_NEW_TILE', (data) => {
+            console.log('Nhận yêu cầu di chuyển đến ô mới:', data);
+            if (moveToNewTileCallback) {
+                moveToNewTileCallback(data);
+            }
+        });
     }
+
 });
