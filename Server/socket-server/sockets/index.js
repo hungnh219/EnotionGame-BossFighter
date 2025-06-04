@@ -1,7 +1,7 @@
 // import mapEvents from "./map";
 const mapEvents = require('./map');
 const roomEvents = require('./room')
-import selectHeroEvents from './selectHero';
+const selectHeroEvents = require('./selectHero');
 
 function registerSocketEvents(io, socket) {
     mapEvents(io, socket);
