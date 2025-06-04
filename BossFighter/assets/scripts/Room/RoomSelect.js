@@ -5,25 +5,28 @@ cc.Class({
 
     properties: {
         roomNameInput: cc.EditBox,
-        selectRoom: cc.EditBox,
         submitRoomButton: cc.Button,
         openCreateRoomButton: cc.Button,
-        joinRoomButton: cc.Button,
         roomInfoLabel: cc.Label,
         uiCreateRoom: cc.Node,
         content: cc.Node,
-        prefabRoomItem: cc.Prefab
+        prefabRoomItem: cc.Prefab,
+        numberPlayer: cc.Label,
+        filterRoom: cc.EditBox
     },
 
     socketIOManager: null,
     currentRoom: '',
 
     onLoad() {
+        this.numberPlayer.string = '0'
         this.content.removeAllChildren();
         console.log('Main Scene: onLoad');
         this.uiCreateRoom.active = false;
         this.roomInfoLabel.string = "Đang tải thông tin phòng...";
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
+        this.lastClickTime = 0;
+        this.doubleClickThreshold = 300;
     },
 
     start() {
@@ -62,17 +65,51 @@ cc.Class({
                 if (roomNameLabelComp) {
                     roomNameLabelComp.string = `${room.roomName} (${room.memberCount}/4)`;
                 } else {
-                    console.warn("Node 'New Label' trong prefabRoomItem không có component cc.Label.");
+                    console.log("Node 'New Label' trong prefabRoomItem không có component cc.Label.");
                 }
             } else {
-                console.warn("Không tìm thấy Node 'New Sprite/New Label' trong prefabRoomItem.");
+                console.log("Không tìm thấy Node 'New Sprite/New Label' trong prefabRoomItem.");
             }
+
+            const buttonNode = roomItemNode.getComponent(cc.Button);
+
+            if (buttonNode) {
+                roomItemNode.on('click', () => {
+                    this.onDoubleClick(room);
+                }, this);
+            } else {
+                console.log("Prefab không có component Button.");
+            }
+
+            const buttonJoinRoom = cc.find("New Button", roomItemNode)
+            if(buttonJoinRoom){
+                buttonJoinRoom.on('click', ()=>{
+                    this.onJoinRoomButton(room)
+                })
+            } else {
+                console.log("Khong co Component Button")
+            }
+
 
             this.content.addChild(roomItemNode);
         });
     },
 
+    onDoubleClick(room) {
+        const currentTime = Date.now();
+
+        if (currentTime - this.lastClickTime <= this.doubleClickThreshold) {
+            this.onJoinRoomButton(room);
+        }
+
+        this.lastClickTime = currentTime;
+    },
+
     async onSubmitRoomButton() {
+        if (this.numberPlayer.string == 0) {
+            console.log('So luong player khong hop le')
+            return
+        }
         const roomName = this.roomNameInput.string.trim();
         if (roomName) {
             try {
@@ -85,8 +122,12 @@ cc.Class({
         }
     },
 
-    async onJoinRoomButton() {
-        const roomName = this.selectRoom.string.trim();
+    async onJoinRoomButton(selectRoom) {
+        if (selectRoom == 'undefined' || selectRoom == null) {
+            console.log('Chua chon phong')
+            return
+        }
+        const roomName = selectRoom.roomName;
 
         if (!roomName) return;
 
@@ -110,4 +151,21 @@ cc.Class({
         this.uiCreateRoom.active = false;
     },
 
+    decreasePlayerButton() {
+        if (this.numberPlayer.string == 0) {
+            return
+        }
+        this.count = +this.numberPlayer.string
+        this.count -= 1
+        this.numberPlayer.string = `${this.count}`
+    },
+
+    increasePlayerButton() {
+        if (this.numberPlayer.string == 4) {
+            return
+        }
+        this.count = +this.numberPlayer.string
+        this.count += 1
+        this.numberPlayer.string = `${this.count}`
+    }
 });
