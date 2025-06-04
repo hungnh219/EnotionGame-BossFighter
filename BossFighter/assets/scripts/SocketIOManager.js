@@ -198,7 +198,42 @@ const SocketIOManager = cc.Class({
 
         console.warn("Không tìm thấy người chơi với socket ID:", currentSocketId);
         return null;
-    }
+    },
 
-    // update (dt) {},
+    // =================== In Game Logic ===================
+    getLockedHeroIndex() {
+        if (!this.socketIO) {
+            console.error("Chưa kết nối đến Socket.IO server.");
+            return null;
+        }
+
+        return new Promise((resolve, reject) => {
+            this.socketIO.on('LOCKED_HERO_INDEX', (data) => {
+                console.log('Nhận chỉ số hero đã khóa:', data.lockedHeroArray);
+                resolve(data.lockedHeroArray);
+            });
+
+            this.socketIO.emit('GET_LOCKED_HERO_INDEX');
+        });
+    },
+
+    playGame() {
+        if (!this.socketIO) {
+            console.error("Chưa kết nối đến Socket.IO server.");
+            return null;
+        }
+
+        console.log("Yêu cầu bắt đầu trò chơi từ client...");
+
+        this.socketIO.emit('PLAY_GAME');
+    },
+
+    listenPlayGame(playGameCallback) {
+        this.socketIO.on('GAME_STARTED', () => {
+            console.log('Trò chơi đã bắt đầu!');
+            if (playGameCallback) {
+                playGameCallback();
+            }
+        });
+    }
 });

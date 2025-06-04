@@ -1,0 +1,22 @@
+{
+  "4": {
+    "players": {
+      "socketid1": {
+        "name": "Player1",
+        "hero": "abc",
+        "hp": 100,
+        "scores": 100
+      },
+      "socketid2": {
+        "name": "Player2",
+        "score": 150
+      }
+    },
+
+    "gameState": {
+      "currentTurn": "player" || "enemy",
+      // "status": "active",
+      "round": 2
+    }
+  }
+}

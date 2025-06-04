@@ -122,6 +122,10 @@ cc.Class({
     async start() {
         this.testData = await this.socketIOManager.getMapData();
         this.testData = this.testData.map;
+
+        this.lockedHeroIndex = await this.socketIOManager.getLockedHeroIndex();
+        console.log('Locked hero index:', this.lockedHeroIndex);
+
         this.spawnObjectsFromJson();
 
         this.initData();
@@ -238,7 +242,17 @@ cc.Class({
     },
 
     spawnHero() {
-        let heroPrefabs = this.gameController.getSelectedHeroPrefabs();
+        // let heroPrefabs = this.gameController.getSelectedHeroPrefabs();
+        let heroPrefabs = [];
+        this.lockedHeroIndex.forEach((heroIndex) => {
+            // let prefabIndex = 
+            if (heroIndex >= 0 && heroIndex < this.heroPrefabs.length) {
+                heroPrefabs.push(cc.instantiate(this.heroPrefabs[heroIndex]));
+            } else {
+                console.warn(`Hero index ${heroIndex} is out of bounds for heroPrefabs array`);
+            }
+        })
+        
         let focusEffectPrefab = this.focusEffectPrefab;
         if (!heroPrefabs || heroPrefabs.length === 0) {
             console.warn('No hero prefabs found to spawn');

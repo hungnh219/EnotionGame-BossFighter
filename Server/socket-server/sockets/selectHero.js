@@ -118,7 +118,40 @@ function selectHeroEvents(io, socket) {
         });
     })
 
-    // socket.on()
+    socket.on('GET_LOCKED_HERO_INDEX', () => {
+        let roomData = readRoomData();
+        let roomName = getRoomNameBySocketId(socket.id);
+        if (!roomName) {
+            console.error('Không tìm thấy phòng cho socket ID:', socket.id);
+            return;
+        }
+
+        let lockedHeroArray = [];
+        for (const playerObj of roomData[roomName]) {
+            const playerId = Object.keys(playerObj)[0];
+            const playerInfo = playerObj[playerId];
+            // clickHeroArray.push(playerInfo.clickHero);
+            lockedHeroArray.push(playerInfo.lockedHero);
+        }
+
+        console.log('Locked heroes:', lockedHeroArray);
+        socket.emit('LOCKED_HERO_INDEX', {
+            "lockedHeroArray": lockedHeroArray,
+        });
+        
+    })
+
+    socket.on('PLAY_GAME', () => {
+        console.log('Yêu cầu bắt đầu trò chơi từ client:', socket.id);
+        let roomName = getRoomNameBySocketId(socket.id);
+        if (!roomName) {
+            console.error('Không tìm thấy phòng cho socket ID:', socket.id);
+            return;
+        }
+
+        // Gửi sự kiện bắt đầu game cho tất cả client trong phòng
+        io.to(roomName).emit('GAME_STARTED');
+    })
     // =================== các xử lý tất cả client ===================
 
     // broadcast hero selection to all clients

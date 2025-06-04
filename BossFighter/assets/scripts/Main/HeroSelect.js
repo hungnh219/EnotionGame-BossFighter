@@ -84,6 +84,9 @@ cc.Class({
         this.socketIOManager.listenHeroLock((heroLockIndexArray) => {
             this.updateHeroLock(heroLockIndexArray);
         });
+        this.socketIOManager.listenPlayGame(() => {
+            this.moveToGameScene();
+        })
 
         this.startGameData = await this.socketIOManager.getGameStartData();
         this.playerIndex = this.socketIOManager.getPlayerIndex(this.startGameData);
@@ -260,16 +263,19 @@ cc.Class({
             cc.log("HeroSelect: Vui lòng khóa hero trước khi bắt đầu trò chơi.");
             return;
         }
-        for (let i = 0; i < this.heroLocked.length; i++) {
-            if (this.heroLocked[i] != null) {
-                this.gameController.addSelectedHeroPrefab(this.heroPrefabs[this.heroLocked[i]]);
-            }
-        }
+        
+        console.log('start play game');
+        this.socketIOManager.playGame();
         // add heroLocked to gameController
-        this.scheduleOnce(() => {
-            cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME);
-        }, 0.2);
+        // this.scheduleOnce(() => {
+        //     cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME);
+        // }, 0.2);
 
+    },
+
+    moveToGameScene() {
+        console.log('hehe');
+        cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME);
     },
 
     backToMapSelect() {
