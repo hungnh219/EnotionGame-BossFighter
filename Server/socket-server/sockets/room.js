@@ -42,7 +42,10 @@ function roomEvents(io, socket) {
         roomData[roomName] = [];
         roomData[roomName].push({
             [socket.id]: {
-                "name": 'Unknown'
+                "name": 'Unknown',
+                "clickHero": null,
+                "lockedHero": null,
+                "order": Object.keys(roomData[roomName]).length,
             }
         });
 
@@ -83,7 +86,10 @@ function roomEvents(io, socket) {
 
         currentRoomPlayers.push({
             [socket.id]: {
-                name: 'Unknown'
+                "name": 'Unknown',
+                "clickHero": null,
+                "lockedHero": null,
+                "order": Object.keys(currentRoomPlayers).length,
             }
         });
 
@@ -133,6 +139,7 @@ function roomEvents(io, socket) {
     });
 
     socket.on('GAME_START', () => {
+        console.warn('Nhận sự kiện GAME_START từ socket:', socket.id);
         const roomName = getRoomNameBySocketId(socket.id);
         if (!roomName) {
             console.error(`Không tìm thấy phòng cho socket ID: ${socket.id}`);
@@ -148,13 +155,44 @@ function roomEvents(io, socket) {
                 const playerId = Object.keys(playerObj)[0];
                 return {
                     id: playerId,
-                    name: playerObj[playerId].name || 'Unknown'
+                    name: playerObj[playerId].name || 'Unknown',
+                    clickHero: playerObj[playerId].clickHero,
+                    lockedHero: playerObj[playerId].lockedHero,
+                    order: playerObj[playerId].order
                 };
             })
         }
 
         console.log('Gửi dữ liệu bắt đầu trò chơi:', gameStartData);
-        io.emit('GAME_START', gameStartData);
+        // io.emit('GAME_START', gameStartData);
+        // emit to clients in room name
+        io.to(roomName).emit('GAME_START_DATA', gameStartData);
+    })
+
+    socket.on('GET_GAME_START_DATA', () => {
+        const roomName = getRoomNameBySocketId(socket.id);
+        if (!roomName) {
+            console.error(`Không tìm thấy phòng cho socket ID: ${socket.id}`);
+            return;
+        }
+
+        const roomData = readRoomData();
+        const players = roomData[roomName];
+        
+        const gameStartData = {
+            roomName: roomName,
+            players: players.map(playerObj => {
+                const playerId = Object.keys(playerObj)[0];
+                return {
+                    id: playerId,
+                    name: playerObj[playerId].name || 'Unknown',
+                    clickHero: playerObj[playerId].clickHero,
+                    lockedHero: playerObj[playerId].lockedHero,
+                    order: playerObj[playerId].order
+                };
+            })
+        }
+        io.to(roomName).emit('GAME_START_DATA_SELECT', gameStartData);
     })
 
     function updateRoomInfo(roomData) {

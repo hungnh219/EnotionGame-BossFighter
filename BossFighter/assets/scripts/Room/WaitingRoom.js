@@ -18,6 +18,11 @@ cc.Class({
         if (!this.socketIOManager.getSocketIO() || !this.socketIOManager.getSocketIO().connected) {
             this.socketIOManager.connectToSocketIOServer("http://localhost:3000");
         }
+
+        this.socketIOManager.listenGameStart((data) => {
+            console.log("WaitingRoom: Nhận được sự kiện bắt đầu trò chơi từ máy chủ.", data);
+            cc.director.loadScene("HeroSelect");
+        })
     },
 
     start() {

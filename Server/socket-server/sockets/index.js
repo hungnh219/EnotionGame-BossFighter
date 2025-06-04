@@ -1,4 +1,3 @@
-// import mapEvents from "./map";
 const mapEvents = require('./map');
 const roomEvents = require('./room')
 const selectHeroEvents = require('./selectHero');
