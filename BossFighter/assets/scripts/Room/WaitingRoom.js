@@ -8,12 +8,14 @@ cc.Class({
         gridPlayer: cc.Node,
         roomNameLabel: cc.Label,
         totalPlayersLabel: cc.Label,
+        startButton: cc.Node,
     },
 
     socketIOManager: null,
     currentRoomData: null,
 
     onLoad() {
+        this.startButton.active = false
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
         if (!this.socketIOManager.getSocketIO() || !this.socketIOManager.getSocketIO().connected) {
             this.socketIOManager.connectToSocketIOServer("http://localhost:3000");
@@ -40,29 +42,66 @@ cc.Class({
     updateRoomUI() {
         if (!this.currentRoomData) return;
 
-        const playerSocketId = this.socketIOManager.getSocketIO().id;
+        const currentPlayerSocketId = this.socketIOManager.getSocketIO().id;
         let foundRoomName = '';
         let roomMembers = [];
+        let isCurrentPlayerHost = false;
 
         for (const room of this.currentRoomData.rooms) {
-            const playerInThisRoom = room.players.find(playerObj => Object.keys(playerObj)[0] === playerSocketId);
+
+            console.log('room player', room.players)
+
+            const playerInThisRoom = room.players.find(playerObj => Object.keys(playerObj)[0] === currentPlayerSocketId);
+
+            // for(const playerObj of room.players){
+
+            //     const playerSocketId = Object.keys(playerObj)[0];
+
+            //     if (playerSocketId === playerSocketId) {
+            //         const playerData = playerObj[playerSocketId];
+                    
+            //         console.log('Player Host:', playerData.host); 
+            //         if(playerData.host === true){
+            //             console.log("Nut dc mo")
+            //             this.startButton.active = true
+            //         }else{
+            //             console.log("Nut bi dong")
+            //             this.startButton.active = false
+            //         }
+            //     }
+            // }
 
             if (playerInThisRoom) {
                 foundRoomName = room.roomName;
                 roomMembers = room.players;
-                break;
+
+                const currentPlayerData = playerInThisRoom[currentPlayerSocketId];
+                isCurrentPlayerHost = currentPlayerData.host === true; 
+                break; 
             }
         }
+
+            
+            // if (playerInThisRoom) {
+            //     foundRoomName = room.roomName;
+            //     roomMembers = room.players;
+            //     break;
+            // }
+            
+        // }
 
         console.log('roomMembers', roomMembers)
 
         if (foundRoomName) {
             this.roomNameLabel.string = `Phòng: ${foundRoomName}`;
             this.totalPlayersLabel.string = `Người chơi: ${roomMembers.length}/4`;
+
             console.log("foundRoomName:", foundRoomName);
             console.log("this.roomNameLabel:", this.roomNameLabel);
             console.log("this.totalPlayersLabel:", this.totalPlayersLabel);
 
+            this.startButton.active = isCurrentPlayerHost;
+            console.log("Nut Start active state:", this.startButton.active, "(Current player is host:", isCurrentPlayerHost + ")");
 
             this.gridPlayer.removeAllChildren();
             for (const playerObj of roomMembers) {
@@ -79,6 +118,7 @@ cc.Class({
             this.roomNameLabel.string = "Không tìm thấy thông tin phòng.";
             this.totalPlayersLabel.string = "";
             this.gridPlayer.removeAllChildren();
+            this.startButton.active = false;
         }
     },
 
