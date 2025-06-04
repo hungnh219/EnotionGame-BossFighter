@@ -205,6 +205,14 @@ cc.Class({
 
 
     heroClick(node) {
+        // if ()
+        let currentHero = this.gameController.getPlayerByIndex(this.playerIndex);
+
+        if (node != currentHero) {
+            console.warn("Clicked node is not the current hero");
+            return;
+        }
+
         this.gameController.heroClick(node);
     },
 

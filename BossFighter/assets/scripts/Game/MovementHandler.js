@@ -46,13 +46,20 @@ cc.Class({
         this.socketIOManager.listenMoveToNewTile((data) => {
             let playerNode = this.gameController.getPlayerByIndex(data.playerIndex);
 
-            this.moveToWalkableTile(playerNode, data.newX, data.newY);
+            // Nếu là chính mình thì bỏ qua
+            if (data.playerIndex === this.gameController.getPlayerIndex()) return;
+
+            console.log(playerNode, "Received move request from player:", data.playerIndex, "to position:", data.newX, data.newY);
+            this.moveToWalkableTile(playerNode, {
+                newX: data.newX,
+                newY: data.newY,
+            }, true);
             // this.moveHeroToNewTile();
         })
         this.clickNode = null
         this.firstCellPos = null;
         this.lastCellPos = null;
-        this.walkableGridMap = null;
+        this.walkableGridMap = this.gameController.getWalkableMap();
         // this.isHeroMoving = false;
 
         EventBus.on(EventBus.events.DISPLAY_WALKABLE_AREA, (firstCellPos, lastCellPos, walkableGridMap, node) => {
@@ -102,7 +109,10 @@ cc.Class({
 
 
     // =================== Movement Logic ===================
-    moveToWalkableTile(nodeMove, newPosNode) {
+    moveToWalkableTile(nodeMove, newPosNode, moveFromServer = false) {
+        console.log("Moving to walkable tile:", nodeMove);
+        this.walkableGridMap = this.gameController.getWalkableMap();
+   
         let mapSetting = this.gameController.getMapSetting();
         if (!mapSetting) return;
 
@@ -111,6 +121,7 @@ cc.Class({
             if (this.clickNode == undefined || this.clickNode == null) return;
         }
         if (newPosNode == undefined || newPosNode == null) return;
+        console.log("Moving to walkable tile:", nodeMove);
 
         // let oldGridX = Math.floor((nodeMove.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
         // let oldGridY = Math.floor((nodeMove.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
@@ -129,7 +140,7 @@ cc.Class({
             newGridY = Math.floor((newPosNode.y) / mapSetting.mapTileHeight);
         }
 
-        console.log("Moving from:", oldGridX, oldGridY, "to:", newGridX, newGridY);
+        console.log("Moving from:", oldGridX, oldGridY, "to:", newGridX, newGridY, this.walkableGridMap);
 
         const maxSteps = 3 + 3 - 2;
         const path = this.findPath(
@@ -149,12 +160,14 @@ cc.Class({
         //     newPos: newPosNode,
         // });
         
-        this.socketIOManager.moveToNewTile({
-            playerIndex: this.gameController.getPlayerIndex(),
-            // newPos: newPosNode,
-            newX: newGridX,
-            newY: newGridY,
-        });
+        if (!moveFromServer) {
+            this.socketIOManager.moveToNewTile({
+                playerIndex: this.gameController.getPlayerIndex(),
+                // newPos: newPosNode,
+                newX: newGridX,
+                newY: newGridY,
+            });
+        }
 
 
         const moveStep = (i) => {
@@ -193,7 +206,6 @@ cc.Class({
     },
 
     displayWalkableArea(firstCellPos, lastCellPos, walkableGridMap, node) {
-        console.log(walkableGridMap)
         let mapSetting = this.gameController.getMapSetting();
         this.firstCellPos = firstCellPos;
         this.lastCellPos = lastCellPos;

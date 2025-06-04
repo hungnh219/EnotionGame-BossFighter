@@ -94,8 +94,8 @@ const GameController = cc.Class({
     bossTurn() {
         this.isPlayerTurn = false;
 
-        EventBus.emit(EventBus.events.BOSS2_SPAWN_ENEMY, this.enemies, this.bosses, this.gridMap, this.firstCellPos, this.lastCellPos, this.mapTileWidth, this.mapTileHeight);
-        this.enemyAutoMode();
+        // EventBus.emit(EventBus.events.BOSS2_SPAWN_ENEMY, this.enemies, this.bosses, this.gridMap, this.firstCellPos, this.lastCellPos, this.mapTileWidth, this.mapTileHeight);
+        // this.enemyAutoMode();
 
         if (this.mapPick == 1) this.bossAutoMode();
 
