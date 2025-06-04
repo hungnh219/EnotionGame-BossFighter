@@ -148,6 +148,7 @@ cc.Class({
         //     playerMove: this.gameController.getPlayerIndex(),
         //     newPos: newPosNode,
         // });
+        
         this.socketIOManager.moveToNewTile({
             playerIndex: this.gameController.getPlayerIndex(),
             // newPos: newPosNode,
