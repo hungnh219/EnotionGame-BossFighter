@@ -30,11 +30,7 @@ cc.Class({
     async onLoad() {
         this.setupGameController();
         await this.setupSocketIO();
- 
-        // this.playerIndex = this.startData ? this.startData.players.findIndex(player => player.playerSocketId === this.socketIOManager.getSocketIO().id) : 0;
-
-        console.log("HeroSelect onLoad called", this.playerIndex);
-
+        this.heroLocked = [];
         this.selectedHeroes = this.selectedHeroes || [];
         this.selectedHeroes.forEach((hero, index) => {
             let playerLabel = new cc.Node(`PlayerLabel-${index}`);
@@ -61,16 +57,7 @@ cc.Class({
             nameLabel.setPosition(0, -108);
             hero.node.addChild(nameLabel);
 
-            // add player socket id label
-            let socketIdLabel = new cc.Node(`SocketIdLabel-${index}`);
-            let socketIdLabelComponent = socketIdLabel.addComponent(cc.Label);
-            // socketIdLabelComponent.string = `${this.socketIOManager.getSocketIO().id}`;
-            socketIdLabelComponent.fontSize = 20;
-            socketIdLabelComponent.lineHeight = 24;
-            socketIdLabelComponent.font = this.customFont;
-            socketIdLabel.color = cc.Color.BLACK;
-            socketIdLabel.setPosition(0, 140);
-            hero.node.addChild(socketIdLabel);
+            // this.heroLocked[index] = null;
         })
 
     },
@@ -91,20 +78,21 @@ cc.Class({
     async setupSocketIO() {
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
         this.socketIOManager.connectToSocketIOServer("http://localhost:3000");
-        this.socketIOManager.listenHeroSelection();
-        this.socketIOManager.listenHeroLock();
+        this.socketIOManager.listenHeroSelection((heroClickIndexArray) => {
+            this.updateClickHero(heroClickIndexArray);
+        });
+        this.socketIOManager.listenHeroLock((heroLockIndexArray) => {
+            this.updateHeroLock(heroLockIndexArray);
+        });
+        this.socketIOManager.listenPlayGame(() => {
+            this.moveToGameScene();
+        })
 
-        this.startData = await this.socketIOManager.getGameStartData();
-        // if (!this.startData) {
-        //     for (let i = 0; i < 4; i++) {
-        //         this.startData = {
-        //             map: GAME_DATA.MAP_NAME.MAP_1,
-        //             heroIndex: i,
-        //             playerSocketId: this.socketIOManager.getSocketIO().id
-        //         };
-        //     }
-        // }
-        console.log("hehe Game Start Data:", this.startData, this.socketIOManager.id);
+        this.startGameData = await this.socketIOManager.getGameStartData();
+        this.playerIndex = this.socketIOManager.getPlayerIndex(this.startGameData);
+
+
+        console.log(this.playerIndex, "HeroSelect onLoad called", this.startGameData);
     },
 
     initVariables() {
@@ -153,13 +141,19 @@ cc.Class({
     },
 
     heroClick(index, prefab) {
-        console.log("HeroSelect onLoad called", this.playerIndex);
+        if (this.heroLocked[this.playerIndex] != null)  return;
+        if (!prefab) return;
         if (this.heroLockedList.node.childrenCount >= this.maxHero + 1) return;
+
         this.showInformation();
 
         this.socketIOManager.clickHero(index);
-        this.heroPicked = { index, prefab };
 
+        this.heroPicked = { index, prefab };
+        this.applyHeroInfoToUI(index);
+    },
+
+    applyHeroInfoToUI(index) {
         const info = this.heros[index];
         this.heroName.string = info.name;
         this.heroRole.string = info.role;
@@ -167,9 +161,9 @@ cc.Class({
         this.heroMana.string = info.mana;
         this.heroAttackRange.string = info.attackRange;
         this.heroImageSprite.spriteFrame = info.imageSprite.getComponent(cc.Sprite).spriteFrame;
-
         this.displaySelectedHero(info);
     },
+
 
     displaySelectedHero(info) {
         // Set sprite frame for the selected hero slot
@@ -188,24 +182,25 @@ cc.Class({
     lockHero() {
         if (!this.heroPicked.prefab || this.heroLockedList.node.childrenCount >= this.maxHero + 1) return;
 
-        const info = this.heros[this.heroPicked.index];
-        const heroNode = new cc.Node('HeroImageNode');
-        const sprite = heroNode.addComponent(cc.Sprite);
-        sprite.spriteFrame = info.imageSprite.getComponent(cc.Sprite).spriteFrame;
-        sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
-        heroNode.width = 150;
-        heroNode.height = 150;
+        // const info = this.heros[this.heroPicked.index];
+        // const heroNode = new cc.Node('HeroImageNode');
+        // const sprite = heroNode.addComponent(cc.Sprite);
+        // sprite.spriteFrame = info.imageSprite.getComponent(cc.Sprite).spriteFrame;
+        // sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
+        // heroNode.width = 150;
+        // heroNode.height = 150;
 
-        this.heroLockedList.node.insertChild(heroNode, this.heroLockedList.node.childrenCount - 1);
-        if (this.heroLockedList.node.childrenCount == this.maxHero + 1) {
-            let last = this.heroLockedList.node.children[this.heroLockedList.node.childrenCount - 1];
-            last.active = false;
-        }
+        // this.heroLockedList.node.insertChild(heroNode, this.heroLockedList.node.childrenCount - 1);
+        // if (this.heroLockedList.node.childrenCount == this.maxHero + 1) {
+        //     let last = this.heroLockedList.node.children[this.heroLockedList.node.childrenCount - 1];
+        //     last.active = false;
+        // }
 
-        this.addHeroNameLabel(heroNode, info.name);
-        this.saveHeroData(info);
+        // this.addHeroNameLabel(heroNode, info.name);
+        // this.saveHeroData(info);
 
-        this.gameController.addSelectedHeroPrefab(this.heroPicked.prefab);
+        console.log("Heroselect: Locking hero:", this.heroPicked.index, this.heroPicked.prefab);
+        // this.gameController.addSelectedHeroPrefab(this.heroPicked.prefab);
         this.socketIOManager.lockHero(this.heroPicked.index);
         this.playSoundEffect();
     },
@@ -255,6 +250,31 @@ cc.Class({
     },
 
     playGame() {
+        // check if heroLockedList is full
+        let flag = true;
+        for (let i = 0; i < this.heroLocked.length; i++) {
+            if (this.heroLocked[i] == null) {
+                flag = false;
+                break;
+            }
+        }
+
+        if (!flag) {
+            cc.log("HeroSelect: Vui lòng khóa hero trước khi bắt đầu trò chơi.");
+            return;
+        }
+        
+        console.log('start play game');
+        this.socketIOManager.playGame();
+        // add heroLocked to gameController
+        // this.scheduleOnce(() => {
+        //     cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME);
+        // }, 0.2);
+
+    },
+
+    moveToGameScene() {
+        console.log('hehe');
         cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME);
     },
 
@@ -270,5 +290,38 @@ cc.Class({
     playPickSoundEffect() {
         const audio = this.node.getComponent(cc.AudioSource);
         if (audio) audio.play();
+    },
+
+    // updateClickHero(heroClickIndexArray) {
+    //     this.selectedHeroes.forEach((hero, index) => {
+    //         let heroClickIndex = heroClickIndexArray[index];
+    //         if (heroClickIndex !== undefined && heroClickIndex !== null) {
+    //             this.applyHeroInfoToUI(heroClickIndex);
+    //         }
+    //     }); 
+    // }
+    updateClickHero(heroClickIndexArray) {
+        heroClickIndexArray.forEach((heroIndex, playerIdx) => {
+            if (heroIndex !== undefined && heroIndex !== null && this.heros[heroIndex]) {
+                const info = this.heros[heroIndex];
+
+                // Cập nhật spriteFrame cho đúng player slot
+                this.selectedHeroes[playerIdx].spriteFrame = info.imageSprite.getComponent(cc.Sprite).spriteFrame;
+
+                // Cập nhật tên hero cho đúng label
+                const nameLabelNode = this.selectedHeroes[playerIdx].node.getChildByName(`NameLabel-${playerIdx}`);
+                if (nameLabelNode) {
+                    const nameLabel = nameLabelNode.getComponent(cc.Label);
+                    if (nameLabel) {
+                        nameLabel.string = info.name;
+                    }
+                }
+            }
+        });
+    },
+
+    updateHeroLock(heroLockIndexArray) {
+        console.log("updateHeroLockList", heroLockIndexArray);
+        this.heroLocked[this.playerIndex] = heroLockIndexArray[this.playerIndex];
     }
 });

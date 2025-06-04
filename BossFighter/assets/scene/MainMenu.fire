@@ -3182,7 +3182,7 @@
     },
     "component": "",
     "_componentId": "f5f0fvxRglF5b1NFbPiJsv+",
-    "handler": "testEmitSocket",
+    "handler": "playOnline",
     "customEventData": ""
   },
   {

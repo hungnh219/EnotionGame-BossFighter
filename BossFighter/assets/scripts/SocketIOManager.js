@@ -66,7 +66,7 @@ const SocketIOManager = cc.Class({
     },
 
     joinRoom(roomName) {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             if (!this.socketIO) {
                 console.error("Chưa kết nối đến Socket.IO server.");
                 resolve({ success: false, message: "Chưa kết nối đến server" });
@@ -126,63 +126,27 @@ const SocketIOManager = cc.Class({
         });
     },
 
-    gameStart(roomName, players, moveToSelectSceneCallback) {
-        // this.gameStartData = {
-        //     playerId: this.socketIO.id,
-        //     roomName: roomName,
-        //     players: players
-        // };
-        console.log("Bắt đầu trò chơi với dữ liệu:", this.gameStartData);
-        console.log("Yêu cầu bắt đầu trò chơi...");
-        if (!this.gameStartData) this.gameStartData = {};
-
-        this.gameStartData[this.socketIO.id] = {
-            roomName: roomName,
-            players: players
-        };
-
+    gameStart(moveToSelectSceneCallback) {
         if (!this.socketIO) {
             console.error("Chưa kết nối đến Socket.IO server.");
             return null;
         }
 
-        this.socketIO.emit('GAME_START', {
-            roomName: roomName,
-            players: players,
-            }
-        )
+        this.socketIO.emit('GAME_START')
         
         // this.socketIO.emit('GAME_START', );
     },
 
     // getRoomName() {}
     getGameStartData() {
-        // return this.gameStartData
-
-        if (!this.gameStartData || !this.gameStartData[this.socketIO.id]) {
-            console.error("Chưa có dữ liệu bắt đầu trò chơi cho người chơi này.");
-            return null;
-        }
-
-        return new Promise((resolve) => {
-            console.log("Yêu cầu dữ liệu bắt đầu trò chơi từ server...");
-
-            this.socketIO.on('START_GAME_DATA', (data) => {
-                if (data) {
-                    console.log("Dữ liệu bắt đầu trò chơi đã nhận:", data);
-                    resolve(data);
-                } else {
-                    console.error("Không có dữ liệu bắt đầu trò chơi cho phòng này.");
-                    resolve(null);
-                }
+        return new Promise((resolve, reject) => {
+            this.socketIO.on('GAME_START_DATA_SELECT', (data) => {
+                console.log('Nhận dữ liệu bắt đầu trò chơi:', data);
+                resolve(data);
             });
 
-            this.socketIO.emit('GET_START_GAME_DATA');
-
-        })
-
-
-        return this.gameStartData[this.socketIO.id];
+            this.socketIO.emit('GET_GAME_START_DATA');
+        });
     },
 
     clickHero(heroIndex) {
@@ -190,31 +154,120 @@ const SocketIOManager = cc.Class({
     },
 
     lockHero(heroIndex) {
+        console.log('Yêu cầu khóa hero với chỉ số:', heroIndex);
         this.socketIO.emit('LOCK_HERO', heroIndex);
     },
 
-    listenHeroSelection() {
+    listenHeroSelection(updateHeroSelectionCallback) {
         this.socketIO.on('HERO_SELECTED', (data) => {
-            console.log('Hero selected by client:', data.socketId, 'Hero Index:', data.heroIndex);
+            console.log('Hero selected by client:', data.clickHeroArray);
+            updateHeroSelectionCallback(data.clickHeroArray);
         })
     },
 
-    listenHeroLock() {
+    listenHeroLock(updateHeroLockCallback) {
         this.socketIO.on('HERO_LOCKED', (data) => {
-            console.log('Hero locked by client:', data.socketId, 'Hero Index:', data.heroIndex);
+            console.log('Hero locked by client:', data.lockedHeroArray);
+            updateHeroLockCallback(data.lockedHeroArray);
         })
     },
 
     listenGameStart(moveToSelectSceneCallback) {
-        this.socketIO.on('START', (data) => {
+        this.socketIO.on('GAME_START_DATA', (data) => {
             console.log('312321Trò chơi đã bắt đầu với dữ liệu:', data);
             if (moveToSelectSceneCallback) {
-                moveToSelectSceneCallback();
+                moveToSelectSceneCallback(data);
             }
         });
     },
 
-    // get
+    getPlayerIndex(startGameData) {
+        let currentSocketId = this.socketIO.id;
 
-    // update (dt) {},
+        console.log(startGameData, "startGameData");
+        if (!startGameData || !startGameData.players) {
+            console.error("Dữ liệu bắt đầu trò chơi không hợp lệ:", startGameData);
+            return null;
+        }
+
+        for (let i = 0; i < startGameData.players.length; i++) {
+            if (startGameData.players[i].id === currentSocketId) {
+                return startGameData.players[i].order;
+            }
+        }
+
+        console.warn("Không tìm thấy người chơi với socket ID:", currentSocketId);
+        return null;
+    },
+
+    // =================== In Game Logic ===================
+    getLockedHeroIndex() {
+        if (!this.socketIO) {
+            console.error("Chưa kết nối đến Socket.IO server.");
+            return null;
+        }
+
+        return new Promise((resolve, reject) => {
+            this.socketIO.on('LOCKED_HERO_INDEX', (data) => {
+                console.log('Nhận chỉ số hero đã khóa:', data.lockedHeroArray);
+                resolve(data.lockedHeroArray);
+            });
+
+            this.socketIO.emit('GET_LOCKED_HERO_INDEX');
+        });
+    },
+
+    playGame() {
+        if (!this.socketIO) {
+            console.error("Chưa kết nối đến Socket.IO server.");
+            return null;
+        }
+
+        this.socketIO.emit('PLAY_GAME');
+    },
+
+    listenPlayGame(playGameCallback) {
+        this.socketIO.on('GAME_STARTED', () => {
+            console.log('Trò chơi đã bắt đầu!');
+            if (playGameCallback) {
+                playGameCallback();
+            }
+        });
+    },
+
+    getPlayerOrder() {
+        console.log("Yêu cầu thứ tự người chơi từ server...");
+        if (!this.socketIO) {
+            console.error("Chưa kết nối đến Socket.IO server.");
+            return null;
+        }
+        
+        return new Promise((resolve, reject) => {
+            this.socketIO.on('PLAYER_ORDER', (data) => {
+                console.log('Nhận thứ tự người chơi data:', data.order);
+                console.log('Nhận thứ tự người chơi data order:', data.order);
+                resolve(data.order);
+            });
+            this.socketIO.emit('GET_PLAYER_ORDER');
+        });
+    },
+
+    moveToNewTile(data) {
+        if (!this.socketIO) {
+            console.error("Chưa kết nối đến Socket.IO server.");
+            return null;
+        }
+
+        this.socketIO.emit('MOVE_TO_NEW_TILE', data);
+    },
+
+    listenMoveToNewTile(moveToNewTileCallback) {
+        this.socketIO.on('LISTEN_MOVE_TO_NEW_TILE', (data) => {
+            console.log('Nhận yêu cầu di chuyển đến ô mới:', data);
+            if (moveToNewTileCallback) {
+                moveToNewTileCallback(data);
+            }
+        });
+    }
+
 });

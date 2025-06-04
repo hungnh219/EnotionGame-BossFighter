@@ -1545,7 +1545,7 @@
     },
     "heroPrefabs": [
       {
-        "__uuid__": "79e5f371-b7f8-463a-a1a3-26c02052c5cb"
+        "__uuid__": "b8cb3a8d-024c-4a1e-a144-f47a20d80811"
       },
       {
         "__uuid__": "7209dc79-2e79-4ca9-9d9a-106dfac2ec9f"
@@ -1554,7 +1554,7 @@
         "__uuid__": "cba5efc6-f11a-4c0f-b87b-a95a8346f9af"
       },
       {
-        "__uuid__": "7209dc79-2e79-4ca9-9d9a-106dfac2ec9f"
+        "__uuid__": "79e5f371-b7f8-463a-a1a3-26c02052c5cb"
       }
     ],
     "heroInfoPanel": {

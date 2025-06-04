@@ -30,7 +30,6 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        console.log("Boss1 onLoad");
     },
 
     start () {
@@ -39,7 +38,6 @@ cc.Class({
 
     initData(characterNameId) {
         this._super(characterNameId);
-        console.log("Boss1 initData with characterId:", characterNameId);
     },
 
     playAnimation(animationName, moveTime) {

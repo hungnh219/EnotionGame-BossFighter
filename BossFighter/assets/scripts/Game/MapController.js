@@ -90,8 +90,6 @@ cc.Class({
     },
 
     viewObjectsMap(mapData, mapWidth, mapHeight, mapObjectSpriteFrames) {
-        console.log("Viewing objects map with data:", mapData, mapWidth, mapHeight, mapObjectSpriteFrames);
-
         for (let j = 0; j < mapHeight; j++) {
             for (let i = 0; i < mapWidth; i++) {
                 let newJ = mapHeight - j - 1;
@@ -174,7 +172,6 @@ cc.Class({
     },
 
     spawnHeroIntoMap(heroPrefabs, focusEffectPrefab) {
-        console.log("Spawning heroes into map with prefabs:", heroPrefabs);
         heroPrefabs.forEach((heroPrefab, index) => {
             let prefabNode = cc.instantiate(heroPrefab)
             let effectNode = cc.instantiate(focusEffectPrefab)

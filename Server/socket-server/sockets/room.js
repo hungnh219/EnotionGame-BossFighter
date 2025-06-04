@@ -42,10 +42,17 @@ function roomEvents(io, socket) {
             return;
         }
 
-        roomData[roomName] = [];
-        roomData[roomName].push({
+        roomData[roomName] = {
+            player:[]
+        };
+
+        roomData[roomName].player.push({
             [socket.id]: {
-                "name": 'Unknown'
+                "name": 'Unknown',
+                "clickHero": null,
+                "lockedHero": null,
+                "order": roomData[roomName].player.length,
+                "host": true
             }
         });
 
@@ -71,7 +78,7 @@ function roomEvents(io, socket) {
             return;
         }
 
-        const currentRoomPlayers = roomData[roomName];
+        const currentRoomPlayers = roomData[roomName].player;
 
         const playerExists = currentRoomPlayers.some(playerObj => Object.keys(playerObj)[0] === socket.id);
         if (playerExists) {
@@ -83,10 +90,14 @@ function roomEvents(io, socket) {
             socket.emit('joinRoomResult', { success: false, message: `Phòng "${roomName}" đã đầy. ` });
             return;
         }
-
+     
         currentRoomPlayers.push({
             [socket.id]: {
-                name: 'Unknown'
+                "name": 'Unknown',
+                "clickHero": null,
+                "lockedHero": null,
+                "order":currentRoomPlayers.length,
+                "host": false
             }
         });
 
@@ -99,6 +110,34 @@ function roomEvents(io, socket) {
         io.emit('roomInfo', roomInfo);
     });
 
+    socket.on('leaveRoom', (roomName) => {
+        let roomData = readRoomData();
+    
+        if (!(roomName in roomData)) {
+            socket.emit('leaveRoomResult', { success: false, message: `Phòng "${roomName}" không tồn tại.` });
+            return;
+        }
+    
+        const currentRoomPlayers = roomData[roomName].player;
+    
+        const playerIndex = currentRoomPlayers.findIndex(playerObj => Object.keys(playerObj)[0] === socket.id);
+        if (playerIndex === -1) {
+            socket.emit('leaveRoomResult', { success: false, message: `Bạn không có trong phòng "${roomName}".` });
+            return;
+        }
+    
+        currentRoomPlayers.splice(playerIndex, 1);
+    
+        writeRoomData(roomData);
+    
+        socket.leave(roomName);
+        socket.emit('leaveRoomResult', { success: true, message: `Bạn đã rời phòng "${roomName}" thành công.` });
+    
+        const roomInfo = updateRoomInfo(roomData);
+        io.emit('roomInfo', roomInfo);
+    });
+    
+
     socket.on('disconnect', () => {
         console.log('Client ngắt kết nối:', socket.id);
 
@@ -106,16 +145,16 @@ function roomEvents(io, socket) {
         let roomChanged = false;
 
         for (const roomName in roomData) {
-            let roomPlayers = roomData[roomName];
+            let roomPlayers = roomData[roomName].player;
             const initialLength = roomPlayers.length;
 
-            roomData[roomName] = roomPlayers.filter(playerObj => Object.keys(playerObj)[0] !== socket.id);
+            roomData[roomName].player = roomPlayers.filter(playerObj => Object.keys(playerObj)[0] !== socket.id);
 
-            if (roomData[roomName].length < initialLength) {
+            if (roomData[roomName].player.length < initialLength) {
                 roomChanged = true;
                 console.log(`Player ${socket.id} đã rời khỏi phòng ${roomName}`);
 
-                if (roomData[roomName].length === 0) {
+                if (roomData[roomName].player.length === 0) {
                     delete roomData[roomName];
                     console.log(`Room ${roomName} đã bị xóa vì không còn người.`);
                 }
@@ -135,49 +174,68 @@ function roomEvents(io, socket) {
         socket.emit('roomInfo', roomInfo);
     });
 
-    socket.on('GAME_START', (data) => {
-        console.log('Yêu cầu bắt đầu trò chơi từ client:', socket.id, 'Dữ liệu:', data);
-
-        const { roomName, players } = data;
-
-        if (!roomName || !players || players.length === 0) {
-            console.error('Dữ liệu không hợp lệ để bắt đầu trò chơi.');
+    socket.on('GAME_START', () => {
+        console.warn('Nhận sự kiện GAME_START từ socket:', socket.id);
+        const roomName = getRoomNameBySocketId(socket.id);
+        if (!roomName) {
+            console.error(`Không tìm thấy phòng cho socket ID: ${socket.id}`);
             return;
         }
 
-        startGameData[roomName] = {
-            players: players,
-            // playerId: socket.id
-        };
+        const roomData = readRoomData();
+        const players = roomData[roomName].player;
 
-        // Gửi sự kiện GAME_START đến tất cả người chơi trong phòng
-        io.to(roomName).emit('START', {
-            roomName,
-            players
-        });
+        const gameStartData = {
+            roomName: roomName,
+            players: players.map(playerObj => {
+                const playerId = Object.keys(playerObj)[0];
+                return {
+                    id: playerId,
+                    name: playerObj[playerId].name || 'Unknown',
+                    clickHero: playerObj[playerId].clickHero,
+                    lockedHero: playerObj[playerId].lockedHero,
+                    order: playerObj[playerId].order
+                };
+            })
+        }
 
-        console.log(`Trò chơi đã bắt đầu trong phòng ${roomName} với người chơi:`, players);
+        console.log('Gửi dữ liệu bắt đầu trò chơi:', gameStartData);
+        // io.emit('GAME_START', gameStartData);
+        // emit to clients in room name
+        io.to(roomName).emit('GAME_START_DATA', gameStartData);
     })
 
-    socket.on('GET_START_GAME_DATA', () => {
-        // console.log('Yêu cầu dữ liệu bắt đầu trò chơi từ client:', socket.id, 'Phòng:', roomName);
-
-        const roomName = Object.keys(startGameData).find(name => startGameData[name].players.some(player => Object.keys(player)[0] === socket.id));
-
-        if (startGameData[roomName]) {
-            console.log('Dữ liệu bắt đầu trò chơi:', startGameData[roomName]);
-            socket.emit('START_GAME_DATA', startGameData[roomName]);
-        } else {
-            console.error(`Không có dữ liệu bắt đầu trò chơi cho phòng ${roomName}`);
-            socket.emit('START_GAME_DATA', null);
+    socket.on('GET_GAME_START_DATA', () => {
+        const roomName = getRoomNameBySocketId(socket.id);
+        if (!roomName) {
+            console.error(`Không tìm thấy phòng cho socket ID: ${socket.id}`);
+            return;
         }
-    });
+
+        const roomData = readRoomData();
+        const players = roomData[roomName].player;
+        
+        const gameStartData = {
+            roomName: roomName,
+            players: players.map(playerObj => {
+                const playerId = Object.keys(playerObj)[0];
+                return {
+                    id: playerId,
+                    name: playerObj[playerId].name || 'Unknown',
+                    clickHero: playerObj[playerId].clickHero,
+                    lockedHero: playerObj[playerId].lockedHero,
+                    order: playerObj[playerId].order
+                };
+            })
+        }
+        io.to(roomName).emit('GAME_START_DATA_SELECT', gameStartData);
+    })
 
     function updateRoomInfo(roomData) {
         const rooms = Object.keys(roomData).map((roomName) => ({
             roomName,
-            memberCount: roomData[roomName].length,
-            players: roomData[roomName]
+            memberCount: roomData[roomName].player.length,
+            players: roomData[roomName].player
         }));
 
         const result = {
@@ -187,6 +245,19 @@ function roomEvents(io, socket) {
 
         console.log("Phát sự kiện roomInfo với dữ liệu: ", result);
         return result;
+    }
+
+    function getRoomNameBySocketId(socketId) {
+        const roomData = readRoomData();
+        for (const roomName in roomData) {
+            // if (roomData[roomName].some(playerObj => Object.keys(playerObj)[0] === socketId)) {
+            //     return roomName;
+            // }
+            if (roomData[roomName].player.some(playerObj => Object.keys(playerObj)[0] === socketId)) {
+                return roomName;
+            }
+        }
+        return null;
     }
 }
 
