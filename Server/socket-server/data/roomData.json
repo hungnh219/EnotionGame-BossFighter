@@ -1,92 +1,24 @@
 {
-  "23": [
-    {
-      "2n8TXYQRSPIZpWPyAAAR": {
-        "name": "Unknown",
-        "clickHero": null,
-        "lockedHero": null,
-        "order": 0
+  "aaa": {
+    "player": [
+      {
+        "dwZC1ksAQHKySQojAAAr": {
+          "name": "Unknown",
+          "clickHero": 3,
+          "lockedHero": 3,
+          "order": 0,
+          "host": true
+        }
+      },
+      {
+        "kUZvAlsO6FCHG1-vAAAz": {
+          "name": "Unknown",
+          "clickHero": 2,
+          "lockedHero": 2,
+          "order": 2,
+          "host": false
+        }
       }
-    },
-    {
-      "7OgdexkNwcoLQ-skAAAT": {
-        "name": "Unknown",
-        "clickHero": null,
-        "lockedHero": null,
-        "order": 1
-      }
-    }
-  ],
-  "123": [
-    {
-      "iXmwADi8XMHDp572AAAB": {
-        "name": "Unknown",
-        "clickHero": null,
-        "lockedHero": null,
-        "order": 0
-      }
-    }
-  ],
-  "321": [
-    {
-      "6WzWR9lMHdcvnJaMAAAJ": {
-        "name": "Unknown",
-        "clickHero": null,
-        "lockedHero": null,
-        "order": 0
-      }
-    },
-    {
-      "XD0rqDVXHZFdxv7SAAAL": {
-        "name": "Unknown",
-        "clickHero": null,
-        "lockedHero": null,
-        "order": 1
-      }
-    },
-    {
-      "2q4hl2kMkngkUrwSAAAN": {
-        "name": "Unknown",
-        "clickHero": null,
-        "lockedHero": null,
-        "order": 2
-      }
-    }
-  ],
-  "123321": [
-    {
-      "NX_NhB9Jwtw0BHNQAAAR": {
-        "name": "Unknown",
-        "clickHero": null,
-        "lockedHero": null,
-        "order": 0
-      }
-    },
-    {
-      "_ifJjL_im-XHqFOBAAAT": {
-        "name": "Unknown",
-        "clickHero": null,
-        "lockedHero": null,
-        "order": 1
-      }
-    }
-  ],
-  "hehe": [
-    {
-      "ohFwqotdEhGdn57RAAAF": {
-        "name": "Unknown",
-        "clickHero": null,
-        "lockedHero": null,
-        "order": 0
-      }
-    },
-    {
-      "xr102Qwi2p5tVD4LAAAH": {
-        "name": "Unknown",
-        "clickHero": null,
-        "lockedHero": null,
-        "order": 1
-      }
-    }
-  ]
+    ]
+  }
 }

@@ -44,7 +44,8 @@ function selectHeroEvents(io, socket) {
             heroSelects[roomName] = {};
         }
         // check if lockedHero is not null -> return
-        const playerObjIndexLocked = roomData[roomName].findIndex(obj => Object.keys(obj)[0] === socket.id);
+        // const playerObjIndexLocked = roomData[roomName].findIndex(obj => Object.keys(obj)[0] === socket.id);
+        const playerObjIndexLocked = roomData[roomName].player.findIndex(obj => obj[socket.id] && obj[socket.id].lockedHero !== null);
         if (playerObjIndexLocked !== -1) {
             const playerInfo = roomData[roomName][playerObjIndexLocked][socket.id];
             console.log(playerInfo.lockedHero, "playerInfo.lockedHero");
@@ -55,16 +56,17 @@ function selectHeroEvents(io, socket) {
         }
 
         // Update the clickHero value in roomData and persist to file
-        const playerObjIndex = roomData[roomName].findIndex(obj => Object.keys(obj)[0] === socket.id);
+        const playerObjIndex = roomData[roomName].player.findIndex(obj => Object.keys(obj)[0] === socket.id);
         if (playerObjIndex !== -1) {
-            roomData[roomName][playerObjIndex][socket.id].clickHero = heroIndex;
+            // roomData[roomName][player][playerObjIndex][socket.id].clickHero = heroIndex;
+            roomData[roomName].player[playerObjIndex][socket.id].clickHero = heroIndex;
             writeRoomData(roomData); // Persist the change immediately
         }
 
         roomData = readRoomData();
 
         let clickHeroArray = [];
-        for (const playerObj of roomData[roomName]) {
+        for (const playerObj of roomData[roomName].player) {
             const playerId = Object.keys(playerObj)[0];
             const playerInfo = playerObj[playerId];
             clickHeroArray.push(playerInfo.clickHero);
@@ -93,9 +95,9 @@ function selectHeroEvents(io, socket) {
         }
 
         // Update the lockedHero value in roomData and persist to file
-        const playerObjIndex = roomData[roomName].findIndex(obj => Object.keys(obj)[0] === socket.id);
+        const playerObjIndex = roomData[roomName].player.findIndex(obj => Object.keys(obj)[0] === socket.id);
         if (playerObjIndex !== -1) {
-            roomData[roomName][playerObjIndex][socket.id].lockedHero = heroIndex;
+            roomData[roomName].player[playerObjIndex][socket.id].lockedHero = heroIndex;
             writeRoomData(roomData); // Persist the change immediately
         }
         
@@ -103,7 +105,7 @@ function selectHeroEvents(io, socket) {
         roomData = readRoomData();
         // let clickHeroArray = []
         let lockedHeroArray = [];
-        for (const playerObj of roomData[roomName]) {
+        for (const playerObj of roomData[roomName].player) {
             const playerId = Object.keys(playerObj)[0];
             const playerInfo = playerObj[playerId];
             // clickHeroArray.push(playerInfo.clickHero);
@@ -127,7 +129,7 @@ function selectHeroEvents(io, socket) {
         }
 
         let lockedHeroArray = [];
-        for (const playerObj of roomData[roomName]) {
+        for (const playerObj of roomData[roomName].player) {
             const playerId = Object.keys(playerObj)[0];
             const playerInfo = playerObj[playerId];
             // clickHeroArray.push(playerInfo.clickHero);
@@ -165,10 +167,25 @@ function selectHeroEvents(io, socket) {
         delete heroSelects[socket.id]; // Remove the hero selection for the disconnected client
     });
 
+    // function getRoomNameBySocketId(socketId) {
+    //     const roomData = readRoomData();
+    //     for (const roomName in roomData) {
+    //         // if (roomData[roomName].some(playerObj => Object.keys(playerObj)[0] === socketId)) {
+    //         //     return roomName;
+    //         // }
+    //         if (roomData[roomName].find(playerObj => Object.keys(playerObj)[0] === socketId)) {
+    //             return roomName;
+    //         }
+    //     }
+    //     return null;
+    // }
     function getRoomNameBySocketId(socketId) {
         const roomData = readRoomData();
         for (const roomName in roomData) {
-            if (roomData[roomName].some(playerObj => Object.keys(playerObj)[0] === socketId)) {
+            // if (roomData[roomName].some(playerObj => Object.keys(playerObj)[0] === socketId)) {
+            //     return roomName;
+            // }
+            if (roomData[roomName].player.some(playerObj => Object.keys(playerObj)[0] === socketId)) {
                 return roomName;
             }
         }

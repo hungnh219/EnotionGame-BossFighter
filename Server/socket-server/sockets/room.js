@@ -39,13 +39,17 @@ function roomEvents(io, socket) {
             return;
         }
 
-        roomData[roomName] = [];
-        roomData[roomName].push({
+        roomData[roomName] = {
+            player:[]
+        };
+
+        roomData[roomName].player.push({
             [socket.id]: {
                 "name": 'Unknown',
                 "clickHero": null,
                 "lockedHero": null,
-                "order": Object.keys(roomData[roomName]).length,
+                "order": roomData[roomName].player.length,
+                "host": true
             }
         });
 
@@ -71,7 +75,7 @@ function roomEvents(io, socket) {
             return;
         }
 
-        const currentRoomPlayers = roomData[roomName];
+        const currentRoomPlayers = roomData[roomName].player;
 
         const playerExists = currentRoomPlayers.some(playerObj => Object.keys(playerObj)[0] === socket.id);
         if (playerExists) {
@@ -83,13 +87,14 @@ function roomEvents(io, socket) {
             socket.emit('joinRoomResult', { success: false, message: `Phòng "${roomName}" đã đầy. ` });
             return;
         }
-
+     
         currentRoomPlayers.push({
             [socket.id]: {
                 "name": 'Unknown',
                 "clickHero": null,
                 "lockedHero": null,
-                "order": Object.keys(currentRoomPlayers).length,
+                "order":currentRoomPlayers.length,
+                "host": false
             }
         });
 
@@ -102,6 +107,34 @@ function roomEvents(io, socket) {
         io.emit('roomInfo', roomInfo);
     });
 
+    socket.on('leaveRoom', (roomName) => {
+        let roomData = readRoomData();
+    
+        if (!(roomName in roomData)) {
+            socket.emit('leaveRoomResult', { success: false, message: `Phòng "${roomName}" không tồn tại.` });
+            return;
+        }
+    
+        const currentRoomPlayers = roomData[roomName].player;
+    
+        const playerIndex = currentRoomPlayers.findIndex(playerObj => Object.keys(playerObj)[0] === socket.id);
+        if (playerIndex === -1) {
+            socket.emit('leaveRoomResult', { success: false, message: `Bạn không có trong phòng "${roomName}".` });
+            return;
+        }
+    
+        currentRoomPlayers.splice(playerIndex, 1);
+    
+        writeRoomData(roomData);
+    
+        socket.leave(roomName);
+        socket.emit('leaveRoomResult', { success: true, message: `Bạn đã rời phòng "${roomName}" thành công.` });
+    
+        const roomInfo = updateRoomInfo(roomData);
+        io.emit('roomInfo', roomInfo);
+    });
+    
+
     socket.on('disconnect', () => {
         console.log('Client ngắt kết nối:', socket.id);
 
@@ -109,16 +142,16 @@ function roomEvents(io, socket) {
         let roomChanged = false;
 
         for (const roomName in roomData) {
-            let roomPlayers = roomData[roomName];
+            let roomPlayers = roomData[roomName].player;
             const initialLength = roomPlayers.length;
 
-            roomData[roomName] = roomPlayers.filter(playerObj => Object.keys(playerObj)[0] !== socket.id);
+            roomData[roomName].player = roomPlayers.filter(playerObj => Object.keys(playerObj)[0] !== socket.id);
 
-            if (roomData[roomName].length < initialLength) {
+            if (roomData[roomName].player.length < initialLength) {
                 roomChanged = true;
                 console.log(`Player ${socket.id} đã rời khỏi phòng ${roomName}`);
 
-                if (roomData[roomName].length === 0) {
+                if (roomData[roomName].player.length === 0) {
                     delete roomData[roomName];
                     console.log(`Room ${roomName} đã bị xóa vì không còn người.`);
                 }
@@ -147,7 +180,7 @@ function roomEvents(io, socket) {
         }
 
         const roomData = readRoomData();
-        const players = roomData[roomName];
+        const players = roomData[roomName].player;
 
         const gameStartData = {
             roomName: roomName,
@@ -177,7 +210,7 @@ function roomEvents(io, socket) {
         }
 
         const roomData = readRoomData();
-        const players = roomData[roomName];
+        const players = roomData[roomName].player;
         
         const gameStartData = {
             roomName: roomName,
@@ -198,8 +231,8 @@ function roomEvents(io, socket) {
     function updateRoomInfo(roomData) {
         const rooms = Object.keys(roomData).map((roomName) => ({
             roomName,
-            memberCount: roomData[roomName].length,
-            players: roomData[roomName]
+            memberCount: roomData[roomName].player.length,
+            players: roomData[roomName].player
         }));
 
         const result = {
@@ -214,7 +247,10 @@ function roomEvents(io, socket) {
     function getRoomNameBySocketId(socketId) {
         const roomData = readRoomData();
         for (const roomName in roomData) {
-            if (roomData[roomName].some(playerObj => Object.keys(playerObj)[0] === socketId)) {
+            // if (roomData[roomName].some(playerObj => Object.keys(playerObj)[0] === socketId)) {
+            //     return roomName;
+            // }
+            if (roomData[roomName].player.some(playerObj => Object.keys(playerObj)[0] === socketId)) {
                 return roomName;
             }
         }
