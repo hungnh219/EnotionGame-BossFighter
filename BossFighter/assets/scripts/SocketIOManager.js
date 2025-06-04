@@ -127,13 +127,6 @@ const SocketIOManager = cc.Class({
     },
 
     gameStart(moveToSelectSceneCallback) {
-        // if (!this.gameStartData) this.gameStartData = {};
-
-        // this.gameStartData[this.socketIO.id] = {
-        //     roomName: roomName,
-        //     players: players
-        // };
-
         if (!this.socketIO) {
             console.error("Chưa kết nối đến Socket.IO server.");
             return null;
@@ -146,32 +139,14 @@ const SocketIOManager = cc.Class({
 
     // getRoomName() {}
     getGameStartData() {
-        // return this.gameStartData
-
-        if (!this.gameStartData || !this.gameStartData[this.socketIO.id]) {
-            console.error("Chưa có dữ liệu bắt đầu trò chơi cho người chơi này.");
-            return null;
-        }
-
-        return new Promise((resolve) => {
-            console.log("Yêu cầu dữ liệu bắt đầu trò chơi từ server...");
-
-            this.socketIO.on('START_GAME_DATA', (data) => {
-                if (data) {
-                    console.log("Dữ liệu bắt đầu trò chơi đã nhận:", data);
-                    resolve(data);
-                } else {
-                    console.error("Không có dữ liệu bắt đầu trò chơi cho phòng này.");
-                    resolve(null);
-                }
+        return new Promise((resolve, reject) => {
+            this.socketIO.on('GAME_START_DATA_SELECT', (data) => {
+                console.log('Nhận dữ liệu bắt đầu trò chơi:', data);
+                resolve(data);
             });
 
-            this.socketIO.emit('GET_START_GAME_DATA');
-
-        })
-
-
-        return this.gameStartData[this.socketIO.id];
+            this.socketIO.emit('GET_GAME_START_DATA');
+        });
     },
 
     clickHero(heroIndex) {
@@ -179,29 +154,51 @@ const SocketIOManager = cc.Class({
     },
 
     lockHero(heroIndex) {
+        console.log('Yêu cầu khóa hero với chỉ số:', heroIndex);
         this.socketIO.emit('LOCK_HERO', heroIndex);
     },
 
-    listenHeroSelection() {
+    listenHeroSelection(updateHeroSelectionCallback) {
         this.socketIO.on('HERO_SELECTED', (data) => {
-            console.log('Hero selected by client:', data.socketId, 'Hero Index:', data.heroIndex);
+            console.log('Hero selected by client:', data.clickHeroArray);
+            updateHeroSelectionCallback(data.clickHeroArray);
         })
     },
 
-    listenHeroLock() {
+    listenHeroLock(updateHeroLockCallback) {
         this.socketIO.on('HERO_LOCKED', (data) => {
-            console.log('Hero locked by client:', data.socketId, 'Hero Index:', data.heroIndex);
+            console.log('Hero locked by client:', data.lockedHeroArray);
+            updateHeroLockCallback(data.lockedHeroArray);
         })
     },
 
     listenGameStart(moveToSelectSceneCallback) {
-        this.socketIO.on('START', (data) => {
+        this.socketIO.on('GAME_START_DATA', (data) => {
             console.log('312321Trò chơi đã bắt đầu với dữ liệu:', data);
             if (moveToSelectSceneCallback) {
-                moveToSelectSceneCallback();
+                moveToSelectSceneCallback(data);
             }
         });
     },
+
+    getPlayerIndex(startGameData) {
+        let currentSocketId = this.socketIO.id;
+
+        console.log(startGameData, "startGameData");
+        if (!startGameData || !startGameData.players) {
+            console.error("Dữ liệu bắt đầu trò chơi không hợp lệ:", startGameData);
+            return null;
+        }
+
+        for (let i = 0; i < startGameData.players.length; i++) {
+            if (startGameData.players[i].id === currentSocketId) {
+                return startGameData.players[i].order;
+            }
+        }
+
+        console.warn("Không tìm thấy người chơi với socket ID:", currentSocketId);
+        return null;
+    }
 
     // update (dt) {},
 });
