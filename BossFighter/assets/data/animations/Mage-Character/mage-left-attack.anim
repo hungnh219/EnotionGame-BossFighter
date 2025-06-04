@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "mage-left-attack",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.16666666666666666,
+  "sample": 30,
+  "speed": 0.4,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "bb943591-dad6-4300-b0f1-da6cf7b5cfb6"
+            }
+          },
+          {
+            "frame": 0.03333333333333333,
+            "value": {
+              "__uuid__": "20389ff9-ae95-4087-89ea-7e7643faf92d"
+            }
+          },
+          {
+            "frame": 0.06666666666666667,
+            "value": {
+              "__uuid__": "da22b63a-c32f-4e64-b0c4-23c806178298"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "13bb6cfb-35cc-4873-a1fb-bd14b92864ba"
+            }
+          },
+          {
+            "frame": 0.13333333333333333,
+            "value": {
+              "__uuid__": "61e76bf7-1da6-4995-b70c-3148197a3df7"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

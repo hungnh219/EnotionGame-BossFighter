@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "63c87bae-8dfe-470d-bba7-dc00d7ddbe6a",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "point",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 16,
+  "height": 13,
+  "platformSettings": {},
+  "subMetas": {
+    "UI_TravelBook_IconArrow01a": {
+      "ver": "1.0.6",
+      "uuid": "734e3ff4-28fd-4686-8af8-21189679209a",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "63c87bae-8dfe-470d-bba7-dc00d7ddbe6a",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 16,
+      "height": 13,
+      "rawWidth": 16,
+      "rawHeight": 13,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

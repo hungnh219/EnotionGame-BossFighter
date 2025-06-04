@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "e408add5-b904-4617-9401-0fbbcd24b06d",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "point",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 32,
+  "height": 32,
+  "platformSettings": {},
+  "subMetas": {
+    "Warrior-Blue_119": {
+      "ver": "1.0.6",
+      "uuid": "839dac99-b634-4046-a723-4f5e24493925",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "e408add5-b904-4617-9401-0fbbcd24b06d",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": -2,
+      "trimX": 9,
+      "trimY": 12,
+      "width": 14,
+      "height": 12,
+      "rawWidth": 32,
+      "rawHeight": 32,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

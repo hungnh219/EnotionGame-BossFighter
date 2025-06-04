@@ -1,0 +1,870 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>Slime1_Attack_full0.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,16}</string>
+				<key>spriteSize</key>
+				<string>{17,16}</string>
+				<key>textureRect</key>
+				<string>{{0,0},{17,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Slime1_Attack_full1.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,24}</string>
+				<key>spriteSize</key>
+				<string>{13,24}</string>
+				<key>textureRect</key>
+				<string>{{18,0},{13,24}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Slime1_Attack_full2.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,27}</string>
+				<key>spriteSize</key>
+				<string>{13,27}</string>
+				<key>textureRect</key>
+				<string>{{32,0},{13,27}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Slime1_Attack_full3.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{22,13}</string>
+				<key>spriteSize</key>
+				<string>{22,13}</string>
+				<key>textureRect</key>
+				<string>{{46,0},{22,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5454545454545454,0}</string>
+			</dict>
+			<key>Slime1_Attack_full4.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{35,19}</string>
+				<key>spriteSize</key>
+				<string>{35,19}</string>
+				<key>textureRect</key>
+				<string>{{69,0},{35,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5142857142857142,0}</string>
+			</dict>
+			<key>Slime1_Attack_full5.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{21,12}</string>
+				<key>spriteSize</key>
+				<string>{21,12}</string>
+				<key>textureRect</key>
+				<string>{{105,0},{21,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47619047619047616,0}</string>
+			</dict>
+			<key>Slime1_Attack_full6.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{56,30}</string>
+				<key>spriteSize</key>
+				<string>{56,30}</string>
+				<key>textureRect</key>
+				<string>{{127,0},{56,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Slime1_Attack_full7.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,15}</string>
+				<key>spriteSize</key>
+				<string>{14,15}</string>
+				<key>textureRect</key>
+				<string>{{184,0},{14,15}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Slime1_Attack_full8.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,15}</string>
+				<key>spriteSize</key>
+				<string>{13,15}</string>
+				<key>textureRect</key>
+				<string>{{199,0},{13,15}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Slime1_Attack_full9.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{19,12}</string>
+				<key>spriteSize</key>
+				<string>{19,12}</string>
+				<key>textureRect</key>
+				<string>{{213,0},{19,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5263157894736842,0}</string>
+			</dict>
+			<key>Slime1_Attack_full10.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{18,14}</string>
+				<key>spriteSize</key>
+				<string>{18,14}</string>
+				<key>textureRect</key>
+				<string>{{233,0},{18,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5555555555555556,0}</string>
+			</dict>
+			<key>Slime1_Attack_full11.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,16}</string>
+				<key>spriteSize</key>
+				<string>{17,16}</string>
+				<key>textureRect</key>
+				<string>{{252,0},{17,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Slime1_Attack_full12.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,16}</string>
+				<key>spriteSize</key>
+				<string>{17,16}</string>
+				<key>textureRect</key>
+				<string>{{270,0},{17,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Slime1_Attack_full13.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,24}</string>
+				<key>spriteSize</key>
+				<string>{13,24}</string>
+				<key>textureRect</key>
+				<string>{{288,0},{13,24}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Slime1_Attack_full14.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,27}</string>
+				<key>spriteSize</key>
+				<string>{13,27}</string>
+				<key>textureRect</key>
+				<string>{{302,0},{13,27}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Slime1_Attack_full15.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{35,19}</string>
+				<key>spriteSize</key>
+				<string>{35,19}</string>
+				<key>textureRect</key>
+				<string>{{316,0},{35,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5142857142857142,0}</string>
+			</dict>
+			<key>Slime1_Attack_full16.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{6,9}</string>
+				<key>spriteSize</key>
+				<string>{6,9}</string>
+				<key>textureRect</key>
+				<string>{{352,0},{6,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6666666666666666,0}</string>
+			</dict>
+			<key>Slime1_Attack_full17.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{21,12}</string>
+				<key>spriteSize</key>
+				<string>{21,12}</string>
+				<key>textureRect</key>
+				<string>{{359,0},{21,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47619047619047616,0}</string>
+			</dict>
+			<key>Slime1_Attack_full18.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{22,13}</string>
+				<key>spriteSize</key>
+				<string>{22,13}</string>
+				<key>textureRect</key>
+				<string>{{381,0},{22,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5454545454545454,0}</string>
+			</dict>
+			<key>Slime1_Attack_full19.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{9,6}</string>
+				<key>spriteSize</key>
+				<string>{9,6}</string>
+				<key>textureRect</key>
+				<string>{{404,0},{9,6}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4444444444444444,0}</string>
+			</dict>
+			<key>Slime1_Attack_full20.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{56,30}</string>
+				<key>spriteSize</key>
+				<string>{56,30}</string>
+				<key>textureRect</key>
+				<string>{{414,0},{56,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>Slime1_Attack_full21.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,5}</string>
+				<key>spriteSize</key>
+				<string>{17,5}</string>
+				<key>textureRect</key>
+				<string>{{471,0},{17,5}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Slime1_Attack_full22.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,15}</string>
+				<key>spriteSize</key>
+				<string>{14,15}</string>
+				<key>textureRect</key>
+				<string>{{489,0},{14,15}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Slime1_Attack_full23.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{19,12}</string>
+				<key>spriteSize</key>
+				<string>{19,12}</string>
+				<key>textureRect</key>
+				<string>{{504,0},{19,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5263157894736842,0}</string>
+			</dict>
+			<key>Slime1_Attack_full24.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{18,14}</string>
+				<key>spriteSize</key>
+				<string>{18,14}</string>
+				<key>textureRect</key>
+				<string>{{524,0},{18,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5555555555555556,0}</string>
+			</dict>
+			<key>Slime1_Attack_full25.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,16}</string>
+				<key>spriteSize</key>
+				<string>{17,16}</string>
+				<key>textureRect</key>
+				<string>{{543,0},{17,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Slime1_Attack_full26.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,16}</string>
+				<key>spriteSize</key>
+				<string>{17,16}</string>
+				<key>textureRect</key>
+				<string>{{561,0},{17,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Slime1_Attack_full27.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,24}</string>
+				<key>spriteSize</key>
+				<string>{13,24}</string>
+				<key>textureRect</key>
+				<string>{{579,0},{13,24}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Slime1_Attack_full28.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,27}</string>
+				<key>spriteSize</key>
+				<string>{13,27}</string>
+				<key>textureRect</key>
+				<string>{{593,0},{13,27}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Slime1_Attack_full29.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{34,19}</string>
+				<key>spriteSize</key>
+				<string>{34,19}</string>
+				<key>textureRect</key>
+				<string>{{607,0},{34,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5294117647058824,0}</string>
+			</dict>
+			<key>Slime1_Attack_full30.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,15}</string>
+				<key>spriteSize</key>
+				<string>{14,15}</string>
+				<key>textureRect</key>
+				<string>{{642,0},{14,15}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Slime1_Attack_full31.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{21,12}</string>
+				<key>spriteSize</key>
+				<string>{21,12}</string>
+				<key>textureRect</key>
+				<string>{{657,0},{21,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47619047619047616,0}</string>
+			</dict>
+			<key>Slime1_Attack_full32.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{23,12}</string>
+				<key>spriteSize</key>
+				<string>{23,12}</string>
+				<key>textureRect</key>
+				<string>{{679,0},{23,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5217391304347826,0}</string>
+			</dict>
+			<key>Slime1_Attack_full33.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,15}</string>
+				<key>spriteSize</key>
+				<string>{14,15}</string>
+				<key>textureRect</key>
+				<string>{{703,0},{14,15}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Slime1_Attack_full34.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,11}</string>
+				<key>spriteSize</key>
+				<string>{17,11}</string>
+				<key>textureRect</key>
+				<string>{{718,0},{17,11}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Slime1_Attack_full35.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,13}</string>
+				<key>spriteSize</key>
+				<string>{17,13}</string>
+				<key>textureRect</key>
+				<string>{{736,0},{17,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Slime1_Attack_full36.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,16}</string>
+				<key>spriteSize</key>
+				<string>{17,16}</string>
+				<key>textureRect</key>
+				<string>{{754,0},{17,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Slime1_Attack_full37.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{18,16}</string>
+				<key>spriteSize</key>
+				<string>{18,16}</string>
+				<key>textureRect</key>
+				<string>{{772,0},{18,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5555555555555556,0}</string>
+			</dict>
+			<key>Slime1_Attack_full38.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,24}</string>
+				<key>spriteSize</key>
+				<string>{13,24}</string>
+				<key>textureRect</key>
+				<string>{{791,0},{13,24}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Slime1_Attack_full39.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{13,27}</string>
+				<key>spriteSize</key>
+				<string>{13,27}</string>
+				<key>textureRect</key>
+				<string>{{805,0},{13,27}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.46153846153846156,0}</string>
+			</dict>
+			<key>Slime1_Attack_full40.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{21,12}</string>
+				<key>spriteSize</key>
+				<string>{21,12}</string>
+				<key>textureRect</key>
+				<string>{{819,0},{21,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47619047619047616,0}</string>
+			</dict>
+			<key>Slime1_Attack_full41.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{23,12}</string>
+				<key>spriteSize</key>
+				<string>{23,12}</string>
+				<key>textureRect</key>
+				<string>{{841,0},{23,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5217391304347826,0}</string>
+			</dict>
+			<key>Slime1_Attack_full42.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{34,19}</string>
+				<key>spriteSize</key>
+				<string>{34,19}</string>
+				<key>textureRect</key>
+				<string>{{865,0},{34,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5294117647058824,0}</string>
+			</dict>
+			<key>Slime1_Attack_full43.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{6,9}</string>
+				<key>spriteSize</key>
+				<string>{6,9}</string>
+				<key>textureRect</key>
+				<string>{{900,0},{6,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6666666666666666,0}</string>
+			</dict>
+			<key>Slime1_Attack_full44.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,15}</string>
+				<key>spriteSize</key>
+				<string>{14,15}</string>
+				<key>textureRect</key>
+				<string>{{907,0},{14,15}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>Slime1_Attack_full45.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{6,19}</string>
+				<key>spriteSize</key>
+				<string>{6,19}</string>
+				<key>textureRect</key>
+				<string>{{922,0},{6,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6666666666666666,0}</string>
+			</dict>
+			<key>Slime1_Attack_full46.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,9}</string>
+				<key>spriteSize</key>
+				<string>{17,9}</string>
+				<key>textureRect</key>
+				<string>{{929,0},{17,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Slime1_Attack_full47.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,11}</string>
+				<key>spriteSize</key>
+				<string>{17,11}</string>
+				<key>textureRect</key>
+				<string>{{947,0},{17,11}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Slime1_Attack_full48.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,13}</string>
+				<key>spriteSize</key>
+				<string>{17,13}</string>
+				<key>textureRect</key>
+				<string>{{965,0},{17,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+			<key>Slime1_Attack_full49.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{17,16}</string>
+				<key>spriteSize</key>
+				<string>{17,16}</string>
+				<key>textureRect</key>
+				<string>{{983,0},{17,16}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.47058823529411764,0}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>3</integer>
+			<key>realTextureFileName</key>
+			<string>Slime1_Attack_full.png</string>
+			<key>textureFileName</key>
+			<string>Slime1_Attack_full.png</string>
+			<key>size</key>
+			<string>{1000,30}</string>
+		</dict>
+	</dict>
+</plist>

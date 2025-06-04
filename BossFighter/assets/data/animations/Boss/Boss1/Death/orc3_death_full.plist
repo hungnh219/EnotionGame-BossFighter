@@ -1,0 +1,564 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>orc3_death_full0.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{37,39}</string>
+				<key>spriteSize</key>
+				<string>{37,39}</string>
+				<key>textureRect</key>
+				<string>{{0,0},{37,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4864864864864865,0}</string>
+			</dict>
+			<key>orc3_death_full1.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,38}</string>
+				<key>spriteSize</key>
+				<string>{39,38}</string>
+				<key>textureRect</key>
+				<string>{{38,0},{39,38}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>orc3_death_full2.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,37}</string>
+				<key>spriteSize</key>
+				<string>{39,37}</string>
+				<key>textureRect</key>
+				<string>{{78,0},{39,37}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>orc3_death_full3.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,35}</string>
+				<key>spriteSize</key>
+				<string>{39,35}</string>
+				<key>textureRect</key>
+				<string>{{118,0},{39,35}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>orc3_death_full4.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{40,34}</string>
+				<key>spriteSize</key>
+				<string>{40,34}</string>
+				<key>textureRect</key>
+				<string>{{158,0},{40,34}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_death_full5.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{40,26}</string>
+				<key>spriteSize</key>
+				<string>{40,26}</string>
+				<key>textureRect</key>
+				<string>{{199,0},{40,26}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_death_full6.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{40,26}</string>
+				<key>spriteSize</key>
+				<string>{40,26}</string>
+				<key>textureRect</key>
+				<string>{{240,0},{40,26}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_death_full7.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{40,26}</string>
+				<key>spriteSize</key>
+				<string>{40,26}</string>
+				<key>textureRect</key>
+				<string>{{281,0},{40,26}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_death_full8.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{38,39}</string>
+				<key>spriteSize</key>
+				<string>{38,39}</string>
+				<key>textureRect</key>
+				<string>{{322,0},{38,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5263157894736842,0}</string>
+			</dict>
+			<key>orc3_death_full9.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,38}</string>
+				<key>spriteSize</key>
+				<string>{39,38}</string>
+				<key>textureRect</key>
+				<string>{{361,0},{39,38}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>orc3_death_full10.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,37}</string>
+				<key>spriteSize</key>
+				<string>{39,37}</string>
+				<key>textureRect</key>
+				<string>{{401,0},{39,37}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>orc3_death_full11.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,32}</string>
+				<key>spriteSize</key>
+				<string>{39,32}</string>
+				<key>textureRect</key>
+				<string>{{441,0},{39,32}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>orc3_death_full12.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{40,30}</string>
+				<key>spriteSize</key>
+				<string>{40,30}</string>
+				<key>textureRect</key>
+				<string>{{481,0},{40,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_death_full13.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{40,23}</string>
+				<key>spriteSize</key>
+				<string>{40,23}</string>
+				<key>textureRect</key>
+				<string>{{522,0},{40,23}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_death_full14.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{40,20}</string>
+				<key>spriteSize</key>
+				<string>{40,20}</string>
+				<key>textureRect</key>
+				<string>{{563,0},{40,20}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_death_full15.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{40,19}</string>
+				<key>spriteSize</key>
+				<string>{40,19}</string>
+				<key>textureRect</key>
+				<string>{{604,0},{40,19}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_death_full16.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,39}</string>
+				<key>spriteSize</key>
+				<string>{28,39}</string>
+				<key>textureRect</key>
+				<string>{{645,0},{28,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_death_full17.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{27,38}</string>
+				<key>spriteSize</key>
+				<string>{27,38}</string>
+				<key>textureRect</key>
+				<string>{{674,0},{27,38}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5185185185185185,0}</string>
+			</dict>
+			<key>orc3_death_full18.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{30,37}</string>
+				<key>spriteSize</key>
+				<string>{30,37}</string>
+				<key>textureRect</key>
+				<string>{{702,0},{30,37}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>orc3_death_full19.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{32,34}</string>
+				<key>spriteSize</key>
+				<string>{32,34}</string>
+				<key>textureRect</key>
+				<string>{{733,0},{32,34}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_death_full20.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{35,28}</string>
+				<key>spriteSize</key>
+				<string>{35,28}</string>
+				<key>textureRect</key>
+				<string>{{766,0},{35,28}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5142857142857142,0}</string>
+			</dict>
+			<key>orc3_death_full21.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{35,28}</string>
+				<key>spriteSize</key>
+				<string>{35,28}</string>
+				<key>textureRect</key>
+				<string>{{802,0},{35,28}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5142857142857142,0}</string>
+			</dict>
+			<key>orc3_death_full22.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{34,27}</string>
+				<key>spriteSize</key>
+				<string>{34,27}</string>
+				<key>textureRect</key>
+				<string>{{838,0},{34,27}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5294117647058824,0}</string>
+			</dict>
+			<key>orc3_death_full23.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{34,25}</string>
+				<key>spriteSize</key>
+				<string>{34,25}</string>
+				<key>textureRect</key>
+				<string>{{873,0},{34,25}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5294117647058824,0}</string>
+			</dict>
+			<key>orc3_death_full24.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,39}</string>
+				<key>spriteSize</key>
+				<string>{26,39}</string>
+				<key>textureRect</key>
+				<string>{{908,0},{26,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>orc3_death_full25.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{27,38}</string>
+				<key>spriteSize</key>
+				<string>{27,38}</string>
+				<key>textureRect</key>
+				<string>{{935,0},{27,38}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5185185185185185,0}</string>
+			</dict>
+			<key>orc3_death_full26.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{30,37}</string>
+				<key>spriteSize</key>
+				<string>{30,37}</string>
+				<key>textureRect</key>
+				<string>{{963,0},{30,37}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5333333333333333,0}</string>
+			</dict>
+			<key>orc3_death_full27.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{32,34}</string>
+				<key>spriteSize</key>
+				<string>{32,34}</string>
+				<key>textureRect</key>
+				<string>{{994,0},{32,34}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>orc3_death_full28.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{35,28}</string>
+				<key>spriteSize</key>
+				<string>{35,28}</string>
+				<key>textureRect</key>
+				<string>{{1027,0},{35,28}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5142857142857142,0}</string>
+			</dict>
+			<key>orc3_death_full29.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{35,28}</string>
+				<key>spriteSize</key>
+				<string>{35,28}</string>
+				<key>textureRect</key>
+				<string>{{1063,0},{35,28}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5142857142857142,0}</string>
+			</dict>
+			<key>orc3_death_full30.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{34,27}</string>
+				<key>spriteSize</key>
+				<string>{34,27}</string>
+				<key>textureRect</key>
+				<string>{{1099,0},{34,27}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5294117647058824,0}</string>
+			</dict>
+			<key>orc3_death_full31.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{34,25}</string>
+				<key>spriteSize</key>
+				<string>{34,25}</string>
+				<key>textureRect</key>
+				<string>{{1134,0},{34,25}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5294117647058824,0}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>3</integer>
+			<key>realTextureFileName</key>
+			<string>orc3_death_full.png</string>
+			<key>textureFileName</key>
+			<string>orc3_death_full.png</string>
+			<key>size</key>
+			<string>{1168,40}</string>
+		</dict>
+	</dict>
+</plist>

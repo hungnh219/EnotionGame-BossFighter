@@ -1,0 +1,37 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "boss2-left-run",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.15,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "3589ae7c-2621-4fd7-bc7f-fcf23e24ad88"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "11e70f23-26a7-4ea9-8066-79d107253690"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "f0b9c17e-b38b-4125-8ce4-aa7a61ecee1f"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "VampireBackHurt",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.2,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "65c61454-ec0a-4831-8e48-705ae9e05972"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "85adfed3-0f8c-4895-a86d-b8e6d48f92fc"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "2e3f659c-3fa4-4b19-a244-da8dc1fb1422"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "481330e6-c81a-4744-97fa-3ac46d325491"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

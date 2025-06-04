@@ -1,0 +1,904 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>BossEnemy_stomp0.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{36,40}</string>
+				<key>spriteSize</key>
+				<string>{36,40}</string>
+				<key>textureRect</key>
+				<string>{{0,0},{36,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp1.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{37,41}</string>
+				<key>spriteSize</key>
+				<string>{37,41}</string>
+				<key>textureRect</key>
+				<string>{{37,0},{37,41}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4864864864864865,0}</string>
+			</dict>
+			<key>BossEnemy_stomp2.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{40,40}</string>
+				<key>spriteSize</key>
+				<string>{40,40}</string>
+				<key>textureRect</key>
+				<string>{{75,0},{40,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp3.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{40,38}</string>
+				<key>spriteSize</key>
+				<string>{40,38}</string>
+				<key>textureRect</key>
+				<string>{{116,0},{40,38}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp4.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{34,39}</string>
+				<key>spriteSize</key>
+				<string>{34,39}</string>
+				<key>textureRect</key>
+				<string>{{157,0},{34,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5294117647058824,0}</string>
+			</dict>
+			<key>BossEnemy_stomp5.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{32,43}</string>
+				<key>spriteSize</key>
+				<string>{32,43}</string>
+				<key>textureRect</key>
+				<string>{{192,0},{32,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp6.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{34,44}</string>
+				<key>spriteSize</key>
+				<string>{34,44}</string>
+				<key>textureRect</key>
+				<string>{{225,0},{34,44}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5294117647058824,0}</string>
+			</dict>
+			<key>BossEnemy_stomp7.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{48,45}</string>
+				<key>spriteSize</key>
+				<string>{48,45}</string>
+				<key>textureRect</key>
+				<string>{{260,0},{48,45}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp8.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{47,41}</string>
+				<key>spriteSize</key>
+				<string>{47,41}</string>
+				<key>textureRect</key>
+				<string>{{309,0},{47,41}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5106382978723404,0}</string>
+			</dict>
+			<key>BossEnemy_stomp9.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{49,41}</string>
+				<key>spriteSize</key>
+				<string>{49,41}</string>
+				<key>textureRect</key>
+				<string>{{357,0},{49,41}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4897959183673469,0}</string>
+			</dict>
+			<key>BossEnemy_stomp10.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{47,41}</string>
+				<key>spriteSize</key>
+				<string>{47,41}</string>
+				<key>textureRect</key>
+				<string>{{407,0},{47,41}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5106382978723404,0}</string>
+			</dict>
+			<key>BossEnemy_stomp11.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{34,39}</string>
+				<key>spriteSize</key>
+				<string>{34,39}</string>
+				<key>textureRect</key>
+				<string>{{455,0},{34,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5294117647058824,0}</string>
+			</dict>
+			<key>BossEnemy_stomp12.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{37,41}</string>
+				<key>spriteSize</key>
+				<string>{37,41}</string>
+				<key>textureRect</key>
+				<string>{{490,0},{37,41}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4864864864864865,0}</string>
+			</dict>
+			<key>BossEnemy_stomp13.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{27,43}</string>
+				<key>spriteSize</key>
+				<string>{27,43}</string>
+				<key>textureRect</key>
+				<string>{{528,0},{27,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5185185185185185,0}</string>
+			</dict>
+			<key>BossEnemy_stomp14.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,43}</string>
+				<key>spriteSize</key>
+				<string>{26,43}</string>
+				<key>textureRect</key>
+				<string>{{556,0},{26,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>BossEnemy_stomp15.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,43}</string>
+				<key>spriteSize</key>
+				<string>{26,43}</string>
+				<key>textureRect</key>
+				<string>{{583,0},{26,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>BossEnemy_stomp16.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{23,42}</string>
+				<key>spriteSize</key>
+				<string>{23,42}</string>
+				<key>textureRect</key>
+				<string>{{610,0},{23,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5217391304347826,0}</string>
+			</dict>
+			<key>BossEnemy_stomp17.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{32,42}</string>
+				<key>spriteSize</key>
+				<string>{32,42}</string>
+				<key>textureRect</key>
+				<string>{{0,46},{32,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp18.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{31,42}</string>
+				<key>spriteSize</key>
+				<string>{31,42}</string>
+				<key>textureRect</key>
+				<string>{{33,46},{31,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5161290322580645,0}</string>
+			</dict>
+			<key>BossEnemy_stomp19.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{33,48}</string>
+				<key>spriteSize</key>
+				<string>{33,48}</string>
+				<key>textureRect</key>
+				<string>{{65,46},{33,48}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.48484848484848486,0}</string>
+			</dict>
+			<key>BossEnemy_stomp20.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{39,45}</string>
+				<key>spriteSize</key>
+				<string>{39,45}</string>
+				<key>textureRect</key>
+				<string>{{99,46},{39,45}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5128205128205128,0}</string>
+			</dict>
+			<key>BossEnemy_stomp21.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{32,42}</string>
+				<key>spriteSize</key>
+				<string>{32,42}</string>
+				<key>textureRect</key>
+				<string>{{139,46},{32,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp22.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{27,42}</string>
+				<key>spriteSize</key>
+				<string>{27,42}</string>
+				<key>textureRect</key>
+				<string>{{172,46},{27,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5185185185185185,0}</string>
+			</dict>
+			<key>BossEnemy_stomp23.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{32,42}</string>
+				<key>spriteSize</key>
+				<string>{32,42}</string>
+				<key>textureRect</key>
+				<string>{{200,46},{32,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp24.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{32,42}</string>
+				<key>spriteSize</key>
+				<string>{32,42}</string>
+				<key>textureRect</key>
+				<string>{{233,46},{32,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp25.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,43}</string>
+				<key>spriteSize</key>
+				<string>{26,43}</string>
+				<key>textureRect</key>
+				<string>{{266,46},{26,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>BossEnemy_stomp26.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,42}</string>
+				<key>spriteSize</key>
+				<string>{26,42}</string>
+				<key>textureRect</key>
+				<string>{{293,46},{26,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>BossEnemy_stomp27.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,43}</string>
+				<key>spriteSize</key>
+				<string>{26,43}</string>
+				<key>textureRect</key>
+				<string>{{320,46},{26,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>BossEnemy_stomp28.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,43}</string>
+				<key>spriteSize</key>
+				<string>{26,43}</string>
+				<key>textureRect</key>
+				<string>{{347,46},{26,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>BossEnemy_stomp29.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{24,43}</string>
+				<key>spriteSize</key>
+				<string>{24,43}</string>
+				<key>textureRect</key>
+				<string>{{374,46},{24,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp30.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{32,43}</string>
+				<key>spriteSize</key>
+				<string>{32,43}</string>
+				<key>textureRect</key>
+				<string>{{399,46},{32,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp31.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{31,48}</string>
+				<key>spriteSize</key>
+				<string>{31,48}</string>
+				<key>textureRect</key>
+				<string>{{432,46},{31,48}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5161290322580645,0}</string>
+			</dict>
+			<key>BossEnemy_stomp32.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{33,47}</string>
+				<key>spriteSize</key>
+				<string>{33,47}</string>
+				<key>textureRect</key>
+				<string>{{464,46},{33,47}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.48484848484848486,0}</string>
+			</dict>
+			<key>BossEnemy_stomp33.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{38,46}</string>
+				<key>spriteSize</key>
+				<string>{38,46}</string>
+				<key>textureRect</key>
+				<string>{{498,46},{38,46}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5263157894736842,0}</string>
+			</dict>
+			<key>BossEnemy_stomp34.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{32,43}</string>
+				<key>spriteSize</key>
+				<string>{32,43}</string>
+				<key>textureRect</key>
+				<string>{{537,46},{32,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp35.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,45}</string>
+				<key>spriteSize</key>
+				<string>{28,45}</string>
+				<key>textureRect</key>
+				<string>{{570,46},{28,45}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp36.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{32,43}</string>
+				<key>spriteSize</key>
+				<string>{32,43}</string>
+				<key>textureRect</key>
+				<string>{{599,46},{32,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp37.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{32,43}</string>
+				<key>spriteSize</key>
+				<string>{32,43}</string>
+				<key>textureRect</key>
+				<string>{{0,95},{32,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp38.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,43}</string>
+				<key>spriteSize</key>
+				<string>{26,43}</string>
+				<key>textureRect</key>
+				<string>{{33,95},{26,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>BossEnemy_stomp39.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{36,37}</string>
+				<key>spriteSize</key>
+				<string>{36,37}</string>
+				<key>textureRect</key>
+				<string>{{60,95},{36,37}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp40.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{37,37}</string>
+				<key>spriteSize</key>
+				<string>{37,37}</string>
+				<key>textureRect</key>
+				<string>{{97,95},{37,37}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4864864864864865,0}</string>
+			</dict>
+			<key>BossEnemy_stomp41.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{40,37}</string>
+				<key>spriteSize</key>
+				<string>{40,37}</string>
+				<key>textureRect</key>
+				<string>{{135,95},{40,37}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp42.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{40,37}</string>
+				<key>spriteSize</key>
+				<string>{40,37}</string>
+				<key>textureRect</key>
+				<string>{{176,95},{40,37}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp43.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{35,40}</string>
+				<key>spriteSize</key>
+				<string>{35,40}</string>
+				<key>textureRect</key>
+				<string>{{217,95},{35,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5142857142857142,0}</string>
+			</dict>
+			<key>BossEnemy_stomp44.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{33,43}</string>
+				<key>spriteSize</key>
+				<string>{33,43}</string>
+				<key>textureRect</key>
+				<string>{{253,95},{33,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.48484848484848486,0}</string>
+			</dict>
+			<key>BossEnemy_stomp45.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{33,45}</string>
+				<key>spriteSize</key>
+				<string>{33,45}</string>
+				<key>textureRect</key>
+				<string>{{287,95},{33,45}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.48484848484848486,0}</string>
+			</dict>
+			<key>BossEnemy_stomp46.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{48,44}</string>
+				<key>spriteSize</key>
+				<string>{48,44}</string>
+				<key>textureRect</key>
+				<string>{{321,95},{48,44}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_stomp47.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{47,39}</string>
+				<key>spriteSize</key>
+				<string>{47,39}</string>
+				<key>textureRect</key>
+				<string>{{370,95},{47,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5106382978723404,0}</string>
+			</dict>
+			<key>BossEnemy_stomp48.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{49,36}</string>
+				<key>spriteSize</key>
+				<string>{49,36}</string>
+				<key>textureRect</key>
+				<string>{{418,95},{49,36}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4897959183673469,0}</string>
+			</dict>
+			<key>BossEnemy_stomp49.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{47,39}</string>
+				<key>spriteSize</key>
+				<string>{47,39}</string>
+				<key>textureRect</key>
+				<string>{{468,95},{47,39}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5106382978723404,0}</string>
+			</dict>
+			<key>BossEnemy_stomp50.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{35,40}</string>
+				<key>spriteSize</key>
+				<string>{35,40}</string>
+				<key>textureRect</key>
+				<string>{{516,95},{35,40}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5142857142857142,0}</string>
+			</dict>
+			<key>BossEnemy_stomp51.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{37,37}</string>
+				<key>spriteSize</key>
+				<string>{37,37}</string>
+				<key>textureRect</key>
+				<string>{{552,95},{37,37}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4864864864864865,0}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>3</integer>
+			<key>realTextureFileName</key>
+			<string>BossEnemy_stomp.png</string>
+			<key>textureFileName</key>
+			<string>BossEnemy_stomp.png</string>
+			<key>size</key>
+			<string>{634,140}</string>
+		</dict>
+	</dict>
+</plist>

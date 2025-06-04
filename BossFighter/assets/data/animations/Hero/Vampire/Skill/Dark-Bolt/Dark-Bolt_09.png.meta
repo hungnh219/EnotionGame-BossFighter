@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "96d4c19c-4946-4850-9308-7974b08ee581",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "point",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 64,
+  "height": 88,
+  "platformSettings": {},
+  "subMetas": {
+    "Dark-Bolt_09": {
+      "ver": "1.0.6",
+      "uuid": "549d69a7-50a5-4101-9aed-573e7449ca0e",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "96d4c19c-4946-4850-9308-7974b08ee581",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": -6.5,
+      "trimX": 3,
+      "trimY": 20,
+      "width": 59,
+      "height": 61,
+      "rawWidth": 64,
+      "rawHeight": 88,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

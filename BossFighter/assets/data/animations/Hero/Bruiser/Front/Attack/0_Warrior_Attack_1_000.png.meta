@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "a2f2fc6d-4eb3-475c-9428-0d259c62bcfa",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "point",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 1100,
+  "height": 1100,
+  "platformSettings": {},
+  "subMetas": {
+    "0_Warrior_Attack_1_000": {
+      "ver": "1.0.6",
+      "uuid": "0923ad35-ab75-4149-9221-a733e2ac4e0f",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "a2f2fc6d-4eb3-475c-9428-0d259c62bcfa",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 28,
+      "offsetY": 10,
+      "trimX": 320,
+      "trimY": 228,
+      "width": 516,
+      "height": 624,
+      "rawWidth": 1100,
+      "rawHeight": 1100,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
