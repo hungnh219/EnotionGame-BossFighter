@@ -1,7 +1,10 @@
 const fs = require('fs');
 const path = require('path');
+const { start } = require('repl');
 
 const DATA_FILE = path.join(__dirname, '../data/roomData.json');
+
+let startGameData = {}
 
 function readRoomData() {
     if (fs.existsSync(DATA_FILE)) {
@@ -130,6 +133,44 @@ function roomEvents(io, socket) {
         const roomData = readRoomData();
         const roomInfo = updateRoomInfo(roomData);
         socket.emit('roomInfo', roomInfo);
+    });
+
+    socket.on('GAME_START', (data) => {
+        console.log('Yêu cầu bắt đầu trò chơi từ client:', socket.id, 'Dữ liệu:', data);
+
+        const { roomName, players } = data;
+
+        if (!roomName || !players || players.length === 0) {
+            console.error('Dữ liệu không hợp lệ để bắt đầu trò chơi.');
+            return;
+        }
+
+        startGameData[roomName] = {
+            players: players,
+            // playerId: socket.id
+        };
+
+        // Gửi sự kiện GAME_START đến tất cả người chơi trong phòng
+        io.to(roomName).emit('START', {
+            roomName,
+            players
+        });
+
+        console.log(`Trò chơi đã bắt đầu trong phòng ${roomName} với người chơi:`, players);
+    })
+
+    socket.on('GET_START_GAME_DATA', () => {
+        // console.log('Yêu cầu dữ liệu bắt đầu trò chơi từ client:', socket.id, 'Phòng:', roomName);
+
+        const roomName = Object.keys(startGameData).find(name => startGameData[name].players.some(player => Object.keys(player)[0] === socket.id));
+
+        if (startGameData[roomName]) {
+            console.log('Dữ liệu bắt đầu trò chơi:', startGameData[roomName]);
+            socket.emit('START_GAME_DATA', startGameData[roomName]);
+        } else {
+            console.error(`Không có dữ liệu bắt đầu trò chơi cho phòng ${roomName}`);
+            socket.emit('START_GAME_DATA', null);
+        }
     });
 
     function updateRoomInfo(roomData) {

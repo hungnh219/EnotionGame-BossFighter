@@ -24,6 +24,11 @@ cc.Class({
         this.socketIOManager.setOnRoomInfoReceivedCallback(this.onRoomInfoReceived.bind(this));
 
         this.socketIOManager.getRoomInformation();
+
+        this.socketIOManager.listenGameStart(() => {
+            console.log("Trò chơi đã bắt đầu, chuyển đến HeroSelect scene.");
+            this.moveToSelectScene();
+        });
     },
 
     onRoomInfoReceived(data) {
@@ -76,6 +81,26 @@ cc.Class({
             this.gridPlayer.removeAllChildren();
         }
     },
+
+    playGame() {
+        for (const room of this.currentRoomData.rooms) {
+            if (room.players.length > 4) {
+                console.error("Phòng đã đầy, không thể bắt đầu trò chơi.");
+                return;
+            }
+
+            if (room.players.some(playerObj => Object.keys(playerObj)[0] === this.socketIOManager.getSocketIO().id)) {
+                console.log("Bắt đầu trò chơi trong phòng:", room.roomName);
+                this.socketIOManager.gameStart(room.roomName, room.players);
+                return;
+            }
+        }
+    },
+
+    moveToSelectScene() {
+        console.log("Chuyển đến HeroSelect scene.");
+        cc.director.loadScene("HeroSelect");
+    }
 
 
 });
