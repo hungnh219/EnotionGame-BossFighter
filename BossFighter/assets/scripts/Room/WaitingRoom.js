@@ -77,5 +77,16 @@ cc.Class({
         }
     },
 
+    startGame() {
+        if (!this.currentRoomData) {
+            console.error("Không có thông tin phòng để bắt đầu trò chơi.");
+            return;
+        }
+
+        this.socketIOManager.gameStart();
+    },
+
+
+
 
 });

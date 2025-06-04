@@ -124,7 +124,84 @@ const SocketIOManager = cc.Class({
                 resolve(data.mapData);
             });
         });
-    }
+    },
+
+    gameStart(moveToSelectSceneCallback) {
+        // if (!this.gameStartData) this.gameStartData = {};
+
+        // this.gameStartData[this.socketIO.id] = {
+        //     roomName: roomName,
+        //     players: players
+        // };
+
+        if (!this.socketIO) {
+            console.error("Chưa kết nối đến Socket.IO server.");
+            return null;
+        }
+
+        this.socketIO.emit('GAME_START')
+        
+        // this.socketIO.emit('GAME_START', );
+    },
+
+    // getRoomName() {}
+    getGameStartData() {
+        // return this.gameStartData
+
+        if (!this.gameStartData || !this.gameStartData[this.socketIO.id]) {
+            console.error("Chưa có dữ liệu bắt đầu trò chơi cho người chơi này.");
+            return null;
+        }
+
+        return new Promise((resolve) => {
+            console.log("Yêu cầu dữ liệu bắt đầu trò chơi từ server...");
+
+            this.socketIO.on('START_GAME_DATA', (data) => {
+                if (data) {
+                    console.log("Dữ liệu bắt đầu trò chơi đã nhận:", data);
+                    resolve(data);
+                } else {
+                    console.error("Không có dữ liệu bắt đầu trò chơi cho phòng này.");
+                    resolve(null);
+                }
+            });
+
+            this.socketIO.emit('GET_START_GAME_DATA');
+
+        })
+
+
+        return this.gameStartData[this.socketIO.id];
+    },
+
+    clickHero(heroIndex) {
+        this.socketIO.emit('SELECT_HERO', heroIndex);
+    },
+
+    lockHero(heroIndex) {
+        this.socketIO.emit('LOCK_HERO', heroIndex);
+    },
+
+    listenHeroSelection() {
+        this.socketIO.on('HERO_SELECTED', (data) => {
+            console.log('Hero selected by client:', data.socketId, 'Hero Index:', data.heroIndex);
+        })
+    },
+
+    listenHeroLock() {
+        this.socketIO.on('HERO_LOCKED', (data) => {
+            console.log('Hero locked by client:', data.socketId, 'Hero Index:', data.heroIndex);
+        })
+    },
+
+    listenGameStart(moveToSelectSceneCallback) {
+        this.socketIO.on('START', (data) => {
+            console.log('312321Trò chơi đã bắt đầu với dữ liệu:', data);
+            if (moveToSelectSceneCallback) {
+                moveToSelectSceneCallback();
+            }
+        });
+    },
 
     // update (dt) {},
 });
