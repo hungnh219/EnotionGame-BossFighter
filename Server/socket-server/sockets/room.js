@@ -275,7 +275,8 @@ function roomEvents(io, socket) {
                     name: playerObj[playerId].name || 'Unknown',
                     clickHero: playerObj[playerId].clickHero,
                     lockedHero: playerObj[playerId].lockedHero,
-                    order: playerObj[playerId].order
+                    order: playerObj[playerId].order,
+                    host: playerObj[playerId].host || false
                 };
             })
         }

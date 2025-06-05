@@ -100,9 +100,6 @@ function gameEvents(io, socket) {
 
         let attackDamage = heroes[data.playerOrder].attackDamage;
 
-        // io.to(roomName).emit('LISTEN_ATTACK', {
-        //     attackDamage: attackDamage,
-        // });
         socket.emit('RETURN_ATTACK_DAME', {
             attackDamage: attackDamage,
         });
@@ -196,18 +193,38 @@ function gameEvents(io, socket) {
         let end = data.end;
         let maxStep = data.maxStep || 3;
 
-        console.log('Yêu cầu tìm đường từ:', start, 'đến:', end, 'với bước tối đa:', maxStep);
 
         let path = logicHandler.game.findPath(start, end, walkableGridMap, maxStep);
 
-        if (path) {
-            console.log('Đường đi tìm thấy:', path);
-        } else {
-            console.warn('Không tìm thấy đường đi hợp lệ từ', start, 'đến', end);
-        }
-
         io.to(roomName).emit('RETURN_PATH', {
             path: path,
+        });
+    })
+
+    socket.on('NEXT_MAP', () => {
+        let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
+        if (!roomName) {
+            console.error('Không tìm thấy phòng cho socket ID:', socket.id);
+            return;
+        }
+
+        console.log('Yêu cầu chuyển sang bản đồ mới từ client:', socket.id);
+
+        let roomData = logicHandler.common.readRoomData();
+        let currentMapIndex = roomData[roomName].gameState.currentMapIndex;
+
+        currentMapIndex++;
+
+        // if (currentMapIndex >= roomData[roomName].gameState.mapData.length) {
+        //     currentMapIndex = 0;
+        // }
+
+        roomData[roomName].gameState.currentMapIndex = currentMapIndex;
+
+        logicHandler.common.writeRoomData(roomData);
+
+        io.to(roomName).emit('LISTEN_NEXT_MAP', {
+            currentMapIndex: currentMapIndex
         });
     })
 }

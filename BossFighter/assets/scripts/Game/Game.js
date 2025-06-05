@@ -112,8 +112,8 @@ cc.Class({
     },
 
     async start() {
-        this.testData = await this.socketIOManager.game.getMapData();
-        this.testData = this.testData.map;
+        this.mapData = await this.socketIOManager.game.getMapData();
+        this.mapData = this.mapData.map;
 
         this.lockedHeroIndex = await this.socketIOManager.game.getLockedHeroIndex();
         this.playerIndex = await this.socketIOManager.game.getPlayerOrder();
@@ -123,6 +123,11 @@ cc.Class({
             this.gameController.heroAttackFromServer(data.playerOrder, data.targetOrder, data.isBoss);
                 
         })
+
+        this.socketIOManager.game.listenNextMap(() => {
+            this.nextMapServer();
+        });
+
         if (this.playerIndex != undefined) {
             this.gameController.setPlayerIndex(this.playerIndex);
         }
@@ -165,7 +170,7 @@ cc.Class({
         const jsonData = this.objectsJsonData.json.mapData[this.mapIndex];
 
         // const mapObjects = jsonData.map;
-        const mapObjects = this.testData
+        const mapObjects = this.mapData
 
         if (!Array.isArray(mapObjects)) {
             console.error("map1 must be a 2D array");
@@ -377,6 +382,10 @@ cc.Class({
     },
 
     nextGame() {
+        this.socketIOManager.game.nextMap();
+    },
+
+    nextMapServer() {
         if (this.mapIndex >= this.backgroundSpriteFrames.length - 1) {
             console.warn('No more maps to play');
             return;
@@ -396,6 +405,6 @@ cc.Class({
         this.gameController.setWonMap();
         this.gameController.setMapPicked(this.mapIndex + 1);
         cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME);
-    },
+    }
 
 });

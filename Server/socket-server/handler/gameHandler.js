@@ -2,8 +2,6 @@
 
 module.exports = {
     getPlayerGameData(roomData, roomName) {
-        console.log("Lấy dữ liệu người chơi từ dữ liệu phòng:", roomName);
-        
         if (!roomData || !roomData[roomName]) {
             console.error("Không tìm thấy dữ liệu người chơi trong dữ liệu phòng.");
             return null;
@@ -26,7 +24,6 @@ module.exports = {
     updateWalkableGridMap(roomData, roomName, x, y, isWalkable) {
         roomData[roomName].gameState.walkableGridMap;
 
-        console.log("Cập nhật lưới ô có thể đi lại:", roomData[roomName].gameState.walkableGridMap, x, y, isWalkable);
         if (!roomData[roomName].gameState.walkableGridMap || !Array.isArray(roomData[roomName].gameState.walkableGridMap)) {
             console.error("Không hợp lệ hoặc không phải là mảng.");
             return;
@@ -42,8 +39,6 @@ module.exports = {
     },
 
     getWalkableGridMap(roomData, roomName) {
-        console.log("Lấy lưới ô có thể đi lại từ dữ liệu phòng:", roomName);
-
         if (!roomData || !roomData[roomName]) {
             console.error("Không tìm thấy lưới ô có thể đi lại trong dữ liệu phòng.");
             return null;

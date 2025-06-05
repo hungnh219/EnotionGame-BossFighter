@@ -401,49 +401,108 @@ const GameController = cc.Class({
     heroAttackFromServer(playerOrder, targetOrder, isBoss) {
         console.log('hero attack from server', playerOrder, targetOrder, isBoss);
 
-        this.heroAttackTarget(player, enemy, playerOrder, targetOrder, isBoss);
-    },
-
-    async heroAttackTarget(hero, enemy) {
-        if (!hero || !enemy || !hero.mainScript) {
-            console.warn("Thiếu hero hoặc enemy hoặc mainScript");
+        let player = this.getPlayerByIndex(playerOrder);
+        if (!player) {
+            console.warn("Không tìm thấy người chơi với chỉ số", playerOrder);
+            return;
+        }
+        let enemy;
+        if (isBoss) {
+            let bossIndex = this.getBossIndexFromNode(this.bosses[targetOrder].node);
+            if (bossIndex < 0) {
+                console.warn("Không tìm thấy boss trong danh sách bosses");
+                return;
+            }
+            enemy = this.bosses[bossIndex].node;
+        } else {
+            if (this.enemies[targetOrder] == undefined || this.enemies[targetOrder] == null) {
+                console.warn("Không tìm thấy kẻ thù với chỉ số", targetOrder);
+                return;
+            }
+            enemy = this.enemies[targetOrder];
+        }
+        if (!enemy) {
+            console.warn("Không tìm thấy kẻ thù");
             return;
         }
 
-        // enemy.id;
+        this.heroAttackTarget(player, enemy, true);
+    },
+
+    async heroAttackTarget(hero, enemy, isFromServer = false) {
+        if (!hero || !enemy || !hero.mainScript) {
+            console.warn("Thiếu hero hoặc enemy hoặc mainScript");
+            return; 
+        }
+
+        let isBoss = this.isBoss(enemy);
+        let targetOrder;
+        if (isBoss) {
+            targetOrder = this.getBossIndexFromNode(enemy);
+            if (targetOrder < 0) {
+                console.warn("Không tìm thấy boss trong danh sách bosses");
+                return;
+            }
+        }
 
         enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.getCurrentHp === 'function');
         hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.dealDame === 'function');
 
-        let dame = hero.mainScript.getAttackDame();
-        if (enemy.mainScript && dame > 0) {
-
-            const enemyPos = this.positionToGrid(enemy);
-            const heroPos = this.positionToGrid(hero);
-            if (!enemyPos || !heroPos) return;
-
-            let direction = this.getDirection(heroPos, enemyPos);
-
-            let dame = await hero.mainScript.attack(enemy, direction);
-
-            let dameFromServer = await this.socketIOManager.game.getAttackDame({
+        if (!isFromServer) {
+            this.socketIOManager.game.otherPlayerAttack({
                 playerOrder: this.getPlayerIndex(),
+                targetOrder: targetOrder,
+                isBoss: isBoss,
             });
+            return;
+        }
 
-            enemy.mainScript.takeDame(dameFromServer);
-            console.log('hero attack enemy', enemy.name, 'with damage', dame, 'from server', dameFromServer, "uuid", enemy._id);
-            if (enemy.mainScript.getCurrentHp() <= 0)  {
-                if (isBoss) {
-                    this.handleEnemyDie(enemy);
-                } else {
-                    this.enemies.splice(this.enemies.indexOf(enemy), 1);
-                }
+        let dameFromServer = await this.socketIOManager.game.getAttackDame({
+            playerOrder: this.getPlayerIndex(),
+        });
+
+        const enemyPos = this.positionToGrid(enemy);
+
+        // optimize: hàm attack chỉ dùng để chạy animation, không cần trả về dame
+        const heroPos = this.positionToGrid(hero);
+        if (!enemyPos || !heroPos) return;
+        let direction = this.getDirection(heroPos, enemyPos);
+        let dame = await hero.mainScript.attack(enemy, direction);
+        // optimize
+        enemy.mainScript.takeDame(dameFromServer);
+        console.log('enemy current hp: ', enemy.mainScript.getCurrentHp());
+        if (enemy.mainScript.getCurrentHp() <= 0)  {
+            if (isBoss) {
+                this.handleEnemyDie(enemy);
+            } else {
+                this.enemies.splice(this.enemies.indexOf(enemy), 1);
             }
-            
         }
 
         this.consumePlayerTurn();
         this.checkWin();
+    },
+
+    getBossIndexFromNode(node) {
+        if (this.bosses == undefined || this.bosses == null) return -1;
+
+        for (let i = 0; i < this.bosses.length; i++) {
+            if (this.bosses[i].node === node) {
+                return i;
+            }
+        }
+        return -1;
+    },
+
+    isBoss(node) {
+        if (this.bosses == undefined || this.bosses == null) return false;
+
+        for (let i = 0; i < this.bosses.length; i++) {
+            if (this.bosses[i].node === node) {
+                return true;
+            }
+        }
+        return false;
     },
 
 

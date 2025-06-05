@@ -92,8 +92,6 @@ cc.Class({
         this.startGameData = await this.socketIOManager.selectHero.getGameStartData();
         this.playerIndex = this.socketIOManager.selectHero.getPlayerIndex(this.startGameData);
 
-
-        console.log(this.playerIndex, "HeroSelect onLoad called", this.startGameData);
     },
 
     initVariables() {
@@ -252,6 +250,7 @@ cc.Class({
 
     playGame() {
         // check if heroLockedList is full
+        if (this.startGameData.host === false) return;
         let flag = true;
         for (let i = 0; i < this.heroLocked.length; i++) {
             if (this.heroLocked[i] == null) {

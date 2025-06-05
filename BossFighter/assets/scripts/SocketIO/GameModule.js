@@ -45,7 +45,7 @@ module.exports = function(socket) {
             return new Promise((resolve, reject) => {
                 console.log("Gửi yêu cầu GET_MAP_DATA đến server...");
                 socket.emit('GET_MAP_DATA');
-                socket.on('MAP_1_DATA', (data) => {
+                socket.on('MAP_DATA', (data) => {
                     resolve(data.mapData);
                 });
             });
@@ -99,10 +99,8 @@ module.exports = function(socket) {
             
             return new Promise((resolve, reject) => {
                 socket.on('RETURN_WALKABLE_GRID_MAP', (data) => {
-                    console.log('Nhận lưới ô có thể đi được:', data.walkableGridMap);
                     resolve(data.walkableGridMap);
                 });
-                console.log("Yêu cầu lưới ô có thể đi được từ server...");
                 socket.emit('GET_WALKABLE_GRID_MAP');
             });
         },
@@ -110,7 +108,6 @@ module.exports = function(socket) {
         findPath(data) {
             return new Promise((resolve, reject) => {
                 socket.on('RETURN_PATH', (data) => {
-                    console.log('Nhận đường đi:', data);
                     resolve(data.path);
                 });
                 socket.emit('FIND_PATH', data);
@@ -120,8 +117,8 @@ module.exports = function(socket) {
         getAttackDame(data) {
             return new Promise((resolve, reject) => {
                 socket.on('RETURN_ATTACK_DAME', (data) => {
-                    console.log('Nhận sát thương tấn công:', data);
-                    resolve(data);
+                    console.log('Nhận sát thương tấn công:', data.attackDamage);
+                    resolve(data.attackDamage);
                 });
                 socket.emit('GET_ATTACK_DAME', data);
             });
@@ -141,7 +138,7 @@ module.exports = function(socket) {
             });
         },
 
-        otherHeroAttack(data) {
+        otherPlayerAttack(data) {
             console.log('Gửi yêu cầu tấn công đến server:', data);
             if (!socket) {
                 console.error("Chưa kết nối đến Socket.IO server.");
@@ -151,5 +148,28 @@ module.exports = function(socket) {
             console.log('Gửi yêu cầu tấn công đến server:', data);
             socket.emit('OTHER_PLAYER_ATTACK', data);
         },
+
+        nextMap() {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+            
+            socket.emit('NEXT_MAP');
+        },
+
+        listenNextMap(callback) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+            
+            socket.on('LISTEN_NEXT_MAP', () => {
+                console.log('Nhận yêu cầu chuyển sang bản đồ mới từ server');
+                if (callback) {
+                    callback();
+                }
+            });
+        },  
     };
 }
