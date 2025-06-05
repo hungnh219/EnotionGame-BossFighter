@@ -275,7 +275,6 @@ cc.Class({
     },
 
     moveToGameScene() {
-        console.log('hehe');
         cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME);
     },
 

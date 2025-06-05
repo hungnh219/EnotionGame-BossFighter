@@ -49,21 +49,17 @@ cc.Class({
             // Nếu là chính mình thì bỏ qua
             if (data.playerIndex === this.gameController.getPlayerIndex()) return;
 
-            console.log(playerNode, "Received move request from player:", data.playerIndex, "to position:", data.newX, data.newY);
             this.moveToWalkableTile(playerNode, {
                 newX: data.newX,
                 newY: data.newY,
             }, true);
-            // this.moveHeroToNewTile();
         })
         this.clickNode = null
         this.firstCellPos = null;
         this.lastCellPos = null;
         this.walkableGridMap = this.gameController.getWalkableMap();
-        // this.isHeroMoving = false;
 
         EventBus.on(EventBus.events.DISPLAY_WALKABLE_AREA, (firstCellPos, lastCellPos, walkableGridMap, node) => {
-            // if (this.isHeroMoving) return;
             if (this.clickNode != node) {
                 this.clearWalkableArea();
             }
