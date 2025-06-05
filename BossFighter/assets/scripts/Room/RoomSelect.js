@@ -42,7 +42,7 @@ cc.Class({
 
     onRoomInfoUpdated(data) {
         if (data && data.totalRooms !== undefined) {
-            this.roomInfoLabel.string = `Tổng số phòng: ${data.totalRooms}\n`;
+            this.roomInfoLabel.string = `Total Rooms: ${data.totalRooms}\n`;
             this.displayRoomList(data.rooms);
         } else {
             this.roomInfoLabel.string = "Không có thông tin phòng.";
