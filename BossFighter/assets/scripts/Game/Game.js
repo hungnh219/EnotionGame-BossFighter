@@ -10,13 +10,10 @@ cc.Class({
     properties: {
         mapHeight: cc.Integer,
         mapWidth: cc.Integer,
-        // mapTile: cc.SpriteFrame,
         mapTileWidth: cc.Integer,
         mapTileHeight: cc.Integer,
-        // mapTileSize: cc.Integer,
 
         playerTurn: cc.Label,
-        // bossTurn: cc.Label,
 
         attackCooldownLabel: cc.Label,
         skillCooldownLabel: cc.Label,
@@ -34,9 +31,6 @@ cc.Class({
         focusEffectPrefab: cc.Prefab,
         mapIndex: 0,
 
-        // testSkills: [cc.Prefab],
-
-        // resumeButton: cc.Button,
         pauseButton: cc.Button,
         nextButton: cc.Button,
         heroPrefabs: [cc.Prefab],
@@ -78,10 +72,8 @@ cc.Class({
         this.pressedKeys = new Set();
 
         this.focusedHeroIndex = -1;
-        // this.heroes = [];
         this.rootNode = this.characterHolder;
         this.bossNode = [];
-        // this.isCastingSkill = false;
 
         this.winnerNotificationLabel.node.parent.zIndex = 999;
         this.rootNode.sortAllChildren();
@@ -126,6 +118,11 @@ cc.Class({
         this.lockedHeroIndex = await this.socketIOManager.game.getLockedHeroIndex();
         this.playerIndex = await this.socketIOManager.game.getPlayerOrder();
 
+        this.socketIOManager.game.listenOtherAttack((data) => {
+            console.log('Received attack data from server:', data);
+            this.gameController.heroAttackFromServer(data.playerOrder, data.targetOrder, data.isBoss);
+                
+        })
         if (this.playerIndex != undefined) {
             this.gameController.setPlayerIndex(this.playerIndex);
         }
@@ -141,7 +138,7 @@ cc.Class({
         this.mapIndex = this.gameController.getMapPicked() ? this.gameController.getMapPicked() : 0;
         this.heroPrefabs = this.gameController.getSelectedHeroPrefabs();
 
-        this.gameController.startGame();
+        this.gameController.startGame(this.socketIOManager);
 
     },
 
@@ -341,13 +338,9 @@ cc.Class({
         let notificationPanelBgSprite = notificationPanel.getComponent(cc.Sprite);
         if (winner == GAME_DATA.ROLE.PLAYER) {
             this.nextButton.node.active = true;
-            // notificationPanelBgSprite.spriteFrame = this.backgroundNotificationPanelSpriteFrames[0];
-
-            // play sound effect win game, source 
             let audioSources = this.node.getComponents(cc.AudioSource)
             audioSources[0].play();
         } else {
-            // notificationPanelBgSprite.spriteFrame = this.backgroundNotificationPanelSpriteFrames[1];
             let audioSources = this.node.getComponents(cc.AudioSource)
             audioSources[1].play();
         }
@@ -359,7 +352,6 @@ cc.Class({
         }, 1.5);
 
         this.pauseButton.node.active = false;
-        // this.resumeButton.node.active = false;
     },
 
     showGuideBook() {
@@ -376,14 +368,12 @@ cc.Class({
         this.pausePanel.active = true;
 
         this.pauseButton.node.active = false;
-        // this.resumeButton.node.active = true;
     },
 
     resumeGame() {
         cc.director.resume();
         this.pausePanel.active = false;
         this.pauseButton.node.active = true;
-        // this.resumeButton.node.active = false;
     },
 
     nextGame() {

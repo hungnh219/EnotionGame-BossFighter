@@ -66,5 +66,90 @@ module.exports = function(socket) {
                 socket.emit('GET_LOCKED_HERO_INDEX');
             });
         },
-    }
+
+        updateWalkableGridMap(data) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            console.log("Cập nhật lưới ô có thể đi được:", data);
+            socket.emit('UPDATE_WALKABLE_GRID_MAP', data);
+        },
+
+        listenWalkableGridMapUpdated(callback) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            socket.on('WALKABLE_GRID_MAP_UPDATED', (data) => {
+                console.log('Nhận lưới ô có thể đi được đã cập nhật:', data.walkableGridMap);
+                if (callback) {
+                    callback(data.walkableGridMap);
+                }
+            });
+        },
+
+        getWalkableGridMap() {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+            
+            return new Promise((resolve, reject) => {
+                socket.on('RETURN_WALKABLE_GRID_MAP', (data) => {
+                    console.log('Nhận lưới ô có thể đi được:', data.walkableGridMap);
+                    resolve(data.walkableGridMap);
+                });
+                console.log("Yêu cầu lưới ô có thể đi được từ server...");
+                socket.emit('GET_WALKABLE_GRID_MAP');
+            });
+        },
+
+        findPath(data) {
+            return new Promise((resolve, reject) => {
+                socket.on('RETURN_PATH', (data) => {
+                    console.log('Nhận đường đi:', data);
+                    resolve(data.path);
+                });
+                socket.emit('FIND_PATH', data);
+            });
+        },
+
+        getAttackDame(data) {
+            return new Promise((resolve, reject) => {
+                socket.on('RETURN_ATTACK_DAME', (data) => {
+                    console.log('Nhận sát thương tấn công:', data);
+                    resolve(data);
+                });
+                socket.emit('GET_ATTACK_DAME', data);
+            });
+        },
+
+        listenOtherAttack(callback) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+            
+            socket.on('LISTEN_ATTACK', (data) => {
+                console.log('Nhận yêu cầu tấn công:', data);
+                if (callback) {
+                    callback(data);
+                }
+            });
+        },
+
+        otherHeroAttack(data) {
+            console.log('Gửi yêu cầu tấn công đến server:', data);
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+            
+            console.log('Gửi yêu cầu tấn công đến server:', data);
+            socket.emit('OTHER_PLAYER_ATTACK', data);
+        },
+    };
 }

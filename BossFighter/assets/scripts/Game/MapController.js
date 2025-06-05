@@ -1,4 +1,5 @@
 import GameController from "./GameController";
+import SocketIOManager from "..//SocketIO/SocketIOManager";
 
 cc.Class({
     extends: cc.Component,
@@ -21,6 +22,7 @@ cc.Class({
         instance = this;
 
         this.gameController = GameController.getInstance();
+        this.socketIOManager = SocketIOManager.getInstance();
     },
 
     start () {
@@ -95,7 +97,11 @@ cc.Class({
                 let newJ = mapHeight - j - 1;
                 const objectId = mapData[newJ][i];
                 if (objectId === 0) {
-                    this.gameController.updateWalkable(i, j, 1, true);
+                    this.socketIOManager.game.updateWalkableGridMap({
+                        x: i,
+                        y: j,
+                        isWalkable: true
+                    });
                     continue;
                 }
 
@@ -115,7 +121,12 @@ cc.Class({
 
                 this.mapObjectHolder.addChild(prefab);
                 this.addObjectIntoMap(i, j, 1, prefab);
-                this.gameController.updateWalkable(i, j, 1, false);
+
+                this.socketIOManager.game.updateWalkableGridMap({
+                    x: i,
+                    y: j,
+                    isWalkable: false
+                });
             }
         }
     },
@@ -145,11 +156,20 @@ cc.Class({
         this.mapObjectHolder.addChild(bossNode);
         this.addObjectIntoMap(posX, posY, size, bossNode);
 
-        this.gameController.updateWalkable(posX, posY, size, false);
+        for (let i = 0; i < size; i++) {
+            for (let j = 0; j < size; j++) {
+                this.socketIOManager.game.updateWalkableGridMap({
+                    x: posX + i,
+                    y: posY + j,
+                    isWalkable: false
+                });
+            }
+        }
+
         this.gameController.addBoss(bossNode, size);
     },
 
-    spawnEnemyIntoMap(enemy) {
+    async spawnEnemyIntoMap(enemy) {
         if (!enemy) {
             console.error("No enemy to spawn");
             return;
@@ -158,7 +178,7 @@ cc.Class({
         let posX = Math.floor(Math.random() * this.mapWidth);
         let posY = Math.floor(Math.random() * this.mapHeight);
 
-        let walkableMap = this.gameController.getWalkableMap();
+        let walkableMap = await this.socketIOManager.game.getWalkableGridMap();
         while (!walkableMap[posX][posY]) {
             posX = Math.floor(Math.random() * this.mapWidth);
             posY = Math.floor(Math.random() * this.mapHeight);
@@ -168,7 +188,11 @@ cc.Class({
 
         this.gameController.setNewEmemy(enemy);
         this.addObjectIntoMap(posX, posY, 1, enemy);
-        this.gameController.updateWalkable(posX, posY, 1, false);
+        this.socketIOManager.game.updateWalkableGridMap({
+            x: posX,
+            y: posY,
+            isWalkable: false
+        });
     },
 
     spawnHeroIntoMap(heroPrefabs, focusEffectPrefab) {
@@ -183,8 +207,11 @@ cc.Class({
             this.mapObjectHolder.addChild(prefabNode);
             this.gameController.addHero(prefabNode);
             this.addObjectIntoMap(index, 0, 1, prefabNode);
-            // this.updateWalkable(index, 0, 1);
-            this.gameController.updateWalkable(index, 0, 1, false);
+            this.socketIOManager.game.updateWalkableGridMap({
+                x: index,
+                y: 0,
+                isWalkable: false
+            });
 
             // this.heroes.push(prefabNode)
         });

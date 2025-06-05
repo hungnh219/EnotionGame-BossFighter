@@ -1,0 +1,68 @@
+{
+  "heroes": [
+    {
+      "id": 0,
+      "name": "ADC",
+      "maxHp": 100,
+      "attackDamage": 200,
+      "attackRange": 5
+    },
+    {
+      "id": 1,
+      "name": "Bruiser",
+      "maxHp": 100,
+      "attackDamage": 200,
+      "attackRange": 5
+    },
+    {
+      "id": 2,
+      "name": "Tanker",
+      "maxHp": 100,
+      "attackDamage": 200,
+      "attackRange": 5
+    },
+    {
+      "id": 3,
+      "name": "Vampire",
+      "maxHp": 100,
+      "attackDamage": 200,
+      "attackRange": 5
+    }
+  ],
+  "bosses": [
+    {
+      "id": 1,
+      "name": "Tanker",
+      "level": 20,
+      "health": 200,
+      "mana": 100,
+      "skills": ["Earthquake", "Rage"]
+    },
+    {
+      "id": 2,
+      "name": "Boss Two",
+      "level": 25,
+      "health": 250,
+      "mana": 120,
+      "skills": ["Tornado", "Berserk"]
+    }
+  ],
+  "enemy": [
+    {
+      "id": 1,
+      "name": "Enemy One",
+      "level": 5,
+      "health": 50,
+      "mana": 20,
+      "skills": ["Slash", "Stun"]
+    },
+    {
+      "id": 2,
+      "name": "Enemy Two",
+      "level": 7,
+      "health": 70,
+      "mana": 30,
+      "skills": ["Poison", "Charge"]
+    }
+  ]
+}

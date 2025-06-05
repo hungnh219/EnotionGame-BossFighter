@@ -1,32 +1,17 @@
 {
-  "1": {
+  "21": {
     "player": [
       {
-        "I48fxGVvuNAsEc50AAAj": {
-          "name": "1",
+        "-AISa5YhP6Z-m9lRAAAX": {
+          "name": "123",
           "clickHero": 3,
           "lockedHero": 3,
           "order": 0,
           "host": true
         }
-      }
-    ],
-    "maxPlayer": 1,
-    "status": "waiting"
-  },
-  "13": {
-    "player": [
-      {
-        "-IE3rnWzl9VzqQ8yAAAX": {
-          "name": "1",
-          "clickHero": 0,
-          "lockedHero": 0,
-          "order": 0,
-          "host": true
-        }
       },
       {
-        "92FAUAWflF1X1MpuAAAP": {
+        "48XDaqIdYYh_ReaeAAAT": {
           "name": "123",
           "clickHero": 1,
           "lockedHero": 1,
@@ -41,62 +26,147 @@
       "status": "STARTED",
       "turn": "player",
       "currentPlayer": null,
-      "walkableGridMap": []
+      "walkableGridMap": [
+        [
+          true,
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false
+        ],
+        [
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ]
+      ],
+      "heroes": [
+        {
+          "id": "-AISa5YhP6Z-m9lRAAAX",
+          "order": 0,
+          "lockedHero": 3,
+          "hp": 100,
+          "maxHp": 100,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "status": "ALIVE",
+          "stats": {
+            "totalDameDeal": 0,
+            "totalDameTaken": 0,
+            "totoalScore": 0
+          }
+        },
+        {
+          "id": "48XDaqIdYYh_ReaeAAAT",
+          "order": 1,
+          "lockedHero": 1,
+          "hp": 100,
+          "maxHp": 100,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "status": "ALIVE",
+          "stats": {
+            "totalDameDeal": 0,
+            "totalDameTaken": 0,
+            "totoalScore": 0
+          }
+        }
+      ]
     }
   },
-  "s": {
+  "321321": {
     "player": [
       {
-        "ixIXChoy0IYgYTvjAAAj": {
-          "name": "dsa",
-          "clickHero": null,
-          "lockedHero": null,
-          "order": 0,
-          "host": true
-        }
-      },
-      {
-        "fyF6H21tdERoAQTrAAAr": {
-          "name": "ewq",
-          "clickHero": null,
-          "lockedHero": null,
-          "order": 1,
-          "host": false
-        }
-      }
-    ],
-    "maxPlayer": 3,
-    "status": "waiting"
-  },
-  "sa": {
-    "player": [
-      {
-        "SxKglkXBtMNzA6M7AAAT": {
-          "name": "fds",
-          "clickHero": null,
-          "lockedHero": null,
-          "order": 0,
-          "host": true
-        }
-      },
-      {
-        "MKisus_BT_A9ADyRAAAP": {
-          "name": "fsd",
-          "clickHero": 0,
-          "lockedHero": null,
-          "order": 1,
-          "host": false
-        }
-      }
-    ],
-    "maxPlayer": 2,
-    "status": "waiting"
-  },
-  "dsa": {
-    "player": [
-      {
-        "Kyzl24K2fcwdI26yAAAP": {
-          "name": "dsa",
+        "GmFkFiVnhg607rriAAED": {
+          "name": "321",
           "clickHero": 3,
           "lockedHero": 3,
           "order": 0,
@@ -104,40 +174,10 @@
         }
       },
       {
-        "ofvqx8kQvOKOBPdxAAAN": {
-          "name": "dsa",
+        "wdJ99Exijh8TTX8dAAD7": {
+          "name": "321",
           "clickHero": 0,
           "lockedHero": 0,
-          "order": 1,
-          "host": false
-        }
-      }
-    ],
-    "maxPlayer": 3,
-    "status": "waiting",
-    "gameState": {
-      "status": "STARTED",
-      "turn": "player",
-      "currentPlayer": null,
-      "walkableGridMap": []
-    }
-  },
-  "fds": {
-    "player": [
-      {
-        "RT9EqyzCK1ACvMloAAAH": {
-          "name": "fds",
-          "clickHero": 0,
-          "lockedHero": 0,
-          "order": 0,
-          "host": true
-        }
-      },
-      {
-        "WPBHXYbNaNhDq9UAAAAJ": {
-          "name": "fds",
-          "clickHero": 1,
-          "lockedHero": 1,
           "order": 1,
           "host": false
         }
@@ -149,7 +189,140 @@
       "status": "STARTED",
       "turn": "player",
       "currentPlayer": null,
-      "walkableGridMap": []
+      "walkableGridMap": [
+        [
+          true,
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false
+        ],
+        [
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ]
+      ],
+      "heroes": [
+        {
+          "id": "GmFkFiVnhg607rriAAED",
+          "order": 0,
+          "lockedHero": 3,
+          "hp": 100,
+          "maxHp": 100,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "status": "ALIVE",
+          "stats": {
+            "totalDameDeal": 0,
+            "totalDameTaken": 0,
+            "totoalScore": 0
+          }
+        },
+        {
+          "id": "wdJ99Exijh8TTX8dAAD7",
+          "order": 1,
+          "lockedHero": 0,
+          "hp": 100,
+          "maxHp": 100,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "status": "ALIVE",
+          "stats": {
+            "totalDameDeal": 0,
+            "totalDameTaken": 0,
+            "totoalScore": 0
+          }
+        }
+      ]
     }
   }
 }
