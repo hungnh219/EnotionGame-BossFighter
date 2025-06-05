@@ -2,7 +2,7 @@ import GameController from "./GameController";
 import GAME_DATA from "./GameData"
 import EventBus from "../EventBus";
 import MapController from "./MapController";
-import SocketIOManager from "../SocketIOManager";
+import SocketIOManager from "../SocketIO/SocketIOManager";
 
 cc.Class({
     extends: cc.Component,
@@ -120,11 +120,11 @@ cc.Class({
     },
 
     async start() {
-        this.testData = await this.socketIOManager.getMapData();
+        this.testData = await this.socketIOManager.game.getMapData();
         this.testData = this.testData.map;
 
-        this.lockedHeroIndex = await this.socketIOManager.getLockedHeroIndex();
-        this.playerIndex = await this.socketIOManager.getPlayerOrder();
+        this.lockedHeroIndex = await this.socketIOManager.game.getLockedHeroIndex();
+        this.playerIndex = await this.socketIOManager.game.getPlayerOrder();
 
         if (this.playerIndex != undefined) {
             this.gameController.setPlayerIndex(this.playerIndex);

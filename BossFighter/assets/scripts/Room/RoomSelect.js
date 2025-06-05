@@ -1,4 +1,4 @@
-import SocketIOManager from "../SocketIOManager";
+import SocketIOManager from "../SocketIO/SocketIOManager";
 
 cc.Class({
     extends: cc.Component,
@@ -36,8 +36,8 @@ cc.Class({
     start() {
         this.socketIOManager.connectToSocketIOServer("http://localhost:3000");
 
-        this.socketIOManager.setOnRoomInfoReceivedCallback(this.onRoomInfoUpdated.bind(this));
-        this.socketIOManager.getRoomInformation();
+        this.socketIOManager.room.setOnRoomInfoReceivedCallback(this.onRoomInfoUpdated.bind(this));
+        this.socketIOManager.room.getRoomInformation();
     },
 
     onRoomInfoUpdated(data) {
@@ -127,7 +127,7 @@ cc.Class({
 
         if (roomName && namePlayer && maxPlayer) {
             try {
-                await this.socketIOManager.createRoom(roomName, maxPlayer, namePlayer);
+                await this.socketIOManager.room.createRoom(roomName, maxPlayer, namePlayer);
                 cc.director.loadScene('WaitingRoom');
             } catch (error) {
                 console.error("Lỗi khi tạo phòng:", error);
@@ -135,7 +135,7 @@ cc.Class({
             }
         } else if (this.roomNameJoin && namePlayer && maxPlayer === 0) {
             try {
-                const result = await this.socketIOManager.joinRoom(this.roomNameJoin, namePlayer);
+                const result = await this.socketIOManager.room.joinRoom(this.roomNameJoin, namePlayer);
                 if (result.success) {
                     cc.director.loadScene('WaitingRoom');
                 } else {

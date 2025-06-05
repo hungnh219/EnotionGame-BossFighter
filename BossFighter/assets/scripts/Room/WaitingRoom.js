@@ -1,4 +1,4 @@
-import SocketIOManager from "../SocketIOManager";
+import SocketIOManager from "../SocketIO/SocketIOManager";
 
 cc.Class({
     extends: cc.Component,
@@ -21,18 +21,18 @@ cc.Class({
             this.socketIOManager.connectToSocketIOServer("http://localhost:3000");
         }
 
-        this.socketIOManager.listenGameStart((data) => {
+        this.socketIOManager.room.listenGameStart((data) => {
             console.log("WaitingRoom: Nhận được sự kiện bắt đầu trò chơi từ máy chủ.", data);
             cc.director.loadScene("HeroSelect");
         })
     },
 
     start() {
-        this.socketIOManager.setOnRoomInfoReceivedCallback(this.onRoomInfoReceived.bind(this));
+        this.socketIOManager.room.setOnRoomInfoReceivedCallback(this.onRoomInfoReceived.bind(this));
 
-        this.socketIOManager.getRoomInformation();
+        this.socketIOManager.room.getRoomInformation();
 
-        this.socketIOManager.listenGameStart(() => {
+        this.socketIOManager.room.listenGameStart(() => {
             console.log("Trò chơi đã bắt đầu, chuyển đến HeroSelect scene.");
             this.moveToSelectScene();
         });
@@ -105,13 +105,13 @@ cc.Class({
             return;
         }
 
-        this.socketIOManager.gameStart();
+        this.socketIOManager.room.gameStart();
     },
 
     async leaveRoom() {
         console.log('currentNameRoom', this.currentRoomName)
         try {
-            const result = await this.socketIOManager.leaveRoom(this.currentRoomName)
+            const result = await this.socketIOManager.room.leaveRoom(this.currentRoomName)
             if (result.success) {
                 cc.director.loadScene('RoomSelect');
             } else {

@@ -1,6 +1,6 @@
 import GAME_DATA from "../Game/GameData";
 import GameController from "../Game/GameController";
-import SocketIOManager from "../SocketIOManager";
+import SocketIOManager from "../SocketIO/SocketIOManager";
 
 cc.Class({
     extends: cc.Component,
@@ -23,6 +23,8 @@ cc.Class({
 
         // this.connectToSocketIOServer("http://localhost:3000");
         this.socketIO.connectToSocketIOServer("http://localhost:3000");
+
+        // this.socketIO.room.test();
     },
 
     updateUI() {

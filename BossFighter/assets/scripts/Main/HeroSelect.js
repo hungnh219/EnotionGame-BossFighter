@@ -1,6 +1,6 @@
 import GameController from "../Game/GameController";
 import GAME_DATA from "../Game/GameData";
-import SocketIOManager from "../SocketIOManager";
+import SocketIOManager from "../SocketIO/SocketIOManager";
 
 cc.Class({
     extends: cc.Component,
@@ -32,6 +32,7 @@ cc.Class({
         await this.setupSocketIO();
         this.heroLocked = [];
         this.selectedHeroes = this.selectedHeroes || [];
+
         this.selectedHeroes.forEach((hero, index) => {
             let playerLabel = new cc.Node(`PlayerLabel-${index}`);
             let labelComponent = playerLabel.addComponent(cc.Label);
@@ -77,19 +78,19 @@ cc.Class({
 
     async setupSocketIO() {
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
-        this.socketIOManager.connectToSocketIOServer("http://localhost:3000");
-        this.socketIOManager.listenHeroSelection((heroClickIndexArray) => {
+
+        this.socketIOManager.selectHero.listenHeroSelection((heroClickIndexArray) => {
             this.updateClickHero(heroClickIndexArray);
         });
-        this.socketIOManager.listenHeroLock((heroLockIndexArray) => {
+        this.socketIOManager.selectHero.listenHeroLock((heroLockIndexArray) => {
             this.updateHeroLock(heroLockIndexArray);
         });
-        this.socketIOManager.listenPlayGame(() => {
+        this.socketIOManager.selectHero.listenPlayGame(() => {
             this.moveToGameScene();
         })
 
-        this.startGameData = await this.socketIOManager.getGameStartData();
-        this.playerIndex = this.socketIOManager.getPlayerIndex(this.startGameData);
+        this.startGameData = await this.socketIOManager.selectHero.getGameStartData();
+        this.playerIndex = this.socketIOManager.selectHero.getPlayerIndex(this.startGameData);
 
 
         console.log(this.playerIndex, "HeroSelect onLoad called", this.startGameData);
@@ -147,7 +148,7 @@ cc.Class({
 
         this.showInformation();
 
-        this.socketIOManager.clickHero(index);
+        this.socketIOManager.selectHero.clickHero(index);
 
         this.heroPicked = { index, prefab };
         this.applyHeroInfoToUI(index);
@@ -201,7 +202,7 @@ cc.Class({
 
         console.log("Heroselect: Locking hero:", this.heroPicked.index, this.heroPicked.prefab);
         // this.gameController.addSelectedHeroPrefab(this.heroPicked.prefab);
-        this.socketIOManager.lockHero(this.heroPicked.index);
+        this.socketIOManager.selectHero.lockHero(this.heroPicked.index);
         this.playSoundEffect();
     },
 
@@ -265,7 +266,7 @@ cc.Class({
         }
         
         console.log('start play game');
-        this.socketIOManager.playGame();
+        this.socketIOManager.selectHero.playGame();
         // add heroLocked to gameController
         // this.scheduleOnce(() => {
         //     cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME);
@@ -323,5 +324,7 @@ cc.Class({
     updateHeroLock(heroLockIndexArray) {
         console.log("updateHeroLockList", heroLockIndexArray);
         this.heroLocked[this.playerIndex] = heroLockIndexArray[this.playerIndex];
-    }
+    },
+
+    
 });
