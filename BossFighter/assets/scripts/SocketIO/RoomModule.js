@@ -1,141 +1,173 @@
-module.exports = function(socket) {
-  return {
-    leaveRoom(roomName){
-        return new Promise((resolve, reject)=>{
-            if (!socket) {
-                console.error("Chưa kết nối đến Socket.IO server.");
-                return null;
-            }
-            socket.emit('leaveRoom', roomName)
+module.exports = function (socket) {
+    
+    return {
 
-            socket.on('leaveRoomResult', (data)=>{
-                if(data.success){
-                    resolve(data)
-                }else{
-                    reject(data.message)
+        sendMessage(roomName, message) {
+            return new Promise((resolve, reject) => {
+                if (!socket) {
+                    console.error("Chưa kết nối đến Socket.IO server.");
+                    return null;
                 }
+                socket.emit('sendMessage', roomName, message);
+
+                resolve({ success: true, message: "Tin nhắn đã được gửi đi." });
             })
-        })
-    },
+        },
 
-    checkRoomExist(roomName){
-        return new Promise((resolve, reject)=>{
-            if (!socket) {
-                console.error("Chưa kết nối đến Socket.IO server.");
-                return null;
-            }
-            socket.emit('checkRoomExist', roomName);
-
-            socket.on('checkRoomExistResult', (data)=>{
-                if (data.success){
-                    resolve(data)
-                }else{
-                    reject(data.message)
-                }
-            })
-        })
-    },
-
-    checkRoomFull(roomName){
-        return new Promise((resolve, reject)=>{
-            if (!socket) {
-                console.error("Chưa kết nối đến Socket.IO server.");
-                return null;
-            }
-            socket.emit('checkRoomFull', roomName);
-
-            socket.on('checkRoomFullResult', (data)=>{
-                if (data.success){
-                    resolve(data)
-                }else{
-                    reject(data.message)
-                }
-            })
-        })
-    },
-
-    createRoom(roomName, maxPlayer, namePlayer) {
-        return new Promise((resolve, reject) => {
-            if (!socket) {
-                console.error("Chưa kết nối đến Socket.IO server.");
-                return null;
-            }
-            socket.emit('createRoom', roomName, maxPlayer, namePlayer);
-
-            socket.on('createRoomResult', (data) => {
-                if (data.success) {
-                    resolve(data)
-                }
-                else {
-                    reject(data.message)
-                }
-            })
-        })
-    },
-
-    joinRoom(roomName, namePlayer) {
-        console.log("nhan ben roomModul", roomName, namePlayer)
-        return new Promise((resolve, reject) => {
-            if (!socket) {
-                console.error("Chưa kết nối đến Socket.IO server.");
-                resolve({ success: false, message: "Chưa kết nối đến server" });
+        receiveMessages(callback) {
+            const chatCallbacks = {};
+            if (typeof callback !== 'function') {
+                cc.error("Callback cho tin nhắn phải là một hàm.");
                 return;
             }
 
-            socket.emit('joinRoom', roomName, namePlayer);
+            if (!chatCallbacks.messageListenerRegistered) {
+                chatCallbacks.messageListenerRegistered = true;
+                socket.on('message', (data) => {
+                    if (chatCallbacks.activeMessageCallback) {
+                        chatCallbacks.activeMessageCallback(data);
+                    }
+                });
+            }
+            chatCallbacks.activeMessageCallback = callback;
+        },
 
-            socket.on('joinRoomResult', (data) => {
-                if (data.success) {
-                    resolve(data);
+        leaveRoom(roomName) {
+            return new Promise((resolve, reject) => {
+                if (!socket) {
+                    console.error("Chưa kết nối đến Socket.IO server.");
+                    return null;
                 }
-                else {
-                    reject(data.message)
+                socket.emit('leaveRoom', roomName)
+
+                socket.on('leaveRoomResult', (data) => {
+                    if (data.success) {
+                        resolve(data)
+                    } else {
+                        reject(data.message)
+                    }
+                })
+            })
+        },
+
+        checkRoomExist(roomName) {
+            return new Promise((resolve, reject) => {
+                if (!socket) {
+                    console.error("Chưa kết nối đến Socket.IO server.");
+                    return null;
+                }
+                socket.emit('checkRoomExist', roomName);
+
+                socket.on('checkRoomExistResult', (data) => {
+                    if (data.success) {
+                        resolve(data)
+                    } else {
+                        reject(data.message)
+                    }
+                })
+            })
+        },
+
+        checkRoomFull(roomName) {
+            return new Promise((resolve, reject) => {
+                if (!socket) {
+                    console.error("Chưa kết nối đến Socket.IO server.");
+                    return null;
+                }
+                socket.emit('checkRoomFull', roomName);
+
+                socket.on('checkRoomFullResult', (data) => {
+                    if (data.success) {
+                        resolve(data)
+                    } else {
+                        reject(data.message)
+                    }
+                })
+            })
+        },
+
+        createRoom(roomName, maxPlayer, namePlayer) {
+            return new Promise((resolve, reject) => {
+                if (!socket) {
+                    console.error("Chưa kết nối đến Socket.IO server.");
+                    return null;
+                }
+                socket.emit('createRoom', roomName, maxPlayer, namePlayer);
+
+                socket.on('createRoomResult', (data) => {
+                    if (data.success) {
+                        resolve(data)
+                    }
+                    else {
+                        reject(data.message)
+                    }
+                })
+            })
+        },
+
+        joinRoom(roomName, namePlayer) {
+            console.log("nhan ben roomModul", roomName, namePlayer)
+            return new Promise((resolve, reject) => {
+                if (!socket) {
+                    console.error("Chưa kết nối đến Socket.IO server.");
+                    resolve({ success: false, message: "Chưa kết nối đến server" });
+                    return;
                 }
 
+                socket.emit('joinRoom', roomName, namePlayer);
+
+                socket.on('joinRoomResult', (data) => {
+                    if (data.success) {
+                        resolve(data);
+                    }
+                    else {
+                        reject(data.message)
+                    }
+
+                });
             });
-        });
-    },
+        },
 
-    getRoomInformation() {
-        if (!socket) {
-            console.error("Chưa kết nối đến Socket.IO server.");
-            return null;
-        }
-
-        socket.off('roomInfo');
-        socket.on('roomInfo', (data) => {
-            console.log("Thông tin phòng đã nhận được:", data);
-            if (this.onRoomInfoReceivedCallback) {
-                this.onRoomInfoReceivedCallback(data);
+        getRoomInformation() {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
             }
-        });
 
-        console.log('Yêu cầu thông tin phòng hiện tại từ server...');
-        socket.emit('requestRoomInfo');
-    },
+            socket.off('roomInfo');
+            socket.on('roomInfo', (data) => {
+                console.log("Thông tin phòng đã nhận được:", data);
+                if (this.onRoomInfoReceivedCallback) {
+                    this.onRoomInfoReceivedCallback(data);
+                }
+            });
 
-    setOnRoomInfoReceivedCallback(callback) {
-        this.onRoomInfoReceivedCallback = callback;
-    },
+            console.log('Yêu cầu thông tin phòng hiện tại từ server...');
+            socket.emit('requestRoomInfo');
+        },
 
-    gameStart(moveToSelectSceneCallback) {
-        if (!socket) {
-            console.error("Chưa kết nối đến Socket.IO server.");
-            return null;
-        }
+        setOnRoomInfoReceivedCallback(callback) {
+            this.onRoomInfoReceivedCallback = callback;
+        },
 
-        socket.emit('GAME_START')
-
-        // socket.emit('GAME_START', );
-    },
-
-    listenGameStart(moveToSelectSceneCallback) {
-        socket.on('GAME_START_DATA', (data) => {
-            console.log('312321Trò chơi đã bắt đầu với dữ liệu:', data);
-            if (moveToSelectSceneCallback) {
-                moveToSelectSceneCallback(data);
+        gameStart(moveToSelectSceneCallback) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
             }
-        });
-    },
-  };
+
+            socket.emit('GAME_START')
+
+            // socket.emit('GAME_START', );
+        },
+
+        listenGameStart(moveToSelectSceneCallback) {
+            socket.on('GAME_START_DATA', (data) => {
+                console.log('312321Trò chơi đã bắt đầu với dữ liệu:', data);
+                if (moveToSelectSceneCallback) {
+                    moveToSelectSceneCallback(data);
+                }
+            });
+        },
+    };
 };
