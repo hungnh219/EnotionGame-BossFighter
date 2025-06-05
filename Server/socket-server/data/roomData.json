@@ -1,1 +1,155 @@
-{}
+{
+  "1": {
+    "player": [
+      {
+        "I48fxGVvuNAsEc50AAAj": {
+          "name": "1",
+          "clickHero": 3,
+          "lockedHero": 3,
+          "order": 0,
+          "host": true
+        }
+      }
+    ],
+    "maxPlayer": 1,
+    "status": "waiting"
+  },
+  "13": {
+    "player": [
+      {
+        "-IE3rnWzl9VzqQ8yAAAX": {
+          "name": "1",
+          "clickHero": 0,
+          "lockedHero": 0,
+          "order": 0,
+          "host": true
+        }
+      },
+      {
+        "92FAUAWflF1X1MpuAAAP": {
+          "name": "123",
+          "clickHero": 1,
+          "lockedHero": 1,
+          "order": 1,
+          "host": false
+        }
+      }
+    ],
+    "maxPlayer": 2,
+    "status": "waiting",
+    "gameState": {
+      "status": "STARTED",
+      "turn": "player",
+      "currentPlayer": null,
+      "walkableGridMap": []
+    }
+  },
+  "s": {
+    "player": [
+      {
+        "ixIXChoy0IYgYTvjAAAj": {
+          "name": "dsa",
+          "clickHero": null,
+          "lockedHero": null,
+          "order": 0,
+          "host": true
+        }
+      },
+      {
+        "fyF6H21tdERoAQTrAAAr": {
+          "name": "ewq",
+          "clickHero": null,
+          "lockedHero": null,
+          "order": 1,
+          "host": false
+        }
+      }
+    ],
+    "maxPlayer": 3,
+    "status": "waiting"
+  },
+  "sa": {
+    "player": [
+      {
+        "SxKglkXBtMNzA6M7AAAT": {
+          "name": "fds",
+          "clickHero": null,
+          "lockedHero": null,
+          "order": 0,
+          "host": true
+        }
+      },
+      {
+        "MKisus_BT_A9ADyRAAAP": {
+          "name": "fsd",
+          "clickHero": 0,
+          "lockedHero": null,
+          "order": 1,
+          "host": false
+        }
+      }
+    ],
+    "maxPlayer": 2,
+    "status": "waiting"
+  },
+  "dsa": {
+    "player": [
+      {
+        "Kyzl24K2fcwdI26yAAAP": {
+          "name": "dsa",
+          "clickHero": 3,
+          "lockedHero": 3,
+          "order": 0,
+          "host": true
+        }
+      },
+      {
+        "ofvqx8kQvOKOBPdxAAAN": {
+          "name": "dsa",
+          "clickHero": 0,
+          "lockedHero": 0,
+          "order": 1,
+          "host": false
+        }
+      }
+    ],
+    "maxPlayer": 3,
+    "status": "waiting",
+    "gameState": {
+      "status": "STARTED",
+      "turn": "player",
+      "currentPlayer": null,
+      "walkableGridMap": []
+    }
+  },
+  "fds": {
+    "player": [
+      {
+        "RT9EqyzCK1ACvMloAAAH": {
+          "name": "fds",
+          "clickHero": 0,
+          "lockedHero": 0,
+          "order": 0,
+          "host": true
+        }
+      },
+      {
+        "WPBHXYbNaNhDq9UAAAAJ": {
+          "name": "fds",
+          "clickHero": 1,
+          "lockedHero": 1,
+          "order": 1,
+          "host": false
+        }
+      }
+    ],
+    "maxPlayer": 2,
+    "status": "waiting",
+    "gameState": {
+      "status": "STARTED",
+      "turn": "player",
+      "currentPlayer": null,
+      "walkableGridMap": []
+    }
+  }
+}

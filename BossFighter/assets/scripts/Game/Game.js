@@ -129,6 +129,7 @@ cc.Class({
         if (this.playerIndex != undefined) {
             this.gameController.setPlayerIndex(this.playerIndex);
         }
+        
         console.log('Locked hero index:', this.lockedHeroIndex, 'Player index:', this.playerIndex);
 
         this.spawnObjectsFromJson();
