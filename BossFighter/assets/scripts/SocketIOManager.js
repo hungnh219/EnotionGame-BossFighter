@@ -46,13 +46,31 @@ const SocketIOManager = cc.Class({
         console.log("Kết nối thanh cong Socket.IO server:", url);
     },
 
-    createRoom(roomName) {
+    leaveRoom(roomName){
+        return new Promise((resolve, reject)=>{
+            if (!this.socketIO) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+            this.socketIO.emit('leaveRoom', roomName)
+
+            this.socketIO.on('leaveRoomResult', (data)=>{
+                if(data.success){
+                    resolve(data)
+                }else{
+                    reject(data.message)
+                }
+            })
+        })
+    },
+
+    createRoom(roomName, maxPlayer, namePlayer) {
         return new Promise((resolve, reject) => {
             if (!this.socketIO) {
                 console.error("Chưa kết nối đến Socket.IO server.");
                 return null;
             }
-            this.socketIO.emit('createRoom', roomName);
+            this.socketIO.emit('createRoom', roomName, maxPlayer, namePlayer);
 
             this.socketIO.on('createRoomResult', (data) => {
                 if (data.success) {
@@ -65,7 +83,7 @@ const SocketIOManager = cc.Class({
         })
     },
 
-    joinRoom(roomName) {
+    joinRoom(roomName, namePlayer) {
         return new Promise((resolve, reject) => {
             if (!this.socketIO) {
                 console.error("Chưa kết nối đến Socket.IO server.");
@@ -73,7 +91,7 @@ const SocketIOManager = cc.Class({
                 return;
             }
 
-            this.socketIO.emit('joinRoom', roomName);
+            this.socketIO.emit('joinRoom', roomName, namePlayer);
 
             this.socketIO.on('joinRoomResult', (data) => {
                 if (data.success) {
@@ -133,7 +151,7 @@ const SocketIOManager = cc.Class({
         }
 
         this.socketIO.emit('GAME_START')
-        
+
         // this.socketIO.emit('GAME_START', );
     },
 

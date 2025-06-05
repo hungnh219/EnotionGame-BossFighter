@@ -1,46 +1,32 @@
 {
   "1": {
-    "player": [
-      {
-        "k-lw9i5xke7-JnGNAAAH": {
-          "name": "Unknown",
-          "clickHero": 3,
-          "lockedHero": 3,
-          "order": 0,
-          "host": true
-        }
-      },
-      {
-        "MBulCkhYBxYlkaR2AAAD": {
-          "name": "Unknown",
-          "clickHero": 0,
-          "lockedHero": 0,
-          "order": 1,
-          "host": false
-        }
-      }
-    ]
+    "player": []
   },
-  "22": {
+  "123": {
+    "player": []
+  },
+  "321": {
     "player": [
       {
-        "41ckvR-Rc_7h57SOAAAH": {
-          "name": "Unknown",
-          "clickHero": 0,
-          "lockedHero": 0,
+        "MC1Rc7dmecj3q8u1AAAj": {
+          "name": "sfd",
+          "clickHero": 3,
+          "lockedHero": 3,
           "order": 0,
           "host": true
         }
       },
       {
-        "uEXaAcJAUsX4Bu1EAAAF": {
-          "name": "Unknown",
-          "clickHero": 3,
-          "lockedHero": 3,
+        "qND7EgHinOnnq2uQAAAn": {
+          "name": "dsa",
+          "clickHero": 0,
+          "lockedHero": 0,
           "order": 1,
           "host": false
         }
       }
-    ]
+    ],
+    "maxPlayer": 2,
+    "status": "waiting"
   }
 }
