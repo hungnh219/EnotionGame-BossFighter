@@ -3,7 +3,7 @@
 import EventBus from "../EventBus";
 import GameController from "./GameController";
 import MapController from "./MapController";
-import SocketIOManager from "../SocketIOManager";
+import SocketIOManager from "../SocketIO/SocketIOManager";
 
 const ANIM_MAP = {
     'idle': 'Idle',
@@ -43,7 +43,7 @@ cc.Class({
 
         this.mapController = MapController.getInstance() || new MapController();
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
-        this.socketIOManager.listenMoveToNewTile((data) => {
+        this.socketIOManager.game.listenMoveToNewTile((data) => {
             let playerNode = this.gameController.getPlayerByIndex(data.playerIndex);
 
             // Nếu là chính mình thì bỏ qua
@@ -155,13 +155,8 @@ cc.Class({
             return;
         }
 
-        // this.socketIOManager.emit('MOVE_TO_WALKABLE_TILE', {
-        //     playerMove: this.gameController.getPlayerIndex(),
-        //     newPos: newPosNode,
-        // });
-        
         if (!moveFromServer) {
-            this.socketIOManager.moveToNewTile({
+            this.socketIOManager.game.moveToNewTile({
                 playerIndex: this.gameController.getPlayerIndex(),
                 // newPos: newPosNode,
                 newX: newGridX,
