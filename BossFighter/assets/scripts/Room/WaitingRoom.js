@@ -48,6 +48,7 @@ cc.Class({
         let maxPlayer = 0;
         let isCurrentPlayerHost = false;
 
+
         for (const room of this.currentRoomData.rooms) {
 
             console.log('room player', room.players)
@@ -59,20 +60,17 @@ cc.Class({
                 roomMembers = room.players;
                 maxPlayer = room.maxPlayer
                 const currentPlayerData = playerInThisRoom[currentPlayerSocketId];
-                isCurrentPlayerHost = currentPlayerData.host === true; 
-                break; 
+                isCurrentPlayerHost = currentPlayerData.host === true;
+                break;
             }
         }
 
         console.log('roomMembers', roomMembers)
 
         if (foundRoomName) {
+            this.currentRoomName = foundRoomName
             this.roomNameLabel.string = `Phòng: ${foundRoomName}`;
             this.totalPlayersLabel.string = `Người chơi: ${roomMembers.length}/${maxPlayer}`;
-
-            console.log("foundRoomName:", foundRoomName);
-            console.log("this.roomNameLabel:", this.roomNameLabel);
-            console.log("this.totalPlayersLabel:", this.totalPlayersLabel);
 
             this.startButton.active = isCurrentPlayerHost;
             console.log("Nut Start active state:", this.startButton.active, "(Current player is host:", isCurrentPlayerHost + ")");
@@ -85,7 +83,7 @@ cc.Class({
                 const playerNode = cc.instantiate(this.prefabPlayer);
                 const labelNode = playerNode.getChildByName("New Label");
                 const labelComp = labelNode.getComponent(cc.Label);
-                labelComp.string = `ID: ${playerId.substring(0, 5)}... - Name: ${playerInfo.name}`; // Hiển thị cả ID và Name
+                labelComp.string = `${playerInfo.name}`;
                 this.gridPlayer.addChild(playerNode);
             }
         } else {
@@ -105,6 +103,20 @@ cc.Class({
         this.socketIOManager.gameStart();
     },
 
+    async leaveRoom() {
+        console.log('currentNameRoom', this.currentRoomName)
+        try {
+            const result = await this.socketIOManager.leaveRoom(this.currentRoomName)
+            if (result.success) {
+                cc.director.loadScene('RoomSelect');
+            } else {
+                console.warn(result.message);
+            }
+        } catch (error) {
+            console.error("Lỗi khi rời phòng:", error);
+        }
+
+    }
 
 
 

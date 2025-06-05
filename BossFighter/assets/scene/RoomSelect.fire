@@ -6825,7 +6825,7 @@
     },
     "component": "",
     "_componentId": "094a8hz9C1PPJg8mXC0aZd/",
-    "handler": "onSubmitRoomButton",
+    "handler": "onSubmitPlayerNameButton",
     "customEventData": ""
   },
   {
