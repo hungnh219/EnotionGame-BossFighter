@@ -1,10 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const { start } = require('repl');
 
 const DATA_FILE = path.join(__dirname, '../data/roomData.json');
-
-let startGameData = {}
 
 function readRoomData() {
     if (fs.existsSync(DATA_FILE)) {
@@ -30,18 +27,39 @@ function writeRoomData(data) {
 function roomEvents(io, socket) {
     console.log('Có client kết nối:', socket.id);
 
-    socket.on('createRoom', (roomName, amoutPlayer, playerName) => {
+    socket.on('checkRoomExist', (roomName)=>{
         let roomData = readRoomData();
-
-        console.log('roomName', roomName);
         if (roomName in roomData) {
-            socket.emit('createRoomResult', {
+            socket.emit('checkRoomExistResult', {
                 success: false,
                 message: `Phòng ${roomName} đã tồn tại!`
             });
             return;
         }
+        socket.emit('checkRoomExistResult', {
+            success: true,
+            message: `Chưa có phòng ${roomName}, có thể tạo`
+        });
+    })
 
+    socket.on('checkRoomFull', (roomName)=>{
+        let roomData = readRoomData();
+        const currentRoomPlayers = roomData[roomName].player.length;
+        const maxRoomPlayers = roomData[roomName].maxPlayer
+        if (currentRoomPlayers >= maxRoomPlayers) {
+            socket.emit('checkRoomFullResult', { success: false, message: `Phòng "${roomName}" đã đầy. ` });
+            return;
+        }
+        socket.emit('checkRoomFullResult', {
+            success: true,
+            message: `Phòng ${roomName} còn slot, có thể join`
+        });
+    })
+
+    socket.on('createRoom', (roomName, amoutPlayer, playerName) => {
+        let roomData = readRoomData();
+
+        console.log('roomName', roomName);
         roomData[roomName] = {
             player: [],
             maxPlayer: amoutPlayer,
@@ -73,6 +91,7 @@ function roomEvents(io, socket) {
     });
 
     socket.on('joinRoom', (roomName, playerName) => {
+        console.log(roomName, playerName, 'aaaaa')
         let roomData = readRoomData();
 
         if (!(roomName in roomData)) {
