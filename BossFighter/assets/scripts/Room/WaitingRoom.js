@@ -9,12 +9,17 @@ cc.Class({
         roomNameLabel: cc.Label,
         totalPlayersLabel: cc.Label,
         startButton: cc.Node,
+        textMessageInput: cc.EditBox,
+        messageItem: cc.Prefab,
+        scrollViewContent: cc.Node
     },
 
     socketIOManager: null,
     currentRoomData: null,
+    currentRoomName: '', 
 
     onLoad() {
+        this.scrollViewContent.removeAllChildren();
         this.startButton.active = false
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
         if (!this.socketIOManager.getSocketIO() || !this.socketIOManager.getSocketIO().connected) {
@@ -25,6 +30,10 @@ cc.Class({
             console.log("WaitingRoom: Nhận được sự kiện bắt đầu trò chơi từ máy chủ.", data);
             cc.director.loadScene("HeroSelect");
         })
+
+        this.socketIOManager.room.receiveMessages(this.onMessageReceived.bind(this));
+
+        this.textMessageInput.node.on('editing-did-ended', this.onEditingEnded, this);
     },
 
     start() {
@@ -36,6 +45,39 @@ cc.Class({
             console.log("Trò chơi đã bắt đầu, chuyển đến HeroSelect scene.");
             this.moveToSelectScene();
         });
+    },
+
+    onMessageReceived(data) {
+        console.log('WaitingRoom: Nhận tin nhắn từ server:', data);
+        if (data.success) {
+            const messageNode = cc.instantiate(this.messageItem);
+            const messageLabel = messageNode.getComponent(cc.Label);
+            const playerName = messageNode.getChildByName('New Label')
+            const nameLabel = playerName.getComponent(cc.Label)
+            nameLabel.string = data.senderName;
+            messageLabel.string = data.text;
+
+            this.scrollViewContent.insertChild(messageNode, 0); 
+        } else {
+            console.error("Lỗi tin nhắn từ server:", data.message);
+        }
+    },
+
+    async onEditingEnded() {
+        const inputText = this.textMessageInput.string.trim();
+        cc.log(inputText);
+        if (!inputText) {
+            cc.warn("Tin nhắn trống, không gửi.");
+            return;
+        }
+
+        try {
+            await this.socketIOManager.room.sendMessage(this.currentRoomName, inputText);
+            this.textMessageInput.string = '';
+        } catch (error) {
+            console.error("Lỗi khi gửi tin nhắn:", error);
+        }
+
     },
 
     onRoomInfoReceived(data) {

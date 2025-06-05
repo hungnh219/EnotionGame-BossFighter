@@ -324,5 +324,144 @@
         }
       ]
     }
+  },
+  "3213211": {
+    "player": [
+      {
+        "jYXIMN7myf-GgZCFAAAB": {
+          "name": "123",
+          "clickHero": 3,
+          "lockedHero": 3,
+          "order": 0,
+          "host": true
+        }
+      }
+    ],
+    "maxPlayer": 4,
+    "status": "waiting",
+    "gameState": {
+      "status": "STARTED",
+      "turn": "player",
+      "currentPlayer": null,
+      "walkableGridMap": [
+        [
+          false,
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ]
+      ],
+      "heroes": [
+        {
+          "id": "jYXIMN7myf-GgZCFAAAB",
+          "order": 0,
+          "lockedHero": 3,
+          "hp": 100,
+          "maxHp": 100,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "status": "ALIVE",
+          "stats": {
+            "totalDameDeal": 0,
+            "totalDameTaken": 0,
+            "totoalScore": 0
+          }
+        }
+      ]
+    }
   }
 }

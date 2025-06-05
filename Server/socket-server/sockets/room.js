@@ -1,46 +1,56 @@
-const fs = require('fs');
-const path = require('path');
-const { start } = require('repl');
-
-const DATA_FILE = path.join(__dirname, '../data/roomData.json');
-
-let startGameData = {}
-
-function readRoomData() {
-    if (fs.existsSync(DATA_FILE)) {
-        const rawData = fs.readFileSync(DATA_FILE);
-        try {
-            return JSON.parse(rawData);
-        } catch (err) {
-            console.error("Lỗi khi parse file JSON:", err);
-            return {};
-        }
-    }
-    return {};
-}
-
-function writeRoomData(data) {
-    try {
-        fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf-8');
-    } catch (err) {
-        console.error("Không thể ghi file:", err);
-    }
-}
+const logicHandler = require('../handler/logicHandler');
 
 function roomEvents(io, socket) {
     console.log('Có client kết nối:', socket.id);
 
-    socket.on('createRoom', (roomName, amoutPlayer, playerName) => {
-        let roomData = readRoomData();
+    socket.on('sendMessage', (roomName, message) => {
+        let roomData = logicHandler.common.readRoomData();
+        console.log(`Tin nhắn từ ${socket.id} tại phòng ${roomName}: ${message}`);
+        const playerId = socket.id
+        const room = roomData[roomName];
+        const player = room.player.find(playerObj => Object.keys(playerObj)[0] === playerId);
+        const playerName = player[playerId].name;
+        io.to(roomName).emit('message', {
+            success: true,
+            sender: playerId,
+            senderName: playerName,
+            text: message,
+            message: `Gửi tin nhắn thành công`
+        });
+    });
 
-        console.log('roomName', roomName);
+
+    socket.on('checkRoomExist', (roomName) => {
+        let roomData = logicHandler.common.readRoomData();
         if (roomName in roomData) {
-            socket.emit('createRoomResult', {
+            socket.emit('checkRoomExistResult', {
                 success: false,
                 message: `Phòng ${roomName} đã tồn tại!`
             });
             return;
         }
+        socket.emit('checkRoomExistResult', {
+            success: true,
+            message: `Chưa có phòng ${roomName}, có thể tạo`
+        });
+    })
+
+    socket.on('checkRoomFull', (roomName) => {
+        let roomData = logicHandler.common.readRoomData();
+        const currentRoomPlayers = roomData[roomName].player.length;
+        const maxRoomPlayers = roomData[roomName].maxPlayer
+        if (currentRoomPlayers >= maxRoomPlayers) {
+            socket.emit('checkRoomFullResult', { success: false, message: `Phòng "${roomName}" đã đầy. ` });
+            return;
+        }
+        socket.emit('checkRoomFullResult', {
+            success: true,
+            message: `Phòng ${roomName} còn slot, có thể join`
+        });
+    })
+
+    socket.on('createRoom', (roomName, amoutPlayer, playerName) => {
+        let roomData = logicHandler.common.readRoomData();
 
         roomData[roomName] = {
             player: [],
@@ -58,11 +68,9 @@ function roomEvents(io, socket) {
             }
         });
 
-        console.log('roomData', roomData);
-
         socket.join(roomName);
 
-        writeRoomData(roomData);
+        logicHandler.common.writeRoomData(roomData);
         socket.emit('createRoomResult', {
             success: true,
             roomName: roomName
@@ -73,7 +81,7 @@ function roomEvents(io, socket) {
     });
 
     socket.on('joinRoom', (roomName, playerName) => {
-        let roomData = readRoomData();
+        let roomData = logicHandler.common.readRoomData();
 
         if (!(roomName in roomData)) {
             socket.emit('joinRoomResult', { success: false, message: `Phòng "${roomName}" không tồn tại. ` });
@@ -104,7 +112,7 @@ function roomEvents(io, socket) {
             }
         });
 
-        writeRoomData(roomData);
+        logicHandler.common.writeRoomData(roomData);
 
         socket.join(roomName);
         socket.emit('joinRoomResult', { success: true, message: 'Vào phòng thành công' });
@@ -114,7 +122,7 @@ function roomEvents(io, socket) {
     });
 
     socket.on('leaveRoom', (roomName) => {
-        let roomData = readRoomData();
+        let roomData = logicHandler.common.readRoomData();
 
         if (!(roomName in roomData)) {
             socket.emit('leaveRoomResult', { success: false, message: `Phòng "${roomName}" không tồn tại.` });
@@ -155,7 +163,7 @@ function roomEvents(io, socket) {
             console.log(`Phòng "${roomName}" đã bị xóa vì không còn người chơi .`);
         }
 
-        writeRoomData(roomData);
+        logicHandler.common.writeRoomData(roomData);
 
         socket.leave(roomName);
         socket.emit('leaveRoomResult', { success: true, message: `Bạn đã rời phòng "${roomName}" thành công.` });
@@ -172,7 +180,7 @@ function roomEvents(io, socket) {
     socket.on('disconnect', () => {
         console.log('Client ngắt kết nối:', socket.id);
 
-        let roomData = readRoomData();
+        let roomData = logicHandler.common.readRoomData();
         let roomChanged = false;
 
         for (const roomName in roomData) {
@@ -205,14 +213,14 @@ function roomEvents(io, socket) {
         }
 
         if (roomChanged) {
-            writeRoomData(roomData);
+            logicHandler.common.writeRoomData(roomData);
             const roomInfo = updateRoomInfo(roomData);
             io.emit('roomInfo', roomInfo);
         }
     });
 
     socket.on('requestRoomInfo', () => {
-        const roomData = readRoomData();
+        let roomData = logicHandler.common.readRoomData();
         const roomInfo = updateRoomInfo(roomData);
         socket.emit('roomInfo', roomInfo);
     });
@@ -225,7 +233,7 @@ function roomEvents(io, socket) {
             return;
         }
 
-        const roomData = readRoomData();
+        let roomData = logicHandler.common.readRoomData();
         const players = roomData[roomName].player;
 
         const gameStartData = {
@@ -255,7 +263,7 @@ function roomEvents(io, socket) {
             return;
         }
 
-        const roomData = readRoomData();
+        let roomData = logicHandler.common.readRoomData();
         const players = roomData[roomName].player;
 
         const gameStartData = {
@@ -293,7 +301,7 @@ function roomEvents(io, socket) {
     }
 
     function getRoomNameBySocketId(socketId) {
-        const roomData = readRoomData();
+        let roomData = logicHandler.common.readRoomData();
         for (const roomName in roomData) {
             // if (roomData[roomName].some(playerObj => Object.keys(playerObj)[0] === socketId)) {
             //     return roomName;
