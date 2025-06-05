@@ -18,6 +18,42 @@ module.exports = function(socket) {
         })
     },
 
+    checkRoomExist(roomName){
+        return new Promise((resolve, reject)=>{
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+            socket.emit('checkRoomExist', roomName);
+
+            socket.on('checkRoomExistResult', (data)=>{
+                if (data.success){
+                    resolve(data)
+                }else{
+                    reject(data.message)
+                }
+            })
+        })
+    },
+
+    checkRoomFull(roomName){
+        return new Promise((resolve, reject)=>{
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+            socket.emit('checkRoomFull', roomName);
+
+            socket.on('checkRoomFullResult', (data)=>{
+                if (data.success){
+                    resolve(data)
+                }else{
+                    reject(data.message)
+                }
+            })
+        })
+    },
+
     createRoom(roomName, maxPlayer, namePlayer) {
         return new Promise((resolve, reject) => {
             if (!socket) {
@@ -38,6 +74,7 @@ module.exports = function(socket) {
     },
 
     joinRoom(roomName, namePlayer) {
+        console.log("nhan ben roomModul", roomName, namePlayer)
         return new Promise((resolve, reject) => {
             if (!socket) {
                 console.error("Chưa kết nối đến Socket.IO server.");

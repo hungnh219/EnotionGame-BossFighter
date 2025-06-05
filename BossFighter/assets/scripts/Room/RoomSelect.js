@@ -22,7 +22,7 @@ cc.Class({
     currentRoom: '',
 
     onLoad() {
-        this.numberPlayer.string = '0'
+        this.numberPlayer.string = '4'
         this.content.removeAllChildren();
         console.log('Main Scene: onLoad');
         this.uiCreateRoom.active = false;
@@ -99,11 +99,18 @@ cc.Class({
         });
     },
 
-    onDoubleClick(roomName) {
+    async onDoubleClick(roomName) {
         const currentTime = Date.now();
 
         if (currentTime - this.lastClickTime <= this.doubleClickThreshold) {
-            this.onOpenNameInputUI(roomName);
+            try{
+                await this.socketIOManager.room.checkRoomFull(roomName)
+                this.onOpenNameInputUI(roomName);
+            }catch (error){
+                console.error("Loi khi join phong", error)
+            }
+
+            
         }
 
         this.lastClickTime = currentTime;
@@ -115,15 +122,21 @@ cc.Class({
             return
         }
         const roomName = this.roomNameInput.string.trim();
-        this.onCloseCreateRoomUI();
-        this.onOpenNameInputUI(roomName);
-
+        try {
+            await this.socketIOManager.room.checkRoomExist(roomName)
+            this.onCloseCreateRoomUI();
+            this.onOpenNameInputUI(roomName);
+        } catch (error) {
+            console.error("Loi khi tao phong", error)
+        }
     },
 
     async onSubmitPlayerNameButton() {
         const roomName = this.roomNameInput.string.trim();
         const maxPlayer = +this.numberPlayer.string;
         const namePlayer = this.namePlayerInput.string.trim();
+        console.log('roomName: ', roomName, 'maxPlayer: ', maxPlayer, 'namePlayer: ', namePlayer)
+        console.log('roonNameJoin', this.roomNameJoin)
 
         if (roomName && namePlayer && maxPlayer) {
             try {
@@ -133,14 +146,10 @@ cc.Class({
                 console.error("Lỗi khi tạo phòng:", error);
 
             }
-        } else if (this.roomNameJoin && namePlayer && maxPlayer === 0) {
+        } else if (this.roomNameJoin && namePlayer) {
             try {
-                const result = await this.socketIOManager.room.joinRoom(this.roomNameJoin, namePlayer);
-                if (result.success) {
-                    cc.director.loadScene('WaitingRoom');
-                } else {
-                    console.warn(result.message);
-                }
+                this.socketIOManager.room.joinRoom(this.roomNameJoin, namePlayer);
+                cc.director.loadScene('WaitingRoom');
             } catch (error) {
                 console.error("Lỗi khi tham gia phòng:", error);
             }
@@ -150,6 +159,10 @@ cc.Class({
     onOpenNameInputUI(roomName) {
         this.roomNameJoin = roomName
         this.uiNamePlayerInput.active = true
+    },
+
+    onCloseNameInputUI() {
+        this.uiNamePlayerInput.active = false
     },
 
     onOpenCreateRoomUI() {
