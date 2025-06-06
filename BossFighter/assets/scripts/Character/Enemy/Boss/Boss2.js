@@ -22,19 +22,19 @@ cc.Class({
     extends: Character,
 
     properties: {
-        characterId: "boss003",
+        characterId: "boss002",
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {},
 
-    start () {
-        this.initData(this.characterId);
+    async start () {
+        await this.initData(this.characterId);
     },
 
-    initData(characterNameId) {
-        this._super(characterNameId);
+    async initData(characterNameId) {
+        await this._super(characterNameId);
     },
 
     playAnimation(animationName, moveTime) {

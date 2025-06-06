@@ -119,7 +119,6 @@ cc.Class({
         this.playerIndex = await this.socketIOManager.game.getPlayerOrder();
 
         this.socketIOManager.game.listenOtherAttack((data) => {
-            console.log('Received attack data from server:', data);
             this.gameController.heroAttackFromServer(data.playerOrder, data.targetOrder, data.isBoss);
                 
         })
@@ -131,8 +130,6 @@ cc.Class({
         if (this.playerIndex != undefined) {
             this.gameController.setPlayerIndex(this.playerIndex);
         }
-        
-        console.log('Locked hero index:', this.lockedHeroIndex, 'Player index:', this.playerIndex);
 
         this.spawnObjectsFromJson();
 
@@ -182,8 +179,6 @@ cc.Class({
         this.mapWidth = mapObjects[0].length;
         this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
         this.mapController.initMapSize(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
-
-
         this.mapController.viewObjectsMap(mapObjects, this.mapWidth, this.mapHeight, this.map1Objects);
         let bossesIndex = jsonData.bosses;
         let bossesPosition = jsonData.bossesPosition;
@@ -195,9 +190,7 @@ cc.Class({
                 this.mapController.spawnBossIntoMap(this.bossNode[bossIndex], bossesPosition[bossIndex], bossesSize[bossIndex]);
             })
         }
-
     },
-
 
     // update (dt) {},
     onDestroy() {
@@ -205,10 +198,7 @@ cc.Class({
         EventBus.off(EventBus.events.CLICK_TO_MOVE, this.onClickToMove, this);
     },
 
-
-
     heroClick(node) {
-        // if ()
         let currentHero = this.gameController.getPlayerByIndex(this.playerIndex);
 
         if (node != currentHero) {

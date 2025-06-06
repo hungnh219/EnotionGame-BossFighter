@@ -32,12 +32,12 @@ cc.Class({
         // this.initData(this.characterId);
     },
 
-    start () {
-        this.initData(this.characterId);
+    async start () {
+        await this.initData(this.characterId);
     },
 
-    initData(characterNameId) {
-        this._super(characterNameId);
+    async initData(characterNameId) {
+        await this._super(characterNameId);
         console.log("Boss3 initData with characterId:", characterNameId);
     },
 

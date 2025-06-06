@@ -104,29 +104,55 @@ cc.Class({
     },
 
     loadHeroPrefabs() {
-        const tempNode = new cc.Node();
-        cc.director.getScene().addChild(tempNode);
+        // const tempNode = new cc.Node();
+        // cc.director.getScene().addChild(tempNode);
 
-        this.heroPrefabs.forEach((prefab, index) => {
-            const hero = cc.instantiate(prefab);
-            tempNode.addChild(hero);
+        // this.heroPrefabs.forEach((prefab, index) => {
+        //     const hero = cc.instantiate(prefab);
+        //     tempNode.addChild(hero);
 
-            setTimeout(() => {
+        //     setTimeout(() => {
+        //         hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
+        //         if (hero.mainScript) {
+        //             const info = hero.mainScript.getCharacterInfo();
+        //             this.heros[index] = info;
+        //             this.createHeroThumbnail(index, info);
+        //         }
+        //         hero.removeFromParent(true);
+        //     }, 0);
+        // });
+        (async () => {
+            for (let index = 0; index < this.heroPrefabs.length; index++) {
+                const prefab = this.heroPrefabs[index];
+
+                const hero = cc.instantiate(prefab);
                 hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
+
                 if (hero.mainScript) {
-                    const info = hero.mainScript.getCharacterInfo();
-                    this.heros[index] = info;
-                    this.createHeroThumbnail(index, info);
+                    let info = { ...hero.mainScript.getCharacterInfo() };
+
+                    try {
+                        let heroData = await this.socketIOManager.game.getCharacterData(info.characterId);
+                        info.name = heroData.name;
+
+                        console.log("Hero Data:", info);
+                        this.heros[index] = info;
+
+                        this.createHeroThumbnail(index, info);
+                        this.saveHeroData(info);
+                    } catch (err) {
+                        console.error(`Lỗi khi lấy dữ liệu hero ${info.characterId}:`, err);
+                    }
                 }
-                hero.removeFromParent(true);
-            }, 0);
-        });
+            }
+        })();
+
     },
 
     createHeroThumbnail(index, info) {
         const heroImageNode = new cc.Node('HeroImageNode');
         const sprite = heroImageNode.addComponent(cc.Sprite);
-        sprite.spriteFrame = info.imageSprite.getComponent(cc.Sprite).spriteFrame;
+        sprite.spriteFrame = info.avatar.getComponent(cc.Sprite).spriteFrame;
         sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
         heroImageNode.width = 60;
         heroImageNode.height = 60;
@@ -159,14 +185,14 @@ cc.Class({
         this.heroHealth.string = info.health;
         this.heroMana.string = info.mana;
         this.heroAttackRange.string = info.attackRange;
-        this.heroImageSprite.spriteFrame = info.imageSprite.getComponent(cc.Sprite).spriteFrame;
+        this.heroImageSprite.spriteFrame = info.avatar.getComponent(cc.Sprite).spriteFrame;
         this.displaySelectedHero(info);
     },
 
 
     displaySelectedHero(info) {
         // Set sprite frame for the selected hero slot
-        this.selectedHeroes[this.playerIndex].spriteFrame = info.imageSprite.getComponent(cc.Sprite).spriteFrame;
+        this.selectedHeroes[this.playerIndex].spriteFrame = info.avatar.getComponent(cc.Sprite).spriteFrame;
 
         // Find the existing name label node by name
         const nameLabelNode = this.selectedHeroes[this.playerIndex].node.getChildByName(`NameLabel-${this.playerIndex}`);
@@ -181,25 +207,6 @@ cc.Class({
     lockHero() {
         if (!this.heroPicked.prefab || this.heroLockedList.node.childrenCount >= this.maxHero + 1) return;
 
-        // const info = this.heros[this.heroPicked.index];
-        // const heroNode = new cc.Node('HeroImageNode');
-        // const sprite = heroNode.addComponent(cc.Sprite);
-        // sprite.spriteFrame = info.imageSprite.getComponent(cc.Sprite).spriteFrame;
-        // sprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
-        // heroNode.width = 150;
-        // heroNode.height = 150;
-
-        // this.heroLockedList.node.insertChild(heroNode, this.heroLockedList.node.childrenCount - 1);
-        // if (this.heroLockedList.node.childrenCount == this.maxHero + 1) {
-        //     let last = this.heroLockedList.node.children[this.heroLockedList.node.childrenCount - 1];
-        //     last.active = false;
-        // }
-
-        // this.addHeroNameLabel(heroNode, info.name);
-        // this.saveHeroData(info);
-
-        console.log("Heroselect: Locking hero:", this.heroPicked.index, this.heroPicked.prefab);
-        // this.gameController.addSelectedHeroPrefab(this.heroPicked.prefab);
         this.socketIOManager.selectHero.lockHero(this.heroPicked.index);
         this.playSoundEffect();
     },
@@ -217,17 +224,17 @@ cc.Class({
     },
 
     saveHeroData(info) {
-        const heroData = {
-            name: info.name,
-            role: info.role,
-            health: info.health,
-            mana: info.mana,
-            attackRange: info.attackRange
-        };
+        // const heroData = {
+        //     name: info.name,
+        //     role: info.role,
+        //     health: info.health,
+        //     mana: info.mana,
+        //     attackRange: info.attackRange
+        // };
 
-        let saved = JSON.parse(cc.sys.localStorage.getItem('selectedHeroes')) || [];
-        saved.push(heroData);
-        cc.sys.localStorage.setItem('selectedHeroes', JSON.stringify(saved));
+        // let saved = JSON.parse(cc.sys.localStorage.getItem('selectedHeroes')) || [];
+        // saved.push(heroData);
+        // cc.sys.localStorage.setItem('selectedHeroes', JSON.stringify(saved));
     },
 
     hideInformation() {
@@ -305,7 +312,7 @@ cc.Class({
                 const info = this.heros[heroIndex];
 
                 // Cập nhật spriteFrame cho đúng player slot
-                this.selectedHeroes[playerIdx].spriteFrame = info.imageSprite.getComponent(cc.Sprite).spriteFrame;
+                this.selectedHeroes[playerIdx].spriteFrame = info.avatar.getComponent(cc.Sprite).spriteFrame;
 
                 // Cập nhật tên hero cho đúng label
                 const nameLabelNode = this.selectedHeroes[playerIdx].node.getChildByName(`NameLabel-${playerIdx}`);

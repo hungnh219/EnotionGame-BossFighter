@@ -6,6 +6,7 @@
 //  - https://docs.cocos.com/creator/2.4/manual/en/scripting/life-cycle-callbacks.html
 // import Character from "../../Character"
 import Character from "../../Character";
+import SocketIOManager from "../../../SocketIO/SocketIOManager"
 
 const BOSS1_ANIMATION = {
     "attack_front": "boss1-front-attack",
@@ -32,12 +33,13 @@ cc.Class({
     onLoad () {
     },
 
-    start () {
-        this.initData(this.characterId);
+    async start () {
+        this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
+        await this.initData(this.characterId);
     },
 
-    initData(characterNameId) {
-        this._super(characterNameId);
+    async initData(characterNameId) {
+        await this._super(characterNameId);
     },
 
     playAnimation(animationName, moveTime) {

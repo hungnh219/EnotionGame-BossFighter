@@ -72,8 +72,6 @@ module.exports = function(socket) {
                 console.error("Chưa kết nối đến Socket.IO server.");
                 return null;
             }
-
-            console.log("Cập nhật lưới ô có thể đi được:", data);
             socket.emit('UPDATE_WALKABLE_GRID_MAP', data);
         },
 
@@ -117,7 +115,6 @@ module.exports = function(socket) {
         getAttackDame(data) {
             return new Promise((resolve, reject) => {
                 socket.on('RETURN_ATTACK_DAME', (data) => {
-                    console.log('Nhận sát thương tấn công:', data.attackDamage);
                     resolve(data.attackDamage);
                 });
                 socket.emit('GET_ATTACK_DAME', data);
@@ -131,7 +128,6 @@ module.exports = function(socket) {
             }
             
             socket.on('LISTEN_ATTACK', (data) => {
-                console.log('Nhận yêu cầu tấn công:', data);
                 if (callback) {
                     callback(data);
                 }
@@ -139,13 +135,11 @@ module.exports = function(socket) {
         },
 
         otherPlayerAttack(data) {
-            console.log('Gửi yêu cầu tấn công đến server:', data);
             if (!socket) {
                 console.error("Chưa kết nối đến Socket.IO server.");
                 return null;
             }
             
-            console.log('Gửi yêu cầu tấn công đến server:', data);
             socket.emit('OTHER_PLAYER_ATTACK', data);
         },
 
@@ -165,11 +159,30 @@ module.exports = function(socket) {
             }
             
             socket.on('LISTEN_NEXT_MAP', () => {
-                console.log('Nhận yêu cầu chuyển sang bản đồ mới từ server');
                 if (callback) {
                     callback();
                 }
             });
-        },  
+        },
+
+        getCharacterData(characterId) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            console.log("characterId:", characterId);
+
+            return new Promise((resolve, reject) => {
+                socket.on('RETURN_CHARACTER_DATA', (data) => {
+                    console.log('Nhận dữ liệu nhân vật:', data.characterData);
+                    console.log('Nhận dữ liệu nhân vật characterId:', characterId);
+                    resolve(data.characterData);
+                });
+                socket.emit('GET_CHARACTER_DATA', {
+                    characterId: characterId
+                 });
+            });
+        }
     };
 }

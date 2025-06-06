@@ -227,6 +227,21 @@ function gameEvents(io, socket) {
             currentMapIndex: currentMapIndex
         });
     })
+
+    socket.on('GET_CHARACTER_DATA', (data) => {
+        let characterData = logicHandler.common.getCharacterById(data.characterId);
+
+        if (!characterData) {
+            console.error('Không tìm thấy dữ liệu nhân vật.');
+            return;
+        }
+
+        console.log('Gửi dữ liệu nhân vật:', characterData);
+
+        socket.emit('RETURN_CHARACTER_DATA', {
+            characterData: characterData
+        });
+    })
 }
 
 module.exports = gameEvents;
