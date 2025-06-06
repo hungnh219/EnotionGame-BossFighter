@@ -44,7 +44,10 @@ module.exports = function (socket) {
                     if (data.success) {
                         resolve(data)
                     } else {
-                        reject(data.message)
+                        reject({
+                            message: data.message,
+                            type: data.type || 'error' 
+                        });
                     }
                 })
             })
@@ -62,7 +65,10 @@ module.exports = function (socket) {
                     if (data.success) {
                         resolve(data)
                     } else {
-                        reject(data.message)
+                        reject({
+                            message: data.message,
+                            type: data.type || 'error' 
+                        });
                     }
                 })
             })
@@ -80,7 +86,10 @@ module.exports = function (socket) {
                     if (data.success) {
                         resolve(data)
                     } else {
-                        reject(data.message)
+                        reject({
+                            message: data.message,
+                            type: data.type || 'error' 
+                        });
                     }
                 })
             })
@@ -99,7 +108,10 @@ module.exports = function (socket) {
                         resolve(data)
                     }
                     else {
-                        reject(data.message)
+                        reject({
+                            message: data.message,
+                            type: data.type || 'error' 
+                        });
                     }
                 })
             })
@@ -121,7 +133,10 @@ module.exports = function (socket) {
                         resolve(data);
                     }
                     else {
-                        reject(data.message)
+                        reject({
+                            message: data.message,
+                            type: data.type || 'error' 
+                        });
                     }
 
                 });

@@ -26,7 +26,6 @@ cc.Class({
 
     onLoad() {
         this.initData(this.characterId);
-
     },
 
     start() {

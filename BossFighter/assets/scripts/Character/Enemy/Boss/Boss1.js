@@ -31,11 +31,10 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+        this.initData(this.characterId);
     },
 
-    async start () {
-        this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
-        await this.initData(this.characterId);
+    start () {
     },
 
     async initData(characterNameId) {

@@ -23,8 +23,8 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    async onLoad() {
-        await this.initData(this.characterId);
+    onLoad() {
+        this.initData(this.characterId);
     },
 
     start() {

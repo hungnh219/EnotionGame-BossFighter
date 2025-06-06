@@ -236,10 +236,8 @@ function gameEvents(io, socket) {
             return;
         }
 
-        console.log('Gửi dữ liệu nhân vật:', characterData);
-
         socket.emit('RETURN_CHARACTER_DATA', {
-            characterData: characterData
+            characterData: characterData,
         });
     })
 }

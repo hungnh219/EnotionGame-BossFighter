@@ -165,18 +165,15 @@ module.exports = function(socket) {
             });
         },
 
-        getCharacterData(characterId) {
+        async getCharacterData(characterId) {
             if (!socket) {
                 console.error("Chưa kết nối đến Socket.IO server.");
                 return null;
             }
 
-            console.log("characterId:", characterId);
-
             return new Promise((resolve, reject) => {
                 socket.on('RETURN_CHARACTER_DATA', (data) => {
                     console.log('Nhận dữ liệu nhân vật:', data.characterData);
-                    console.log('Nhận dữ liệu nhân vật characterId:', characterId);
                     resolve(data.characterData);
                 });
                 socket.emit('GET_CHARACTER_DATA', {
@@ -184,5 +181,8 @@ module.exports = function(socket) {
                  });
             });
         }
+     
+
+
     };
 }

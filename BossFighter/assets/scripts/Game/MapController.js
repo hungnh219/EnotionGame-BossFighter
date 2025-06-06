@@ -131,7 +131,7 @@ cc.Class({
         }
     },
 
-    spawnBossIntoMap(bossNode, position, size = 1) {
+    async spawnBossIntoMap(bossNode, position, size = 1) {
         const posX = position.x ? position.x : this.mapWidth - 3;
         const posY = position.y ? position.y : this.mapHeight - 3;
 
@@ -196,7 +196,7 @@ cc.Class({
     },
 
     spawnHeroIntoMap(heroPrefabs, focusEffectPrefab) {
-        heroPrefabs.forEach((heroPrefab, index) => {
+        heroPrefabs.forEach(async (heroPrefab, index) => {
             let prefabNode = cc.instantiate(heroPrefab)
             let effectNode = cc.instantiate(focusEffectPrefab)
             prefabNode.focusEffect = effectNode;

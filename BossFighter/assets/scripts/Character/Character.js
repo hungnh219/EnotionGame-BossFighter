@@ -27,7 +27,9 @@ cc.Class({
     async initData(characterNameId) {
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
 
+        console.warn('fetching character data for:', characterNameId);
         let characterData = await this.socketIOManager.game.getCharacterData(characterNameId);
+        console.warn('get data:', characterNameId, characterData.name);
         this.health = characterData.maxHp ?? 100;
         this.maxHp = characterData.maxHp ?? 100;
         this.attackDame = characterData.attackDamage ?? 10; 

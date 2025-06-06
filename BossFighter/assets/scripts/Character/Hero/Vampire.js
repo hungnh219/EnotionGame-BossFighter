@@ -27,10 +27,8 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    async onLoad() {
-        await this.initData(this.characterId);
-
-        console.log("attack prefab", this.attackPrefab);
+    onLoad() {
+        this.initData(this.characterId);
     },
 
     start() {
