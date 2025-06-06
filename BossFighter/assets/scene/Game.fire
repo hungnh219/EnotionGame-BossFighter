@@ -1476,7 +1476,9 @@
     "attackCooldownLabel": {
       "__id__": 95
     },
-    "skillCooldownLabel": null,
+    "skillCooldownLabel": {
+      "__id__": 106
+    },
     "ultimateCooldownLabel": {
       "__id__": 106
     },
@@ -1524,7 +1526,7 @@
     },
     "backgroundNotificationPanelSpriteFrames": [
       {
-        "__uuid__": "49b46026-1498-4818-8688-ad12eb9465fe"
+        "__uuid__": "e8074d9a-d198-480d-8cb0-62202966e170"
       },
       {
         "__uuid__": "e8074d9a-d198-480d-8cb0-62202966e170"

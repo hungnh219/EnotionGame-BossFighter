@@ -5,6 +5,11 @@ const DATA_FILE = path.join(__dirname, '../data/roomData.json');
 const CHARACTER_DATA = path.join(__dirname, '../data/character.json');
 
 module.exports = {
+    TYPE : {
+        "WARNING": 'warning',
+        "ERROR": 'error',
+        "SUCCESS": 'success'
+    },
     getRoomNameBySocketId(socketId) {
         const roomData = this.readRoomData();
         for (const roomName in roomData) {

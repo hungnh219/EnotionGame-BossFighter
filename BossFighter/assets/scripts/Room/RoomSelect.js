@@ -1,4 +1,5 @@
 import SocketIOManager from "../SocketIO/SocketIOManager";
+import Notification from "../Prefab/Notification"
 
 cc.Class({
     extends: cc.Component,
@@ -16,13 +17,12 @@ cc.Class({
         prefabRoomItem: cc.Prefab,
         numberPlayer: cc.Label,
         filterRoom: cc.EditBox,
-        notificationPopUp: cc.Label,
+        notificationPrefab: cc.Prefab,
     },
 
     socketIOManager: null,
 
     onLoad() {
-        this.notificationPopUp.node.active =false
         this.numberPlayer.string = '4'
         this.content.removeAllChildren();
         console.log('Main Scene: onLoad');
@@ -63,12 +63,18 @@ cc.Class({
             const roomItemNode = cc.instantiate(this.prefabRoomItem);
 
 
-            const roomNameLabelNode = cc.find("New Sprite/New Label", roomItemNode);
+            const roomNameLabelNode = cc.find("New Sprite/Room Name", roomItemNode);
+            const playerNumberNode = cc.find("New Sprite/Player Number", roomItemNode)
+            const statusRoomNode = cc.find("New Sprite/Status Room", roomItemNode)
 
             if (roomNameLabelNode) {
                 const roomNameLabelComp = roomNameLabelNode.getComponent(cc.Label);
+                const statusRoomComp = statusRoomNode.getComponent(cc.Label)
+                const playerNumberComp = playerNumberNode.getComponent(cc.Label)
                 if (roomNameLabelComp) {
-                    roomNameLabelComp.string = `${room.roomName} (${room.memberCount}/${room.maxPlayer})`;
+                    roomNameLabelComp.string = room.roomName;
+                    playerNumberComp.string = `${room.memberCount}/${room.maxPlayer}`
+                    statusRoomComp.string = room.status
                 } else {
                     console.log("Node 'New Label' trong prefabRoomItem không có component cc.Label.");
                 }
@@ -93,8 +99,12 @@ cc.Class({
                         await this.socketIOManager.room.checkRoomFull(room.roomName)
                         this.onOpenNameInputUI(room.roomName)
                     }catch(error){
-                        console.error("Loi khi join phong", error)
-                        this.onOpenNotificationPopUp(error)
+                        if (typeof error === 'object' && error.message && error.type) {
+                            this.onOpenNotificationPopUp(error.message, error.type);
+                        }
+                        else{
+                            this.onOpenNotificationPopUp(error)
+                        }
                     }
                     
                 })
@@ -115,8 +125,12 @@ cc.Class({
                 await this.socketIOManager.room.checkRoomFull(roomName)
                 this.onOpenNameInputUI(roomName);
             }catch (error){
-                console.error("Loi khi join phong", error)
-                this.onOpenNotificationPopUp(error)
+                if (typeof error === 'object' && error.message && error.type) {
+                    this.onOpenNotificationPopUp(error.message, error.type);
+                }
+                else{
+                    this.onOpenNotificationPopUp(error)
+                }
             }            
         }
 
@@ -126,11 +140,11 @@ cc.Class({
     async onSubmitRoomButton() {
         const roomName = this.roomNameInput.string.trim();
         if(!roomName ){
-            this.onOpenNotificationPopUp('Tên Phòng không được để trống');
+            this.onOpenNotificationPopUp('Tên Phòng không được để trống', 'error');
             return
         }
         if (this.numberPlayer.string == 0) {
-            this.onOpenNotificationPopUp('Số lượng player không hợp lệ');
+            this.onOpenNotificationPopUp('Số lượng player không hợp lệ', 'error');
             return
         }
         try {
@@ -138,8 +152,12 @@ cc.Class({
             this.onCloseCreateRoomUI();
             this.onOpenNameInputUI(roomName);
         } catch (error) {
-            console.error("Loi khi tao phong", error)
-            this.onOpenNotificationPopUp(error)
+            if (typeof error === 'object' && error.message && error.type) {
+                this.onOpenNotificationPopUp(error.message, error.type);
+            }
+            else{
+                this.onOpenNotificationPopUp(error)
+            }
         }
     },
 
@@ -149,15 +167,19 @@ cc.Class({
         const namePlayer = this.namePlayerInput.string.trim();
  
         if(!namePlayer){
-            this.onOpenNotificationPopUp('Tên Player không được để trống')
+            this.onOpenNotificationPopUp('Tên Player không được để trống', 'error')
         }
         if (roomName && namePlayer && maxPlayer) {
             try {
                 await this.socketIOManager.room.createRoom(roomName, maxPlayer, namePlayer);
                 cc.director.loadScene('WaitingRoom');
             } catch (error) {
-                console.error("Lỗi khi tạo phòng:", error);
-                this.onOpenNotificationPopUp(error)
+                if (typeof error === 'object' && error.message && error.type) {
+                    this.onOpenNotificationPopUp(error.message, error.type);
+                }
+                else{
+                    this.onOpenNotificationPopUp(error)
+                }
 
             }
         } else if (this.roomNameJoin && namePlayer) {
@@ -165,19 +187,30 @@ cc.Class({
                 this.socketIOManager.room.joinRoom(this.roomNameJoin, namePlayer);
                 cc.director.loadScene('WaitingRoom');
             } catch (error) {
-                console.error("Lỗi khi tham gia phòng:", error);
-                this.onOpenNotificationPopUp(error)
+                if (typeof error === 'object' && error.message && error.type) {
+                    this.onOpenNotificationPopUp(error.message, error.type);
+                }
+                else{
+                    this.onOpenNotificationPopUp(error)
+                }
+                
             }
         }
     },
 
-    onOpenNotificationPopUp(noti){
-        this.notificationPopUp.node.active = true
-        this.notificationPopUp.string = noti
-        this.scheduleOnce(()=>{
-            this.notificationPopUp.string = ''
-            this.notificationPopUp.node.active = false
-        },2)
+    onOpenNotificationPopUp(message, type){
+
+        let newNotify = cc.instantiate(this.notificationPrefab);
+        this.node.addChild(newNotify);
+
+        newNotify.getComponent(Notification).showMessage(type, message);
+
+        // this.notificationPopUp.node.active = true
+        // this.notificationPopUp.string = message
+        // this.scheduleOnce(()=>{
+        //     this.notificationPopUp.string = ''
+        //     this.notificationPopUp.node.active = false
+        // },2)
     },
 
     onOpenNameInputUI(roomName) {
