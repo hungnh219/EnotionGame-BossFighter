@@ -32,8 +32,8 @@ cc.Class({
     start() {
     },
 
-    initData(characterNameId) {
-        this._super(characterNameId);
+    async initData(characterNameId) {
+        await this._super(characterNameId);
     },
 
     ultimate(targetTile, gameCtrl) {

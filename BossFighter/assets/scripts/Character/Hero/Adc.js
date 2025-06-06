@@ -33,8 +33,8 @@ cc.Class({
     start () {
     },
 
-    initData(characterNameId) {
-        this._super(characterNameId);
+    async initData(characterNameId) {
+        await this._super(characterNameId);
 
         console.log("ADC initData with characterId:", characterNameId);
         console.log("ADC properties:", this);
