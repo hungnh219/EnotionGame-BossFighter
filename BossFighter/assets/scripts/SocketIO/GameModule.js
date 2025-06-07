@@ -1,5 +1,27 @@
 module.exports = function(socket) {
     return {
+    // ============= init =============
+    // ================================
+        initData(handleInitDataCallback) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+            
+            new Promise((resolve, reject) => {
+                socket.on('DATA_INITIALIZED', (data) => {
+                    console.log('init data:', data);
+                    if (handleInitDataCallback) {
+                        handleInitDataCallback(data.heroData);
+                    }
+                    resolve();
+                });
+                socket.emit('INIT_DATA');
+                
+            });
+
+        }, 
+
         getPlayerOrder() {
             console.log("Yêu cầu thứ tự người chơi từ server...");
             if (!socket) {

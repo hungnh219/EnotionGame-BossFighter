@@ -1,28 +1,28 @@
 {
   "heroes": [
     {
-      "id": 0,
+      "id": "hero001",
       "name": "ADC",
       "maxHp": 100,
       "attackDamage": 200,
       "attackRange": 5
     },
     {
-      "id": 1,
+      "id": "hero002",
       "name": "Bruiser",
       "maxHp": 100,
       "attackDamage": 200,
       "attackRange": 5
     },
     {
-      "id": 2,
+      "id": "hero003",
       "name": "Tanker",
       "maxHp": 100,
       "attackDamage": 200,
       "attackRange": 5
     },
     {
-      "id": 3,
+      "id": "hero004",
       "name": "Vampire",
       "maxHp": 100,
       "attackDamage": 200,

@@ -1,6 +1,47 @@
 const logicHandler = require('../handler/logicHandler');
 
 function gameEvents(io, socket) {
+    // ============= init =============
+    // ================================
+    socket.on('INIT_DATA', () => {
+        console.log('Yêu cầu khởi tạo dữ liệu từ client:', socket.id);
+        
+        let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
+        if (!roomName) {
+            console.error('Không tìm thấy phòng cho socket ID:', socket.id);
+            return;
+        }
+
+        let roomData = logicHandler.common.readRoomData();
+        if (!roomData[roomName]) {
+            console.error('Không tìm thấy dữ liệu phòng:', roomName);
+            return;
+        }
+
+        let playerData = [];
+        roomData[roomName].player.forEach(playerObj => {
+            const playerId = Object.keys(playerObj)[0];
+            const playerInfo = playerObj[playerId];
+            const heroData = logicHandler.common.getCharacterData(playerInfo.lockedHero);
+            if (!heroData) {
+            console.error('Không tìm thấy dữ liệu hero cho lockedHero:', playerInfo.lockedHero);
+            return;
+            }
+            playerData[playerInfo.order] = {
+                id: heroData.id,
+                hp: heroData.maxHp,
+                maxHp: heroData.maxHp,
+                name: heroData.name,
+            };
+        });
+
+        io.to(socket.id).emit('DATA_INITIALIZED', {
+            // roomData: roomData[roomName]
+            heroData: playerData,
+        });
+    });
+
+
     socket.on('GET_PLAYER_ORDER', () => {
         const roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
         if (!roomName) {

@@ -25,9 +25,6 @@ const GameController = cc.Class({
         },
     },
 
-    // properties: {
-    //     characterJsonData: cc.JsonAsset,
-    // },
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
@@ -37,35 +34,6 @@ const GameController = cc.Class({
         } else {
             this.node.destroy();
         }
-
-        // variables
-        // this.mapPick = null;
-        // this.heroPick = [];
-        // this.selectedHeroPrefabs = [];
-        // this.listenMoveNode = null;
-
-        // this.focusedHero = null;
-        // this.heroes = []; // hero in game
-        // this.gridMap = [];
-        // this.winner = null; // 'boss', 'player'
-        // this.isAutoMode = false;
-        // this.isUsingSkill = false;
-        // this.enemies = [];
-        // this.bosses = [];
-        // this.isTurnOnMusic = true;
-
-        // this.mapHeight = null;
-        // this.mapWidth = null;
-        // this.mapTileWidth = null;
-        // this.mapTileHeight = null;
-
-        // this.isPlayerTurn = true;
-        
-
-    // // =================== callbacks to view info in game scene ===================
-    //     this.updatePlayerTurn = null;
-    //     this.updatePlayerInfo = null;
-
     },
     //-------------------------------------------------------------------------------//
     startGame(socketIOManager) {
