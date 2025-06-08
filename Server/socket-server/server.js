@@ -4,16 +4,31 @@ const socketIO = require('socket.io');
 // const roomRoutes = require('./routes/roomRoutes.js');
 const configureSocket = require('./config/socket-config.js');
 
+const admin = require('firebase-admin');
+const cors = require('cors');
 
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIO(server);
+const io = socketIO(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
+
+// --- Khởi tạo Firebase Admin SDK ---
+const serviceAccount = require('./my-game-project-321a1-firebase-adminsdk-fbsvc-8bdb68f419.json');
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
+const db = admin.firestore();
 
 const PORT = 3000;
-app.use(express.json());
+app.use(cors());
+app.use(express.json({ limit: '10mb' }));
 
-configureSocket(io);
+configureSocket(io, db, admin);
 
 server.listen(PORT, () => {
   console.log(`Server đang chạy tại http://localhost:${PORT}`);
