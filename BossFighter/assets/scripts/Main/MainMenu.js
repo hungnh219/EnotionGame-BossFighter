@@ -67,5 +67,9 @@ cc.Class({
     playOnline() {
         // this.socketIO.getRoomInformation();
         cc.director.loadScene('RoomSelect');
+    },
+
+    moveLeaderBoard() {
+        cc.director.loadScene('LeaderBoard')
     }
 });

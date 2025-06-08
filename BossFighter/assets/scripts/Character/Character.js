@@ -37,8 +37,13 @@ cc.Class({
         this.name = characterData.name ?? "Unknown Character";
     },
 
-    takeDame(dame) {
-        this.health -= dame;
+    async takeDame(dealerId ,dame) {
+        // this.health -= dame;
+        let newHealth = await this.socketIOManager.game.takeDame(dealerId, this.characterId, dame);
+
+        console.warn(dealerId, 'take dame:', this.characterId, dame, 'new health:', newHealth);
+        this.health = newHealth;
+        
         this.health = Math.max(this.health, 0);
         if (this.hpBar) {
             this.hpBar.progress = this.health / this.maxHp;

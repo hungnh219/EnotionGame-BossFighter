@@ -434,7 +434,10 @@ const GameController = cc.Class({
         let direction = this.getDirection(heroPos, enemyPos);
         let dame = await hero.mainScript.attack(enemy, direction);
         // optimize
-        enemy.mainScript.takeDame(dameFromServer);
+
+        let heroId = hero.mainScript.characterId;
+
+        enemy.mainScript.takeDame(heroId, dameFromServer);
         console.log('enemy current hp: ', enemy.mainScript.getCurrentHp());
         if (enemy.mainScript.getCurrentHp() <= 0)  {
             if (isBoss) {

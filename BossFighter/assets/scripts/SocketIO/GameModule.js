@@ -217,6 +217,25 @@ module.exports = function(socket) {
                 });
                 socket.emit('GET_LEADER_BOARD');
             });
+        },
+
+        takeDame(dealerId, characterId, dame) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            return new Promise((resolve, reject) => {
+                socket.on('LISTEN_TAKE_DAME', (data) => {
+                    console.log('Nhận lượng máu mới sau khi nhận sát thương:', data);
+                    resolve(data.newHp);
+                });
+                socket.emit('TAKE_DAME', {
+                    dealerId: dealerId,
+                    characterId: characterId,
+                    dame: dame
+                });
+            });
         }
      
 

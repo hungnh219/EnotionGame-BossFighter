@@ -26,13 +26,20 @@
       "maxHp": 140,
       "attackDamage": 200,
       "attackRange": 5
+    },
+    {
+      "id": "hero004",
+      "name": "Tanker",
+      "maxHp": 100,
+      "attackDamage": 200,
+      "attackRange": 5
     }
   ],
   "bosses": [
     {
       "id": "boss001",
       "name": "Boss 001",
-      "maxHp": 2000,
+      "maxHp": 800,
       "attackDamage": 200,
       "attackRange": 5
     },

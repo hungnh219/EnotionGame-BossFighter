@@ -74,8 +74,6 @@ function gameEvents(io, socket) {
             console.error('Không tìm thấy phòng cho socket ID:', socket.id);
             return;
         }
-
-        console.log('Yêu cầu khởi tạo game từ client:', socket.id);
         
         let roomData = logicHandler.common.readRoomData();
 
@@ -88,7 +86,6 @@ function gameEvents(io, socket) {
 
         // tạo dữ liệu mảng heroes cho người chơi (thứ tự là theo order)
         let heroes = [];
-
         playerData.forEach(player => {
             let playerId = player.id;
             let order = player.order;
@@ -104,6 +101,7 @@ function gameEvents(io, socket) {
                 order: order,
                 lockedHero: lockedHero,
                 // heroData: heroData
+                heroId: heroData.id,
                 hp: heroData.maxHp,
                 maxHp: heroData.maxHp,
                 attackDamage: heroData.attackDamage,
@@ -315,6 +313,68 @@ function gameEvents(io, socket) {
         io.to(roomName).emit('RETURN_LEADER_BOARD', {
             leaderBoard: leaderBoard,
         });
+    })
+
+    socket.on('TAKE_DAME', (data) => {
+        let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
+        if (!roomName) {
+            console.error('Không tìm thấy phòng cho socket ID:', socket.id);
+            return;
+        }
+
+        console.log('Yêu cầu nhận dame từ client:', socket.id, 'Data:', data);
+
+        let roomData = logicHandler.common.readRoomData();
+        let heroes = roomData[roomName].gameState.heroes;
+
+        if (!heroes) {
+            console.error('Không tìm thấy dữ liệu heroes trong dữ liệu phòng:', roomName);
+            return;
+        }
+
+        // let characterId = data.characterId;
+        let dealderId = data.dealderId;
+        let isHero = logicHandler.common.isHero(dealderId);
+        
+        if (isHero) {
+            // Tìm hero theo dealderId
+            let hero = heroes.find(hero => hero.id === dealderId);
+            if (!hero) {
+                console.error('Không tìm thấy hero với ID:', dealderId);
+                return;
+            }
+            // Cập nhật lượng dame đã nhận 
+            hero.stats.totalDameTaken += data.dame;
+            hero.totalScore += data.dame; // Cập nhật điểm số của hero
+            console.log('totalDameTaken của hero', dealderId, 'là:', hero.stats.totalDameTaken);
+        }
+
+        let characterId = data.characterId;
+        // trừ máu character theo id
+        let characterData = logicHandler.common.getCharacterById(characterId);
+
+        if (!characterData) {
+            console.error('Không tìm thấy dữ liệu nhân vật với ID:', characterId);
+            return;
+        }
+        console.log('Nhân vật trước khi nhận dame:', characterData);
+        characterData.hp -= data.dame;
+
+        console.log('Nhân vật sau khi nhận dame:', characterData);
+        if (characterData.hp <= 0) {
+            characterData.hp = 0;
+            characterData.status = "DEAD"; // Cập nhật trạng thái nhân vật
+        }
+
+        // Ghi lại dữ liệu nhân vật đã cập nhật
+
+        console.log('Cập nhật dữ liệu nhân vật:', characterData);
+        console.log('characterId', characterId, 'newHp', characterData.hp);
+
+        io.to(roomName).emit('LISTEN_TAKE_DAME', {
+            characterId: characterId,
+            newHp: characterData.hp,
+        })
     })
 }
 
