@@ -5,6 +5,11 @@ const DATA_FILE = path.join(__dirname, '../data/roomData.json');
 const CHARACTER_DATA = path.join(__dirname, '../data/character.json');
 
 module.exports = {
+    TYPE : {
+        "WARNING": 'warning',
+        "ERROR": 'error',
+        "SUCCESS": 'success'
+    },
     getRoomNameBySocketId(socketId) {
         const roomData = this.readRoomData();
         for (const roomName in roomData) {
@@ -46,6 +51,44 @@ module.exports = {
                 console.error("Lỗi khi parse file JSON:", err);
                 return null;
             }
+        }
+    },
+
+    getCharacterById(characterId) {
+        if (fs.existsSync(CHARACTER_DATA)) {
+            const rawData = fs.readFileSync(CHARACTER_DATA);
+            try {
+                const characterData = JSON.parse(rawData);
+                let heroes = characterData.heroes || {};
+                let bosses = characterData.bosses || {};
+                let enemies = characterData.enemies || {};
+                for (const hero of Object.values(heroes)) {
+                    if (hero.id === characterId) {
+                        return hero;
+                    }
+                }
+                
+                for (const boss of Object.values(bosses)) {
+                    if (boss.id === characterId) {
+                        return boss;
+                    }
+                }
+
+                for (const enemy of Object.values(enemies)) {
+                    if (enemy.id === characterId) {
+                        return enemy;
+                    }
+                }
+                
+                return null;
+            }
+            catch (err) {
+                console.error("Lỗi khi parse file JSON:", err);
+                return null;
+            }
+        } else {
+            console.error("File dữ liệu nhân vật không tồn tại:", CHARACTER_DATA);
+            return null;
         }
     }
 }

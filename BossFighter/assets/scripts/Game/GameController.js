@@ -173,15 +173,12 @@ const GameController = cc.Class({
 
 
     getSelectedHeroPrefabs() {
-        console.log('get selected hero prefabs', this.selectedHeroPrefabs);
         return this.selectedHeroPrefabs;
     },
 
     addSelectedHeroPrefab(prefab) {
-        console.log('add selected hero prefab', prefab);
         if (!this.selectedHeroPrefabs) this.selectedHeroPrefabs = [];
         this.selectedHeroPrefabs.push(prefab);
-        console.log('selected hero prefabs', this.selectedHeroPrefabs);
     },
 
     getBoss() {

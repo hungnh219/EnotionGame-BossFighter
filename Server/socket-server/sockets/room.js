@@ -1,4 +1,5 @@
 const logicHandler = require('../handler/logicHandler');
+const typeHandler = require('../handler/commonHandler')
 
 function roomEvents(io, socket) {
     console.log('Có client kết nối:', socket.id);
@@ -25,12 +26,14 @@ function roomEvents(io, socket) {
         if (roomName in roomData) {
             socket.emit('checkRoomExistResult', {
                 success: false,
+                type: typeHandler.TYPE.WARNING,
                 message: `Phòng ${roomName} đã tồn tại!`
             });
             return;
         }
         socket.emit('checkRoomExistResult', {
             success: true,
+            type: typeHandler.TYPE.SUCCESS,
             message: `Chưa có phòng ${roomName}, có thể tạo`
         });
     })
@@ -39,12 +42,18 @@ function roomEvents(io, socket) {
         let roomData = logicHandler.common.readRoomData();
         const currentRoomPlayers = roomData[roomName].player.length;
         const maxRoomPlayers = roomData[roomName].maxPlayer
+        const statusRoom = roomData[roomName].status
         if (currentRoomPlayers >= maxRoomPlayers) {
-            socket.emit('checkRoomFullResult', { success: false, message: `Phòng "${roomName}" đã đầy. ` });
+            socket.emit('checkRoomFullResult', { success: false, type: typeHandler.TYPE.WARNING ,message: `Phòng "${roomName}" đã đầy. ` });
+            return;
+        }
+        if (statusRoom != 'waiting'){
+            socket.emit('checkRoomFullResult', {success: false, type: typeHandler.TYPE.WARNING ,message: `Phòng "${roomName}" đang trong game. ` })
             return;
         }
         socket.emit('checkRoomFullResult', {
             success: true,
+            type: typeHandler.TYPE.SUCCESS,
             message: `Phòng ${roomName} còn slot, có thể join`
         });
     })
@@ -84,7 +93,7 @@ function roomEvents(io, socket) {
         let roomData = logicHandler.common.readRoomData();
 
         if (!(roomName in roomData)) {
-            socket.emit('joinRoomResult', { success: false, message: `Phòng "${roomName}" không tồn tại. ` });
+            socket.emit('joinRoomResult', { success: false, type: typeHandler.TYPE.ERROR ,message: `Phòng "${roomName}" không tồn tại. ` });
             return;
         }
 
@@ -93,12 +102,12 @@ function roomEvents(io, socket) {
 
         const playerExists = currentRoomPlayers.some(playerObj => Object.keys(playerObj)[0] === socket.id);
         if (playerExists) {
-            socket.emit('joinRoomResult', { success: false, message: `Bạn đã ở trong phòng "${roomName}" rồi.` });
+            socket.emit('joinRoomResult', { success: false, type: typeHandler.TYPE.WARNING ,message: `Bạn đã ở trong phòng "${roomName}" rồi.` });
             return;
         }
 
         if (currentRoomPlayers.length >= maxRoomPlayers) {
-            socket.emit('joinRoomResult', { success: false, message: `Phòng "${roomName}" đã đầy. ` });
+            socket.emit('joinRoomResult', { success: false, type: typeHandler.TYPE.WARNING ,message: `Phòng "${roomName}" đã đầy. ` });
             return;
         }
 
@@ -115,7 +124,7 @@ function roomEvents(io, socket) {
         logicHandler.common.writeRoomData(roomData);
 
         socket.join(roomName);
-        socket.emit('joinRoomResult', { success: true, message: 'Vào phòng thành công' });
+        socket.emit('joinRoomResult', { success: true, type: typeHandler.TYPE.SUCCESS ,message: 'Vào phòng thành công' });
 
         const roomInfo = updateRoomInfo(roomData);
         io.emit('roomInfo', roomInfo);
@@ -125,7 +134,7 @@ function roomEvents(io, socket) {
         let roomData = logicHandler.common.readRoomData();
 
         if (!(roomName in roomData)) {
-            socket.emit('leaveRoomResult', { success: false, message: `Phòng "${roomName}" không tồn tại.` });
+            socket.emit('leaveRoomResult', { success: false, type: typeHandler.TYPE.WARNING ,message: `Phòng "${roomName}" không tồn tại.` });
             return;
         }
 
@@ -166,7 +175,7 @@ function roomEvents(io, socket) {
         logicHandler.common.writeRoomData(roomData);
 
         socket.leave(roomName);
-        socket.emit('leaveRoomResult', { success: true, message: `Bạn đã rời phòng "${roomName}" thành công.` });
+        socket.emit('leaveRoomResult', { success: true, type: typeHandler.TYPE.SUCCESS ,message: `Bạn đã rời phòng "${roomName}" thành công.` });
 
         const roomInfo = updateRoomInfo(roomData);
         io.emit('roomInfo', roomInfo);
@@ -235,6 +244,7 @@ function roomEvents(io, socket) {
 
         let roomData = logicHandler.common.readRoomData();
         const players = roomData[roomName].player;
+        roomData[roomName].status = 'playing'
 
         const gameStartData = {
             roomName: roomName,
@@ -254,6 +264,9 @@ function roomEvents(io, socket) {
         // io.emit('GAME_START', gameStartData);
         // emit to clients in room name
         io.to(roomName).emit('GAME_START_DATA', gameStartData);
+        logicHandler.common.writeRoomData(roomData);
+        const roomInfo = updateRoomInfo(roomData);
+        io.emit('roomInfo', roomInfo);
     })
 
     socket.on('GET_GAME_START_DATA', () => {

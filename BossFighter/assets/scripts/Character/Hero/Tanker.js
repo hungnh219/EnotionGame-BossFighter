@@ -18,7 +18,7 @@ cc.Class({
     extends: Character,
 
     properties: {
-        characterId: "hero004",
+        characterId: "hero003",
     },
 
     // LIFE-CYCLE CALLBACKS:

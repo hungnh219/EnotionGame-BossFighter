@@ -2,67 +2,56 @@
   "heroes": [
     {
       "id": "hero001",
-      "name": "ADC",
-      "maxHp": 100,
+      "name": "Ad Carry",
+      "maxHp": 120,
       "attackDamage": 200,
       "attackRange": 5
-    },
-    {
+    },{
       "id": "hero002",
       "name": "Bruiser",
-      "maxHp": 100,
+      "maxHp": 130,
       "attackDamage": 200,
       "attackRange": 5
     },
     {
       "id": "hero003",
       "name": "Tanker",
-      "maxHp": 100,
+      "maxHp": 120,
       "attackDamage": 200,
       "attackRange": 5
     },
     {
       "id": "hero004",
       "name": "Vampire",
-      "maxHp": 100,
+      "maxHp": 140,
       "attackDamage": 200,
       "attackRange": 5
     }
   ],
   "bosses": [
     {
-      "id": 1,
-      "name": "Tanker",
-      "level": 20,
-      "health": 200,
-      "mana": 100,
-      "skills": ["Earthquake", "Rage"]
+      "id": "boss001",
+      "name": "Boss 001",
+      "maxHp": 2000,
+      "attackDamage": 200,
+      "attackRange": 5
     },
     {
-      "id": 2,
-      "name": "Boss Two",
-      "level": 25,
-      "health": 250,
-      "mana": 120,
-      "skills": ["Tornado", "Berserk"]
+      "id": "boss002",
+      "name": "Boss 002",
+      "maxHp": 2000,
+      "attackDamage": 200,
+      "attackRange": 5
+    },
+    {
+      "id": "boss003",
+      "name": "Boss 003",
+      "maxHp": 2000,
+      "attackDamage": 200,
+      "attackRange": 5
     }
   ],
-  "enemy": [
-    {
-      "id": 1,
-      "name": "Enemy One",
-      "level": 5,
-      "health": 50,
-      "mana": 20,
-      "skills": ["Slash", "Stun"]
-    },
-    {
-      "id": 2,
-      "name": "Enemy Two",
-      "level": 7,
-      "health": 70,
-      "mana": 30,
-      "skills": ["Poison", "Charge"]
-    }
+  "enemies": [
+
   ]
 }

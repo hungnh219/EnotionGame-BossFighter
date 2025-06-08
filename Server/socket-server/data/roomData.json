@@ -1,0 +1,334 @@
+{
+  "321": {
+    "player": [
+      {
+        "2CEoe01ER4rH3xqhAAAR": {
+          "name": "1",
+          "clickHero": 0,
+          "lockedHero": 0,
+          "order": 0,
+          "host": true
+        }
+      },
+      {
+        "dmMzz-WA2yg48xMYAAAT": {
+          "name": "333",
+          "clickHero": 3,
+          "lockedHero": 3,
+          "order": 1,
+          "host": false
+        }
+      }
+    ],
+    "maxPlayer": 4,
+    "status": "playing",
+    "gameState": {
+      "status": "STARTED",
+      "turn": "player",
+      "currentPlayer": null,
+      "walkableGridMap": [
+        [
+          false,
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false
+        ],
+        [
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ]
+      ],
+      "currentMapIndex": 0,
+      "heroes": [
+        {
+          "id": "2CEoe01ER4rH3xqhAAAR",
+          "order": 0,
+          "lockedHero": 0,
+          "hp": 120,
+          "maxHp": 120,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Ad Carry",
+          "status": "ALIVE",
+          "stats": {
+            "totalDameDeal": 0,
+            "totalDameTaken": 0,
+            "totalScore": 0
+          }
+        },
+        {
+          "id": "dmMzz-WA2yg48xMYAAAT",
+          "order": 1,
+          "lockedHero": 3,
+          "hp": 140,
+          "maxHp": 140,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Vampire",
+          "status": "ALIVE",
+          "stats": {
+            "totalDameDeal": 0,
+            "totalDameTaken": 0,
+            "totalScore": 0
+          }
+        }
+      ]
+    }
+  },
+  "321111": {
+    "player": [
+      {
+        "2Jg374NdNGokcvbcAAAF": {
+          "name": "1",
+          "clickHero": 0,
+          "lockedHero": 0,
+          "order": 0,
+          "host": true
+        }
+      },
+      {
+        "k94dZ_7RbmnL4959AAAH": {
+          "name": "2",
+          "clickHero": 3,
+          "lockedHero": 3,
+          "order": 1,
+          "host": false
+        }
+      }
+    ],
+    "maxPlayer": 4,
+    "status": "playing",
+    "gameState": {
+      "status": "STARTED",
+      "turn": "player",
+      "currentPlayer": null,
+      "walkableGridMap": [
+        [
+          false,
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false
+        ],
+        [
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ]
+      ],
+      "currentMapIndex": 0,
+      "heroes": [
+        {
+          "id": "2Jg374NdNGokcvbcAAAF",
+          "order": 0,
+          "lockedHero": 0,
+          "hp": 120,
+          "maxHp": 120,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Ad Carry",
+          "status": "ALIVE",
+          "stats": {
+            "totalDameDeal": 0,
+            "totalDameTaken": 0,
+            "totalScore": 26
+          }
+        },
+        {
+          "id": "k94dZ_7RbmnL4959AAAH",
+          "order": 1,
+          "lockedHero": 3,
+          "hp": 140,
+          "maxHp": 140,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Vampire",
+          "status": "ALIVE",
+          "stats": {
+            "totalDameDeal": 0,
+            "totalDameTaken": 0,
+            "totalScore": 45
+          }
+        }
+      ]
+    }
+  }
+}

@@ -58,9 +58,18 @@ cc.Class({
             messageLabel.string = data.text;
 
             this.scrollViewContent.insertChild(messageNode, 0); 
+
+            this.scrollToBottom();
+
         } else {
             console.error("Lỗi tin nhắn từ server:", data.message);
         }
+    },
+
+    scrollToBottom() {
+        const scrollView = this.scrollViewContent.parent.parent.getComponent(cc.ScrollView)
+        console.log('scrollView', scrollView)
+        scrollView.scrollToBottom(0.1); 
     },
 
     async onEditingEnded() {
