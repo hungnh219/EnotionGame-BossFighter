@@ -7,6 +7,7 @@
 // import Character from "../../Character"
 import Character from "../../Character";
 import SocketIOManager from "../../../SocketIO/SocketIOManager"
+import EventBus from "../../../EventBus/EventBus";
 
 const BOSS1_ANIMATION = {
     "attack_front": "boss1-front-attack",

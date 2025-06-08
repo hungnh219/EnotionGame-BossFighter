@@ -22,7 +22,7 @@ module.exports = {
 
         return player;
     },
-
+    
     updateWalkableGridMap(roomData, roomName, x, y, isWalkable) {
         roomData[roomName].gameState.walkableGridMap;
 

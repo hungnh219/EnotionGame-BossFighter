@@ -68,7 +68,7 @@ const GameController = cc.Class({
         // EventBus.emit(EventBus.events.BOSS2_SPAWN_ENEMY, this.enemies, this.bosses, this.gridMap, this.firstCellPos, this.lastCellPos, this.mapTileWidth, this.mapTileHeight);
         // this.enemyAutoMode();
 
-        if (this.mapPick == 1) this.bossAutoMode();
+        this.bossAutoMode();
 
         this.heroes.forEach(hero => {
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.countUltimateCooldown === 'function');
@@ -273,7 +273,7 @@ const GameController = cc.Class({
         if (this.bosses.length == 0) return;
 
         let bossArray = this.bosses.map(b => b.node);
-        bossArray.forEach((enemy, index) => {
+        bossArray.forEach(async (enemy, index) => {
             // check attack range hero
             // if enough -> attack
             // else -> move
@@ -296,8 +296,14 @@ const GameController = cc.Class({
 
                 if (enemy.mainScript) {
                     let dame = enemy.mainScript.getAttackDame() * 1.5;
-                    enemy.mainScript.dealDame(nearestHero, dame);
+                    // enemy.mainScript.dealDame(nearestHero, dame);
 
+                    let heroId = nearestHero.mainScript.characterId;
+                    let enemyId = enemy.mainScript.characterId;
+                    
+                    let newHealth = await this.socketIOManager.game.takeDame(enemyId, heroId, 20);
+
+                    nearestHero.mainScript.updateHpBar();
                     // check if hero is dead
                     nearestHero.mainScript = nearestHero.getComponents(cc.Component).find(c => typeof c.getCurrentHp === 'function');
                     if (nearestHero.mainScript && nearestHero.mainScript.getCurrentHp() <= 0) {
@@ -419,12 +425,18 @@ const GameController = cc.Class({
                 targetOrder: targetOrder,
                 isBoss: isBoss,
             });
+            let dameFromServer = await this.socketIOManager.game.getAttackDame({
+                playerOrder: this.getPlayerIndex(),
+            });
+            let heroId = hero.mainScript.characterId;
+            let enemyId = enemy.mainScript.characterId;
+
+            let newHealth = await this.socketIOManager.game.takeDame(heroId, enemyId, dameFromServer);
+            
             return;
         }
 
-        let dameFromServer = await this.socketIOManager.game.getAttackDame({
-            playerOrder: this.getPlayerIndex(),
-        });
+        
 
         const enemyPos = this.positionToGrid(enemy);
 
@@ -434,11 +446,9 @@ const GameController = cc.Class({
         let direction = this.getDirection(heroPos, enemyPos);
         let dame = await hero.mainScript.attack(enemy, direction);
         // optimize
-
-        let heroId = hero.mainScript.characterId;
-
-        enemy.mainScript.takeDame(heroId, dameFromServer);
-        console.log('enemy current hp: ', enemy.mainScript.getCurrentHp());
+        
+        // enemy.mainScript.takeDame(newHealth);
+        enemy.mainScript.updateHpBar();
         if (enemy.mainScript.getCurrentHp() <= 0)  {
             if (isBoss) {
                 this.handleEnemyDie(enemy);

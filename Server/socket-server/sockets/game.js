@@ -113,15 +113,38 @@ function gameEvents(io, socket) {
                     totalDameDeal: 0,
                     totalDameTaken: 0,
 
-                    totalScore: 0 + Math.floor(Math.random() * 100), // điểm số ngẫu nhiên ban đầu
+                    totalScore: 0 + Math.floor(Math.random() * 10), // điểm số ngẫu nhiên ban đầu
                 }
             };
         })
 
 
+
+        // mặc định 1 map 1 boss
+        let bosses = [];
+        let bossData = logicHandler.common.getBossDataByIndex(roomData[roomName].gameState.currentMapIndex);
+
+        if (!bosses) {
+            console.error('Không tìm thấy dữ liệu boss cho bản đồ hiện tại:', roomData[roomName].gameState.currentMapIndex);
+            return;
+        }
+
+        bosses[0] = {
+            bossId: bossData.id,
+            hp: bossData.maxHp,
+            maxHp: bossData.maxHp,
+            attackDamage: bossData.attackDamage,
+            attackRange: bossData.attackRange,
+            name: bossData.name,
+        }
+
+
+        // roomData[roomName].gameState.bosses = bosses;
+
         // thêm dữ liệu heroes vào roomdata với key là heroes
 
         roomData[roomName].gameState.heroes = heroes;
+        roomData[roomName].gameState.bosses = bosses;
 
         logicHandler.common.writeRoomData(roomData);
     })
@@ -300,10 +323,19 @@ function gameEvents(io, socket) {
         }
         let leaderBoard = [];
         heroes.forEach(hero => {
-            leaderBoard.push({
-                playerName: players[hero.order].name,
-                totalScore: hero.stats.totalScore,
-            });
+            const playerObj = players.find(p =>
+                Object.values(p)[0].order === hero.order
+            );
+
+            if (playerObj) {
+                const playerInfo = Object.values(playerObj)[0]; // Truy xuất thông tin người chơi
+                leaderBoard.push({
+                    playerName: playerInfo.name,
+                    totalScore: hero.stats.totalScore,
+                });
+            } else {
+                console.warn('Không tìm thấy người chơi với order:', hero.order);
+            }
         });
 
         leaderBoard.sort((a, b) => b.totalScore - a.totalScore);
@@ -316,13 +348,13 @@ function gameEvents(io, socket) {
     })
 
     socket.on('TAKE_DAME', (data) => {
+        console.log('Nhận yêu cầu TAKE_DAME từ client:', data);
         let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
         if (!roomName) {
             console.error('Không tìm thấy phòng cho socket ID:', socket.id);
             return;
         }
 
-        console.log('Yêu cầu nhận dame từ client:', socket.id, 'Data:', data);
 
         let roomData = logicHandler.common.readRoomData();
         let heroes = roomData[roomName].gameState.heroes;
@@ -332,49 +364,95 @@ function gameEvents(io, socket) {
             return;
         }
 
-        // let characterId = data.characterId;
-        let dealderId = data.dealderId;
+        let dealderId = data.dealerId;
         let isHero = logicHandler.common.isHero(dealderId);
         
-        if (isHero) {
-            // Tìm hero theo dealderId
-            let hero = heroes.find(hero => hero.id === dealderId);
-            if (!hero) {
-                console.error('Không tìm thấy hero với ID:', dealderId);
-                return;
-            }
-            // Cập nhật lượng dame đã nhận 
-            hero.stats.totalDameTaken += data.dame;
-            hero.totalScore += data.dame; // Cập nhật điểm số của hero
-            console.log('totalDameTaken của hero', dealderId, 'là:', hero.stats.totalDameTaken);
-        }
-
         let characterId = data.characterId;
-        // trừ máu character theo id
-        let characterData = logicHandler.common.getCharacterById(characterId);
+        console.log('characterId', characterId, 'isHero', isHero);
+        console.log('dealerId', dealderId, 'isHero', isHero);
+        let characterData = logicHandler.common.getInGameCharacterData(characterId, roomData, roomName);
 
         if (!characterData) {
             console.error('Không tìm thấy dữ liệu nhân vật với ID:', characterId);
             return;
         }
-        console.log('Nhân vật trước khi nhận dame:', characterData);
         characterData.hp -= data.dame;
 
-        console.log('Nhân vật sau khi nhận dame:', characterData);
         if (characterData.hp <= 0) {
             characterData.hp = 0;
-            characterData.status = "DEAD"; // Cập nhật trạng thái nhân vật
+            characterData.status = "DEAD";
         }
 
-        // Ghi lại dữ liệu nhân vật đã cập nhật
+        if (isHero) {
+            let hero = heroes.find(hero => hero.heroId === dealderId);
+            if (!hero) {
+                console.error('Không tìm thấy hero với ID:', dealderId);
+                return;
+            }
+            hero.stats.totalDameDeal += data.dame;
+            hero.stats.totalScore += data.dame;
 
-        console.log('Cập nhật dữ liệu nhân vật:', characterData);
-        console.log('characterId', characterId, 'newHp', characterData.hp);
+            roomData[roomName].gameState.heroes = heroes;
+
+            let bosses = roomData[roomName].gameState.bosses;
+            let boss = bosses.find(boss => boss.bossId === characterId);
+            if (boss) {
+                boss.hp = characterData.hp;
+
+                roomData[roomName].gameState.bosses = bosses;
+
+                logicHandler.common.writeRoomData(roomData);
+
+                console.log('Boss bị tấn công, HP mới:', boss.hp);
+                if (boss.hp <= 0) {
+                    io.to(roomName).emit('BOSS_DIE');
+                }
+            } else {
+                console.error('Không tìm thấy boss với ID:', characterId);
+            }
+        } else {
+            let hero = heroes.find(hero => hero.heroId === characterId);
+            if (!hero) {
+                console.error('Không tìm thấy hero với ID:', characterId);
+                return;
+            }
+            hero.stats.totalDameTaken += data.dame;
+            hero.stats.totalScore += data.dame;
+            hero.hp = characterData.hp;
+            
+            roomData[roomName].gameState.heroes = heroes;
+
+            logicHandler.common.writeRoomData(roomData);
+        }
+
+        console.log('new hp', characterData.hp)
 
         io.to(roomName).emit('LISTEN_TAKE_DAME', {
             characterId: characterId,
             newHp: characterData.hp,
         })
+    })
+
+    socket.on('GET_CURRENT_HP', (data) => {
+        console.log('Nhận yêu cầu GET_CURRENT_HP từ client:', data);
+        let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
+        if (!roomName) {
+            console.error('Không tìm thấy phòng cho socket ID:', socket.id);
+            return;
+        }
+
+        let roomData = logicHandler.common.readRoomData();
+        let characterId = data.characterId;
+        let characterData = logicHandler.common.getInGameCharacterData(characterId, roomData, roomName);
+
+        if (!characterData) {
+            console.error('Không tìm thấy dữ liệu nhân vật với ID:', characterId);
+            return;
+        }
+
+        socket.emit('RETURN_CURRENT_HP', {
+            currentHp: characterData.hp,
+        });
     })
 }
 
