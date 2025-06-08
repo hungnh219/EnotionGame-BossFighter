@@ -7,6 +7,7 @@ const configureSocket = require('./config/socket-config.js');
 const admin = require('firebase-admin');
 const cors = require('cors');
 
+require('dotenv').config()
 
 const app = express();
 const server = http.createServer(app);
@@ -18,7 +19,7 @@ const io = socketIO(server, {
 });
 
 // --- Khởi tạo Firebase Admin SDK ---
-const serviceAccount = require('./my-game-project-321a1-firebase-adminsdk-fbsvc-8bdb68f419.json');
+const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT_PATH;
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
