@@ -2,6 +2,7 @@
 import RoomModule from "./RoomModule";
 import GameModule from "./GameModule";
 import SelectHeroModule from "./SelectHeroModule";
+import ScoreTableModule from "./ScoreTableModule";
 
 const SocketIOManager = cc.Class({
     extends: cc.Component,
@@ -45,6 +46,7 @@ const SocketIOManager = cc.Class({
         this.room = RoomModule(this.socketIO);
         this.selectHero = SelectHeroModule(this.socketIO);
         this.game = GameModule(this.socketIO);
+        this.scoreTable = ScoreTableModule(this.socketIO)
 
         console.log(this.socketIO);
         console.log("Kết nối thanh cong Socket.IO server:", url);

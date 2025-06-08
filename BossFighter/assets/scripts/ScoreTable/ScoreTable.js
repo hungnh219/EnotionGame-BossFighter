@@ -45,7 +45,7 @@ cc.Class({
         } catch (error) {
             cc.error("Lỗi khi chụp màn hình:", error);
             if (this.statusLabel) {
-                this.statusLabel.string = "Lỗi chụp màn hình: " + error.message;
+                this.statusLabel.string = "Lỗi chụp màn hình: " + error;
             }
             return;
         }
@@ -58,10 +58,22 @@ cc.Class({
             imageBase64: imageBase64
         };
 
-        await this.sendDataToBackend(dataToSend);
+        try {
+            result = await this.socketIOManager.scoreTable.sendDataToBackend(dataToSend)
+            if (result) {
+                if (this.statusLabel) {
+                    this.statusLabel.string = "Tải lên thành công! " + result;
+                }
+            }
+        } catch (error) {
+            if (this.statusLabel) {
+                this.statusLabel.string = "Lỗi tải lên: " + error.message;
+            }
+        }
+
     },
 
-    captureScreenshotToBase64() {
+    async captureScreenshotToBase64() {
 
         return new Promise((resolve, reject) => {
 
@@ -113,36 +125,5 @@ cc.Class({
 
         });
 
-    },
-
-    async sendDataToBackend(data) {
-        if (this.statusLabel) {
-            this.statusLabel.string = "Đang gửi dữ liệu...";
-        }
-        try {
-
-            const result = await new Promise((resolve, reject) => {
-                if (!this.socketIOManager || !this.socketIOManager.getSocketIO() || !this.socketIOManager.getSocketIO().connected) {
-                    return reject(new Error("Socket.IO chưa kết nối!"));
-                }
-                this.socketIOManager.getSocketIO().emit('uploadScreenshot', data, (response) => {
-                    if (response.success) {
-                        resolve(response);
-                    } else {
-                        reject(new Error(response.message || "Lỗi không xác định từ server."));
-                    }
-                });
-            });
-
-            cc.log("Dữ liệu đã được gửi thành công:", result);
-            if (this.statusLabel) {
-                this.statusLabel.string = "Tải lên thành công! " + result.message;
-            }
-        } catch (error) {
-            cc.error("Lỗi khi gửi dữ liệu lên backend qua Socket.IO:", error);
-            if (this.statusLabel) {
-                this.statusLabel.string = "Lỗi tải lên: " + error.message;
-            }
-        }
     },
 });
