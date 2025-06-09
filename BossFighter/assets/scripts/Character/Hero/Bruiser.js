@@ -25,14 +25,18 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        this.initData(this.characterId);
     },
 
     start() {
     },
 
-    async initData(characterNameId) {
-        await this._super(characterNameId);
+    initData(heroData) {
+        this.characterId = heroData.characterId || "hero002";
+        this.name = heroData.name || "Bruiser";
+        this.attackDame = heroData.attackDamage || 10;
+        this.attackRange = heroData.attackRange || 1;
+        this.maxHp = heroData.maxHp || 100;
+        this.health = heroData.hp;
     },
 
     ultimate(targetTile, gameCtrl) {

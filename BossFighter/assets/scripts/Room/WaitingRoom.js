@@ -11,7 +11,8 @@ cc.Class({
         startButton: cc.Node,
         textMessageInput: cc.EditBox,
         messageItem: cc.Prefab,
-        scrollViewContent: cc.Node
+        scrollViewContent: cc.Node,
+        errorMessageLabel: cc.Label,
     },
 
     socketIOManager: null,
@@ -19,6 +20,7 @@ cc.Class({
     currentRoomName: '', 
 
     onLoad() {
+        this.errorMessageLabel.node.active = false
         this.scrollViewContent.removeAllChildren();
         this.startButton.active = false
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
@@ -150,13 +152,19 @@ cc.Class({
         }
     },
 
-    startGame() {
-        if (!this.currentRoomData) {
-            console.error("Không có thông tin phòng để bắt đầu trò chơi.");
-            return;
-        }
+    async startGame() { 
+        try {
+            const result = await this.socketIOManager.room.gameStart();
+            console.log("Phản hồi từ server khi bắt đầu game:", result);
 
-        this.socketIOManager.room.gameStart();
+        } catch (error) {
+            console.error("Lỗi khi bắt đầu trò chơi:", error);
+            this.errorMessageLabel.string = `${error}`;
+            this.errorMessageLabel.node.active = true; 
+            this.scheduleOnce(()=>{
+                this.errorMessageLabel.node.active = false; 
+            }, 2)
+        }
     },
 
     async leaveRoom() {

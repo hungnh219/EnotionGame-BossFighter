@@ -44,6 +44,22 @@ function gameEvents(io, socket) {
 
     })
 
+    socket.on('sendGameMessage', (roomName, message) => {
+        let roomData = logicHandler.common.readRoomData();
+        console.log(`Tin nhắn từ ${socket.id} tại phòng ${roomName}: ${message}`);
+        const playerId = socket.id
+        const room = roomData[roomName];
+        const player = room.player.find(playerObj => Object.keys(playerObj)[0] === playerId);
+        const playerName = player[playerId].name;
+        io.to(roomName).emit('receiveGameMessages', {
+            success: true,
+            sender: playerId,
+            senderName: playerName,
+            text: message,
+            message: `Gửi tin nhắn thành công`
+        });
+    });
+
 
     socket.on('GET_PLAYER_ORDER', () => {
         const roomName = logicHandler.common.getRoomNameBySocketId(socket.id);

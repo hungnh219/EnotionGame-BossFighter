@@ -42,12 +42,6 @@ cc.Class({
         this.attackRange = heroData.attackRange || 1;
         this.maxHp = heroData.maxHp || 100;
         this.health = heroData.hp;
-
-
-        // await this._super(characterNameId);
-
-        // console.log("ADC initData with characterId:", characterNameId);
-        // console.log("ADC properties:", this);
     },
 
     async attack(enemy, direction) {

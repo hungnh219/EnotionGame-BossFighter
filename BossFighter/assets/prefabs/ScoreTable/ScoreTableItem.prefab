@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "item",
+    "_name": "ScoreTableItem",
     "_objFlags": 512,
     "_parent": null,
     "_children": [
@@ -61,8 +61,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -70,
-        -10.149999618530273,
+        -102.19999694824219,
+        0,
         0,
         0,
         0,
@@ -106,15 +106,15 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 82,
-      "g": 134,
-      "b": 190,
+      "r": 49,
+      "g": 95,
+      "b": 153,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 600,
-      "height": 100
+      "width": 500,
+      "height": 50
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -190,12 +190,12 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "70SZyNfYdMVKf7gZNE6y3F",
+    "fileId": "62KW/GD6FGyI7rioCaEvXl",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "PlayerNameLabel",
+    "_name": "New Sprite",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -220,8 +220,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 48.94,
-      "height": 50.4
+      "width": 40,
+      "height": 36
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -232,7 +232,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        -200,
+        -180,
         0,
         0,
         0,
@@ -258,7 +258,7 @@
     "_id": ""
   },
   {
-    "__type__": "cc.Label",
+    "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -272,22 +272,21 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Label",
-    "_N$string": "Label",
-    "_fontSize": 20,
-    "_lineHeight": 40,
-    "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
-    "_spacingX": 0,
-    "_batchAsBitmap": false,
-    "_styleFlags": 0,
-    "_underlineHeight": 0,
-    "_N$horizontalAlign": 1,
-    "_N$verticalAlign": 1,
-    "_N$fontFamily": "Arial",
-    "_N$overflow": 0,
-    "_N$cacheMode": 0,
+    "_spriteFrame": {
+      "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
+    },
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_atlas": null,
     "_id": ""
   },
   {
@@ -298,12 +297,12 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "fdI/ye2b9Jd7JqVNjHJMyt",
+    "fileId": "4a5ZP9q+tDfbEfpiUHv7hm",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "ScoreLabel",
+    "_name": "Name Label",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -328,7 +327,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 48.94,
+      "width": 70.03,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -380,9 +379,9 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_string": "Label",
-    "_N$string": "Label",
-    "_fontSize": 20,
+    "_string": "Chiet",
+    "_N$string": "Chiet",
+    "_fontSize": 30,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,
@@ -406,12 +405,12 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "f7vCqnRshJvoLqcwnLokfy",
+    "fileId": "cbGTvvbS1Phogru6K2lECE",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "ThumbnailSprite",
+    "_name": "Score Label",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -436,8 +435,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 40
+      "width": 50.05,
+      "height": 50.4
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -448,7 +447,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        200,
+        180,
         0,
         0,
         0,
@@ -474,7 +473,7 @@
     "_id": ""
   },
   {
-    "__type__": "cc.Sprite",
+    "__type__": "cc.Label",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -488,21 +487,22 @@
     ],
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
-    },
-    "_type": 0,
-    "_sizeMode": 0,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_atlas": null,
+    "_string": "100",
+    "_N$string": "100",
+    "_fontSize": 30,
+    "_lineHeight": 40,
+    "_enableWrapText": true,
+    "_N$file": null,
+    "_isSystemFontUsed": true,
+    "_spacingX": 0,
+    "_batchAsBitmap": false,
+    "_styleFlags": 0,
+    "_underlineHeight": 0,
+    "_N$horizontalAlign": 1,
+    "_N$verticalAlign": 1,
+    "_N$fontFamily": "Arial",
+    "_N$overflow": 0,
+    "_N$cacheMode": 0,
     "_id": ""
   },
   {
@@ -513,7 +513,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "a0QQ02Bf9GvpDyBHn2D2IY",
+    "fileId": "58I1SmzYRK6r4Udet+yPkH",
     "sync": false
   },
   {
@@ -523,7 +523,7 @@
     "node": {
       "__id__": 1
     },
-    "_enabled": true,
+    "_enabled": false,
     "_materials": [
       {
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"

@@ -165,15 +165,21 @@ module.exports = function (socket) {
             this.onRoomInfoReceivedCallback = callback;
         },
 
-        gameStart(moveToSelectSceneCallback) {
-            if (!socket) {
-                console.error("Chưa kết nối đến Socket.IO server.");
-                return null;
-            }
-
-            socket.emit('GAME_START')
-
-            // socket.emit('GAME_START', );
+        gameStart() {
+            return new Promise((resolve, reject) => {
+                if (!socket || !socket.connected) {
+                    console.error("Chưa kết nối đến Socket.IO server.");
+                    return reject({ success: false, message: "Chưa kết nối đến Socket.IO server." });
+                }
+    
+                socket.emit('GAME_START', (response) => {
+                    if (response.success) {
+                        resolve(response); 
+                    } else {
+                        reject(response.message); 
+                    }
+                });
+            });
         },
 
         listenGameStart(moveToSelectSceneCallback) {

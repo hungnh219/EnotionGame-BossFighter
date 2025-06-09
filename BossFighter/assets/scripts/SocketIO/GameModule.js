@@ -45,6 +45,36 @@ module.exports = function(socket) {
             });
         },
 
+        sendGameMessage(roomName, message) {
+            return new Promise((resolve, reject) => {
+                if (!socket) {
+                    console.error("Chưa kết nối đến Socket.IO server.");
+                    return null;
+                }
+                socket.emit('sendGameMessage', roomName, message);
+
+                resolve({ success: true, message: "Tin nhắn đã được gửi đi." });
+            })
+        },
+
+        receiveGameMessages(callback) {
+            const chatCallbacks = {};
+            if (typeof callback !== 'function') {
+                cc.error("Callback cho tin nhắn phải là một hàm.");
+                return;
+            }
+
+            if (!chatCallbacks.messageListenerRegistered) {
+                chatCallbacks.messageListenerRegistered = true;
+                socket.on('receiveGameMessages', (data) => {
+                    if (chatCallbacks.activeMessageCallback) {
+                        chatCallbacks.activeMessageCallback(data);
+                    }
+                });
+            }
+            chatCallbacks.activeMessageCallback = callback;
+        },
+
         getPlayerOrder() {
             console.log("Yêu cầu thứ tự người chơi từ server...");
             if (!socket) {
