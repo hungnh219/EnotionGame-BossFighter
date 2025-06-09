@@ -2006,6 +2006,9 @@
     "statusLabel": {
       "__id__": 38
     },
+    "imageViewerPrefab": {
+      "__uuid__": "8411e345-cda3-47c3-b99c-0dfcc4942af3"
+    },
     "_id": "e6Kw8t2qdGvpZaE1svJz78"
   }
 ]
