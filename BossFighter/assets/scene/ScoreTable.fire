@@ -261,9 +261,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 207,
+      "g": 26,
+      "b": 26,
       "a": 255
     },
     "_contentSize": {
@@ -4744,9 +4744,6 @@
     },
     "statusLabel": {
       "__id__": 8
-    },
-    "targetNode": {
-      "__id__": 10
     },
     "_id": "13QllKNCBB/5RtFB9kcltn"
   }
