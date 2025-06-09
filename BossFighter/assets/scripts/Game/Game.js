@@ -59,11 +59,17 @@ cc.Class({
         guideBook: cc.Node,
 
         leaderBoard: cc.Node,
+
+        scrollViewContent: cc.Node,
+        messageItem: cc.Prefab,
+        textMessageInput: cc.EditBox,
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
+        console.log('messageItem', this.messageItem)
+        this.scrollViewContent.removeAllChildren();
         this.guideBook.active = false
         this.gameController = GameController.getInstance();
         this.mapIndex = this.gameController.getMapPicked() ? this.gameController.getMapPicked() : 0;
@@ -114,9 +120,15 @@ cc.Class({
         )
 
         // this.mapIndex = 2;
+
+        this.socketIOManager.game.receiveGameMessages(this.onMessageReceived.bind(this));
+
+        this.textMessageInput.node.on('editing-did-ended', this.onEditingEnded, this);
     },
 
     async start() {
+        this.socketIOManager.room.setOnRoomInfoReceivedCallback(this.onRoomInfoReceived.bind(this));
+        this.socketIOManager.room.getRoomInformation();
         this.mapData = await this.socketIOManager.game.getMapData();
         // this.mapData = this.mapData.map;
         console.log('Map Data:', this.mapData);
@@ -149,6 +161,112 @@ cc.Class({
         this.gameController.startGame(this.socketIOManager);
 
     },
+
+    onMessageReceived(data) {
+        console.log('GAME: Nhận tin nhắn từ server:', data);
+        console.log('messageItem',this.messageItem)
+        if (data.success) {
+            const messageNode = cc.instantiate(this.messageItem);
+            const messageLabel = messageNode.getComponent(cc.Label);
+            const playerName = messageNode.getChildByName('New Label')
+            const nameLabel = playerName.getComponent(cc.Label)
+            nameLabel.string = data.senderName;
+            messageLabel.string = data.text;
+
+            this.scrollViewContent.insertChild(messageNode, 0); 
+
+            this.scrollToBottom();
+
+        } else {
+            console.error("Lỗi tin nhắn từ server:", data.message);
+        }
+    },
+
+    scrollToBottom() {
+        const scrollView = this.scrollViewContent.parent.parent.getComponent(cc.ScrollView)
+        console.log('scrollView', scrollView)
+        scrollView.scrollToBottom(0.1); 
+    },
+
+    async onEditingEnded() {
+        const inputText = this.textMessageInput.string.trim();
+        cc.log(inputText);
+        if (!inputText) {
+            cc.warn("Tin nhắn trống, không gửi.");
+            return;
+        }
+
+        try {
+            await this.socketIOManager.game.sendGameMessage(this.currentRoomName, inputText);
+            this.textMessageInput.string = '';
+        } catch (error) {
+            console.error("Lỗi khi gửi tin nhắn:", error);
+        }
+
+    },
+
+    onRoomInfoReceived(data) {
+        console.log("WaitingRoom: Thông tin phòng đã nhận được (onRoomInfoReceived):", data);
+        this.currentRoomData = data;
+        this.updateRoomUI();
+    },
+
+    updateRoomUI() {
+        if (!this.currentRoomData) return;
+
+        const currentPlayerSocketId = this.socketIOManager.getSocketIO().id;
+        let foundRoomName = '';
+        let roomMembers = [];
+        let maxPlayer = 0;
+        let isCurrentPlayerHost = false;
+
+
+        for (const room of this.currentRoomData.rooms) {
+
+            console.log('room player', room.players)
+
+            const playerInThisRoom = room.players.find(playerObj => Object.keys(playerObj)[0] === currentPlayerSocketId);
+
+            if (playerInThisRoom) {
+                foundRoomName = room.roomName;
+                roomMembers = room.players;
+                maxPlayer = room.maxPlayer
+                const currentPlayerData = playerInThisRoom[currentPlayerSocketId];
+                isCurrentPlayerHost = currentPlayerData.host === true;
+                break;
+            }
+        }
+
+        console.log('roomMembers', roomMembers)
+        console.log('foundRoomName',foundRoomName)
+
+        if (foundRoomName) {
+            this.currentRoomName = foundRoomName
+            // this.roomNameLabel.string = `Phòng: ${foundRoomName}`;
+            // this.totalPlayersLabel.string = `Người chơi: ${roomMembers.length}/${maxPlayer}`;
+
+            // this.startButton.active = isCurrentPlayerHost;
+            // console.log("Nut Start active state:", this.startButton.active, "(Current player is host:", isCurrentPlayerHost + ")");
+
+            // this.gridPlayer.removeAllChildren();
+            // for (const playerObj of roomMembers) {
+            //     const playerId = Object.keys(playerObj)[0];
+            //     const playerInfo = playerObj[playerId];
+
+            //     const playerNode = cc.instantiate(this.prefabPlayer);
+            //     const labelNode = playerNode.getChildByName("New Label");
+            //     const labelComp = labelNode.getComponent(cc.Label);
+            //     labelComp.string = `${playerInfo.name}`;
+            //     this.gridPlayer.addChild(playerNode);
+            // }
+        } else {
+            // this.roomNameLabel.string = "Không tìm thấy thông tin phòng.";
+            // this.totalPlayersLabel.string = "";
+            // this.gridPlayer.removeAllChildren();
+            // this.startButton.active = false;
+        }
+    },
+    
 
     initData() {
         this.backgroundSprite.spriteFrame = this.backgroundSpriteFrames[this.mapIndex];
@@ -417,7 +535,7 @@ cc.Class({
             // create new label and add to leaderBoard node
             let label = new cc.Node().addComponent(cc.Label);
             label.string = `${data.playerName}: ${data.totalScore}`;
-            label.fontSize = 40;
+            label.fontSize = 20;
             label.node.color = cc.Color.GREEN;
             label.node.parent = this.leaderBoard;
         })
@@ -429,7 +547,7 @@ cc.Class({
         newLeaderBoard.forEach((data) => {
             let label = new cc.Node().addComponent(cc.Label);
             label.string = `${data.playerName}: ${data.totalScore}`;
-            label.fontSize = 40;
+            label.fontSize = 20;
             label.node.color = cc.Color.GREEN;
             label.node.parent = this.leaderBoard;
         });

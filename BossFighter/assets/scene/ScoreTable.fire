@@ -317,7 +317,7 @@
         "__id__": 7
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 9
@@ -502,7 +502,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "New Sprite",
+    "_name": "BackgroundPopUp",
     "_objFlags": 0,
     "_parent": {
       "__id__": 5
@@ -525,15 +525,15 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 90,
+      "g": 20,
+      "b": 20,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 36
+      "width": 700,
+      "height": 400
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -591,9 +591,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 95,
-      "g": 123,
-      "b": 233,
+      "r": 66,
+      "g": 93,
+      "b": 199,
       "a": 255
     },
     "_contentSize": {
@@ -789,12 +789,12 @@
       }
     ],
     "_prefab": null,
-    "_opacity": 255,
+    "_opacity": 146.11499999999998,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
+      "r": 24,
+      "g": 17,
+      "b": 17,
       "a": 255
     },
     "_contentSize": {
@@ -4068,7 +4068,7 @@
     "node": {
       "__id__": 15
     },
-    "_enabled": false,
+    "_enabled": true,
     "_materials": [
       {
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
@@ -4112,7 +4112,7 @@
       "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
     },
     "_type": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -4647,6 +4647,9 @@
     },
     "statusLabel": {
       "__id__": 8
+    },
+    "targetNode": {
+      "__id__": 10
     },
     "_id": "13QllKNCBB/5RtFB9kcltn"
   }

@@ -234,7 +234,7 @@ function roomEvents(io, socket) {
         socket.emit('roomInfo', roomInfo);
     });
 
-    socket.on('GAME_START', () => {
+    socket.on('GAME_START', (callback) => {
         console.warn('Nhận sự kiện GAME_START từ socket:', socket.id);
         const roomName = getRoomNameBySocketId(socket.id);
         if (!roomName) {
@@ -244,6 +244,14 @@ function roomEvents(io, socket) {
 
         let roomData = logicHandler.common.readRoomData();
         const players = roomData[roomName].player;
+        const maxPlayer = roomData[roomName].maxPlayer
+        if(players.length != maxPlayer){
+            console.error(`So luong nguoi choi chua du : ${players.length}/${maxPlayer}`);
+            if (typeof callback === 'function') {
+                callback({ success: false, message: `Số lượng người chơi chưa đủ: ${players.length}/${maxPlayer}` });
+            }
+            return;
+        }
         roomData[roomName].status = 'playing'
 
         const gameStartData = {
@@ -267,6 +275,10 @@ function roomEvents(io, socket) {
         logicHandler.common.writeRoomData(roomData);
         const roomInfo = updateRoomInfo(roomData);
         io.emit('roomInfo', roomInfo);
+
+        if (typeof callback === 'function') {
+            callback({ success: true, message: "Trò chơi đã được bắt đầu!" });
+        }
     })
 
     socket.on('GET_GAME_START_DATA', () => {
