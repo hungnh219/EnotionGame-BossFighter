@@ -2,6 +2,7 @@
 // import 
 import GAME_DATA from '../Game/GameData';
 import SocketIOManager from '../SocketIO/SocketIOManager'
+import EventBus from '../EventBus';
 
 cc.Class({
     extends: cc.Component,
@@ -27,7 +28,9 @@ cc.Class({
     async initData(characterNameId) {
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
 
+        console.warn('fetching character data for:', characterNameId);
         let characterData = await this.socketIOManager.game.getCharacterData(characterNameId);
+        console.warn('get data:', characterNameId, characterData.name);
         this.health = characterData.maxHp ?? 100;
         this.maxHp = characterData.maxHp ?? 100;
         this.attackDame = characterData.attackDamage ?? 10; 
@@ -35,8 +38,9 @@ cc.Class({
         this.name = characterData.name ?? "Unknown Character";
     },
 
-    takeDame(dame) {
-        this.health -= dame;
+    takeDame(newHealth) {
+        console.log("Taking damage:", newHealth);
+        this.health = newHealth;
         this.health = Math.max(this.health, 0);
         if (this.hpBar) {
             this.hpBar.progress = this.health / this.maxHp;
@@ -47,8 +51,23 @@ cc.Class({
         }
     },
 
+
+    async updateHpBar() {
+        this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
+        let newHealth = await this.socketIOManager.game.getCurrentHp(this.characterId);
+        console.log("Updating HP bar with new health:", newHealth, this.characterId);
+        this.health = newHealth;
+        this.health = Math.max(this.health, 0);
+        EventBus.emit(EventBus.events.UPDATE_LEADER_BOARD)
+        if (this.hpBar) {
+            this.hpBar.progress = this.health / this.maxHp;
+        }
+        if (this.health <= 0) {
+            this.die();
+        }
+    },
+
     dealDame(characterNode, dame) {
-        // const comps = characterNode.getComponents(cc.Component);
         characterNode.emit(GAME_DATA.EVENT_NAME.TAKE_DAME, dame);
     },
 
@@ -111,6 +130,5 @@ cc.Class({
 
     die() {
         console.log("Character died");
-        // this.node.destroy();
     },
 });

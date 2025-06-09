@@ -29,16 +29,14 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        // this.initData(this.characterId);
+        this.initData(this.characterId);
     },
 
-    async start () {
-        await this.initData(this.characterId);
+    start () {
     },
 
     async initData(characterNameId) {
         await this._super(characterNameId);
-        console.log("Boss3 initData with characterId:", characterNameId);
     },
 
     playAnimation(animationName, moveTime) {

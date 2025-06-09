@@ -7,6 +7,7 @@
 // import Character from "../../Character"
 import Character from "../../Character";
 import SocketIOManager from "../../../SocketIO/SocketIOManager"
+import EventBus from "../../../EventBus/EventBus";
 
 const BOSS1_ANIMATION = {
     "attack_front": "boss1-front-attack",
@@ -31,11 +32,10 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
+        this.initData(this.characterId);
     },
 
-    async start () {
-        this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
-        await this.initData(this.characterId);
+    start () {
     },
 
     async initData(characterNameId) {

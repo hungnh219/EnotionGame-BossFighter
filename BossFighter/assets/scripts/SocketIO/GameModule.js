@@ -1,5 +1,27 @@
 module.exports = function(socket) {
     return {
+    // ============= init =============
+    // ================================
+        initData(handleInitDataCallback) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+            
+            new Promise((resolve, reject) => {
+                socket.on('DATA_INITIALIZED', (data) => {
+                    console.log('init data:', data);
+                    if (handleInitDataCallback) {
+                        handleInitDataCallback(data.heroData);
+                    }
+                    resolve();
+                });
+                socket.emit('INIT_DATA');
+                
+            });
+
+        }, 
+
         getPlayerOrder() {
             console.log("Yêu cầu thứ tự người chơi từ server...");
             if (!socket) {
@@ -40,10 +62,7 @@ module.exports = function(socket) {
                 console.error("Chưa kết nối đến Socket.IO server.");
                 return null;
             }
-            console.log("Yêu cầu dữ liệu bản đồ từ server...");
-
             return new Promise((resolve, reject) => {
-                console.log("Gửi yêu cầu GET_MAP_DATA đến server...");
                 socket.emit('GET_MAP_DATA');
                 socket.on('MAP_DATA', (data) => {
                     resolve(data.mapData);
@@ -165,23 +184,95 @@ module.exports = function(socket) {
             });
         },
 
-        getCharacterData(characterId) {
+        async getCharacterData(characterId) {
             if (!socket) {
                 console.error("Chưa kết nối đến Socket.IO server.");
                 return null;
             }
 
-            console.log("characterId:", characterId);
-
             return new Promise((resolve, reject) => {
                 socket.on('RETURN_CHARACTER_DATA', (data) => {
                     console.log('Nhận dữ liệu nhân vật:', data.characterData);
-                    console.log('Nhận dữ liệu nhân vật characterId:', characterId);
                     resolve(data.characterData);
                 });
                 socket.emit('GET_CHARACTER_DATA', {
                     characterId: characterId
                  });
+            });
+        },
+
+        getLeaderBoard() {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            return new Promise((resolve, reject) => {
+                socket.on('RETURN_LEADER_BOARD', (data) => {
+                    console.log('Nhận bảng xếp hạng:', data.leaderBoard);
+                    resolve(data.leaderBoard);
+                });
+                socket.emit('GET_LEADER_BOARD');
+            });
+        },
+
+        takeDame(dealerId, characterId, dame) {
+            console.log('Yêu cầu take dame:', dealerId, characterId, dame);
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            return new Promise((resolve, reject) => {
+                socket.on('LISTEN_TAKE_DAME', (data) => {
+                    resolve(data.newHp);
+                });
+                socket.emit('TAKE_DAME', {
+                    dealerId: dealerId,
+                    characterId: characterId,
+                    dame: dame
+                });
+            });
+        },
+         
+        listenBossDie(callback) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            socket.on('BOSS_DIE', (data) => {
+                if (callback) {
+                    callback(data);
+                }
+            });
+        },
+
+        getCurrentHp(characterId) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            return new Promise((resolve, reject) => {
+                socket.on('RETURN_CURRENT_HP', (data) => {
+                    resolve(data.currentHp);
+                });
+                socket.emit('GET_CURRENT_HP', { characterId: characterId });
+            });
+        },
+
+        quitGame() {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            return new Promise((resolve, reject) => {
+                socket.on('QUIT_GAME_SUCCESS', () => {
+                    resolve();
+                });
+                socket.emit('QUIT_GAME');
             });
         }
     };

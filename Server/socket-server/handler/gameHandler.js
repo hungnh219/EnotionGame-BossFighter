@@ -1,5 +1,7 @@
 // const logicHandler = require('../handler/logicHandler');
 
+const { getPlayerOrder } = require("./selectHeroHandler");
+
 module.exports = {
     getPlayerGameData(roomData, roomName) {
         if (!roomData || !roomData[roomName]) {
@@ -20,7 +22,7 @@ module.exports = {
 
         return player;
     },
-
+    
     updateWalkableGridMap(roomData, roomName, x, y, isWalkable) {
         roomData[roomName].gameState.walkableGridMap;
 

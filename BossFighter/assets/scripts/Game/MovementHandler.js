@@ -288,18 +288,14 @@ cc.Class({
         const moveStep = (i) => {
             if (i > finalStepIndex) {
                 // Finish
-                // this.walkableGridMap[enemyGridX][enemyGridY] = true;
                 this.socketIOManager.game.updateWalkableGridMap({
                     x: enemyGridX,
                     y: enemyGridY,
                     isWalkable: true
                 });
-                // const newEnemyX = Math.floor((enemy.x - this.firstCellPos.x) / mapSetting.mapTileWidth);
-                // const newEnemyY = Math.floor((enemy.y - this.firstCellPos.y) / mapSetting.mapTileHeight);
 
                 const newEnemyX = Math.floor(enemy.x / mapSetting.mapTileWidth);
                 const newEnemyY = Math.floor(enemy.y / mapSetting.mapTileHeight);
-                // this.walkableGridMap[newEnemyX][newEnemyY] = false;
                 this.socketIOManager.game.updateWalkableGridMap({
                     x: newEnemyX,
                     y: newEnemyY,
@@ -315,8 +311,6 @@ cc.Class({
                 this.playAnimation(enemy, 'walk', direction);
             }
             const p = path[i];
-            // const px = this.firstCellPos.x + p.x * mapSetting.mapTileWidth + mapSetting.mapTileWidth / 2;
-            // const py = this.firstCellPos.y + p.y * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
             const px = p.x * mapSetting.mapTileWidth + mapSetting.mapTileWidth / 2;
             const py = p.y * mapSetting.mapTileHeight + mapSetting.mapTileHeight / 2;
             enemy.runAction(

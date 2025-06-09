@@ -18,7 +18,7 @@ cc.Class({
     extends: Character,
 
     properties: {
-        characterId: "hero002",
+        characterId: "hero001",
 
         ultimatePrefab: cc.Prefab,
         attackPrefab: cc.Prefab,
@@ -27,17 +27,27 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        this.initData(this.characterId);
+        // this.initData(this.characterId);
     },
 
     start () {
     },
 
-    async initData(characterNameId) {
-        await this._super(characterNameId);
+    initData(heroData) {
+        console.warn('ADC initData with heroData:', heroData);
 
-        console.log("ADC initData with characterId:", characterNameId);
-        console.log("ADC properties:", this);
+        this.characterId = heroData.characterId || "hero002";
+        this.name = heroData.name || "ADC Hero";
+        this.attackDame = heroData.attackDamage || 10;
+        this.attackRange = heroData.attackRange || 1;
+        this.maxHp = heroData.maxHp || 100;
+        this.health = this.maxHp;
+
+
+        // await this._super(characterNameId);
+
+        // console.log("ADC initData with characterId:", characterNameId);
+        // console.log("ADC properties:", this);
     },
 
     async attack(enemy, direction) {

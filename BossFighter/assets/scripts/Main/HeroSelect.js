@@ -104,25 +104,7 @@ cc.Class({
     },
 
     loadHeroPrefabs() {
-        // const tempNode = new cc.Node();
-        // cc.director.getScene().addChild(tempNode);
-
-        // this.heroPrefabs.forEach((prefab, index) => {
-        //     const hero = cc.instantiate(prefab);
-        //     tempNode.addChild(hero);
-
-        //     setTimeout(() => {
-        //         hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
-        //         if (hero.mainScript) {
-        //             const info = hero.mainScript.getCharacterInfo();
-        //             this.heros[index] = info;
-        //             this.createHeroThumbnail(index, info);
-        //         }
-        //         hero.removeFromParent(true);
-        //     }, 0);
-        // });
-        (async () => {
-            for (let index = 0; index < this.heroPrefabs.length; index++) {
+        for (let index = 0; index < this.heroPrefabs.length; index++) {
                 const prefab = this.heroPrefabs[index];
 
                 const hero = cc.instantiate(prefab);
@@ -130,23 +112,12 @@ cc.Class({
 
                 if (hero.mainScript) {
                     let info = { ...hero.mainScript.getCharacterInfo() };
-
-                    try {
-                        let heroData = await this.socketIOManager.game.getCharacterData(info.characterId);
-                        info.name = heroData.name;
-
-                        console.log("Hero Data:", info);
-                        this.heros[index] = info;
-
-                        this.createHeroThumbnail(index, info);
-                        this.saveHeroData(info);
-                    } catch (err) {
-                        console.error(`Lỗi khi lấy dữ liệu hero ${info.characterId}:`, err);
-                    }
+                    info.name = hero.name;
+                    this.heros[index] = info;
+                    this.createHeroThumbnail(index, info);
+                    this.saveHeroData(info);
                 }
             }
-        })();
-
     },
 
     createHeroThumbnail(index, info) {

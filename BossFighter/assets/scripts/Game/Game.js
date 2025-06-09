@@ -56,7 +56,9 @@ cc.Class({
 
         characterHolder: cc.Node,
 
-        guideBook: cc.Node
+        guideBook: cc.Node,
+
+        leaderBoard: cc.Node,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -93,6 +95,9 @@ cc.Class({
             this.spawnEnemy(ranBoss);
         }, this);
 
+        EventBus.on(EventBus.events.UPDATE_LEADER_BOARD, () => {
+            this.updateLeaderBoard();
+        }, this);
 
         this.mapLayout.node.on(cc.Node.EventType.TOUCH_END, (event) => {
             EventBus.emit(EventBus.events.CLEAR_WALKABLE_AREA);
@@ -113,26 +118,27 @@ cc.Class({
 
     async start() {
         this.mapData = await this.socketIOManager.game.getMapData();
-        this.mapData = this.mapData.map;
-
-        this.lockedHeroIndex = await this.socketIOManager.game.getLockedHeroIndex();
+        // this.mapData = this.mapData.map;
+        console.log('Map Data:', this.mapData);
+        this.lockedHeroData = await this.socketIOManager.game.getLockedHeroIndex();
         this.playerIndex = await this.socketIOManager.game.getPlayerOrder();
+
+        
 
         this.socketIOManager.game.listenOtherAttack((data) => {
             this.gameController.heroAttackFromServer(data.playerOrder, data.targetOrder, data.isBoss);
                 
         })
-
         this.socketIOManager.game.listenNextMap(() => {
             this.nextMapServer();
         });
-
+        this.socketIOManager.game.listenBossDie(() => {
+            this.endGameNotification();
+        })
         if (this.playerIndex != undefined) {
             this.gameController.setPlayerIndex(this.playerIndex);
         }
-
         this.spawnObjectsFromJson();
-
         this.initData();
         this.gameController.setHighlightTilePrefab(this.greenTilePrefab);
         this.gameController.setRootNode(this.rootNode);
@@ -152,6 +158,7 @@ cc.Class({
 
         this.ultimateGreyPrefab = cc.instantiate(this.greyTilePrefab);
         this.ultimateGreyPrefab.parent = this.ultimateCooldownLabel.node.parent;
+        this.initLeaderBoard();
     },
 
     onClickPanel(event) {
@@ -164,10 +171,11 @@ cc.Class({
             return;
         }
         
-        const jsonData = this.objectsJsonData.json.mapData[this.mapIndex];
+        // const jsonData = this.objectsJsonData.json.mapData[this.mapIndex];
 
         // const mapObjects = jsonData.map;
-        const mapObjects = this.mapData
+        console.log("Map Data:", this.mapData, this.mapData.bossesPosition);
+        const mapObjects = this.mapData.map;
 
         if (!Array.isArray(mapObjects)) {
             console.error("map1 must be a 2D array");
@@ -180,14 +188,15 @@ cc.Class({
         this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
         this.mapController.initMapSize(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
         this.mapController.viewObjectsMap(mapObjects, this.mapWidth, this.mapHeight, this.map1Objects);
-        let bossesIndex = jsonData.bosses;
-        let bossesPosition = jsonData.bossesPosition;
-        let bossesSize = jsonData.bossesSize;
+        let bossesIndex = this.mapData.bosses;
+        let bossesPosition = this.mapData.bossesPosition;
 
         if (bossesIndex && bossesIndex.length > 0) {
             bossesIndex.forEach((bossIndex) => {
                 this.bossNode[bossIndex] = cc.instantiate(this.bossPrefabs[bossIndex]);
-                this.mapController.spawnBossIntoMap(this.bossNode[bossIndex], bossesPosition[bossIndex], bossesSize[bossIndex]);
+
+                console.log('Boss Node:', this.bossNode[bossIndex], bossesPosition[0]);
+                this.mapController.spawnBossIntoMap(this.bossNode[bossIndex], bossesPosition[0], 1);
             })
         }
     },
@@ -248,9 +257,13 @@ cc.Class({
 
     spawnHero() {
         let heroPrefabs = [];
-        this.lockedHeroIndex.forEach((heroIndex) => {
-            if (heroIndex >= 0 && heroIndex < this.heroPrefabs.length) {
-                heroPrefabs.push(cc.instantiate(this.heroPrefabs[heroIndex]));
+        console.log('lockedHeroData', this.lockedHeroData);
+        this.lockedHeroData.forEach((heroData) => {
+            if (heroData.lockedHero >= 0 && heroData.lockedHero < this.heroPrefabs.length) {
+                // heroPrefabs.push(cc.instantiate(this.heroPrefabs[heroIndex]));
+                // heroPrefabs.push(this.heroPrefabs[heroData.lockedHero]);
+                // console.log('Hero Prefab:', this.heroPrefabs[heroData.lockedHero]);
+                heroPrefabs.push(this.heroPrefabs[heroData.lockedHero]);
             } else {
                 console.warn(`Hero index ${heroIndex} is out of bounds for heroPrefabs array`);
             }
@@ -262,7 +275,7 @@ cc.Class({
             return;
         }
 
-        this.mapController.spawnHeroIntoMap(heroPrefabs, focusEffectPrefab);
+        this.mapController.spawnHeroIntoMap(heroPrefabs, focusEffectPrefab, this.lockedHeroData);
     },
 
     // enemy always has size = 1
@@ -305,14 +318,15 @@ cc.Class({
         cc.director.loadScene(GAME_SCENE.GAME)
     },
 
-    newGame() {
+    quitGame() {
         if (cc.director.isPaused()) {
             cc.director.resume();
         }
-        // this.resetGame();
-        this.gameController.newGame();
-        // this.gameController.setFocusedHero(0);
-        cc.director.loadScene(GAME_DATA.GAME_SCENE.MAP_SELECT)
+
+        // handle quit game
+        // this.socketIOManager.game.quitGame();
+
+        cc.director.loadScene(GAME_DATA.GAME_SCENE.MAIN_MENU)
     },
 
     resetGame() {
@@ -359,7 +373,7 @@ cc.Class({
 
 
     pauseGame() {
-        cc.director.pause();
+        // cc.director.pause();
         this.pausePanel.active = true;
 
         this.pauseButton.node.active = false;
@@ -395,6 +409,31 @@ cc.Class({
         this.gameController.setWonMap();
         this.gameController.setMapPicked(this.mapIndex + 1);
         cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME);
-    }
+    },
+
+    async initLeaderBoard() {
+        let leaderBoardData = await this.socketIOManager.game.getLeaderBoard();
+        leaderBoardData.forEach((data) => {
+            // create new label and add to leaderBoard node
+            let label = new cc.Node().addComponent(cc.Label);
+            label.string = `${data.playerName}: ${data.totalScore}`;
+            label.fontSize = 40;
+            label.node.color = cc.Color.GREEN;
+            label.node.parent = this.leaderBoard;
+        })
+    },
+    async updateLeaderBoard() {
+        let newLeaderBoard = await this.socketIOManager.game.getLeaderBoard();
+
+        this.leaderBoard.removeAllChildren();
+        newLeaderBoard.forEach((data) => {
+            let label = new cc.Node().addComponent(cc.Label);
+            label.string = `${data.playerName}: ${data.totalScore}`;
+            label.fontSize = 40;
+            label.node.color = cc.Color.GREEN;
+            label.node.parent = this.leaderBoard;
+        });
+
+    },
 
 });

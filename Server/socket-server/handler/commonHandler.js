@@ -90,5 +90,75 @@ module.exports = {
             console.error("File dữ liệu nhân vật không tồn tại:", CHARACTER_DATA);
             return null;
         }
+    },
+
+    getHeroById(socketId) {
+        if (fs.existsSync(DATA_FILE)) {
+            const rawData = fs.readFileSync(DATA_FILE);
+            try {
+                const characterData = JSON.parse(rawData);
+                return characterData.heroes.find(hero => hero.id === socketId) || null;
+            } catch (err) {
+                console.error("Lỗi khi parse file JSON:", err);
+                return null;
+            }
+            
+        }
+        return null;
+    },
+
+    isHero(characterId) {
+        if (fs.existsSync(CHARACTER_DATA)) {
+            const rawData = fs.readFileSync(CHARACTER_DATA);
+            try {
+                const characterData = JSON.parse(rawData);
+                return characterData.heroes.some(hero => hero.id === characterId);
+            } catch (err) {
+                console.error("Lỗi khi parse file JSON:", err);
+                return false;
+            }
+        }
+        return false;
+    },
+
+    getBossDataByIndex(index) {
+        if (fs.existsSync(CHARACTER_DATA)) {
+            const rawData = fs.readFileSync(CHARACTER_DATA);
+            try {
+                const characterData = JSON.parse(rawData);
+                return characterData.bosses[index] || null;
+            } catch (err) {
+                console.error("Lỗi khi parse file JSON:", err);
+                return null;
+            }
+        }
+        return null;
+    },
+
+    getInGameCharacterData(characterId, roomData, roomName) {
+        if (!roomData || !roomData[roomName]) {
+            console.error("Không tìm thấy dữ liệu phòng.");
+            return null;
+        }
+
+        // const player = roomData[roomName].player.find(playerObj => Object.keys(playerObj)[0] === characterId);
+        // if (player) {
+        //     return player[characterId];
+        // } else {
+        //     console.error("Không tìm thấy nhân vật trong phòng:", characterId);
+        //     return null;
+        // }
+        // find heroes and bosses
+        const heroes = roomData[roomName].gameState.heroes || [];
+        const bosses = roomData[roomName].gameState.bosses || [];
+
+        const character = heroes.find(hero => hero.heroId === characterId) || 
+                          bosses.find(boss => boss.bossId === characterId);
+        if (character) {
+            return character;
+        }
+        console.error("Không tìm thấy nhân vật trong phòng:", characterId);
+        return null;
     }
+
 }

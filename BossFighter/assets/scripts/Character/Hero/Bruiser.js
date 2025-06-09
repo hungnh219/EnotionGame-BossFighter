@@ -18,7 +18,7 @@ cc.Class({
     extends: Character,
 
     properties: {
-        characterId: "hero001",
+        characterId: "hero002",
         ultimatePrefab: cc.Prefab
     },
 
@@ -26,7 +26,6 @@ cc.Class({
 
     onLoad() {
         this.initData(this.characterId);
-
     },
 
     start() {

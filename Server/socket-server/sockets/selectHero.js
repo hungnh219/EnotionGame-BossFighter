@@ -80,9 +80,24 @@ function selectHeroEvents(io, socket) {
         let lockedHeroArray = [];
         for (const playerObj of roomData[roomName].player) {
             const playerId = Object.keys(playerObj)[0];
-            const playerInfo = playerObj[playerId];
+            // const playerInfo = playerObj[playerId];
+
+            let heroData = logicHandler.common.getCharacterData(playerObj[playerId].lockedHero);
+            if (!heroData) {
+                console.error('Không tìm thấy dữ liệu hero cho lockedHero:', playerObj[playerId].lockedHero);
+                return;
+            }
+
+            const playerInfo = {
+                "lockedHero": playerObj[playerId].lockedHero,
+                "id": heroData.id,
+                "maxHp": heroData.maxHp,
+                "name": heroData.name,
+                "attackDamage": heroData.attackDamage,
+                "attackRange": heroData.attackRange,
+            }
             // clickHeroArray.push(playerInfo.clickHero);
-            lockedHeroArray.push(playerInfo.lockedHero);
+            lockedHeroArray.push(playerInfo);
         }
 
         socket.emit('LOCKED_HERO_INDEX', {

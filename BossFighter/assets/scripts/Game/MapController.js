@@ -131,7 +131,8 @@ cc.Class({
         }
     },
 
-    spawnBossIntoMap(bossNode, position, size = 1) {
+    async spawnBossIntoMap(bossNode, position, size = 1) {
+        console.log("Spawning boss into map:", bossNode, position, size);
         const posX = position.x ? position.x : this.mapWidth - 3;
         const posY = position.y ? position.y : this.mapHeight - 3;
 
@@ -195,10 +196,24 @@ cc.Class({
         });
     },
 
-    spawnHeroIntoMap(heroPrefabs, focusEffectPrefab) {
-        heroPrefabs.forEach((heroPrefab, index) => {
+    spawnHeroIntoMap(heroPrefabs, focusEffectPrefab, lockedHeroData) {
+        heroPrefabs.forEach(async (heroPrefab, index) => {
             let prefabNode = cc.instantiate(heroPrefab)
             let effectNode = cc.instantiate(focusEffectPrefab)
+
+            let heroData = {
+                characterId: lockedHeroData[index].id,
+                name: lockedHeroData[index].name,
+                maxHp: lockedHeroData[index].maxHp,
+                attackDame: lockedHeroData[index].attackDamage,
+                attackRange: lockedHeroData[index].attackRange,
+            }
+            prefabNode.mainScript = prefabNode.getComponents(cc.Component).find(c => typeof c.initData === 'function');
+            
+            if (prefabNode.mainScript) {
+                prefabNode.mainScript.initData(heroData);
+            }
+
             prefabNode.focusEffect = effectNode;
             effectNode.setPosition(cc.v2(0, this.mapTileHeight));
             effectNode.active = false;
