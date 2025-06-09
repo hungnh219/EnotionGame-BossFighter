@@ -171,9 +171,10 @@ cc.Class({
             return;
         }
         
-        const jsonData = this.objectsJsonData.json.mapData[this.mapIndex];
+        // const jsonData = this.objectsJsonData.json.mapData[this.mapIndex];
 
         // const mapObjects = jsonData.map;
+        console.log("Map Data:", this.mapData, this.mapData.bossesPosition);
         const mapObjects = this.mapData.map;
 
         if (!Array.isArray(mapObjects)) {
@@ -187,13 +188,15 @@ cc.Class({
         this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
         this.mapController.initMapSize(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
         this.mapController.viewObjectsMap(mapObjects, this.mapWidth, this.mapHeight, this.map1Objects);
-        let bossesIndex = jsonData.bosses;
-        let bossesPosition = jsonData.bossesPosition;
+        let bossesIndex = this.mapData.bosses;
+        let bossesPosition = this.mapData.bossesPosition;
 
         if (bossesIndex && bossesIndex.length > 0) {
             bossesIndex.forEach((bossIndex) => {
                 this.bossNode[bossIndex] = cc.instantiate(this.bossPrefabs[bossIndex]);
-                this.mapController.spawnBossIntoMap(this.bossNode[bossIndex], bossesPosition[bossIndex], 1);
+
+                console.log('Boss Node:', this.bossNode[bossIndex], bossesPosition[0]);
+                this.mapController.spawnBossIntoMap(this.bossNode[bossIndex], bossesPosition[0], 1);
             })
         }
     },

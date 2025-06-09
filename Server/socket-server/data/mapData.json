@@ -14,7 +14,7 @@
             ],
             "bosses": [0],
             "bossesPosition": [
-                {"x": 0, "y": 0}
+                {"x": 1, "y": 1}
             ]
         },
         {
@@ -35,7 +35,7 @@
             ],
             "bosses": [1],
             "bossesPosition": [
-                {"x": 1, "y": 9}
+                {"x": 2, "y": 2}
             ]
         },
         {

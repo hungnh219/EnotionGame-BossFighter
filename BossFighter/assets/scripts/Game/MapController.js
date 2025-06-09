@@ -132,6 +132,7 @@ cc.Class({
     },
 
     async spawnBossIntoMap(bossNode, position, size = 1) {
+        console.log("Spawning boss into map:", bossNode, position, size);
         const posX = position.x ? position.x : this.mapWidth - 3;
         const posY = position.y ? position.y : this.mapHeight - 3;
 
