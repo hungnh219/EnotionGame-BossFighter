@@ -20,7 +20,30 @@ module.exports = function(socket) {
                 
             });
 
-        }, 
+        },
+
+        initializeGame() {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            socket.emit('INITIALIZE_GAME');
+        },
+
+        getCurrentGameData() {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            return new Promise((resolve, reject) => {
+                socket.on('CURRENT_GAME_DATA', (data) => {
+                    resolve(data);
+                });
+                socket.emit('GET_CURRENT_GAME_DATA');
+            });
+        },
 
         getPlayerOrder() {
             console.log("Yêu cầu thứ tự người chơi từ server...");
@@ -31,8 +54,6 @@ module.exports = function(socket) {
             
             return new Promise((resolve, reject) => {
                 socket.on('PLAYER_ORDER', (data) => {
-                    console.log('Nhận thứ tự người chơi data:', data.order);
-                    console.log('Nhận thứ tự người chơi data order:', data.order);
                     resolve(data.order);
                 });
                 socket.emit('GET_PLAYER_ORDER');
@@ -50,7 +71,6 @@ module.exports = function(socket) {
 
         listenMoveToNewTile(moveToNewTileCallback) {
             socket.on('LISTEN_MOVE_TO_NEW_TILE', (data) => {
-                console.log('Nhận yêu cầu di chuyển đến ô mới:', data);
                 if (moveToNewTileCallback) {
                     moveToNewTileCallback(data);
                 }
@@ -78,7 +98,6 @@ module.exports = function(socket) {
 
             return new Promise((resolve, reject) => {
                 socket.on('LOCKED_HERO_INDEX', (data) => {
-                    console.log('Nhận chỉ số hero đã khóa:', data.lockedHeroArray);
                     resolve(data.lockedHeroArray);
                 });
 
@@ -101,7 +120,6 @@ module.exports = function(socket) {
             }
 
             socket.on('WALKABLE_GRID_MAP_UPDATED', (data) => {
-                console.log('Nhận lưới ô có thể đi được đã cập nhật:', data.walkableGridMap);
                 if (callback) {
                     callback(data.walkableGridMap);
                 }
@@ -192,7 +210,6 @@ module.exports = function(socket) {
 
             return new Promise((resolve, reject) => {
                 socket.on('RETURN_CHARACTER_DATA', (data) => {
-                    console.log('Nhận dữ liệu nhân vật:', data.characterData);
                     resolve(data.characterData);
                 });
                 socket.emit('GET_CHARACTER_DATA', {
@@ -209,7 +226,6 @@ module.exports = function(socket) {
 
             return new Promise((resolve, reject) => {
                 socket.on('RETURN_LEADER_BOARD', (data) => {
-                    console.log('Nhận bảng xếp hạng:', data.leaderBoard);
                     resolve(data.leaderBoard);
                 });
                 socket.emit('GET_LEADER_BOARD');
@@ -273,6 +289,71 @@ module.exports = function(socket) {
                     resolve();
                 });
                 socket.emit('QUIT_GAME');
+            });
+        },
+
+        bossAttack(enemyId, heroId) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            socket.emit('BOSS_ATTACK', { enemyId: enemyId, heroId: heroId });
+        },
+
+        listenBossAttack(callback) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            socket.on('LISTEN_BOSS_ATTACK', (data) => {
+                if (callback) {
+                    callback(data);
+                }
+            });
+        },
+
+        getHeroes() {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            return new Promise((resolve, reject) => {
+                socket.on('RETURN_HEROES', (data) => {
+                    resolve(data.heroes);
+                });
+                socket.emit('GET_HEROES');
+            });
+        },
+
+        getBosses() {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            return new Promise((resolve, reject) => {
+                socket.on('RETURN_BOSSES', (data) => {
+                    resolve(data.bosses);
+                });
+                socket.emit('GET_BOSSES');
+            });
+        },
+
+        getMapIndex() {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            return new Promise((resolve, reject) => {
+                socket.on('RETURN_MAP_INDEX', (data) => {
+                    console.log('Nhận map index:', data.currentMapIndex);
+                    resolve(data.currentMapIndex);
+                });
+                socket.emit('GET_MAP_INDEX');
             });
         }
     };

@@ -226,7 +226,7 @@ cc.Class({
         nodes.forEach(n => n.node.active = true);
     },
 
-    playGame() {
+    async playGame() {
         // check if heroLockedList is full
         if (this.startGameData.host === false) return;
         let flag = true;

@@ -41,7 +41,7 @@ cc.Class({
         this.attackDame = heroData.attackDamage || 10;
         this.attackRange = heroData.attackRange || 1;
         this.maxHp = heroData.maxHp || 100;
-        this.health = this.maxHp;
+        this.health = heroData.hp;
 
 
         // await this._super(characterNameId);

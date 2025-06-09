@@ -202,8 +202,9 @@ cc.Class({
             let effectNode = cc.instantiate(focusEffectPrefab)
 
             let heroData = {
-                characterId: lockedHeroData[index].id,
+                characterId: lockedHeroData[index].heroId,
                 name: lockedHeroData[index].name,
+                hp: lockedHeroData[index].hp,
                 maxHp: lockedHeroData[index].maxHp,
                 attackDame: lockedHeroData[index].attackDamage,
                 attackRange: lockedHeroData[index].attackRange,
@@ -212,6 +213,7 @@ cc.Class({
             
             if (prefabNode.mainScript) {
                 prefabNode.mainScript.initData(heroData);
+                prefabNode.mainScript.updateHpBar();
             }
 
             prefabNode.focusEffect = effectNode;
@@ -271,6 +273,14 @@ cc.Class({
         };
 
         this.gameController.setCellPosition(firstCellPos, lastCellPos);
+    },
+
+    clearMap() {
+        this.mapLayout.node.removeAllChildren();
+        this.mapObjectHolder.removeAllChildren();
+        // this.socketIOManager.game.updateWalkableGridMap([]);
+        this.gameController.clearHeroes();
+        this.gameController.clearBosses();
     }
 
 

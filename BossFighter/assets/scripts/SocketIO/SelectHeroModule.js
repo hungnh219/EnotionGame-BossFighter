@@ -26,7 +26,6 @@ module.exports = function(socket) {
         listenPlayGame(playGameCallback) {
             socket.on('GAME_STARTED', () => {
                 console.log('Trò chơi đã bắt đầu!');
-                this.initializeGame();
                 if (playGameCallback) {
                     playGameCallback();
                 }
@@ -72,17 +71,5 @@ module.exports = function(socket) {
             console.warn("Không tìm thấy người chơi với socket ID:", currentSocketId);
             return null;
         },
-
-        initializeGame() {
-            if (!socket) {
-                console.error("Chưa kết nối đến Socket.IO server.");
-                return null;
-            }
-
-            socket.emit('INITIALIZE_GAME');
-        }
-
-        
-
     }
 }

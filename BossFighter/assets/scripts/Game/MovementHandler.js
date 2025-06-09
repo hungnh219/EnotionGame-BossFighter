@@ -44,8 +44,10 @@ cc.Class({
         this.mapController = MapController.getInstance() || new MapController();
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
         this.socketIOManager.game.listenMoveToNewTile((data) => {
+            this.gameController = GameController.getInstance() || new GameController();
             let playerNode = this.gameController.getPlayerByIndex(data.playerIndex);
 
+            console.log('Nhận yêu cầu di chuyển đến ô mới:', playerNode, data.newX, data.newY);
             // Nếu là chính mình thì bỏ qua
             if (data.playerIndex === this.gameController.getPlayerIndex()) return;
 

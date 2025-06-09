@@ -27,10 +27,7 @@ cc.Class({
 
     async initData(characterNameId) {
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
-
-        console.warn('fetching character data for:', characterNameId);
         let characterData = await this.socketIOManager.game.getCharacterData(characterNameId);
-        console.warn('get data:', characterNameId, characterData.name);
         this.health = characterData.maxHp ?? 100;
         this.maxHp = characterData.maxHp ?? 100;
         this.attackDame = characterData.attackDamage ?? 10; 
@@ -39,7 +36,6 @@ cc.Class({
     },
 
     takeDame(newHealth) {
-        console.log("Taking damage:", newHealth);
         this.health = newHealth;
         this.health = Math.max(this.health, 0);
         if (this.hpBar) {
@@ -55,7 +51,6 @@ cc.Class({
     async updateHpBar() {
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
         let newHealth = await this.socketIOManager.game.getCurrentHp(this.characterId);
-        console.log("Updating HP bar with new health:", newHealth, this.characterId);
         this.health = newHealth;
         this.health = Math.max(this.health, 0);
         EventBus.emit(EventBus.events.UPDATE_LEADER_BOARD)
@@ -130,5 +125,7 @@ cc.Class({
 
     die() {
         console.log("Character died");
+
+        this.node.destroy();
     },
 });

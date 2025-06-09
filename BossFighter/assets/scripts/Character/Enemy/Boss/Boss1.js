@@ -32,14 +32,26 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        this.initData(this.characterId);
+        // this.initData(this.characterId);
     },
 
     start () {
     },
 
-    async initData(characterNameId) {
-        await this._super(characterNameId);
+    initData(heroData) {
+        console.warn('BOSS1 initData with heroData:', heroData);
+        this.characterId = heroData.bossId || "hero002";
+        this.name = heroData.name || "ADC Hero";
+        this.attackDame = heroData.attackDamage || 10;
+        this.attackRange = heroData.attackRange || 1;
+        this.maxHp = heroData.maxHp || 100;
+        this.health = heroData.hp;
+
+
+        // await this._super(characterNameId);
+
+        // console.log("ADC initData with characterId:", characterNameId);
+        // console.log("ADC properties:", this);
     },
 
     playAnimation(animationName, moveTime) {

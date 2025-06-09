@@ -37,6 +37,7 @@ const GameController = cc.Class({
     },
     //-------------------------------------------------------------------------------//
     startGame(socketIOManager) {
+        console.log('Start game', socketIOManager);
         this.playerTurn();
         this.updatePlayerTurn(this.playerTurnCount);
         this.setFocusedHero(this.playerIndex);
@@ -202,6 +203,22 @@ const GameController = cc.Class({
         this.heroes.push(hero);
     },
 
+    clearHeroes() {
+        this.heroes.forEach(hero => {
+            hero.destroy();
+        })
+
+        this.heroes = [];
+    },
+
+    clearBosses() {
+        this.bosses.forEach(boss => {
+            boss.node.destroy();
+        })
+
+        this.bosses = [];
+    },
+
     addBoss(boss, size) {
         // this.boss = boss;
         if (this.bosses == undefined) this.bosses = [];
@@ -290,20 +307,23 @@ const GameController = cc.Class({
             let enemyAttackRange = 1;
 
             if (dx + dy <= enemyAttackRange) {
-                // attack
-                console.log('attack')
                 enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.dealDame === 'function');
 
                 if (enemy.mainScript) {
-                    let dame = enemy.mainScript.getAttackDame() * 1.5;
-                    // enemy.mainScript.dealDame(nearestHero, dame);
-
+                    // let dame = enemy.mainScript.getAttackDame() * 1.5;
+                    // // enemy.mainScript.dealDame(nearestHero, dame);
+                    // let heroId = nearestHero.mainScript.characterId;
+                    // let enemyId = enemy.mainScript.characterId;
+                    // let newHealth = await this.socketIOManager.game.takeDame(enemyId, heroId, 20);
+                    // nearestHero.mainScript.updateHpBar();
                     let heroId = nearestHero.mainScript.characterId;
                     let enemyId = enemy.mainScript.characterId;
-                    
-                    let newHealth = await this.socketIOManager.game.takeDame(enemyId, heroId, 20);
 
-                    nearestHero.mainScript.updateHpBar();
+                    console.log('test ', enemy, 'enemyId', enemyId, 'heroId', heroId);
+                    this.socketIOManager.game.bossAttack(
+                        enemyId, heroId
+                    );
+
                     // check if hero is dead
                     nearestHero.mainScript = nearestHero.getComponents(cc.Component).find(c => typeof c.getCurrentHp === 'function');
                     if (nearestHero.mainScript && nearestHero.mainScript.getCurrentHp() <= 0) {
@@ -316,6 +336,15 @@ const GameController = cc.Class({
                 EventBus.emit(EventBus.events.ENEMY_AUTO_MODE, enemy, nearestHero);
             }
         })
+    },
+
+    async bossAttack(enemy, hero) {
+        let dame = enemy.mainScript.getAttackDame();
+        // enemy.mainScript.dealDame(nearestHero, dame);
+        let heroId = hero.mainScript.characterId;
+        let enemyId = enemy.mainScript.characterId;
+        let newHealth = await this.socketIOManager.game.takeDame(enemyId, heroId, dame);
+        enemy.mainScript.updateHpBar();
     },
     findNearestHero(enemy) {
         if (!this.heroes || this.heroes.length === 0) return null;
@@ -400,7 +429,26 @@ const GameController = cc.Class({
         this.heroAttackTarget(player, enemy, true);
     },
 
+    bossAttackFromServer(enemyId, heroId) {
+        console.log('boss attack from server', enemyId, heroId);
+        let enemy = this.bosses.find(b => b.node.mainScript.characterId === enemyId);
+        if (!enemy) {
+            console.warn("Không tìm thấy boss với ID", enemyId);
+            return;
+        }
+        enemy = enemy.node;
+
+        let hero = this.heroes.find(h => h.mainScript.characterId === heroId);
+        if (!hero) {
+            console.warn("Không tìm thấy hero với ID", heroId);
+            return;
+        }
+
+        this.bossAttack(hero, enemy);
+    },
+
     async heroAttackTarget(hero, enemy, isFromServer = false) {
+        console.log('hero attack target', hero, enemy, isFromServer);
         if (!hero || !enemy || !hero.mainScript) {
             console.warn("Thiếu hero hoặc enemy hoặc mainScript");
             return; 
@@ -415,6 +463,7 @@ const GameController = cc.Class({
                 return;
             }
         }
+        console.log('2 hero attack target', hero, enemy, isFromServer);
 
         enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.getCurrentHp === 'function');
         hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.dealDame === 'function');
@@ -430,13 +479,13 @@ const GameController = cc.Class({
             });
             let heroId = hero.mainScript.characterId;
             let enemyId = enemy.mainScript.characterId;
-
+            console.log('test ', enemy, 'enemyId', enemyId, 'heroId', heroId);
             let newHealth = await this.socketIOManager.game.takeDame(heroId, enemyId, dameFromServer);
-            
             return;
         }
 
         
+        console.log('3 hero attack target', hero, enemy, isFromServer);
 
         const enemyPos = this.positionToGrid(enemy);
 
@@ -448,7 +497,9 @@ const GameController = cc.Class({
         // optimize
         
         // enemy.mainScript.takeDame(newHealth);
+        console.log('1dame from hero', dame);
         enemy.mainScript.updateHpBar();
+        console.log('2dame from hero', dame);
         if (enemy.mainScript.getCurrentHp() <= 0)  {
             if (isBoss) {
                 this.handleEnemyDie(enemy);
@@ -457,6 +508,7 @@ const GameController = cc.Class({
             }
         }
 
+        console.log('4 hero attack target', hero, enemy, isFromServer);
         this.consumePlayerTurn();
         this.checkWin();
     },
