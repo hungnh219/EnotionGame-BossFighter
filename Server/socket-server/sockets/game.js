@@ -153,8 +153,17 @@ function gameEvents(io, socket) {
             }
         })
 
+        // Sử dụng Math.max thay vì max
+        let turn = {
+            isPlayerTurn: true,
+            maxPlayerActions: Math.max(heroes.length, bosses.length),
+            remainingPlayerActions: Math.max(heroes.length, bosses.length),
+        };
+
+
         roomData[roomName].gameState.heroes = heroes;
         roomData[roomName].gameState.bosses = bosses;
+        roomData[roomName].gameState.turn = turn;
 
         logicHandler.common.writeRoomData(roomData);
     })

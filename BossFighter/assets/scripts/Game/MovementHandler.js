@@ -163,7 +163,7 @@ cc.Class({
                     isWalkable: false
                 });
 
-                this.gameController.consumePlayerTurn();
+                this.gameController.consumePlayerTurn(nodeMove);
                 if (this.gameController.getPlayerTurnCount() <= 0) {
                     this.gameController.enemyAutoMode();
                 }

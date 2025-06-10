@@ -3,6 +3,7 @@ import RoomModule from "./RoomModule";
 import GameModule from "./GameModule";
 import SelectHeroModule from "./SelectHeroModule";
 import ScoreTableModule from "./ScoreTableModule";
+import TurnModule from "./TurnModule";
 
 const SocketIOManager = cc.Class({
     extends: cc.Component,

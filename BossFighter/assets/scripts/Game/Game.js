@@ -97,9 +97,8 @@ cc.Class({
         this.heroHpProgressBar.progress = 1;
 
         this.gameController.setCallbacks(
-            (playerTurn) => this.updatePlayerTurnLabel(playerTurn),
             (heroInfo, ultimateCooldown) => this.updateHeroInfoUI(heroInfo, ultimateCooldown),
-            () => this.endGameNotification()
+            () => this.updatePlayerTurnLabel(),
         )
 
         // chat
@@ -111,6 +110,7 @@ cc.Class({
         this.mapData = await this.socketIOManager.game.getMapData();
         this.heroes = await this.socketIOManager.game.getHeroes();
         this.bosses = await this.socketIOManager.game.getBosses();
+        
         
         this.playerIndex = await this.socketIOManager.game.getPlayerOrder();
         if (this.playerIndex != undefined) {
@@ -129,6 +129,8 @@ cc.Class({
         // chat
         this.socketIOManager.room.setOnRoomInfoReceivedCallback(this.onRoomInfoReceived.bind(this));
         this.socketIOManager.room.getRoomInformation();
+
+        this.updatePlayerTurnLabel();
     },
     
     listenEvent() {
@@ -170,6 +172,24 @@ cc.Class({
             console.log("Game over received from server:", data);
             this.endGameNotification(data.result);
         });
+
+        this.socketIOManager.turn.listenBossTurn(() => {
+            this.gameController.bossTurn();
+        });
+        this.socketIOManager.turn.listenEndBossTurn(() => {
+            this.updatePlayerTurnLabel();
+        });
+        this.socketIOManager.turn.listenSpawnHealthOrb((data) => {
+            console.log('Received health orb spawn data:', data);
+            this.mapController.spawnHealthOrb(data);
+        });
+
+        // this.socketIOManager.turn.listenPlayerAction((data) => {
+        //     this.gameController.handlePlayerAction(data);
+        // });
+        // this.socketIOManager.turn.listenConsumeAction((data) => {
+        //     this.gameController.handleConsumeAction(data);
+        // });
     },
 
     // onClickPanel(event) {
@@ -223,7 +243,6 @@ cc.Class({
 
     // update (dt) {},
     onDestroy() {
-        // cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         EventBus.off(EventBus.events.CLICK_TO_MOVE, this.onClickToMove, this);
     },
 
@@ -245,10 +264,16 @@ cc.Class({
         this.ultimateCooldownLabel.string = `Ultimate CD: ${hero.mainScript.ultimateCooldownRemaining}`;
     },
 
-    updatePlayerTurnLabel(playerTurnCount) {
-        if (this.playerTurn) {
-            this.playerTurn.string = playerTurnCount;
+    async updatePlayerTurnLabel() {
+        let remainingActions = await this.socketIOManager.turn.getRemainingActions();
+
+        if (remainingActions === undefined || remainingActions < 0) {
+            console.warn("Invalid player turn count:", remainingActions);
+            this.playerTurn.string = "N/A";
+            return;
         }
+        console.warn("Updating player turn label with count:", remainingActions);
+        this.playerTurn.string = remainingActions;
     },
 
     updateHeroInfoUI(heroInfo, ultimateCooldown) {
@@ -310,7 +335,12 @@ cc.Class({
         mapController.setCellPosition();
     },
 
-    heroAttack() {
+    async heroAttack() {
+        let isPlayerTurn = await this.socketIOManager.turn.isPlayerTurn();
+        if (!isPlayerTurn) {
+            console.warn("It's not the player's turn to attack");
+            return;
+        }
         EventBus.emit(EventBus.events.CLEAR_WALKABLE_AREA);
         this.gameController.heroAttack();
         EventBus.emit(EventBus.events.PREVENT_DRAG);
@@ -425,7 +455,7 @@ cc.Class({
             label.node.parent = this.leaderBoard;
         })
     },
-    
+
     async updateLeaderBoard() {
         let newLeaderBoard = await this.socketIOManager.game.getLeaderBoard();
 
@@ -437,7 +467,6 @@ cc.Class({
             label.node.color = cc.Color.GREEN;
             label.node.parent = this.leaderBoard;
         });
-
     },
 
     // chat
