@@ -37,7 +37,6 @@ const GameController = cc.Class({
     },
     //-------------------------------------------------------------------------------//
     startGame(socketIOManager) {
-        console.log('Start game', socketIOManager);
         this.playerTurn();
         this.updatePlayerTurn(this.playerTurnCount);
         this.setFocusedHero(this.playerIndex);
@@ -83,8 +82,6 @@ const GameController = cc.Class({
     },
 
     setFocusedHero(heroIndex) {
-        console.log('set focused hero', heroIndex);
-        console.log('heroes', this.heroes);
         if (heroIndex == undefined || heroIndex == null) return;
         this.focusedHero = this.heroes[heroIndex];
         // this.listenKeyDown(this.focusedHero);
@@ -265,7 +262,6 @@ const GameController = cc.Class({
 
             if (dx + dy <= enemyAttackRange) {
                 // attack
-                console.log('enemy attack')
                 enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.dealDame === 'function');
 
                 if (enemy.mainScript) {
@@ -319,7 +315,6 @@ const GameController = cc.Class({
                     let heroId = nearestHero.mainScript.characterId;
                     let enemyId = enemy.mainScript.characterId;
 
-                    console.log('test ', enemy, 'enemyId', enemyId, 'heroId', heroId);
                     this.socketIOManager.game.bossAttack(
                         enemyId, heroId
                     );
@@ -399,8 +394,6 @@ const GameController = cc.Class({
     },
 
     heroAttackFromServer(playerOrder, targetOrder, isBoss) {
-        console.log('hero attack from server', playerOrder, targetOrder, isBoss);
-
         let player = this.getPlayerByIndex(playerOrder);
         if (!player) {
             console.warn("Không tìm thấy người chơi với chỉ số", playerOrder);
@@ -430,7 +423,6 @@ const GameController = cc.Class({
     },
 
     bossAttackFromServer(enemyId, heroId) {
-        console.log('boss attack from server', enemyId, heroId);
         let enemy = this.bosses.find(b => b.node.mainScript.characterId === enemyId);
         if (!enemy) {
             console.warn("Không tìm thấy boss với ID", enemyId);
@@ -448,7 +440,6 @@ const GameController = cc.Class({
     },
 
     async heroAttackTarget(hero, enemy, isFromServer = false) {
-        console.log('hero attack target', hero, enemy, isFromServer);
         if (!hero || !enemy || !hero.mainScript) {
             console.warn("Thiếu hero hoặc enemy hoặc mainScript");
             return; 
@@ -463,7 +454,6 @@ const GameController = cc.Class({
                 return;
             }
         }
-        console.log('2 hero attack target', hero, enemy, isFromServer);
 
         enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.getCurrentHp === 'function');
         hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.dealDame === 'function');
@@ -479,13 +469,9 @@ const GameController = cc.Class({
             });
             let heroId = hero.mainScript.characterId;
             let enemyId = enemy.mainScript.characterId;
-            console.log('test ', enemy, 'enemyId', enemyId, 'heroId', heroId);
             let newHealth = await this.socketIOManager.game.takeDame(heroId, enemyId, dameFromServer);
             return;
         }
-
-        
-        console.log('3 hero attack target', hero, enemy, isFromServer);
 
         const enemyPos = this.positionToGrid(enemy);
 
@@ -497,9 +483,7 @@ const GameController = cc.Class({
         // optimize
         
         // enemy.mainScript.takeDame(newHealth);
-        console.log('1dame from hero', dame);
         enemy.mainScript.updateHpBar();
-        console.log('2dame from hero', dame);
         if (enemy.mainScript.getCurrentHp() <= 0)  {
             if (isBoss) {
                 this.handleEnemyDie(enemy);
@@ -508,7 +492,6 @@ const GameController = cc.Class({
             }
         }
 
-        console.log('4 hero attack target', hero, enemy, isFromServer);
         this.consumePlayerTurn();
         this.checkWin();
     },
@@ -622,7 +605,6 @@ const GameController = cc.Class({
                 }
             }
         });
-        console.log('enemies in range: ', enemiesInRange);
 
         return enemiesInRange;
     },
@@ -705,7 +687,6 @@ const GameController = cc.Class({
     bruiserUltimate(hero) {
         if (hero == null || hero == undefined) hero = this.focusedHero;
 
-        console.log('test bruiser ultimate');
         hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.ultimate === 'function');
 
         if (hero.mainScript) {
@@ -722,8 +703,6 @@ const GameController = cc.Class({
     },
 
     showTileSelection(onTileSelected, isCheckWalkable = false) {
-
-        console.log('show tile selection');
         if (!this.highlightTiles) this.highlightTiles = [];
         for (let x = 0; x < this.mapWidth; x++) {
             for (let y = 0; y < this.mapHeight; y++) {
@@ -752,7 +731,6 @@ const GameController = cc.Class({
     },
 
     async heroUltimateEnemy(hero, enemy) {
-        console.log('enemy pos', enemy.x, enemy.y);
         if (!hero || !enemy || !hero.mainScript) {
             console.warn("Thiếu hero hoặc enemy hoặc mainScript");
             return;
@@ -829,7 +807,6 @@ const GameController = cc.Class({
                     if (boss.node.mainScript) {
                         boss.node.mainScript.takeDame(dame);
                         if (boss.node.mainScript.getCurrentHp() <= 0) {
-                            console.log('boss die check 123');
                             this.handleEnemyDie(boss);
                         }
                     }
@@ -875,7 +852,6 @@ const GameController = cc.Class({
         else if (this.bosses.includes(enemy) || this.bosses.some(b => b.node = enemy)) {
             this.bosses.splice(this.bosses.indexOf(enemy), 1);
             if (this.bosses.length == 0) {
-                console.log('boss die, no more boss');
                 this.checkWin();
             }
         }

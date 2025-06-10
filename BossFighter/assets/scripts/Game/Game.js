@@ -68,43 +68,70 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     async onLoad() {
+        this.gameController = GameController.getInstance() || new GameController();
+        this.mapController = MapController.getInstance() || new MapController();
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
-        await this.socketIOManager.game.initializeGame();
+        cc.director.getCollisionManager().enabled = true;
 
-        this.initData();
+        // this.rootNode.sortAllChildren();
+        this.rootNode = this.characterHolder;
+        this.bossNode = [];
+        this.ultimateGreyPrefab = cc.instantiate(this.greyTilePrefab);
+        this.ultimateGreyPrefab.parent = this.ultimateCooldownLabel.node.parent;
     },
 
     start() {
+        this.initData();
+        this.listenEvent();
     },
 
     async initData() {
-        // onload start
-        this.guideBook.active = false
-        this.gameController = GameController.getInstance() || new GameController();
-        // this.mapIndex = this.gameController.getMapPicked() ? this.gameController.getMapPicked() : 0;
-
-        cc.director.getCollisionManager().enabled = true;
-        this.heroHpProgressBar.progress = 1;
-
-        // variables
-        this.pressedKeys = new Set();
-
-        this.focusedHeroIndex = -1;
-        this.rootNode = this.characterHolder;
-        this.bossNode = [];
-
-        this.winnerNotificationLabel.node.parent.zIndex = 999;
-        this.rootNode.sortAllChildren();
-
-        this.gameController.gameScript = this;
-        this.mapController = MapController.getInstance() || new MapController();
-        this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
+        await this.socketIOManager.game.initializeGame();
 
         this.mapIndex = await this.socketIOManager.game.getMapIndex();
-        console.log("Map index from server:", this.mapIndex);
         if (this.mapIndex == undefined) {
             this.mapIndex = 0;
         }
+
+        this.guideBook.active = false
+        this.heroHpProgressBar.progress = 1;
+
+        this.gameController.setCallbacks(
+            (playerTurn) => this.updatePlayerTurnLabel(playerTurn),
+            (heroInfo, ultimateCooldown) => this.updateHeroInfoUI(heroInfo, ultimateCooldown),
+            () => this.endGameNotification()
+        )
+
+        // chat
+        this.scrollViewContent.removeAllChildren();
+        this.socketIOManager.game.receiveGameMessages(this.onMessageReceived.bind(this));
+        this.textMessageInput.node.on('editing-did-ended', this.onEditingEnded, this);
+
+        // onload end
+        this.mapData = await this.socketIOManager.game.getMapData();
+        this.heroes = await this.socketIOManager.game.getHeroes();
+        this.bosses = await this.socketIOManager.game.getBosses();
+        
+        this.playerIndex = await this.socketIOManager.game.getPlayerOrder();
+        if (this.playerIndex != undefined) {
+            this.gameController.setPlayerIndex(this.playerIndex);
+        }
+
+        await this.spawnObjectsFromJson();
+        
+        this.initLeaderBoard();
+
+        this.gameController.setHighlightTilePrefab(this.greenTilePrefab);
+        this.gameController.setRootNode(this.rootNode);
+        this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
+        this.gameController.startGame(this.socketIOManager);
+
+        // chat
+        this.socketIOManager.room.setOnRoomInfoReceivedCallback(this.onRoomInfoReceived.bind(this));
+        this.socketIOManager.room.getRoomInformation();
+    },
+    
+    listenEvent() {
         EventBus.on(EventBus.events.CLICK_TO_MOVE, (node) => {
             this.heroClick(node);
         }, this);
@@ -124,32 +151,6 @@ cc.Class({
             EventBus.emit(EventBus.events.CLEAR_WALKABLE_AREA);
         }, this);
 
-        this.mapLayout.node.x = -this.mapWidth * this.mapTileWidth / 2;
-        this.mapLayout.node.y = -this.mapHeight * this.mapTileHeight / 2;
-
-        this.gameController.setCallbacks(
-            (playerTurn) => this.updatePlayerTurnLabel(playerTurn),
-            (heroInfo, ultimateCooldown) => this.updateHeroInfoUI(heroInfo, ultimateCooldown),
-            () => this.endGameNotification()
-        )
-
-
-        // chat
-        this.scrollViewContent.removeAllChildren();
-        this.socketIOManager.game.receiveGameMessages(this.onMessageReceived.bind(this));
-        this.textMessageInput.node.on('editing-did-ended', this.onEditingEnded, this);
-
-        // onload end
-        this.mapData = await this.socketIOManager.game.getMapData();
-        this.heroes = await this.socketIOManager.game.getHeroes();
-        this.bosses = await this.socketIOManager.game.getBosses();
-        
-        this.playerIndex = await this.socketIOManager.game.getPlayerOrder();
-        if (this.playerIndex != undefined) {
-            this.gameController.setPlayerIndex(this.playerIndex);
-        }
-
-
         this.socketIOManager.game.listenOtherAttack((data) => {
             this.gameController = GameController.getInstance() || new GameController();
             this.gameController.heroAttackFromServer(data.playerOrder, data.targetOrder, data.isBoss);
@@ -164,34 +165,11 @@ cc.Class({
         this.socketIOManager.game.listenBossDie(() => {
             this.endGameNotification();
         })
-
-        await this.spawnObjectsFromJson();
-        
-        this.backgroundSprite.spriteFrame = this.backgroundSpriteFrames[this.mapIndex];
-
-        this.initMapView();
-        this.spawnHero();
-
-        this.ultimateGreyPrefab = cc.instantiate(this.greyTilePrefab);
-        this.ultimateGreyPrefab.parent = this.ultimateCooldownLabel.node.parent;
-        this.initLeaderBoard();
-
-        this.gameController.setHighlightTilePrefab(this.greenTilePrefab);
-        this.gameController.setRootNode(this.rootNode);
-        this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
-        // this.mapIndex = this.gameController.getMapPicked() ? this.gameController.getMapPicked() : 0;
-        // this.heroPrefabs = this.gameController.getSelectedHeroPrefabs();
-        this.gameController.startGame(this.socketIOManager);
-
-        // chat
-        this.socketIOManager.room.setOnRoomInfoReceivedCallback(this.onRoomInfoReceived.bind(this));
-        this.socketIOManager.room.getRoomInformation();
     },
 
-
-    onClickPanel(event) {
-        event.stopPropagation();
-    },
+    // onClickPanel(event) {
+    //     event.stopPropagation();
+    // },
 
     spawnObjectsFromJson() {
         if (!this.objectsJsonData || !this.objectsJsonData.json) {
@@ -206,29 +184,36 @@ cc.Class({
             return;
         }
 
-        // mapHeight and mapWidth are read from json
+        // config map 
         this.mapHeight = mapObjects.length;
         this.mapWidth = mapObjects[0].length;
         this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
         this.mapController.initMapSize(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
+
+        // map view
+        this.initMapView();
+        this.backgroundSprite.spriteFrame = this.backgroundSpriteFrames[this.mapIndex];
+
+        // add object
         this.mapController.viewObjectsMap(mapObjects, this.mapWidth, this.mapHeight, this.map1Objects);
-        let bossesIndex = this.mapData.bosses;
+        
+        // add boss
         let bossesPosition = this.mapData.bossesPosition;
-
-        // let bossData = this.socketIOManager.game.getBossData();
-
-        if (bossesIndex && bossesIndex.length > 0) {
-            bossesIndex.forEach((bossIndex) => {
-                this.bossNode[bossIndex] = cc.instantiate(this.bossPrefabs[bossIndex]);
-                let bossData = this.bosses[bossIndex];
-                this.bossNode[bossIndex].mainScript = this.bossNode[bossIndex].getComponents(cc.Component).find(c => typeof c.initData === 'function');
-                if (this.bossNode[bossIndex].mainScript) {
-                    console.log("Boss data:", bossData);
-                    this.bossNode[bossIndex].mainScript.initData(bossData);
+        for (let i = 0; i < this.bosses.length; i++) {
+            if (this.bosses[i]) {
+                this.bossNode[i] = cc.instantiate(this.bossPrefabs[i]);
+                this.bossNode[i].mainScript = this.bossNode[i].getComponents(cc.Component).find(c => typeof c.initData === 'function');
+                if (this.bossNode[i].mainScript) {
+                    this.bossNode[i].mainScript.initData(this.bosses[i]);
                 }
-                this.mapController.spawnBossIntoMap(this.bossNode[bossIndex], bossesPosition[0], 1);
-            })
+                this.mapController.spawnBossIntoMap(this.bossNode[i], bossesPosition[i], 1);
+            } else {
+                console.warn(`Boss at index ${i} is not defined`);
+            }
         }
+
+        // add hero
+        this.spawnHero();
     },
 
     // update (dt) {},
@@ -239,8 +224,6 @@ cc.Class({
 
     heroClick(node) {
         let currentHero = this.gameController.getPlayerByIndex(this.playerIndex);
-        console.log("Current hero:", currentHero);
-        console.log("Clicked node:", node);
         if (node != currentHero) {
             console.warn("Clicked node is not the current hero");
             return;
@@ -317,6 +300,7 @@ cc.Class({
 
     initMapView() {
         let mapController = this.mapController;
+        console.warn("MapController initialized:", mapController);
   
         let mapSize = {
             width: this.mapWidth,
@@ -355,9 +339,6 @@ cc.Class({
             cc.director.resume();
         }
 
-        // handle quit game
-        // this.socketIOManager.game.quitGame();
-
         cc.director.loadScene(GAME_DATA.GAME_SCENE.MAIN_MENU)
     },
 
@@ -373,10 +354,7 @@ cc.Class({
     },
 
     endGameNotification() {
-
         let winner = this.gameController.getWinner();
-        let notificationPanel = this.winnerNotificationLabel.node.parent;
-        let notificationPanelBgSprite = notificationPanel.getComponent(cc.Sprite);
         if (winner == GAME_DATA.ROLE.PLAYER) {
             this.nextButton.node.active = true;
             let audioSources = this.node.getComponents(cc.AudioSource)
@@ -387,10 +365,7 @@ cc.Class({
         }
         this.winnerNotificationLabel.string = winner;
         this.winnerNotificationLabel.node.parent.active = true;
-
-        // this.scheduleOnce(() => {
-        //     // cc.director.pause()
-        // }, 1.5);
+        this.winnerNotificationLabel.node.active = true;
 
         this.pauseButton.node.active = false;
     },
@@ -405,7 +380,6 @@ cc.Class({
 
 
     pauseGame() {
-        // cc.director.pause();
         this.pausePanel.active = true;
 
         this.pauseButton.node.active = false;
@@ -418,7 +392,7 @@ cc.Class({
     },
 
     nextGame() {
-        this.socketIOManager.game.nextMap();
+        // this.socketIOManager.game.nextMap();
     },
 
     nextMapServer() {
@@ -437,15 +411,8 @@ cc.Class({
             cc.director.resume();
         }
 
-        // this.gameController.resetGame();
-        // this.gameController.setWonMap();
-        // this.gameController.setMapPicked(this.mapIndex + 1);
-        // cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME);
-        this.leaderBoard.removeAllChildren();
-        this.characterHolder.removeAllChildren();
-        this.mapController.clearMap();
-        this.initData();
-        this.winnerNotificationLabel.node.parent.active = false;
+        this.gameController.resetGame();
+        cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME);
     },
 
     async initLeaderBoard() {
@@ -461,6 +428,7 @@ cc.Class({
             label.node.parent = this.leaderBoard;
         })
     },
+    
     async updateLeaderBoard() {
         let newLeaderBoard = await this.socketIOManager.game.getLeaderBoard();
 
@@ -477,8 +445,6 @@ cc.Class({
 
     // chat
     onMessageReceived(data) {
-        console.log('GAME: Nhận tin nhắn từ server:', data);
-        console.log('messageItem',this.messageItem)
         if (data.success) {
             const messageNode = cc.instantiate(this.messageItem);
             const messageLabel = messageNode.getComponent(cc.Label);
@@ -498,7 +464,6 @@ cc.Class({
 
     scrollToBottom() {
         const scrollView = this.scrollViewContent.parent.parent.getComponent(cc.ScrollView)
-        console.log('scrollView', scrollView)
         scrollView.scrollToBottom(0.1); 
     },
 
@@ -520,7 +485,6 @@ cc.Class({
     },
 
     onRoomInfoReceived(data) {
-        console.log("WaitingRoom: Thông tin phòng đã nhận được (onRoomInfoReceived):", data);
         this.currentRoomData = data;
         this.updateRoomUI();
     },
@@ -536,9 +500,6 @@ cc.Class({
 
 
         for (const room of this.currentRoomData.rooms) {
-
-            console.log('room player', room.players)
-
             const playerInThisRoom = room.players.find(playerObj => Object.keys(playerObj)[0] === currentPlayerSocketId);
 
             if (playerInThisRoom) {
@@ -550,9 +511,6 @@ cc.Class({
                 break;
             }
         }
-
-        console.log('roomMembers', roomMembers)
-        console.log('foundRoomName',foundRoomName)
 
         if (foundRoomName) {
             this.currentRoomName = foundRoomName

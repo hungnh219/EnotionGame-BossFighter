@@ -137,30 +137,31 @@ function gameEvents(io, socket) {
             };
         })
 
-
-
-        // mặc định 1 map 1 boss
         let bosses = [];
-        let bossData = logicHandler.common.getBossDataByIndex(roomData[roomName].gameState.currentMapIndex);
+        let mapIndex = roomData[roomName].gameState.currentMapIndex || 0;
+        let bossIndex = logicHandler.common.getBossIndex(mapIndex);
 
-        if (!bosses) {
-            console.error('Không tìm thấy dữ liệu boss cho bản đồ hiện tại:', roomData[roomName].gameState.currentMapIndex);
-            return;
-        }
-
-        bosses[0] = {
-            bossId: bossData.id,
-            hp: bossData.maxHp,
-            maxHp: bossData.maxHp,
-            attackDamage: bossData.attackDamage,
-            attackRange: bossData.attackRange,
-            name: bossData.name,
-        }
+        console.log('Boss index:', bossIndex, 'Map index:', mapIndex);
 
 
-        // roomData[roomName].gameState.bosses = bosses;
+        bossIndex.forEach((boss, index) => {
+            let bossData = logicHandler.common.getBossDataByIndex(index);
 
-        // thêm dữ liệu heroes vào roomdata với key là heroes
+            let newBoss = {
+                bossId: bossData.id,
+                hp: bossData.maxHp,
+                maxHp: bossData.maxHp,
+                attackDamage: bossData.attackDamage,
+                attackRange: bossData.attackRange,
+                name: bossData.name,
+            }
+
+            if (!bosses.find(b => b.bossId === newBoss.bossId)) {
+                bosses.push(newBoss);
+            } else {
+                console.warn('Boss đã tồn tại trong danh sách bosses:', newBoss.bossId);
+            }
+        })
 
         roomData[roomName].gameState.heroes = heroes;
         roomData[roomName].gameState.bosses = bosses;
@@ -432,6 +433,7 @@ function gameEvents(io, socket) {
 
                 console.log('Boss bị tấn công, HP mới:', boss.hp);
                 if (boss.hp <= 0) {
+                    console.log('Boss đã chết, thông báo cho tất cả người chơi');
                     io.to(roomName).emit('BOSS_DIE');
                 }
             } else {

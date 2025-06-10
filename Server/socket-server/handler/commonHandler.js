@@ -3,6 +3,7 @@ const { get } = require('http');
 const path = require('path');
 const DATA_FILE = path.join(__dirname, '../data/roomData.json');
 const CHARACTER_DATA = path.join(__dirname, '../data/character.json');
+const MAP_DATA = path.join(__dirname, '../data/mapData.json');
 
 module.exports = {
     TYPE : {
@@ -159,6 +160,20 @@ module.exports = {
         }
         console.error("Không tìm thấy nhân vật trong phòng:", characterId);
         return null;
+    },
+
+    getBossIndex(mapIndex) {
+        if (fs.existsSync(MAP_DATA)) {
+            const rawData = fs.readFileSync(MAP_DATA);
+            try {
+                const mapData = JSON.parse(rawData);
+                return mapData.mapData[mapIndex].bosses || []; // Trả về chỉ số boss mặc định là 0 nếu không tìm thấy
+            } catch (err) {
+                console.error("Lỗi khi parse file JSON:", err);
+                return 0; // Trả về chỉ số mặc định nếu có lỗi
+            }
+        }
+        return 0; // Trả về chỉ số mặc định nếu file không tồn tại
     }
 
 }

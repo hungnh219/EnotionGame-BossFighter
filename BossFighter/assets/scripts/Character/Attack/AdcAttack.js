@@ -17,6 +17,8 @@ cc.Class({
         this.direction = null; // Khởi tạo biến direction
 
         // this.initDirection
+        this.node.zIndex = 1000; // Đặt zIndex để skill luôn ở trên cùng
+        console.log('adc onLoad, zIndex set to 1000');
     },
 
     // direction: null,

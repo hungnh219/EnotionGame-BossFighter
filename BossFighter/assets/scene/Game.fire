@@ -1668,6 +1668,9 @@
       },
       {
         "__uuid__": "6c29d120-1b9f-4594-9bdc-396814f9e68e"
+      },
+      {
+        "__uuid__": "76ff2a8f-ba6d-471f-8eb2-2d3b68ef7f93"
       }
     ],
     "characterHolder": {
@@ -5944,7 +5947,7 @@
   {
     "__type__": "cc.Node",
     "_name": "WinnerLoserLabel",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 125
     },

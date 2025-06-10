@@ -52,6 +52,8 @@ cc.Class({
         this.mapLayout.node.setPosition(cc.v2(-this.mapLayout.node.width / 2, -this.mapLayout.node.height / 2));
         this.mapObjectHolder.setPosition(this.mapLayout.node.getPosition());
 
+        console.log("Map size:", mapSize);
+        console.log("Tile size:", tileSize);
         for (let i = 0; i < mapSize.width; i++) {
             for (let j = 0; j < mapSize.height; j++) {
                 const tileNode = new cc.Node(`Tile_${i}_${j}`);
@@ -62,30 +64,45 @@ cc.Class({
                 tileNode.height = tileSize.height;
                 // sprite.spriteFrame = spriteFrames[mapHolder[i][j]];
 
-                tileNode.setPosition(i * tileSize.width, j * tileSize.height);
-                
+                // tileNode.setPosition(i * tileSize.width, j * tileSize.height);
                 
 
-                this.mapLayout.node.addChild(tileNode);
+                // this.mapLayout.node.addChild(tileNode);
+                this.mapObjectHolder.addChild(tileNode);
+                tileNode.x = i * tileSize.width + (tileSize.width / 2);
+                tileNode.y = j * tileSize.height + (tileSize.height / 2);
+                // tileNode.y = (mapSize.height - 1 - j) * tileSize.height;
 
                 if (i == 0 && j == 0) {
-                    sprite.spriteFrame = spriteFrames[7];
-                } else if (i == mapSize.width - 1 && j == mapSize.height - 1) {
-                    sprite.spriteFrame = spriteFrames[5];
-                } else if (i == 0 && j == mapSize.height - 1) {
+                    // left bottom
                     sprite.spriteFrame = spriteFrames[6];
-                } else if (i == mapSize.width - 1 && j == 0) {
+                } else if (i == mapSize.width - 1 && j == mapSize.height - 1) {
+                    // right top
                     sprite.spriteFrame = spriteFrames[4];
-                } else if (i == 0) {
+                } else if (i == 0 && j == mapSize.height - 1) {
+                    // left top
+                    sprite.spriteFrame = spriteFrames[7];
+                } else if (i == mapSize.width - 1 && j == 0) {
+                    // right bottom
+                    sprite.spriteFrame = spriteFrames[5];
+                } else if (i == 0 && j > 0 && j < mapSize.height - 1) {
+                    // left side
                     sprite.spriteFrame = spriteFrames[1];
-                } else if (j == 0) {
-                    sprite.spriteFrame = spriteFrames[0];
-                } else if (i == mapSize.width - 1) {
+                } else if (i == mapSize.width - 1 && j > 0 && j < mapSize.height - 1) {
+                    // right side
                     sprite.spriteFrame = spriteFrames[3];
-                } else if (j == mapSize.height - 1) {
+                } else if (j == 0 && i > 0 && i < mapSize.width - 1) {
+                    // bottom side
                     sprite.spriteFrame = spriteFrames[2];
-                } else {
+                } else if (j == mapSize.height - 1 && i > 0 && i < mapSize.width - 1) {
+                    // top side
                     sprite.spriteFrame = spriteFrames[0];
+                } else if (j == 0 && i == mapSize.width / 2) {
+                    // center bottom
+                    sprite.spriteFrame = spriteFrames[8];
+                } else {
+                    // center tile
+                    sprite.spriteFrame = spriteFrames[9];
                 }
             }
         }
