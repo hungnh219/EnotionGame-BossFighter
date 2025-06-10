@@ -82,8 +82,8 @@ cc.Class({
             this.moveToWalkableTile(nodeMove, tileNode);
         }, this);
 
-        EventBus.on(EventBus.events.ENEMY_AUTO_MODE, (enemy, hero) => {
-            this.autoMoveToHero(enemy, hero);
+        EventBus.on(EventBus.events.ENEMY_AUTO_MODE, (enemy, hero, resolve) => {
+            this.autoMoveToHero(enemy, hero, resolve);
         }, this);
     },
 
@@ -240,7 +240,7 @@ cc.Class({
         }
     },
   
-    async autoMoveToHero(enemy, hero) {
+    async autoMoveToHero(enemy, hero, resolve) {
         if (!enemy || !hero) {
             console.warn('Enemy or hero is not defined');
             return;
@@ -264,6 +264,7 @@ cc.Class({
             isWalkable: true
         });
 
+        console.log("Enemy đang cố gắng tiếp cận hero:", enemyGridX, enemyGridY, heroGridX, heroGridY);
         const path = await this.socketIOManager.game.findPath({
             start: { x: enemyGridX, y: enemyGridY },
             end: { x: heroGridX, y: heroGridY },
@@ -318,7 +319,15 @@ cc.Class({
             enemy.runAction(
                 cc.sequence(
                     cc.moveTo(0.4, px, py),
-                    cc.callFunc(() => moveStep(i + 1))
+                    cc.callFunc(() => moveStep(i + 1)),
+                    cc.callFunc(() => {
+                        if (i === finalStepIndex) {
+                            if (resolve) {
+                                console.log("Enemy đã tiếp cận hero thành công");
+                                resolve();
+                            }
+                        }
+                    })
                 )
             );
         };
