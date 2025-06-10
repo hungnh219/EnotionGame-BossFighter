@@ -40,10 +40,6 @@ function gameEvents(io, socket) {
         });
     });
 
-    socket.on('GET_INGAME_DATA', () => {
-
-    })
-
     socket.on('sendGameMessage', (roomName, message) => {
         let roomData = logicHandler.common.readRoomData();
         console.log(`Tin nhắn từ ${socket.id} tại phòng ${roomName}: ${message}`);
@@ -707,12 +703,20 @@ function gameEvents(io, socket) {
         let allBossesDead = bosses.every(boss => boss.status === "DEAD");
 
         if (allHeroesDead) {
+            roomData[roomName].gameState.isGameOver = true;
+            roomData[roomName].gameState.result = 'LOSE';
+            logicHandler.common.writeRoomData(roomData);
+
             io.to(roomName).emit('GAME_OVER', {
                 message: 'Tất cả người chơi đã chết. Trò chơi kết thúc.',
                 isGameOver: true,
                 result: 'LOSE',
             });
         } else if (allBossesDead) {
+            roomData[roomName].gameState.isGameOver = true;
+            roomData[roomName].gameState.result = 'WIN';
+            logicHandler.common.writeRoomData(roomData);
+
             io.to(roomName).emit('GAME_OVER', {
                 message: 'Tất cả boss đã chết. Người chơi thắng!',
                 result: 'WIN',
@@ -773,10 +777,7 @@ function gameEvents(io, socket) {
             }
         }
         logicHandler.common.writeRoomData(roomData);
-
     })
-
-    // socket.on('')
 }
 
 module.exports = gameEvents;
