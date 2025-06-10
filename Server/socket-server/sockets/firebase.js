@@ -1,7 +1,6 @@
 function firebaseEvents(io, socket, db, admin) {
     console.log('Có client kết nối:', socket.id);
     socket.on('uploadScreenshot', async (data, callback) => {
-        console.log('up anh', data, callback)
         const { playerName, score, imageBase64 } = data;
 
         if (!playerName || !score || !imageBase64) {

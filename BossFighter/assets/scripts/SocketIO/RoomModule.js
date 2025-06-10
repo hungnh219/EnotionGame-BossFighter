@@ -8,7 +8,7 @@ module.exports = function (socket) {
                     console.error("Chưa kết nối đến Socket.IO server.");
                     return null;
                 }
-                socket.emit('sendMessage', roomName, message);
+                socket.emit('SEND_MESSAGE', roomName, message);
 
                 resolve({ success: true, message: "Tin nhắn đã được gửi đi." });
             })
@@ -23,7 +23,7 @@ module.exports = function (socket) {
 
             if (!chatCallbacks.messageListenerRegistered) {
                 chatCallbacks.messageListenerRegistered = true;
-                socket.on('message', (data) => {
+                socket.on('RECEIVED_MESSAGE', (data) => {
                     if (chatCallbacks.activeMessageCallback) {
                         chatCallbacks.activeMessageCallback(data);
                     }
@@ -38,9 +38,9 @@ module.exports = function (socket) {
                     console.error("Chưa kết nối đến Socket.IO server.");
                     return null;
                 }
-                socket.emit('leaveRoom', roomName)
+                socket.emit('LEAVE_ROOM', roomName)
 
-                socket.on('leaveRoomResult', (data) => {
+                socket.on('LEAVE_ROOM_RESULT', (data) => {
                     if (data.success) {
                         resolve(data)
                     } else {
@@ -59,9 +59,9 @@ module.exports = function (socket) {
                     console.error("Chưa kết nối đến Socket.IO server.");
                     return null;
                 }
-                socket.emit('checkRoomExist', roomName);
+                socket.emit('CHECK_ROOM_EXIST', roomName);
 
-                socket.on('checkRoomExistResult', (data) => {
+                socket.on('CHECK_ROOM_EXIST_RESULT', (data) => {
                     if (data.success) {
                         resolve(data)
                     } else {
@@ -80,9 +80,9 @@ module.exports = function (socket) {
                     console.error("Chưa kết nối đến Socket.IO server.");
                     return null;
                 }
-                socket.emit('checkRoomFull', roomName);
+                socket.emit('CHECK_ROOM_FULL', roomName);
 
-                socket.on('checkRoomFullResult', (data) => {
+                socket.on('CHECK_ROOM_FULL_RESULT', (data) => {
                     if (data.success) {
                         resolve(data)
                     } else {
@@ -101,9 +101,9 @@ module.exports = function (socket) {
                     console.error("Chưa kết nối đến Socket.IO server.");
                     return null;
                 }
-                socket.emit('createRoom', roomName, maxPlayer, namePlayer);
+                socket.emit('CREATE_ROOM', roomName, maxPlayer, namePlayer);
 
-                socket.on('createRoomResult', (data) => {
+                socket.on('CREATE_ROOM_RESULT', (data) => {
                     if (data.success) {
                         resolve(data)
                     }
@@ -118,7 +118,6 @@ module.exports = function (socket) {
         },
 
         joinRoom(roomName, namePlayer) {
-            console.log("nhan ben roomModul", roomName, namePlayer)
             return new Promise((resolve, reject) => {
                 if (!socket) {
                     console.error("Chưa kết nối đến Socket.IO server.");
@@ -126,9 +125,9 @@ module.exports = function (socket) {
                     return;
                 }
 
-                socket.emit('joinRoom', roomName, namePlayer);
+                socket.emit('JOIN_ROOM', roomName, namePlayer);
 
-                socket.on('joinRoomResult', (data) => {
+                socket.on('JOIN_ROOM_RESULT', (data) => {
                     if (data.success) {
                         resolve(data);
                     }
@@ -149,8 +148,8 @@ module.exports = function (socket) {
                 return null;
             }
 
-            socket.off('roomInfo');
-            socket.on('roomInfo', (data) => {
+            socket.off('ROOM_INFO');
+            socket.on('ROOM_INFO', (data) => {
                 console.log("Thông tin phòng đã nhận được:", data);
                 if (this.onRoomInfoReceivedCallback) {
                     this.onRoomInfoReceivedCallback(data);
@@ -158,7 +157,7 @@ module.exports = function (socket) {
             });
 
             console.log('Yêu cầu thông tin phòng hiện tại từ server...');
-            socket.emit('requestRoomInfo');
+            socket.emit('REQUEST_ROOM_INFO');
         },
 
         setOnRoomInfoReceivedCallback(callback) {
