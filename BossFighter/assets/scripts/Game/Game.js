@@ -333,6 +333,8 @@ cc.Class({
             cc.director.resume();
         }
 
+        this.socketIOManager.game.quitGame();
+
         cc.director.loadScene(GAME_DATA.GAME_SCENE.MAIN_MENU)
     },
 

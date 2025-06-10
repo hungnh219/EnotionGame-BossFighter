@@ -40,7 +40,10 @@ const SocketIOManager = cc.Class({
             cors: {
                 origin: "*",
                 methods: ["GET", "POST"]
-            }
+            },
+            reconnection: true,
+            reconnectionAttempts: 5, 
+            reconnectionDelay: 2000,
         });
 
         this.room = RoomModule(this.socketIO);

@@ -442,6 +442,15 @@ module.exports = function(socket) {
                 x: position.x,
                 y: position.y
             });
+        },
+
+        quitGame() {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            socket.emit('QUIT_GAME');
         }
     };
 }
