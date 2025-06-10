@@ -41,7 +41,7 @@ cc.Class({
 
             cc.log("Đang yêu cầu dữ liệu bảng xếp hạng từ máy chủ...");
             const result = await new Promise((resolve, reject) => {
-                this.socketIOManager.getSocketIO().emit('requestLeaderboard', (response) => {
+                this.socketIOManager.getSocketIO().emit('REQUEST_LEADER_BOARD', (response) => {
                     if (response.success) {
                         resolve(response.data);
                     } else {

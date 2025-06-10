@@ -395,12 +395,16 @@ module.exports = function(socket) {
         },
 
         checkWin() {
+<<<<<<< HEAD
             console.log("Yêu cầu kiểm tra chiến thắng...");
+=======
+>>>>>>> 66e86be0eb84fb484ae813f8447caf23a7673896
             if (!socket) {
                 console.error("Chưa kết nối đến Socket.IO server.");
                 return null;
             }
 
+<<<<<<< HEAD
             socket.emit('CHECK_WIN');
         },
 
@@ -414,6 +418,13 @@ module.exports = function(socket) {
                 if (callback) {
                     callback(data);
                 }
+=======
+            return new Promise((resolve, reject) => {
+                socket.on('CHECK_WIN', (data) => {
+                    resolve(data);
+                });
+                socket.emit('CHECK_WIN');
+>>>>>>> 66e86be0eb84fb484ae813f8447caf23a7673896
             });
         },
 

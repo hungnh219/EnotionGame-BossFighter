@@ -1,5 +1,3 @@
-// const logicHandler = require('../handler/logicHandler');
-
 const { getPlayerOrder } = require("./selectHeroHandler");
 
 module.exports = {
