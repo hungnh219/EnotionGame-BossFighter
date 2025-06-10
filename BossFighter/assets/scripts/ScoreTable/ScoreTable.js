@@ -1,16 +1,20 @@
 import SocketIOManager from "../SocketIO/SocketIOManager";
+import scoreTableItem from "../ScoreTable/ScoreTableItem";
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
         targetNode: cc.Node,
-
-        scoreTableContent: cc.Node
+        scoreTableContent: cc.Node,
+        scoreTableItem: cc.Prefab
     },
 
     socketIOManager: null,
     async onLoad() {
+
+        this.scoreTableContent.removeAllChildren();
+
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
         this.prefabScript = this.node.getComponent("PrefabFactory");
 
@@ -166,28 +170,28 @@ cc.Class({
 
 
             // truyền data vào prefab
-            
-            // let avatarSprite = new cc.Node("AvatarSprite");
-            // let spriteComponent = heroAvatarSprite.addComponent(cc.Sprite);
-            // spriteComponent.spriteFrame = heroAvatarSprite.spriteFrame;
-            // avatarSprite.addComponent(cc.Sprite).spriteFrame = spriteComponent.spriteFrame;
-            // // avatarSprite.setContentSize(24, 24); // Set size for avatar
-            // avatarSprite.width = 8;
-            // avatarSprite.height = 8;
-            // // avatarSprite.scale = 0.05; // Scale down the avatar
-
-            // let nameLabel = new cc.Node("NameLabel");
-            // let labelComponent = nameLabel.addComponent(cc.Label);
-            // labelComponent.string = `${heroName} - Hạng ${index + 1}`;
-
-            // let scoreLabel = new cc.Node("ScoreLabel");
-            // let scoreLabelComponent = scoreLabel.addComponent(cc.Label);
-            // scoreLabelComponent.string = `Điểm: ${heroScore}`;
+            const scoreTableNode = cc.instantiate(this.scoreTableItem)
+            console.log(scoreTableNode)
 
 
-            // this.scoreTableContent.addChild(avatarSprite);
-            // this.scoreTableContent.addChild(nameLabel);
-            // this.scoreTableContent.addChild(scoreLabel);
+
+            const scoreTableItemComp = scoreTableNode.getComponent(scoreTableItem);
+
+            if (scoreTableItemComp) {
+
+                const playerNameLabel = scoreTableItemComp.playerNameLabel.getComponent(cc.Label)
+                playerNameLabel.string = heroName
+                // scoreTableItemComp.playerNameLabel.string = heroName;
+
+                const playerScoreLabel = scoreTableItemComp.playerScoreLabel.getComponent(cc.Label)
+                playerScoreLabel.string = heroScore.toString();
+                // scoreTableItemComp.playerScoreLabel.string = heroScore.toString();
+
+                const playerImageSprite = scoreTableItemComp.playerImageSprite.getComponent(cc.Sprite)
+                playerImageSprite.spriteFrame = heroAvatarSprite.spriteFrame;
+            }
+
+            this.scoreTableContent.addChild(scoreTableNode);
         });
     },
 
@@ -197,7 +201,7 @@ cc.Class({
         if (!this.heroPrefabs) {
             return null;
         }
-        
+
         for (const heroPrefab of this.heroPrefabs) {
             const hero = cc.instantiate(heroPrefab);
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
