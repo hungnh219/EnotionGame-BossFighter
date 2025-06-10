@@ -152,18 +152,19 @@ cc.Class({
         }, this);
 
         this.socketIOManager.game.listenOtherAttack((data) => {
-            this.gameController = GameController.getInstance() || new GameController();
             this.gameController.heroAttackFromServer(data.playerOrder, data.targetOrder, data.isBoss);
         })
         this.socketIOManager.game.listenBossAttack((data) => {
-            this.gameController = GameController.getInstance() || new GameController();
             this.gameController.bossAttackFromServer(data.bossId, data.heroId);
         })
         this.socketIOManager.game.listenNextMap(() => {
             this.nextMapServer();
         });
         this.socketIOManager.game.listenBossDie(() => {
-            this.endGameNotification();
+            // this.endGameNotification();
+        })
+        this.socketIOManager.game.listenCharacterDeath((data) => {
+            this.gameController.handleCharacterDeath(data.characterId);
         })
     },
 
@@ -332,7 +333,6 @@ cc.Class({
     },
 
     resetGame() {
-
         if (cc.director.isPaused()) {
             console.log('resume')
             cc.director.resume();

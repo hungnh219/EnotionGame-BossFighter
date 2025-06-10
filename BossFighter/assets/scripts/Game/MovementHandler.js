@@ -46,9 +46,6 @@ cc.Class({
         this.socketIOManager.game.listenMoveToNewTile((data) => {
             this.gameController = GameController.getInstance() || new GameController();
             let playerNode = this.gameController.getPlayerByIndex(data.playerIndex);
-
-            console.log('Nhận yêu cầu di chuyển đến ô mới:', playerNode, data.newX, data.newY);
-            // Nếu là chính mình thì bỏ qua
             if (data.playerIndex === this.gameController.getPlayerIndex()) return;
 
             this.moveToWalkableTile(playerNode, {
@@ -229,7 +226,7 @@ cc.Class({
                 if (path) {
                     tile = cc.instantiate(this.greenTilePrefab);
                 } else {
-                    tile = cc.instantiate(this.redTilePrefab); // prefab màu đỏ
+                    tile = cc.instantiate(this.redTilePrefab);
                 }
 
                 this.mapObjectHolder.addChild(tile);
@@ -323,9 +320,16 @@ cc.Class({
                     cc.callFunc(() => {
                         if (i === finalStepIndex) {
                             if (resolve) {
-                                console.log("Enemy đã tiếp cận hero thành công");
                                 resolve();
                             }
+
+                            this.socketIOManager.game.setPosition(
+                                enemy.mainScript.characterId,
+                                {
+                                    x: p.x,
+                                    y: p.y
+                                }
+                            )
                         }
                     })
                 )
