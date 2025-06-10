@@ -166,9 +166,6 @@ cc.Class({
         this.socketIOManager.game.listenCharacterDeath((data) => {
             this.gameController.handleCharacterDeath(data.characterId);
         })
-        this.socketIOManager.game.listenCharacterDeath((data) => {
-            this.gameController.handleCharacterDeath(data.characterId);
-        })
         this.socketIOManager.game.listenGameOver((data) => {
             console.log("Game over received from server:", data);
             this.endGameNotification(data.result);

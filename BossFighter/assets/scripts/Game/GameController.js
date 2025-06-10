@@ -782,6 +782,9 @@ const GameController = cc.Class({
 
     // =================== Hero Ultimate: End ===================
     handleCharacterDeath(characterId) {
+        console.log('handleCharacterDeath', characterId);
+        console.log('heroes', this.heroes);
+        console.log('bosses', this.bosses);
         if (this.heroes == undefined || this.heroes == null) return;
         if (this.bosses == undefined || this.bosses == null) return;
 
@@ -798,6 +801,8 @@ const GameController = cc.Class({
             this.bosses.splice(this.bosses.indexOf(boss), 1);
             return;
         }
+        console.log('heroes', this.heroes);
+        console.log('bosses', this.bosses);
     },
 
     positionToGrid(node) {
