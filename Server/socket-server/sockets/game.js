@@ -650,6 +650,12 @@ function gameEvents(io, socket) {
             hero.status = "DEAD";
             hero.hp = 0;
             roomData[roomName].gameState.heroes = heroes;
+
+            let heroPosition = {
+                x: characterData.x,
+                y: characterData.y,
+            };
+            logicHandler.game.updateWalkableGridMap(roomData, roomName, heroPosition.x, heroPosition.y, true);
             logicHandler.common.writeRoomData(roomData);
         } else {
             console.error('Không tìm thấy hero với ID:', characterId);
@@ -661,12 +667,19 @@ function gameEvents(io, socket) {
         if (boss) {
             boss.status = "DEAD";
             boss.hp = 0;
+
+            let bossPosition = {
+                x: characterData.x,
+                y: characterData.y,
+            };
+            logicHandler.game.updateWalkableGridMap(roomData, roomName, bossPosition.x, bossPosition.y, true);
             roomData[roomName].gameState.bosses = bosses;
             logicHandler.common.writeRoomData(roomData);
         } else {
             console.error('Không tìm thấy boss với ID:', characterId);
         }
-        console.log('Xử lý cái chết của nhân vật:', characterId, 'Trạng thái mới:', characterData.status);
+
+        // console.log('Xử lý cái chết của nhân vật:', characterId, 'Trạng thái:', characterData.status);
 
         io.to(roomName).emit('LISTEN_CHARACTER_DEATH', {
             characterId: characterId,
@@ -674,6 +687,7 @@ function gameEvents(io, socket) {
     })
 
     socket.on('CHECK_WIN', () => {
+        console.log('Kiểm tra điều kiện thắng thua cho socket ID:', socket.id);
         let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
         if (!roomName) {
             console.error('Không tìm thấy phòng cho socket ID:', socket.id);
@@ -693,13 +707,13 @@ function gameEvents(io, socket) {
         let allBossesDead = bosses.every(boss => boss.status === "DEAD");
 
         if (allHeroesDead) {
-            io.to(roomName).emit('CHECK_WIN', {
+            io.to(roomName).emit('GAME_OVER', {
                 message: 'Tất cả người chơi đã chết. Trò chơi kết thúc.',
                 isGameOver: true,
                 result: 'LOSE',
             });
         } else if (allBossesDead) {
-            io.to(roomName).emit('CHECK_WIN', {
+            io.to(roomName).emit('GAME_OVER', {
                 message: 'Tất cả boss đã chết. Người chơi thắng!',
                 result: 'WIN',
                 isGameOver: true,

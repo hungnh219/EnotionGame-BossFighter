@@ -166,6 +166,10 @@ cc.Class({
         this.socketIOManager.game.listenCharacterDeath((data) => {
             this.gameController.handleCharacterDeath(data.characterId);
         })
+        this.socketIOManager.game.listenGameOver((data) => {
+            console.log("Game over received from server:", data);
+            this.endGameNotification(data.result);
+        });
     },
 
     // onClickPanel(event) {
@@ -342,21 +346,25 @@ cc.Class({
         cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME)
     },
 
-    endGameNotification() {
-        let winner = this.gameController.getWinner();
-        if (winner == GAME_DATA.ROLE.PLAYER) {
-            this.nextButton.node.active = true;
-            let audioSources = this.node.getComponents(cc.AudioSource)
-            audioSources[0].play();
-        } else {
-            let audioSources = this.node.getComponents(cc.AudioSource)
-            audioSources[1].play();
-        }
-        this.winnerNotificationLabel.string = winner;
+    endGameNotification(result) {
+        // let winner = this.gameController.getWinner();
+        // if (winner == GAME_DATA.ROLE.PLAYER) {
+        //     this.nextButton.node.active = true;
+        //     let audioSources = this.node.getComponents(cc.AudioSource)
+        //     audioSources[0].play();
+        // } else {
+        //     let audioSources = this.node.getComponents(cc.AudioSource)
+        //     audioSources[1].play();
+        // }
+        this.winnerNotificationLabel.string = result;
         this.winnerNotificationLabel.node.parent.active = true;
         this.winnerNotificationLabel.node.active = true;
 
         this.pauseButton.node.active = false;
+
+        this.scheduleOnce(() => {
+            cc.director.loadScene("ScoreTable")
+        }, 2);
     },
 
     showGuideBook() {
