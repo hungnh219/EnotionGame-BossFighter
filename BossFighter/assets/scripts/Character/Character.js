@@ -113,7 +113,7 @@ cc.Class({
         console.log("Character died");
 
         this.socketIOManager.game.handleCharacterDeath(this.characterId);
-
+        this.socketIOManager.game.checkWin();
         this.node.destroy();
     },
 });

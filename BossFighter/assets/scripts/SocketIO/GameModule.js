@@ -395,16 +395,25 @@ module.exports = function(socket) {
         },
 
         checkWin() {
+            console.log("Yêu cầu kiểm tra chiến thắng...");
             if (!socket) {
                 console.error("Chưa kết nối đến Socket.IO server.");
                 return null;
             }
 
-            return new Promise((resolve, reject) => {
-                socket.on('CHECK_WIN', (data) => {
-                    resolve(data);
-                });
-                socket.emit('CHECK_WIN');
+            socket.emit('CHECK_WIN');
+        },
+
+        listenGameOver(callback) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            socket.on('GAME_OVER', (data) => {
+                if (callback) {
+                    callback(data);
+                }
             });
         },
 
