@@ -1,5 +1,3 @@
-const { getPlayerOrder } = require("./selectHeroHandler");
-
 module.exports = {
     getPlayerGameData(roomData, roomName) {
         if (!roomData || !roomData[roomName]) {

@@ -14,6 +14,7 @@ cc.Class({
 
        mapObjectPrefab: cc.Prefab,
        mapObjectHolder: cc.Node,
+       healPrefab: cc.Prefab,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -263,22 +264,32 @@ cc.Class({
         });
     },
 
-    addObjectIntoMap(gridX, gridY, size, object) {
+    spawnHealthOrb(position) {
+        console.log("Spawning health orb at position:", position);
+        const healthPrefab = cc.instantiate(this.healPrefab);
+        this.mapObjectHolder.addChild(healthPrefab);
+
+        this.addObjectIntoMap(position.x, position.y, 1, healthPrefab, false);
+    },
+
+    addObjectIntoMap(gridX, gridY, size, object, isResize = true) {
         let objectNode = object;
 
         if (object.node) objectNode = object.node;
 
         // resize the object
-        if (objectNode.width > objectNode.height) {
-            let ratio = this.mapTileHeight / objectNode.height;
+        if (isResize) {
+            if (objectNode.width > objectNode.height) {
+                let ratio = this.mapTileHeight / objectNode.height;
 
-            objectNode.height = this.mapTileHeight * size;
+                objectNode.height = this.mapTileHeight * size;
 
-            objectNode.width *= ratio * size;
-        } else {
-            objectNode.width = this.mapTileWidth * size;
+                objectNode.width *= ratio * size;
+            } else {
+                objectNode.width = this.mapTileWidth * size;
 
-            objectNode.height = this.mapTileHeight * size * (objectNode.width / this.mapTileWidth);
+                objectNode.height = this.mapTileHeight * size * (objectNode.width / this.mapTileWidth);
+            }
         }
 
         // set the position of the object

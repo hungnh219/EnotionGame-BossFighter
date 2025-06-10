@@ -142,14 +142,6 @@ module.exports = {
             return null;
         }
 
-        // const player = roomData[roomName].player.find(playerObj => Object.keys(playerObj)[0] === characterId);
-        // if (player) {
-        //     return player[characterId];
-        // } else {
-        //     console.error("Không tìm thấy nhân vật trong phòng:", characterId);
-        //     return null;
-        // }
-        // find heroes and bosses
         const heroes = roomData[roomName].gameState.heroes || [];
         const bosses = roomData[roomName].gameState.bosses || [];
 
@@ -174,6 +166,27 @@ module.exports = {
             }
         }
         return 0; // Trả về chỉ số mặc định nếu file không tồn tại
-    }
+    },
 
+    getMapSizeByIndex(mapIndex) {
+        if (fs.existsSync(MAP_DATA)) {
+            const rawData = fs.readFileSync(MAP_DATA);
+            try {
+                const mapData = JSON.parse(rawData);
+                const map = mapData.mapData[mapIndex].map;
+
+                console.log("Map data:", map);
+                console.log(map.length, map[0] ? map[0].length : 0);
+                if (map) {
+                    let height = map.length || 0;
+                    let width = map[0] ? map[0].length : 0;
+                    return { width: width, height: height };
+                }
+            } catch (err) {
+                console.error("Lỗi khi parse file JSON:", err);
+                return null; // Trả về null nếu có lỗi
+            }
+        }
+        return null; // Trả về null nếu file không tồn tại
+    }
 }

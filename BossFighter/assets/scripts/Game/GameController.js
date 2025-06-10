@@ -37,24 +37,19 @@ const GameController = cc.Class({
     },
     //-------------------------------------------------------------------------------//
     startGame(socketIOManager) {
-        this.playerTurn();
-        this.updatePlayerTurn(this.playerTurnCount);
         this.setFocusedHero(this.playerIndex);
         this.socketIOManager = socketIOManager;
-    },
-
-    playerTurn() {
-        this.isPlayerTurn = true;
-        this.playerTurnCount = 3; // reset player turn count
-
-        this.updatePlayerTurn(this.playerTurnCount);
     },
     
     updateInfo(hero) {
         // let hero = this.focusedHero;
         // if (!hero) return;
-        if (!hero) hero = this.getFocusedHero();
-        if (!hero) return;
+        if (!hero) {
+            hero = this.getFocusedHero();
+        }
+        if (!hero) {
+            return;
+        }
         hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getUltimateCooldown === 'function');
 
         if (hero.mainScript && hero) {
@@ -66,22 +61,18 @@ const GameController = cc.Class({
     },
 
     bossTurn() {
-        this.isPlayerTurn = false;
-
         // EventBus.emit(EventBus.events.BOSS2_SPAWN_ENEMY, this.enemies, this.bosses, this.gridMap, this.firstCellPos, this.lastCellPos, this.mapTileWidth, this.mapTileHeight);
         // this.enemyAutoMode();
-
-        this.bossAutoMode();
-
-        this.heroes.forEach(hero => {
-            hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.countUltimateCooldown === 'function');
-            if (hero.mainScript) {
-                hero.mainScript.countUltimateCooldown();
-            }
-        });
-
-        this.updateInfo();
-        this.playerTurn();
+        setTimeout(() => {
+            this.bossAutoMode();
+            this.heroes.forEach(hero => {
+                hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.countUltimateCooldown === 'function');
+                if (hero.mainScript) {
+                    hero.mainScript.countUltimateCooldown();
+                }
+            });
+            this.updateInfo();
+        }, 1000);
     },
 
     setFocusedHero(heroIndex) {
@@ -113,10 +104,9 @@ const GameController = cc.Class({
         return this.heroes[playerIndex];
     },
 
-    setCallbacks(playerTurnCallback, playerInfoCallback) {
-        this.updatePlayerTurn = playerTurnCallback;
+    setCallbacks(playerInfoCallback, updatePlayerTurnCallback) {
         this.updateHeroInfoUI = playerInfoCallback;
-        // this.endGameCallback = endGameCallback;
+        this.updatePlayerTurnCallback = updatePlayerTurnCallback;
     },
 
 
@@ -232,13 +222,11 @@ const GameController = cc.Class({
 
 
     // =================== Enemy Logic: Start ===================
-    consumePlayerTurn() {
-        this.playerTurnCount--;
-        this.updatePlayerTurn(this.playerTurnCount);
-
-        if (this.playerTurnCount <= 0) {
-            this.bossTurn();
+    consumePlayerTurn(hero) {
+        if (hero == this.getFocusedHero()) {
+            this.socketIOManager.turn.consumeAction();
         }
+        this.updatePlayerTurnCallback();
     },
 
     // each enemy moves to nearest hero and attack if their attack range is enough
@@ -314,7 +302,17 @@ const GameController = cc.Class({
                 await new Promise(resolve => {
                     EventBus.emit(EventBus.events.ENEMY_AUTO_MODE, enemy, nearestHero, resolve);
                 });
+
+                if (index === bossArray.length - 1) {
+                    await new Promise(resolve => {
+                        setTimeout(() => {
+                            this.socketIOManager.turn.endBossTurn();
+                            resolve();
+                        }, 500);
+                    });
+                }
             }
+
         }
     },
 
@@ -352,7 +350,7 @@ const GameController = cc.Class({
             EventBus.emit(EventBus.events.DISPLAY_WALKABLE_AREA, this.firstCellPos, this.lastCellPos, walkableMap, node);
         }
         
-        this.setFocusedHero(this.heroes.indexOf(node));
+        // this.setFocusedHero(this.heroes.indexOf(node));
     },
 
     heroAttack(hero) {
@@ -462,7 +460,8 @@ const GameController = cc.Class({
         let dame = await hero.mainScript.attack(enemy, direction);
         // optimize
         enemy.mainScript.updateHpBar();
-        this.consumePlayerTurn();
+        // this.consumePlayerTurn();
+        this.consumePlayerTurn(hero);
     },
 
     getBossIndexFromNode(node) {
@@ -608,7 +607,8 @@ const GameController = cc.Class({
 
             hero.mainScript.resetUltimateCooldown();
             this.updateInfo();
-            this.consumePlayerTurn();
+            // this.consumePlayerTurn();
+            
         }
     },
 
@@ -852,7 +852,7 @@ const GameController = cc.Class({
         this.isUsingSkill = false;
         this.enemies = [];
         this.bosses = [];
-        this.setFocusedHero(0);
+        // this.setFocusedHero(0);
         this.isAutoMode = false;
         this.isPlayerTurn = true;
         this.playerTurnCount = 3;
