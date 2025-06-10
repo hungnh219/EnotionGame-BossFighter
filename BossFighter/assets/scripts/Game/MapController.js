@@ -181,6 +181,14 @@ cc.Class({
                     y: posY + j,
                     isWalkable: false
                 });
+
+                this.socketIOManager.game.setPosition(
+                    bossNode.mainScript.characterId,
+                    {
+                        x: posX + i,
+                        y: posY + j
+                    }
+                );
             }
         }
 
@@ -246,6 +254,10 @@ cc.Class({
                 y: 0,
                 isWalkable: false
             });
+            this.socketIOManager.game.setPosition(heroData.characterId, {
+                    x: index,
+                    y: 0
+                })
 
             // this.heroes.push(prefabNode)
         });

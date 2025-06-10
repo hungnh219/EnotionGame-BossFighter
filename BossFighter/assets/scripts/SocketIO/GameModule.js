@@ -374,7 +374,6 @@ module.exports = function(socket) {
 
         getMapIndex() {
             if (!socket) {
-                console.error("Chưa kết nối đến Socket.IO server.");
                 return null;
             }
 
@@ -384,6 +383,55 @@ module.exports = function(socket) {
                     resolve(data.currentMapIndex);
                 });
                 socket.emit('GET_MAP_INDEX');
+            });
+        },
+
+        handleCharacterDeath(characterId) {
+            if (!socket) {
+                return null;
+            }
+
+            socket.emit('HANDLE_CHARACTER_DEATH', { characterId: characterId });
+        },
+
+        checkWin() {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            return new Promise((resolve, reject) => {
+                socket.on('CHECK_WIN', (data) => {
+                    resolve(data);
+                });
+                socket.emit('CHECK_WIN');
+            });
+        },
+
+        listenCharacterDeath(callback) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            socket.on('LISTEN_CHARACTER_DEATH', (data) => {
+                if (callback) {
+                    callback(data);
+                }
+            });
+        },
+
+        setPosition(characterId, position) {
+            console.warn('position: ', characterId, position);
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            socket.emit('SET_POSITION', {
+                characterId: characterId,
+                x: position.x,
+                y: position.y
             });
         }
     };

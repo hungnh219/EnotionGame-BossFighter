@@ -109,29 +109,22 @@ function gameEvents(io, socket) {
             let playerId = player.id;
             let order = player.order;
             let lockedHero = player.lockedHero;
-
             let heroData = logicHandler.common.getCharacterData(lockedHero);
-
-            if (!heroData) {
-            }
 
             heroes[order] = {
                 id: playerId,
                 order: order,
                 lockedHero: lockedHero,
-                // heroData: heroData
                 heroId: heroData.id,
                 hp: heroData.maxHp,
                 maxHp: heroData.maxHp,
                 attackDamage: heroData.attackDamage,
                 attackRange: heroData.attackRange,
                 name: heroData.name,
-
                 status: "ALIVE",
                 stats: {
                     totalDameDeal: 0,
                     totalDameTaken: 0,
-
                     totalScore: 0 + Math.floor(Math.random() * 10), // điểm số ngẫu nhiên ban đầu
                 }
             };
@@ -154,6 +147,7 @@ function gameEvents(io, socket) {
                 attackDamage: bossData.attackDamage,
                 attackRange: bossData.attackRange,
                 name: bossData.name,
+                status: "ALIVE",
             }
 
             if (!bosses.find(b => b.bossId === newBoss.bossId)) {
@@ -203,7 +197,24 @@ function gameEvents(io, socket) {
             return;
         }
 
-        console.warn('Yêu cầu di chuyển đến ô mới từ client:', socket.id, 'Data:', data);
+        let roomData = logicHandler.common.readRoomData();
+        let playerIndex = data.playerIndex;
+        let heroes = roomData[roomName].gameState.heroes;
+        if (!heroes) {
+            console.error('Không tìm thấy dữ liệu heroes trong dữ liệu phòng:', roomName);
+            return;
+        }
+        // let hero = heroes[playerIndex];
+        let hero = heroes.find(hero => hero.order === playerIndex);
+        if (!hero) {
+            console.error('Không tìm thấy hero với chỉ số:', playerIndex);
+            return;
+        }
+        hero.x = data.newX;
+        hero.y = data.newY;
+        roomData[roomName].gameState.heroes[playerIndex] = hero;
+        logicHandler.common.writeRoomData(roomData);
+
         io.to(roomName).emit('LISTEN_MOVE_TO_NEW_TILE', 
             data
         );
@@ -535,6 +546,82 @@ function gameEvents(io, socket) {
     socket.on('GET_HEROES', ()  => {
         let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
         if (!roomName) {
+            return;
+        }
+
+        let roomData = logicHandler.common.readRoomData();
+        let heroes = roomData[roomName].gameState.heroes;
+
+        if (!heroes) {
+            return;
+        }
+
+        socket.emit('RETURN_HEROES', {
+            heroes: heroes,
+        });
+    })
+
+    socket.on('GET_BOSSES', () => {
+        let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
+        if (!roomName) {
+            return;
+        }
+
+        let roomData = logicHandler.common.readRoomData();
+        let bosses = roomData[roomName].gameState.bosses;
+
+        if (!bosses) {
+            return;
+        }
+
+        socket.emit('RETURN_BOSSES', {
+            bosses: bosses,
+        });
+    })
+
+    socket.on('GET_CURRENT_GAME_DATA', () => {
+        let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
+        if (!roomName) {
+            return;
+        }
+
+        let roomData = logicHandler.common.readRoomData();
+        if (!roomData[roomName]) {
+            return;
+        }
+
+        let gameState = roomData[roomName].gameState;
+
+        if (!gameState) {
+            return;
+        }
+
+        socket.emit('RETURN_CURRENT_GAME_DATA', {
+            gameState: gameState,
+        });
+    })
+
+    socket.on('GET_MAP_INDEX', () => {
+        let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
+        if (!roomName) {
+            return;
+        }
+
+        let roomData = logicHandler.common.readRoomData();
+        if (!roomData[roomName]) {
+            return;
+        }
+
+        let currentMapIndex = roomData[roomName].gameState.currentMapIndex;
+
+        socket.emit('RETURN_MAP_INDEX', {
+            currentMapIndex: currentMapIndex,
+        });
+    })
+
+    socket.on('HANDLE_CHARACTER_DEATH', (data) => {
+        let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
+        if (!roomName) {
             console.error('Không tìm thấy phòng cho socket ID:', socket.id);
             return;
         }
@@ -547,12 +634,46 @@ function gameEvents(io, socket) {
             return;
         }
 
-        socket.emit('RETURN_HEROES', {
-            heroes: heroes,
+        let characterId = data.characterId;
+        let characterData = logicHandler.common.getInGameCharacterData(characterId, roomData, roomName);
+
+        if (!characterData) {
+            console.error('Không tìm thấy dữ liệu nhân vật với ID:', characterId);
+            return;
+        }
+
+        characterData.status = "DEAD";
+        characterData.hp = 0;
+
+        let hero = heroes.find(hero => hero.heroId === characterId);
+        if (hero) {
+            hero.status = "DEAD";
+            hero.hp = 0;
+            roomData[roomName].gameState.heroes = heroes;
+            logicHandler.common.writeRoomData(roomData);
+        } else {
+            console.error('Không tìm thấy hero với ID:', characterId);
+        }
+
+        let bosses = roomData[roomName].gameState.bosses;
+        let boss = bosses.find(boss => boss.bossId === characterId);
+
+        if (boss) {
+            boss.status = "DEAD";
+            boss.hp = 0;
+            roomData[roomName].gameState.bosses = bosses;
+            logicHandler.common.writeRoomData(roomData);
+        } else {
+            console.error('Không tìm thấy boss với ID:', characterId);
+        }
+        console.log('Xử lý cái chết của nhân vật:', characterId, 'Trạng thái mới:', characterData.status);
+
+        io.to(roomName).emit('LISTEN_CHARACTER_DEATH', {
+            characterId: characterId,
         });
     })
 
-    socket.on('GET_BOSSES', () => {
+    socket.on('CHECK_WIN', () => {
         let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
         if (!roomName) {
             console.error('Không tìm thấy phòng cho socket ID:', socket.id);
@@ -560,19 +681,38 @@ function gameEvents(io, socket) {
         }
 
         let roomData = logicHandler.common.readRoomData();
+        let heroes = roomData[roomName].gameState.heroes;
         let bosses = roomData[roomName].gameState.bosses;
 
-        if (!bosses) {
-            console.error('Không tìm thấy dữ liệu bosses trong dữ liệu phòng:', roomName);
+        if (!heroes || !bosses) {
+            console.error('Không tìm thấy dữ liệu heroes hoặc bosses trong dữ liệu phòng:', roomName);
             return;
         }
 
-        socket.emit('RETURN_BOSSES', {
-            bosses: bosses,
-        });
+        let allHeroesDead = heroes.every(hero => hero.status === "DEAD");
+        let allBossesDead = bosses.every(boss => boss.status === "DEAD");
+
+        if (allHeroesDead) {
+            io.to(roomName).emit('CHECK_WIN', {
+                message: 'Tất cả người chơi đã chết. Trò chơi kết thúc.',
+                isGameOver: true,
+                result: 'LOSE',
+            });
+        } else if (allBossesDead) {
+            io.to(roomName).emit('CHECK_WIN', {
+                message: 'Tất cả boss đã chết. Người chơi thắng!',
+                result: 'WIN',
+                isGameOver: true,
+            });
+        } else {
+            io.to(roomName).emit('CHECK_WIN', {
+                message: 'Trò chơi vẫn đang diễn ra.',
+                isGameOver: false,
+            });
+        }
     })
 
-    socket.on('GET_CURRENT_GAME_DATA', () => {
+    socket.on('SET_POSITION', (data) => {
         let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
         if (!roomName) {
             console.error('Không tìm thấy phòng cho socket ID:', socket.id);
@@ -580,43 +720,49 @@ function gameEvents(io, socket) {
         }
 
         let roomData = logicHandler.common.readRoomData();
-        if (!roomData[roomName]) {
-            console.error('Không tìm thấy dữ liệu phòng:', roomName);
+        let heroes = roomData[roomName].gameState.heroes;   
+        let bosses = roomData[roomName].gameState.bosses;
+        if (!heroes || !bosses) {
+            console.error('Không tìm thấy dữ liệu heroes hoặc bosses trong dữ liệu phòng:', roomName);
             return;
         }
-
-        let gameState = roomData[roomName].gameState;
-
-        if (!gameState) {
-            console.error('Không tìm thấy trạng thái trò chơi trong dữ liệu phòng:', roomName);
+        let characterId = data.characterId;
+        let x = data.x;
+        let y = data.y;
+        let characterData = logicHandler.common.getInGameCharacterData(characterId, roomData, roomName);
+        if (!characterData) {
+            console.error('Không tìm thấy dữ liệu nhân vật với ID:', characterId);
             return;
         }
+        characterData.x = x;
+        characterData.y = y;
 
-        socket.emit('RETURN_CURRENT_GAME_DATA', {
-            gameState: gameState,
-        });
+        if (logicHandler.common.isHero(characterId)) {
+            let hero = heroes.find(hero => hero.heroId === characterId);
+            if (hero) {
+                hero.x = x;
+                hero.y = y;
+                console.log('Cập nhật vị trí hero:', hero.heroId, 'Vị trí mới:', x, y);
+                roomData[roomName].gameState.heroes = heroes;
+            } else {
+                console.error('Không tìm thấy hero với ID:', characterId);
+            }
+        } else {
+            let boss = bosses.find(boss => boss.bossId === characterId);
+            if (boss) {
+                boss.x = x;
+                boss.y = y;
+                console.log('Cập nhật vị trí boss:', boss.bossId, 'Vị trí mới:', x, y);
+                roomData[roomName].gameState.bosses = bosses;
+            } else {
+                console.error('Không tìm thấy boss với ID:', characterId);
+            }
+        }
+        logicHandler.common.writeRoomData(roomData);
+
     })
 
-    socket.on('GET_MAP_INDEX', () => {
-        let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
-        if (!roomName) {
-            console.error('Không tìm thấy phòng cho socket ID:', socket.id);
-            return;
-        }
-
-        let roomData = logicHandler.common.readRoomData();
-        if (!roomData[roomName]) {
-            console.error('Không tìm thấy dữ liệu phòng:', roomName);
-            return;
-        }
-
-        let currentMapIndex = roomData[roomName].gameState.currentMapIndex;
-
-        console.log('Yêu cầu lấy chỉ số bản đồ hiện tại từ client:', socket.id, 'Chỉ số bản đồ:', currentMapIndex);
-        socket.emit('RETURN_MAP_INDEX', {
-            currentMapIndex: currentMapIndex,
-        });
-    })
+    // socket.on('')
 }
 
 module.exports = gameEvents;

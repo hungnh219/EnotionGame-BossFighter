@@ -20,13 +20,13 @@ cc.Class({
             this.takeDame(dame);
         }, this);
         this.attackRange = 1;
+        this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
     },
 
     start() {
     },
 
     async initData(characterNameId) {
-        this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
         let characterData = await this.socketIOManager.game.getCharacterData(characterNameId);
         this.health = characterData.maxHp ?? 100;
         this.maxHp = characterData.maxHp ?? 100;
@@ -67,28 +67,14 @@ cc.Class({
     },
 
     getCharacterInfo() {
-        console.log("Character Info:", {
-            characterId: this.characterId,
-            name: this.name,
-            role: this.role,
-            health: this.health,
-            maxHp: this.maxHp,
-            attackDame: this.attackDame,
-            attackRange: this.attackRange,
-            imageSprite: this.imageSprite,
-            avatar: this.avatar,
-        });
         return {
             characterId: this.characterId,
             name: this.name,
             role: this.role,
-            // description: CHARACTER_DATA[this.characterId]?.description || "No description available",
             health: this.health,
             maxHp: this.maxHp,
-
             attackDame: this.attackDame,
             attackRange: this.attackRange,
-
             imageSprite: this.imageSprite,
             avatar: this.avatar,
         };
@@ -125,6 +111,8 @@ cc.Class({
 
     die() {
         console.log("Character died");
+
+        this.socketIOManager.game.handleCharacterDeath(this.characterId);
 
         this.node.destroy();
     },

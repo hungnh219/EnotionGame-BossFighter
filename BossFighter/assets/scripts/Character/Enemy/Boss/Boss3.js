@@ -36,7 +36,6 @@ cc.Class({
     },
 
     initData(heroData) {
-        console.warn('BOSS1 initData with heroData:', heroData);
         this.characterId = heroData.bossId || "hero002";
         this.name = heroData.name || "ADC Hero";
         this.attackDame = heroData.attackDamage || 10;
