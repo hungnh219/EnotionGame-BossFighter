@@ -1,0 +1,173 @@
+<<<<<<< HEAD
+=======
+{
+  "321": {
+    "player": [
+      {
+        "lefls6CbnwpcMnUIAAAB": {
+          "name": "1",
+          "clickHero": 0,
+          "lockedHero": 0,
+          "order": 0,
+          "host": true
+        }
+      }
+    ],
+    "maxPlayer": 1,
+    "status": "playing",
+    "gameState": {
+      "status": "STARTED",
+      "turn": "player",
+      "currentPlayer": null,
+      "walkableGridMap": [
+        [
+          true,
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          false,
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          false
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ]
+      ],
+      "currentMapIndex": 0,
+      "heroes": [
+        {
+          "id": "lefls6CbnwpcMnUIAAAB",
+          "order": 0,
+          "lockedHero": 0,
+          "heroId": "hero001",
+          "hp": 620,
+          "maxHp": 620,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Ad Carry",
+          "status": "ALIVE",
+          "stats": {
+            "totalDameDeal": 0,
+            "totalDameTaken": 0,
+            "totalScore": 0
+          },
+          "x": 4,
+          "y": 0
+        }
+      ],
+      "bosses": [
+        {
+          "bossId": "boss001",
+          "hp": 800,
+          "maxHp": 800,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Boss 001",
+          "status": "ALIVE",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "bossId": "boss002",
+          "hp": 2000,
+          "maxHp": 2000,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Boss 002",
+          "status": "ALIVE",
+          "x": 6,
+          "y": 5
+        }
+      ]
+    }
+  }
+}
+>>>>>>> 12d0f8e ([movement]: save position boss, hero)
