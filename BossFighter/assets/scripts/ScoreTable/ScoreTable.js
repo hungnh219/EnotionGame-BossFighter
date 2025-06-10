@@ -194,7 +194,6 @@ cc.Class({
         if (!this.heroPrefabs) {
             return null;
         }
-
         for (const heroPrefab of this.heroPrefabs) {
             const hero = cc.instantiate(heroPrefab);
             hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
