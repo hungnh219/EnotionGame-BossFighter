@@ -50,14 +50,17 @@ const GameController = cc.Class({
         this.updatePlayerTurn(this.playerTurnCount);
     },
     
-    updateInfo() {
-        let hero = this.focusedHero;
+    updateInfo(hero) {
+        // let hero = this.focusedHero;
+        // if (!hero) return;
+        if (!hero) hero = this.getFocusedHero();
         if (!hero) return;
         hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getUltimateCooldown === 'function');
 
         if (hero.mainScript && hero) {
             let ultimateCooldown = hero.mainScript.getUltimateCooldown();
             let heroInfo = hero.mainScript.getCharacterInfo();
+            console.log('heroInfo', heroInfo);
             this.updateHeroInfoUI(heroInfo, ultimateCooldown);
         }
     },
@@ -281,22 +284,22 @@ const GameController = cc.Class({
         })
     },
 
-    bossAutoMode() {
-        if (this.bosses == undefined || this.bosses == null) return;
-        if (this.bosses.length == 0) return;
+    // check attack range hero
+    // if enough -> attack
+    // else -> move
+    async bossAutoMode() {
+        if (!this.bosses || this.bosses.length === 0) return;
 
         let bossArray = this.bosses.map(b => b.node);
-        bossArray.forEach(async (enemy, index) => {
-            // check attack range hero
-            // if enough -> attack
-            // else -> move
+        for (let index = 0; index < bossArray.length; index++) {
+            let enemy = bossArray[index];
             let nearestHero = this.findNearestHero(enemy);
-            if (!nearestHero) return;
+            if (!nearestHero) continue;
 
             // distance between enemy and nearest hero
             let enemyPos = this.positionToGrid(enemy);
             let heroPos = this.positionToGrid(nearestHero);
-            if (!enemyPos || !heroPos) return;
+            if (!enemyPos || !heroPos) continue;
             const dx = Math.abs(enemyPos.x - heroPos.x);
             const dy = Math.abs(enemyPos.y - heroPos.y);
 
@@ -306,16 +309,10 @@ const GameController = cc.Class({
                 enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.dealDame === 'function');
 
                 if (enemy.mainScript) {
-                    // let dame = enemy.mainScript.getAttackDame() * 1.5;
-                    // // enemy.mainScript.dealDame(nearestHero, dame);
-                    // let heroId = nearestHero.mainScript.characterId;
-                    // let enemyId = enemy.mainScript.characterId;
-                    // let newHealth = await this.socketIOManager.game.takeDame(enemyId, heroId, 20);
-                    // nearestHero.mainScript.updateHpBar();
                     let heroId = nearestHero.mainScript.characterId;
                     let enemyId = enemy.mainScript.characterId;
 
-                    this.socketIOManager.game.bossAttack(
+                    await this.socketIOManager.game.bossAttack(
                         enemyId, heroId
                     );
 
@@ -324,13 +321,13 @@ const GameController = cc.Class({
                     if (nearestHero.mainScript && nearestHero.mainScript.getCurrentHp() <= 0) {
                         this.handleHeroDie(nearestHero);
                     }
-
                 }
             } else {
-                // move to nearest hero
-                EventBus.emit(EventBus.events.ENEMY_AUTO_MODE, enemy, nearestHero);
+                await new Promise(resolve => {
+                    EventBus.emit(EventBus.events.ENEMY_AUTO_MODE, enemy, nearestHero, resolve);
+                });
             }
-        })
+        }
     },
 
     async bossAttack(enemy, hero) {
@@ -339,8 +336,10 @@ const GameController = cc.Class({
         let heroId = hero.mainScript.characterId;
         let enemyId = enemy.mainScript.characterId;
         let newHealth = await this.socketIOManager.game.takeDame(enemyId, heroId, dame);
-        enemy.mainScript.updateHpBar();
+        hero.mainScript.updateHpBar();
+        this.updateInfo(hero);
     },
+
     findNearestHero(enemy) {
         if (!this.heroes || this.heroes.length === 0) return null;
 
@@ -436,7 +435,7 @@ const GameController = cc.Class({
             return;
         }
 
-        this.bossAttack(hero, enemy);
+        this.bossAttack(enemy, hero);
     },
 
     async heroAttackTarget(hero, enemy, isFromServer = false) {

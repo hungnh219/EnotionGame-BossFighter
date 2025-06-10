@@ -253,18 +253,12 @@ cc.Class({
         }
 
         this.heroInfoPanel.active = true;
-
         this.heroNameLabel.string = heroInfo.name || '';
         this.heroHpLabel.string = heroInfo.health || '';
-
         this.heroImage.spriteFrame = heroInfo.imageSprite.spriteFrame || null;
-
         this.ultimateCooldownLabel.string = ultimateCooldown || '';
-
         ultimateCooldown > 0 ? this.ultimateGreyPrefab.active = true : this.ultimateGreyPrefab.active = false;
-
         this.ultimateSprite.spriteFrame = heroInfo.imageSprite ? heroInfo.imageSprite.spriteFrame : null;
-
         let hpPercentage = heroInfo.health / heroInfo.maxHp;
         this.heroHpProgressBar.progress = hpPercentage;
     },
@@ -293,25 +287,20 @@ cc.Class({
         this.mapController.spawnHeroIntoMap(heroPrefabs, focusEffectPrefab, this.heroes);
     },
 
-    // enemy always has size = 1
     spawnEnemy(enemy) {
         this.mapController.spawnEnemyIntoMap(enemy);
     },
 
     initMapView() {
         let mapController = this.mapController;
-        console.warn("MapController initialized:", mapController);
-  
         let mapSize = {
             width: this.mapWidth,
             height: this.mapHeight,
         }
-
         let tileSize = {
             width: this.mapTileWidth,
             height: this.mapTileHeight,
         }
-
         mapController.viewMap(mapSize, tileSize, this.groundSpriteFrame);
         mapController.setCellPosition();
     },
