@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "boss1-left-idle",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.2,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "e1482341-31e1-429c-8e19-1e32a1093109"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "3af472fa-f6aa-4f6a-b4ae-6dd210f9cb6d"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "267540ba-a7c2-4088-827c-069256fb8d4b"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "8d92f76e-2e8c-4f36-ad67-c3d379e801c6"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
