@@ -2,8 +2,204 @@
   "12": {
     "player": [
       {
-        "zvxXEhpYJU3ODwfSAAAF": {
-          "name": "1",
+        "QC6lgkQDm-XJ_CpTAAAb": {
+          "name": "321",
+          "clickHero": 0,
+          "lockedHero": 0,
+          "order": 0,
+          "host": true
+        }
+      },
+      {
+        "hrpbVB-z1O_BrupwAAAa": {
+          "name": "321",
+          "clickHero": 3,
+          "lockedHero": 3,
+          "order": 1,
+          "host": false
+        }
+      }
+    ],
+    "maxPlayer": 2,
+    "status": "playing",
+    "gameState": {
+      "status": "STARTED",
+      "turn": "player",
+      "currentPlayer": null,
+      "walkableGridMap": [
+        [
+          false,
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false
+        ],
+        [
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ]
+      ],
+      "currentMapIndex": 0,
+      "heroes": [
+        {
+          "id": "QC6lgkQDm-XJ_CpTAAAb",
+          "order": 0,
+          "lockedHero": 0,
+          "heroId": "hero001",
+          "hp": 620,
+          "maxHp": 620,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Ad Carry",
+          "status": "ALIVE",
+          "stats": {
+            "totalDameDeal": 0,
+            "totalDameTaken": 0,
+            "totalScore": 8
+          },
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "hrpbVB-z1O_BrupwAAAa",
+          "order": 1,
+          "lockedHero": 3,
+          "heroId": "hero004",
+          "hp": 700,
+          "maxHp": 700,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Vampire",
+          "status": "ALIVE",
+          "stats": {
+            "totalDameDeal": 0,
+            "totalDameTaken": 0,
+            "totalScore": 4
+          },
+          "x": 1,
+          "y": 0
+        }
+      ],
+      "bosses": [
+        {
+          "bossId": "boss001",
+          "hp": 800,
+          "maxHp": 800,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Boss 001",
+          "status": "ALIVE",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "bossId": "boss002",
+          "hp": 2000,
+          "maxHp": 2000,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Boss 002",
+          "status": "ALIVE",
+          "x": 7,
+          "y": 7
+        }
+      ]
+    }
+  },
+  "111": {
+    "player": [
+      {
+        "NEa1BSG1d3ElZKAnAAAZ": {
+          "name": "12",
           "clickHero": 3,
           "lockedHero": 3,
           "order": 0,
@@ -30,7 +226,7 @@
         ],
         [
           true,
-          true,
+          false,
           true,
           true,
           true,
@@ -122,7 +318,7 @@
       "currentMapIndex": 0,
       "heroes": [
         {
-          "id": "zvxXEhpYJU3ODwfSAAAF",
+          "id": "NEa1BSG1d3ElZKAnAAAZ",
           "order": 0,
           "lockedHero": 3,
           "heroId": "hero004",
@@ -133,12 +329,380 @@
           "name": "Vampire",
           "status": "DEAD",
           "stats": {
-            "totalDameDeal": 2000,
+            "totalDameDeal": 0,
             "totalDameTaken": 800,
-            "totalScore": 2803
+            "totalScore": 807
           },
+          "x": 1,
+          "y": 0
+        }
+      ],
+      "bosses": [
+        {
+          "bossId": "boss001",
+          "hp": 800,
+          "maxHp": 800,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Boss 001",
+          "status": "ALIVE",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "bossId": "boss002",
+          "hp": 2000,
+          "maxHp": 2000,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Boss 002",
+          "status": "ALIVE",
           "x": 3,
-          "y": 4
+          "y": 5
+        }
+      ],
+      "isGameOver": true,
+      "result": "LOSE"
+    }
+  },
+  "1221": {
+    "player": [
+      {
+        "PpwEWKWiCjveL41XAAAJ": {
+          "name": "2",
+          "clickHero": 0,
+          "lockedHero": 0,
+          "order": 0,
+          "host": true
+        }
+      }
+    ],
+    "maxPlayer": 1,
+    "status": "playing",
+    "gameState": {
+      "status": "STARTED",
+      "turn": "player",
+      "currentPlayer": null,
+      "walkableGridMap": [
+        [
+          true,
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ]
+      ],
+      "currentMapIndex": 0,
+      "heroes": [
+        {
+          "id": "PpwEWKWiCjveL41XAAAJ",
+          "order": 0,
+          "lockedHero": 0,
+          "heroId": "hero001",
+          "hp": 0,
+          "maxHp": 620,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Ad Carry",
+          "status": "DEAD",
+          "stats": {
+            "totalDameDeal": 400,
+            "totalDameTaken": 800,
+            "totalScore": 1206
+          },
+          "x": 1,
+          "y": 0
+        }
+      ],
+      "bosses": [
+        {
+          "bossId": "boss001",
+          "hp": 400,
+          "maxHp": 800,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Boss 001",
+          "status": "ALIVE",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "bossId": "boss002",
+          "hp": 2000,
+          "maxHp": 2000,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Boss 002",
+          "status": "ALIVE",
+          "x": 3,
+          "y": 5
+        }
+      ],
+      "isGameOver": true,
+      "result": "LOSE"
+    }
+  },
+  "12321": {
+    "player": [
+      {
+        "TC9KuUeT8Abe_Zc4AAAF": {
+          "name": "12",
+          "clickHero": 0,
+          "lockedHero": 0,
+          "order": 0,
+          "host": true
+        }
+      },
+      {
+        "BHNzECSMGlHKmWS_AAAH": {
+          "name": "321",
+          "clickHero": 3,
+          "lockedHero": 3,
+          "order": 1,
+          "host": false
+        }
+      }
+    ],
+    "maxPlayer": 2,
+    "status": "playing",
+    "gameState": {
+      "status": "STARTED",
+      "turn": "player",
+      "currentPlayer": null,
+      "walkableGridMap": [
+        [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ]
+      ],
+      "currentMapIndex": 0,
+      "heroes": [
+        {
+          "id": "TC9KuUeT8Abe_Zc4AAAF",
+          "order": 0,
+          "lockedHero": 0,
+          "heroId": "hero001",
+          "hp": 0,
+          "maxHp": 620,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Ad Carry",
+          "status": "DEAD",
+          "stats": {
+            "totalDameDeal": 800,
+            "totalDameTaken": 1200,
+            "totalScore": 2003
+          },
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "BHNzECSMGlHKmWS_AAAH",
+          "order": 1,
+          "lockedHero": 3,
+          "heroId": "hero004",
+          "hp": 700,
+          "maxHp": 700,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Vampire",
+          "status": "ALIVE",
+          "stats": {
+            "totalDameDeal": 2000,
+            "totalDameTaken": 0,
+            "totalScore": 2006
+          },
+          "x": 2,
+          "y": 1
         }
       ],
       "bosses": [
@@ -150,12 +714,182 @@
           "attackRange": 5,
           "name": "Boss 001",
           "status": "DEAD",
-          "x": 0,
+          "x": 2,
           "y": 1
         },
         {
           "bossId": "boss002",
+          "hp": 0,
+          "maxHp": 2000,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Boss 002",
+          "status": "DEAD",
+          "x": 2,
+          "y": 3
+        }
+      ],
+      "isGameOver": true,
+      "result": "WIN"
+    }
+  },
+  "23112": {
+    "player": [
+      {
+        "FkPZyMrM6lt_HGIIAAAF": {
+          "name": "12",
+          "clickHero": 3,
+          "lockedHero": 3,
+          "order": 0,
+          "host": true
+        }
+      }
+    ],
+    "maxPlayer": 1,
+    "status": "playing",
+    "gameState": {
+      "status": "STARTED",
+      "turn": "player",
+      "currentPlayer": null,
+      "walkableGridMap": [
+        [
+          true,
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ]
+      ],
+      "currentMapIndex": 0,
+      "heroes": [
+        {
+          "id": "FkPZyMrM6lt_HGIIAAAF",
+          "order": 0,
+          "lockedHero": 3,
+          "heroId": "hero004",
+          "hp": 0,
+          "maxHp": 700,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Vampire",
+          "status": "DEAD",
+          "stats": {
+            "totalDameDeal": 0,
+            "totalDameTaken": 800,
+            "totalScore": 807
+          },
+          "x": 1,
+          "y": 0
+        }
+      ],
+      "bosses": [
+        {
+          "bossId": "boss001",
           "hp": 800,
+          "maxHp": 800,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Boss 001",
+          "status": "ALIVE",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "bossId": "boss002",
+          "hp": 2000,
           "maxHp": 2000,
           "attackDamage": 200,
           "attackRange": 5,
@@ -164,7 +898,9 @@
           "x": 3,
           "y": 5
         }
-      ]
+      ],
+      "isGameOver": true,
+      "result": "LOSE"
     }
   }
 }

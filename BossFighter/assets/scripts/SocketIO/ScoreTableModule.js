@@ -23,5 +23,19 @@ module.exports = function (socket) {
                 cc.error("Lỗi khi gửi dữ liệu lên backend qua Socket.IO:", error);
             }
         },
+
+        getScoreTable() {
+            if (!socket || !socket.connected) {
+                return reject(new Error("Socket.IO chưa kết nối!"));
+            }
+            
+            return new Promise((resolve) => {
+                socket.on('RETURN_SCORE_TABLE', (data) => {
+                    console.log('Received score table data:', data);
+                    resolve(data.scoreTable);
+                });
+                socket.emit('GET_SCORE_TABLE');
+            });    
+        }
     };
 };
