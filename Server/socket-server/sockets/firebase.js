@@ -1,6 +1,6 @@
 function firebaseEvents(io, socket, db, admin) {
     console.log('Có client kết nối:', socket.id);
-    socket.on('uploadScreenshot', async (data, callback) => {
+    socket.on('UPLOAD_SCREEN_SHOT', async (data, callback) => {
         const { playerName, score, imageBase64 } = data;
 
         if (!playerName || !score || !imageBase64) {
@@ -31,7 +31,7 @@ function firebaseEvents(io, socket, db, admin) {
         }
     });
 
-    socket.on('requestLeaderboard', async (callback) => {
+    socket.on('REQUEST_LEADER_BOARD', async (callback) => {
         try {
             const leaderboardSnapshot = await db.collection('leaderboard')
                 .orderBy('score', 'desc')

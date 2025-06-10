@@ -8,7 +8,7 @@ module.exports = function (socket) {
                     if (!socket || !socket.connected) {
                         return reject(new Error("Socket.IO chưa kết nối!"));
                     }
-                    socket.emit('uploadScreenshot', data, (response) => {
+                    socket.emit('UPLOAD_SCREEN_SHOT', data, (response) => {
                         if (response.success) {
                             resolve(response);
                         } else {
