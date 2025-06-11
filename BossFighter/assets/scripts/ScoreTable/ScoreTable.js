@@ -22,11 +22,11 @@ cc.Class({
     },
 
     async start() {
-        this.viewScoreTable();
-        await this.onAutoUploadImage()
+        result = await this.viewScoreTable();
+        await this.onAutoUploadImage(result)
     },
 
-    async onAutoUploadImage() {
+    async onAutoUploadImage(result) {
         let renderTextureResult = null;
         let imageBase64 = '';
         try {
@@ -42,11 +42,11 @@ cc.Class({
             return;
         }
 
-        const playerName = `Player_ ${Math.floor(Math.random() * 5000) + 1000}`;
-        const score = Math.floor(Math.random() * 5000) + 1000;
+        // const playerName = `Player_ ${Math.floor(Math.random() * 5000) + 1000}`;
+        // const score = Math.floor(Math.random() * 5000) + 1000;
         const dataToSend = {
-            playerName: playerName,
-            score: score,
+            playerName: result.playerName,
+            score: result.playerScore,
             imageBase64: imageBase64
         };
 
@@ -186,6 +186,11 @@ cc.Class({
             }
 
             this.scoreTableContent.addChild(scoreTableNode);
+
+            return {
+                "playerName": heroName,
+                "playerScore": heroScore.toString()
+            }
         });
     },
 
