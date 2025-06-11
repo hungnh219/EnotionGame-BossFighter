@@ -339,6 +339,7 @@ module.exports = function(socket) {
 
             return new Promise((resolve, reject) => {
                 socket.on('RETURN_BOSSES', (data) => {
+                    console.log('Nhận danh sách bosses:', data.bosses);
                     resolve(data.bosses);
                 });
                 socket.emit('GET_BOSSES');

@@ -614,7 +614,9 @@
     "hpBar": {
       "__id__": 11
     },
-    "avatar": null,
+    "avatar": {
+      "__id__": 14
+    },
     "characterId": "boss002",
     "_id": ""
   },

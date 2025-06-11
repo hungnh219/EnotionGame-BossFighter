@@ -92,14 +92,12 @@ function gameEvents(io, socket) {
         
         let roomData = logicHandler.common.readRoomData();
 
-        // lấy dữ liệu id + order + lockedHero của người chơi 
         let playerData = logicHandler.game.getPlayerGameData(roomData, roomName);
         if (!playerData) {
             console.error('Không tìm thấy dữ liệu người chơi trong dữ liệu phòng:', roomName);
             return;
         }
 
-        // tạo dữ liệu mảng heroes cho người chơi (thứ tự là theo order)
         let heroes = [];
         playerData.forEach(player => {
             let playerId = player.id;
@@ -134,7 +132,7 @@ function gameEvents(io, socket) {
 
 
         bossIndex.forEach((boss, index) => {
-            let bossData = logicHandler.common.getBossDataByIndex(index);
+            let bossData = logicHandler.common.getBossDataByIndex(bossIndex[index]);
 
             let newBoss = {
                 bossId: bossData.id,

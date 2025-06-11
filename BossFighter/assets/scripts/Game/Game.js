@@ -53,6 +53,7 @@ cc.Class({
         objectsJsonData: cc.JsonAsset,
         objectMapPrefab: cc.Prefab,
         groundSpriteFrame: [cc.SpriteFrame], // sprite frame for ground tile
+        map3GroundSpriteFrame: [cc.SpriteFrame],
 
         characterHolder: cc.Node,
 
@@ -209,13 +210,15 @@ cc.Class({
         this.backgroundSprite.spriteFrame = this.backgroundSpriteFrames[this.mapIndex];
 
         // add object
-        this.mapController.viewObjectsMap(mapObjects, this.mapWidth, this.mapHeight, this.map1Objects);
+        let objects = (this.mapIndex === 2) ? this.map3Objects : this.map1Objects;
+        this.mapController.viewObjectsMap(mapObjects, this.mapWidth, this.mapHeight, objects);
         
         // add boss
         let bossesPosition = this.mapData.bossesPosition;
+        let bossIndex = this.mapData.bosses;
         for (let i = 0; i < this.bosses.length; i++) {
             if (this.bosses[i]) {
-                this.bossNode[i] = cc.instantiate(this.bossPrefabs[i]);
+                this.bossNode[i] = cc.instantiate(this.bossPrefabs[bossIndex[i]]);
                 this.bossNode[i].mainScript = this.bossNode[i].getComponents(cc.Component).find(c => typeof c.initData === 'function');
                 if (this.bossNode[i].mainScript) {
                     this.bossNode[i].mainScript.initData(this.bosses[i]);
@@ -314,7 +317,9 @@ cc.Class({
             width: this.mapTileWidth,
             height: this.mapTileHeight,
         }
-        mapController.viewMap(mapSize, tileSize, this.groundSpriteFrame);
+
+        let groundSpriteFrame = (this.mapIndex === 2) ? this.map3GroundSpriteFrame : this.groundSpriteFrame;
+        mapController.viewMap(mapSize, tileSize, groundSpriteFrame);
         mapController.setCellPosition();
     },
 
@@ -437,16 +442,41 @@ cc.Class({
     async updateLeaderBoard() {
         let newLeaderBoard = await this.socketIOManager.game.getLeaderBoard();
         console.warn("Updating leader board with data:", newLeaderBoard);
-        this.leaderBoard.removeAllChildren();
-        newLeaderBoard.forEach((data) => {
-            let label = new cc.Node().addComponent(cc.Label);
-            label.string = `${data.playerName}: ${data.totalScore}`;
-            label.fontSize = 30;
-            label.node.color = cc.Color.WHITE;
-            label.node.parent = this.leaderBoard;
-        });
-    },
 
+        // Sort leaderboard by totalScore descending
+        newLeaderBoard.sort((a, b) => b.totalScore - a.totalScore);
+
+        // Update existing children or create if not enough
+        let children = this.leaderBoard.children;
+        for (let i = 0; i < newLeaderBoard.length; i++) {
+            let data = newLeaderBoard[i];
+            let labelNode;
+            if (i < children.length) {
+                labelNode = children[i];
+                let label = labelNode.getComponent(cc.Label);
+                if (label) {
+                    label.string = `${data.playerName}: ${data.totalScore}`;
+                }
+            } else {
+                // Create new label node if not enough
+                let label = new cc.Node().addComponent(cc.Label);
+                label.string = `${data.playerName}: ${data.totalScore}`;
+                label.fontSize = 30;
+                label.node.color = cc.Color.WHITE;
+                label.node.parent = this.leaderBoard;
+            }
+        }
+        // Hide extra nodes if leaderboard shrinks
+        for (let i = newLeaderBoard.length; i < children.length; i++) {
+            children[i].active = false;
+        }
+        // Reactivate nodes if leaderboard grows again
+        for (let i = 0; i < newLeaderBoard.length && i < children.length; i++) {
+            children[i].active = true;
+        }
+     
+    },
+   
     // chat
     onMessageReceived(data) {
         console.log('WaitingRoom: Nhận tin nhắn từ server:', data);

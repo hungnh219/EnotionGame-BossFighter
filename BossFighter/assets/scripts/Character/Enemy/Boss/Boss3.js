@@ -36,8 +36,8 @@ cc.Class({
     },
 
     initData(heroData) {
-        this.characterId = heroData.bossId || "hero002";
-        this.name = heroData.name || "ADC Hero";
+        this.characterId = heroData.bossId || "boss003";
+        this.name = heroData.name || "Boss 3";
         this.attackDame = heroData.attackDamage || 10;
         this.attackRange = heroData.attackRange || 1;
         this.maxHp = heroData.maxHp || 100;
