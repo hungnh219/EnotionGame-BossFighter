@@ -81,7 +81,9 @@ const GameController = cc.Class({
             }
         }
 
-        this.updateInfo();
+        if (heroIndex == this.playerIndex) {
+            this.updateInfo();
+        }   
     },
 
     // =================== Get-Set: Start ===================
@@ -313,7 +315,7 @@ const GameController = cc.Class({
         enemy.mainScript.playAnimation("attack_" + direction, 0.4);
         // this.socketIOManager.turn.endBossTurn();
         hero.mainScript.updateHpBar();
-        this.updateInfo(hero);
+        this.updateInfo(this.getPlayerByIndex(this.getPlayerIndex()));
     },
 
     findNearestHero(enemy) {
