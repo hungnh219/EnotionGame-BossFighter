@@ -56,7 +56,6 @@ module.exports = function(socket) {
         getPlayerIndex(startGameData) {
             let currentSocketId = socket.id;
 
-            console.log(startGameData, "startGameData");
             if (!startGameData || !startGameData.players) {
                 console.error("Dữ liệu bắt đầu trò chơi không hợp lệ:", startGameData);
                 return null;

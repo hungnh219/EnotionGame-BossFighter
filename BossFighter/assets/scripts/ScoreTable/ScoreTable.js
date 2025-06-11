@@ -209,5 +209,10 @@ cc.Class({
             }
         }
         return null;
+    },
+
+    async moveToRoomSelect() {
+        await this.socketIOManager.room.leaveRoom()
+        cc.director.loadScene("RoomSelect");
     }
 });

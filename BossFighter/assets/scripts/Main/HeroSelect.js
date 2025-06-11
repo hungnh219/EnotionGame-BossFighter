@@ -24,7 +24,9 @@ cc.Class({
         // selectedHeroes: [cc.Sprite],
         selectedHeroes: [cc.Sprite],
         lockHeroButton: cc.Button,
-        numberOfHeros: [cc.Integer]
+        numberOfHeros: [cc.Integer],
+
+        playButton: cc.Button,
     },
 
     async onLoad() {
@@ -37,7 +39,8 @@ cc.Class({
             let playerLabel = new cc.Node(`PlayerLabel-${index}`);
             let labelComponent = playerLabel.addComponent(cc.Label);
 
-            labelComponent.string = `Player ${index + 1}`;
+            // labelComponent.string = `Player ${index + 1}`;
+            labelComponent.string = this.startGameData.players[index].name ?? `Player ${index + 1}`;
             labelComponent.fontSize = 24;
             labelComponent.lineHeight = 24;
             labelComponent.font = this.customFont;
@@ -59,7 +62,11 @@ cc.Class({
             hero.node.addChild(nameLabel);
 
             // this.heroLocked[index] = null;
+
+            console.warn(this.startGameData.players[index].name, this.startGameData.players[index].host);
         })
+
+        
 
     },
 
@@ -91,6 +98,14 @@ cc.Class({
 
         this.startGameData = await this.socketIOManager.selectHero.getGameStartData();
         this.playerIndex = this.socketIOManager.selectHero.getPlayerIndex(this.startGameData);
+        console.log("Player Index:", this.playerIndex);
+        console.log("Start Game Data:", this.startGameData);
+        console.log("host", this.startGameData.players[this.playerIndex].host);
+        if (this.startGameData.players[this.playerIndex].host) {
+            this.playButton.node.active = true;
+        } else {
+            this.playButton.node.active = false;
+        }
 
     },
 

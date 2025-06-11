@@ -165,6 +165,7 @@ cc.Class({
             this.totalPlayersLabel.string = `Người chơi: ${roomMembers.length}/${maxPlayer}`;
 
             this.startButton.active = isCurrentPlayerHost;
+            this.mapPageView.node.active = isCurrentPlayerHost;
             console.log("Nut Start active state:", this.startButton.active, "(Current player is host:", isCurrentPlayerHost + ")");
 
             this.gridPlayer.removeAllChildren();
