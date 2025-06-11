@@ -49,6 +49,7 @@ cc.Class({
 
 
     async updateHpBar() {
+        console.warn("Updating HP bar for character:", this.characterId);
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
         let newHealth = await this.socketIOManager.game.getCurrentHp(this.characterId);
         this.health = newHealth;

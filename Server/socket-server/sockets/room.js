@@ -131,6 +131,10 @@ function roomEvents(io, socket) {
     });
 
     socket.on('LEAVE_ROOM', (roomName) => {
+        if (!roomName) {
+            roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
+        }
+
         let roomData = logicHandler.common.readRoomData();
 
         if (!(roomName in roomData)) {

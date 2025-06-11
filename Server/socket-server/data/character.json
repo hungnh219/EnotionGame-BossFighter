@@ -32,22 +32,22 @@
     {
       "id": "boss001",
       "name": "Boss 001",
-      "maxHp": 800,
-      "attackDamage": 200,
+      "maxHp": 400,
+      "attackDamage": 100,
       "attackRange": 5
     },
     {
       "id": "boss002",
       "name": "Boss 002",
-      "maxHp": 2000,
-      "attackDamage": 200,
+      "maxHp": 400,
+      "attackDamage": 100,
       "attackRange": 5
     },
     {
       "id": "boss003",
       "name": "Boss 003",
-      "maxHp": 2000,
-      "attackDamage": 200,
+      "maxHp": 400,
+      "attackDamage": 100,
       "attackRange": 5
     }
   ],

@@ -180,10 +180,12 @@ cc.Class({
             this.updatePlayerTurnLabel();
         });
         this.socketIOManager.turn.listenSpawnHealthOrb((data) => {
-            console.log('Received health orb spawn data:', data);
             this.mapController.spawnHealthOrb(data);
         });
-
+        this.socketIOManager.game.listenPlayerQuit((data) => {
+            console.warn("Player quit received from server:", data);
+            this.gameController.handlePlayerQuit(data);
+        })
         // this.socketIOManager.turn.listenPlayerAction((data) => {
         //     this.gameController.handlePlayerAction(data);
         // });
@@ -358,14 +360,23 @@ cc.Class({
         cc.director.loadScene(GAME_SCENE.GAME)
     },
 
-    quitGame() {
-        if (cc.director.isPaused()) {
-            cc.director.resume();
+    async quitGame() {
+        let hero = this.gameController.getPlayerByIndex(this.playerIndex);
+        console.warn("Quitting game for hero:", hero);
+        console.warn("Hero main script:", hero.mainScript);
+        console.warn("Hero character ID:", hero.mainScript ? hero.mainScript.characterId : "N/A");
+        if (hero && hero.mainScript) {
+            console.log("Hero found, quitting game...");
+
+
+            let heroId = hero.mainScript.characterId;
+            await this.socketIOManager.game.quitGame(heroId);
+            // await this.updateLeaderBoard();
+            await this.socketIOManager.room.leaveRoom()
+            cc.director.loadScene(GAME_DATA.GAME_SCENE.MAIN_MENU)
+        } else {    
+            console.warn("No hero found or hero main script is not defined");
         }
-
-        this.socketIOManager.game.quitGame();
-
-        cc.director.loadScene(GAME_DATA.GAME_SCENE.MAIN_MENU)
     },
 
     resetGame() {

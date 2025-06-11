@@ -805,6 +805,19 @@ const GameController = cc.Class({
         console.log('bosses', this.bosses);
     },
 
+    handlePlayerQuit(characterId) {
+        console.log('handlePlayerQuit', characterId);
+        if (this.heroes == undefined || this.heroes == null) return;
+
+        // check if character is hero
+        let hero = this.heroes.find(hero => hero.mainScript.characterId === characterId);
+        if (hero) {
+            this.heroes.splice(this.heroes.indexOf(hero), 1);
+            hero.destroy();
+            return;
+        }
+    },
+
     positionToGrid(node) {
         if (this.firstCellPos == undefined || this.lastCellPos == undefined) return null;
         if (this.mapTileWidth == undefined || this.mapTileHeight == undefined) return null;

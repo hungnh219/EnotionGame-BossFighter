@@ -787,6 +787,93 @@ function gameEvents(io, socket) {
         }
         logicHandler.common.writeRoomData(roomData);
     })
+
+    socket.on('HEAL', (data) => {
+        let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
+        if (!roomName) {
+            console.error('Không tìm thấy phòng cho socket ID:', socket.id);
+            return;
+        }
+
+        let roomData = logicHandler.common.readRoomData();
+        let heroes = roomData[roomName].gameState.heroes;
+
+        if (!heroes) {
+            console.error('Không tìm thấy dữ liệu heroes trong dữ liệu phòng:', roomName);
+            return;
+        }
+
+        let hero = heroes.find(hero => hero.heroId === data.characterId);
+        if (!hero) {
+            return;
+        }
+
+        // Giả sử mỗi lần hồi máu sẽ hồi 20% máu tối đa
+        let healAmount = Math.floor(hero.maxHp * 0.2);
+        console.log(hero.hp, 'Hồi máu cho hero:', hero.heroId, 'Số lượng hồi máu:', healAmount);
+        hero.hp += healAmount;
+        if (hero.hp > hero.maxHp) {
+            hero.hp = hero.maxHp;
+        }
+        console.log(hero.hp, 'Hồi máu cho hero:');
+
+        roomData[roomName].gameState.heroes = heroes;
+        logicHandler.common.writeRoomData(roomData);
+        // io.to(roomName).emit('LISTEN_HEAL', {
+        //     characterId: hero.heroId,
+        //     newHp: hero.hp,
+        //     healAmount: healAmount,
+        // });
+    })
+
+    socket.on('HANDLE_PLAYER_QUIT', (data) => {
+        console.log('Xử lý người chơi thoát:', data);
+        let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
+        if (!roomName) {
+            console.error('Không tìm thấy phòng cho socket ID:', socket.id);
+            return;
+        }
+
+        let roomData = logicHandler.common.readRoomData();
+        if (!roomData[roomName]) {
+            console.error('Không tìm thấy dữ liệu phòng:', roomName);
+            return;
+        }
+
+        let heroId = data.characterId;
+        // let heroes = roomData[roomName].gameState.heroes;
+        let hero = roomData[roomName].gameState.heroes.find(h => h.heroId === heroId);
+        if (!hero) {
+            console.error('Không tìm thấy hero với ID:', heroId);
+            return;
+        }
+        hero.status = "QUIT";
+
+        roomData[roomName].gameState.walkableGridMap[hero.x][hero.y] = true;
+        hero.stats.totalScore = 0;
+
+        let numberOfPlayers = roomData[roomName].player.length;
+        let numberOfAliveHeroes = roomData[roomName].gameState.heroes.filter(h => h.status === "ALIVE").length;
+        console.log(heroId, 'Số lượng người chơi:', numberOfPlayers, 'Số lượng hero còn sống:', numberOfAliveHeroes);
+
+        if (numberOfAliveHeroes < 1 && numberOfPlayers > 1) {
+            roomData[roomName].gameState.isGameOver = true;
+            roomData[roomName].gameState.result = 'LOSE';
+            logicHandler.common.writeRoomData(roomData);
+
+            io.to(roomName).emit('GAME_OVER', {
+                message: 'Tất cả người chơi đã thoát. Trò chơi kết thúc.',
+                isGameOver: true,
+                result: 'LOSE',
+            });
+        }
+
+        logicHandler.common.writeRoomData(roomData);
+
+        io.to(roomName).emit('LISTEN_PLAYER_QUIT', {
+            characterId: heroId
+        });
+    })
 }
 
 module.exports = gameEvents;

@@ -308,20 +308,6 @@ module.exports = function(socket) {
             });
         },
 
-        quitGame() {
-            if (!socket) {
-                console.error("Chưa kết nối đến Socket.IO server.");
-                return null;
-            }
-
-            return new Promise((resolve, reject) => {
-                socket.on('QUIT_GAME_SUCCESS', () => {
-                    resolve();
-                });
-                socket.emit('QUIT_GAME');
-            });
-        },
-
         bossAttack(enemyId, heroId) {
             if (!socket) {
                 console.error("Chưa kết nối đến Socket.IO server.");
@@ -444,13 +430,38 @@ module.exports = function(socket) {
             });
         },
 
-        quitGame() {
+        heal(characterId) {
+            console.warn("Yêu cầu heal cho characterId:", characterId);
             if (!socket) {
                 console.error("Chưa kết nối đến Socket.IO server.");
                 return null;
             }
 
-            socket.emit('QUIT_GAME');
-        }
+            socket.emit('HEAL', { characterId: characterId });
+        },
+
+        async quitGame(characterId) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+            await socket.emit('HANDLE_PLAYER_QUIT', { characterId: characterId });
+            await socket.emit('LEAVE_ROOM')
+        },
+
+        listenPlayerQuit(callback) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            socket.on('LISTEN_PLAYER_QUIT', (data) => {
+                console.warn("Player quit:", data);
+                if (callback) {
+                    console.warn("Calling callback with characterId:", data.characterId);
+                    callback(data.characterId);
+                }
+            });
+        },
     };
 }
