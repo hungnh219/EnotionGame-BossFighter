@@ -78,7 +78,15 @@ cc.Class({
                 if (roomNameLabelComp) {
                     roomNameLabelComp.string = room.roomName;
                     playerNumberComp.string = `${room.memberCount}/${room.maxPlayer}`
-                    statusRoomComp.string = room.status
+                    switch(room.status){
+                        case 'waiting':
+                            statusRoomNode.color = cc.Color.YELLOW
+                            statusRoomComp.string = room.status
+                            break;
+                        default:
+                            statusRoomComp.string = room.status
+                    }
+                    
                 } else {
                     console.log("Node 'New Label' trong prefabRoomItem không có component cc.Label.");
                 }

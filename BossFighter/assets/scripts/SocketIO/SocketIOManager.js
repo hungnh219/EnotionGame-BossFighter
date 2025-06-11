@@ -51,6 +51,8 @@ const SocketIOManager = cc.Class({
         this.selectHero = SelectHeroModule(this.socketIO);
         this.game = GameModule(this.socketIO);
         this.scoreTable = ScoreTableModule(this.socketIO)
+        this.turn = TurnModule(this.socketIO);
+
     },
 
     getSocketIO() {
