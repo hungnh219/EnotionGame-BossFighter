@@ -22,11 +22,11 @@ cc.Class({
     },
 
     async start() {
-        result = await this.viewScoreTable();
-        await this.onAutoUploadImage(result)
+        this.viewScoreTable();
+        await this.onAutoUploadImage()
     },
 
-    async onAutoUploadImage(result) {
+    async onAutoUploadImage() {
         let renderTextureResult = null;
         let imageBase64 = '';
         try {
@@ -41,12 +41,7 @@ cc.Class({
             }
             return;
         }
-
-        // const playerName = `Player_ ${Math.floor(Math.random() * 5000) + 1000}`;
-        // const score = Math.floor(Math.random() * 5000) + 1000;
         const dataToSend = {
-            playerName: result.playerName,
-            score: result.playerScore,
             imageBase64: imageBase64
         };
 
@@ -183,14 +178,15 @@ cc.Class({
 
                 const playerImageSprite = scoreTableItemComp.playerImageSprite.getComponent(cc.Sprite)
                 playerImageSprite.spriteFrame = heroAvatarSprite.spriteFrame;
+
+                playerImageSprite.type = cc.Sprite.Type.SIMPLE;
+                playerImageSprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
+
+                playerImageSprite.node.width = 40;
+                playerImageSprite.node.height = 40;
             }
 
             this.scoreTableContent.addChild(scoreTableNode);
-
-            return {
-                "playerName": heroName,
-                "playerScore": heroScore.toString()
-            }
         });
     },
 

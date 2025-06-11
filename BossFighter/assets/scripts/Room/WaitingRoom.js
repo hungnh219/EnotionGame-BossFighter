@@ -21,12 +21,13 @@ cc.Class({
 
     socketIOManager: null,
     currentRoomData: null,
-    currentRoomName: '', 
+    currentRoomName: '',
 
     onLoad() {
         this.scrollViewContent.removeAllChildren();
         this.startButton.active = false
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
+        this.socketIOManager.room.clearListeners()
         if (!this.socketIOManager.getSocketIO() || !this.socketIOManager.getSocketIO().connected) {
             this.socketIOManager.connectToSocketIOServer("http://localhost:3000");
         }
@@ -54,22 +55,22 @@ cc.Class({
     },
     onMessageReceived(data) {
         console.log('WaitingRoom: Nhận tin nhắn từ server:', data);
-    
+
         if (!data.success) {
             console.error("Lỗi tin nhắn từ server:", data.message);
             return;
         }
-    
+
         if (!this.messageItem) {
             console.error("messageItem prefab chưa được gán.");
             return;
         }
-    
+
         const messageNode = cc.instantiate(this.messageItem);
-    
+
         const nameLabelNode = messageNode.getChildByName('Name');
         const messageLabelNode = messageNode.getChildByName('Message');
-    
+
         if (nameLabelNode) {
             const nameLabel = nameLabelNode.getComponent(cc.Label);
             if (nameLabel) {
@@ -80,7 +81,7 @@ cc.Class({
         } else {
             console.warn("Không tìm thấy node con 'New Label'.");
         }
-    
+
         if (messageLabelNode) {
             const messageLabel = messageLabelNode.getComponent(cc.Label);
             if (messageLabel) {
@@ -91,22 +92,23 @@ cc.Class({
         } else {
             console.warn("Không tìm thấy Label chính trong prefab.");
         }
-    
+
         if (this.scrollViewContent) {
-            this.scrollViewContent.insertChild(messageNode, 0); 
+            this.scrollViewContent.insertChild(messageNode, 0);
             this.scrollToBottom();
         } else {
             console.error("scrollViewContent chưa được gán.");
         }
     },
-    
+
 
     scrollToBottom() {
         const scrollView = this.scrollViewContent.parent.parent.getComponent(cc.ScrollView)
-        scrollView.scrollToBottom(0.1); 
+        scrollView.scrollToBottom(0.1);
     },
 
     async onEditingEnded() {
+        console.log('fsfsd', this.messageItem)
         const inputText = this.textMessageInput.string.trim();
         cc.log(inputText);
         if (!inputText) {
@@ -184,7 +186,7 @@ cc.Class({
         }
     },
 
-    async startGame() { 
+    async startGame() {
         try {
             const selectedPageIndex = this.mapPageView.getCurrentPageIndex();
             this.gameController.setMapPicked(selectedPageIndex);
@@ -206,7 +208,7 @@ cc.Class({
         }
     },
 
-    onOpenNotificationPopUp(message, type){
+    onOpenNotificationPopUp(message, type) {
         let newNotify = cc.instantiate(this.notificationPrefab);
         this.node.addChild(newNotify);
         newNotify.getComponent(Notification).showMessage(type, message);
@@ -219,7 +221,7 @@ cc.Class({
             return;
         }
 
-        
+
         console.log("Selected map index:", selectedPageIndex);
 
         if (selectedPageIndex === 0) {
@@ -232,8 +234,4 @@ cc.Class({
         }
 
     }
-    
-
-
-
 });
