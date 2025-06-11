@@ -78,22 +78,22 @@
         "__id__": 5
       },
       {
-        "__id__": 196
+        "__id__": 198
       },
       {
-        "__id__": 198
+        "__id__": 200
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 200
-      },
-      {
-        "__id__": 201
-      },
-      {
         "__id__": 202
+      },
+      {
+        "__id__": 203
+      },
+      {
+        "__id__": 204
       }
     ],
     "_prefab": null,
@@ -263,7 +263,7 @@
         "__id__": 180
       },
       {
-        "__id__": 193
+        "__id__": 195
       }
     ],
     "_active": true,
@@ -8100,6 +8100,9 @@
     "_components": [
       {
         "__id__": 192
+      },
+      {
+        "__id__": 193
       }
     ],
     "_prefab": null,
@@ -8185,6 +8188,88 @@
     "_id": "30c/HUpBNDv7aHHTlCV/RE"
   },
   {
+    "__type__": "cc.Button",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 191
+    },
+    "_enabled": true,
+    "_normalMaterial": null,
+    "_grayMaterial": null,
+    "duration": 0.1,
+    "zoomScale": 1.2,
+    "clickEvents": [
+      {
+        "__id__": 194
+      }
+    ],
+    "_N$interactable": true,
+    "_N$enableAutoGrayEffect": false,
+    "_N$transition": 0,
+    "transition": 0,
+    "_N$normalColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_N$pressedColor": {
+      "__type__": "cc.Color",
+      "r": 211,
+      "g": 211,
+      "b": 211,
+      "a": 255
+    },
+    "pressedColor": {
+      "__type__": "cc.Color",
+      "r": 211,
+      "g": 211,
+      "b": 211,
+      "a": 255
+    },
+    "_N$hoverColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "hoverColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_N$disabledColor": {
+      "__type__": "cc.Color",
+      "r": 124,
+      "g": 124,
+      "b": 124,
+      "a": 255
+    },
+    "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
+    "_N$disabledSprite": null,
+    "_N$target": null,
+    "_id": "a7n55avYVNQqliZYhIpWQI"
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 94
+    },
+    "component": "",
+    "_componentId": "094a8hz9C1PPJg8mXC0aZd/",
+    "handler": "onBackMainMenu",
+    "customEventData": ""
+  },
+  {
     "__type__": "cc.Node",
     "_name": "NotificationNode",
     "_objFlags": 0,
@@ -8195,11 +8280,11 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 194
+        "__id__": 196
       }
     ],
     "_prefab": {
-      "__id__": 195
+      "__id__": 197
     },
     "_opacity": 255,
     "_color": {
@@ -8253,7 +8338,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 193
+      "__id__": 195
     },
     "_enabled": true,
     "_materials": [
@@ -8286,7 +8371,7 @@
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 193
+      "__id__": 195
     },
     "asset": {
       "__uuid__": "102e68d7-b379-4f83-ae3c-8a96cef451a2"
@@ -8305,7 +8390,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 197
+        "__id__": 199
       }
     ],
     "_prefab": null,
@@ -8361,7 +8446,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 196
+      "__id__": 198
     },
     "_enabled": true,
     "_materials": [
@@ -8399,7 +8484,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 199
+        "__id__": 201
       }
     ],
     "_prefab": null,
@@ -8455,7 +8540,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 198
+      "__id__": 200
     },
     "_enabled": true,
     "_materials": [
@@ -8538,10 +8623,10 @@
       "__id__": 2
     },
     "cursorBackground": {
-      "__id__": 196
+      "__id__": 198
     },
     "cursorOnButton": {
-      "__id__": 198
+      "__id__": 200
     },
     "_id": "999s5nLypLU6NazzV0o3r8"
   }

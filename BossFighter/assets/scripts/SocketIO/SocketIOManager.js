@@ -50,12 +50,11 @@ const SocketIOManager = cc.Class({
         this.selectHero = SelectHeroModule(this.socketIO);
         this.game = GameModule(this.socketIO);
         this.scoreTable = ScoreTableModule(this.socketIO)
-
-        console.log(this.socketIO);
-        console.log("Kết nối thanh cong Socket.IO server:", url);
     },
 
     getSocketIO() {
         return this.socketIO
     },
 });
+
+export default SocketIOManager;

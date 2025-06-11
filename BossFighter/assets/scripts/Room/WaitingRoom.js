@@ -1,4 +1,6 @@
 import SocketIOManager from "../SocketIO/SocketIOManager";
+import Notification from "../Prefab/Notification";
+
 
 cc.Class({
     extends: cc.Component,
@@ -12,7 +14,7 @@ cc.Class({
         textMessageInput: cc.EditBox,
         messageItem: cc.Prefab,
         scrollViewContent: cc.Node,
-        errorMessageLabel: cc.Label,
+        notificationPrefab: cc.Prefab,
     },
 
     socketIOManager: null,
@@ -20,7 +22,6 @@ cc.Class({
     currentRoomName: '', 
 
     onLoad() {
-        this.errorMessageLabel.node.active = false
         this.scrollViewContent.removeAllChildren();
         this.startButton.active = false
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
@@ -159,28 +160,26 @@ cc.Class({
 
         } catch (error) {
             console.error("Lỗi khi bắt đầu trò chơi:", error);
-            this.errorMessageLabel.string = `${error}`;
-            this.errorMessageLabel.node.active = true; 
-            this.scheduleOnce(()=>{
-                this.errorMessageLabel.node.active = false; 
-            }, 2)
+            this.onOpenNotificationPopUp(error, 'error')
         }
     },
 
     async leaveRoom() {
-        console.log('currentNameRoom', this.currentRoomName)
         try {
-            const result = await this.socketIOManager.room.leaveRoom(this.currentRoomName)
-            if (result.success) {
-                cc.director.loadScene('RoomSelect');
-            } else {
-                console.warn(result.message);
-            }
+            await this.socketIOManager.room.leaveRoom(this.currentRoomName);
+            cc.director.loadScene('RoomSelect');
         } catch (error) {
-            console.error("Lỗi khi rời phòng:", error);
+            console.error("Lỗi khi rời phòng:", error.message || error);
         }
+    },
 
-    }
+    onOpenNotificationPopUp(message, type){
+            let newNotify = cc.instantiate(this.notificationPrefab);
+            this.node.addChild(newNotify);
+            newNotify.getComponent(Notification).showMessage(type, message);
+    
+        },
+    
 
 
 

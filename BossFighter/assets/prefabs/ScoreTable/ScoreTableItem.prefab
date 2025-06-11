@@ -561,13 +561,13 @@
     },
     "_enabled": true,
     "playerImageSprite": {
-      "__id__": 6
+      "__id__": 5
     },
     "playerNameLabel": {
-      "__id__": 9
+      "__id__": 8
     },
     "playerScoreLabel": {
-      "__id__": 12
+      "__id__": 11
     },
     "_id": ""
   },
