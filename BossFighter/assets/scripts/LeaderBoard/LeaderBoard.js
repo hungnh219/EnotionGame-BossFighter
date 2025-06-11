@@ -1,5 +1,5 @@
 import SocketIOManager from "../SocketIO/SocketIOManager";
-import ImageViewer from "./ImageViewer"
+import ImageViewer from "../Prefab/ImageViewer"
 import GAME_DATA from '../Game/GameData';
 
 cc.Class({

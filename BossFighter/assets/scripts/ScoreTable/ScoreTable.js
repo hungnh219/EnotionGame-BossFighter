@@ -1,5 +1,5 @@
 import SocketIOManager from "../SocketIO/SocketIOManager";
-import scoreTableItem from "../ScoreTable/ScoreTableItem";
+import scoreTableItem from "../Prefab/ScoreTableItem";
 
 cc.Class({
     extends: cc.Component,
