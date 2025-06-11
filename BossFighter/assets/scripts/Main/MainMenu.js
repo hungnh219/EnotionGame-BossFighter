@@ -15,9 +15,9 @@ cc.Class({
         this.gameController = GameController.getInstance() || new GameController();
         this.socketIO = SocketIOManager.getInstance() || new SocketIOManager();
 
-        if (this.volumeSlider) {
-            this.volumeSlider.node.on('slide', this.onSliderChanged, this);
-        }
+        // if (this.volumeSlider) {
+        //     this.volumeSlider.node.on('slide', this.onSliderChanged, this);
+        // }
 
         // this.updateUI();
 

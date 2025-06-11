@@ -41,12 +41,7 @@ cc.Class({
             }
             return;
         }
-
-        const playerName = `Player_ ${Math.floor(Math.random() * 5000) + 1000}`;
-        const score = Math.floor(Math.random() * 5000) + 1000;
         const dataToSend = {
-            playerName: playerName,
-            score: score,
             imageBase64: imageBase64
         };
 
@@ -183,6 +178,12 @@ cc.Class({
 
                 const playerImageSprite = scoreTableItemComp.playerImageSprite.getComponent(cc.Sprite)
                 playerImageSprite.spriteFrame = heroAvatarSprite.spriteFrame;
+
+                playerImageSprite.type = cc.Sprite.Type.SIMPLE;
+                playerImageSprite.sizeMode = cc.Sprite.SizeMode.CUSTOM;
+
+                playerImageSprite.node.width = 40;
+                playerImageSprite.node.height = 40;
             }
 
             this.scoreTableContent.addChild(scoreTableNode);

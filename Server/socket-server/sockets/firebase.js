@@ -1,35 +1,69 @@
+const logicHandler = require('../handler/logicHandler');
+
 function firebaseEvents(io, socket, db, admin) {
     console.log('Có client kết nối:', socket.id);
     socket.on('UPLOAD_SCREEN_SHOT', async (data, callback) => {
-        const { playerName, score, imageBase64 } = data;
+        const { imageBase64 } = data;
 
-        if (!playerName || !score || !imageBase64) {
-            if (callback) {
-                callback({ success: false, message: 'Thiếu field' });
+        if (!imageBase64) {
+            if (typeof callback === 'function') {
+                return callback({ success: false, message: 'Thiếu ảnh (imageBase64)' });
             }
             return;
         }
 
+        const roomData = logicHandler.common.readRoomData();
+
+        const roomId = Object.keys(roomData).find(id => {
+            const room = roomData[id];
+            return room && room.player && room.player.some(p => Object.keys(p)[0] === socket.id);
+        });
+
+        if (!roomId) {
+            if (typeof callback === 'function') {
+                return callback({ success: false, message: 'Không tìm thấy phòng chứa người chơi này.' });
+            }
+            return;
+        }
+
+        const room = roomData[roomId];
+        const players = room.player || [];
+        const heroes = (room.gameState && room.gameState.heroes) || [];
+
+        const playerEntry = players.find(p => Object.keys(p)[0] === socket.id);
+        if (!playerEntry) {
+            if (typeof callback === 'function') {
+                return callback({ success: false, message: 'Không tìm thấy thông tin người chơi.' });
+            }
+            return;
+        }
+
+        const playerData = playerEntry[socket.id];
+        const playerName = (playerData && playerData.name) || `Player_${Math.floor(Math.random() * 10000)}`;
+
+        const hero = heroes.find(h => h.id === socket.id);
+        const score = (hero && hero.stats && hero.stats.totalScore) || 0;
+
         try {
             await db.collection('leaderboard').add({
-                playerName,
+                playerName: playerName,
                 score: Number(score),
-                imageBase64,
+                imageBase64: imageBase64,
                 createdAt: admin.firestore.FieldValue.serverTimestamp()
             });
 
-            if (callback) {
+            if (typeof callback === 'function') {
                 callback({ success: true, message: 'Lưu ảnh thành công.' });
             }
-            console.log(`Ảnh của ${playerName} (score: ${score}) đã được lưu .`);
-
+            console.log(`Đã lưu ảnh từ ${playerName} (score: ${score})`);
         } catch (error) {
             console.error('Lỗi khi lưu ảnh:', error);
-            if (callback) {
+            if (typeof callback === 'function') {
                 callback({ success: false, message: 'Lỗi server khi lưu ảnh.' });
             }
         }
     });
+
 
     socket.on('REQUEST_LEADER_BOARD', async (callback) => {
         try {

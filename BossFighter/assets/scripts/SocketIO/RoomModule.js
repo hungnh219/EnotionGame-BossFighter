@@ -1,5 +1,5 @@
 module.exports = function (socket) {
-    
+
     return {
 
         sendMessage(roomName, message) {
@@ -46,7 +46,7 @@ module.exports = function (socket) {
                     } else {
                         reject({
                             message: data.message,
-                            type: data.type || 'error' 
+                            type: data.type || 'error'
                         });
                     }
                 })
@@ -67,7 +67,7 @@ module.exports = function (socket) {
                     } else {
                         reject({
                             message: data.message,
-                            type: data.type || 'error' 
+                            type: data.type || 'error'
                         });
                     }
                 })
@@ -88,7 +88,7 @@ module.exports = function (socket) {
                     } else {
                         reject({
                             message: data.message,
-                            type: data.type || 'error' 
+                            type: data.type || 'error'
                         });
                     }
                 })
@@ -110,7 +110,7 @@ module.exports = function (socket) {
                     else {
                         reject({
                             message: data.message,
-                            type: data.type || 'error' 
+                            type: data.type || 'error'
                         });
                     }
                 })
@@ -134,7 +134,7 @@ module.exports = function (socket) {
                     else {
                         reject({
                             message: data.message,
-                            type: data.type || 'error' 
+                            type: data.type || 'error'
                         });
                     }
 
@@ -170,12 +170,12 @@ module.exports = function (socket) {
                     console.error("Chưa kết nối đến Socket.IO server.");
                     return reject({ success: false, message: "Chưa kết nối đến Socket.IO server." });
                 }
-    
+
                 socket.emit('GAME_START', (response) => {
                     if (response.success) {
-                        resolve(response); 
+                        resolve(response);
                     } else {
-                        reject(response.message); 
+                        reject(response.message);
                     }
                 });
             });
@@ -188,6 +188,19 @@ module.exports = function (socket) {
                     moveToSelectSceneCallback(data);
                 }
             });
+        },
+
+        clearListeners() {
+            socket.off('RECEIVED_MESSAGE');
+            socket.off('LEAVE_ROOM_RESULT');
+            socket.off('CHECK_ROOM_EXIST_RESULT');
+            socket.off('CHECK_ROOM_FULL_RESULT');
+            socket.off('CREATE_ROOM_RESULT');
+            socket.off('JOIN_ROOM_RESULT');
+            socket.off('ROOM_INFO');
+            socket.off('GAME_START_DATA');
+
+            console.log("[RoomModule] Đã clear toàn bộ socket listeners.");
         },
     };
 };

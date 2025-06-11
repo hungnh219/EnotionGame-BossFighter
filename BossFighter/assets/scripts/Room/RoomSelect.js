@@ -36,12 +36,12 @@ cc.Class({
     },
 
     start() {
-
-        this.socketIOManager.room.setOnRoomInfoReceivedCallback(this.onRoomInfoUpdated.bind(this));
         this.socketIOManager.room.getRoomInformation();
+        this.socketIOManager.room.setOnRoomInfoReceivedCallback(this.onRoomInfoUpdated.bind(this));
+
     },
 
-    onBackMainMenu(){
+    onBackMainMenu() {
         cc.director.loadScene(GAME_DATA.GAME_SCENE.MAIN_MENU)
     },
 
@@ -78,7 +78,7 @@ cc.Class({
                 if (roomNameLabelComp) {
                     roomNameLabelComp.string = room.roomName;
                     playerNumberComp.string = `${room.memberCount}/${room.maxPlayer}`
-                    switch(room.status){
+                    switch (room.status) {
                         case 'waiting':
                             statusRoomNode.color = cc.Color.YELLOW
                             statusRoomComp.string = room.status
@@ -86,7 +86,7 @@ cc.Class({
                         default:
                             statusRoomComp.string = room.status
                     }
-                    
+
                 } else {
                     console.log("Node 'New Label' trong prefabRoomItem không có component cc.Label.");
                 }
@@ -106,19 +106,19 @@ cc.Class({
 
             const buttonJoinRoom = cc.find("New Button", roomItemNode)
             if (buttonJoinRoom) {
-                buttonJoinRoom.on('click',async () => {
-                    try{
+                buttonJoinRoom.on('click', async () => {
+                    try {
                         await this.socketIOManager.room.checkRoomFull(room.roomName)
                         this.onOpenNameInputUI(room.roomName)
-                    }catch(error){
+                    } catch (error) {
                         if (typeof error === 'object' && error.message && error.type) {
                             this.onOpenNotificationPopUp(error.message, error.type);
                         }
-                        else{
+                        else {
                             this.onOpenNotificationPopUp(error)
                         }
                     }
-                    
+
                 })
             } else {
                 console.log("Khong co Component Button")
@@ -133,17 +133,17 @@ cc.Class({
         const currentTime = Date.now();
 
         if (currentTime - this.lastClickTime <= this.doubleClickThreshold) {
-            try{
+            try {
                 await this.socketIOManager.room.checkRoomFull(roomName)
                 this.onOpenNameInputUI(roomName);
-            }catch (error){
+            } catch (error) {
                 if (typeof error === 'object' && error.message && error.type) {
                     this.onOpenNotificationPopUp(error.message, error.type);
                 }
-                else{
+                else {
                     this.onOpenNotificationPopUp(error)
                 }
-            }            
+            }
         }
 
         this.lastClickTime = currentTime;
@@ -151,7 +151,7 @@ cc.Class({
 
     async onSubmitRoomButton() {
         const roomName = this.roomNameInput.string.trim();
-        if(!roomName ){
+        if (!roomName) {
             this.onOpenNotificationPopUp('Tên Phòng không được để trống', 'error');
             return
         }
@@ -167,7 +167,7 @@ cc.Class({
             if (typeof error === 'object' && error.message && error.type) {
                 this.onOpenNotificationPopUp(error.message, error.type);
             }
-            else{
+            else {
                 this.onOpenNotificationPopUp(error)
             }
         }
@@ -177,8 +177,8 @@ cc.Class({
         const roomName = this.roomNameInput.string.trim();
         const maxPlayer = +this.numberPlayer.string;
         const namePlayer = this.namePlayerInput.string.trim();
- 
-        if(!namePlayer){
+
+        if (!namePlayer) {
             this.onOpenNotificationPopUp('Tên Player không được để trống', 'error')
         }
         if (roomName && namePlayer && maxPlayer) {
@@ -189,7 +189,7 @@ cc.Class({
                 if (typeof error === 'object' && error.message && error.type) {
                     this.onOpenNotificationPopUp(error.message, error.type);
                 }
-                else{
+                else {
                     this.onOpenNotificationPopUp(error)
                 }
 
@@ -202,15 +202,15 @@ cc.Class({
                 if (typeof error === 'object' && error.message && error.type) {
                     this.onOpenNotificationPopUp(error.message, error.type);
                 }
-                else{
+                else {
                     this.onOpenNotificationPopUp(error)
                 }
-                
+
             }
         }
     },
 
-    onOpenNotificationPopUp(message, type){
+    onOpenNotificationPopUp(message, type) {
 
         let newNotify = cc.instantiate(this.notificationPrefab);
         this.node.addChild(newNotify);
