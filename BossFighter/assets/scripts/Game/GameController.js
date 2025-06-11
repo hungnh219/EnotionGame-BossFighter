@@ -1,10 +1,4 @@
-const DEFAULT_DATA = {
-    MOVEMENT_DELAY_TIME: 0.4, // time to move between cells
-}
-
 import EventBus from '../EventBus';
-import GAME_DATA from './GameData';
-import SocketIOManager from '../SocketIO/SocketIOManager';
 
 const GameController = cc.Class({
     extends: cc.Component,
@@ -55,7 +49,6 @@ const GameController = cc.Class({
         if (hero.mainScript && hero) {
             let ultimateCooldown = hero.mainScript.getUltimateCooldown();
             let heroInfo = hero.mainScript.getCharacterInfo();
-            console.log('heroInfo', heroInfo);
             this.updateHeroInfoUI(heroInfo, ultimateCooldown);
         }
     },
@@ -95,21 +88,16 @@ const GameController = cc.Class({
     setPlayerIndex(playerIndex) {
         this.playerIndex = playerIndex;
     },
-
     getPlayerIndex() {
         return this.playerIndex;
     },
-
     getPlayerByIndex(playerIndex) {
         return this.heroes[playerIndex];
     },
-
     setCallbacks(playerInfoCallback, updatePlayerTurnCallback) {
         this.updateHeroInfoUI = playerInfoCallback;
         this.updatePlayerTurnCallback = updatePlayerTurnCallback;
     },
-
-
     setCellPosition(firstCellPos, lastCellPos) {
         this.firstCellPos = firstCellPos;
         this.lastCellPos = lastCellPos;
@@ -120,12 +108,12 @@ const GameController = cc.Class({
         this.mapTileWidth = mapTileWidth;
         this.mapTileHeight = mapTileHeight;
     },
-
     getPlayerTurnCount() {
-        if (this.playerTurnCount == undefined || this.playerTurnCount == null) this.playerTurnCount = 3;
+        if (this.playerTurnCount == undefined || this.playerTurnCount == null) {
+            this.playerTurnCount = 3;
+        }
         return this.playerTurnCount;
     },
-
     setMapPicked(mapPick) {
         this.mapPick = mapPick;
     },
@@ -228,21 +216,14 @@ const GameController = cc.Class({
         }
         this.updatePlayerTurnCallback();
     },
-
-    // each enemy moves to nearest hero and attack if their attack range is enough
-    // execute in boss turn, before boss attack
     enemyAutoMode() {
         if (this.enemies == undefined || this.enemies == null) return;
         if (this.enemies.length == 0) return;
 
         this.enemies.forEach((enemy, index) => {
-            // check attack range hero
-            // if enough -> attack
-            // else -> move
             let nearestHero = this.findNearestHero(enemy);
             if (!nearestHero) return;
 
-            // distance between enemy and nearest hero
             let enemyPos = this.positionToGrid(enemy);
             let heroPos = this.positionToGrid(nearestHero);
             if (!enemyPos || !heroPos) return;
@@ -263,9 +244,6 @@ const GameController = cc.Class({
         })
     },
 
-    // check attack range hero
-    // if enough -> attack
-    // else -> move
     async bossAutoMode() {
         if (!this.bosses || this.bosses.length === 0) {
             return;
@@ -298,6 +276,15 @@ const GameController = cc.Class({
                         enemyId, heroId
                     );
                 }
+
+                if (index === bossArray.length - 1) {
+                    await new Promise(resolve => {
+                        setTimeout(() => {
+                            this.socketIOManager.turn.endBossTurn();
+                            resolve();
+                        }, 500);
+                    });
+                }
             } else {
                 await new Promise(resolve => {
                     EventBus.emit(EventBus.events.ENEMY_AUTO_MODE, enemy, nearestHero, resolve);
@@ -322,6 +309,9 @@ const GameController = cc.Class({
         let heroId = hero.mainScript.characterId;
         let enemyId = enemy.mainScript.characterId;
         let newHealth = await this.socketIOManager.game.takeDame(enemyId, heroId, dame);
+        let direction = this.getDirection(this.positionToGrid(enemy), this.positionToGrid(hero));
+        enemy.mainScript.playAnimation("attack_" + direction, 0.4);
+        // this.socketIOManager.turn.endBossTurn();
         hero.mainScript.updateHpBar();
         this.updateInfo(hero);
     },
@@ -782,9 +772,6 @@ const GameController = cc.Class({
 
     // =================== Hero Ultimate: End ===================
     handleCharacterDeath(characterId) {
-        console.log('handleCharacterDeath', characterId);
-        console.log('heroes', this.heroes);
-        console.log('bosses', this.bosses);
         if (this.heroes == undefined || this.heroes == null) return;
         if (this.bosses == undefined || this.bosses == null) return;
 
@@ -801,12 +788,9 @@ const GameController = cc.Class({
             this.bosses.splice(this.bosses.indexOf(boss), 1);
             return;
         }
-        console.log('heroes', this.heroes);
-        console.log('bosses', this.bosses);
     },
 
     handlePlayerQuit(characterId) {
-        console.log('handlePlayerQuit', characterId);
         if (this.heroes == undefined || this.heroes == null) return;
 
         // check if character is hero

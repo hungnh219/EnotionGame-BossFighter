@@ -162,9 +162,6 @@ cc.Class({
         this.socketIOManager.game.listenNextMap(() => {
             this.nextMapServer();
         });
-        this.socketIOManager.game.listenBossDie(() => {
-            // this.endGameNotification();
-        })
         this.socketIOManager.game.listenCharacterDeath((data) => {
             this.gameController.handleCharacterDeath(data.characterId);
         })
@@ -185,18 +182,9 @@ cc.Class({
         this.socketIOManager.game.listenPlayerQuit((data) => {
             console.warn("Player quit received from server:", data);
             this.gameController.handlePlayerQuit(data);
+            this.updateLeaderBoard();
         })
-        // this.socketIOManager.turn.listenPlayerAction((data) => {
-        //     this.gameController.handlePlayerAction(data);
-        // });
-        // this.socketIOManager.turn.listenConsumeAction((data) => {
-        //     this.gameController.handleConsumeAction(data);
-        // });
     },
-
-    // onClickPanel(event) {
-    //     event.stopPropagation();
-    // },
 
     spawnObjectsFromJson() {
         if (!this.objectsJsonData || !this.objectsJsonData.json) {
@@ -249,12 +237,6 @@ cc.Class({
     },
 
     heroClick(node) {
-        let currentHero = this.gameController.getPlayerByIndex(this.playerIndex);
-        if (node != currentHero) {
-            console.warn("Clicked node is not the current hero");
-            return;
-        }
-
         this.gameController.heroClick(node);
     },
 
@@ -362,16 +344,9 @@ cc.Class({
 
     async quitGame() {
         let hero = this.gameController.getPlayerByIndex(this.playerIndex);
-        console.warn("Quitting game for hero:", hero);
-        console.warn("Hero main script:", hero.mainScript);
-        console.warn("Hero character ID:", hero.mainScript ? hero.mainScript.characterId : "N/A");
         if (hero && hero.mainScript) {
-            console.log("Hero found, quitting game...");
-
-
             let heroId = hero.mainScript.characterId;
             await this.socketIOManager.game.quitGame(heroId);
-            // await this.updateLeaderBoard();
             await this.socketIOManager.room.leaveRoom()
             cc.director.loadScene(GAME_DATA.GAME_SCENE.MAIN_MENU)
         } else {    
@@ -390,15 +365,6 @@ cc.Class({
     },
 
     endGameNotification(result) {
-        // let winner = this.gameController.getWinner();
-        // if (winner == GAME_DATA.ROLE.PLAYER) {
-        //     this.nextButton.node.active = true;
-        //     let audioSources = this.node.getComponents(cc.AudioSource)
-        //     audioSources[0].play();
-        // } else {
-        //     let audioSources = this.node.getComponents(cc.AudioSource)
-        //     audioSources[1].play();
-        // }
         this.winnerNotificationLabel.string = result;
         this.winnerNotificationLabel.node.parent.active = true;
         this.winnerNotificationLabel.node.active = true;
@@ -471,7 +437,7 @@ cc.Class({
 
     async updateLeaderBoard() {
         let newLeaderBoard = await this.socketIOManager.game.getLeaderBoard();
-
+        console.warn("Updating leader board with data:", newLeaderBoard);
         this.leaderBoard.removeAllChildren();
         newLeaderBoard.forEach((data) => {
             let label = new cc.Node().addComponent(cc.Label);

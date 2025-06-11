@@ -148,6 +148,7 @@ cc.Class({
 
     async viewScoreTable() {
         let scoreTable = await this.socketIOManager.scoreTable.getScoreTable();
+        console.log('scoreTable', scoreTable)
         // this.scoreTableContent.node.removeAllChildren();
         console.log('scoreTable', scoreTable)
         if (!scoreTable || scoreTable.length === 0) {
@@ -156,7 +157,7 @@ cc.Class({
         }
 
         scoreTable.forEach((score, index) => {
-            // cc.log(`Hạng ${index + 1}: ${score.playerName} - Điểm: ${score.totalScore}`);
+            cc.log(`Hạng ${index + 1}: ${score.playerName} - Điểm: ${score.totalScore} - ${score.heroId}`);
             let heroAvatarSprite = this.getHeroAvatar(score.heroId);
             let heroName = score.playerName || `Unknown Hero`;
             let heroScore = score.totalScore || 0;
@@ -202,6 +203,7 @@ cc.Class({
             if (hero.mainScript) {
                 let info = hero.mainScript.getCharacterInfo();
                 if (info.characterId === heroId) {
+                    console.warn("hero", hero, "avatar", info.avatar);
                     return info.avatar;
                 }
             }

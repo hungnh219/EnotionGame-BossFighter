@@ -7,9 +7,9 @@
 import Character from "../../Character";
 
 const BOSS2_ANIMATION = {
-    "attack_front": "boss2-front-attack",
+    "attack_front": "boss2-back-attack",
     "attack_left": "boss2-left-attack",
-    "attack_back": "boss2-back-attack",
+    "attack_back": "boss2-front-attack",
     "attack_right": "boss2-right-attack",
 
     "walk_front": "boss2-back-run",

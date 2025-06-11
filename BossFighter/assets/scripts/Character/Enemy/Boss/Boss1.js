@@ -10,9 +10,9 @@ import SocketIOManager from "../../../SocketIO/SocketIOManager"
 import EventBus from "../../../EventBus/EventBus";
 
 const BOSS1_ANIMATION = {
-    "attack_front": "boss1-front-attack",
+    "attack_front": "boss1-back-attack",
     "attack_left": "boss1-left-attack",
-    "attack_back": "boss1-back-attack",
+    "attack_back": "boss1-front-attack",
     "attack_right": "boss1-right-attack",
 
 
@@ -54,6 +54,7 @@ cc.Class({
     },
 
     playAnimation(animationName, moveTime) {
+        console.log("Playing animation:", animationName, "with moveTime:", moveTime);
         const clipName = BOSS1_ANIMATION[animationName];
         if (!clipName) {
             cc.error("Invalid animation name:", animationName);

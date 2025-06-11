@@ -769,7 +769,6 @@ function gameEvents(io, socket) {
             if (hero) {
                 hero.x = x;
                 hero.y = y;
-                console.log('Cập nhật vị trí hero:', hero.heroId, 'Vị trí mới:', x, y);
                 roomData[roomName].gameState.heroes = heroes;
             } else {
                 console.error('Không tìm thấy hero với ID:', characterId);
@@ -779,7 +778,6 @@ function gameEvents(io, socket) {
             if (boss) {
                 boss.x = x;
                 boss.y = y;
-                console.log('Cập nhật vị trí boss:', boss.bossId, 'Vị trí mới:', x, y);
                 roomData[roomName].gameState.bosses = bosses;
             } else {
                 console.error('Không tìm thấy boss với ID:', characterId);

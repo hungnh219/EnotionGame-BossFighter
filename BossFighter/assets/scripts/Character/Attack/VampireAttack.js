@@ -37,11 +37,10 @@ cc.Class({
     },
 
     onCollisionEnter: function (other, self) {
-        // other.mainScript = other.node.getComponents(cc.Component).find(c => typeof c.takeDame === 'function');
-
-        // if (other.mainScript) {
-        //     other.mainScript.takeDame(this.damage);
-        // }
+        let heroScript = other.node.getComponent('Hero');
+        if (heroScript) {
+            return;
+        }
         other.node.emit('VAMPIRE_ATTACK')
         this.node.destroy();
     },

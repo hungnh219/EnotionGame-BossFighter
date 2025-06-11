@@ -11,10 +11,8 @@ cc.Class({
     },
 
     onLoad() {
-        console.log('Load_Scene_Main_Menu')
         // this.settingPanel.active = false;
         this.gameController = GameController.getInstance() || new GameController();
-    
         this.socketIO = SocketIOManager.getInstance() || new SocketIOManager();
 
         if (this.volumeSlider) {
@@ -24,7 +22,6 @@ cc.Class({
         // this.updateUI();
 
         this.socketIO.connectToSocketIOServer("http://localhost:3000");
-
     },
 
     // updateUI() {

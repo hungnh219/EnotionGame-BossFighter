@@ -281,19 +281,6 @@ module.exports = function(socket) {
             });
         },
          
-        listenBossDie(callback) {
-            if (!socket) {
-                console.error("Chưa kết nối đến Socket.IO server.");
-                return null;
-            }
-
-            socket.on('BOSS_DIE', (data) => {
-                if (callback) {
-                    callback(data);
-                }
-            });
-        },
-
         getCurrentHp(characterId) {
             if (!socket) {
                 console.error("Chưa kết nối đến Socket.IO server.");

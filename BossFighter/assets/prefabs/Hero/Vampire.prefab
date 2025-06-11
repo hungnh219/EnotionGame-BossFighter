@@ -681,7 +681,7 @@
     "avatar": {
       "__id__": 15
     },
-    "characterId": "hero003",
+    "characterId": "hero004",
     "damage": 50,
     "range": 1,
     "ultimatePrefab": {

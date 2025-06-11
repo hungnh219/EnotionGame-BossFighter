@@ -22,17 +22,15 @@ function scoreTableEvents(io, socket) {
         // add player name to heroes
         let scoreTable = heroes.map(hero => ({
             totalScore: hero.stats.totalScore,
-            // lockedHero: hero.lockedHero,
             heroId: hero.heroId,
         }));
 
-        // add player name to scoreTable
         scoreTable.forEach((score, index) => {
-            const playerObj = players.find(p =>
-                Object.values(p)[0].order === index
+            const playerObj = players.find(player =>
+                Object.values(player)[0].order === index
             );
             if (playerObj) {
-                const playerInfo = Object.values(playerObj)[0]; // Truy xuất thông tin người chơi
+                const playerInfo = Object.values(playerObj)[0];
                 score.playerName = playerInfo.name;
             } else {
                 console.warn('Không tìm thấy người chơi với order:', index);
@@ -41,7 +39,7 @@ function scoreTableEvents(io, socket) {
 
 
         scoreTable.sort((a, b) => b.totalScore - a.totalScore);
-
+        console.log('Score table:', scoreTable);
         io.to(roomName).emit('RETURN_SCORE_TABLE', {
             scoreTable: scoreTable,
         });
