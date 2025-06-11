@@ -52,29 +52,57 @@ cc.Class({
             this.moveToSelectScene();
         });
     },
-
     onMessageReceived(data) {
         console.log('WaitingRoom: Nhận tin nhắn từ server:', data);
-        if (data.success) {
-            const messageNode = cc.instantiate(this.messageItem);
-            const messageLabel = messageNode.getComponent(cc.Label);
-            const playerName = messageNode.getChildByName('New Label')
-            const nameLabel = playerName.getComponent(cc.Label)
-            nameLabel.string = data.senderName;
-            messageLabel.string = data.text;
-
-            this.scrollViewContent.insertChild(messageNode, 0); 
-
-            this.scrollToBottom();
-
-        } else {
+    
+        if (!data.success) {
             console.error("Lỗi tin nhắn từ server:", data.message);
+            return;
+        }
+    
+        if (!this.messageItem) {
+            console.error("messageItem prefab chưa được gán.");
+            return;
+        }
+    
+        const messageNode = cc.instantiate(this.messageItem);
+    
+        const nameLabelNode = messageNode.getChildByName('Name');
+        const messageLabelNode = messageNode.getChildByName('Message');
+    
+        if (nameLabelNode) {
+            const nameLabel = nameLabelNode.getComponent(cc.Label);
+            if (nameLabel) {
+                nameLabel.string = data.senderName || "Unknown";
+            } else {
+                console.warn("Không tìm thấy component label trong Name.");
+            }
+        } else {
+            console.warn("Không tìm thấy node con 'New Label'.");
+        }
+    
+        if (messageLabelNode) {
+            const messageLabel = messageLabelNode.getComponent(cc.Label);
+            if (messageLabel) {
+                messageLabel.string = data.text || "";
+            } else {
+                console.warn("Không tìm thấy component label trong Message.");
+            }
+        } else {
+            console.warn("Không tìm thấy Label chính trong prefab.");
+        }
+    
+        if (this.scrollViewContent) {
+            this.scrollViewContent.insertChild(messageNode, 0); 
+            this.scrollToBottom();
+        } else {
+            console.error("scrollViewContent chưa được gán.");
         }
     },
+    
 
     scrollToBottom() {
         const scrollView = this.scrollViewContent.parent.parent.getComponent(cc.ScrollView)
-        console.log('scrollView', scrollView)
         scrollView.scrollToBottom(0.1); 
     },
 
