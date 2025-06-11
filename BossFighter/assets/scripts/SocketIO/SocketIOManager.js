@@ -61,3 +61,5 @@ const SocketIOManager = cc.Class({
         return this.socketIO
     },
 });
+
+export default SocketIOManager;

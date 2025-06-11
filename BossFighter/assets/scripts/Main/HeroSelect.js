@@ -243,7 +243,8 @@ cc.Class({
         }
         
         console.log('start play game');
-        this.socketIOManager.selectHero.playGame();
+        let mapPicked = this.gameController.getMapPicked();
+        this.socketIOManager.selectHero.playGame(mapPicked);
         // add heroLocked to gameController
         // this.scheduleOnce(() => {
         //     cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME);

@@ -33,15 +33,8 @@ cc.Class({
             renderTextureResult = await this.captureUINode(this.targetNode);
             console.log('renderTextureResult', renderTextureResult)
 
-            if (!renderTextureResult) {
-                throw new Error("Không thể chụp node UI hoặc RenderTexture bị null.");
-            }
-
             imageBase64 = await this.renderTextureToBase64(renderTextureResult)
 
-            if (!imageBase64) {
-                throw new Error("Không thể chụp màn hình hoặc tạo ảnh Base64.");
-            }
         } catch (error) {
             if (renderTextureResult && renderTextureResult instanceof cc.RenderTexture) {
                 renderTextureResult.destroy();
@@ -58,7 +51,7 @@ cc.Class({
         };
 
         try {
-            result = await this.socketIOManager.scoreTable.sendDataToBackend(dataToSend)
+            await this.socketIOManager.scoreTable.sendDataToBackend(dataToSend)
         } catch (error) {
             cc.log("Lỗi tải lên." + error.message);
         }

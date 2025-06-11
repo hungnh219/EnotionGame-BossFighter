@@ -1,185 +1,11 @@
 {
-  "123": {
-    "player": [
-      {
-        "eN3USSgA9iGoVS65AAAH": {
-          "name": "12",
-          "clickHero": 3,
-          "lockedHero": 3,
-          "order": 0,
-          "host": true
-        }
-      }
-    ],
-    "maxPlayer": 1,
-    "status": "playing",
-    "gameState": {
-      "status": "STARTED",
-      "turn": {
-        "isPlayerTurn": true,
-        "maxPlayerActions": 2,
-        "remainingPlayerActions": 2
-      },
-      "currentPlayer": null,
-      "walkableGridMap": [
-        [
-          true,
-          true,
-          true,
-          false,
-          false,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          false,
-          true,
-          true,
-          true,
-          true,
-          false,
-          true
-        ],
-        [
-          true,
-          true,
-          false,
-          false,
-          true,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          false,
-          true,
-          false,
-          true,
-          true,
-          false,
-          true
-        ],
-        [
-          false,
-          false,
-          false,
-          true,
-          true,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          false,
-          true,
-          true,
-          false,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          false,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          true,
-          false,
-          true,
-          false,
-          true,
-          true,
-          true
-        ]
-      ],
-      "currentMapIndex": 0,
-      "heroes": [
-        {
-          "id": "eN3USSgA9iGoVS65AAAH",
-          "order": 0,
-          "lockedHero": 3,
-          "heroId": "hero004",
-          "hp": 0,
-          "maxHp": 700,
-          "attackDamage": 200,
-          "attackRange": 5,
-          "name": "Vampire",
-          "status": "DEAD",
-          "stats": {
-            "totalDameDeal": 0,
-            "totalDameTaken": 800,
-            "totalScore": 806
-          },
-          "x": 2,
-          "y": 0
-        }
-      ],
-      "bosses": [
-        {
-          "bossId": "boss001",
-          "hp": 800,
-          "maxHp": 800,
-          "attackDamage": 200,
-          "attackRange": 5,
-          "name": "Boss 001",
-          "status": "ALIVE",
-          "x": 2,
-          "y": 1
-        },
-        {
-          "bossId": "boss002",
-          "hp": 2000,
-          "maxHp": 2000,
-          "attackDamage": 200,
-          "attackRange": 5,
-          "name": "Boss 002",
-          "status": "ALIVE",
-          "x": 5,
-          "y": 0
-        }
-      ],
-      "isGameOver": true,
-      "result": "LOSE"
-    }
-  },
   "12321": {
     "player": [
       {
-        "egsMSR7LRwQE63szAAAH": {
+        "J566B2LyL5aqpGhGAAAX": {
           "name": "1",
-          "clickHero": 3,
-          "lockedHero": 3,
+          "clickHero": 1,
+          "lockedHero": 1,
           "order": 0,
           "host": true
         }
@@ -191,562 +17,325 @@
       "status": "STARTED",
       "turn": {
         "isPlayerTurn": true,
-        "maxPlayerActions": 2,
+        "maxPlayerActions": 1,
         "remainingPlayerActions": 1
       },
       "currentPlayer": null,
       "walkableGridMap": [
         [
+          false,
+          true,
+          false,
+          true,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
           true,
           true,
           true,
           false,
           false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
           true,
           true,
           false
         ],
         [
+          false,
+          true,
+          true,
+          true,
+          true,
           true,
           false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
           true,
           true,
           true,
           true,
           true,
           false
-        ],
-        [
-          true,
-          false,
-          true,
-          true,
-          true,
-          true,
-          false,
-          true
-        ],
-        [
-          true,
-          true,
-          false,
-          false,
-          true,
-          true,
-          true,
-          true
-        ],
-        [
-          false,
-          false,
-          true,
-          false,
-          true,
-          true,
-          false,
-          true
-        ],
-        [
-          true,
-          false,
-          false,
-          true,
-          true,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          false,
-          true,
-          true,
-          false,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          false,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          true,
-          false,
-          true,
-          false,
-          true,
-          true,
-          true
         ]
       ],
-      "currentMapIndex": 0,
+      "currentMapIndex": 2,
       "heroes": [
         {
-          "id": "egsMSR7LRwQE63szAAAH",
+          "id": "J566B2LyL5aqpGhGAAAX",
           "order": 0,
-          "lockedHero": 3,
-          "heroId": "hero004",
-          "hp": 300,
-          "maxHp": 700,
+          "lockedHero": 1,
+          "heroId": "hero002",
+          "hp": 920,
+          "maxHp": 920,
           "attackDamage": 200,
           "attackRange": 5,
-          "name": "Vampire",
+          "name": "Bruiser",
           "status": "ALIVE",
           "stats": {
             "totalDameDeal": 0,
-            "totalDameTaken": 400,
-            "totalScore": 405
+            "totalDameTaken": 0,
+            "totalScore": 5
           },
+          "x": 0,
+          "y": 0
+        }
+      ],
+      "bosses": [
+        {
+          "bossId": "boss001",
+          "hp": 400,
+          "maxHp": 400,
+          "attackDamage": 100,
+          "attackRange": 5,
+          "name": "Boss 001",
+          "status": "ALIVE",
           "x": 4,
-          "y": 0
-        }
-      ],
-      "bosses": [
-        {
-          "bossId": "boss001",
-          "hp": 800,
-          "maxHp": 800,
-          "attackDamage": 200,
-          "attackRange": 5,
-          "name": "Boss 001",
-          "status": "ALIVE",
-          "x": 2,
-          "y": 1
-        },
-        {
-          "bossId": "boss002",
-          "hp": 2000,
-          "maxHp": 2000,
-          "attackDamage": 200,
-          "attackRange": 5,
-          "name": "Boss 002",
-          "status": "ALIVE",
-          "x": 1,
-          "y": 1
-        }
-      ]
-    }
-  },
-  "21321": {
-    "player": [
-      {
-        "qJXMf8SIBb-fhHQ_AAAf": {
-          "name": "2232",
-          "clickHero": null,
-          "lockedHero": null,
-          "order": 0,
-          "host": true
-        }
-      }
-    ],
-    "maxPlayer": 2,
-    "status": "waiting"
-  },
-  "123222": {
-    "player": [
-      {
-        "UqxPiBmuNK6I5uhrAAAv": {
-          "name": "1",
-          "clickHero": 0,
-          "lockedHero": 0,
-          "order": 0,
-          "host": true
-        }
-      },
-      {
-        "4tsVtbIM6KgqSyFOAAAr": {
-          "name": "4",
-          "clickHero": 3,
-          "lockedHero": 3,
-          "order": 1,
-          "host": false
-        }
-      }
-    ],
-    "maxPlayer": 2,
-    "status": "playing",
-    "gameState": {
-      "status": "STARTED",
-      "turn": {
-        "isPlayerTurn": true,
-        "maxPlayerActions": 2,
-        "remainingPlayerActions": 2
-      },
-      "currentPlayer": null,
-      "walkableGridMap": [
-        [
-          false,
-          true,
-          true,
-          false,
-          false,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          false,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false,
-          true
-        ],
-        [
-          true,
-          true,
-          false,
-          false,
-          true,
-          false,
-          true,
-          true
-        ],
-        [
-          true,
-          false,
-          true,
-          false,
-          true,
-          true,
-          false,
-          true
-        ],
-        [
-          true,
-          false,
-          false,
-          true,
-          true,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          false,
-          true,
-          true,
-          false,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          false,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          true,
-          false,
-          true,
-          false,
-          true,
-          true,
-          true
-        ]
-      ],
-      "currentMapIndex": 0,
-      "heroes": [
-        {
-          "id": "UqxPiBmuNK6I5uhrAAAv",
-          "order": 0,
-          "lockedHero": 0,
-          "heroId": "hero001",
-          "hp": 620,
-          "maxHp": 620,
-          "attackDamage": 200,
-          "attackRange": 5,
-          "name": "Ad Carry",
-          "status": "ALIVE",
-          "stats": {
-            "totalDameDeal": 0,
-            "totalDameTaken": 0,
-            "totalScore": 8
-          },
-          "x": 0,
-          "y": 0
-        },
-        {
-          "id": "4tsVtbIM6KgqSyFOAAAr",
-          "order": 1,
-          "lockedHero": 3,
-          "heroId": "hero004",
-          "hp": 688,
-          "maxHp": 700,
-          "attackDamage": 200,
-          "attackRange": 5,
-          "name": "Vampire",
-          "status": "ALIVE",
-          "stats": {
-            "totalDameDeal": 0,
-            "totalDameTaken": 12,
-            "totalScore": 16
-          },
-          "x": 1,
-          "y": 2
-        }
-      ],
-      "bosses": [
-        {
-          "bossId": "boss001",
-          "hp": 400,
-          "maxHp": 400,
-          "attackDamage": 1,
-          "attackRange": 5,
-          "name": "Boss 001",
-          "status": "ALIVE",
-          "x": 1,
-          "y": 1
-        },
-        {
-          "bossId": "boss002",
-          "hp": 400,
-          "maxHp": 400,
-          "attackDamage": 1,
-          "attackRange": 5,
-          "name": "Boss 002",
-          "status": "ALIVE",
-          "x": 3,
-          "y": 5
-        }
-      ]
-    }
-  },
-  "321123": {
-    "player": [
-      {
-        "I_HuDJCHjslDk8D7AABP": {
-          "name": "1",
-          "clickHero": 0,
-          "lockedHero": 0,
-          "order": 0,
-          "host": true
-        }
-      }
-    ],
-    "maxPlayer": 2,
-    "status": "playing",
-    "gameState": {
-      "status": "STARTED",
-      "turn": {
-        "isPlayerTurn": true,
-        "maxPlayerActions": 2,
-        "remainingPlayerActions": 2
-      },
-      "currentPlayer": null,
-      "walkableGridMap": [
-        [
-          false,
-          true,
-          true,
-          false,
-          false,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          false,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false,
-          true
-        ],
-        [
-          true,
-          true,
-          false,
-          false,
-          true,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          false,
-          true,
-          false,
-          true,
-          true,
-          false,
-          true
-        ],
-        [
-          true,
-          false,
-          false,
-          true,
-          true,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          false,
-          true,
-          true,
-          false,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          false,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          true,
-          false,
-          true,
-          false,
-          true,
-          true,
-          true
-        ]
-      ],
-      "currentMapIndex": 0,
-      "heroes": [
-        {
-          "id": "I_HuDJCHjslDk8D7AABP",
-          "order": 0,
-          "lockedHero": 0,
-          "heroId": "hero001",
-          "hp": 620,
-          "maxHp": 620,
-          "attackDamage": 200,
-          "attackRange": 5,
-          "name": "Ad Carry",
-          "status": "ALIVE",
-          "stats": {
-            "totalDameDeal": 0,
-            "totalDameTaken": 0,
-            "totalScore": 3
-          },
-          "x": 0,
-          "y": 0
-        },
-        {
-          "id": "96L_Kgopwvy3D3mJAABH",
-          "order": 1,
-          "lockedHero": 3,
-          "heroId": "hero004",
-          "hp": 700,
-          "maxHp": 700,
-          "attackDamage": 200,
-          "attackRange": 5,
-          "name": "Vampire",
-          "status": "QUIT",
-          "stats": {
-            "totalDameDeal": 0,
-            "totalDameTaken": 0,
-            "totalScore": 0
-          },
-          "x": 1,
-          "y": 0
-        }
-      ],
-      "bosses": [
-        {
-          "bossId": "boss001",
-          "hp": 400,
-          "maxHp": 400,
-          "attackDamage": 100,
-          "attackRange": 5,
-          "name": "Boss 001",
-          "status": "ALIVE",
-          "x": 1,
-          "y": 1
-        },
-        {
-          "bossId": "boss002",
-          "hp": 400,
-          "maxHp": 400,
-          "attackDamage": 100,
-          "attackRange": 5,
-          "name": "Boss 002",
-          "status": "ALIVE",
-          "x": 7,
-          "y": 7
+          "y": 4
         }
       ]
     }
@@ -754,191 +343,19 @@
   "321321": {
     "player": [
       {
-        "t9h3GpjLOJmtFdgbAAAD": {
-          "name": "12",
+        "ex_WNxDoEw20gJ_LAAAP": {
+          "name": "1",
           "clickHero": 3,
           "lockedHero": 3,
           "order": 0,
           "host": true
         }
-      }
-    ],
-    "maxPlayer": 1,
-    "status": "playing",
-    "gameState": {
-      "status": "STARTED",
-      "turn": {
-        "isPlayerTurn": true,
-        "maxPlayerActions": 2,
-        "remainingPlayerActions": 1
       },
-      "currentPlayer": null,
-      "walkableGridMap": [
-        [
-          true,
-          true,
-          true,
-          false,
-          false,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false,
-          true
-        ],
-        [
-          true,
-          true,
-          false,
-          false,
-          true,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          false,
-          true,
-          false,
-          true,
-          true,
-          false,
-          true
-        ],
-        [
-          true,
-          false,
-          false,
-          true,
-          true,
-          true,
-          true,
-          true
-        ],
-        [
-          false,
-          true,
-          true,
-          false,
-          true,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          false,
-          true,
-          true,
-          false,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          false,
-          false,
-          true,
-          true
-        ],
-        [
-          true,
-          true,
-          false,
-          true,
-          false,
-          true,
-          true,
-          true
-        ]
-      ],
-      "currentMapIndex": 0,
-      "heroes": [
-        {
-          "id": "t9h3GpjLOJmtFdgbAAAD",
-          "order": 0,
-          "lockedHero": 3,
-          "heroId": "hero004",
-          "hp": 700,
-          "maxHp": 700,
-          "attackDamage": 200,
-          "attackRange": 5,
-          "name": "Vampire",
-          "status": "ALIVE",
-          "stats": {
-            "totalDameDeal": 0,
-            "totalDameTaken": 0,
-            "totalScore": 5
-          },
-          "x": 8,
-          "y": 5
-        }
-      ],
-      "bosses": [
-        {
-          "bossId": "boss001",
-          "hp": 800,
-          "maxHp": 800,
-          "attackDamage": 200,
-          "attackRange": 5,
-          "name": "Boss 001",
-          "status": "ALIVE",
-          "x": 6,
-          "y": 3
-        },
-        {
-          "bossId": "boss002",
-          "hp": 2000,
-          "maxHp": 2000,
-          "attackDamage": 200,
-          "attackRange": 5,
-          "name": "Boss 002",
-          "status": "ALIVE",
-          "x": 6,
-          "y": 0
-        }
-      ]
-    }
-  },
-  "12312321": {
-    "player": [
       {
-        "0-C1VZRRLXSStZcFAAAP": {
-          "name": "1",
+        "SKY4UdyKPsRO9Z1lAAAN": {
+          "name": "2",
           "clickHero": 0,
           "lockedHero": 0,
-          "order": 0,
-          "host": true
-        }
-      },
-      {
-        "5tdralJBFk056rZWAAAX": {
-          "name": "cx",
-          "clickHero": 3,
-          "lockedHero": 3,
           "order": 1,
           "host": false
         }
@@ -958,109 +375,308 @@
         [
           false,
           true,
+          false,
+          true,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true,
           true,
           false,
           false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
           true,
           true,
           false
         ],
         [
           false,
+          true,
+          true,
+          true,
+          true,
+          true,
           false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
           true,
           true,
           true,
           true,
           true,
           false
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false,
-          true
-        ],
-        [
-          true,
-          true,
-          false,
-          false,
-          true,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          false,
-          true,
-          false,
-          true,
-          true,
-          false,
-          true
-        ],
-        [
-          true,
-          false,
-          false,
-          true,
-          true,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          false,
-          true,
-          true,
-          false,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          false,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          true,
-          false,
-          true,
-          false,
-          true,
-          true,
-          true
         ]
       ],
-      "currentMapIndex": 0,
+      "currentMapIndex": 1,
       "heroes": [
         {
-          "id": "0-C1VZRRLXSStZcFAAAP",
+          "id": "ex_WNxDoEw20gJ_LAAAP",
           "order": 0,
+          "lockedHero": 3,
+          "heroId": "hero004",
+          "hp": 700,
+          "maxHp": 700,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Vampire",
+          "status": "ALIVE",
+          "stats": {
+            "totalDameDeal": 0,
+            "totalDameTaken": 0,
+            "totalScore": 1
+          },
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "SKY4UdyKPsRO9Z1lAAAN",
+          "order": 1,
           "lockedHero": 0,
           "heroId": "hero001",
           "hp": 620,
@@ -1068,222 +684,12 @@
           "attackDamage": 200,
           "attackRange": 5,
           "name": "Ad Carry",
-          "status": "ALIVE",
-          "stats": {
-            "totalDameDeal": 0,
-            "totalDameTaken": 0,
-            "totalScore": 9
-          },
-          "x": 0,
-          "y": 0
-        },
-        {
-          "id": "5tdralJBFk056rZWAAAX",
-          "order": 1,
-          "lockedHero": 3,
-          "heroId": "hero004",
-          "hp": 700,
-          "maxHp": 700,
-          "attackDamage": 200,
-          "attackRange": 5,
-          "name": "Vampire",
-          "status": "ALIVE",
-          "stats": {
-            "totalDameDeal": 0,
-            "totalDameTaken": 0,
-            "totalScore": 9
-          },
-          "x": 1,
-          "y": 0
-        }
-      ],
-      "bosses": [
-        {
-          "bossId": "boss001",
-          "hp": 400,
-          "maxHp": 400,
-          "attackDamage": 100,
-          "attackRange": 5,
-          "name": "Boss 001",
-          "status": "ALIVE",
-          "x": 1,
-          "y": 1
-        },
-        {
-          "bossId": "boss002",
-          "hp": 400,
-          "maxHp": 400,
-          "attackDamage": 100,
-          "attackRange": 5,
-          "name": "Boss 002",
-          "status": "ALIVE",
-          "x": 7,
-          "y": 7
-        }
-      ]
-    }
-  },
-  "aaa": {
-    "player": [
-      {
-        "Merzxl2ZfbDglkakAAAj": {
-          "name": "a",
-          "clickHero": 3,
-          "lockedHero": 3,
-          "order": 0,
-          "host": true
-        }
-      }
-    ],
-    "maxPlayer": 2,
-    "status": "playing",
-    "gameState": {
-      "status": "STARTED",
-      "turn": {
-        "isPlayerTurn": true,
-        "maxPlayerActions": 2,
-        "remainingPlayerActions": 2
-      },
-      "currentPlayer": null,
-      "walkableGridMap": [
-        [
-          false,
-          true,
-          true,
-          false,
-          false,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          false,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false,
-          true
-        ],
-        [
-          true,
-          true,
-          false,
-          false,
-          true,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          false,
-          true,
-          false,
-          true,
-          true,
-          false,
-          true
-        ],
-        [
-          true,
-          false,
-          false,
-          true,
-          true,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          false,
-          true,
-          true,
-          false,
-          true,
-          true,
-          false
-        ],
-        [
-          true,
-          true,
-          true,
-          true,
-          false,
-          true,
-          true,
-          true
-        ],
-        [
-          true,
-          true,
-          false,
-          true,
-          false,
-          true,
-          true,
-          true
-        ]
-      ],
-      "currentMapIndex": 0,
-      "heroes": [
-        {
-          "id": "Merzxl2ZfbDglkakAAAj",
-          "order": 0,
-          "lockedHero": 3,
-          "heroId": "hero004",
-          "hp": 700,
-          "maxHp": 700,
-          "attackDamage": 200,
-          "attackRange": 5,
-          "name": "Vampire",
           "status": "ALIVE",
           "stats": {
             "totalDameDeal": 0,
             "totalDameTaken": 0,
             "totalScore": 2
           },
-          "x": 0,
-          "y": 0
-        },
-        {
-          "id": "P3j3VsU9WnHO8j3JAAAf",
-          "order": 1,
-          "lockedHero": 0,
-          "heroId": "hero001",
-          "hp": 620,
-          "maxHp": 620,
-          "attackDamage": 200,
-          "attackRange": 5,
-          "name": "Ad Carry",
-          "status": "QUIT",
-          "stats": {
-            "totalDameDeal": 0,
-            "totalDameTaken": 0,
-            "totalScore": 0
-          },
           "x": 1,
           "y": 0
         }
@@ -1297,23 +703,10 @@
           "attackRange": 5,
           "name": "Boss 001",
           "status": "ALIVE",
-          "x": 1,
-          "y": 1
-        },
-        {
-          "bossId": "boss002",
-          "hp": 400,
-          "maxHp": 400,
-          "attackDamage": 100,
-          "attackRange": 5,
-          "name": "Boss 002",
-          "status": "ALIVE",
-          "x": 7,
-          "y": 7
+          "x": 2,
+          "y": 2
         }
-      ],
-      "isGameOver": true,
-      "result": "LOSE"
+      ]
     }
   }
 }

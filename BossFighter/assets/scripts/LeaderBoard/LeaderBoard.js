@@ -1,5 +1,6 @@
 import SocketIOManager from "../SocketIO/SocketIOManager";
 import ImageViewer from "./ImageViewer"
+import GAME_DATA from '../Game/GameData';
 
 cc.Class({
     extends: cc.Component,
@@ -16,9 +17,6 @@ cc.Class({
 
     onLoad() {
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
-        if (!this.socketIOManager.getSocketIO() || !this.socketIOManager.getSocketIO().connected) {
-            this.socketIOManager.connectToSocketIOServer("http://localhost:3000");
-        }
 
         if (this.statusLabel) {
             this.statusLabel.string = "Đang tải bảng xếp hạng...";
@@ -28,6 +26,11 @@ cc.Class({
 
     start() {
         this.fetchLeaderboardData();
+    },
+
+    onBackMainMenu(){
+        
+        cc.director.loadScene(GAME_DATA.GAME_SCENE.MAIN_MENU)
     },
 
     async fetchLeaderboardData() {

@@ -1,4 +1,6 @@
 import SocketIOManager from "../SocketIO/SocketIOManager";
+import Notification from "../Prefab/Notification";
+import GameController from "../Game/GameController";
 
 cc.Class({
     extends: cc.Component,
@@ -12,7 +14,9 @@ cc.Class({
         textMessageInput: cc.EditBox,
         messageItem: cc.Prefab,
         scrollViewContent: cc.Node,
-        errorMessageLabel: cc.Label,
+        notificationPrefab: cc.Prefab,
+
+        mapPageView: cc.PageView,
     },
 
     socketIOManager: null,
@@ -20,13 +24,13 @@ cc.Class({
     currentRoomName: '', 
 
     onLoad() {
-        this.errorMessageLabel.node.active = false
         this.scrollViewContent.removeAllChildren();
         this.startButton.active = false
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
         if (!this.socketIOManager.getSocketIO() || !this.socketIOManager.getSocketIO().connected) {
             this.socketIOManager.connectToSocketIOServer("http://localhost:3000");
         }
+        this.gameController = GameController.getInstance() || new GameController();
 
         this.socketIOManager.room.listenGameStart((data) => {
             console.log("WaitingRoom: Nhận được sự kiện bắt đầu trò chơi từ máy chủ.", data);
@@ -154,33 +158,53 @@ cc.Class({
 
     async startGame() { 
         try {
+            const selectedPageIndex = this.mapPageView.getCurrentPageIndex();
+            this.gameController.setMapPicked(selectedPageIndex);
             const result = await this.socketIOManager.room.gameStart();
             console.log("Phản hồi từ server khi bắt đầu game:", result);
 
         } catch (error) {
             console.error("Lỗi khi bắt đầu trò chơi:", error);
-            this.errorMessageLabel.string = `${error}`;
-            this.errorMessageLabel.node.active = true; 
-            this.scheduleOnce(()=>{
-                this.errorMessageLabel.node.active = false; 
-            }, 2)
+            this.onOpenNotificationPopUp(error, 'error')
         }
     },
 
     async leaveRoom() {
-        console.log('currentNameRoom', this.currentRoomName)
         try {
-            const result = await this.socketIOManager.room.leaveRoom(this.currentRoomName)
-            if (result.success) {
-                cc.director.loadScene('RoomSelect');
-            } else {
-                console.warn(result.message);
-            }
+            await this.socketIOManager.room.leaveRoom(this.currentRoomName);
+            cc.director.loadScene('RoomSelect');
         } catch (error) {
-            console.error("Lỗi khi rời phòng:", error);
+            console.error("Lỗi khi rời phòng:", error.message || error);
+        }
+    },
+
+    onOpenNotificationPopUp(message, type){
+        let newNotify = cc.instantiate(this.notificationPrefab);
+        this.node.addChild(newNotify);
+        newNotify.getComponent(Notification).showMessage(type, message);
+
+    },
+
+    mapPick() {
+        if (!this.mapPageView) {
+            console.error("Map PageView không được thiết lập.");
+            return;
+        }
+
+        
+        console.log("Selected map index:", selectedPageIndex);
+
+        if (selectedPageIndex === 0) {
+            this.socketIOManager.room.setMapPicked(1);
+        } else if (selectedPageIndex === 1) {
+            this.socketIOManager.room.setMapPicked(2);
+        } else {
+            console.warn("Chưa chọn bản đồ hợp lệ.");
+            return;
         }
 
     }
+    
 
 
 

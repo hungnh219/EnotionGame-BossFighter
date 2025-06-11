@@ -106,7 +106,7 @@ function selectHeroEvents(io, socket) {
         
     })
 
-    socket.on('PLAY_GAME', () => {
+    socket.on('PLAY_GAME', (data) => {
         let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
         if (!roomName) {
             console.error('Không tìm thấy phòng cho socket ID:', socket.id);
@@ -119,7 +119,7 @@ function selectHeroEvents(io, socket) {
                 "turn": 'player',
                 "currentPlayer": null,
                 "walkableGridMap": [],
-                "currentMapIndex": 0,
+                "currentMapIndex": data.mapPicked,
             };
             logicHandler.common.writeRoomData(roomData);
         }

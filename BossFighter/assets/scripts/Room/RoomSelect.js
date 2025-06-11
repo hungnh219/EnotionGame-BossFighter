@@ -1,5 +1,6 @@
 import SocketIOManager from "../SocketIO/SocketIOManager";
-import Notification from "../Prefab/Notification"
+import Notification from "../Prefab/Notification";
+import GAME_DATA from '../Game/GameData';
 
 cc.Class({
     extends: cc.Component,
@@ -35,10 +36,13 @@ cc.Class({
     },
 
     start() {
-        this.socketIOManager.connectToSocketIOServer("http://localhost:3000");
 
         this.socketIOManager.room.setOnRoomInfoReceivedCallback(this.onRoomInfoUpdated.bind(this));
         this.socketIOManager.room.getRoomInformation();
+    },
+
+    onBackMainMenu(){
+        cc.director.loadScene(GAME_DATA.GAME_SCENE.MAIN_MENU)
     },
 
     onRoomInfoUpdated(data) {
@@ -205,12 +209,6 @@ cc.Class({
 
         newNotify.getComponent(Notification).showMessage(type, message);
 
-        // this.notificationPopUp.node.active = true
-        // this.notificationPopUp.string = message
-        // this.scheduleOnce(()=>{
-        //     this.notificationPopUp.string = ''
-        //     this.notificationPopUp.node.active = false
-        // },2)
     },
 
     onOpenNameInputUI(roomName) {

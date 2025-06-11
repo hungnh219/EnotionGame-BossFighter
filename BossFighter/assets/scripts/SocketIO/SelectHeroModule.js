@@ -32,13 +32,13 @@ module.exports = function(socket) {
             });
         },
 
-        playGame() {
+        playGame(mapPicked) {
             if (!socket) {
                 console.error("Chưa kết nối đến Socket.IO server.");
                 return null;
             }
 
-            socket.emit('PLAY_GAME');
+            socket.emit('PLAY_GAME', { mapPicked: mapPicked });
         },
         
 

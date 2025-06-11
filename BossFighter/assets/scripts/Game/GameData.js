@@ -3,6 +3,8 @@ const GAME_SCENE = {
     GAME: 'Game',
     MAP_SELECT: 'MapSelect',
     HERO_SELECT: 'HeroSelect',
+    ROOM_SELECT: 'RoomSelect',
+    LEADER_BOARD: 'LeaderBoard'
 }
 
 const GAME_MAP_INDEX = {
