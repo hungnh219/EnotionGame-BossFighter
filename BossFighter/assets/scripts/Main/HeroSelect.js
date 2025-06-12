@@ -273,6 +273,11 @@ cc.Class({
         cc.director.loadScene(GAME_DATA.GAME_SCENE.MAP_SELECT);
     },
 
+    async backToRoomSelect() {
+        await this.socketIOManager.selectHero.backToRoomSelect()
+        cc.director.loadScene(GAME_DATA.GAME_SCENE.ROOM_SELECT);
+    },
+
     playSoundEffect() {
         const audio = this.lockHeroButton.node.getComponent(cc.AudioSource);
         if (audio) audio.play();

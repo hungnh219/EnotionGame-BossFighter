@@ -48,7 +48,6 @@ module.exports = function(socket) {
                     console.log('Nhận dữ liệu bắt đầu trò chơi:', data);
                     resolve(data);
                 });
-
                 socket.emit('GET_GAME_START_DATA');
             }
         )},
@@ -70,5 +69,15 @@ module.exports = function(socket) {
             console.warn("Không tìm thấy người chơi với socket ID:", currentSocketId);
             return null;
         },
+
+        backToRoomSelect(){
+            return new Promise((resolve, reject)=>{
+                socket.on("BACK_TO_ROOM_SELECT_RESULT", (data)=>{
+                    resolve(data)
+                })
+                socket.emit("BACK_TO_ROOM_SELECT")
+            })
+            
+        }
     }
 }

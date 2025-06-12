@@ -757,8 +757,18 @@
     "_id": "4dCyJ9Wx9LBqnhuIyX4Nx5"
   },
   {
-    "__type__": "0dfe7o5M7xPlpIH0iG0kIGG",
-    "_name": "",
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 15
+    },
+    "component": "",
+    "_componentId": "f3df9Cx9EVN6J6zT2hCO3vv",
+    "handler": "backToRoomSelect",
+    "customEventData": ""
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "HeroSelect",
     "_objFlags": 0,
     "node": {
       "__id__": 7
