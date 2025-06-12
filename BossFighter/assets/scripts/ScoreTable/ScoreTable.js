@@ -214,5 +214,10 @@ cc.Class({
     async moveToRoomSelect() {
         await this.socketIOManager.room.leaveRoom()
         cc.director.loadScene("RoomSelect");
+    },
+
+    async moveToLeaderBoard() {
+        await this.socketIOManager.room.leaveRoom()
+        cc.director.loadScene("LeaderBoard");
     }
 });
