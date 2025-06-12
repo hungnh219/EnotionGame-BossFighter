@@ -1,7 +1,9 @@
 const logicHandler = require('../handler/logicHandler');
+const { collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs } = require('firebase/firestore');
 
-function firebaseEvents(io, socket, db, admin) {
+function firebaseEvents(io, socket, db) {
     console.log('Có client kết nối:', socket.id);
+
     socket.on('UPLOAD_SCREEN_SHOT', async (data, callback) => {
         const { imageBase64 } = data;
 
@@ -45,11 +47,11 @@ function firebaseEvents(io, socket, db, admin) {
         const score = (hero && hero.stats && hero.stats.totalScore) || 0;
 
         try {
-            await db.collection('leaderboard').add({
+            await addDoc(collection(db, 'leaderboard'), {
                 playerName: playerName,
                 score: Number(score),
                 imageBase64: imageBase64,
-                createdAt: admin.firestore.FieldValue.serverTimestamp()
+                createdAt: serverTimestamp()
             });
 
             if (typeof callback === 'function') {
@@ -64,13 +66,14 @@ function firebaseEvents(io, socket, db, admin) {
         }
     });
 
-
     socket.on('REQUEST_LEADER_BOARD', async (callback) => {
         try {
-            const leaderboardSnapshot = await db.collection('leaderboard')
-                .orderBy('score', 'desc')
-                .limit(20)
-                .get();
+            const q = query(
+                collection(db, 'leaderboard'),
+                orderBy('score', 'desc'),
+                limit(20)
+            );
+            const leaderboardSnapshot = await getDocs(q);
 
             const leaderboardData = [];
             leaderboardSnapshot.forEach(doc => {
