@@ -1,5 +1,6 @@
 
 const logicHandler = require('../handler/logicHandler');
+const typeHandler = require('../handler/commonHandler')
 
 function selectHeroEvents(io, socket) {
     // =================== select hero logic ===================   
@@ -126,6 +127,32 @@ function selectHeroEvents(io, socket) {
 
         io.to(roomName).emit('GAME_STARTED');
     })
+
+    socket.on('BACK_TO_ROOM_SELECT', () => {
+        let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
+        if (!roomName) {
+            socket.emit('BACK_TO_ROOM_SELECT_RESULT', { success: false, type: typeHandler.TYPE.WARNING ,message: `Không tìm thấy phòng cho bạn.` });
+            return;
+        }
+    
+        let roomData = logicHandler.common.readRoomData();
+    
+        if (!(roomName in roomData)) {
+            socket.emit('BACK_TO_ROOM_SELECT_RESULT', { success: false, type: typeHandler.TYPE.WARNING ,message: `Phòng "${roomName}" không tồn tại.` });
+            return;
+        }
+    
+        delete roomData[roomName];
+        logicHandler.common.writeRoomData(roomData);
+    
+        socket.leave(roomName);
+        io.in(roomName).socketsLeave(roomName);
+    
+        socket.emit('BACK_TO_ROOM_SELECT_RESULT', { success: true, type: typeHandler.TYPE.SUCCESS ,message: `Bạn đã rời phòng "${roomName}" thành công.` });
+    
+        // const roomInfo = updateRoomInfo(roomData);
+        // io.emit('ROOM_INFO', roomInfo);
+    });
     // =================== các xử lý tất cả client ===================
 
     // broadcast hero selection to all clients
