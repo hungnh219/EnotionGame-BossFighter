@@ -1,0 +1,57 @@
+{
+  "heroes": [
+    {
+      "id": "hero001",
+      "name": "Ad Carry",
+      "maxHp": 1000,
+      "attackDamage": 200,
+      "attackRange": 5
+    },{
+      "id": "hero002",
+      "name": "Bruiser",
+      "maxHp": 1000,
+      "attackDamage": 200,
+      "attackRange": 1
+    },
+    {
+      "id": "hero003",
+      "name": "Tanker",
+      "maxHp": 1000,
+      "attackDamage": 200,
+      "attackRange": 1
+    },
+    {
+      "id": "hero004",
+      "name": "Vampire",
+      "maxHp": 1000,
+      "attackDamage": 200,
+      "attackRange": 4
+    }
+  ],
+  "bosses": [
+    {
+      "id": "boss001",
+      "name": "Boss 001",
+      "maxHp": 400,
+      "attackDamage": 100,
+      "attackRange": 1
+    },
+    {
+      "id": "boss002",
+      "name": "Boss 002",
+      "maxHp": 400,
+      "attackDamage": 100,
+      "attackRange": 1
+    },
+    {
+      "id": "boss003",
+      "name": "Boss 003",
+      "maxHp": 1000,
+      "attackDamage": 100,
+      "attackRange": 1
+    }
+  ],
+  "enemies": [
+
+  ]
+}

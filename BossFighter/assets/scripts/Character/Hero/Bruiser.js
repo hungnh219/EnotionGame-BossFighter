@@ -18,22 +18,25 @@ cc.Class({
     extends: Character,
 
     properties: {
-        characterId: "hero001",
+        characterId: "hero002",
         ultimatePrefab: cc.Prefab
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        this.initData(this.characterId);
-
     },
 
     start() {
     },
 
-    initData(characterNameId) {
-        this._super(characterNameId);
+    initData(heroData) {
+        this.characterId = heroData.characterId || "hero002";
+        this.name = heroData.name || "Bruiser";
+        this.attackDame = heroData.attackDamage || 10;
+        this.attackRange = heroData.attackRange || 1;
+        this.maxHp = heroData.maxHp || 100;
+        this.health = heroData.hp;
     },
 
     ultimate(targetTile, gameCtrl) {
@@ -57,8 +60,6 @@ cc.Class({
             const ultimate = cc.instantiate(this.ultimatePrefab);
             ultimate.setPosition(this.node.getPosition());
             this.node.parent.addChild(ultimate);
-            gameCtrl.updateWalkable(targetTile.x, targetTile.y, 1, false);
-            gameCtrl.updateWalkable(oldGridX, oldGridY, 1, true);
             this.resetUltimateCooldown();
         }, 0.5);
 

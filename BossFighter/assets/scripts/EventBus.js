@@ -18,6 +18,8 @@ EventBus.events = {
     ENEMY_AUTO_MODE: 'enemy_auto_mode',
 
     PREVENT_DRAG: 'prevent_drag',
+    BOSS_DIE: 'boss_die',
+    UPDATE_LEADER_BOARD: 'update_leader_board',
 };
 
 

@@ -2,7 +2,7 @@ import GameController from "./GameController";
 import GAME_DATA from "./GameData"
 import EventBus from "../EventBus";
 import MapController from "./MapController";
-import SocketIOManager from "../SocketIOManager";
+import SocketIOManager from "../SocketIO/SocketIOManager";
 
 cc.Class({
     extends: cc.Component,
@@ -10,13 +10,10 @@ cc.Class({
     properties: {
         mapHeight: cc.Integer,
         mapWidth: cc.Integer,
-        // mapTile: cc.SpriteFrame,
         mapTileWidth: cc.Integer,
         mapTileHeight: cc.Integer,
-        // mapTileSize: cc.Integer,
 
         playerTurn: cc.Label,
-        // bossTurn: cc.Label,
 
         attackCooldownLabel: cc.Label,
         skillCooldownLabel: cc.Label,
@@ -34,9 +31,6 @@ cc.Class({
         focusEffectPrefab: cc.Prefab,
         mapIndex: 0,
 
-        // testSkills: [cc.Prefab],
-
-        // resumeButton: cc.Button,
         pauseButton: cc.Button,
         nextButton: cc.Button,
         heroPrefabs: [cc.Prefab],
@@ -59,37 +53,90 @@ cc.Class({
         objectsJsonData: cc.JsonAsset,
         objectMapPrefab: cc.Prefab,
         groundSpriteFrame: [cc.SpriteFrame], // sprite frame for ground tile
+        map3GroundSpriteFrame: [cc.SpriteFrame],
 
         characterHolder: cc.Node,
 
-        guideBook: cc.Node
+        guideBook: cc.Node,
+
+        leaderBoard: cc.Node,
+
+        scrollViewContent: cc.Node,
+        messageItem: cc.Prefab,
+        textMessageInput: cc.EditBox,
+
+        customFont: cc.Font,
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad() {
-        this.guideBook.active = false
-        this.gameController = GameController.getInstance();
-        this.mapIndex = this.gameController.getMapPicked() ? this.gameController.getMapPicked() : 0;
-        cc.director.getCollisionManager().enabled = true;
-        this.heroHpProgressBar.progress = 1;
-
-        // variables
-        this.pressedKeys = new Set();
-
-        this.focusedHeroIndex = -1;
-        // this.heroes = [];
-        this.rootNode = this.characterHolder;
-        this.bossNode = [];
-        // this.isCastingSkill = false;
-
-        this.winnerNotificationLabel.node.parent.zIndex = 999;
-        this.rootNode.sortAllChildren();
-
-        this.gameController.gameScript = this;
+    async onLoad() {
+        this.gameController = GameController.getInstance() || new GameController();
         this.mapController = MapController.getInstance() || new MapController();
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
+        cc.director.getCollisionManager().enabled = true;
 
+        // this.rootNode.sortAllChildren();
+        this.rootNode = this.characterHolder;
+        this.bossNode = [];
+        this.ultimateGreyPrefab = cc.instantiate(this.greyTilePrefab);
+        this.ultimateGreyPrefab.parent = this.ultimateCooldownLabel.node.parent;
+    },
+
+    start() {
+        this.initData();
+        this.listenEvent();
+    },
+
+    async initData() {
+        await this.socketIOManager.game.initializeGame();
+
+        this.mapIndex = await this.socketIOManager.game.getMapIndex();
+        if (this.mapIndex == undefined) {
+            this.mapIndex = 0;
+        }
+
+        this.guideBook.active = false
+        this.heroHpProgressBar.progress = 1;
+
+        this.gameController.setCallbacks(
+            (heroInfo, ultimateCooldown) => this.updateHeroInfoUI(heroInfo, ultimateCooldown),
+            () => this.updatePlayerTurnLabel(),
+        )
+
+        // chat
+        this.scrollViewContent.removeAllChildren();
+        this.socketIOManager.game.receiveGameMessages(this.onMessageReceived.bind(this));
+        this.textMessageInput.node.on('editing-did-ended', this.onEditingEnded, this);
+
+        // onload end
+        this.mapData = await this.socketIOManager.game.getMapData();
+        this.heroes = await this.socketIOManager.game.getHeroes();
+        this.bosses = await this.socketIOManager.game.getBosses();
+        
+        
+        this.playerIndex = await this.socketIOManager.game.getPlayerOrder();
+        if (this.playerIndex != undefined) {
+            this.gameController.setPlayerIndex(this.playerIndex);
+        }
+
+        await this.spawnObjectsFromJson();
+        
+        this.initLeaderBoard();
+
+        this.gameController.setHighlightTilePrefab(this.greenTilePrefab);
+        this.gameController.setRootNode(this.rootNode);
+        this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
+        this.gameController.startGame(this.socketIOManager);
+
+        // chat
+        this.socketIOManager.room.setOnRoomInfoReceivedCallback(this.onRoomInfoReceived.bind(this));
+        this.socketIOManager.room.getRoomInformation();
+
+        this.updatePlayerTurnLabel();
+    },
+    
+    listenEvent() {
         EventBus.on(EventBus.events.CLICK_TO_MOVE, (node) => {
             this.heroClick(node);
         }, this);
@@ -101,61 +148,45 @@ cc.Class({
             this.spawnEnemy(ranBoss);
         }, this);
 
+        EventBus.on(EventBus.events.UPDATE_LEADER_BOARD, () => {
+            this.updateLeaderBoard();
+        }, this);
 
         this.mapLayout.node.on(cc.Node.EventType.TOUCH_END, (event) => {
             EventBus.emit(EventBus.events.CLEAR_WALKABLE_AREA);
         }, this);
 
-        this.mapLayout.node.x = -this.mapWidth * this.mapTileWidth / 2;
-        this.mapLayout.node.y = -this.mapHeight * this.mapTileHeight / 2;
-
-        // this.mapHeight
-        this.gameController.setCallbacks(
-            (playerTurn) => this.updatePlayerTurnLabel(playerTurn),
-            (heroInfo, ultimateCooldown) => this.updateHeroInfoUI(heroInfo, ultimateCooldown),
-            () => this.endGameNotification()
-        )
-
-        // this.mapIndex = 2;
-    },
-
-    async start() {
-        this.testData = await this.socketIOManager.getMapData();
-        this.testData = this.testData.map;
-
-        this.lockedHeroIndex = await this.socketIOManager.getLockedHeroIndex();
-        this.playerIndex = await this.socketIOManager.getPlayerOrder();
-
-        if (this.playerIndex != undefined) {
-            this.gameController.setPlayerIndex(this.playerIndex);
-        }
-        console.log('Locked hero index:', this.lockedHeroIndex, 'Player index:', this.playerIndex);
-
-        this.spawnObjectsFromJson();
-
-        this.initData();
-        this.gameController.setHighlightTilePrefab(this.greenTilePrefab);
-        this.gameController.setRootNode(this.rootNode);
-        this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
-        this.mapIndex = this.gameController.getMapPicked() ? this.gameController.getMapPicked() : 0;
-        this.heroPrefabs = this.gameController.getSelectedHeroPrefabs();
-
-        this.gameController.startGame();
-
-    },
-
-    initData() {
-        this.backgroundSprite.spriteFrame = this.backgroundSpriteFrames[this.mapIndex];
-
-        this.initMapView();
-        this.spawnHero();
-
-        this.ultimateGreyPrefab = cc.instantiate(this.greyTilePrefab);
-        this.ultimateGreyPrefab.parent = this.ultimateCooldownLabel.node.parent;
-    },
-
-    onClickPanel(event) {
-        event.stopPropagation();
+        this.socketIOManager.game.listenOtherAttack((data) => {
+            this.gameController.heroAttackFromServer(data.playerOrder, data.targetOrder, data.isBoss);
+        })
+        this.socketIOManager.game.listenBossAttack((data) => {
+            this.gameController.bossAttackFromServer(data.bossId, data.heroId);
+        })
+        this.socketIOManager.game.listenNextMap(() => {
+            this.nextMapServer();
+        });
+        this.socketIOManager.game.listenCharacterDeath((data) => {
+            this.gameController.handleCharacterDeath(data.characterId);
+        })
+        this.socketIOManager.game.listenGameOver((data) => {
+            this.endGameNotification(data.result);
+        });
+        this.socketIOManager.turn.listenBossTurn(() => {
+            this.gameController.bossTurn();
+        });
+        this.socketIOManager.turn.listenEndBossTurn(() => {
+            this.updatePlayerTurnLabel();
+        });
+        this.socketIOManager.turn.listenSpawnHealthOrb((data) => {
+            this.mapController.spawnHealthOrb(data);
+        });
+        this.socketIOManager.game.listenPlayerQuit((data) => {
+            this.gameController.handlePlayerQuit(data);
+            this.updateLeaderBoard();
+        });
+        this.socketIOManager.game.listenHeal((data) => {
+            this.gameController.handleHeal(data.characterId);
+        })
     },
 
     spawnObjectsFromJson() {
@@ -164,45 +195,52 @@ cc.Class({
             return;
         }
         
-        const jsonData = this.objectsJsonData.json.mapData[this.mapIndex];
-
-        // const mapObjects = jsonData.map;
-        const mapObjects = this.testData
+        const mapObjects = this.mapData.map;
 
         if (!Array.isArray(mapObjects)) {
             console.error("map1 must be a 2D array");
             return;
         }
 
-        // mapHeight and mapWidth are read from json
+        // config map 
         this.mapHeight = mapObjects.length;
         this.mapWidth = mapObjects[0].length;
         this.gameController.setMapSetting(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
         this.mapController.initMapSize(this.mapHeight, this.mapWidth, this.mapTileWidth, this.mapTileHeight);
 
+        // map view
+        this.initMapView();
+        this.backgroundSprite.spriteFrame = this.backgroundSpriteFrames[this.mapIndex];
 
-        this.mapController.viewObjectsMap(mapObjects, this.mapWidth, this.mapHeight, this.map1Objects);
-        let bossesIndex = jsonData.bosses;
-        let bossesPosition = jsonData.bossesPosition;
-        let bossesSize = jsonData.bossesSize;
-
-        if (bossesIndex && bossesIndex.length > 0) {
-            bossesIndex.forEach((bossIndex) => {
-                this.bossNode[bossIndex] = cc.instantiate(this.bossPrefabs[bossIndex]);
-                this.mapController.spawnBossIntoMap(this.bossNode[bossIndex], bossesPosition[bossIndex], bossesSize[bossIndex]);
-            })
+        // add object
+        let objects = (this.mapIndex === 2) ? this.map3Objects : this.map1Objects;
+        this.mapController.viewObjectsMap(mapObjects, this.mapWidth, this.mapHeight, objects);
+        
+        // add boss
+        let bossesPosition = this.mapData.bossesPosition;
+        let bossIndex = this.mapData.bosses;
+        for (let i = 0; i < this.bosses.length; i++) {
+            if (this.bosses[i]) {
+                this.bossNode[i] = cc.instantiate(this.bossPrefabs[bossIndex[i]]);
+                this.bossNode[i].mainScript = this.bossNode[i].getComponents(cc.Component).find(c => typeof c.initData === 'function');
+                if (this.bossNode[i].mainScript) {
+                    this.bossNode[i].mainScript.initData(this.bosses[i]);
+                }
+                this.mapController.spawnBossIntoMap(this.bossNode[i], bossesPosition[i], 1);
+            } else {
+                console.warn(`Boss at index ${i} is not defined`);
+            }
         }
 
+        // add hero
+        this.spawnHero();
     },
-
 
     // update (dt) {},
     onDestroy() {
-        // cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         EventBus.off(EventBus.events.CLICK_TO_MOVE, this.onClickToMove, this);
+        this.socketIOManager.game.turnOffListeners();
     },
-
-
 
     heroClick(node) {
         this.gameController.heroClick(node);
@@ -216,10 +254,16 @@ cc.Class({
         this.ultimateCooldownLabel.string = `Ultimate CD: ${hero.mainScript.ultimateCooldownRemaining}`;
     },
 
-    updatePlayerTurnLabel(playerTurnCount) {
-        if (this.playerTurn) {
-            this.playerTurn.string = playerTurnCount;
+    async updatePlayerTurnLabel() {
+        let remainingActions = await this.socketIOManager.turn.getRemainingActions();
+
+        if (remainingActions === undefined || remainingActions < 0) {
+            console.warn("Invalid player turn count:", remainingActions);
+            this.playerTurn.string = "N/A";
+            return;
         }
+        console.warn("Updating player turn label with count:", remainingActions);
+        this.playerTurn.string = remainingActions;
     },
 
     updateHeroInfoUI(heroInfo, ultimateCooldown) {
@@ -229,27 +273,26 @@ cc.Class({
         }
 
         this.heroInfoPanel.active = true;
-
         this.heroNameLabel.string = heroInfo.name || '';
         this.heroHpLabel.string = heroInfo.health || '';
-
         this.heroImage.spriteFrame = heroInfo.imageSprite.spriteFrame || null;
-
         this.ultimateCooldownLabel.string = ultimateCooldown || '';
-
         ultimateCooldown > 0 ? this.ultimateGreyPrefab.active = true : this.ultimateGreyPrefab.active = false;
-
         this.ultimateSprite.spriteFrame = heroInfo.imageSprite ? heroInfo.imageSprite.spriteFrame : null;
-
         let hpPercentage = heroInfo.health / heroInfo.maxHp;
         this.heroHpProgressBar.progress = hpPercentage;
     },
 
     spawnHero() {
         let heroPrefabs = [];
-        this.lockedHeroIndex.forEach((heroIndex) => {
-            if (heroIndex >= 0 && heroIndex < this.heroPrefabs.length) {
-                heroPrefabs.push(cc.instantiate(this.heroPrefabs[heroIndex]));
+        if (!this.heroPrefabs || this.heroPrefabs.length === 0) {
+            console.warn('No hero prefabs found to spawn');
+            return;
+        }
+
+        this.heroes.forEach((hero) => {
+            if (hero.lockedHero >= 0 && hero.lockedHero < this.heroPrefabs.length) {
+                heroPrefabs.push(this.heroPrefabs[hero.lockedHero]);
             } else {
                 console.warn(`Hero index ${heroIndex} is out of bounds for heroPrefabs array`);
             }
@@ -261,32 +304,35 @@ cc.Class({
             return;
         }
 
-        this.mapController.spawnHeroIntoMap(heroPrefabs, focusEffectPrefab);
+        this.mapController.spawnHeroIntoMap(heroPrefabs, focusEffectPrefab, this.heroes);
     },
 
-    // enemy always has size = 1
     spawnEnemy(enemy) {
         this.mapController.spawnEnemyIntoMap(enemy);
     },
 
     initMapView() {
         let mapController = this.mapController;
-  
         let mapSize = {
             width: this.mapWidth,
             height: this.mapHeight,
         }
-
         let tileSize = {
             width: this.mapTileWidth,
             height: this.mapTileHeight,
         }
 
-        mapController.viewMap(mapSize, tileSize, this.groundSpriteFrame);
+        let groundSpriteFrame = (this.mapIndex === 2) ? this.map3GroundSpriteFrame : this.groundSpriteFrame;
+        mapController.viewMap(mapSize, tileSize, groundSpriteFrame);
         mapController.setCellPosition();
     },
 
-    heroAttack() {
+    async heroAttack() {
+        let isPlayerTurn = await this.socketIOManager.turn.isPlayerTurn();
+        if (!isPlayerTurn) {
+            console.warn("It's not the player's turn to attack");
+            return;
+        }
         EventBus.emit(EventBus.events.CLEAR_WALKABLE_AREA);
         this.gameController.heroAttack();
         EventBus.emit(EventBus.events.PREVENT_DRAG);
@@ -304,18 +350,18 @@ cc.Class({
         cc.director.loadScene(GAME_SCENE.GAME)
     },
 
-    newGame() {
-        if (cc.director.isPaused()) {
-            cc.director.resume();
+    async quitGame() {
+        let hero = this.gameController.getPlayerByIndex(this.playerIndex);
+        if (hero && hero.mainScript) {
+            let heroId = hero.mainScript.characterId;
+            await this.socketIOManager.game.quitGame(heroId);
+            cc.director.loadScene("RoomSelect");
+        } else {    
+            console.warn("No hero found or hero main script is not defined");
         }
-        // this.resetGame();
-        this.gameController.newGame();
-        // this.gameController.setFocusedHero(0);
-        cc.director.loadScene(GAME_DATA.GAME_SCENE.MAP_SELECT)
     },
 
     resetGame() {
-
         if (cc.director.isPaused()) {
             console.log('resume')
             cc.director.resume();
@@ -325,32 +371,16 @@ cc.Class({
         cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME)
     },
 
-    endGameNotification() {
-
-        let winner = this.gameController.getWinner();
-        let notificationPanel = this.winnerNotificationLabel.node.parent;
-        let notificationPanelBgSprite = notificationPanel.getComponent(cc.Sprite);
-        if (winner == GAME_DATA.ROLE.PLAYER) {
-            this.nextButton.node.active = true;
-            // notificationPanelBgSprite.spriteFrame = this.backgroundNotificationPanelSpriteFrames[0];
-
-            // play sound effect win game, source 
-            let audioSources = this.node.getComponents(cc.AudioSource)
-            audioSources[0].play();
-        } else {
-            // notificationPanelBgSprite.spriteFrame = this.backgroundNotificationPanelSpriteFrames[1];
-            let audioSources = this.node.getComponents(cc.AudioSource)
-            audioSources[1].play();
-        }
-        this.winnerNotificationLabel.string = winner;
+    endGameNotification(result) {
+        this.winnerNotificationLabel.string = result;
         this.winnerNotificationLabel.node.parent.active = true;
-
-        this.scheduleOnce(() => {
-            cc.director.pause()
-        }, 1.5);
+        this.winnerNotificationLabel.node.active = true;
 
         this.pauseButton.node.active = false;
-        // this.resumeButton.node.active = false;
+
+        this.scheduleOnce(() => {
+            cc.director.loadScene("ScoreTable")
+        }, 2);
     },
 
     showGuideBook() {
@@ -363,21 +393,22 @@ cc.Class({
 
 
     pauseGame() {
-        cc.director.pause();
         this.pausePanel.active = true;
 
         this.pauseButton.node.active = false;
-        // this.resumeButton.node.active = true;
     },
 
     resumeGame() {
         cc.director.resume();
         this.pausePanel.active = false;
         this.pauseButton.node.active = true;
-        // this.resumeButton.node.active = false;
     },
 
     nextGame() {
+        // this.socketIOManager.game.nextMap();
+    },
+
+    nextMapServer() {
         if (this.mapIndex >= this.backgroundSpriteFrames.length - 1) {
             console.warn('No more maps to play');
             return;
@@ -394,9 +425,176 @@ cc.Class({
         }
 
         this.gameController.resetGame();
-        this.gameController.setWonMap();
-        this.gameController.setMapPicked(this.mapIndex + 1);
         cc.director.loadScene(GAME_DATA.GAME_SCENE.GAME);
+    },
+
+    async initLeaderBoard() {
+        this.leaderBoard.removeAllChildren();
+
+        let leaderBoardData = await this.socketIOManager.game.getLeaderBoard();
+
+        leaderBoardData.forEach((data) => {
+            let label = new cc.Node().addComponent(cc.Label);
+            label.string = `${data.playerName}: ${data.totalScore}`;
+            label.fontSize = 30;
+            label.node.color = cc.Color.WHITE;
+            label.node.parent = this.leaderBoard;
+            label.font = this.customFont;
+
+            label.node.name = data.playerName;
+        });
+    },
+
+    async updateLeaderBoard() {
+        let newLeaderBoard = await this.socketIOManager.game.getLeaderBoard();
+
+        newLeaderBoard.sort((a, b) => b.totalScore - a.totalScore);
+
+        newLeaderBoard.forEach((data) => {
+            let existingNode = this.leaderBoard.getChildByName(data.playerName);
+            if (existingNode) {
+                let label = existingNode.getComponent(cc.Label);
+                if (label) {
+                    label.string = `${data.playerName}: ${data.totalScore}`;
+                }
+            } else {
+                let label = new cc.Node().addComponent(cc.Label);
+                label.string = `${data.playerName}: ${data.totalScore}`;
+                label.fontSize = 30;
+                label.node.color = cc.Color.WHITE;
+                label.node.parent = this.leaderBoard;
+                label.font = this.customFont;
+
+                label.node.name = data.playerName;
+            }
+        });
+    },
+
+   
+    // chat
+    onMessageReceived(data) {
+        console.log('WaitingRoom: Nhận tin nhắn từ server:', data);
+    
+        if (!data.success) {
+            console.error("Lỗi tin nhắn từ server:", data.message);
+            return;
+        }
+    
+        if (!this.messageItem) {
+            console.error("messageItem prefab chưa được gán.");
+            return;
+        }
+    
+        const messageNode = cc.instantiate(this.messageItem);
+    
+        const nameLabelNode = messageNode.getChildByName('Name');
+        const messageLabelNode = messageNode.getChildByName('Message');
+    
+        if (nameLabelNode) {
+            const nameLabel = nameLabelNode.getComponent(cc.Label);
+            if (nameLabel) {
+                nameLabel.string = data.senderName || "Unknown";
+            } else {
+                console.warn("Không tìm thấy component label trong Name.");
+            }
+        } else {
+            console.warn("Không tìm thấy node con 'New Label'.");
+        }
+    
+        if (messageLabelNode) {
+            const messageLabel = messageLabelNode.getComponent(cc.Label);
+            if (messageLabel) {
+                messageLabel.string = data.text || "";
+            } else {
+                console.warn("Không tìm thấy component label trong Message.");
+            }
+        } else {
+            console.warn("Không tìm thấy Label chính trong prefab.");
+        }
+    
+        if (this.scrollViewContent) {
+            this.scrollViewContent.insertChild(messageNode, 0); 
+            this.scrollToBottom();
+        } else {
+            console.error("scrollViewContent chưa được gán.");
+        }
+    },
+
+    scrollToBottom() {
+        const scrollView = this.scrollViewContent.parent.parent.getComponent(cc.ScrollView)
+        scrollView.scrollToBottom(0.1); 
+    },
+
+    async onEditingEnded() {
+        const inputText = this.textMessageInput.string.trim();
+        cc.log(inputText);
+        if (!inputText) {
+            cc.warn("Tin nhắn trống, không gửi.");
+            return;
+        }
+
+        try {
+            await this.socketIOManager.game.sendGameMessage(this.currentRoomName, inputText);
+            this.textMessageInput.string = '';
+        } catch (error) {
+            console.error("Lỗi khi gửi tin nhắn:", error);
+        }
+
+    },
+
+    onRoomInfoReceived(data) {
+        this.currentRoomData = data;
+        this.updateRoomUI();
+    },
+
+    updateRoomUI() {
+        if (!this.currentRoomData) return;
+
+        const currentPlayerSocketId = this.socketIOManager.getSocketIO().id;
+        let foundRoomName = '';
+        let roomMembers = [];
+        let maxPlayer = 0;
+        let isCurrentPlayerHost = false;
+
+
+        for (const room of this.currentRoomData.rooms) {
+            const playerInThisRoom = room.players.find(playerObj => Object.keys(playerObj)[0] === currentPlayerSocketId);
+
+            if (playerInThisRoom) {
+                foundRoomName = room.roomName;
+                roomMembers = room.players;
+                maxPlayer = room.maxPlayer
+                const currentPlayerData = playerInThisRoom[currentPlayerSocketId];
+                isCurrentPlayerHost = currentPlayerData.host === true;
+                break;
+            }
+        }
+
+        if (foundRoomName) {
+            this.currentRoomName = foundRoomName
+            // this.roomNameLabel.string = `Phòng: ${foundRoomName}`;
+            // this.totalPlayersLabel.string = `Người chơi: ${roomMembers.length}/${maxPlayer}`;
+
+            // this.startButton.active = isCurrentPlayerHost;
+            // console.log("Nut Start active state:", this.startButton.active, "(Current player is host:", isCurrentPlayerHost + ")");
+
+            // this.gridPlayer.removeAllChildren();
+            // for (const playerObj of roomMembers) {
+            //     const playerId = Object.keys(playerObj)[0];
+            //     const playerInfo = playerObj[playerId];
+
+            //     const playerNode = cc.instantiate(this.prefabPlayer);
+            //     const labelNode = playerNode.getChildByName("New Label");
+            //     const labelComp = labelNode.getComponent(cc.Label);
+            //     labelComp.string = `${playerInfo.name}`;
+            //     this.gridPlayer.addChild(playerNode);
+            // }
+        } else {
+            // this.roomNameLabel.string = "Không tìm thấy thông tin phòng.";
+            // this.totalPlayersLabel.string = "";
+            // this.gridPlayer.removeAllChildren();
+            // this.startButton.active = false;
+        }
     },
 
 });

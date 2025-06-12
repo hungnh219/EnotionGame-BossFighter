@@ -1,141 +1,6 @@
-// import SocketIOManager from "../SocketIOManager";
-
-// cc.Class({
-//     extends: cc.Component,
-
-//     properties: {
-//         prefabPlayer: cc.Prefab,
-//         gridPlayer: cc.Node,
-//         roomNameLabel: cc.Label,
-//         totalPlayersLabel: cc.Label,
-//         startButton: cc.Node,
-//     },
-
-//     socketIOManager: null,
-//     currentRoomData: null,
-
-//     onLoad() {
-//         this.startButton.active = false
-//         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
-//         if (!this.socketIOManager.getSocketIO() || !this.socketIOManager.getSocketIO().connected) {
-//             this.socketIOManager.connectToSocketIOServer("http://localhost:3000");
-//         }
-
-//         this.socketIOManager.listenGameStart((data) => {
-//             console.log("WaitingRoom: Nhận được sự kiện bắt đầu trò chơi từ máy chủ.", data);
-//             cc.director.loadScene("HeroSelect");
-//         })
-//     },
-
-//     start() {
-//         this.socketIOManager.setOnRoomInfoReceivedCallback(this.onRoomInfoReceived.bind(this));
-
-//         this.socketIOManager.getRoomInformation();
-//     },
-
-//     onRoomInfoReceived(data) {
-//         console.log("WaitingRoom: Thông tin phòng đã nhận được (onRoomInfoReceived):", data);
-//         this.currentRoomData = data;
-//         this.updateRoomUI();
-//     },
-
-//     updateRoomUI() {
-//         if (!this.currentRoomData) return;
-
-//         const currentPlayerSocketId = this.socketIOManager.getSocketIO().id;
-//         let foundRoomName = '';
-//         let roomMembers = [];
-//         let isCurrentPlayerHost = false;
-
-//         for (const room of this.currentRoomData.rooms) {
-
-//             console.log('room player', room.players)
-
-//             const playerInThisRoom = room.players.find(playerObj => Object.keys(playerObj)[0] === currentPlayerSocketId);
-
-//             // for(const playerObj of room.players){
-
-//             //     const playerSocketId = Object.keys(playerObj)[0];
-
-//             //     if (playerSocketId === playerSocketId) {
-//             //         const playerData = playerObj[playerSocketId];
-                    
-//             //         console.log('Player Host:', playerData.host); 
-//             //         if(playerData.host === true){
-//             //             console.log("Nut dc mo")
-//             //             this.startButton.active = true
-//             //         }else{
-//             //             console.log("Nut bi dong")
-//             //             this.startButton.active = false
-//             //         }
-//             //     }
-//             // }
-
-//             if (playerInThisRoom) {
-//                 foundRoomName = room.roomName;
-//                 roomMembers = room.players;
-
-//                 const currentPlayerData = playerInThisRoom[currentPlayerSocketId];
-//                 isCurrentPlayerHost = currentPlayerData.host === true; 
-//                 break; 
-//             }
-//         }
-
-            
-//             // if (playerInThisRoom) {
-//             //     foundRoomName = room.roomName;
-//             //     roomMembers = room.players;
-//             //     break;
-//             // }
-            
-//         // }
-
-//         console.log('roomMembers', roomMembers)
-
-//         if (foundRoomName) {
-//             this.roomNameLabel.string = `Phòng: ${foundRoomName}`;
-//             this.totalPlayersLabel.string = `Người chơi: ${roomMembers.length}/4`;
-
-//             console.log("foundRoomName:", foundRoomName);
-//             console.log("this.roomNameLabel:", this.roomNameLabel);
-//             console.log("this.totalPlayersLabel:", this.totalPlayersLabel);
-
-//             this.startButton.active = isCurrentPlayerHost;
-//             console.log("Nut Start active state:", this.startButton.active, "(Current player is host:", isCurrentPlayerHost + ")");
-
-//             this.gridPlayer.removeAllChildren();
-//             for (const playerObj of roomMembers) {
-//                 const playerId = Object.keys(playerObj)[0];
-//                 const playerInfo = playerObj[playerId];
-
-//                 const playerNode = cc.instantiate(this.prefabPlayer);
-//                 const labelNode = playerNode.getChildByName("New Label");
-//                 const labelComp = labelNode.getComponent(cc.Label);
-//                 labelComp.string = `ID: ${playerId.substring(0, 5)}... - Name: ${playerInfo.name}`; // Hiển thị cả ID và Name
-//                 this.gridPlayer.addChild(playerNode);
-//             }
-//         } else {
-//             this.roomNameLabel.string = "Không tìm thấy thông tin phòng.";
-//             this.totalPlayersLabel.string = "";
-//             this.gridPlayer.removeAllChildren();
-//             this.startButton.active = false;
-//         }
-//     },
-
-//     startGame() {
-//         if (!this.currentRoomData) {
-//             console.error("Không có thông tin phòng để bắt đầu trò chơi.");
-//             return;
-//         }
-
-//         this.socketIOManager.gameStart();
-//     },
-
-
-
-
-// });
-import SocketIOManager from "../SocketIOManager";
+import SocketIOManager from "../SocketIO/SocketIOManager";
+import Notification from "../Prefab/Notification";
+import GameController from "../Game/GameController";
 
 cc.Class({
     extends: cc.Component,
@@ -146,33 +11,118 @@ cc.Class({
         roomNameLabel: cc.Label,
         totalPlayersLabel: cc.Label,
         startButton: cc.Node,
+        textMessageInput: cc.EditBox,
+        messageItem: cc.Prefab,
+        scrollViewContent: cc.Node,
+        notificationPrefab: cc.Prefab,
+
+        mapPageView: cc.PageView,
     },
 
     socketIOManager: null,
     currentRoomData: null,
+    currentRoomName: '',
 
     onLoad() {
+        this.scrollViewContent.removeAllChildren();
         this.startButton.active = false
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
+        this.socketIOManager.room.clearListeners()
         if (!this.socketIOManager.getSocketIO() || !this.socketIOManager.getSocketIO().connected) {
             this.socketIOManager.connectToSocketIOServer("http://localhost:3000");
         }
+        this.gameController = GameController.getInstance() || new GameController();
 
-        this.socketIOManager.listenGameStart((data) => {
+        this.socketIOManager.room.listenGameStart((data) => {
             console.log("WaitingRoom: Nhận được sự kiện bắt đầu trò chơi từ máy chủ.", data);
             cc.director.loadScene("HeroSelect");
         })
+
+        this.socketIOManager.room.receiveMessages(this.onMessageReceived.bind(this));
+
+        this.textMessageInput.node.on('editing-did-ended', this.onEditingEnded, this);
     },
 
     start() {
-        this.socketIOManager.setOnRoomInfoReceivedCallback(this.onRoomInfoReceived.bind(this));
+        this.socketIOManager.room.setOnRoomInfoReceivedCallback(this.onRoomInfoReceived.bind(this));
 
-        this.socketIOManager.getRoomInformation();
+        this.socketIOManager.room.getRoomInformation();
 
-        this.socketIOManager.listenGameStart(() => {
+        this.socketIOManager.room.listenGameStart(() => {
             console.log("Trò chơi đã bắt đầu, chuyển đến HeroSelect scene.");
             this.moveToSelectScene();
         });
+    },
+    onMessageReceived(data) {
+        console.log('WaitingRoom: Nhận tin nhắn từ server:', data);
+
+        if (!data.success) {
+            console.error("Lỗi tin nhắn từ server:", data.message);
+            return;
+        }
+
+        if (!this.messageItem) {
+            console.error("messageItem prefab chưa được gán.");
+            return;
+        }
+
+        const messageNode = cc.instantiate(this.messageItem);
+
+        const nameLabelNode = messageNode.getChildByName('Name');
+        const messageLabelNode = messageNode.getChildByName('Message');
+
+        if (nameLabelNode) {
+            const nameLabel = nameLabelNode.getComponent(cc.Label);
+            if (nameLabel) {
+                nameLabel.string = data.senderName || "Unknown";
+            } else {
+                console.warn("Không tìm thấy component label trong Name.");
+            }
+        } else {
+            console.warn("Không tìm thấy node con 'New Label'.");
+        }
+
+        if (messageLabelNode) {
+            const messageLabel = messageLabelNode.getComponent(cc.Label);
+            if (messageLabel) {
+                messageLabel.string = data.text || "";
+            } else {
+                console.warn("Không tìm thấy component label trong Message.");
+            }
+        } else {
+            console.warn("Không tìm thấy Label chính trong prefab.");
+        }
+
+        if (this.scrollViewContent) {
+            this.scrollViewContent.insertChild(messageNode, 0);
+            this.scrollToBottom();
+        } else {
+            console.error("scrollViewContent chưa được gán.");
+        }
+    },
+
+
+    scrollToBottom() {
+        const scrollView = this.scrollViewContent.parent.parent.getComponent(cc.ScrollView)
+        scrollView.scrollToBottom(0.1);
+    },
+
+    async onEditingEnded() {
+        console.log('fsfsd', this.messageItem)
+        const inputText = this.textMessageInput.string.trim();
+        cc.log(inputText);
+        if (!inputText) {
+            cc.warn("Tin nhắn trống, không gửi.");
+            return;
+        }
+
+        try {
+            await this.socketIOManager.room.sendMessage(this.currentRoomName, inputText);
+            this.textMessageInput.string = '';
+        } catch (error) {
+            console.error("Lỗi khi gửi tin nhắn:", error);
+        }
+
     },
 
     onRoomInfoReceived(data) {
@@ -187,7 +137,9 @@ cc.Class({
         const currentPlayerSocketId = this.socketIOManager.getSocketIO().id;
         let foundRoomName = '';
         let roomMembers = [];
+        let maxPlayer = 0;
         let isCurrentPlayerHost = false;
+
 
         for (const room of this.currentRoomData.rooms) {
 
@@ -195,54 +147,25 @@ cc.Class({
 
             const playerInThisRoom = room.players.find(playerObj => Object.keys(playerObj)[0] === currentPlayerSocketId);
 
-            // for(const playerObj of room.players){
-
-            //     const playerSocketId = Object.keys(playerObj)[0];
-
-            //     if (playerSocketId === playerSocketId) {
-            //         const playerData = playerObj[playerSocketId];
-                    
-            //         console.log('Player Host:', playerData.host); 
-            //         if(playerData.host === true){
-            //             console.log("Nut dc mo")
-            //             this.startButton.active = true
-            //         }else{
-            //             console.log("Nut bi dong")
-            //             this.startButton.active = false
-            //         }
-            //     }
-            // }
-
             if (playerInThisRoom) {
                 foundRoomName = room.roomName;
                 roomMembers = room.players;
-
+                maxPlayer = room.maxPlayer
                 const currentPlayerData = playerInThisRoom[currentPlayerSocketId];
-                isCurrentPlayerHost = currentPlayerData.host === true; 
-                break; 
+                isCurrentPlayerHost = currentPlayerData.host === true;
+                break;
             }
         }
-
-            
-            // if (playerInThisRoom) {
-            //     foundRoomName = room.roomName;
-            //     roomMembers = room.players;
-            //     break;
-            // }
-            
-        // }
 
         console.log('roomMembers', roomMembers)
 
         if (foundRoomName) {
+            this.currentRoomName = foundRoomName
             this.roomNameLabel.string = `Phòng: ${foundRoomName}`;
-            this.totalPlayersLabel.string = `Người chơi: ${roomMembers.length}/4`;
-
-            console.log("foundRoomName:", foundRoomName);
-            console.log("this.roomNameLabel:", this.roomNameLabel);
-            console.log("this.totalPlayersLabel:", this.totalPlayersLabel);
+            this.totalPlayersLabel.string = `Người chơi: ${roomMembers.length}/${maxPlayer}`;
 
             this.startButton.active = isCurrentPlayerHost;
+            this.mapPageView.node.active = isCurrentPlayerHost;
             console.log("Nut Start active state:", this.startButton.active, "(Current player is host:", isCurrentPlayerHost + ")");
 
             this.gridPlayer.removeAllChildren();
@@ -253,7 +176,7 @@ cc.Class({
                 const playerNode = cc.instantiate(this.prefabPlayer);
                 const labelNode = playerNode.getChildByName("New Label");
                 const labelComp = labelNode.getComponent(cc.Label);
-                labelComp.string = `ID: ${playerId.substring(0, 5)}... - Name: ${playerInfo.name}`; // Hiển thị cả ID và Name
+                labelComp.string = `${playerInfo.name}`;
                 this.gridPlayer.addChild(playerNode);
             }
         } else {
@@ -264,16 +187,52 @@ cc.Class({
         }
     },
 
-    startGame() {
-        if (!this.currentRoomData) {
-            console.error("Không có thông tin phòng để bắt đầu trò chơi.");
+    async startGame() {
+        try {
+            const selectedPageIndex = this.mapPageView.getCurrentPageIndex();
+            this.gameController.setMapPicked(selectedPageIndex);
+            const result = await this.socketIOManager.room.gameStart();
+            console.log("Phản hồi từ server khi bắt đầu game:", result);
+
+        } catch (error) {
+            console.error("Lỗi khi bắt đầu trò chơi:", error);
+            this.onOpenNotificationPopUp(error, 'error')
+        }
+    },
+
+    async leaveRoom() {
+        try {
+            await this.socketIOManager.room.leaveRoom(this.currentRoomName);
+            cc.director.loadScene('RoomSelect');
+        } catch (error) {
+            console.error("Lỗi khi rời phòng:", error.message || error);
+        }
+    },
+
+    onOpenNotificationPopUp(message, type) {
+        let newNotify = cc.instantiate(this.notificationPrefab);
+        this.node.addChild(newNotify);
+        newNotify.getComponent(Notification).showMessage(type, message);
+
+    },
+
+    mapPick() {
+        if (!this.mapPageView) {
+            console.error("Map PageView không được thiết lập.");
             return;
         }
 
-        this.socketIOManager.gameStart();
-    },
 
+        console.log("Selected map index:", selectedPageIndex);
 
+        if (selectedPageIndex === 0) {
+            this.socketIOManager.room.setMapPicked(1);
+        } else if (selectedPageIndex === 1) {
+            this.socketIOManager.room.setMapPicked(2);
+        } else {
+            console.warn("Chưa chọn bản đồ hợp lệ.");
+            return;
+        }
 
-
+    }
 });

@@ -40,8 +40,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 240,
-      "height": 240
+      "width": 100,
+      "height": 100
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -94,17 +94,17 @@
     "_prefab": {
       "__id__": 4
     },
-    "_opacity": 255,
+    "_opacity": 193.8,
     "_color": {
       "__type__": "cc.Color",
-      "r": 214,
-      "g": 44,
-      "b": 44,
+      "r": 11,
+      "g": 204,
+      "b": 96,
       "a": 255
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 73.37,
+      "width": 58.13,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -117,7 +117,7 @@
       "ctor": "Float64Array",
       "array": [
         0,
-        0,
+        60,
         0,
         0,
         0,
@@ -158,11 +158,13 @@
     "_dstBlendFactor": 771,
     "_string": "Player 1",
     "_N$string": "Player 1",
-    "_fontSize": 20,
+    "_fontSize": 15,
     "_lineHeight": 40,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "63264c3c-d4f5-4b8e-ab3c-1578f2caf5bc"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_batchAsBitmap": false,
     "_styleFlags": 0,
@@ -201,7 +203,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "8cdb44ac-a3f6-449f-b354-7cd48cf84061"
+      "__uuid__": "38520393-ddd3-496b-a4a7-ee4419a83aa4"
     },
     "_type": 0,
     "_sizeMode": 0,

@@ -18,7 +18,7 @@ cc.Class({
     extends: Character,
 
     properties: {
-        characterId: "hero003",
+        characterId: "hero004",
         damage: 10, // Damage dealt by the ultimate skill
         range: 1, // Range of the ultimate skill
         ultimatePrefab: cc.Prefab, // Prefab for the ultimate skill effect
@@ -28,16 +28,25 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        this.initData(this.characterId);
-
-        console.log("attack prefab", this.attackPrefab);
+        // this.initData(this.characterId);
     },
 
     start() {
     },
 
-    initData(characterNameId) {
-        this._super(characterNameId);
+    initData(heroData) {
+        this.characterId = heroData.characterId || "hero002";
+        this.name = heroData.name || "ADC Hero";
+        this.attackDame = heroData.attackDamage || 10;
+        this.attackRange = heroData.attackRange || 1;
+        this.maxHp = heroData.maxHp || 100;
+        this.health = this.maxHp;
+
+
+        // await this._super(characterNameId);
+
+        // console.log("ADC initData with characterId:", characterNameId);
+        // console.log("ADC properties:", this);
     },
 
     async ultimate(centerGridPos, spawnAnimationCallback) {

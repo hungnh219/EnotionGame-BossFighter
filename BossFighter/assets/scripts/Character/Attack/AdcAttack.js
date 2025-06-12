@@ -17,6 +17,8 @@ cc.Class({
         this.direction = null; // Khởi tạo biến direction
 
         // this.initDirection
+        this.node.zIndex = 1000; // Đặt zIndex để skill luôn ở trên cùng
+        console.log('adc onLoad, zIndex set to 1000');
     },
 
     // direction: null,
@@ -34,11 +36,11 @@ cc.Class({
     },
 
     onCollisionEnter: function (other, self) {
-        // other.mainScript = other.node.getComponents(cc.Component).find(c => typeof c.takeDame === 'function');
+        let heroScript = other.node.getComponent('Hero');
+        if (heroScript) {
+            return;
+        }
 
-        // if (other.mainScript) {
-        //     other.mainScript.takeDame(this.damage);
-        // }
         other.node.emit('ADC_ATTACK');
         this.node.destroy();
     },

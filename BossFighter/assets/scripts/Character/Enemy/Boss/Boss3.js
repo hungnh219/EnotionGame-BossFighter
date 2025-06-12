@@ -7,9 +7,9 @@
 import Character from "../../Character";
 
 const BOSS3_ANIMATION = {
-    "attack_front": "boss3-front-attack",
+    "attack_front": "boss3-back-attack",
     "attack_left": "boss3-left-attack",
-    "attack_back": "boss3-back-attack",
+    "attack_back": "boss3-front-attack",
     "attack_right": "boss3-right-attack",
 
     "walk_front": "boss3-back-run",
@@ -33,12 +33,21 @@ cc.Class({
     },
 
     start () {
-        this.initData(this.characterId);
     },
 
-    initData(characterNameId) {
-        this._super(characterNameId);
-        console.log("Boss3 initData with characterId:", characterNameId);
+    initData(heroData) {
+        this.characterId = heroData.bossId || "boss003";
+        this.name = heroData.name || "Boss 3";
+        this.attackDame = heroData.attackDamage || 10;
+        this.attackRange = heroData.attackRange || 1;
+        this.maxHp = heroData.maxHp || 100;
+        this.health = heroData.hp;
+
+
+        // await this._super(characterNameId);
+
+        // console.log("ADC initData with characterId:", characterNameId);
+        // console.log("ADC properties:", this);
     },
 
     playAnimation(animationName, moveTime) {

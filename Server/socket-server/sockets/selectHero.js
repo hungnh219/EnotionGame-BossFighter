@@ -1,69 +1,33 @@
-const fs = require('fs');
-const path = require('path');
 
-const DATA_FILE = path.join(__dirname, '../data/roomData.json');
+const logicHandler = require('../handler/logicHandler');
+const typeHandler = require('../handler/commonHandler')
 
-function readRoomData() {
-    if (fs.existsSync(DATA_FILE)) {
-        const rawData = fs.readFileSync(DATA_FILE);
-        try {
-            return JSON.parse(rawData);
-        } catch (err) {
-            console.error("Lỗi khi parse file JSON:", err);
-            return {};
-        }
-    }
-    return {};
-}
-
-function writeRoomData(data) {
-    try {
-        fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf-8');
-    } catch (err) {
-        console.error("Không thể ghi file:", err);
-    }
-}
-
-let heroSelects = {}
-let lockedHeroes = {}
 function selectHeroEvents(io, socket) {
-
-    // =================== các xử lý cho 1 client ===================   
+    // =================== select hero logic ===================   
     socket.on('SELECT_HERO', (heroIndex) => {
-        let roomData = readRoomData();
-        console.log('Yêu cầu chọn hero từ client:', socket.id, 'Hero Index:', heroIndex);
-        let roomName = getRoomNameBySocketId(socket.id);
+        let roomData = logicHandler.common.readRoomData();
+        let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
         if (!roomName) {
             console.error('Không tìm thấy phòng cho socket ID:', socket.id);
             return;
         }
 
-        // change value of click hero into hero index
-
-        if (!heroSelects[roomName]) {
-            heroSelects[roomName] = {};
-        }
-        // check if lockedHero is not null -> return
-        // const playerObjIndexLocked = roomData[roomName].findIndex(obj => Object.keys(obj)[0] === socket.id);
         const playerObjIndexLocked = roomData[roomName].player.findIndex(obj => obj[socket.id] && obj[socket.id].lockedHero !== null);
         if (playerObjIndexLocked !== -1) {
             const playerInfo = roomData[roomName][playerObjIndexLocked][socket.id];
-            console.log(playerInfo.lockedHero, "playerInfo.lockedHero");
             if (playerInfo.lockedHero !== null) {
                 console.log(`Player ${socket.id} đã khóa hero, không thể chọn lại.`);
                 return;
             }
         }
 
-        // Update the clickHero value in roomData and persist to file
         const playerObjIndex = roomData[roomName].player.findIndex(obj => Object.keys(obj)[0] === socket.id);
         if (playerObjIndex !== -1) {
-            // roomData[roomName][player][playerObjIndex][socket.id].clickHero = heroIndex;
             roomData[roomName].player[playerObjIndex][socket.id].clickHero = heroIndex;
-            writeRoomData(roomData); // Persist the change immediately
+            logicHandler.common.writeRoomData(roomData);
         }
 
-        roomData = readRoomData();
+        roomData = logicHandler.common.readRoomData();
 
         let clickHeroArray = [];
         for (const playerObj of roomData[roomName].player) {
@@ -72,48 +36,34 @@ function selectHeroEvents(io, socket) {
             clickHeroArray.push(playerInfo.clickHero);
         }
 
-        console.log('Hero selections:', heroSelects);
-
-        // emit in room
-        // io.to(roomName).emit('HERO_SELECTED', {
-        //     socketId: socket.id,
-        //     heroIndex: heroIndex,
-        // });
         io.emit('HERO_SELECTED', {
             "clickHeroArray": clickHeroArray,
         });
     })
 
     socket.on('LOCK_HERO', (heroIndex) => {
-        let roomData = readRoomData();
+        let roomData = logicHandler.common.readRoomData();
 
-        console.log('Yêu cầu khóa hero từ client:', socket.id, 'Hero Index:', heroIndex);
-        let roomName = getRoomNameBySocketId(socket.id);
+        let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
         if (!roomName) {
             console.error('Không tìm thấy phòng cho socket ID:', socket.id);
             return;
         }
 
-        // Update the lockedHero value in roomData and persist to file
         const playerObjIndex = roomData[roomName].player.findIndex(obj => Object.keys(obj)[0] === socket.id);
         if (playerObjIndex !== -1) {
             roomData[roomName].player[playerObjIndex][socket.id].lockedHero = heroIndex;
-            writeRoomData(roomData); // Persist the change immediately
+            logicHandler.common.writeRoomData(roomData);            
         }
         
 
-        roomData = readRoomData();
-        // let clickHeroArray = []
+        roomData = logicHandler.common.readRoomData();
         let lockedHeroArray = [];
         for (const playerObj of roomData[roomName].player) {
             const playerId = Object.keys(playerObj)[0];
             const playerInfo = playerObj[playerId];
-            // clickHeroArray.push(playerInfo.clickHero);
             lockedHeroArray.push(playerInfo.lockedHero);
         }
-
-        console.log('Locked heroes:', lockedHeroes);
-
 
         io.emit('HERO_LOCKED', {
             "lockedHeroArray": lockedHeroArray,
@@ -121,8 +71,8 @@ function selectHeroEvents(io, socket) {
     })
 
     socket.on('GET_LOCKED_HERO_INDEX', () => {
-        let roomData = readRoomData();
-        let roomName = getRoomNameBySocketId(socket.id);
+        let roomData = logicHandler.common.readRoomData();
+        let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
         if (!roomName) {
             console.error('Không tìm thấy phòng cho socket ID:', socket.id);
             return;
@@ -131,29 +81,90 @@ function selectHeroEvents(io, socket) {
         let lockedHeroArray = [];
         for (const playerObj of roomData[roomName].player) {
             const playerId = Object.keys(playerObj)[0];
-            const playerInfo = playerObj[playerId];
+            // const playerInfo = playerObj[playerId];
+
+            let heroData = logicHandler.common.getCharacterData(playerObj[playerId].lockedHero);
+            if (!heroData) {
+                console.error('Không tìm thấy dữ liệu hero cho lockedHero:', playerObj[playerId].lockedHero);
+                return;
+            }
+
+            const playerInfo = {
+                "lockedHero": playerObj[playerId].lockedHero,
+                "id": heroData.id,
+                "maxHp": heroData.maxHp,
+                "name": heroData.name,
+                "attackDamage": heroData.attackDamage,
+                "attackRange": heroData.attackRange,
+            }
             // clickHeroArray.push(playerInfo.clickHero);
-            lockedHeroArray.push(playerInfo.lockedHero);
+            lockedHeroArray.push(playerInfo);
         }
 
-        console.log('Locked heroes:', lockedHeroArray);
         socket.emit('LOCKED_HERO_INDEX', {
             "lockedHeroArray": lockedHeroArray,
         });
         
     })
 
-    socket.on('PLAY_GAME', () => {
-        console.log('Yêu cầu bắt đầu trò chơi từ client:', socket.id);
-        let roomName = getRoomNameBySocketId(socket.id);
+    socket.on('PLAY_GAME', (data) => {
+        let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
         if (!roomName) {
             console.error('Không tìm thấy phòng cho socket ID:', socket.id);
             return;
         }
+        let roomData = logicHandler.common.readRoomData();
+        if (!roomData[roomName].gameState) {
+            roomData[roomName].gameState = {
+                "status": "STARTED",
+                "turn": 'player',
+                "currentPlayer": null,
+                "walkableGridMap": [],
+                "currentMapIndex": data.mapPicked,
+            };
+            logicHandler.common.writeRoomData(roomData);
+        }
 
-        // Gửi sự kiện bắt đầu game cho tất cả client trong phòng
-        io.to(roomName).emit('GAME_STARTED');
+        let players = roomData[roomName].player;
+        let isAllPlayerLocked = true;
+        for (const playerObj of players) {
+            const playerId = Object.keys(playerObj)[0];
+            if (playerObj[playerId].lockedHero === null || playerObj[playerId].lockedHero === undefined) {
+                isAllPlayerLocked = false;
+                break;
+            }
+        }
+
+        if (isAllPlayerLocked) {
+            io.to(roomName).emit('GAME_STARTED');
+        }
     })
+
+    socket.on('BACK_TO_ROOM_SELECT', () => {
+        let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
+        if (!roomName) {
+            socket.emit('BACK_TO_ROOM_SELECT_RESULT', { success: false, type: typeHandler.TYPE.WARNING ,message: `Không tìm thấy phòng cho bạn.` });
+            return;
+        }
+    
+        let roomData = logicHandler.common.readRoomData();
+    
+        if (!(roomName in roomData)) {
+            socket.emit('BACK_TO_ROOM_SELECT_RESULT', { success: false, type: typeHandler.TYPE.WARNING ,message: `Phòng "${roomName}" không tồn tại.` });
+            return;
+        }
+    
+        delete roomData[roomName];
+        logicHandler.common.writeRoomData(roomData);
+    
+        socket.leave(roomName);
+        io.in(roomName).socketsLeave(roomName);
+    
+        socket.emit('BACK_TO_ROOM_SELECT_RESULT', { success: true, type: typeHandler.TYPE.SUCCESS ,message: `Bạn đã rời phòng "${roomName}" thành công.` });
+    
+        // const roomInfo = updateRoomInfo(roomData);
+        // io.emit('ROOM_INFO', roomInfo);
+    });
     // =================== các xử lý tất cả client ===================
 
     // broadcast hero selection to all clients
@@ -163,34 +174,7 @@ function selectHeroEvents(io, socket) {
 
     // Handle disconnection
     socket.on('disconnect', () => {
-        console.log('Client disconnected:', socket.id);
-        delete heroSelects[socket.id]; // Remove the hero selection for the disconnected client
     });
-
-    // function getRoomNameBySocketId(socketId) {
-    //     const roomData = readRoomData();
-    //     for (const roomName in roomData) {
-    //         // if (roomData[roomName].some(playerObj => Object.keys(playerObj)[0] === socketId)) {
-    //         //     return roomName;
-    //         // }
-    //         if (roomData[roomName].find(playerObj => Object.keys(playerObj)[0] === socketId)) {
-    //             return roomName;
-    //         }
-    //     }
-    //     return null;
-    // }
-    function getRoomNameBySocketId(socketId) {
-        const roomData = readRoomData();
-        for (const roomName in roomData) {
-            // if (roomData[roomName].some(playerObj => Object.keys(playerObj)[0] === socketId)) {
-            //     return roomName;
-            // }
-            if (roomData[roomName].player.some(playerObj => Object.keys(playerObj)[0] === socketId)) {
-                return roomName;
-            }
-        }
-        return null;
-    }
 }
 
 module.exports = selectHeroEvents;

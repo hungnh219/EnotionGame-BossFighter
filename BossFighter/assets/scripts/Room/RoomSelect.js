@@ -1,28 +1,34 @@
-import SocketIOManager from "../SocketIOManager";
+import SocketIOManager from "../SocketIO/SocketIOManager";
+import Notification from "../Prefab/Notification";
+import GAME_DATA from '../Game/GameData';
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
         roomNameInput: cc.EditBox,
+        namePlayerInput: cc.EditBox,
         submitRoomButton: cc.Button,
+        submitPlayerNameButton: cc.Button,
         openCreateRoomButton: cc.Button,
         roomInfoLabel: cc.Label,
         uiCreateRoom: cc.Node,
+        uiNamePlayerInput: cc.Node,
         content: cc.Node,
         prefabRoomItem: cc.Prefab,
         numberPlayer: cc.Label,
-        filterRoom: cc.EditBox
+        filterRoom: cc.EditBox,
+        notificationPrefab: cc.Prefab,
     },
 
     socketIOManager: null,
-    currentRoom: '',
 
     onLoad() {
-        this.numberPlayer.string = '0'
+        this.numberPlayer.string = '4'
         this.content.removeAllChildren();
         console.log('Main Scene: onLoad');
         this.uiCreateRoom.active = false;
+        this.uiNamePlayerInput.active = false;
         this.roomInfoLabel.string = "Đang tải thông tin phòng...";
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
         this.lastClickTime = 0;
@@ -30,15 +36,18 @@ cc.Class({
     },
 
     start() {
-        this.socketIOManager.connectToSocketIOServer("http://localhost:3000");
+        this.socketIOManager.room.getRoomInformation();
+        this.socketIOManager.room.setOnRoomInfoReceivedCallback(this.onRoomInfoUpdated.bind(this));
 
-        this.socketIOManager.setOnRoomInfoReceivedCallback(this.onRoomInfoUpdated.bind(this));
-        this.socketIOManager.getRoomInformation();
+    },
+
+    onBackMainMenu() {
+        cc.director.loadScene(GAME_DATA.GAME_SCENE.MAIN_MENU)
     },
 
     onRoomInfoUpdated(data) {
         if (data && data.totalRooms !== undefined) {
-            this.roomInfoLabel.string = `Tổng số phòng: ${data.totalRooms}\n`;
+            this.roomInfoLabel.string = `Total Rooms: ${data.totalRooms}\n`;
             this.displayRoomList(data.rooms);
         } else {
             this.roomInfoLabel.string = "Không có thông tin phòng.";
@@ -58,12 +67,26 @@ cc.Class({
             const roomItemNode = cc.instantiate(this.prefabRoomItem);
 
 
-            const roomNameLabelNode = cc.find("New Sprite/New Label", roomItemNode);
+            const roomNameLabelNode = cc.find("New Sprite/Room Name", roomItemNode);
+            const playerNumberNode = cc.find("New Sprite/Player Number", roomItemNode)
+            const statusRoomNode = cc.find("New Sprite/Status Room", roomItemNode)
 
             if (roomNameLabelNode) {
                 const roomNameLabelComp = roomNameLabelNode.getComponent(cc.Label);
+                const statusRoomComp = statusRoomNode.getComponent(cc.Label)
+                const playerNumberComp = playerNumberNode.getComponent(cc.Label)
                 if (roomNameLabelComp) {
-                    roomNameLabelComp.string = `${room.roomName} (${room.memberCount}/4)`;
+                    roomNameLabelComp.string = room.roomName;
+                    playerNumberComp.string = `${room.memberCount}/${room.maxPlayer}`
+                    switch (room.status) {
+                        case 'waiting':
+                            statusRoomNode.color = cc.Color.GREEN
+                            statusRoomComp.string = room.status
+                            break;
+                        default:
+                            statusRoomComp.string = room.status
+                    }
+
                 } else {
                     console.log("Node 'New Label' trong prefabRoomItem không có component cc.Label.");
                 }
@@ -75,16 +98,27 @@ cc.Class({
 
             if (buttonNode) {
                 roomItemNode.on('click', () => {
-                    this.onDoubleClick(room);
+                    this.onDoubleClick(room.roomName);
                 }, this);
             } else {
                 console.log("Prefab không có component Button.");
             }
 
             const buttonJoinRoom = cc.find("New Button", roomItemNode)
-            if(buttonJoinRoom){
-                buttonJoinRoom.on('click', ()=>{
-                    this.onJoinRoomButton(room)
+            if (buttonJoinRoom) {
+                buttonJoinRoom.on('click', async () => {
+                    try {
+                        await this.socketIOManager.room.checkRoomFull(room.roomName)
+                        this.onOpenNameInputUI(room.roomName)
+                    } catch (error) {
+                        if (typeof error === 'object' && error.message && error.type) {
+                            this.onOpenNotificationPopUp(error.message, error.type);
+                        }
+                        else {
+                            this.onOpenNotificationPopUp(error)
+                        }
+                    }
+
                 })
             } else {
                 console.log("Khong co Component Button")
@@ -95,52 +129,103 @@ cc.Class({
         });
     },
 
-    onDoubleClick(room) {
+    async onDoubleClick(roomName) {
         const currentTime = Date.now();
 
         if (currentTime - this.lastClickTime <= this.doubleClickThreshold) {
-            this.onJoinRoomButton(room);
+            try {
+                await this.socketIOManager.room.checkRoomFull(roomName)
+                this.onOpenNameInputUI(roomName);
+            } catch (error) {
+                if (typeof error === 'object' && error.message && error.type) {
+                    this.onOpenNotificationPopUp(error.message, error.type);
+                }
+                else {
+                    this.onOpenNotificationPopUp(error)
+                }
+            }
         }
 
         this.lastClickTime = currentTime;
     },
 
     async onSubmitRoomButton() {
-        if (this.numberPlayer.string == 0) {
-            console.log('So luong player khong hop le')
+        const roomName = this.roomNameInput.string.trim();
+        if (!roomName) {
+            this.onOpenNotificationPopUp('Tên Phòng không được để trống', 'error');
             return
         }
+        if (this.numberPlayer.string == 0) {
+            this.onOpenNotificationPopUp('Số lượng player không hợp lệ', 'error');
+            return
+        }
+        try {
+            await this.socketIOManager.room.checkRoomExist(roomName)
+            this.onCloseCreateRoomUI();
+            this.onOpenNameInputUI(roomName);
+        } catch (error) {
+            if (typeof error === 'object' && error.message && error.type) {
+                this.onOpenNotificationPopUp(error.message, error.type);
+            }
+            else {
+                this.onOpenNotificationPopUp(error)
+            }
+        }
+    },
+
+    async onSubmitPlayerNameButton() {
         const roomName = this.roomNameInput.string.trim();
-        if (roomName) {
+        const maxPlayer = +this.numberPlayer.string;
+        const namePlayer = this.namePlayerInput.string.trim();
+
+        if (!namePlayer) {
+            this.onOpenNotificationPopUp('Tên Player không được để trống', 'error')
+        }
+        if (roomName && namePlayer && maxPlayer) {
             try {
-                await this.socketIOManager.createRoom(roomName);
+                await this.socketIOManager.room.createRoom(roomName, maxPlayer, namePlayer);
                 cc.director.loadScene('WaitingRoom');
             } catch (error) {
-                console.error("Lỗi khi tạo phòng:", error);
+                if (typeof error === 'object' && error.message && error.type) {
+                    this.onOpenNotificationPopUp(error.message, error.type);
+                }
+                else {
+                    this.onOpenNotificationPopUp(error)
+                }
+
+            }
+        } else if (this.roomNameJoin && namePlayer) {
+            try {
+                this.socketIOManager.room.joinRoom(this.roomNameJoin, namePlayer);
+                cc.director.loadScene('WaitingRoom');
+            } catch (error) {
+                if (typeof error === 'object' && error.message && error.type) {
+                    this.onOpenNotificationPopUp(error.message, error.type);
+                }
+                else {
+                    this.onOpenNotificationPopUp(error)
+                }
 
             }
         }
     },
 
-    async onJoinRoomButton(selectRoom) {
-        if (selectRoom == 'undefined' || selectRoom == null) {
-            console.log('Chua chon phong')
-            return
-        }
-        const roomName = selectRoom.roomName;
+    onOpenNotificationPopUp(message, type) {
 
-        if (!roomName) return;
+        let newNotify = cc.instantiate(this.notificationPrefab);
+        this.node.addChild(newNotify);
 
-        try {
-            const result = await this.socketIOManager.joinRoom(roomName);
-            if (result.success) {
-                cc.director.loadScene('WaitingRoom');
-            } else {
-                console.warn(result.message);
-            }
-        } catch (error) {
-            console.error("Lỗi khi tham gia phòng:", error);
-        }
+        newNotify.getComponent(Notification).showMessage(type, message);
+
+    },
+
+    onOpenNameInputUI(roomName) {
+        this.roomNameJoin = roomName
+        this.uiNamePlayerInput.active = true
+    },
+
+    onCloseNameInputUI() {
+        this.uiNamePlayerInput.active = false
     },
 
     onOpenCreateRoomUI() {

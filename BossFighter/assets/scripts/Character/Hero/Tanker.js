@@ -18,13 +18,12 @@ cc.Class({
     extends: Character,
 
     properties: {
-        characterId: "hero004",
+        characterId: "hero003",
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        this.initData(this.characterId);
     },
 
     start() {
@@ -34,8 +33,13 @@ cc.Class({
     ultimate() {
 
     },
-    initData(characterNameId) {
-        this._super(characterNameId);
+    initData(heroData) {
+        this.characterId = heroData.characterId || "hero003";
+        this.name = heroData.name || "Tanker";
+        this.attackDame = heroData.attackDamage || 10;
+        this.attackRange = heroData.attackRange || 1;
+        this.maxHp = heroData.maxHp || 100;
+        this.health = heroData.hp;
     },
 
     playAnimation(animationName, moveTime) {

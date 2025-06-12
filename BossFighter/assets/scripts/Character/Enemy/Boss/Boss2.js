@@ -7,9 +7,9 @@
 import Character from "../../Character";
 
 const BOSS2_ANIMATION = {
-    "attack_front": "boss2-front-attack",
+    "attack_front": "boss2-back-attack",
     "attack_left": "boss2-left-attack",
-    "attack_back": "boss2-back-attack",
+    "attack_back": "boss2-front-attack",
     "attack_right": "boss2-right-attack",
 
     "walk_front": "boss2-back-run",
@@ -22,19 +22,31 @@ cc.Class({
     extends: Character,
 
     properties: {
-        characterId: "boss003",
+        characterId: "boss002",
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
-
-    start () {
-        this.initData(this.characterId);
+    onLoad () {
+        // this.initData(this.characterId);
     },
 
-    initData(characterNameId) {
-        this._super(characterNameId);
+    start () {
+    },
+
+    initData(heroData) {
+        this.characterId = heroData.bossId || "hero002";
+        this.name = heroData.name || "ADC Hero";
+        this.attackDame = heroData.attackDamage || 10;
+        this.attackRange = heroData.attackRange || 1;
+        this.maxHp = heroData.maxHp || 100;
+        this.health = heroData.hp;
+
+
+        // await this._super(characterNameId);
+
+        // console.log("ADC initData with characterId:", characterNameId);
+        // console.log("ADC properties:", this);
     },
 
     playAnimation(animationName, moveTime) {
