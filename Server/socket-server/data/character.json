@@ -3,27 +3,27 @@
     {
       "id": "hero001",
       "name": "Ad Carry",
-      "maxHp": 620,
+      "maxHp": 1000,
       "attackDamage": 200,
       "attackRange": 5
     },{
       "id": "hero002",
       "name": "Bruiser",
-      "maxHp": 920,
+      "maxHp": 1000,
       "attackDamage": 200,
       "attackRange": 1
     },
     {
       "id": "hero003",
       "name": "Tanker",
-      "maxHp": 800,
+      "maxHp": 1000,
       "attackDamage": 200,
       "attackRange": 1
     },
     {
       "id": "hero004",
       "name": "Vampire",
-      "maxHp": 700,
+      "maxHp": 1000,
       "attackDamage": 200,
       "attackRange": 4
     }

@@ -124,7 +124,19 @@ function selectHeroEvents(io, socket) {
             logicHandler.common.writeRoomData(roomData);
         }
 
-        io.to(roomName).emit('GAME_STARTED');
+        let players = roomData[roomName].player;
+        let isAllPlayerLocked = true;
+        for (const playerObj of players) {
+            const playerId = Object.keys(playerObj)[0];
+            if (playerObj[playerId].lockedHero === null || playerObj[playerId].lockedHero === undefined) {
+                isAllPlayerLocked = false;
+                break;
+            }
+        }
+
+        if (isAllPlayerLocked) {
+            io.to(roomName).emit('GAME_STARTED');
+        }
     })
     // =================== các xử lý tất cả client ===================
 

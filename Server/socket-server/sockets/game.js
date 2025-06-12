@@ -119,7 +119,7 @@ function gameEvents(io, socket) {
                 stats: {
                     totalDameDeal: 0,
                     totalDameTaken: 0,
-                    totalScore: 0 + Math.floor(Math.random() * 10), // điểm số ngẫu nhiên ban đầu
+                    totalScore: 0, 
                 }
             };
         })
@@ -815,11 +815,9 @@ function gameEvents(io, socket) {
 
         roomData[roomName].gameState.heroes = heroes;
         logicHandler.common.writeRoomData(roomData);
-        // io.to(roomName).emit('LISTEN_HEAL', {
-        //     characterId: hero.heroId,
-        //     newHp: hero.hp,
-        //     healAmount: healAmount,
-        // });
+        io.to(roomName).emit('LISTEN_HEAL', {
+            characterId: hero.heroId,
+        });
     })
 
     socket.on('HANDLE_PLAYER_QUIT', (data) => {

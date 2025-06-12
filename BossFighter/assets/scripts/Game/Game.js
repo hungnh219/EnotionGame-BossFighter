@@ -183,6 +183,9 @@ cc.Class({
             console.warn("Player quit received from server:", data);
             this.gameController.handlePlayerQuit(data);
             this.updateLeaderBoard();
+        });
+        this.socketIOManager.game.listenHeal((data) => {
+            this.gameController.handleHeal(data.characterId);
         })
     },
 
@@ -236,6 +239,7 @@ cc.Class({
     // update (dt) {},
     onDestroy() {
         EventBus.off(EventBus.events.CLICK_TO_MOVE, this.onClickToMove, this);
+        this.socketIOManager.game.turnOffListeners();
     },
 
     heroClick(node) {

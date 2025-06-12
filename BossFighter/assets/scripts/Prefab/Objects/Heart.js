@@ -25,9 +25,7 @@ cc.Class({
 
         if (heroScript)  {
             heroScript.health(heroScript.node.mainScript.characterId);
-
             this.node.destroy();
         }
     },
-    // update (dt) {},
 });

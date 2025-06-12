@@ -115,6 +115,6 @@ cc.Class({
 
         this.socketIOManager.game.handleCharacterDeath(this.characterId);
         this.socketIOManager.game.checkWin();
-        this.node.destroy();
+        // this.node.destroy();
     },
 });

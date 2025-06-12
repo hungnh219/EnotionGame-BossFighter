@@ -781,6 +781,10 @@ const GameController = cc.Class({
         let hero = this.heroes.find(hero => hero.mainScript.characterId === characterId);
         if (hero) {
             this.heroes.splice(this.heroes.indexOf(hero), 1);
+            console.warn(hero);
+            console.warn(hero.node);
+
+            hero.destroy();
             return;
         }
 
@@ -788,6 +792,9 @@ const GameController = cc.Class({
         let boss = this.bosses.find(b => b.node.mainScript.characterId === characterId);
         if (boss) {
             this.bosses.splice(this.bosses.indexOf(boss), 1);
+            console.warn(boss);
+            console.warn(boss.node);
+            boss.node.destroy();
             return;
         }
     },
@@ -801,6 +808,16 @@ const GameController = cc.Class({
             this.heroes.splice(this.heroes.indexOf(hero), 1);
             hero.destroy();
             return;
+        }
+    },
+
+    handleHeal(characterId) {
+        let hero = this.heroes.find(hero => hero.mainScript.characterId === characterId);
+        if (hero) {
+            hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.updateHpBar === 'function');
+            if (hero.mainScript) {
+                hero.mainScript.updateHpBar();
+            }
         }
     },
 

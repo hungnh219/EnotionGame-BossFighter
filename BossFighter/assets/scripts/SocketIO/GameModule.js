@@ -451,5 +451,35 @@ module.exports = function(socket) {
                 }
             });
         },
+
+        listenHeal(callback) {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            socket.on('LISTEN_HEAL', (data) => {
+                if (callback) {
+                    callback(data);
+                }
+            });
+
+        },
+
+        turnOffListeners() {
+            if (!socket) {
+                console.error("Chưa kết nối đến Socket.IO server.");
+                return null;
+            }
+
+            socket.off('LISTEN_MOVE_TO_NEW_TILE');
+            socket.off('LISTEN_ATTACK');
+            socket.off('LISTEN_BOSS_ATTACK');
+            socket.off('GAME_OVER');
+            socket.off('LISTEN_CHARACTER_DEATH');
+            socket.off('LISTEN_PLAYER_QUIT');
+            socket.off('LISTEN_HEAL');
+            console.log("Tất cả các listener đã được tắt.");
+        }
     };
 }

@@ -30,11 +30,11 @@ cc.Class({
     health(characterId) {
         this.socketIOManager.game.heal(characterId);
 
-        if (this.node.mainScript && typeof this.node.mainScript.updateHpBar === 'function') {
-            this.node.mainScript.updateHpBar();
-        } else {
-            console.error("Main script or health method not found on node");
-        }
+        // if (this.node.mainScript && typeof this.node.mainScript.updateHpBar === 'function') {
+        //     // this.node.mainScript.updateHpBar();
+        // } else {
+        //     console.error("Main script or health method not found on node");
+        // }
     }
 
     // update (dt) {},
