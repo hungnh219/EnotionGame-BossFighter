@@ -1,1 +1,342 @@
-{}
+{
+  "32131": {
+    "player": [
+      {
+        "e1eqZFKHmJKxImvcAAAD": {
+          "name": "321",
+          "clickHero": 0,
+          "lockedHero": 0,
+          "order": 1,
+          "host": true
+        }
+      }
+    ],
+    "maxPlayer": 2,
+    "status": "playing",
+    "gameState": {
+      "status": "STARTED",
+      "turn": {
+        "isPlayerTurn": true,
+        "maxPlayerActions": 2,
+        "remainingPlayerActions": 2
+      },
+      "currentPlayer": null,
+      "walkableGridMap": [
+        [
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false
+        ]
+      ],
+      "currentMapIndex": 2,
+      "heroes": [
+        null,
+        {
+          "id": "e1eqZFKHmJKxImvcAAAD",
+          "order": 1,
+          "lockedHero": 0,
+          "heroId": "hero001",
+          "hp": 1000,
+          "maxHp": 1000,
+          "attackDamage": 200,
+          "attackRange": 5,
+          "name": "Ad Carry",
+          "status": "ALIVE",
+          "stats": {
+            "totalDameDeal": 0,
+            "totalDameTaken": 0,
+            "totalScore": 0
+          }
+        }
+      ],
+      "bosses": [
+        {
+          "bossId": "boss003",
+          "hp": 1000,
+          "maxHp": 1000,
+          "attackDamage": 100,
+          "attackRange": 1,
+          "name": "Boss 003",
+          "status": "ALIVE"
+        }
+      ],
+      "isGameOver": true,
+      "result": "WIN"
+    }
+  }
+}
