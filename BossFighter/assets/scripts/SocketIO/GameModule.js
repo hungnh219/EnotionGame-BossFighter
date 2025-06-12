@@ -38,7 +38,7 @@ module.exports = function(socket) {
             }
 
             return new Promise((resolve, reject) => {
-                socket.on('CURRENT_GAME_DATA', (data) => {
+                socket.once('CURRENT_GAME_DATA', (data) => {
                     resolve(data);
                 });
                 socket.emit('GET_CURRENT_GAME_DATA');
@@ -83,7 +83,7 @@ module.exports = function(socket) {
             }
             
             return new Promise((resolve, reject) => {
-                socket.on('PLAYER_ORDER', (data) => {
+                socket.once('PLAYER_ORDER', (data) => {
                     resolve(data.order);
                 });
                 socket.emit('GET_PLAYER_ORDER');
@@ -114,7 +114,7 @@ module.exports = function(socket) {
             }
             return new Promise((resolve, reject) => {
                 socket.emit('GET_MAP_DATA');
-                socket.on('MAP_DATA', (data) => {
+                socket.once('MAP_DATA', (data) => {
                     resolve(data.mapData);
                 });
             });
@@ -127,7 +127,7 @@ module.exports = function(socket) {
             }
 
             return new Promise((resolve, reject) => {
-                socket.on('LOCKED_HERO_INDEX', (data) => {
+                socket.once('LOCKED_HERO_INDEX', (data) => {
                     resolve(data.lockedHeroArray);
                 });
 
@@ -149,7 +149,7 @@ module.exports = function(socket) {
                 return null;
             }
 
-            socket.on('WALKABLE_GRID_MAP_UPDATED', (data) => {
+            socket.once('WALKABLE_GRID_MAP_UPDATED', (data) => {
                 if (callback) {
                     callback(data.walkableGridMap);
                 }
@@ -163,7 +163,7 @@ module.exports = function(socket) {
             }
             
             return new Promise((resolve, reject) => {
-                socket.on('RETURN_WALKABLE_GRID_MAP', (data) => {
+                socket.once('RETURN_WALKABLE_GRID_MAP', (data) => {
                     resolve(data.walkableGridMap);
                 });
                 socket.emit('GET_WALKABLE_GRID_MAP');
@@ -172,7 +172,7 @@ module.exports = function(socket) {
 
         findPath(data) {
             return new Promise((resolve, reject) => {
-                socket.on('RETURN_PATH', (data) => {
+                socket.once('RETURN_PATH', (data) => {
                     resolve(data.path);
                 });
                 socket.emit('FIND_PATH', data);
@@ -181,7 +181,7 @@ module.exports = function(socket) {
 
         getAttackDame(data) {
             return new Promise((resolve, reject) => {
-                socket.on('RETURN_ATTACK_DAME', (data) => {
+                socket.once('RETURN_ATTACK_DAME', (data) => {
                     resolve(data.attackDamage);
                 });
                 socket.emit('GET_ATTACK_DAME', data);
@@ -225,7 +225,7 @@ module.exports = function(socket) {
                 return null;
             }
             
-            socket.on('LISTEN_NEXT_MAP', () => {
+            socket.once('LISTEN_NEXT_MAP', () => {
                 if (callback) {
                     callback();
                 }
@@ -239,7 +239,7 @@ module.exports = function(socket) {
             }
 
             return new Promise((resolve, reject) => {
-                socket.on('RETURN_CHARACTER_DATA', (data) => {
+                socket.once('RETURN_CHARACTER_DATA', (data) => {
                     resolve(data.characterData);
                 });
                 socket.emit('GET_CHARACTER_DATA', {
@@ -255,7 +255,7 @@ module.exports = function(socket) {
             }
 
             return new Promise((resolve, reject) => {
-                socket.on('RETURN_LEADER_BOARD', (data) => {
+                socket.once('RETURN_LEADER_BOARD', (data) => {
                     resolve(data.leaderBoard);
                 });
                 socket.emit('GET_LEADER_BOARD');
@@ -270,7 +270,7 @@ module.exports = function(socket) {
             }
 
             return new Promise((resolve, reject) => {
-                socket.on('LISTEN_TAKE_DAME', (data) => {
+                socket.once('LISTEN_TAKE_DAME', (data) => {
                     resolve(data.newHp);
                 });
                 socket.emit('TAKE_DAME', {
@@ -288,7 +288,7 @@ module.exports = function(socket) {
             }
 
             return new Promise((resolve, reject) => {
-                socket.on('RETURN_CURRENT_HP', (data) => {
+                socket.once('RETURN_CURRENT_HP', (data) => {
                     resolve(data.currentHp);
                 });
                 socket.emit('GET_CURRENT_HP', { characterId: characterId });
@@ -324,7 +324,7 @@ module.exports = function(socket) {
             }
 
             return new Promise((resolve, reject) => {
-                socket.on('RETURN_HEROES', (data) => {
+                socket.once('RETURN_HEROES', (data) => {
                     resolve(data.heroes);
                 });
                 socket.emit('GET_HEROES');
@@ -338,7 +338,7 @@ module.exports = function(socket) {
             }
 
             return new Promise((resolve, reject) => {
-                socket.on('RETURN_BOSSES', (data) => {
+                socket.once('RETURN_BOSSES', (data) => {
                     console.log('Nhận danh sách bosses:', data.bosses);
                     resolve(data.bosses);
                 });
@@ -352,7 +352,7 @@ module.exports = function(socket) {
             }
 
             return new Promise((resolve, reject) => {
-                socket.on('RETURN_MAP_INDEX', (data) => {
+                socket.once('RETURN_MAP_INDEX', (data) => {
                     console.log('Nhận map index:', data.currentMapIndex);
                     resolve(data.currentMapIndex);
                 });

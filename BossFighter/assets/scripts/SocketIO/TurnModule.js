@@ -15,7 +15,7 @@ module.exports = function(socket) {
                 }
                 socket.emit('GET_REMAINING_ACTIONS');
 
-                socket.on('REMAINING_ACTIONS_RESPONSE', (data) => {
+                socket.once('REMAINING_ACTIONS_RESPONSE', (data) => {
                     resolve(data.remainingActions);
                 });
             });
@@ -28,7 +28,7 @@ module.exports = function(socket) {
                 }
                 socket.emit('IS_PLAYER_TURN');
 
-                socket.on('IS_PLAYER_TURN_RESPONSE', (data) => {
+                socket.once('IS_PLAYER_TURN_RESPONSE', (data) => {
                     resolve(data.isPlayerTurn);
                 });
             });

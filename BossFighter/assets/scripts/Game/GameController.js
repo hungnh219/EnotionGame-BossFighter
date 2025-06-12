@@ -258,50 +258,50 @@ const GameController = cc.Class({
             let nearestHero = this.findNearestHero(enemy);
             if (!nearestHero) continue;
 
-            // distance between enemy and nearest hero
             let enemyPos = this.positionToGrid(enemy);
             let heroPos = this.positionToGrid(nearestHero);
             if (!enemyPos || !heroPos) continue;
+
             const dx = Math.abs(enemyPos.x - heroPos.x);
             const dy = Math.abs(enemyPos.y - heroPos.y);
-
             let enemyAttackRange = 1;
 
             if (dx + dy <= enemyAttackRange) {
                 enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.dealDame === 'function');
-
                 if (enemy.mainScript) {
                     let heroId = nearestHero.mainScript.characterId;
                     let enemyId = enemy.mainScript.characterId;
-
-                    await this.socketIOManager.game.bossAttack(
-                        enemyId, heroId
-                    );
-                }
-
-                if (index === bossArray.length - 1) {
-                    await new Promise(resolve => {
-                        setTimeout(() => {
-                            this.socketIOManager.turn.endBossTurn();
-                            resolve();
-                        }, 500);
-                    });
+                    await this.socketIOManager.game.bossAttack(enemyId, heroId);
                 }
             } else {
                 await new Promise(resolve => {
                     EventBus.emit(EventBus.events.ENEMY_AUTO_MODE, enemy, nearestHero, resolve);
                 });
 
-                if (index === bossArray.length - 1) {
-                    await new Promise(resolve => {
-                        setTimeout(() => {
-                            this.socketIOManager.turn.endBossTurn();
-                            resolve();
-                        }, 500);
-                    });
+                enemyPos = this.positionToGrid(enemy);
+                heroPos = this.positionToGrid(nearestHero);
+                if (!enemyPos || !heroPos) continue;
+                const dx2 = Math.abs(enemyPos.x - heroPos.x);
+                const dy2 = Math.abs(enemyPos.y - heroPos.y);
+
+                if (dx2 + dy2 <= enemyAttackRange) {
+                    enemy.mainScript = enemy.getComponents(cc.Component).find(c => typeof c.dealDame === 'function');
+                    if (enemy.mainScript) {
+                        let heroId = nearestHero.mainScript.characterId;
+                        let enemyId = enemy.mainScript.characterId;
+                        await this.socketIOManager.game.bossAttack(enemyId, heroId);
+                    }
                 }
             }
 
+            if (index === bossArray.length - 1) {
+                await new Promise(resolve => {
+                    setTimeout(() => {
+                        this.socketIOManager.turn.endBossTurn();
+                        resolve();
+                    }, 500);
+                });
+            }
         }
     },
 
@@ -310,7 +310,7 @@ const GameController = cc.Class({
         // enemy.mainScript.dealDame(nearestHero, dame);
         let heroId = hero.mainScript.characterId;
         let enemyId = enemy.mainScript.characterId;
-        let newHealth = await this.socketIOManager.game.takeDame(enemyId, heroId, dame);
+        // let newHealth = await this.socketIOManager.game.takeDame(enemyId, heroId, dame);
         let direction = this.getDirection(this.positionToGrid(enemy), this.positionToGrid(hero));
         enemy.mainScript.playAnimation("attack_" + direction, 0.4);
         // this.socketIOManager.turn.endBossTurn();

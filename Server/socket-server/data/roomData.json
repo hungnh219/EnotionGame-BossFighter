@@ -171,6 +171,37 @@
       ]
     }
   },
+  "321": {
+    "player": [
+      {
+        "ACY31qExzvcYMUPZAAAT": {
+          "name": "1",
+          "clickHero": null,
+          "lockedHero": null,
+          "order": 0,
+          "host": true
+        }
+      },
+      {
+        "BdUt8QaLPC9CtA3EAAAX": {
+          "name": "4",
+          "clickHero": null,
+          "lockedHero": null,
+          "order": 1,
+          "host": false
+        }
+      }
+    ],
+    "maxPlayer": 2,
+    "status": "playing",
+    "gameState": {
+      "status": "STARTED",
+      "turn": "player",
+      "currentPlayer": null,
+      "walkableGridMap": [],
+      "currentMapIndex": 0
+    }
+  },
   "321321": {
     "player": [
       {

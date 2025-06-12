@@ -11,21 +11,21 @@
       "name": "Bruiser",
       "maxHp": 920,
       "attackDamage": 200,
-      "attackRange": 5
+      "attackRange": 1
     },
     {
       "id": "hero003",
       "name": "Tanker",
       "maxHp": 800,
       "attackDamage": 200,
-      "attackRange": 5
+      "attackRange": 1
     },
     {
       "id": "hero004",
       "name": "Vampire",
       "maxHp": 700,
       "attackDamage": 200,
-      "attackRange": 5
+      "attackRange": 4
     }
   ],
   "bosses": [
@@ -34,21 +34,21 @@
       "name": "Boss 001",
       "maxHp": 400,
       "attackDamage": 100,
-      "attackRange": 5
+      "attackRange": 1
     },
     {
       "id": "boss002",
       "name": "Boss 002",
       "maxHp": 400,
       "attackDamage": 100,
-      "attackRange": 5
+      "attackRange": 1
     },
     {
       "id": "boss003",
       "name": "Boss 003",
       "maxHp": 400,
       "attackDamage": 100,
-      "attackRange": 5
+      "attackRange": 1
     }
   ],
   "enemies": [
