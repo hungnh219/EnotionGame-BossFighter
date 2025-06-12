@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "VampireLeftHurt",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.2,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "a38aa32b-d493-45e5-91c8-d10d23c394f4"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "4a4d72bc-36ed-4aac-82b7-6872222d8baf"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "29f19130-da4e-4611-86b8-df02f21f2357"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "f675d6b9-1798-49fa-bc91-53b82fd2d333"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

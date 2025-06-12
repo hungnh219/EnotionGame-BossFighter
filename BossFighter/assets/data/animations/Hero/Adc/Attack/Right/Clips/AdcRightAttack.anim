@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "AdcRightAttack",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.15,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": -0.05,
+            "value": {
+              "__uuid__": "c601965c-1671-4d5a-8dff-98f3d9411fe6"
+            }
+          },
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "79b3d8d3-2871-4c6c-a812-d13027f7d882"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "d06065b3-3a4d-45e9-83bc-a5727701ba91"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "2c563586-91c4-4d6e-a1bd-6ef3cf2275ac"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

@@ -1,0 +1,1482 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>UiCozyFree0.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{90,27}</string>
+				<key>spriteSize</key>
+				<string>{90,27}</string>
+				<key>textureRect</key>
+				<string>{{0,0},{90,27}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5111111111111111,0}</string>
+			</dict>
+			<key>UiCozyFree1.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{90,25}</string>
+				<key>spriteSize</key>
+				<string>{90,25}</string>
+				<key>textureRect</key>
+				<string>{{91,0},{90,25}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5111111111111111,0}</string>
+			</dict>
+			<key>UiCozyFree2.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{182,0},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree3.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{197,0},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree4.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{212,0},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree5.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{227,0},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree6.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{242,0},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree7.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{257,0},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree8.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{272,0},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree9.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{287,0},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree10.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{302,0},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree11.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{317,0},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree12.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{332,0},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree13.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{0,28},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree14.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{15,28},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree15.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{30,28},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree16.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{45,28},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree17.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{60,28},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree18.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{36,30}</string>
+				<key>spriteSize</key>
+				<string>{36,30}</string>
+				<key>textureRect</key>
+				<string>{{75,28},{36,30}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>UiCozyFree19.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{54,66}</string>
+				<key>spriteSize</key>
+				<string>{54,66}</string>
+				<key>textureRect</key>
+				<string>{{112,28},{54,66}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5185185185185185,0}</string>
+			</dict>
+			<key>UiCozyFree20.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{167,28},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree21.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{182,28},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree22.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{197,28},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree23.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{212,28},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree24.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{227,28},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree25.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{242,28},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree26.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{257,28},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree27.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{272,28},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree28.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{287,28},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree29.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{302,28},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree30.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{317,28},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree31.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{332,28},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree32.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{0,95},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree33.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{15,95},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree34.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{30,95},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree35.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{45,95},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree36.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{60,95},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree37.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{75,95},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree38.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{90,95},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree39.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{105,95},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree40.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{120,95},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree41.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{135,95},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree42.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{150,95},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree43.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{165,95},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree44.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,9}</string>
+				<key>spriteSize</key>
+				<string>{8,9}</string>
+				<key>textureRect</key>
+				<string>{{180,95},{8,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>UiCozyFree45.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,9}</string>
+				<key>spriteSize</key>
+				<string>{8,9}</string>
+				<key>textureRect</key>
+				<string>{{189,95},{8,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>UiCozyFree46.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{198,95},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree47.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{213,95},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree48.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{228,95},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree49.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{243,95},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree50.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{258,95},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree51.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{273,95},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree52.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{288,95},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree53.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{303,95},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree54.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,9}</string>
+				<key>spriteSize</key>
+				<string>{8,9}</string>
+				<key>textureRect</key>
+				<string>{{318,95},{8,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>UiCozyFree55.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,9}</string>
+				<key>spriteSize</key>
+				<string>{8,9}</string>
+				<key>textureRect</key>
+				<string>{{327,95},{8,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>UiCozyFree56.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,9}</string>
+				<key>spriteSize</key>
+				<string>{8,9}</string>
+				<key>textureRect</key>
+				<string>{{336,95},{8,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>UiCozyFree57.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,9}</string>
+				<key>spriteSize</key>
+				<string>{8,9}</string>
+				<key>textureRect</key>
+				<string>{{0,110},{8,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>UiCozyFree58.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,9}</string>
+				<key>spriteSize</key>
+				<string>{8,9}</string>
+				<key>textureRect</key>
+				<string>{{9,110},{8,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>UiCozyFree59.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{18,110},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree60.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{33,110},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree61.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{48,110},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree62.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{63,110},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree63.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{78,110},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree64.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{93,110},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree65.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{108,110},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree66.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{123,110},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree67.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,9}</string>
+				<key>spriteSize</key>
+				<string>{8,9}</string>
+				<key>textureRect</key>
+				<string>{{138,110},{8,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>UiCozyFree68.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,9}</string>
+				<key>spriteSize</key>
+				<string>{8,9}</string>
+				<key>textureRect</key>
+				<string>{{147,110},{8,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>UiCozyFree69.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,9}</string>
+				<key>spriteSize</key>
+				<string>{8,9}</string>
+				<key>textureRect</key>
+				<string>{{156,110},{8,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>UiCozyFree70.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,9}</string>
+				<key>spriteSize</key>
+				<string>{8,9}</string>
+				<key>textureRect</key>
+				<string>{{165,110},{8,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>UiCozyFree71.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{174,110},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree72.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{189,110},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree73.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{204,110},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree74.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{219,110},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree75.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{234,110},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree76.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{249,110},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree77.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{264,110},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree78.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{279,110},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>UiCozyFree79.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,9}</string>
+				<key>spriteSize</key>
+				<string>{8,9}</string>
+				<key>textureRect</key>
+				<string>{{294,110},{8,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>UiCozyFree80.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,9}</string>
+				<key>spriteSize</key>
+				<string>{8,9}</string>
+				<key>textureRect</key>
+				<string>{{303,110},{8,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>UiCozyFree81.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,9}</string>
+				<key>spriteSize</key>
+				<string>{8,9}</string>
+				<key>textureRect</key>
+				<string>{{312,110},{8,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>UiCozyFree82.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,9}</string>
+				<key>spriteSize</key>
+				<string>{8,9}</string>
+				<key>textureRect</key>
+				<string>{{321,110},{8,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>UiCozyFree83.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{87,81}</string>
+				<key>spriteSize</key>
+				<string>{87,81}</string>
+				<key>textureRect</key>
+				<string>{{0,125},{87,81}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5057471264367817,0}</string>
+			</dict>
+			<key>UiCozyFree84.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{57,81}</string>
+				<key>spriteSize</key>
+				<string>{57,81}</string>
+				<key>textureRect</key>
+				<string>{{88,125},{57,81}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.49122807017543857,0}</string>
+			</dict>
+			<key>UiCozyFree85.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{47,80}</string>
+				<key>spriteSize</key>
+				<string>{47,80}</string>
+				<key>textureRect</key>
+				<string>{{146,125},{47,80}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5106382978723404,0}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>3</integer>
+			<key>realTextureFileName</key>
+			<string>UiCozyFree.png</string>
+			<key>textureFileName</key>
+			<string>UiCozyFree.png</string>
+			<key>size</key>
+			<string>{346,206}</string>
+		</dict>
+	</dict>
+</plist>

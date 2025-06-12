@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>BossEnemy_idle0.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{44,42}</string>
+				<key>spriteSize</key>
+				<string>{44,42}</string>
+				<key>textureRect</key>
+				<string>{{0,0},{44,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_idle1.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{44,42}</string>
+				<key>spriteSize</key>
+				<string>{44,42}</string>
+				<key>textureRect</key>
+				<string>{{45,0},{44,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_idle2.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{45,42}</string>
+				<key>spriteSize</key>
+				<string>{45,42}</string>
+				<key>textureRect</key>
+				<string>{{90,0},{45,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4888888888888889,0}</string>
+			</dict>
+			<key>BossEnemy_idle3.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{43,42}</string>
+				<key>spriteSize</key>
+				<string>{43,42}</string>
+				<key>textureRect</key>
+				<string>{{136,0},{43,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5116279069767442,0}</string>
+			</dict>
+			<key>BossEnemy_idle4.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{45,42}</string>
+				<key>spriteSize</key>
+				<string>{45,42}</string>
+				<key>textureRect</key>
+				<string>{{180,0},{45,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4888888888888889,0}</string>
+			</dict>
+			<key>BossEnemy_idle5.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{43,42}</string>
+				<key>spriteSize</key>
+				<string>{43,42}</string>
+				<key>textureRect</key>
+				<string>{{226,0},{43,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5116279069767442,0}</string>
+			</dict>
+			<key>BossEnemy_idle6.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{45,42}</string>
+				<key>spriteSize</key>
+				<string>{45,42}</string>
+				<key>textureRect</key>
+				<string>{{270,0},{45,42}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4888888888888889,0}</string>
+			</dict>
+			<key>BossEnemy_idle7.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{44,43}</string>
+				<key>spriteSize</key>
+				<string>{44,43}</string>
+				<key>textureRect</key>
+				<string>{{316,0},{44,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_idle8.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{44,43}</string>
+				<key>spriteSize</key>
+				<string>{44,43}</string>
+				<key>textureRect</key>
+				<string>{{361,0},{44,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_idle9.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{45,43}</string>
+				<key>spriteSize</key>
+				<string>{45,43}</string>
+				<key>textureRect</key>
+				<string>{{406,0},{45,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4888888888888889,0}</string>
+			</dict>
+			<key>BossEnemy_idle10.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{43,43}</string>
+				<key>spriteSize</key>
+				<string>{43,43}</string>
+				<key>textureRect</key>
+				<string>{{452,0},{43,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5116279069767442,0}</string>
+			</dict>
+			<key>BossEnemy_idle11.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{45,43}</string>
+				<key>spriteSize</key>
+				<string>{45,43}</string>
+				<key>textureRect</key>
+				<string>{{496,0},{45,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4888888888888889,0}</string>
+			</dict>
+			<key>BossEnemy_idle12.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{44,43}</string>
+				<key>spriteSize</key>
+				<string>{44,43}</string>
+				<key>textureRect</key>
+				<string>{{542,0},{44,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_idle13.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{45,43}</string>
+				<key>spriteSize</key>
+				<string>{45,43}</string>
+				<key>textureRect</key>
+				<string>{{587,0},{45,43}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4888888888888889,0}</string>
+			</dict>
+			<key>BossEnemy_idle14.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,44}</string>
+				<key>spriteSize</key>
+				<string>{26,44}</string>
+				<key>textureRect</key>
+				<string>{{633,0},{26,44}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>BossEnemy_idle15.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,44}</string>
+				<key>spriteSize</key>
+				<string>{28,44}</string>
+				<key>textureRect</key>
+				<string>{{660,0},{28,44}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_idle16.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{25,44}</string>
+				<key>spriteSize</key>
+				<string>{25,44}</string>
+				<key>textureRect</key>
+				<string>{{689,0},{25,44}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.48,0}</string>
+			</dict>
+			<key>BossEnemy_idle17.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{29,44}</string>
+				<key>spriteSize</key>
+				<string>{29,44}</string>
+				<key>textureRect</key>
+				<string>{{715,0},{29,44}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4827586206896552,0}</string>
+			</dict>
+			<key>BossEnemy_idle18.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,44}</string>
+				<key>spriteSize</key>
+				<string>{26,44}</string>
+				<key>textureRect</key>
+				<string>{{745,0},{26,44}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>BossEnemy_idle19.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{29,45}</string>
+				<key>spriteSize</key>
+				<string>{29,45}</string>
+				<key>textureRect</key>
+				<string>{{772,0},{29,45}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.4827586206896552,0}</string>
+			</dict>
+			<key>BossEnemy_idle20.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{25,44}</string>
+				<key>spriteSize</key>
+				<string>{25,44}</string>
+				<key>textureRect</key>
+				<string>{{802,0},{25,44}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.48,0}</string>
+			</dict>
+			<key>BossEnemy_idle21.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{25,45}</string>
+				<key>spriteSize</key>
+				<string>{25,45}</string>
+				<key>textureRect</key>
+				<string>{{828,0},{25,45}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.48,0}</string>
+			</dict>
+			<key>BossEnemy_idle22.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,45}</string>
+				<key>spriteSize</key>
+				<string>{28,45}</string>
+				<key>textureRect</key>
+				<string>{{854,0},{28,45}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_idle23.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,45}</string>
+				<key>spriteSize</key>
+				<string>{26,45}</string>
+				<key>textureRect</key>
+				<string>{{883,0},{26,45}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>BossEnemy_idle24.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{25,45}</string>
+				<key>spriteSize</key>
+				<string>{25,45}</string>
+				<key>textureRect</key>
+				<string>{{910,0},{25,45}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.48,0}</string>
+			</dict>
+			<key>BossEnemy_idle25.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{26,44}</string>
+				<key>spriteSize</key>
+				<string>{26,44}</string>
+				<key>textureRect</key>
+				<string>{{936,0},{26,44}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5384615384615384,0}</string>
+			</dict>
+			<key>BossEnemy_idle26.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{28,45}</string>
+				<key>spriteSize</key>
+				<string>{28,45}</string>
+				<key>textureRect</key>
+				<string>{{963,0},{28,45}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>BossEnemy_idle27.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{24,44}</string>
+				<key>spriteSize</key>
+				<string>{24,44}</string>
+				<key>textureRect</key>
+				<string>{{992,0},{24,44}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>3</integer>
+			<key>realTextureFileName</key>
+			<string>BossEnemy_idle.png</string>
+			<key>textureFileName</key>
+			<string>BossEnemy_idle.png</string>
+			<key>size</key>
+			<string>{1016,46}</string>
+		</dict>
+	</dict>
+</plist>

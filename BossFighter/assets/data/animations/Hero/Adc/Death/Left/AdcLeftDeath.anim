@@ -1,0 +1,49 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "AdcLeftDeath",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.25,
+  "sample": 20,
+  "speed": 0.5,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "7ddb18e4-8e74-42d0-a198-aafa8cb6d5fd"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "23a0e9f8-8367-42cd-a9e5-d900cd7a8608"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "53945a97-17f6-4cfb-8f0f-b965d9e6fab3"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "c7e7be86-b268-4dee-b6d3-de7b352c8161"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "9a13d562-d82e-4d34-a730-616a4d75ed53"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

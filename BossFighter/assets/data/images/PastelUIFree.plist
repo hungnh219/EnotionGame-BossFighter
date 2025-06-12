@@ -1,0 +1,1516 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>PastelUIFree0.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{87,81}</string>
+				<key>spriteSize</key>
+				<string>{87,81}</string>
+				<key>textureRect</key>
+				<string>{{0,0},{87,81}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5057471264367817,0}</string>
+			</dict>
+			<key>PastelUIFree1.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{57,81}</string>
+				<key>spriteSize</key>
+				<string>{57,81}</string>
+				<key>textureRect</key>
+				<string>{{88,0},{57,81}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.49122807017543857,0}</string>
+			</dict>
+			<key>PastelUIFree2.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{47,48}</string>
+				<key>spriteSize</key>
+				<string>{47,48}</string>
+				<key>textureRect</key>
+				<string>{{146,0},{47,48}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5106382978723404,0}</string>
+			</dict>
+			<key>PastelUIFree3.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{194,0},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree4.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{209,0},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree5.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{224,0},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree6.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{0,82},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree7.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,14}</string>
+				<key>spriteSize</key>
+				<string>{10,14}</string>
+				<key>textureRect</key>
+				<string>{{15,82},{10,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree8.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,13}</string>
+				<key>spriteSize</key>
+				<string>{10,13}</string>
+				<key>textureRect</key>
+				<string>{{26,82},{10,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree9.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,14}</string>
+				<key>spriteSize</key>
+				<string>{10,14}</string>
+				<key>textureRect</key>
+				<string>{{37,82},{10,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree10.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,13}</string>
+				<key>spriteSize</key>
+				<string>{10,13}</string>
+				<key>textureRect</key>
+				<string>{{48,82},{10,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree11.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{59,82},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree12.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{74,82},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree13.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{89,82},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree14.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{104,82},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree15.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{119,82},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree16.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{134,82},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree17.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{149,82},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree18.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{164,82},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree19.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,14}</string>
+				<key>spriteSize</key>
+				<string>{10,14}</string>
+				<key>textureRect</key>
+				<string>{{179,82},{10,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree20.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,13}</string>
+				<key>spriteSize</key>
+				<string>{10,13}</string>
+				<key>textureRect</key>
+				<string>{{190,82},{10,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree21.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,14}</string>
+				<key>spriteSize</key>
+				<string>{10,14}</string>
+				<key>textureRect</key>
+				<string>{{201,82},{10,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree22.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,13}</string>
+				<key>spriteSize</key>
+				<string>{10,13}</string>
+				<key>textureRect</key>
+				<string>{{212,82},{10,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree23.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{223,82},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree24.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{0,97},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree25.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{15,97},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree26.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{30,97},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree27.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{45,97},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree28.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{60,97},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree29.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{75,97},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree30.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{90,97},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree31.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,14}</string>
+				<key>spriteSize</key>
+				<string>{10,14}</string>
+				<key>textureRect</key>
+				<string>{{105,97},{10,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree32.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,13}</string>
+				<key>spriteSize</key>
+				<string>{10,13}</string>
+				<key>textureRect</key>
+				<string>{{116,97},{10,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree33.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,14}</string>
+				<key>spriteSize</key>
+				<string>{10,14}</string>
+				<key>textureRect</key>
+				<string>{{127,97},{10,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree34.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,13}</string>
+				<key>spriteSize</key>
+				<string>{10,13}</string>
+				<key>textureRect</key>
+				<string>{{138,97},{10,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree35.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{149,97},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree36.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{164,97},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree37.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{179,97},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree38.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{194,97},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree39.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,10}</string>
+				<key>spriteSize</key>
+				<string>{10,10}</string>
+				<key>textureRect</key>
+				<string>{{209,97},{10,10}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree40.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,9}</string>
+				<key>spriteSize</key>
+				<string>{10,9}</string>
+				<key>textureRect</key>
+				<string>{{220,97},{10,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree41.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,10}</string>
+				<key>spriteSize</key>
+				<string>{10,10}</string>
+				<key>textureRect</key>
+				<string>{{231,97},{10,10}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree42.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,9}</string>
+				<key>spriteSize</key>
+				<string>{10,9}</string>
+				<key>textureRect</key>
+				<string>{{0,112},{10,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree43.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,10}</string>
+				<key>spriteSize</key>
+				<string>{14,10}</string>
+				<key>textureRect</key>
+				<string>{{11,112},{14,10}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree44.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,9}</string>
+				<key>spriteSize</key>
+				<string>{14,9}</string>
+				<key>textureRect</key>
+				<string>{{26,112},{14,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree45.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,10}</string>
+				<key>spriteSize</key>
+				<string>{14,10}</string>
+				<key>textureRect</key>
+				<string>{{41,112},{14,10}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree46.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,9}</string>
+				<key>spriteSize</key>
+				<string>{14,9}</string>
+				<key>textureRect</key>
+				<string>{{56,112},{14,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree47.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{71,112},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree48.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{86,112},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree49.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,14}</string>
+				<key>spriteSize</key>
+				<string>{14,14}</string>
+				<key>textureRect</key>
+				<string>{{101,112},{14,14}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree50.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,13}</string>
+				<key>spriteSize</key>
+				<string>{14,13}</string>
+				<key>textureRect</key>
+				<string>{{116,112},{14,13}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree51.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,10}</string>
+				<key>spriteSize</key>
+				<string>{10,10}</string>
+				<key>textureRect</key>
+				<string>{{131,112},{10,10}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree52.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,9}</string>
+				<key>spriteSize</key>
+				<string>{10,9}</string>
+				<key>textureRect</key>
+				<string>{{142,112},{10,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree53.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,10}</string>
+				<key>spriteSize</key>
+				<string>{10,10}</string>
+				<key>textureRect</key>
+				<string>{{153,112},{10,10}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree54.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,9}</string>
+				<key>spriteSize</key>
+				<string>{10,9}</string>
+				<key>textureRect</key>
+				<string>{{164,112},{10,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree55.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,10}</string>
+				<key>spriteSize</key>
+				<string>{14,10}</string>
+				<key>textureRect</key>
+				<string>{{175,112},{14,10}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree56.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,9}</string>
+				<key>spriteSize</key>
+				<string>{14,9}</string>
+				<key>textureRect</key>
+				<string>{{190,112},{14,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree57.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,10}</string>
+				<key>spriteSize</key>
+				<string>{14,10}</string>
+				<key>textureRect</key>
+				<string>{{205,112},{14,10}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree58.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,9}</string>
+				<key>spriteSize</key>
+				<string>{14,9}</string>
+				<key>textureRect</key>
+				<string>{{220,112},{14,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree59.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,10}</string>
+				<key>spriteSize</key>
+				<string>{10,10}</string>
+				<key>textureRect</key>
+				<string>{{235,112},{10,10}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree60.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,9}</string>
+				<key>spriteSize</key>
+				<string>{10,9}</string>
+				<key>textureRect</key>
+				<string>{{0,127},{10,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree61.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{10,9}</string>
+				<key>spriteSize</key>
+				<string>{10,9}</string>
+				<key>textureRect</key>
+				<string>{{11,127},{10,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.6,0}</string>
+			</dict>
+			<key>PastelUIFree62.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,10}</string>
+				<key>spriteSize</key>
+				<string>{14,10}</string>
+				<key>textureRect</key>
+				<string>{{22,127},{14,10}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree63.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,9}</string>
+				<key>spriteSize</key>
+				<string>{14,9}</string>
+				<key>textureRect</key>
+				<string>{{37,127},{14,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree64.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,10}</string>
+				<key>spriteSize</key>
+				<string>{14,10}</string>
+				<key>textureRect</key>
+				<string>{{52,127},{14,10}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree65.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{14,9}</string>
+				<key>spriteSize</key>
+				<string>{14,9}</string>
+				<key>textureRect</key>
+				<string>{{67,127},{14,9}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5714285714285714,0}</string>
+			</dict>
+			<key>PastelUIFree66.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{52,15}</string>
+				<key>spriteSize</key>
+				<string>{52,15}</string>
+				<key>textureRect</key>
+				<string>{{82,127},{52,15}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree67.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,8}</string>
+				<key>spriteSize</key>
+				<string>{12,8}</string>
+				<key>textureRect</key>
+				<string>{{135,127},{12,8}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree68.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,8}</string>
+				<key>spriteSize</key>
+				<string>{12,8}</string>
+				<key>textureRect</key>
+				<string>{{148,127},{12,8}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree69.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,8}</string>
+				<key>spriteSize</key>
+				<string>{12,8}</string>
+				<key>textureRect</key>
+				<string>{{161,127},{12,8}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree70.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,8}</string>
+				<key>spriteSize</key>
+				<string>{12,8}</string>
+				<key>textureRect</key>
+				<string>{{174,127},{12,8}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree71.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,8}</string>
+				<key>spriteSize</key>
+				<string>{12,8}</string>
+				<key>textureRect</key>
+				<string>{{187,127},{12,8}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree72.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{52,15}</string>
+				<key>spriteSize</key>
+				<string>{52,15}</string>
+				<key>textureRect</key>
+				<string>{{0,143},{52,15}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree73.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,12}</string>
+				<key>spriteSize</key>
+				<string>{8,12}</string>
+				<key>textureRect</key>
+				<string>{{53,143},{8,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree74.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,12}</string>
+				<key>spriteSize</key>
+				<string>{8,12}</string>
+				<key>textureRect</key>
+				<string>{{62,143},{8,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree75.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,12}</string>
+				<key>spriteSize</key>
+				<string>{8,12}</string>
+				<key>textureRect</key>
+				<string>{{71,143},{8,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree76.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{52,15}</string>
+				<key>spriteSize</key>
+				<string>{52,15}</string>
+				<key>textureRect</key>
+				<string>{{80,143},{52,15}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree77.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,8}</string>
+				<key>spriteSize</key>
+				<string>{12,8}</string>
+				<key>textureRect</key>
+				<string>{{133,143},{12,8}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree78.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,8}</string>
+				<key>spriteSize</key>
+				<string>{12,8}</string>
+				<key>textureRect</key>
+				<string>{{146,143},{12,8}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree79.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{12,8}</string>
+				<key>spriteSize</key>
+				<string>{12,8}</string>
+				<key>textureRect</key>
+				<string>{{159,143},{12,8}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree80.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{52,15}</string>
+				<key>spriteSize</key>
+				<string>{52,15}</string>
+				<key>textureRect</key>
+				<string>{{172,143},{52,15}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree81.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,12}</string>
+				<key>spriteSize</key>
+				<string>{8,12}</string>
+				<key>textureRect</key>
+				<string>{{225,143},{8,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree82.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,12}</string>
+				<key>spriteSize</key>
+				<string>{8,12}</string>
+				<key>textureRect</key>
+				<string>{{234,143},{8,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree83.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,12}</string>
+				<key>spriteSize</key>
+				<string>{8,12}</string>
+				<key>textureRect</key>
+				<string>{{0,159},{8,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree84.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,12}</string>
+				<key>spriteSize</key>
+				<string>{8,12}</string>
+				<key>textureRect</key>
+				<string>{{9,159},{8,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree85.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,12}</string>
+				<key>spriteSize</key>
+				<string>{8,12}</string>
+				<key>textureRect</key>
+				<string>{{18,159},{8,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree86.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,12}</string>
+				<key>spriteSize</key>
+				<string>{8,12}</string>
+				<key>textureRect</key>
+				<string>{{27,159},{8,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+			<key>PastelUIFree87.png</key>
+			<dict>
+				<key>aliases</key>
+				<array />
+				<key>spriteOffset</key>
+				<string>{0,0}</string>
+				<key>spriteSourceSize</key>
+				<string>{8,12}</string>
+				<key>spriteSize</key>
+				<string>{8,12}</string>
+				<key>textureRect</key>
+				<string>{{36,159},{8,12}}</string>
+				<key>textureRotated</key>
+				<false />
+				<key>anchor</key>
+				<string>{0.5,0}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>3</integer>
+			<key>realTextureFileName</key>
+			<string>PastelUIFree.png</string>
+			<key>textureFileName</key>
+			<string>PastelUIFree.png</string>
+			<key>size</key>
+			<string>{246,172}</string>
+		</dict>
+	</dict>
+</plist>

@@ -1,78 +1,74 @@
 import GAME_DATA from "../Game/GameData";
 import GameController from "../Game/GameController";
+import SocketIOManager from "../SocketIO/SocketIOManager";
 
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        soundOnButton: cc.Button,
-        soundOffButton: cc.Button,
+        // settingPanel: cc.Node,
+        // volumeSlider: cc.Slider,
     },
-
-    // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        console.log("Mfádfgsd");
-        const gameController = GameController.getInstance();
-        console.log('MainMenu onLoad', gameController);
-        if (gameController) {
-            this.gameController = gameController;
-        } else {
-            this.gameController = new GameController();
-            cc.game.addPersistRootNode(this.node);
-        }
+        // this.settingPanel.active = false;
+        this.gameController = GameController.getInstance() || new GameController();
+        this.socketIO = SocketIOManager.getInstance() || new SocketIOManager();
 
-        let isTurnOnMusic = this.gameController.getTurnOnMusic();
+        // if (this.volumeSlider) {
+        //     this.volumeSlider.node.on('slide', this.onSliderChanged, this);
+        // }
 
-        if (isTurnOnMusic) {
-            this.soundOnButton.node.active = true;
-            this.soundOffButton.node.active = false;
+        // this.updateUI();
 
-            cc.audioEngine.setMusicVolume(0.5);
-            cc.audioEngine.setEffectsVolume(0.5);
-
-        } else {
-            this.soundOnButton.node.active = false;
-            this.soundOffButton.node.active = true;
-
-            cc.audioEngine.setMusicVolume(0);
-            cc.audioEngine.setEffectsVolume(0);
-        }
+        this.socketIO.connectToSocketIOServer("http://localhost:3000");
     },
 
-    start() {
+    // updateUI() {
+    //     const soundMgr = require("SoundManager").instance;
+    //     if (!soundMgr) return;
 
-    },
+    //     if (this.volumeSlider) this.volumeSlider.progress = soundMgr.currentVolume || 0.5;
+    // },
 
-    // update (dt) {},
+    // onSliderChanged() {
+    //     const soundMgr = require("SoundManager").instance;
+    //     if (soundMgr) {
+    //         soundMgr.setVolume(this.volumeSlider.progress);
+    //         this.gameController.setIsTurnOnMusic(soundMgr.isPlaying());
+    //         this.updateUI();
+    //     }
+    // },
+
+    // toggleSound() {
+    //     const soundMgr = require("SoundManager").instance;
+    //     if (!soundMgr) return;
+
+    //     soundMgr.toggleMusic();
+    //     this.gameController.setIsTurnOnMusic(soundMgr.isPlaying());
+    //     this.updateUI();
+    // },
+
+    // showSettingPanel() {
+    //     this.settingPanel.active = true;
+    // },
+
+    // closeSettingPanel() {
+    //     this.settingPanel.active = false;
+    // },
 
     playSoloMode() {
-        console.log("playSoloMode");
+        console.log('Chay solo_mode')
         cc.director.loadScene(GAME_DATA.GAME_SCENE.MAP_SELECT);
     },
 
-    toggleSound() {
-        let isPlay = this.gameController.getTurnOnMusic();
+    playOnline() {
+        console.log('Chay play_online')
+        cc.director.loadScene(GAME_DATA.GAME_SCENE.ROOM_SELECT);
+    },
 
-        console.log("toggleSound", isPlay);
-        if (isPlay) {
-            this.soundOnButton.node.active = false;
-            this.soundOffButton.node.active = true;
-
-            // cc.audioEngine.setMusicVolume(0);
-            // cc.audioEngine.setEffectsVolume(0);
-            this.node.getComponent(cc.AudioSource).stop();
-            this.gameController.setIsTurnOnMusic(false);
-        } else {
-            this.soundOnButton.node.active = true;
-            this.soundOffButton.node.active = false;
-
-            // this.node.getComponent(cc.AudioSource).play();
-            this.node.getComponent(cc.AudioSource).play();
-            // cc.audioEngine.setMusicVolume(0.5);
-            // cc.audioEngine.setEffectsVolume(0.5);
-
-            this.gameController.setIsTurnOnMusic(true);
-        }
+    moveLeaderBoard() {
+        console.log('Chay leader_board')
+        cc.director.loadScene(GAME_DATA.GAME_SCENE.LEADER_BOARD)
     }
 });

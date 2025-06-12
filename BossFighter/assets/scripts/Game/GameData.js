@@ -3,6 +3,8 @@ const GAME_SCENE = {
     GAME: 'Game',
     MAP_SELECT: 'MapSelect',
     HERO_SELECT: 'HeroSelect',
+    ROOM_SELECT: 'RoomSelect',
+    LEADER_BOARD: 'LeaderBoard'
 }
 
 const GAME_MAP_INDEX = {
@@ -16,8 +18,13 @@ const ROLE = {
     PLAYER: 'player'
 }
 
+const EVENT_NAME = {
+    TAKE_DAME: 'take_dame',
+}
+
 export default {
     GAME_MAP_INDEX,
     GAME_SCENE,
     ROLE,
+    EVENT_NAME
 };

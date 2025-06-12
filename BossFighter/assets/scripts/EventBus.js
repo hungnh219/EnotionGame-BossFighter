@@ -3,6 +3,8 @@ const EventBus = new cc.EventTarget();
 console.log('EventBus initialized');
 
 EventBus.events = {
+    TAKE_DAME: 'take_dame',
+    DEAL_DAME: 'deal_dame',
     CLICK_TO_MOVE: 'click_to_move',
     HERO_MOVEMENT: 'hero_movement',
     DISPLAY_WALKABLE_AREA: 'display_walkable_area',
@@ -13,6 +15,11 @@ EventBus.events = {
     END_ACTION: 'end_action',
 
     BOSS2_SPAWN_ENEMY: 'boss2_spawn_enemy',
+    ENEMY_AUTO_MODE: 'enemy_auto_mode',
+
+    PREVENT_DRAG: 'prevent_drag',
+    BOSS_DIE: 'boss_die',
+    UPDATE_LEADER_BOARD: 'update_leader_board',
 };
 
 

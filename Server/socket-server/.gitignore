@@ -1,0 +1,31 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.local
+.env.development
+.env.production
+/dist
+/build
+
+# Firebase Admin SDK Service Account Key (CRITICAL!)
+my-game-project-321a1-firebase-adminsdk-fbsvc-8bdb68f419.json
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+.Spotlight-V100
+.Trashes
+desktop.ini
+
+# IDE specific files (VS Code, IntelliJ, etc.)
+.vscode/
+.idea/
+
+# Backups and temporary files
+*.bak
+*.tmp
+*~
