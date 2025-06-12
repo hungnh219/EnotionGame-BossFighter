@@ -80,7 +80,7 @@ cc.Class({
                     playerNumberComp.string = `${room.memberCount}/${room.maxPlayer}`
                     switch (room.status) {
                         case 'waiting':
-                            statusRoomNode.color = cc.Color.YELLOW
+                            statusRoomNode.color = cc.Color.GREEN
                             statusRoomComp.string = room.status
                             break;
                         default:

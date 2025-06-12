@@ -217,6 +217,7 @@ const GameController = cc.Class({
             this.socketIOManager.turn.consumeAction();
         }
         this.updatePlayerTurnCallback();
+        this.updateInfo()
     },
     enemyAutoMode() {
         if (this.enemies == undefined || this.enemies == null) return;
@@ -306,14 +307,8 @@ const GameController = cc.Class({
     },
 
     async bossAttack(enemy, hero) {
-        let dame = enemy.mainScript.getAttackDame();
-        // enemy.mainScript.dealDame(nearestHero, dame);
-        let heroId = hero.mainScript.characterId;
-        let enemyId = enemy.mainScript.characterId;
-        // let newHealth = await this.socketIOManager.game.takeDame(enemyId, heroId, dame);
         let direction = this.getDirection(this.positionToGrid(enemy), this.positionToGrid(hero));
         enemy.mainScript.playAnimation("attack_" + direction, 0.4);
-        // this.socketIOManager.turn.endBossTurn();
         hero.mainScript.updateHpBar();
         this.updateInfo(this.getPlayerByIndex(this.getPlayerIndex()));
     },
@@ -341,8 +336,6 @@ const GameController = cc.Class({
         if (node == this.focusedHero) {
             EventBus.emit(EventBus.events.DISPLAY_WALKABLE_AREA, this.firstCellPos, this.lastCellPos, walkableMap, node);
         }
-        
-        // this.setFocusedHero(this.heroes.indexOf(node));
     },
 
     heroAttack(hero) {
@@ -781,9 +774,6 @@ const GameController = cc.Class({
         let hero = this.heroes.find(hero => hero.mainScript.characterId === characterId);
         if (hero) {
             this.heroes.splice(this.heroes.indexOf(hero), 1);
-            console.warn(hero);
-            console.warn(hero.node);
-
             hero.destroy();
             return;
         }
@@ -792,8 +782,6 @@ const GameController = cc.Class({
         let boss = this.bosses.find(b => b.node.mainScript.characterId === characterId);
         if (boss) {
             this.bosses.splice(this.bosses.indexOf(boss), 1);
-            console.warn(boss);
-            console.warn(boss.node);
             boss.node.destroy();
             return;
         }

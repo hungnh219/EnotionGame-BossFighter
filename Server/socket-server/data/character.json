@@ -46,7 +46,7 @@
     {
       "id": "boss003",
       "name": "Boss 003",
-      "maxHp": 400,
+      "maxHp": 1000,
       "attackDamage": 100,
       "attackRange": 1
     }

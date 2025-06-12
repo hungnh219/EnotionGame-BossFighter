@@ -25,8 +25,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        greenTilePrefab: cc.Prefab, // prefab cho ô vuông có thể đi lại
-        redTilePrefab: cc.Prefab, // prefab cho ô vuông không thể đi lại
+        greenTilePrefab: cc.Prefab,
+        redTilePrefab: cc.Prefab,
         mapLayout: cc.Layout,
 
         mapObjectHolder: cc.Node,
@@ -261,7 +261,6 @@ cc.Class({
             isWalkable: true
         });
 
-        console.log("Enemy đang cố gắng tiếp cận hero:", enemyGridX, enemyGridY, heroGridX, heroGridY);
         const path = await this.socketIOManager.game.findPath({
             start: { x: enemyGridX, y: enemyGridY },
             end: { x: heroGridX, y: heroGridY },

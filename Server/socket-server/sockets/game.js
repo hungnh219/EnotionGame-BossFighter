@@ -804,9 +804,7 @@ function gameEvents(io, socket) {
             return;
         }
 
-        // Giả sử mỗi lần hồi máu sẽ hồi 20% máu tối đa
-        let healAmount = Math.floor(hero.maxHp * 0.2);
-        console.log(hero.hp, 'Hồi máu cho hero:', hero.heroId, 'Số lượng hồi máu:', healAmount);
+        let healAmount = Math.floor(hero.maxHp * 0.1);
         hero.hp += healAmount;
         if (hero.hp > hero.maxHp) {
             hero.hp = hero.maxHp;
@@ -821,7 +819,6 @@ function gameEvents(io, socket) {
     })
 
     socket.on('HANDLE_PLAYER_QUIT', (data) => {
-        console.log('Xử lý người chơi thoát:', data);
         let roomName = logicHandler.common.getRoomNameBySocketId(socket.id);
         if (!roomName) {
             console.error('Không tìm thấy phòng cho socket ID:', socket.id);
@@ -848,7 +845,6 @@ function gameEvents(io, socket) {
 
         let numberOfPlayers = roomData[roomName].player.length;
         let numberOfAliveHeroes = roomData[roomName].gameState.heroes.filter(h => h.status === "ALIVE").length;
-        console.log(heroId, 'Số lượng người chơi:', numberOfPlayers, 'Số lượng hero còn sống:', numberOfAliveHeroes);
 
         if (numberOfAliveHeroes < 1 && numberOfPlayers > 1) {
             roomData[roomName].gameState.isGameOver = true;

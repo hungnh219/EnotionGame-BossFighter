@@ -64,6 +64,8 @@ cc.Class({
         scrollViewContent: cc.Node,
         messageItem: cc.Prefab,
         textMessageInput: cc.EditBox,
+
+        customFont: cc.Font,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -167,7 +169,6 @@ cc.Class({
             this.gameController.handleCharacterDeath(data.characterId);
         })
         this.socketIOManager.game.listenGameOver((data) => {
-            console.log("Game over received from server:", data);
             this.endGameNotification(data.result);
         });
         this.socketIOManager.turn.listenBossTurn(() => {
@@ -180,7 +181,6 @@ cc.Class({
             this.mapController.spawnHealthOrb(data);
         });
         this.socketIOManager.game.listenPlayerQuit((data) => {
-            console.warn("Player quit received from server:", data);
             this.gameController.handlePlayerQuit(data);
             this.updateLeaderBoard();
         });
@@ -355,8 +355,7 @@ cc.Class({
         if (hero && hero.mainScript) {
             let heroId = hero.mainScript.characterId;
             await this.socketIOManager.game.quitGame(heroId);
-            await this.socketIOManager.room.leaveRoom()
-            cc.director.loadScene(GAME_DATA.GAME_SCENE.MAIN_MENU)
+            cc.director.loadScene("RoomSelect");
         } else {    
             console.warn("No hero found or hero main script is not defined");
         }
@@ -433,53 +432,44 @@ cc.Class({
         this.leaderBoard.removeAllChildren();
 
         let leaderBoardData = await this.socketIOManager.game.getLeaderBoard();
+
         leaderBoardData.forEach((data) => {
-            // create new label and add to leaderBoard node
             let label = new cc.Node().addComponent(cc.Label);
             label.string = `${data.playerName}: ${data.totalScore}`;
             label.fontSize = 30;
             label.node.color = cc.Color.WHITE;
             label.node.parent = this.leaderBoard;
-        })
+            label.font = this.customFont;
+
+            label.node.name = data.playerName;
+        });
     },
 
     async updateLeaderBoard() {
         let newLeaderBoard = await this.socketIOManager.game.getLeaderBoard();
-        console.warn("Updating leader board with data:", newLeaderBoard);
 
-        // Sort leaderboard by totalScore descending
         newLeaderBoard.sort((a, b) => b.totalScore - a.totalScore);
 
-        // Update existing children or create if not enough
-        let children = this.leaderBoard.children;
-        for (let i = 0; i < newLeaderBoard.length; i++) {
-            let data = newLeaderBoard[i];
-            let labelNode;
-            if (i < children.length) {
-                labelNode = children[i];
-                let label = labelNode.getComponent(cc.Label);
+        newLeaderBoard.forEach((data) => {
+            let existingNode = this.leaderBoard.getChildByName(data.playerName);
+            if (existingNode) {
+                let label = existingNode.getComponent(cc.Label);
                 if (label) {
                     label.string = `${data.playerName}: ${data.totalScore}`;
                 }
             } else {
-                // Create new label node if not enough
                 let label = new cc.Node().addComponent(cc.Label);
                 label.string = `${data.playerName}: ${data.totalScore}`;
                 label.fontSize = 30;
                 label.node.color = cc.Color.WHITE;
                 label.node.parent = this.leaderBoard;
+                label.font = this.customFont;
+
+                label.node.name = data.playerName;
             }
-        }
-        // Hide extra nodes if leaderboard shrinks
-        for (let i = newLeaderBoard.length; i < children.length; i++) {
-            children[i].active = false;
-        }
-        // Reactivate nodes if leaderboard grows again
-        for (let i = 0; i < newLeaderBoard.length && i < children.length; i++) {
-            children[i].active = true;
-        }
-     
+        });
     },
+
    
     // chat
     onMessageReceived(data) {

@@ -97,7 +97,7 @@ cc.Class({
         })
 
         this.startGameData = await this.socketIOManager.selectHero.getGameStartData();
-        this.playerIndex = this.socketIOManager.selectHero.getPlayerIndex(this.startGameData);
+        this.playerIndex = await this.socketIOManager.selectHero.getPlayerIndex(this.startGameData);
         console.log("Player Index:", this.playerIndex);
         console.log("Start Game Data:", this.startGameData);
         console.log("host", this.startGameData.players[this.playerIndex].host);
@@ -120,19 +120,19 @@ cc.Class({
 
     loadHeroPrefabs() {
         for (let index = 0; index < this.heroPrefabs.length; index++) {
-                const prefab = this.heroPrefabs[index];
+            const prefab = this.heroPrefabs[index];
 
-                const hero = cc.instantiate(prefab);
-                hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
+            const hero = cc.instantiate(prefab);
+            hero.mainScript = hero.getComponents(cc.Component).find(c => typeof c.getCharacterInfo === 'function');
 
-                if (hero.mainScript) {
-                    let info = { ...hero.mainScript.getCharacterInfo() };
-                    info.name = hero.name;
-                    this.heros[index] = info;
-                    this.createHeroThumbnail(index, info);
-                    this.saveHeroData(info);
-                }
+            if (hero.mainScript) {
+                let info = { ...hero.mainScript.getCharacterInfo() };
+                info.name = hero.name;
+                this.heros[index] = info;
+                this.createHeroThumbnail(index, info);
+                this.saveHeroData(info);
             }
+        }
     },
 
     createHeroThumbnail(index, info) {
@@ -177,10 +177,8 @@ cc.Class({
 
 
     displaySelectedHero(info) {
-        // Set sprite frame for the selected hero slot
         this.selectedHeroes[this.playerIndex].spriteFrame = info.avatar.getComponent(cc.Sprite).spriteFrame;
 
-        // Find the existing name label node by name
         const nameLabelNode = this.selectedHeroes[this.playerIndex].node.getChildByName(`NameLabel-${this.playerIndex}`);
         if (nameLabelNode) {
             const nameLabel = nameLabelNode.getComponent(cc.Label);
@@ -298,10 +296,8 @@ cc.Class({
             if (heroIndex !== undefined && heroIndex !== null && this.heros[heroIndex]) {
                 const info = this.heros[heroIndex];
 
-                // Cập nhật spriteFrame cho đúng player slot
                 this.selectedHeroes[playerIdx].spriteFrame = info.avatar.getComponent(cc.Sprite).spriteFrame;
 
-                // Cập nhật tên hero cho đúng label
                 const nameLabelNode = this.selectedHeroes[playerIdx].node.getChildByName(`NameLabel-${playerIdx}`);
                 if (nameLabelNode) {
                     const nameLabel = nameLabelNode.getComponent(cc.Label);

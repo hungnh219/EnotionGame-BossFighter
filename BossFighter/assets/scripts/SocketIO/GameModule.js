@@ -434,7 +434,7 @@ module.exports = function(socket) {
                 return null;
             }
             await socket.emit('HANDLE_PLAYER_QUIT', { characterId: characterId });
-            await socket.emit('LEAVE_ROOM')
+            // await socket.emit('LEAVE_ROOM')
         },
 
         listenPlayerQuit(callback) {
