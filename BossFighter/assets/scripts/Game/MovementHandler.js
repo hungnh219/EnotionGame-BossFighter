@@ -4,6 +4,7 @@ import EventBus from "../EventBus";
 import GameController from "./GameController";
 import MapController from "./MapController";
 import SocketIOManager from "../SocketIO/SocketIOManager";
+import PoolingManager from "../Prefab/PoolingManager";
 
 const ANIM_MAP = {
     'idle': 'Idle',
@@ -40,7 +41,8 @@ cc.Class({
             this.gameController = new GameController();
             cc.game.addPersistRootNode(this.node);
         }
-
+        this.poolingManager = PoolingManager.getInstance();
+        console.warn("PoolingManager instance:", this.poolingManager);
         this.mapController = MapController.getInstance() || new MapController();
         this.socketIOManager = SocketIOManager.getInstance() || new SocketIOManager();
         this.socketIOManager.game.listenMoveToNewTile((data) => {
@@ -207,6 +209,8 @@ cc.Class({
         const lastTileX = Math.min(mapSetting.mapWidth - 1, gridX + steps);
         const lastTileY = Math.min(mapSetting.mapHeight - 1, gridY + steps);
 
+        const gridIndex = 0;
+
         for (let i = firstTileX; i <= lastTileX; i++) {
             for (let j = firstTileY; j <= lastTileY; j++) {
                 if (!walkableGridMap[i][j]) continue;
@@ -224,15 +228,20 @@ cc.Class({
 
                 let tile;
                 if (path) {
-                    tile = cc.instantiate(this.greenTilePrefab);
+                    tile = PoolingManager.getInstance().getWalkableGrid(gridIndex, this.mapObjectHolder);
+                    if (!tile) {
+                        console.warn(`No tile found for grid index ${gridIndex}`);
+                        continue;
+                    }
+                    tile.name = 'GreenTile';
+                    gridIndex++;
+                    // tile = cc.instantiate(this.greenTilePrefab);
                 } else {
                     tile = cc.instantiate(this.redTilePrefab);
                 }
 
                 this.mapObjectHolder.addChild(tile);
                 this.mapController.addObjectIntoMap(i, j, 1, tile);
-                
-
             }
         }
     },

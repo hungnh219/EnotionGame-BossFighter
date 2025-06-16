@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@firebase/firestore": "^4.7.17",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "firebase": "^11.9.1",

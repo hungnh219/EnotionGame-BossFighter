@@ -1,5 +1,5 @@
 
-const PoolingManager = cc.Class({
+const PoolPrefab = cc.Class({
     extends: cc.Component,
 
     statics: {
@@ -17,12 +17,12 @@ const PoolingManager = cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        if (PoolingManager._instance) {
+        if (PoolPrefab._instance) {
             this.node.destroy();
             return;
         }
 
-        PoolingManager._instance = this;
+        PoolPrefab._instance = this;
         cc.game.addPersistRootNode(this.node);
 
         // initialize pool
@@ -37,24 +37,11 @@ const PoolingManager = cc.Class({
     },
 
     getWalkableGrid(index, holder) {
-        console.warn(`getWalkableGrid: index=${index}, holder=${holder}`);
-        console.warn(this.walkableGridPool);
-        console.warn(this.walkableGridPool[index]);
-        let pool = this.walkableGridPool[index];
-        if (!pool) {
-            cc.error(`No pool found for index ${index}`);
-            return null;
-        }
-        return this._getNodeFromPool(pool, this.walkableGridPrefab, holder);
+
     },
 
-    putWalkableGrid(index, node) {
-        let pool = this.walkableGridPool[index];
-        if (!pool) {
-            cc.error(`No pool found for index ${index}`);
-            return;
-        }
-        this._putNodeToPool(pool, node);
+    putWalkableGrid(node) {
+
     },
 
     _getNodeFromPool(pool, prefab, holder) {
@@ -65,13 +52,11 @@ const PoolingManager = cc.Class({
             node = cc.instantiate(prefab);
         }
         node.parent = holder;
-        node.active = true;
         return node;
     },
 
     _putNodeToPool(pool, node) {
         if (pool && node) {
-            node.active = false;
             pool.put(node);
         }
     },
